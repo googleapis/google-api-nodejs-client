@@ -1,0 +1,28 @@
+[
+ {
+  "error": {
+   "code": 401,
+   "message": "Login Required",
+   "data": [
+    {
+     "domain": "global",
+     "reason": "required",
+     "message": "Login Required",
+     "locationType": "header",
+     "location": "Authorization"
+    }
+   ]
+  },
+  "id": 0
+ },
+ {
+  "id": 1,
+  "result": {
+   "kind": "urlshortener#url",
+   "id": "http://goo.gl/mR2d",
+   "longUrl": "http://google.com/",
+   "status": "OK"
+  }
+ }
+]
+

@@ -1,0 +1,32 @@
+{
+  "name": "googleapis",
+  "version": "0.2.1-alpha",
+  "author": "Google Inc.",
+  "description": "Google APIs Client Library for Node.js",
+  "contributors": [
+    {
+      "name": "Burcu Dogan",
+      "email": "jbd@google.com"
+    }
+  ],
+  "main": "./lib/googleapis",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/google/google-api-nodejs-client.git"
+  },
+  "keywords": [
+    "google",
+    "api",
+    "google apis",
+    "client",
+    "client library"
+  ],
+  "dependencies" : {
+    "request":  "2.14.0"
+  },
+  "devDependencies" : {
+    "mocha": "1.8.1",
+    "url": "0.7.9"
+  },
+  "license": "Apache 2"
+}
