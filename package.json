@@ -7,6 +7,9 @@
     {
       "name": "Burcu Dogan",
       "email": "jbd@google.com"
+    }, {
+      "name": "Monsur Hossain",
+      "email": "monsur@google.com"
     }
   ],
   "main": "./lib/googleapis",
