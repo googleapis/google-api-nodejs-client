@@ -179,21 +179,7 @@ Tests use mocha. To run all tests you can use
 
     $ npm test
 
-which looks for tests in the `./tests` directory. To run a particular test, you may use
-
-    $./node_modules/.bin/mocha tests/some_test.js
-
-Alternatively, install mocha globally to run the tests.
-
-    $ npm install -g mocha
-
-With globally installed mocha, running all tests is done with
-
-    $ mocha tests/*
-
-and a single test with
-
-    $ mocha tests/some_test.js
+which looks for tests in the `./tests` directory.
 
 Your code should honor the
 [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
