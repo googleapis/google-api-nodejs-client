@@ -31,5 +31,8 @@
     "mocha": "1.8.1",
     "url": "0.7.9"
   },
+  "scripts": {
+    "test": "mocha tests/*"
+  },
   "license": "Apache 2"
 }

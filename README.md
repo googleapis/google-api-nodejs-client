@@ -175,14 +175,11 @@ Install all depedencies including development requirements by running:
 
     $ npm install -d
 
-Install mocha globally to be able to run the tests.
+Tests use mocha. To run all tests you can use
 
-    $ npm install -g mocha
+    $ npm test
 
-To run the unit tests, use the following command. Ensure that your code has an
-appropriate set of unit tests which all pass.
-
-    $ mocha tests/*
+which looks for tests in the `./tests` directory.
 
 Your code should honor the
 [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
