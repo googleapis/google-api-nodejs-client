@@ -106,7 +106,7 @@ basics of Google's OAuth 2.0 implementation is explained on
 documentation](https://developers.google.com/accounts/docs/OAuth2Login).
 
 A complete sample application that authorizes and authenticates with OAuth2.0
-client is available at `examples/ouath2.js`.
+client is available at `examples/oauth2.js`.
 
 #### Consent Page Url
 
@@ -166,8 +166,8 @@ available on COPYING file.
 
 ## Contributors
 
-Before making any contributions, please sign one of the contributors
-licenses below.
+Before making any contributions, please sign one of the contributor
+license agreements below.
 
 Fork the repo, develop and test your code changes.
 
