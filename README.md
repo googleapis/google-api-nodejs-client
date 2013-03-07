@@ -1,5 +1,7 @@
 # google-api-nodejs-client [alpha]
 
+[![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)](https://travis-ci.org/google/google-api-nodejs-client)
+
 `google-api-nodejs-client` is the Google's officially supported
 [node.js](http://nodejs.org/) client
 library for accessing Google APIs, it also supports authorization and
