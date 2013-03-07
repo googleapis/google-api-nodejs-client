@@ -52,7 +52,7 @@ API key:
 
      googleapis.load('urlshortener', 'v1', function(err, client) {
        client.withApiKey('YOUR API KEY HERE');
-       // make requestss
+       // make requests
      });
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
@@ -171,7 +171,7 @@ licenses below.
 
 Fork the repo, develop and test your code changes.
 
-Install all depedencies including development requirements by running:
+Install all dependencies including development requirements by running:
 
     $ npm install -d
 
