@@ -27,7 +27,7 @@ googleapis.load('urlshortener', 'v1', function(err, client) {
     .add(req2)
     .execute(function(err, results) {
       if (err) {
-        console.log('One or more errors occured', err);
+        console.log('One or more errors occurred', err);
       } else {
         console.log('Responses: ', results);
       }

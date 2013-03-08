@@ -35,7 +35,7 @@ describe('Clients', function() {
     });
   });
 
-  it('should be able to generate default disovery url', function() {
+  it('should be able to generate default discovery url', function() {
     var discoveryUrl =
         new googleapis.GoogleApis('plus', 'v3').generateDiscoveryUrl();
     var parsed = url.parse(discoveryUrl);
@@ -45,7 +45,7 @@ describe('Clients', function() {
     assert.equal(parsed.query, null);
   });
 
-  it('should be able to generate default disovery url with custom ' +
+  it('should be able to generate default discovery url with custom ' +
       'base url and parameters configuration', function() {
     var discoveryUrl = new googleapis.GoogleApis('plus', 'v3', {
       baseDiscoveryUrl: 'http://mydeployment/discovery/',
