@@ -129,6 +129,8 @@ URL:
       scope: 'https://www.googleapis.com/auth/plus.me'
     });
 
+In order to get a refresh token for offline use, supply `approval_prompt: 'force'` to `generateAuthUrl`.
+
 #### Retrieving Tokens
 Once user has given permissions on the consent page, Google will redirect
 the page to the redirect url you have provided with a code query parameter.
