@@ -151,9 +151,9 @@ access_token and replays the request.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
-    oauth2Client.tokens = {
-      access_token = 'ACCESS TOKEN HERE',
-      refresh_token = 'REFRESH TOKEN HERE'
+    oauth2Client.credentials = {
+      access_token: 'ACCESS TOKEN HERE',
+      refresh_token: 'REFRESH TOKEN HERE'
     };
 
     client
