@@ -204,37 +204,50 @@ describe('Requests', function() {
 
 describe('OAuth2 client', function() {
 
-  var clientId = 'CLIENT_ID';
-  var clientSecret = 'CLIENT_SECRET';
-  var redirectUrl = 'REDIRECT';
-  var accessType = 'offline';
-  var scope = 'scopex';
+  var CLIENT_ID = 'CLIENT_ID';
+  var CLIENT_SECRET = 'CLIENT_SECRET';
+  var REDIRECT_URI = 'REDIRECT';
+  var ACCESS_TYPE = 'offline';
+  var SCOPE = 'scopex';
 
   var urlshortenerDiscoveryTransporter =
       new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
   it('should generate a valid consent page url', function() {
     var opts = {
-      access_type: accessType,
-      scope: scope
+      access_type: ACCESS_TYPE,
+      scope: SCOPE,
+      response_type: 'code token'
     };
 
     var oauth2client =
-        new googleapis.OAuth2Client(clientId, clientSecret, redirectUrl);
+        new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     var generated = oauth2client.generateAuthUrl(opts);
     var parsed = url.parse(generated);
     var query = qs.parse(parsed.query);
 
-    assert.equal(query.access_type, accessType);
-    assert.equal(query.scope, scope);
-    assert.equal(query.client_id, clientId);
-    assert.equal(query.redirect_uri, redirectUrl);
+    assert.equal(query.response_type, 'code token');
+    assert.equal(query.access_type, ACCESS_TYPE);
+    assert.equal(query.scope, SCOPE);
+    assert.equal(query.client_id, CLIENT_ID);
+    assert.equal(query.redirect_uri, REDIRECT_URI);
+  });
+
+  it('should set resonse_type param to code if none is given while' +
+      'generating the consent page url', function() {
+    var oauth2client =
+        new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var generated = oauth2client.generateAuthUrl();
+    var parsed = url.parse(generated);
+    var query = qs.parse(parsed.query);
+
+    assert.equal(query.response_type, 'code');
   });
 
   it('should throw exception no access token is set before making ' +
       'a request', function() {
     var oauth2client =
-      new googleapis.OAuth2Client(clientId, clientSecret, redirectUrl);
+      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
     googleapis.load('urlshortener', 'v1', function(err, client) {
       assert.throws(function() {
