@@ -16,10 +16,12 @@
 
 var googleapis = require('../lib/googleapis.js');
 
-googleapis.load('urlshortener', 'v1', function(err, client) {
+googleapis
+    .discover('urlshortener', 'v1')
+    .execute(function(err, client) {
 
   var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
-  var req2 = client.urlshortener.url.list();
+  var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUdX' });
 
   //build a batch request and execute
   client.newBatchRequest()

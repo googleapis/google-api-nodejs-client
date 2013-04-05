@@ -66,7 +66,9 @@ function printUserProfile(err, profile) {
 }
 
 // load google plus v1 API resources and methods
-googleapis.load('plus', 'v1', function(err, client) {
+googleapis
+  .discover('plus', 'v1')
+  .execute(function(err, client) {
 
   var oauth2Client =
     new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);

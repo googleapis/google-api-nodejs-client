@@ -20,6 +20,21 @@ var url = require('url');
 var assert = require('assert');
 var qs = require('querystring');
 
+describe('Discovery', function() {
+  var plusMockTransporter =
+      new MockTransporter(__dirname + '/data/discovery_plus.json');
+  var urlshortenerDiscoveryTransporter =
+    new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
+
+  it('should be able to load multiple APIs', function() {
+      googleapis
+        .discover('plus', 'v3')
+        .execute(function(err, client) {
+          assert.equal(typeof client.plus, 'Object');
+        });
+  })
+});
+
 describe('Clients', function() {
 
   var mockTransporter =
@@ -28,7 +43,9 @@ describe('Clients', function() {
   it('should create request helpers according ' +
         'to the resource on discovery API response', function() {
     googleapis.Transporter = mockTransporter;
-    googleapis.load('plus', 'v3', function(err, client) {
+    googleapis
+        .discover('plus', 'v3')
+        .execute(function(err, client) {
       assert.equal(typeof client.plus.people.get, 'function');
       assert.equal(typeof client.plus.activities.search, 'function');
       assert.equal(typeof client.plus.comments.list, 'function');
@@ -36,8 +53,9 @@ describe('Clients', function() {
   });
 
   it('should be able to generate default discovery url', function() {
+    var api = { name: 'plus', version: 'v3', opts: {} };
     var discoveryUrl =
-        new googleapis.GoogleApis('plus', 'v3').generateDiscoveryUrl();
+        googleapis.generateDiscoveryUrl(api);
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.host, 'www.googleapis.com');
@@ -47,10 +65,11 @@ describe('Clients', function() {
 
   it('should be able to generate default discovery url with custom ' +
       'base url and parameters configuration', function() {
-    var discoveryUrl = new googleapis.GoogleApis('plus', 'v3', {
+    var api = { name: 'plus', version: 'v3', opts: {
       baseDiscoveryUrl: 'http://mydeployment/discovery/',
       discoveryParams: { a: 'hello', b: 'hi' }
-    }).generateDiscoveryUrl();
+    }};
+    var discoveryUrl = googleapis.generateDiscoveryUrl(api);
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'http:');
     assert.equal(parsed.host, 'mydeployment');
@@ -64,7 +83,7 @@ describe('Transporters', function() {
 
   var urlshortenerDiscoveryTransporter =
     new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
-  var defaultUserAgent = 'google-api-nodejs-client/0.2.3-alpha';
+  var defaultUserAgent = 'google-api-nodejs-client/0.2.4-alpha';
 
   it('should set default client user agent if none is set', function() {
     var opts = urlshortenerDiscoveryTransporter.configure({});
@@ -91,7 +110,9 @@ describe('Requests', function() {
 
   it('should set API key parameter if it is presented', function() {
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       var url = client
         .withApiKey('YOUR API KEY HERE')
         .urlshortener.url.list().generateUri();
@@ -102,7 +123,9 @@ describe('Requests', function() {
   it('should generate a valid JSON-RPC payload for single' +
       'requests', function() {
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
       var request = client.urlshortener.url.insert(null, obj);
       var payload = request.generatePayload();
@@ -119,7 +142,9 @@ describe('Requests', function() {
   it('should generate a valid JSON-RPC payload if any params are given',
       function() {
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       var params = { test: 'a' };
       var request = client.urlshortener.url.list(params);
       var payload = request.generatePayload();
@@ -132,7 +157,9 @@ describe('Requests', function() {
     var singleErrResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single_err.json');
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+      .discover('urlshortener', 'v1')
+      .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
 
       var request = client.urlshortener.url.insert(null, obj);
@@ -151,7 +178,9 @@ describe('Requests', function() {
     var singleResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single.json');
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       var obj = { longUrl: 'http://google.com/' };
 
       var request = client.urlshortener.url.insert(null, obj);
@@ -168,7 +197,9 @@ describe('Requests', function() {
 
   it('should return responses in the request order', function() {
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       var requests = client.newBatchRequest();
       requests.add(client.urlshortener.url.list());
       requests.add(client.urlshortener.url.get());
@@ -187,7 +218,9 @@ describe('Requests', function() {
     var batchResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_batch.json');
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       var requests = client.newBatchRequest();
       requests.transporter = batchResponseMockTransporter;
       requests.execute(function(errs, results) {
@@ -249,7 +282,9 @@ describe('OAuth2 client', function() {
     var oauth2client =
       new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
       assert.throws(function() {
         client
           .newRequest('dummy', {})
