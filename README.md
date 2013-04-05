@@ -19,22 +19,30 @@ run the following command:
 
 ## Guide
 
-Dynamically load any Google API and start making requests:
+### Discover APIs
+
+Dynamically load Google APIs and start making requests:
 
     var googleapis = require('googleapis');
 
-    googleapis.load('urlshortener', 'v1', function(err, client) {
+    googleapis
+        .discover('urlshortener', 'v1')
+        .discover('plus', 'v3')
+        .execute(function(err, client) {
       var params = { shortUrl: 'http://goo.gl/DdUKX' };
-      var request = client.urlshortener.url.get(params);
-      request.execute(function (err, response) {
+      var req1 = client.urlshortener.url.get(params);
+      req1.execute(function (err, response) {
         console.log('Long url is', response.longUrl);
       });
+      
+      var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
+      req2.execute();
     });
 
 Supported APIs are listed on
 [Google APIs Explorer](https://developers.google.com/apis-explorer).
 
-### API Clients
+### API Client
 
 Client libraries are generated during runtime by metadata provided by Google
 APIs Discovery Service. Metadata provided by Discovery Service is not cached,
@@ -42,18 +50,20 @@ but requested each time you load a client. We're making changes to improve the
 situation for short-lived node processes. Below, there is an example of loading
 a client for [URL Shortener API](https://developers.google.com/url-shortener/).
 
-    googleapis.load('urlshortener', 'v1', function(err, client) {
-      if (!err) {
-        console.log('Client is loaded successfully');
-      }
-    });
+    googleapis
+         .discover('urlshortener', 'v1')
+         .execute(function(err, client) {
+       // make requests
+     });
 
 Alternatively, you may like to configure the client to append an API key to all
 requests you are going to make. Once you load a client library, you can set an
 API key:
 
-     googleapis.load('urlshortener', 'v1', function(err, client) {
-       client.withApiKey('YOUR API KEY HERE');
+     googleapis
+         .discover('urlshortener', 'v1')
+         .withApiKey('YOUR API KEY HERE')
+         .execute(function(err, client) {
        // make requests
      });
 
@@ -64,40 +74,34 @@ To learn more about API keys, please see the [documentation](https://developers.
 Following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
-    googleapis.load('urlshortener', 'v1', function(err, client) {
-      // ...
-      client
-        .urlshortener
-        .url
-        .get({ shortUrl: 'http://goo.gl/DdUKX' })
-        .execute(function(err, result) {
-          // result.longUrl contains the long url.
-        });
-    });
-
+     googleapis
+         .discover('urlshortener', 'v1')
+         .execute(function(err, client) {
+       client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
+           .execute(function(err, result) {
+             // result.longUrl contains the long url.
+           });
+     });
 
 ### Batch requests
 
 You can combine multiple requests in a single one by using batch requests.
 
-    googleapis.load('urlshortener', 'v1', function(err, client) {
-      // ...
-      var request1 =
-          client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
-      var request2 =
-          client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
-      // create from raw action name
-      var request3 = client.newRequest('urlshortener.url.list');
+    var request1 =
+        client.plus.people.get({ userId: '+BurcuDogan' });
+    var request2 =
+        client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
+    // create from raw action name
+    var request3 = client.newRequest('urlshortener.url.list');
 
-      client
-        .newBatchRequest()
-        .add(request1)
-        .add(request2)
-        .add(request3)
-        .execute(function(err, results) {
+    client
+      .newBatchRequest()
+      .add(request1)
+      .add(request2)
+      .add(request3)
+      .execute(function(err, results) {
 
-        });
-    });
+      });
 
 ### Authorization and Authentication
 
