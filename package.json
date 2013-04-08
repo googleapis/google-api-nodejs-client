@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "0.2.3-alpha",
+  "version": "0.2.4-alpha",
   "author": "Google Inc.",
   "description": "Google APIs Client Library for Node.js",
   "contributors": [
@@ -25,7 +25,8 @@
     "client library"
   ],
   "dependencies" : {
-    "request":  "2.14.0"
+    "request": "2.14.0",
+    "async": "0.2.6"
   },
   "devDependencies" : {
     "mocha": "1.8.1",
