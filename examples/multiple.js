@@ -19,7 +19,6 @@ var googleapis = require('../lib/googleapis.js');
 googleapis
   .discover('urlshortener', 'v1')
   .discover('plus', 'v1')
-  .withApiKey('AIzaSyCs_m3mLwBZc6nXkjgUPYWlHTeecAktlbQ')
   .execute(function(err, client) {
 
     var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
@@ -29,6 +28,7 @@ googleapis
       .newBatchRequest()
       .add(req1)
       .add(req2)
+      .withApiKey('YOUR API KEY HERE')
       .execute(function(err, results) {
         console.log('Results: ', results);
       });

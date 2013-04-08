@@ -34,7 +34,7 @@ Dynamically load Google APIs and start making requests:
       req1.execute(function (err, response) {
         console.log('Long url is', response.longUrl);
       });
-      
+
       var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
       req2.execute();
     });
@@ -60,12 +60,12 @@ Alternatively, you may like to configure the client to append an API key to all
 requests you are going to make. Once you load a client library, you can set an
 API key:
 
-     googleapis
-         .discover('urlshortener', 'v1')
-         .withApiKey('YOUR API KEY HERE')
-         .execute(function(err, client) {
-       // make requests
-     });
+    googleapis
+       .discover('urlshortener', 'v1')
+        .withApiKey('YOUR API KEY HERE')
+        .execute(function(err, client) {
+      // make requests
+    });
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
 
@@ -74,14 +74,12 @@ To learn more about API keys, please see the [documentation](https://developers.
 Following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
-     googleapis
-         .discover('urlshortener', 'v1')
-         .execute(function(err, client) {
-       client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-           .execute(function(err, result) {
-             // result.longUrl contains the long url.
-           });
-     });
+    googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
+      client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
+         .execute(function(err, result) {
+            // result.longUrl contains the long url.
+          });
+      });
 
 ### Batch requests
 

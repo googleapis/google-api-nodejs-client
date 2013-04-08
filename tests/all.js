@@ -24,15 +24,18 @@ describe('Discovery', function() {
   var plusMockTransporter =
       new MockTransporter(__dirname + '/data/discovery_plus.json');
   var urlshortenerDiscoveryTransporter =
-    new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
+      new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
   it('should be able to load multiple APIs', function() {
-      googleapis
-        .discover('plus', 'v3')
-        .execute(function(err, client) {
-          assert.equal(typeof client.plus, 'Object');
-        });
-  })
+    googleapis
+      .discover('plus', 'v3')
+      .discover('urlshortener', 'v1')
+      .execute(function(err, client) {
+        assert.equal(typeof client.plus, 'Object');
+        assert.equal(typeof client.urlshortener, 'Object');
+      });
+  });
+
 });
 
 describe('Clients', function() {
