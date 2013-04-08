@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Google Inc. All Rights Reserved.
+ * Copyright 2013 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,24 +17,19 @@
 var googleapis = require('../lib/googleapis.js');
 
 googleapis
-    .discover('urlshortener', 'v1')
-    .execute(function(err, client) {
+  .discover('urlshortener', 'v1')
+  .discover('plus', 'v1')
+  .execute(function(err, client) {
 
-  var printResult = function(err, result) {
-    if (err) {
-      console.log('Error occurred: ', err);
-    } else {
-      console.log('Result: ', result);
-    }
-  };
+    var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
+    var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
 
-  // a single request
-  client
-    .urlshortener
-    .newRequest('urlshortener.url.get', { shortUrl: 'http://goo.gl/DdUKX' })
-    .execute(printResult);
-
-  // request builders
-  client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-    .execute(printResult);
-});
+    client
+      .newBatchRequest()
+      .add(req1)
+      .add(req2)
+      .withApiKey('YOUR API KEY HERE')
+      .execute(function(err, results) {
+        console.log('Results: ', results);
+      });
+  });
