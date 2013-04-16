@@ -45,10 +45,10 @@ Supported APIs are listed on
 ### API Client
 
 Client libraries are generated during runtime by metadata provided by Google
-APIs Discovery Service. Metadata provided by Discovery Service is not cached,
-but requested each time you load a client. We're making changes to improve the
-situation for short-lived node processes. Below, there is an example of loading
-a client for [URL Shortener API](https://developers.google.com/url-shortener/).
+APIs Discovery Service. Metadata provided by Discovery Service is cached,
+and won't be requested each time you load a client. Below, there is an
+example of loading a client for
+[URL Shortener API](https://developers.google.com/url-shortener/).
 
     googleapis
          .discover('urlshortener', 'v1')
