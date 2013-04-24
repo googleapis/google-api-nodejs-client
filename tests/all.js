@@ -16,6 +16,7 @@
 
 var MockTransporter = require('./mocks/transporters.js');
 var googleapis = require('../lib/googleapis.js');
+var requests = require('../lib/requests.js');
 var url = require('url');
 var assert = require('assert');
 var qs = require('querystring');
@@ -121,6 +122,12 @@ describe('Requests', function() {
         .urlshortener.url.list().generateUri();
       assert.equal(url.indexOf('key=YOUR%20API%20KEY%20HERE') > 0, true);
     });
+  });
+
+  it('should not append ? with no parameters', function() {
+    var req = new requests.Request();
+    var generatedUrl = req.generateUri();
+    assert.equal(-1, generatedUrl.indexOf('?'))
   });
 
   it('should generate a valid JSON-RPC payload for single' +
