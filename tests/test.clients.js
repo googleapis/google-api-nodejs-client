@@ -28,40 +28,42 @@ describe('Clients', function() {
         new MockTransporter(__dirname + '/data/discovery_plus.json');
 
   it('should create request helpers according ' +
-        'to the resource on discovery API response', function() {
-    googleapis.Transporter = mockTransporter;
-    googleapis
-        .discover('plus', 'v3')
+        'to the resource on discovery API response', function(done) {
+    new googleapis.GoogleApis()
+        .discover('plus', 'v1')
         .execute(function(err, client) {
       assert.equal(typeof client.plus.people.get, 'function');
       assert.equal(typeof client.plus.activities.search, 'function');
       assert.equal(typeof client.plus.comments.list, 'function');
+      done();
     });
   });
 
-  it('should be able to generate default discovery url', function() {
+  it('should be able to generate default discovery url', function(done) {
     var api = { name: 'plus', version: 'v3', opts: {} };
     var discoveryUrl =
-        googleapis.generateDiscoveryUrl(api);
+        new googleapis.GoogleApis().generateDiscoveryUrl(api);
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.host, 'www.googleapis.com');
     assert.equal(parsed.path, '/discovery/v1/apis/plus/v3/rpc');
     assert.equal(parsed.query, null);
+    done();
   });
 
   it('should be able to generate default discovery url with custom ' +
-      'base url and parameters configuration', function() {
+      'base url and parameters configuration', function(done) {
     var api = { name: 'plus', version: 'v3', opts: {
       baseDiscoveryUrl: 'http://mydeployment/discovery/',
       discoveryParams: { a: 'hello', b: 'hi' }
     }};
-    var discoveryUrl = googleapis.generateDiscoveryUrl(api);
+    var discoveryUrl = new googleapis.GoogleApis().generateDiscoveryUrl(api);
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'http:');
     assert.equal(parsed.host, 'mydeployment');
     assert.equal(parsed.pathname, '/discovery/plus/v3/rpc');
     assert.equal(parsed.query, 'a=hello&b=hi');
+    done();
   });
 
 });

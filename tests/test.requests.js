@@ -27,22 +27,24 @@ describe('Requests', function() {
   var urlshortenerDiscoveryTransporter =
     new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
-  it('should set API key parameter if it is presented', function() {
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+  it('should set API key parameter if it is presented', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
-      var url = client
-        .withApiKey('YOUR API KEY HERE')
-        .urlshortener.url.list().generateUri();
+      var url = client.urlshortener.url.list()
+          .withApiKey('YOUR API KEY HERE').generateUri();
       assert.equal(url.indexOf('key=YOUR%20API%20KEY%20HERE') > 0, true);
+      done();
     });
   });
 
   it('should generate a valid JSON-RPC payload for single' +
-      'requests', function() {
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+      'requests', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
@@ -54,14 +56,14 @@ describe('Requests', function() {
       assert.equal(first.method, 'urlshortener.url.insert');
       assert.equal(first.params.resource, obj);
       assert.equal(first.jsonrpc, '2.0');
-      assert.equal(first.apiVersion, client.apiMeta.version);
+      done();
     });
   });
 
   it('should generate a valid JSON-RPC payload if any params are given',
-      function() {
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+      function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var params = { test: 'a' };
@@ -69,14 +71,16 @@ describe('Requests', function() {
       var payload = request.generatePayload();
       var first = payload[0];
       assert.equal(first.params, params);
+      done();
     });
   });
 
-  it('should return a single error for single requests', function() {
+  it('should return a single error for single requests', function(done) {
     var singleErrResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single_err.json');
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+    var gapis = new googleapis.GoogleApis();
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
       .discover('urlshortener', 'v1')
       .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
@@ -89,15 +93,17 @@ describe('Requests', function() {
         assert.equal(err.code, 400);
         assert.equal(err.message, 'Required');
         assert.notEqual(err.data, null);
+        done();
       });
     });
   });
 
-  it('should return a single response object for single requests', function() {
+  it('should return a single response object for single requests', function(done) {
     var singleResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single.json');
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+    var gapis = new googleapis.GoogleApis();
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var obj = { longUrl: 'http://google.com/' };
@@ -110,13 +116,15 @@ describe('Requests', function() {
         assert.notEqual(result.kind, null);
         assert.notEqual(result.id, null);
         assert.equal(result.longUrl, 'http://google.com/');
+        done();
       });
     });
   });
 
-  it('should return responses in the request order', function() {
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+  it('should return responses in the request order', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var requests = client.newBatchRequest();
@@ -129,15 +137,17 @@ describe('Requests', function() {
       assert.equal(payload[0].method, 'urlshortener.url.list');
       assert.equal(payload[1].method, 'urlshortener.url.get');
       assert.equal(payload[2].params.id, 'http://goo.gl/mR2d');
+      done();
     });
   });
 
   it('should return errors on the first argument, not on the body',
-      function() {
+      function(done) {
     var batchResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_batch.json');
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+    var gapis = new googleapis.GoogleApis();
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var requests = client.newBatchRequest();
@@ -145,9 +155,10 @@ describe('Requests', function() {
       requests.execute(function(errs, results) {
         assert.equal(!!errs, true);
         assert.equal(!!errs[0], true);
-        assert.equal(results[0].error, null);
+        assert.equal(results[0], null);
         assert.equal(errs[1], null);
-        assert.notEqual(results[1].result, null);
+        assert.notEqual(results[1], null);
+        done();
       });
     });
   });

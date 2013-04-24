@@ -33,7 +33,7 @@ describe('OAuth2 client', function() {
   var urlshortenerDiscoveryTransporter =
       new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
-  it('should generate a valid consent page url', function() {
+  it('should generate a valid consent page url', function(done) {
     var opts = {
       access_type: ACCESS_TYPE,
       scope: SCOPE,
@@ -51,10 +51,11 @@ describe('OAuth2 client', function() {
     assert.equal(query.scope, SCOPE);
     assert.equal(query.client_id, CLIENT_ID);
     assert.equal(query.redirect_uri, REDIRECT_URI);
+    done();
   });
 
   it('should set resonse_type param to code if none is given while' +
-      'generating the consent page url', function() {
+      'generating the consent page url', function(done) {
     var oauth2client =
         new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     var generated = oauth2client.generateAuthUrl();
@@ -62,14 +63,16 @@ describe('OAuth2 client', function() {
     var query = qs.parse(parsed.query);
 
     assert.equal(query.response_type, 'code');
+    done();
   });
 
   it('should throw exception no access token is set before making ' +
       'a request', function() {
+    var gapis = new googleapis.GoogleApis();
     var oauth2client =
       new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    googleapis.Transporter = urlshortenerDiscoveryTransporter;
-    googleapis
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       assert.throws(function() {

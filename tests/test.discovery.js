@@ -23,25 +23,25 @@ var googleapis = require('../lib/googleapis.js');
 
 describe('Discovery', function() {
 
-  it('should be able to load multiple APIs', function() {
+  it('should be able to load multiple APIs', function(done) {
     new googleapis.GoogleApis()
-      .discover('plus', 'v3')
+      .discover('plus', 'v1')
       .discover('urlshortener', 'v1')
       .execute(function(err, client) {
-        console.log(client)
-        assert.equal(typeof client.plus, 'Object');
-        assert.equal(typeof client.urlshortener, 'Object');
+        assert.equal(typeof client.plus, 'object');
+        assert.equal(typeof client.urlshortener, 'object');
+        done();
       });
   });
 
-  it('should cache discovery metadata', function() {
+  it('should cache discovery metadata', function(done) {
     new googleapis.GoogleApis()
       .discover('drive', 'v2')
       .execute(function(err, client) {
         var exists = fs.existsSync(process.cwd() + '/.cache/drivev2');
         assert.equal(exists, true);
         // clean up
-        fs.unlink(process.cwd() + '/.cache/drivev2');
+        fs.unlink(process.cwd() + '/.cache/drivev2', done);
       });
   });
 
