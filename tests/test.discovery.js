@@ -34,6 +34,26 @@ describe('Discovery', function() {
       });
   });
 
+  it('should be able to load API from file', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis.cache = {
+      load: function() {},
+      write: function() {},
+    };
+    gapis.transporter = {
+      request: function() {
+        assert.fail(null, null,'transporter.request should not be called');
+      }
+    };
+    gapis.discover('plus', 'v1', {
+      localDiscoveryFile: __dirname + '/data/discovery_plus.json'
+    }).execute(function(err, client) {
+      assert.equal(null, err);
+      assert.equal(typeof client.plus, 'object');
+      done();
+    });
+  });
+
   it('should cache discovery metadata', function(done) {
     new googleapis.GoogleApis()
       .discover('drive', 'v2')
