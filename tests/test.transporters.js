@@ -31,7 +31,6 @@ describe('Transporters', function() {
   it('should set default client user agent if none is set', function(done) {
     var opts = urlshortenerDiscoveryTransporter.configure({});
     var re = new RegExp(defaultUserAgentRE);
-    console.log(opts.headers['User-Agent']);
     assert(re.test(opts.headers['User-Agent']));
     done();
   });
