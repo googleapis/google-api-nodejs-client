@@ -19,42 +19,42 @@ var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 
 describe('compute auth', function() {
-    it('should get an initial access token', function(done) {
-      var compute = new googleapis.auth.Compute();
-      compute.transporter = {
-        request: function(opts, opt_callback) {
-          opt_callback(null, {
-            'access_token': 'initial-access-token',
-            'token_type': 'Bearer'
-          });
-        }
-      };
-      compute.authorize(function() {
-        assert.equal('initial-access-token', compute.credentials.access_token);
-        assert.equal('compute-placeholder', compute.credentials.refresh_token);
-        done();
-      });
-    });
-    it('should refresh token when request fails', function(done) {
-      var compute = new googleapis.auth.Compute();
-      compute.credentials = {
-        access_token: 'initial-access-token',
-        refresh_token: 'compute-placeholder'
-      };
-      compute.transporter = {
-        request: function(opts, opt_callback) {
-          opt_callback([{code: 401}], null);
-        }
-      };
-      compute.refreshToken_ = function(token, callback) {
-        callback(null, {
-          'access_token': 'another-access-token',
+  it('should get an initial access token', function(done) {
+    var compute = new googleapis.auth.Compute();
+    compute.transporter = {
+      request: function(opts, opt_callback) {
+        opt_callback(null, {
+          'access_token': 'initial-access-token',
           'token_type': 'Bearer'
         });
-      };
-      compute.request({}, function() {
-        assert.equal('another-access-token', compute.credentials.access_token);
-        done();
-      });
+      }
+    };
+    compute.authorize(function() {
+      assert.equal('initial-access-token', compute.credentials.access_token);
+      assert.equal('compute-placeholder', compute.credentials.refresh_token);
+      done();
     });
+  });
+  it('should refresh token when request fails', function(done) {
+    var compute = new googleapis.auth.Compute();
+    compute.credentials = {
+      access_token: 'initial-access-token',
+      refresh_token: 'compute-placeholder'
+    };
+    compute.transporter = {
+      request: function(opts, opt_callback) {
+        opt_callback([{code: 401}], null);
+      }
+    };
+    compute.refreshToken_ = function(token, callback) {
+      callback(null, {
+        'access_token': 'another-access-token',
+        'token_type': 'Bearer'
+      });
+    };
+    compute.request({}, function() {
+      assert.equal('another-access-token', compute.credentials.access_token);
+      done();
+    });
+  });
 });
