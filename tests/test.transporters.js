@@ -26,12 +26,13 @@ describe('Transporters', function() {
 
   var urlshortenerDiscoveryTransporter =
     new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
-  var defaultUserAgent = 'google-api-nodejs-client/0.2.5-alpha';
+  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+\.\\w+';
 
   it('should set default client user agent if none is set', function(done) {
     var opts = urlshortenerDiscoveryTransporter.configure({});
-    assert.equal(
-        opts.headers['User-Agent'], defaultUserAgent);
+    var re = new RegExp(defaultUserAgentRE);
+    console.log(opts.headers['User-Agent']);
+    assert(re.test(opts.headers['User-Agent']));
     done();
   });
 
@@ -41,8 +42,8 @@ describe('Transporters', function() {
     var opts = urlshortenerDiscoveryTransporter.configure({
       headers: { 'User-Agent': applicationName }
     });
-    assert.equal(
-        opts.headers['User-Agent'], applicationName + ' ' + defaultUserAgent);
+    var re = new RegExp(applicationName + ' ' + defaultUserAgentRE);
+    assert(re.test(opts.headers['User-Agent']));
     done();
   });
 
