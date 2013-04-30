@@ -39,7 +39,7 @@ describe('compute auth', function() {
       var compute = new googleapis.auth.Compute();
       compute.credentials = {
         access_token: 'initial-access-token',
-        refresh_token: 'compute-placeholder',
+        refresh_token: 'compute-placeholder'
       };
       compute.transporter = {
         request: function(opts, opt_callback) {
