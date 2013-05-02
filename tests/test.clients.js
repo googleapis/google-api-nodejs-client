@@ -66,4 +66,14 @@ describe('Clients', function() {
     done();
   });
 
+  it('should be able to add AuthClient on new requests', function(done) {
+    new googleapis.GoogleApis()
+      .discover('plus', 'v1')
+      .execute(function(err, client) {
+        var req = client.plus.withAuthClient({ credentials: 'dummy'}).newRequest();
+        assert.equal('dummy', req.authClient.credentials);
+        done();
+      });
+  });
+
 });
