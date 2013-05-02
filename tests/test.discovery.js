@@ -69,4 +69,20 @@ describe('Discovery', function() {
       });
   });
 
+  it('should add AuthClient to underlying API clients', function(done) {
+    new googleapis.GoogleApis()
+      .discover('plus', 'v1')
+      .discover('drive', 'v2')
+      .withAuthClient({credentials: 'foo'})
+      .execute(function(err, client) {
+        var req = client.newBatchRequest();
+        assert.equal('foo', req.authClient.credentials);
+        req = client.drive.newRequest();
+        assert.equal('foo', req.authClient.credentials);
+        req = client.plus.newRequest();
+        assert.equal('foo', req.authClient.credentials);
+        done();
+      });
+  });
+
 });
