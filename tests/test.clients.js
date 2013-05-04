@@ -70,7 +70,8 @@ describe('Clients', function() {
     new googleapis.GoogleApis()
       .discover('plus', 'v1')
       .execute(function(err, client) {
-        var req = client.plus.withAuthClient({ credentials: 'dummy'}).newRequest();
+        var req =
+            client.plus.withAuthClient({ credentials: 'dummy'}).newRequest();
         assert.equal('dummy', req.authClient.credentials);
         done();
       });

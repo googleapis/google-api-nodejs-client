@@ -42,7 +42,7 @@ describe('Discovery', function() {
       },
       write: function() {
         assert.fail(null, null, 'cache.write should not be called');
-      },
+      }
     };
     gapis.transporter = {
       request: function() {

@@ -20,7 +20,7 @@ var url = require('url'),
     fs = require('fs');
 
 var googleapis = require('../lib/googleapis.js'),
-    MockTransporter = require('./mocks/transporters.js')
+    MockTransporter = require('./mocks/transporters.js'),
     requests = require('../lib/requests.js');
 
 describe('Requests', function() {
@@ -44,7 +44,7 @@ describe('Requests', function() {
   it('should not append ? with no parameters', function() {
     var req = new requests.Request();
     var generatedUrl = req.generateUri();
-    assert.equal(-1, generatedUrl.indexOf('?'))
+    assert.equal(-1, generatedUrl.indexOf('?'));
   });
 
   it('should generate a valid JSON-RPC payload for single' +
@@ -105,7 +105,8 @@ describe('Requests', function() {
     });
   });
 
-  it('should return a single response object for single requests', function(done) {
+  it('should return a single response object for single requests',
+      function(done) {
     var singleResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single.json');
     var gapis = new googleapis.GoogleApis();
