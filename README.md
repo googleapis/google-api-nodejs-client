@@ -23,21 +23,23 @@ run the following command:
 
 Dynamically load Google APIs and start making requests:
 
-    var googleapis = require('googleapis');
+~~~~ js
+var googleapis = require('googleapis');
 
-    googleapis
-        .discover('urlshortener', 'v1')
-        .discover('plus', 'v3')
-        .execute(function(err, client) {
-      var params = { shortUrl: 'http://goo.gl/DdUKX' };
-      var req1 = client.urlshortener.url.get(params);
-      req1.execute(function (err, response) {
-        console.log('Long url is', response.longUrl);
-      });
+googleapis
+    .discover('urlshortener', 'v1')
+    .discover('plus', 'v3')
+    .execute(function(err, client) {
+  var params = { shortUrl: 'http://goo.gl/DdUKX' };
+  var req1 = client.urlshortener.url.get(params);
+  req1.execute(function (err, response) {
+    console.log('Long url is', response.longUrl);
+  });
 
-      var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
-      req2.execute();
-    });
+  var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
+  req2.execute();
+});
+~~~~
 
 Supported APIs are listed on
 [Google APIs Explorer](https://developers.google.com/apis-explorer).
@@ -50,22 +52,26 @@ and won't be requested each time you load a client. Below, there is an
 example of loading a client for
 [URL Shortener API](https://developers.google.com/url-shortener/).
 
-    googleapis
-         .discover('urlshortener', 'v1')
-         .execute(function(err, client) {
-       // make requests
-     });
+~~~~ js
+googleapis
+     .discover('urlshortener', 'v1')
+     .execute(function(err, client) {
+   // make requests
+ });
+~~~~
 
 Alternatively, you may like to configure the client to append an API key to all
 requests you are going to make. Once you load a client library, you can set an
 API key:
 
-    googleapis
-       .discover('urlshortener', 'v1')
-        .withApiKey('YOUR API KEY HERE')
-        .execute(function(err, client) {
-      // make requests
-    });
+~~~~ js
+googleapis
+   .discover('urlshortener', 'v1')
+    .withApiKey('YOUR API KEY HERE')
+    .execute(function(err, client) {
+  // make requests
+});
+~~~~
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
 
@@ -74,32 +80,36 @@ To learn more about API keys, please see the [documentation](https://developers.
 Following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
-    googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
-      client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-         .execute(function(err, result) {
-            // result.longUrl contains the long url.
-          });
+~~~~ js
+googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
+  client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
+     .execute(function(err, result) {
+        // result.longUrl contains the long url.
       });
+  });
+~~~~
 
 ### Batch requests
 
 You can combine multiple requests in a single one by using batch requests.
 
-    var request1 =
-        client.plus.people.get({ userId: '+BurcuDogan' });
-    var request2 =
-        client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
-    // create from raw action name
-    var request3 = client.newRequest('urlshortener.url.list');
+~~~~ js
+var request1 =
+    client.plus.people.get({ userId: '+BurcuDogan' });
+var request2 =
+    client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
+// create from raw action name
+var request3 = client.newRequest('urlshortener.url.list');
 
-    client
-      .newBatchRequest()
-      .add(request1)
-      .add(request2)
-      .add(request3)
-      .execute(function(err, results) {
+client
+  .newBatchRequest()
+  .add(request1)
+  .add(request2)
+  .add(request3)
+  .execute(function(err, results) {
 
-      });
+  });
+~~~~
 
 ### Authorization and Authentication
 
@@ -118,18 +128,20 @@ In order to ask for permissions from user to retrieve an access token, you
 should redirect them to a consent page. In order to create a consent page
 URL:
 
-    var googleapis = require('googleapis'),
-        OAuth2Client = googleapis.OAuth2Client;
+~~~~ js
+var googleapis = require('googleapis'),
+    OAuth2Client = googleapis.OAuth2Client;
 
-    var oauth2Client =
-        new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var oauth2Client =
+    new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
-    // generates a url allows offline access and asks permissions
-    // for Google+ scope.
-    var url = oauth2Client.generateAuthUrl({
-      access_type: 'offline',
-      scope: 'https://www.googleapis.com/auth/plus.me'
-    });
+// generates a url allows offline access and asks permissions
+// for Google+ scope.
+var url = oauth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: 'https://www.googleapis.com/auth/plus.me'
+});
+~~~~
 
 #### Retrieving Tokens
 Once user has given permissions on the consent page, Google will redirect
@@ -139,10 +151,12 @@ the page to the redirect url you have provided with a code query parameter.
 
 With the code returned, you can ask for an access token as shown below:
 
-    oauth2Client.getToken(code, function(err, tokens) {
-      // contains an access_token and optionally a refresh_token.
-      // save them permanently.
-    });
+~~~~ js
+oauth2Client.getToken(code, function(err, tokens) {
+  // contains an access_token and optionally a refresh_token.
+  // save them permanently.
+});
+~~~~ js
 
 #### Making Authenticated Requests
 
@@ -153,15 +167,17 @@ access_token and replays the request.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
-    oauth2Client.credentials = {
-      access_token: 'ACCESS TOKEN HERE',
-      refresh_token: 'REFRESH TOKEN HERE'
-    };
+~~~~ js
+oauth2Client.credentials = {
+  access_token: 'ACCESS TOKEN HERE',
+  refresh_token: 'REFRESH TOKEN HERE'
+};
 
-    client
-      .plus.people.get({ userId: 'me' })
-      .withAuthClient(oauth2Client)
-      .execute(callback);
+client
+  .plus.people.get({ userId: 'me' })
+  .withAuthClient(oauth2Client)
+  .execute(callback);
+~~~~
 
 ## License
 
