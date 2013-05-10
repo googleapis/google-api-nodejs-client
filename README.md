@@ -156,7 +156,7 @@ oauth2Client.getToken(code, function(err, tokens) {
   // contains an access_token and optionally a refresh_token.
   // save them permanently.
 });
-~~~~ js
+~~~~
 
 #### Making Authenticated Requests
 
