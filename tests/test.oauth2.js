@@ -84,6 +84,22 @@ describe('OAuth2 client', function() {
     });
   });
 
+  it('should set access token type to Bearer if none is set', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    var oauth2client =
+      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oauth2client.credentials = { access_token: 'foo' };
+    gapis
+      .discover('urlshortener', 'v1')
+      .execute(function(err, client) {
+        var req = client.urlshortener.url.list().withAuthClient(oauth2client);
+        req.execute(function(err, result) {
+          assert.equal(oauth2client.credentials.token_type, 'Bearer');
+          done();
+        });
+    });
+  });
+
   it('should replay the request with a refreshed token if auth failed',
     function() {
     // TODO(burcud): Implement this unit test.
