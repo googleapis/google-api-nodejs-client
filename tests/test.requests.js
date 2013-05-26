@@ -67,6 +67,22 @@ describe('Requests', function() {
     });
   });
 
+  it('should handle non-RPC errors for single requests without ' +
+      'assuming the errors should be an array', function(done) {
+    var invalidGrantMockTransporter =
+        new MockTransporter(__dirname + '/data/res_invalidgrant.json');
+    var gapis = new googleapis.GoogleApis();
+    var callback = function(err, client) {
+      var req = client.urlshortener.url.list();
+      req.transporter = invalidGrantMockTransporter;
+      req.execute(function (err, res) {
+        assert.equal(err, 'invalid_grant');
+        done();
+      });
+    };
+    gapis.discover('urlshortener', 'v1').execute(callback);
+  });
+
   it('should generate a valid JSON-RPC payload if any params are given',
       function(done) {
     var gapis = new googleapis.GoogleApis();
