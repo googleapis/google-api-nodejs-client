@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)](https://travis-ci.org/google/google-api-nodejs-client)
 
-`google-api-nodejs-client` is the Google's officially supported
+`google-api-nodejs-client` is Google's officially supported
 [node.js](http://nodejs.org/) client
 library for accessing Google APIs, it also supports authorization and
 authentication with OAuth 2.0.
@@ -77,7 +77,7 @@ To learn more about API keys, please see the [documentation](https://developers.
 
 ### Requests
 
-Following sample loads a client for URL Shortener and retrieves the long url
+The following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
 ~~~~ js
@@ -113,7 +113,7 @@ client
 
 ### Authorization and Authentication
 
-This client comes with an OAuth2 client allows you to retrieve an access token and
+This client comes with an OAuth2 client that allows you to retrieve an access token and
 refreshes the token and re-try the request seamlessly if token is expired. The
 basics of Google's OAuth 2.0 implementation is explained on
 [Google Authorization and Authentication
@@ -124,7 +124,7 @@ client is available at `examples/oauth2.js`.
 
 #### Consent Page Url
 
-In order to ask for permissions from user to retrieve an access token, you
+In order to ask for permissions from a user to retrieve an access token, you
 should redirect them to a consent page. In order to create a consent page
 URL:
 
@@ -135,7 +135,7 @@ var googleapis = require('googleapis'),
 var oauth2Client =
     new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
-// generates a url allows offline access and asks permissions
+// generates a url that allows offline access and asks permissions
 // for Google+ scope.
 var url = oauth2Client.generateAuthUrl({
   access_type: 'offline',
@@ -144,7 +144,7 @@ var url = oauth2Client.generateAuthUrl({
 ~~~~
 
 #### Retrieving Tokens
-Once user has given permissions on the consent page, Google will redirect
+Once a user has given permissions on the consent page, Google will redirect
 the page to the redirect url you have provided with a code query parameter.
 
     GET /oauthcallback?code={authorizationCode}
