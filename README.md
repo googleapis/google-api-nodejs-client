@@ -28,7 +28,7 @@ var googleapis = require('googleapis');
 
 googleapis
     .discover('urlshortener', 'v1')
-    .discover('plus', 'v3')
+    .discover('plus', 'v1')
     .execute(function(err, client) {
   var params = { shortUrl: 'http://goo.gl/DdUKX' };
   var req1 = client.urlshortener.url.get(params);
@@ -60,21 +60,6 @@ googleapis
  });
 ~~~~
 
-Alternatively, you may like to configure the client to append an API key to all
-requests you are going to make. Once you load a client library, you can set an
-API key:
-
-~~~~ js
-googleapis
-   .discover('urlshortener', 'v1')
-    .withApiKey('YOUR API KEY HERE')
-    .execute(function(err, client) {
-  // make requests
-});
-~~~~
-
-To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
-
 ### Requests
 
 The following sample loads a client for URL Shortener and retrieves the long url
@@ -88,6 +73,24 @@ googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
       });
   });
 ~~~~
+
+Alternatively, you may need to send an API key with the
+request you are going to make. The following creates and executes a request from the Google+ API service to retrieve a person profile given a userId:
+
+~~~~ js
+googleapis
+  .discover('plus', 'v1')
+  .execute(function(err, client) {
+    var request1 = client.plus.people.get({ userId: '+BurcuDogan' })
+                    .withApiKey(API_KEY);
+
+    request1.execute(function(err, result) {
+        console.log("Result: " + (err ? err.message : result.displayName));
+      });
+  });
+~~~~
+
+To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
 
 ### Batch requests
 
