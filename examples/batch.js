@@ -28,10 +28,12 @@ googleapis
     .add(req1)
     .add(req2)
     .execute(function(err, results) {
-      // Batched requests always return a results array, but not necessarily an err array
+      // Batched requests always return a results array, but
+      // not necessarily always an err array
       for (var i in results) {
         if (err && err[i]) {
-          console.log('Error response   #', i, ':', err[i].code, err[i].message);
+          console.log('Error response   #', i, ':', err[i].code,
+                        err[i].message);
         } else if (results[i]) {
           console.log('Response longUrl #', i, ':', results[i].longUrl);
         }
