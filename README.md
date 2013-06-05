@@ -85,8 +85,8 @@ googleapis
                     .withApiKey(API_KEY);
 
     request1.execute(function(err, result) {
-        console.log("Result: " + (err ? err.message : result.displayName));
-      });
+      console.log("Result: " + (err ? err.message : result.displayName));
+    });
   });
 ~~~~
 
@@ -101,8 +101,8 @@ var request1 =
     client.plus.people.get({ userId: '+BurcuDogan' });
 var request2 =
     client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
-// create from raw action name
-var request3 = client.newRequest('urlshortener.url.list');
+// create from client service using the raw action name
+var request3 = client.urlshortener.newRequest('url.list', { longUrl: 'http://goo.gl/A5492' });
 
 client
   .newBatchRequest()

@@ -29,7 +29,15 @@ googleapis
       .add(req1)
       .add(req2)
       .withApiKey('YOUR API KEY HERE')
-      .execute(function(err, results) {
-        console.log('Results: ', results);
-      });
+      .execute(function(err, results)  {
+
+      // Batched requests always return a results array, but not necessarily an err array
+      for (var i in results) {
+        if (err && err[i]) {
+          console.log('Error response   #', i, ':', err[i].code, err[i].message);
+        } else if (results[i]) {
+          console.log('Response #', i, ':', results[i].longUrl ? results[i].longUrl : results[i].displayName);
+        }
+      }
+    });
   });
