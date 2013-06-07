@@ -99,11 +99,13 @@ You can combine multiple requests in a single one by using batch requests.
 ~~~~ js
 var request1 =
     client.plus.people.get({ userId: '+BurcuDogan' });
-var request2 =
-    client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
-// create from client service using the raw action name
-var request3 = client.urlshortener.newRequest('url.list', { longUrl: 'http://goo.gl/A5492' });
 
+var request2 =
+    client.urlshortener.url.insert(null, { longUrl: 'http://google.com' });
+
+// Create from client service using the raw action name
+var request3 = client.urlshortener.newRequest('urlshortener.url.get', 
+                        { shortUrl: 'http://goo.gl/DdUKX' });
 client
   .newBatchRequest()
   .add(request1)
