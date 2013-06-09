@@ -44,6 +44,19 @@ googleapis
 Supported APIs are listed on
 [Google APIs Explorer](https://developers.google.com/apis-explorer).
 
+#### Discovery Document Caching
+
+Discovery documents are being cached for 5 minutes locally.
+You can configure the directory used to store cached discovery
+files by using the `cache.path` option.
+
+~~~~ js
+googleapis
+    .discover('plus', 'v3')
+    .withOpts({ cache: { path: '<path>' }))
+    .execute();
+~~~~
+
 ### API Client
 
 Client libraries are generated during runtime by metadata provided by Google
