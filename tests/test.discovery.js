@@ -69,6 +69,18 @@ describe('Discovery', function() {
       });
   });
 
+  it('should cache discovery metadata should be stored in the configurable '
+    + 'cache directory', function(done) {
+    var customPath = './b041042364d89046c003ca151a6254ef';
+    new googleapis.GoogleApis()
+      .discover('drive', 'v2')
+      .withOpts({ cache: { path: customPath } })
+      .execute(function(err, client) {
+        assert.equal(fs.existsSync(customPath), true);
+        done();
+      });
+  });
+
   it('should add AuthClient to underlying API clients', function(done) {
     new googleapis.GoogleApis()
       .discover('plus', 'v1')
