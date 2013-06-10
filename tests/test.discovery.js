@@ -19,7 +19,8 @@ var url = require('url'),
     qs = require('querystring'),
     fs = require('fs');
 
-var googleapis = require('../lib/googleapis.js');
+var googleapis = require('../lib/googleapis.js'),
+    modulePath = __dirname + '/..';
 
 describe('Discovery', function() {
 
@@ -60,12 +61,12 @@ describe('Discovery', function() {
 
   it('should cache discovery metadata', function(done) {
     new googleapis.GoogleApis()
-      .discover('drive', 'v2')
+      .discover('mirror', 'v1')
       .execute(function(err, client) {
-        var exists = fs.existsSync(process.cwd() + '/.cache/drivev2');
+        var exists = fs.existsSync(modulePath + '/.cache/mirrorv1');
         assert.equal(exists, true);
         // clean up
-        fs.unlink(process.cwd() + '/.cache/drivev2', done);
+        fs.unlink(modulePath + '/.cache/mirrorv1', done);
       });
   });
 
@@ -73,11 +74,11 @@ describe('Discovery', function() {
     + 'cache directory', function(done) {
     var customPath = './b041042364d89046c003ca151a6254ef';
     new googleapis.GoogleApis()
-      .discover('drive', 'v2')
+      .discover('orkut', 'v2')
       .withOpts({ cache: { path: customPath } })
       .execute(function(err, client) {
         assert.equal(fs.existsSync(customPath), true);
-        done();
+        fs.unlink(customPath + '/orkutv2', done);
       });
   });
 
