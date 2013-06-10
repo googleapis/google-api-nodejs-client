@@ -17,26 +17,35 @@
 var googleapis = require('../lib/googleapis.js');
 
 googleapis
-    .discover('urlshortener', 'v1')
-    .execute(function(err, client) {
+  .discover('urlshortener', 'v1')
+  .execute(function(err, client) {
+    // example request designed to return success
+    var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
 
-  var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
-  var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUdX' });
+    // example request designed to return an error
+    var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUdX' });
 
-  //build a batch request and execute
-  client.newBatchRequest()
-    .add(req1)
-    .add(req2)
-    .execute(function(err, results) {
-      // Batched requests always return a results array, but
-      // not necessarily always an err array
-      for (var i in results) {
-        if (err && err[i]) {
-          console.log('Error response   #', i, ':', err[i].code,
-                        err[i].message);
-        } else if (results[i]) {
-          console.log('Response longUrl #', i, ':', results[i].longUrl);
+    //build a batch request and execute
+    client.newBatchRequest()
+      .add(req1)
+      .add(req2)
+      .execute(function(err, results) {
+        var i = 0;
+
+        // Even though results[] always is an array the length of the
+        // number of batch requests, check again to be safe
+        for (i = 0; results && (i < results.length); i++) {
+          if (results[i]) {
+            console.log('Response longUrl #', i + 1, ':', results[i].longUrl);
+          }
         }
-      }
+
+        // The err object may be null if there are zero errors
+        for (i = 0; err && (i < err.length); i++) {
+          if (err[i]) {
+            console.log('Error response   #', i + 1, ':', err[i].code,
+                err[i].message);
+          }
+        }
     });
 });

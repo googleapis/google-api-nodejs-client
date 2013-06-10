@@ -16,6 +16,11 @@
 
 var googleapis = require('../lib/googleapis.js');
 
+// PUT your API key here or this example will return errors
+// To learn more about API keys, please see:
+// https://developers.google.com/console/help/#UsingKeys
+var API_KEY = 'YOUR API KEY HERE';
+
 googleapis
   .discover('urlshortener', 'v1')
   .discover('plus', 'v1')
@@ -28,19 +33,25 @@ googleapis
       .newBatchRequest()
       .add(req1)
       .add(req2)
-      .withApiKey('YOUR API KEY HERE')
+      .withApiKey(API_KEY)
       .execute(function(err, results)  {
+        var i = 0;
 
-      // Batched requests always return a results array, but
-      // not necessarily always an err array
-      for (var i in results) {
-        if (err && err[i]) {
-          console.log('Error response   #', i, ':', err[i].code,
-                        err[i].message);
-        } else if (results[i]) {
-          console.log('Response #', i, ':', results[i].longUrl ?
-                        results[i].longUrl : results[i].displayName);
+        // Even though results[] always is an array the length of the
+        // number of batch requests, check again to be safe
+        for (i = 0; results && (i < results.length); i++) {
+          if (results[i]) {
+            console.log('Response #', i + 1, ':', results[i].longUrl ?
+                results[i].longUrl : results[i].displayName);
+          }
         }
-      }
+
+        // The err object may be null if there are zero errors
+        for (i = 0; err && (i < err.length); i++) {
+          if (err[i]) {
+            console.log('Error response   #', i + 1, ':', err[i].code,
+                err[i].message);
+          }
+        }
     });
-  });
+});
