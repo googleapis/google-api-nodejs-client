@@ -81,7 +81,7 @@ of the given short url:
 ~~~~ js
 googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
   client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-     .execute(function(err, result) {
+      .execute(function(err, result) {
         // result.longUrl contains the long url.
       });
   });
@@ -95,7 +95,7 @@ googleapis
   .discover('plus', 'v1')
   .execute(function(err, client) {
     var request1 = client.plus.people.get({ userId: '+BurcuDogan' })
-                    .withApiKey(API_KEY);
+        .withApiKey(API_KEY);
 
     request1.execute(function(err, result) {
       console.log("Result: " + (err ? err.message : result.displayName));
@@ -117,8 +117,9 @@ var request2 =
     client.urlshortener.url.insert(null, { longUrl: 'http://google.com' });
 
 // Create from client service using the raw action name
-var request3 = client.urlshortener.newRequest('urlshortener.url.get', 
-                        { shortUrl: 'http://goo.gl/DdUKX' });
+var request3 = client.urlshortener.newRequest(
+    'urlshortener.url.get', { shortUrl: 'http://goo.gl/DdUKX' });
+
 client
   .newBatchRequest()
   .add(request1)

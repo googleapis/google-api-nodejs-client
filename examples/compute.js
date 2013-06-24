@@ -16,7 +16,7 @@
 
 var googleapis = require('../lib/googleapis.js');
 
-var compute = new googleapis.auth.Compute()
+var compute = new googleapis.auth.Compute();
 compute.authorize(function(err, result) {
   console.log(err, result);
 });
