@@ -66,7 +66,7 @@ describe('OAuth2 client', function() {
     done();
   });
 
-  it('should throw exception no access token is set before making ' +
+  it('should throw exception no access or refresh token is set before making ' +
       'a request', function() {
     var gapis = new googleapis.GoogleApis();
     var oauth2client =
@@ -80,7 +80,26 @@ describe('OAuth2 client', function() {
           .newRequest('dummy', {})
           .withAuthClient(oauth2client)
           .execute();
-      }, Error, 'No access token is set.');
+      }, Error, 'No access or refresh token is set.');
+    });
+  });
+
+  it('should not throw any exceptions if only refresh token is set',
+      function() {
+    var gapis = new googleapis.GoogleApis();
+    var oauth2client =
+      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oauth2client.credentials = { refresh_token: 'refresh_token' };
+    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    gapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
+      assert.doesNotThrow(function() {
+        client
+          .urlshortener.url.list()
+          .withAuthClient(oauth2client)
+          .execute();
+      });
     });
   });
 
@@ -88,15 +107,15 @@ describe('OAuth2 client', function() {
     var gapis = new googleapis.GoogleApis();
     var oauth2client =
       new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    oauth2client.credentials = { access_token: 'foo' };
+    oauth2client.credentials = { access_token: 'foo', refresh_token: '' };
     gapis
-      .discover('urlshortener', 'v1')
-      .execute(function(err, client) {
-        var req = client.urlshortener.url.list().withAuthClient(oauth2client);
-        req.execute(function(err, result) {
-          assert.equal(oauth2client.credentials.token_type, 'Bearer');
-          done();
-        });
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
+      var req = client.urlshortener.url.list().withAuthClient(oauth2client);
+      req.execute(function(err, result) {
+        assert.equal(oauth2client.credentials.token_type, 'Bearer');
+         done();
+      });
     });
   });
 
