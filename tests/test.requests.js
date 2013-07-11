@@ -47,7 +47,7 @@ describe('Requests', function() {
     assert.equal(-1, generatedUrl.indexOf('?'));
   });
 
-  it('should generate a valid JSON-RPC payload for single' +
+  it('should generate a valid JSON-RPC payload for single ' +
       'requests', function(done) {
     var gapis = new googleapis.GoogleApis();
     gapis.Transporter = urlshortenerDiscoveryTransporter;
@@ -55,7 +55,7 @@ describe('Requests', function() {
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
-      var request = client.urlshortener.url.insert(null, obj);
+      var request = client.urlshortener.url.insert(obj);
       var payload = request.generatePayload();
       var first = payload[0];
 
@@ -89,11 +89,25 @@ describe('Requests', function() {
     gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
-      var params = { test: 'a' };
-      var request = client.urlshortener.url.list(params);
+      var params = { shortUrl: 'a' };
+      var request = client.urlshortener.url.get(params);
       var payload = request.generatePayload();
       var first = payload[0];
-      assert.equal(first.params, params);
+      assert.equal(first.params.shortUrl, 'a');
+      done();
+    });
+  });
+
+  it('should move resource parameters under resource key', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis
+        .discover('drive', 'v2')
+        .execute(function(err, client) {
+      var req = client.drive.files.update({ fileId: 'fileId', title: 'Test' }),
+          payload = req.generatePayload(),
+          first = payload[0];
+      assert.equal(first.params.fileId, 'fileId');
+      assert.equal(first.params.resource.title, 'Test');
       done();
     });
   });
