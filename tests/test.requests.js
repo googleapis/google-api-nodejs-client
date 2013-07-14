@@ -98,16 +98,15 @@ describe('Requests', function() {
     });
   });
 
-  it('should move resource parameters under resource key', function(done) {
+  it('should not require parameters for insertion requests', function(done) {
     var gapis = new googleapis.GoogleApis();
     gapis
         .discover('drive', 'v2')
         .execute(function(err, client) {
-      var req = client.drive.files.update({ fileId: 'fileId', title: 'Test' }),
+      var req = client.drive.files.insert({ someAttr: 'someValue' }),
           payload = req.generatePayload(),
           first = payload[0];
-      assert.equal(first.params.fileId, 'fileId');
-      assert.equal(first.params.resource.title, 'Test');
+      assert.equal(first.params.resource.someAttr, 'someValue');
       done();
     });
   });
