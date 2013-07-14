@@ -18,7 +18,7 @@ var assert = require('assert');
 
 var googleapis = require('../lib/googleapis.js');
 
-describe('compute auth', function() {
+describe('Compute auth client', function() {
   it('should get an initial access token', function(done) {
     var compute = new googleapis.auth.Compute();
     compute.transporter = {
