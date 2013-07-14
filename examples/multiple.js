@@ -30,11 +30,11 @@ googleapis
     var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
 
     client
-      .newBatchRequest()
-      .add(req1)
-      .add(req2)
-      .withApiKey(API_KEY)
-      .execute(function(err, results)  {
-        console.log(err, results);
-    });
+        .newBatchRequest()
+        .add(req1)
+        .add(req2)
+        .withApiKey(API_KEY)
+        .execute(function(err, results) {
+          console.log(err, results);
+        });
 });

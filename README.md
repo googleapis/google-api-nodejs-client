@@ -114,7 +114,7 @@ var request1 =
     client.plus.people.get({ userId: '+BurcuDogan' });
 
 var request2 =
-    client.urlshortener.url.insert(null, { longUrl: 'http://google.com' });
+    client.urlshortener.url.insert({ longUrl: 'http://google.com' });
 
 // Create from client service using the raw action name
 var request3 = client.urlshortener.newRequest(
