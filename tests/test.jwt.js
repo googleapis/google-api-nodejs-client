@@ -33,10 +33,7 @@ describe('JWT auth client', function() {
       }, 0);
       return {
         getToken: function(opt_callback) {
-          opt_callback(null, {
-            'access_token': 'initial-access-token',
-            'token_type': 'Bearer'
-          });
+          opt_callback(null, 'initial-access-token');
         }
       }
     };
@@ -47,7 +44,10 @@ describe('JWT auth client', function() {
     });
   });
   it('should refresh token when request fails', function(done) {
-    var jwt = new googleapis.auth.JWT();
+    var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo']);
     jwt.credentials = {
       access_token: 'initial-access-token',
       refresh_token: 'jwt-placeholder'
