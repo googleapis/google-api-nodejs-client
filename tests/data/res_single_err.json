@@ -1,18 +1,15 @@
-[
-  {
-    "error": {
-      "code": 400,
-      "message": "Required",
-      "data": [
-        {
-          "domain": "global",
-          "reason": "required",
-          "message": "Required",
-          "locationType": "parameter",
-          "location": "resource.longUrl"
-        }
-      ]
-    },
-    "id": 0
+{
+  "error": {
+    "code": 400,
+    "message": "Required",
+    "errors": [
+      {
+        "domain": "global",
+        "reason": "required",
+        "message": "Required",
+        "locationType": "parameter",
+        "location": "resource.longUrl"
+      }
+    ]
   }
-]
+}
