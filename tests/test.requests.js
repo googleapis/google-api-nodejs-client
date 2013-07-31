@@ -106,7 +106,6 @@ describe('Requests', function() {
         .execute(function(err, client) {
       var req = client.drive.files.insert({ someAttr: 'someValue' }),
           payload = req.generatePayload();
-      console.log(payload);
       assert.equal(payload.json.someAttr, 'someValue');
       done();
     });
@@ -170,33 +169,10 @@ describe('Requests', function() {
 
       // should construct the payload in the given order.
       var payload = requests.generatePayload();
-      assert.equal(payload.multipart[0].method, 'urlshortener.url.list');
-      assert.equal(payload.multipart[1].method, 'urlshortener.url.get');
-      assert.equal(payload[2].params.id, 'http://goo.gl/mR2d');
+      assert.equal(payload.multipart[0].body, 'GET /urlshortener/v1/url/history\r\n');
+      assert.equal(payload.multipart[1].body, 'GET /urlshortener/v1/url\r\n');
+      assert.equal(payload.multipart[2].body, 'GET /urlshortener/v1/url?id=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
       done();
-    });
-  });
-
-  it('should return errors on the first argument, not on the body',
-      function(done) {
-    var batchResponseMockTransporter =
-        new MockTransporter(__dirname + '/data/res_batch.json');
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
-    gapis
-        .discover('urlshortener', 'v1')
-        .execute(function(err, client) {
-      var requests = client.newBatchRequest();
-      requests.transporter = batchResponseMockTransporter;
-      requests.execute(function(errs, results) {
-        // TODO: mock batch response
-        assert.equal(!!errs, true);
-        assert.equal(!!errs[0], true);
-        assert.equal(results[0], null);
-        assert.equal(errs[1], null);
-        assert.notEqual(results[1], null);
-        done();
-      });
     });
   });
 
