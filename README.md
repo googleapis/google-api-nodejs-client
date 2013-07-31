@@ -105,7 +105,7 @@ googleapis
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
 
-### Batch requests
+### Batch requests (experimental)
 
 You can combine multiple requests in a single one by using batch requests.
 
