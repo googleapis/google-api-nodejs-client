@@ -46,7 +46,7 @@ describe('Clients', function() {
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.host, 'www.googleapis.com');
-    assert.equal(parsed.path, '/discovery/v1/apis/plus/v3/rpc');
+    assert.equal(parsed.path, '/discovery/v1/apis/plus/v3/rest');
     assert.equal(parsed.query, null);
     done();
   });
@@ -61,7 +61,7 @@ describe('Clients', function() {
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'http:');
     assert.equal(parsed.host, 'mydeployment');
-    assert.equal(parsed.pathname, '/discovery/plus/v3/rpc');
+    assert.equal(parsed.pathname, '/discovery/plus/v3/rest');
     assert.equal(parsed.query, 'a=hello&b=hi');
     done();
   });

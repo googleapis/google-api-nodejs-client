@@ -35,19 +35,21 @@ describe('Requests', function() {
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var url = client.urlshortener.url.list()
-          .withApiKey('YOUR API KEY HERE').generateUri();
+          .withApiKey('YOUR API KEY HERE').generatePayload().uri;
       assert.equal(url.indexOf('key=YOUR%20API%20KEY%20HERE') > 0, true);
       done();
     });
   });
 
   it('should not append ? with no parameters', function() {
-    var req = new requests.Request();
-    var generatedUrl = req.generateUri();
+    var req = new requests.Request(
+      { baseUrl: 'http://some.org' },
+      { path: '/test' });
+    var generatedUrl = req.generatePayload().uri;
     assert.equal(-1, generatedUrl.indexOf('?'));
   });
 
-  it('should generate a valid JSON-RPC payload for single ' +
+  it('should generate a valid payload for single ' +
       'requests', function(done) {
     var gapis = new googleapis.GoogleApis();
     gapis.Transporter = urlshortenerDiscoveryTransporter;
@@ -57,12 +59,10 @@ describe('Requests', function() {
       var obj = { longUrl: 'http://someurl...' };
       var request = client.urlshortener.url.insert(obj);
       var payload = request.generatePayload();
-      var first = payload[0];
 
-      assert.equal(payload.length, 1);
-      assert.equal(first.method, 'urlshortener.url.insert');
-      assert.equal(first.params.resource, obj);
-      assert.equal(first.jsonrpc, '2.0');
+      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url');
+      assert.equal(payload.method, 'POST');
+      assert.equal(payload.json.longUrl, 'http://someurl...');
       done();
     });
   });
@@ -83,7 +83,7 @@ describe('Requests', function() {
     gapis.discover('urlshortener', 'v1').execute(callback);
   });
 
-  it('should generate a valid JSON-RPC payload if any params are given',
+  it('should generate a valid payload if any params are given',
       function(done) {
     var gapis = new googleapis.GoogleApis();
     gapis
@@ -92,8 +92,9 @@ describe('Requests', function() {
       var params = { shortUrl: 'a' };
       var request = client.urlshortener.url.get(params);
       var payload = request.generatePayload();
-      var first = payload[0];
-      assert.equal(first.params.shortUrl, 'a');
+      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
+      assert.equal(payload.method, 'GET');
+      assert.equal(payload.json, true);
       done();
     });
   });
@@ -104,9 +105,8 @@ describe('Requests', function() {
         .discover('drive', 'v2')
         .execute(function(err, client) {
       var req = client.drive.files.insert({ someAttr: 'someValue' }),
-          payload = req.generatePayload(),
-          first = payload[0];
-      assert.equal(first.params.resource.someAttr, 'someValue');
+          payload = req.generatePayload();
+      assert.equal(payload.json.someAttr, 'someValue');
       done();
     });
   });
@@ -125,10 +125,8 @@ describe('Requests', function() {
       request.transporter = singleErrResponseMockTransporter;
       request.execute(function(err, result) {
         assert.notEqual(err, null);
-        assert.equal(result, null);
         assert.equal(err.code, 400);
         assert.equal(err.message, 'Required');
-        assert.notEqual(err.data, null);
         done();
       });
     });
@@ -171,32 +169,10 @@ describe('Requests', function() {
 
       // should construct the payload in the given order.
       var payload = requests.generatePayload();
-      assert.equal(payload[0].method, 'urlshortener.url.list');
-      assert.equal(payload[1].method, 'urlshortener.url.get');
-      assert.equal(payload[2].params.id, 'http://goo.gl/mR2d');
+      assert.equal(payload.multipart[0].body, 'GET /urlshortener/v1/url/history\r\n');
+      assert.equal(payload.multipart[1].body, 'GET /urlshortener/v1/url\r\n');
+      assert.equal(payload.multipart[2].body, 'GET /urlshortener/v1/url?id=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
       done();
-    });
-  });
-
-  it('should return errors on the first argument, not on the body',
-      function(done) {
-    var batchResponseMockTransporter =
-        new MockTransporter(__dirname + '/data/res_batch.json');
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
-    gapis
-        .discover('urlshortener', 'v1')
-        .execute(function(err, client) {
-      var requests = client.newBatchRequest();
-      requests.transporter = batchResponseMockTransporter;
-      requests.execute(function(errs, results) {
-        assert.equal(!!errs, true);
-        assert.equal(!!errs[0], true);
-        assert.equal(results[0], null);
-        assert.equal(errs[1], null);
-        assert.notEqual(results[1], null);
-        done();
-      });
     });
   });
 
