@@ -193,6 +193,18 @@ client
   .execute(callback);
 ~~~~
 
+### Media Uploads
+
+Client supports basic and multipart media uploads. For creation and modification requests
+with media attachments, take a look at the `examples/mediaupload.js` sample.
+
+~~~~ js
+client
+    .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
+	.withMedia('text/plain', 'Hello World')
+	.execute();
+~~~~
+
 ## License
 
 `google-api-nodejs-client` is licensed with Apache 2.0. Full license text is
