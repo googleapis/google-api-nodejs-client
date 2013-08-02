@@ -94,7 +94,6 @@ describe('Requests', function() {
       var payload = request.generatePayload();
       assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
       assert.equal(payload.method, 'GET');
-      assert.equal(payload.json, true);
       done();
     });
   });
@@ -172,6 +171,39 @@ describe('Requests', function() {
       assert.equal(payload.multipart[0].body, 'GET /urlshortener/v1/url/history\r\n');
       assert.equal(payload.multipart[1].body, 'GET /urlshortener/v1/url\r\n');
       assert.equal(payload.multipart[2].body, 'GET /urlshortener/v1/url?id=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
+      done();
+    });
+  });
+
+  it('should generate a valid basic upload payload if media is set, '
+      + 'metadata is not set', function(done) {
+    googleapis.discover('drive', 'v2').execute(function(err, client){
+      var req = client.drive.files.insert().withMedia('text/plain', 'hey');
+
+      var payload = req.generatePayload();
+      assert.equal(payload.method, 'POST');
+      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media');
+      assert.equal(payload.headers['Content-Type'], 'text/plain');
+      assert.equal(payload.body, 'hey');
+      done();
+    });
+  });
+
+  it('should generate a valid multipart upload payload if media and metadata '
+      + 'are set both', function(done) {
+    googleapis.discover('drive', 'v2').execute(function(err, client){
+      var req = client.drive.files
+          .insert({ title: 'title' })
+          .withMedia('text/plain', 'hey');
+
+      var payload = req.generatePayload();
+      assert.equal(payload.method, 'POST');
+      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
+      assert.equal(payload.multipart[0].body, '{"title":"title"}');
+      assert.equal(payload.multipart[1]['Content-Type'], 'text/plain');
+      assert.equal(payload.multipart[1].body, 'hey');
+      assert.equal(payload.body, null);
       done();
     });
   });
