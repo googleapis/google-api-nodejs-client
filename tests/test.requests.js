@@ -94,7 +94,6 @@ describe('Requests', function() {
       var payload = request.generatePayload();
       assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
       assert.equal(payload.method, 'GET');
-      assert.equal(payload.json, true);
       done();
     });
   });
