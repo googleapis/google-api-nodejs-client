@@ -36,7 +36,7 @@ googleapis
     console.log('Long url is', response.longUrl);
   });
 
-  var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
+  var req2 = client.plus.people.get({ userId: '+burcudogan' });
   req2.execute();
 });
 ~~~~
@@ -94,7 +94,7 @@ request you are going to make. The following creates and executes a request from
 googleapis
   .discover('plus', 'v1')
   .execute(function(err, client) {
-    var request1 = client.plus.people.get({ userId: '+BurcuDogan' })
+    var request1 = client.plus.people.get({ userId: '+burcudogan' })
         .withApiKey(API_KEY);
 
     request1.execute(function(err, result) {
@@ -116,15 +116,10 @@ var request1 =
 var request2 =
     client.urlshortener.url.insert({ longUrl: 'http://google.com' });
 
-// Create from client service using the raw action name
-var request3 = client.urlshortener.newRequest(
-    'urlshortener.url.get', { shortUrl: 'http://goo.gl/DdUKX' });
-
 client
   .newBatchRequest()
   .add(request1)
   .add(request2)
-  .add(request3)
   .execute(function(err, results) {
 
   });
