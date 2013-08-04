@@ -164,13 +164,13 @@ describe('Requests', function() {
       var requests = client.newBatchRequest();
       requests.add(client.urlshortener.url.list());
       requests.add(client.urlshortener.url.get());
-      requests.add(client.urlshortener.url.get({ id: 'http://goo.gl/mR2d' }));
+      requests.add(client.urlshortener.url.get({ shortUrl: 'http://goo.gl/mR2d' }));
 
       // should construct the payload in the given order.
       var payload = requests.generatePayload();
       assert.equal(payload.multipart[0].body, 'GET /urlshortener/v1/url/history\r\n');
       assert.equal(payload.multipart[1].body, 'GET /urlshortener/v1/url\r\n');
-      assert.equal(payload.multipart[2].body, 'GET /urlshortener/v1/url?id=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
+      assert.equal(payload.multipart[2].body, 'GET /urlshortener/v1/url?shortUrl=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
       done();
     });
   });
@@ -191,7 +191,7 @@ describe('Requests', function() {
 
   it('should generate a valid multipart upload payload if media and metadata '
       + 'are set both', function(done) {
-    googleapis.discover('drive', 'v2').execute(function(err, client){
+    googleapis.discover('drive', 'v2').execute(function(err, client) {
       var req = client.drive.files
           .insert({ title: 'title' })
           .withMedia('text/plain', 'hey');
@@ -204,6 +204,18 @@ describe('Requests', function() {
       assert.equal(payload.multipart[1]['Content-Type'], 'text/plain');
       assert.equal(payload.multipart[1].body, 'hey');
       assert.equal(payload.body, null);
+      done();
+    });
+  });
+
+  it('should differentiate query params and body object', function(done) {
+    googleapis.discover('drive', 'v2').execute(function(err, client) {
+      var req1 = client.drive.files.insert({ title: 'Hello' });
+      var req2 = client.drive.files.list({ q: 'title contains "H"' });
+
+      assert.equal(req1.params.title, null);
+      assert.equal(req1.body.title, 'Hello');
+      assert.equal(req2.params.q, 'title contains "H"');
       done();
     });
   });
