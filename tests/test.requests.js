@@ -212,10 +212,12 @@ describe('Requests', function() {
     googleapis.discover('drive', 'v2').execute(function(err, client) {
       var req1 = client.drive.files.insert({ title: 'Hello' });
       var req2 = client.drive.files.list({ q: 'title contains "H"' });
+      var req3 = client.drive.files.get({ fileId: 'root' });
 
       assert.equal(req1.params.title, null);
       assert.equal(req1.body.title, 'Hello');
       assert.equal(req2.params.q, 'title contains "H"');
+      assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
       done();
     });
   });
