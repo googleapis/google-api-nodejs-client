@@ -77,4 +77,16 @@ describe('Clients', function() {
       });
   });
 
+  it('should be able to add defaultParams on new requests', function(done) {
+    new googleapis.GoogleApis()
+      .discover('plus', 'v1')
+      .execute(function(err, client) {
+        var req =
+            client.plus.withDefaultParams({a: 1, b: 'foo'}).newRequest('doIt', {a: 2});
+        assert.equal(2, req.params.a);
+        assert.equal('foo', req.params.b);
+        done();
+      });
+  });
+
 });
