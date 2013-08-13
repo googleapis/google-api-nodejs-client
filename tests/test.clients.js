@@ -82,7 +82,7 @@ describe('Clients', function() {
       .discover('plus', 'v1')
       .execute(function(err, client) {
         var req =
-            client.plus.withDefaultParams({a: 1, b: 'foo'}).newRequest('doIt', {a: 2});
+            client.plus.withDefaultParams({a: 1, b: 'foo'}).newRequest('doIt', {a: 2}, {});
         assert.equal(2, req.params.a);
         assert.equal('foo', req.params.b);
         done();
