@@ -46,7 +46,7 @@ describe('Clients', function() {
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.host, 'www.googleapis.com');
-    assert.equal(parsed.path, '/discovery/v1/apis/plus/v3/rpc');
+    assert.equal(parsed.path, '/discovery/v1/apis/plus/v3/rest');
     assert.equal(parsed.query, null);
     done();
   });
@@ -61,7 +61,7 @@ describe('Clients', function() {
     var parsed = url.parse(discoveryUrl);
     assert.equal(parsed.protocol, 'http:');
     assert.equal(parsed.host, 'mydeployment');
-    assert.equal(parsed.pathname, '/discovery/plus/v3/rpc');
+    assert.equal(parsed.pathname, '/discovery/plus/v3/rest');
     assert.equal(parsed.query, 'a=hello&b=hi');
     done();
   });
@@ -73,6 +73,18 @@ describe('Clients', function() {
         var req =
             client.plus.withAuthClient({ credentials: 'dummy'}).newRequest();
         assert.equal('dummy', req.authClient.credentials);
+        done();
+      });
+  });
+
+  it('should be able to add defaultParams on new requests', function(done) {
+    new googleapis.GoogleApis()
+      .discover('plus', 'v1')
+      .execute(function(err, client) {
+        var req =
+            client.plus.withDefaultParams({a: 1, b: 'foo'}).newRequest('doIt', {a: 2}, {});
+        assert.equal(2, req.params.a);
+        assert.equal('foo', req.params.b);
         done();
       });
   });

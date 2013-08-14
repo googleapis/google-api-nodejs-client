@@ -63,10 +63,10 @@ describe('Discovery', function() {
     new googleapis.GoogleApis()
       .discover('mirror', 'v1')
       .execute(function(err, client) {
-        var exists = fs.existsSync(modulePath + '/.cache/mirrorv1');
+        var exists = fs.existsSync(modulePath + '/.cache/mirrorv1-rest');
         assert.equal(exists, true);
         // clean up
-        fs.unlink(modulePath + '/.cache/mirrorv1', done);
+        fs.unlink(modulePath + '/.cache/mirrorv1-rest', done);
       });
   });
 
@@ -78,7 +78,7 @@ describe('Discovery', function() {
       .withOpts({ cache: { path: customPath } })
       .execute(function(err, client) {
         assert.equal(fs.existsSync(customPath), true);
-        fs.unlink(customPath + '/orkutv2', done);
+        fs.unlink(customPath + '/orkutv2-rest', done);
       });
   });
 
