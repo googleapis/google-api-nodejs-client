@@ -54,7 +54,7 @@ describe('JWT auth client', function() {
     };
     jwt.transporter = {
       request: function(opts, opt_callback) {
-        opt_callback([{code: 401}], null);
+        opt_callback(null, null, {statusCode: 401});
       }
     };
     jwt.refreshToken_ = function(token, callback) {
