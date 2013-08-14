@@ -26,7 +26,7 @@
   ],
   "dependencies" : {
     "request": "~2.25.0",
-    "async": "0.2.6"
+    "async": "0.2.6",
     "gapitoken": "0.0.3"
   },
   "devDependencies" : {
