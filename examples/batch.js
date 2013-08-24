@@ -17,21 +17,28 @@
 var googleapis = require('../lib/googleapis.js');
 
 googleapis
-    .discover('urlshortener', 'v1')
-    .execute(function(err, client) {
+  .discover('urlshortener', 'v1')
+  .execute(function(err, client) {
+    // example request designed to return success
+    var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
 
-  var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
-  var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUdX' });
+    // example request designed to return an error
+    var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUdX' });
 
-  //build a batch request and execute
-  client.newBatchRequest()
-    .add(req1)
-    .add(req2)
-    .execute(function(err, results) {
-      if (err) {
-        console.log('One or more errors occurred', err);
-      } else {
-        console.log('Responses: ', results);
-      }
+    //build a batch request and execute
+    client.newBatchRequest()
+      .add(req1)
+      .add(req2)
+      .execute(function(err, results) {
+        // Even though results[] always is an array the length of the
+        // number of batch requests, check again to be safe
+        for (var i = 0; results && (i < results.length); i++) {
+          console.log('Response longUrl #', i + 1, ':', results[i]);
+        }
+
+        // The err object may be null if there are zero errors
+        for (var i = 0; err && (i < err.length); i++) {
+          console.log('Error response   #', i + 1, ':', err[i]);
+        }
     });
 });

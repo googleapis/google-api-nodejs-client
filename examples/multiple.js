@@ -16,6 +16,11 @@
 
 var googleapis = require('../lib/googleapis.js');
 
+// PUT your API key here or this example will return errors
+// To learn more about API keys, please see:
+// https://developers.google.com/console/help/#UsingKeys
+var API_KEY = 'YOUR API KEY HERE';
+
 googleapis
   .discover('urlshortener', 'v1')
   .discover('plus', 'v1')
@@ -25,11 +30,11 @@ googleapis
     var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
 
     client
-      .newBatchRequest()
-      .add(req1)
-      .add(req2)
-      .withApiKey('YOUR API KEY HERE')
-      .execute(function(err, results) {
-        console.log('Results: ', results);
-      });
-  });
+        .newBatchRequest()
+        .add(req1)
+        .add(req2)
+        .withApiKey(API_KEY)
+        .execute(function(err, results) {
+          console.log(err, results);
+        });
+});

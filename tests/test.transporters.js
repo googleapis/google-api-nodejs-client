@@ -26,7 +26,7 @@ describe('Transporters', function() {
 
   var urlshortenerDiscoveryTransporter =
     new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
-  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+\.\\w+';
+  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+';
 
   it('should set default client user agent if none is set', function(done) {
     var opts = urlshortenerDiscoveryTransporter.configure({});

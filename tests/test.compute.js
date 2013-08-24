@@ -18,7 +18,7 @@ var assert = require('assert');
 
 var googleapis = require('../lib/googleapis.js');
 
-describe('compute auth', function() {
+describe('Compute auth client', function() {
   it('should get an initial access token', function(done) {
     var compute = new googleapis.auth.Compute();
     compute.transporter = {
@@ -26,7 +26,7 @@ describe('compute auth', function() {
         opt_callback(null, {
           'access_token': 'initial-access-token',
           'token_type': 'Bearer'
-        });
+        }, {});
       }
     };
     compute.authorize(function() {
@@ -43,7 +43,7 @@ describe('compute auth', function() {
     };
     compute.transporter = {
       request: function(opts, opt_callback) {
-        opt_callback([{code: 401}], null);
+        opt_callback({}, {}, { statusCode: 401 });
       }
     };
     compute.refreshToken_ = function(token, callback) {

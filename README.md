@@ -28,7 +28,7 @@ var googleapis = require('googleapis');
 
 googleapis
     .discover('urlshortener', 'v1')
-    .discover('plus', 'v3')
+    .discover('plus', 'v1')
     .execute(function(err, client) {
   var params = { shortUrl: 'http://goo.gl/DdUKX' };
   var req1 = client.urlshortener.url.get(params);
@@ -36,7 +36,7 @@ googleapis
     console.log('Long url is', response.longUrl);
   });
 
-  var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
+  var req2 = client.plus.people.get({ userId: '+burcudogan' });
   req2.execute();
 });
 ~~~~
@@ -73,21 +73,6 @@ googleapis
  });
 ~~~~
 
-Alternatively, you may like to configure the client to append an API key to all
-requests you are going to make. Once you load a client library, you can set an
-API key:
-
-~~~~ js
-googleapis
-   .discover('urlshortener', 'v1')
-    .withApiKey('YOUR API KEY HERE')
-    .execute(function(err, client) {
-  // make requests
-});
-~~~~
-
-To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
-
 ### Requests
 
 The following sample loads a client for URL Shortener and retrieves the long url
@@ -96,29 +81,45 @@ of the given short url:
 ~~~~ js
 googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
   client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-     .execute(function(err, result) {
+      .execute(function(err, result) {
         // result.longUrl contains the long url.
       });
   });
 ~~~~
 
-### Batch requests
+Alternatively, you may need to send an API key with the
+request you are going to make. The following creates and executes a request from the Google+ API service to retrieve a person profile given a userId:
+
+~~~~ js
+googleapis
+  .discover('plus', 'v1')
+  .execute(function(err, client) {
+    var request1 = client.plus.people.get({ userId: '+burcudogan' })
+        .withApiKey(API_KEY);
+
+    request1.execute(function(err, result) {
+      console.log("Result: " + (err ? err.message : result.displayName));
+    });
+  });
+~~~~
+
+To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
+
+### Batch requests (experimental)
 
 You can combine multiple requests in a single one by using batch requests.
 
 ~~~~ js
 var request1 =
     client.plus.people.get({ userId: '+BurcuDogan' });
+
 var request2 =
-    client.urlshortener.url.insert(null, { longUrl: 'http://goo.gl/A5492' });
-// create from raw action name
-var request3 = client.newRequest('urlshortener.url.list');
+    client.urlshortener.url.insert({ longUrl: 'http://google.com' });
 
 client
   .newBatchRequest()
   .add(request1)
   .add(request2)
-  .add(request3)
   .execute(function(err, results) {
 
   });
@@ -190,6 +191,18 @@ client
   .plus.people.get({ userId: 'me' })
   .withAuthClient(oauth2Client)
   .execute(callback);
+~~~~
+
+### Media Uploads
+
+Client supports basic and multipart media uploads. For creation and modification requests
+with media attachments, take a look at the `examples/mediaupload.js` sample.
+
+~~~~ js
+client
+    .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
+	.withMedia('text/plain', 'Hello World')
+	.execute();
 ~~~~
 
 ## License

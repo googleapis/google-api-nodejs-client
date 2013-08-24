@@ -28,13 +28,11 @@ googleapis
     }
   };
 
-  // a single request
-  client
-    .urlshortener
-    .newRequest('urlshortener.url.get', { shortUrl: 'http://goo.gl/DdUKX' })
-    .execute(printResult);
+  client.urlshortener.url
+      .get({ shortUrl: 'http://goo.gl/DdUKX' })
+      .execute(printResult);
 
-  // request builders
-  client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-    .execute(printResult);
+  client.urlshortener.url
+      .insert({ longUrl: 'http://somelongurl.com' })
+      .execute(printResult);
 });
