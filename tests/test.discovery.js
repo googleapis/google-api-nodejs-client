@@ -35,13 +35,13 @@ describe('Discovery', function() {
       });
   });
 
-	it('should not discover the same API more than once', function(done) {
-		var apis = new googleapis.GoogleApis()
-			.discover('plus', 'v1')
-			.discover('plus', 'v1');
-		assert.equal(1, apis.toBeDiscovered.length);
-		done();
-	});
+  it('should not discover the same API more than once', function(done) {
+    var apis = new googleapis.GoogleApis()
+      .discover('plus', 'v1')
+      .discover('plus', 'v1');
+    assert.equal(1, apis.toBeDiscovered.length);
+    done();
+  });
 
   it('should be able to load API from file', function(done) {
     var gapis = new googleapis.GoogleApis();
