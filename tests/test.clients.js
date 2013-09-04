@@ -89,4 +89,17 @@ describe('Clients', function() {
       });
   });
 
+  it('should be able to add defaultParams on new requests with no params and a body', function(done) {
+    new googleapis.GoogleApis()
+      .discover('plus', 'v1')
+      .execute(function(err, client) {
+        var req =
+            client.plus.withDefaultParams({a: 1, b: 'foo'}).newRequest('doIt', {has_body: true});
+        assert.equal(1, req.params.a);
+        assert.equal('foo', req.params.b);
+        assert.equal(undefined, req.params.body);
+        assert.equal(true, req.body.has_body);
+        done();
+      });
+  });
 });
