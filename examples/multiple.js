@@ -25,10 +25,8 @@ googleapis
   .discover('urlshortener', 'v1')
   .discover('plus', 'v1')
   .execute(function(err, client) {
-
     var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
     var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
-
-    req1.execute()
-    req2.execute()
+    req1.withApiKey(API_KEY).execute()
+    req2.withApiKey(API_KEY).execute()
 });
