@@ -29,12 +29,6 @@ googleapis
     var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
     var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
 
-    client
-        .newBatchRequest()
-        .add(req1)
-        .add(req2)
-        .withApiKey(API_KEY)
-        .execute(function(err, results) {
-          console.log(err, results);
-        });
+    req1.execute()
+    req2.execute()
 });
