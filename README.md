@@ -9,7 +9,7 @@ authentication with OAuth 2.0.
 
 ### Questions/problems?
 
-* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)](http://stackoverflow.com/questions/tagged/google-drive-sdk)
+* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)](http://stackoverflow.com/questions/tagged/google-api-nodejs-client)
 * If you found a bug, please [file a bug](https://github.com/google/google-api-nodejs-client/issues).
 
 **Note**: This library is currently in *alpha* status, meaning that we can make
