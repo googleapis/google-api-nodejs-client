@@ -7,6 +7,11 @@
 library for accessing Google APIs, it also supports authorization and
 authentication with OAuth 2.0.
 
+### Questions/problems?
+
+* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)](http://stackoverflow.com/questions/tagged/google-drive-sdk)
+* If you found a bug, please [file a bug](https://github.com/google/google-api-nodejs-client/issues).
+
 **Note**: This library is currently in *alpha* status, meaning that we can make
 changes in the future that *may not be compatible* with the previous versions.
 
