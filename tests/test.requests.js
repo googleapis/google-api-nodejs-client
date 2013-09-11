@@ -58,9 +58,9 @@ describe('Requests', function() {
         .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
       var request = client.urlshortener.url.insert(obj);
-      var payload = request.generatePayload();
+      var payload = request.generatePayload('root-url');
 
-      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url');
+      assert.equal(payload.uri, 'root-url/urlshortener/v1/url');
       assert.equal(payload.method, 'POST');
       assert.equal(payload.json.longUrl, 'http://someurl...');
       done();
@@ -91,8 +91,8 @@ describe('Requests', function() {
         .execute(function(err, client) {
       var params = { shortUrl: 'a' };
       var request = client.urlshortener.url.get(params);
-      var payload = request.generatePayload();
-      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
+      var payload = request.generatePayload('root-url');
+      assert.equal(payload.uri, 'root-url/urlshortener/v1/url?shortUrl=a');
       assert.equal(payload.method, 'GET');
       done();
     });
@@ -175,14 +175,29 @@ describe('Requests', function() {
     });
   });
 
+  it('should be able to execute batch requests', function(done) {
+    var gapis = new googleapis.GoogleApis();
+    gapis
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
+      var requests = client.newBatchRequest();
+      requests.add(client.urlshortener.url.get({ shortUrl: 'http://goo.gl/mR2d' }));
+      requests.add(client.urlshortener.url.get({ shortUrl: 'http://goo.gl/mR2d' }));
+      requests.execute(function(err, results) {
+        assert.ifError(err);
+        done();
+      });
+    });
+  });
+
   it('should generate a valid basic upload payload if media is set, '
       + 'metadata is not set', function(done) {
     googleapis.discover('drive', 'v2').execute(function(err, client){
       var req = client.drive.files.insert().withMedia('text/plain', 'hey');
 
-      var payload = req.generatePayload();
+      var payload = req.generatePayload('root-url');
       assert.equal(payload.method, 'POST');
-      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media');
+      assert.equal(payload.uri, 'root-url/upload/drive/v2/files?uploadType=media');
       assert.equal(payload.headers['Content-Type'], 'text/plain');
       assert.equal(payload.body, 'hey');
       done();
@@ -196,9 +211,9 @@ describe('Requests', function() {
           .insert({ title: 'title' })
           .withMedia('text/plain', 'hey');
 
-      var payload = req.generatePayload();
+      var payload = req.generatePayload('root-url');
       assert.equal(payload.method, 'POST');
-      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(payload.uri, 'root-url/upload/drive/v2/files?uploadType=multipart');
       assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
       assert.equal(payload.multipart[0].body, '{"title":"title"}');
       assert.equal(payload.multipart[1]['Content-Type'], 'text/plain');
