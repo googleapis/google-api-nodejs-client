@@ -30,15 +30,12 @@ googleapis
       .add(req1)
       .add(req2)
       .execute(function(err, results) {
-        // Even though results[] always is an array the length of the
-        // number of batch requests, check again to be safe
-        for (var i = 0; results && (i < results.length); i++) {
-          console.log('Response longUrl #', i + 1, ':', results[i]);
+        if (err) {
+          console.log("Error", err);
+          return
         }
-
-        // The err object may be null if there are zero errors
-        for (var i = 0; err && (i < err.length); i++) {
-          console.log('Error response   #', i + 1, ':', err[i]);
-        }
+        results.forEach(function(i, v) {
+          console.log('Response longUrl #', i + 1, ':', v);
+        });
     });
 });
