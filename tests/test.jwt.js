@@ -23,6 +23,7 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo']);
     jwt.GAPI = function(opts, callback) {
       assert.equal('foo@serviceaccount.com', opts.iss);
