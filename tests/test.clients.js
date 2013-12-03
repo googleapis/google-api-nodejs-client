@@ -66,6 +66,16 @@ describe('Clients', function() {
     done();
   });
 
+  it('should be able to generate methods for top-level methods',
+      function(done) {
+    new googleapis.GoogleApis()
+      .discover('oauth2', 'v2')
+      .execute(function(err, client) {
+        assert.ok(!!client.oauth2.tokeninfo);
+        done();
+      });
+  });
+
   it('should be able to add AuthClient on new requests', function(done) {
     new googleapis.GoogleApis()
       .discover('plus', 'v1')
