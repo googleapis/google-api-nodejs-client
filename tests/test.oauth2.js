@@ -120,8 +120,27 @@ describe('OAuth2 client', function() {
   });
 
   it('should replay the request with a refreshed token if auth failed',
-    function() {
-    // TODO(burcud): Implement this unit test.
+      function(done) {
+    var i = 0;
+    var oauth2client =
+      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oauth2client.credentials = { access_token: 'foo', refresh_token: 'bar' };
+    new googleapis.GoogleApis()
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
+      var req = client.urlshortener.url.list().withAuthClient(oauth2client);
+      oauth2client.transporter = {
+        request: function(opts, callback) {
+          if (i == 1) {
+            assert.equal(opts.uri, 'https://accounts.google.com/o/oauth2/token');
+            return done();
+          }
+          i++;
+          callback(null, null, { statusCode: 401 });
+        }
+      };
+      req.execute();
+    });
   });
 
 });
