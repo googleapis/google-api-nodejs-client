@@ -23,7 +23,7 @@ googleapis
     var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
 
     // example request designed to return an error
-    var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUdX' });
+    var req2 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
 
     //build a batch request and execute
     client.newBatchRequest()
@@ -32,10 +32,10 @@ googleapis
       .execute(function(err, results) {
         if (err) {
           console.log("Error", err);
-          return
+          return;
         }
-        results.forEach(function(i, v) {
-          console.log('Response longUrl #', i + 1, ':', v);
+        results.forEach(function(result) {
+          console.log('Response longUrl #', result);
         });
     });
 });

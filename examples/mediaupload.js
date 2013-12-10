@@ -17,9 +17,9 @@
 var googleapis = require('../lib/googleapis.js');
 
 var auth = new googleapis.OAuth2Client();
-auth.credentials = {
+auth.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
-};
+});
 
 googleapis.discover('drive', 'v2').execute(function(err, client) {
   
