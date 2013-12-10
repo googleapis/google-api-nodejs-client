@@ -29,8 +29,7 @@ describe('Requests', function() {
     new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
   it('should set API key parameter if it is presented', function(done) {
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    var gapis = new googleapis.GoogleApis(urlshortenerDiscoveryTransporter);
     gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
@@ -54,8 +53,7 @@ describe('Requests', function() {
 
   it('should generate a valid payload for single ' +
       'requests', function(done) {
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    var gapis = new googleapis.GoogleApis(urlshortenerDiscoveryTransporter);
     gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
@@ -116,8 +114,7 @@ describe('Requests', function() {
   it('should return a single error for single requests', function(done) {
     var singleErrResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single_err.json');
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    var gapis = new googleapis.GoogleApis(urlshortenerDiscoveryTransporter);
     gapis
       .discover('urlshortener', 'v1')
       .execute(function(err, client) {
@@ -138,8 +135,7 @@ describe('Requests', function() {
       function(done) {
     var singleResponseMockTransporter =
         new MockTransporter(__dirname + '/data/res_single.json');
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    var gapis = new googleapis.GoogleApis(urlshortenerDiscoveryTransporter);
     gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
@@ -159,8 +155,7 @@ describe('Requests', function() {
   });
 
   it('should return responses in the request order', function(done) {
-    var gapis = new googleapis.GoogleApis();
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
+    var gapis = new googleapis.GoogleApis(urlshortenerDiscoveryTransporter);
     gapis
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
