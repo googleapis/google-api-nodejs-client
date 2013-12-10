@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "author": "Google Inc.",
   "description": "Google APIs Client Library for Node.js",
   "contributors": [
