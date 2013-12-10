@@ -239,4 +239,26 @@ describe('Requests', function() {
     });
   });
 
+  describe('buildUri', function() {
+    it('should concat path without double or trailing slashes', function() {
+      var uri = requests.buildUri('', ['a', '//b/6/n/', 'c', 'd/']);
+      assert.equal(uri, '/a/b/6/n/c/d');
+    });
+
+    it('should avoid null or undefined paths', function() {
+      var uri = requests.buildUri('', ['a', null, undefined, 'd']);
+      assert.equal(uri, '/a/d');
+    });
+
+    it('should remove double slashes from root', function() {
+      var uri = requests.buildUri('http://root///', ['a']);
+      assert.equal(uri, 'http://root/a');
+    });
+
+    it('should append query params', function() {
+      var uri = requests.buildUri('', ['a'], { q: 'keyword', p: 1 });
+      assert.equal(uri, '/a?q=keyword&p=1');
+    });
+  });
+
 });
