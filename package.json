@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "author": "Google Inc.",
   "description": "Google APIs Client Library for Node.js",
   "contributors": [
@@ -34,7 +34,7 @@
     "url": "0.7.9"
   },
   "scripts": {
-    "test": "mocha --reporter spec --timeout 40000"
+    "test": "mocha --reporter spec --timeout 4000"
   },
   "license": "Apache 2"
 }

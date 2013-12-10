@@ -41,12 +41,15 @@ describe('Requests', function() {
     });
   });
 
-  it('should not append ? with no parameters', function() {
-    var req = new requests.Request(
-      { baseUrl: 'http://some.org' },
-      { path: '/test' });
-    var generatedUrl = req.generatePayload().uri;
-    assert.equal(-1, generatedUrl.indexOf('?'));
+  it('should not append ? with no query parameters', function(done) {
+    new googleapis.GoogleApis()
+        .discover('drive', 'v2')
+        .execute(function(err, client) {
+      var req = client.drive.files.get({ fileId: 'ID' }),
+          generatedUrl = req.generatePayload().uri;
+      assert.equal(-1, generatedUrl.indexOf('?'));
+      done();
+    });
   });
 
   it('should generate a valid payload for single ' +
@@ -58,9 +61,9 @@ describe('Requests', function() {
         .execute(function(err, client) {
       var obj = { longUrl: 'http://someurl...' };
       var request = client.urlshortener.url.insert(obj);
-      var payload = request.generatePayload('http://root-url');
+      var payload = request.generatePayload();
 
-      assert.equal(payload.uri, 'http://root-url/urlshortener/v1/url');
+      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url');
       assert.equal(payload.method, 'POST');
       assert.equal(payload.json.longUrl, 'http://someurl...');
       done();
@@ -91,8 +94,8 @@ describe('Requests', function() {
         .execute(function(err, client) {
       var params = { shortUrl: 'a' };
       var request = client.urlshortener.url.get(params);
-      var payload = request.generatePayload('http://root-url');
-      assert.equal(payload.uri, 'http://root-url/urlshortener/v1/url?shortUrl=a');
+      var payload = request.generatePayload();
+      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
       assert.equal(payload.method, 'GET');
       done();
     });
@@ -176,8 +179,7 @@ describe('Requests', function() {
   });
 
   it('should be able to execute batch requests', function(done) {
-    var gapis = new googleapis.GoogleApis();
-    gapis
+    new googleapis.GoogleApis()
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var requests = client.newBatchRequest();
@@ -195,9 +197,9 @@ describe('Requests', function() {
     googleapis.discover('drive', 'v2').execute(function(err, client){
       var req = client.drive.files.insert().withMedia('text/plain', 'hey');
 
-      var payload = req.generatePayload('http://root-url');
+      var payload = req.generatePayload();
       assert.equal(payload.method, 'POST');
-      assert.equal(payload.uri, 'http://root-url/upload/drive/v2/files?uploadType=media');
+      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media');
       assert.equal(payload.headers['Content-Type'], 'text/plain');
       assert.equal(payload.body, 'hey');
       done();
@@ -211,9 +213,9 @@ describe('Requests', function() {
           .insert({ title: 'title' })
           .withMedia('text/plain', 'hey');
 
-      var payload = req.generatePayload('http://root-url');
+      var payload = req.generatePayload();
       assert.equal(payload.method, 'POST');
-      assert.equal(payload.uri, 'http://root-url/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
       assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
       assert.equal(payload.multipart[0].body, '{"title":"title"}');
       assert.equal(payload.multipart[1]['Content-Type'], 'text/plain');
@@ -234,6 +236,28 @@ describe('Requests', function() {
       assert.equal(req2.params.q, 'title contains "H"');
       assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
       done();
+    });
+  });
+
+  describe('buildUri', function() {
+    it('should concat path without double or trailing slashes', function() {
+      var uri = requests.buildUri('', ['a', '//b/6/n/', 'c', 'd/']);
+      assert.equal(uri, '/a/b/6/n/c/d');
+    });
+
+    it('should avoid null or undefined paths', function() {
+      var uri = requests.buildUri('', ['a', null, undefined, 'd']);
+      assert.equal(uri, '/a/d');
+    });
+
+    it('should remove double slashes from root', function() {
+      var uri = requests.buildUri('http://root///', ['a']);
+      assert.equal(uri, 'http://root/a');
+    });
+
+    it('should append query params', function() {
+      var uri = requests.buildUri('', ['a'], { q: 'keyword', p: 1 });
+      assert.equal(uri, '/a?q=keyword&p=1');
     });
   });
 
