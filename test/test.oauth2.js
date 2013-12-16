@@ -41,7 +41,7 @@ describe('OAuth2 client', function() {
     };
 
     var oauth2client =
-        new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     var generated = oauth2client.generateAuthUrl(opts);
     var parsed = url.parse(generated);
     var query = qs.parse(parsed.query);
@@ -57,7 +57,7 @@ describe('OAuth2 client', function() {
   it('should set resonse_type param to code if none is given while' +
       'generating the consent page url', function(done) {
     var oauth2client =
-        new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     var generated = oauth2client.generateAuthUrl();
     var parsed = url.parse(generated);
     var query = qs.parse(parsed.query);
@@ -68,11 +68,9 @@ describe('OAuth2 client', function() {
 
   it('should throw exception no access or refresh token is set before making ' +
       'a request', function() {
-    var gapis = new googleapis.GoogleApis();
     var oauth2client =
-      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
-    gapis
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       assert.throws(function() {
@@ -86,12 +84,10 @@ describe('OAuth2 client', function() {
 
   it('should not throw any exceptions if only refresh token is set',
       function() {
-    var gapis = new googleapis.GoogleApis();
     var oauth2client =
-      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     oauth2client.credentials = { refresh_token: 'refresh_token' };
-    gapis.Transporter = urlshortenerDiscoveryTransporter;
-    gapis
+    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       assert.doesNotThrow(function() {
@@ -104,11 +100,10 @@ describe('OAuth2 client', function() {
   });
 
   it('should set access token type to Bearer if none is set', function(done) {
-    var gapis = new googleapis.GoogleApis();
     var oauth2client =
-      new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     oauth2client.credentials = { access_token: 'foo', refresh_token: '' };
-    gapis
+    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var req = client.urlshortener.url.list().withAuthClient(oauth2client);
@@ -120,8 +115,27 @@ describe('OAuth2 client', function() {
   });
 
   it('should replay the request with a refreshed token if auth failed',
-    function() {
-    // TODO(burcud): Implement this unit test.
+      function(done) {
+    var i = 0;
+    var oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oauth2client.credentials = { access_token: 'foo', refresh_token: 'bar' };
+    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
+        .discover('urlshortener', 'v1')
+        .execute(function(err, client) {
+      var req = client.urlshortener.url.list().withAuthClient(oauth2client);
+      oauth2client.transporter = {
+        request: function(opts, callback) {
+          if (i == 1) {
+            assert.equal(opts.uri, 'https://accounts.google.com/o/oauth2/token');
+            return done();
+          }
+          i++;
+          callback(null, null, { statusCode: 401 });
+        }
+      };
+      req.execute();
+    });
   });
 
 });

@@ -19,14 +19,15 @@ var googleapis = require('../lib/googleapis.js');
 // PUT your API key here or this example will return errors
 // To learn more about API keys, please see:
 // https://developers.google.com/console/help/#UsingKeys
-var API_KEY = 'YOUR API KEY HERE';
+var API_KEY = 'AIzaSyBzQOyq8uKZKMTRfEPP-Qbrmy98CopcZRY';
 
 googleapis
   .discover('urlshortener', 'v1')
   .discover('plus', 'v1')
   .execute(function(err, client) {
-    var req1 = client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' });
-    var req2 = client.plus.people.get({ userId: '+BurcuDogan' });
-    req1.withApiKey(API_KEY).execute()
-    req2.withApiKey(API_KEY).execute()
+      client
+          .urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
+          .withApiKey(API_KEY).execute();
+      client.plus.people.get({ userId: '+burcudogan' })
+          .withApiKey(API_KEY).execute();
 });

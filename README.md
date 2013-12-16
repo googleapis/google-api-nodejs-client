@@ -149,10 +149,10 @@ URL:
 
 ~~~~ js
 var googleapis = require('googleapis'),
-    OAuth2Client = googleapis.OAuth2Client;
+    OAuth2 = googleapis.auth.OAuth2;
 
 var oauth2Client =
-    new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+    new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
 // generates a url that allows offline access and asks permissions
 // for Google+ scope.
