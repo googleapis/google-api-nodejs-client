@@ -149,7 +149,7 @@ URL:
 
 ~~~~ js
 var googleapis = require('googleapis'),
-    OAuth2 = googleapis.auth.OAuth2;
+    OAuth2 = googleapis.auth.OAuth2Client;
 
 var oauth2Client =
     new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
