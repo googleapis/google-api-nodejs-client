@@ -31,6 +31,9 @@ describe('OAuth2 client', function() {
   var ACCESS_TYPE = 'offline';
   var SCOPE = 'scopex';
 
+  var PUBLIC_KEY = '';
+  var PRIVATE_KEY = '';
+
   var urlshortenerDiscoveryTransporter =
       new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
@@ -144,9 +147,9 @@ describe('OAuth2 client', function() {
       function(done) {
 
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -189,9 +192,9 @@ describe('OAuth2 client', function() {
     it('should fail due to invalid audience',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -238,9 +241,9 @@ describe('OAuth2 client', function() {
     it('should fail due to invalid signature',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -288,9 +291,9 @@ describe('OAuth2 client', function() {
     it('should fail due to invalid envelope',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -337,9 +340,9 @@ describe('OAuth2 client', function() {
   it('should fail due to invalid payload',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -386,9 +389,9 @@ describe('OAuth2 client', function() {
     it('should fail due to invalid signature',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -435,9 +438,9 @@ describe('OAuth2 client', function() {
   it('should fail due to no expiration date',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -483,9 +486,9 @@ describe('OAuth2 client', function() {
     it('should fail due to no issue time',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -531,9 +534,9 @@ describe('OAuth2 client', function() {
     it('should fail due to certificate with expiration date in future',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -579,9 +582,9 @@ describe('OAuth2 client', function() {
     it('should pass due to expiration date in future with adjusted max expiry',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -623,9 +626,9 @@ describe('OAuth2 client', function() {
   it('should fail due to token being used to early',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var clockSkews = 300;
@@ -673,9 +676,9 @@ describe('OAuth2 client', function() {
   it('should fail due to invalid issuer',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var clockSkews = 300;
@@ -722,9 +725,9 @@ describe('OAuth2 client', function() {
   it('should pass due to valid issuer',
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
         var privateKey = fs.readFileSync('./test/data/private.pem',
-            {encoding: 'utf-8'});
+            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var clockSkews = 300;
