@@ -768,7 +768,7 @@ describe('OAuth2 client', function() {
 
         var oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-        oauth2client.getFederatedSignonCerts(function(certs) {
+        oauth2client.getFederatedSignonCerts(function(err, certs) {
           assert(Object.keys(certs).length > 0);
           done();
         });
