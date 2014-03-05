@@ -228,6 +228,7 @@ Install all dependencies including development requirements by running:
 
 ~~~~ sh
 $ npm install -d
+~~~~
 
 Tests use mocha. To run all tests you can use
 
