@@ -20,7 +20,9 @@ changes in the future that *may not be compatible* with the previous versions.
 The library is distributed on `npm`. In order to add it as a dependency,
 run the following command:
 
-    $ npm install googleapis
+~~~~ sh
+$ npm install googleapis
+~~~~
 
 ## Guide
 
@@ -224,11 +226,15 @@ Fork the repo, develop and test your code changes.
 
 Install all dependencies including development requirements by running:
 
-    $ npm install -d
+~~~~ sh
+$ npm install -d
+~~~~
 
 Tests use mocha. To run all tests you can use
 
-    $ npm test
+~~~~ sh
+$ npm test
+~~~~
 
 which looks for tests in the `./tests` directory.
 
