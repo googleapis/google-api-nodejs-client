@@ -1,4 +1,5 @@
-# google-api-nodejs-client [alpha]
+
+gle-api-nodejs-client [alpha]
 
 [![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)](https://travis-ci.org/google/google-api-nodejs-client)
 
@@ -34,18 +35,19 @@ Dynamically load Google APIs and start making requests:
 var googleapis = require('googleapis');
 
 googleapis
-    .discover('urlshortener', 'v1')
-    .discover('plus', 'v1')
-    .execute(function(err, client) {
-  var params = { shortUrl: 'http://goo.gl/DdUKX' };
-  var req1 = client.urlshortener.url.get(params);
-  req1.execute(function (err, response) {
-    console.log('Long url is', response.longUrl);
-  });
+  .discover('urlshortener', 'v1')
+  .discover('plus', 'v1')
+  .execute(function(err, client) {
+    var params = { shortUrl: 'http://goo.gl/DdUKX' };
+    var req1 = client.urlshortener.url.get(params);
 
-  var req2 = client.plus.people.get({ userId: '+burcudogan' });
-  req2.execute();
-});
+    req1.execute(function (err, response) {
+      console.log('Long url is', response.longUrl);
+    });
+
+    var req2 = client.plus.people.get({ userId: '+burcudogan' });
+    req2.execute();
+  });
 ~~~~
 
 Supported APIs are listed on
@@ -59,9 +61,9 @@ files by using the `cache.path` option.
 
 ~~~~ js
 googleapis
-    .discover('plus', 'v3')
-    .withOpts({ cache: { path: '<path>' }))
-    .execute();
+  .discover('plus', 'v3')
+  .withOpts({ cache: { path: '<path>' }))
+  .execute();
 ~~~~
 
 ### API Client
@@ -74,10 +76,10 @@ example of loading a client for
 
 ~~~~ js
 googleapis
-     .discover('urlshortener', 'v1')
-     .execute(function(err, client) {
-   // make requests
- });
+  .discover('urlshortener', 'v1')
+  .execute(function(err, client) {
+    // make requests
+  });
 ~~~~
 
 ### Requests
@@ -88,10 +90,10 @@ of the given short url:
 ~~~~ js
 googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
   client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-      .execute(function(err, result) {
-        // result.longUrl contains the long url.
-      });
+  .execute(function(err, result) {
+    // result.longUrl contains the long url.
   });
+});
 ~~~~
 
 Alternatively, you may need to send an API key with the
@@ -102,7 +104,7 @@ googleapis
   .discover('plus', 'v1')
   .execute(function(err, client) {
     var request1 = client.plus.people.get({ userId: '+burcudogan' })
-        .withApiKey(API_KEY);
+    .withApiKey(API_KEY);
 
     request1.execute(function(err, result) {
       console.log("Result: " + (err ? err.message : result.displayName));
@@ -118,10 +120,10 @@ You can combine multiple requests in a single one by using batch requests.
 
 ~~~~ js
 var request1 =
-    client.plus.people.get({ userId: '+BurcuDogan' });
+  client.plus.people.get({ userId: '+BurcuDogan' });
 
 var request2 =
-    client.urlshortener.url.insert({ longUrl: 'http://google.com' });
+  client.urlshortener.url.insert({ longUrl: 'http://google.com' });
 
 client
   .newBatchRequest()
@@ -207,9 +209,9 @@ with media attachments, take a look at the `examples/mediaupload.js` sample.
 
 ~~~~ js
 client
-    .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
-	.withMedia('text/plain', 'Hello World')
-	.execute();
+  .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
+  .withMedia('text/plain', 'Hello World')
+  .execute();
 ~~~~
 
 ## License
@@ -263,3 +265,4 @@ to this client library, then you'll need to sign a
 Follow either of the two links above to access the appropriate CLA and
 instructions for how to sign and return it. Once we receive it, we'll add you
 to the official list of contributors and be able to accept your patches.
+
