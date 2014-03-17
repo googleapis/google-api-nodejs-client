@@ -98,7 +98,7 @@ describe('Discovery', function() {
       .execute(function(err, client) {
         var req = client.newBatchRequest();
         assert.equal('foo', req.authClient.credentials);
-        req = client.drive.newRequest();
+        req = client.drive.files.insert();
         assert.equal('foo', req.authClient.credentials);
         req = client.plus.newRequest();
         assert.equal('foo', req.authClient.credentials);
