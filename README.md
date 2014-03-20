@@ -183,8 +183,8 @@ oauth2Client.getToken(code, function(err, tokens) {
 
 And you can start using oauth2Client to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, in cases when access_token is expired, it asks for a new
-access_token and replays the request.
+refresh_token, the access_token is automatically refreshed and the request is replayed in 
+case the access_token has expired.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
