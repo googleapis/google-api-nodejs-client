@@ -27,7 +27,7 @@
   "dependencies" : {
     "request": "~2.25.0",
     "async": "0.2.6",
-    "gapitoken": "0.1.0"
+    "gapitoken": "~0.1.2"
   },
   "devDependencies" : {
     "mocha": "1.8.1",
