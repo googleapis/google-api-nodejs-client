@@ -30,7 +30,7 @@ var googleapis = require('../lib/googleapis.js');
  * Convert the .p12 file to .pem: openssl pkcs12 -in key.p12 -out key.pem -nocerts
  * Remove the passphrase from the .pem file: openssl rsa -in key.pem -out key.pem
  */
-var authClient = googleapis.auth.JWT(
+var authClient = new googleapis.auth.JWT(
     'service-account-email@developer.gserviceaccount.com',
     'path/to/private_key.pem',
     // Contents of private_key.pem if you want to load the pem file yourself
