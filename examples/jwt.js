@@ -27,12 +27,11 @@ var googleapis = require('../lib/googleapis.js');
  * Node.js currently does not support direct access to the keys stored within PKCS12 file
  * (see issue comment https://github.com/joyent/node/issues/4050#issuecomment-8816304)
  * so the private key must be extracted and converted to a passphrase-less RSA key:
- * Convert the .p12 file to .pem: openssl pkcs12 -in key.p12 -out key.pem -nocerts
- * Remove the passphrase from the .pem file: openssl rsa -in key.pem -out key.pem
+ * openssl pkcs12 -in key.p12 -nocerts -nodes | openssl rsa -out key.pem
  */
 var authClient = new googleapis.auth.JWT(
     'service-account-email@developer.gserviceaccount.com',
-    'path/to/private_key.pem',
+    'path/to/key.pem',
     // Contents of private_key.pem if you want to load the pem file yourself
     // (do not use the path parameter above if using this param)
     'key',
