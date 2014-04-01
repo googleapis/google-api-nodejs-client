@@ -98,7 +98,7 @@ jwt.authorize(function (err, data) {
                 return callback(err);
             }
 
-            // create the group insert request
+            // create the group member insert request
             var request = client.admin.members.insert({
                 groupKey: "some_group@example.com"
             }, {
