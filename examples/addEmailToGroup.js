@@ -99,7 +99,7 @@ jwt.authorize(function (err, data) {
             }
 
             // create the group insert request
-            var request = client.admin.members.delete({
+            var request = client.admin.members.insert({
                 groupKey: "some_group@example.com"
             }, {
                 email: "me@example.com"
