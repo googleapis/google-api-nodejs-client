@@ -37,6 +37,10 @@ googleapis
     .discover('urlshortener', 'v1')
     .discover('plus', 'v1')
     .execute(function(err, client) {
+  if (err) {
+    console.log('Problem during the client discovery.', err);
+    return;
+  }
   var params = { shortUrl: 'http://goo.gl/DdUKX' };
   var req1 = client.urlshortener.url.get(params);
   req1.execute(function (err, response) {
