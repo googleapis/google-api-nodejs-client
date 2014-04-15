@@ -80,6 +80,7 @@ example of loading a client for
 googleapis
      .discover('urlshortener', 'v1')
      .execute(function(err, client) {
+   // handle discovery errors
    // make requests
  });
 ~~~~
@@ -91,6 +92,7 @@ of the given short url:
 
 ~~~~ js
 googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
+  // handle discovery errors
   client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
       .execute(function(err, result) {
         // result.longUrl contains the long url.
@@ -105,6 +107,7 @@ request you are going to make. The following creates and executes a request from
 googleapis
   .discover('plus', 'v1')
   .execute(function(err, client) {
+    // handle discovery errors
     var request1 = client.plus.people.get({ userId: '+burcudogan' })
         .withApiKey(API_KEY);
 
