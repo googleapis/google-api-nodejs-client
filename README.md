@@ -20,7 +20,9 @@ changes in the future that *may not be compatible* with the previous versions.
 The library is distributed on `npm`. In order to add it as a dependency,
 run the following command:
 
-    $ npm install googleapis
+~~~~ sh
+$ npm install googleapis
+~~~~
 
 ## Guide
 
@@ -35,6 +37,10 @@ googleapis
     .discover('urlshortener', 'v1')
     .discover('plus', 'v1')
     .execute(function(err, client) {
+  if (err) {
+    console.log('Problem during the client discovery.', err);
+    return;
+  }
   var params = { shortUrl: 'http://goo.gl/DdUKX' };
   var req1 = client.urlshortener.url.get(params);
   req1.execute(function (err, response) {
@@ -74,6 +80,7 @@ example of loading a client for
 googleapis
      .discover('urlshortener', 'v1')
      .execute(function(err, client) {
+   // handle discovery errors
    // make requests
  });
 ~~~~
@@ -85,6 +92,7 @@ of the given short url:
 
 ~~~~ js
 googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
+  // handle discovery errors
   client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
       .execute(function(err, result) {
         // result.longUrl contains the long url.
@@ -99,6 +107,7 @@ request you are going to make. The following creates and executes a request from
 googleapis
   .discover('plus', 'v1')
   .execute(function(err, client) {
+    // handle discovery errors
     var request1 = client.plus.people.get({ userId: '+burcudogan' })
         .withApiKey(API_KEY);
 
@@ -181,8 +190,8 @@ oauth2Client.getToken(code, function(err, tokens) {
 
 And you can start using oauth2Client to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, in cases when access_token is expired, it asks for a new
-access_token and replays the request.
+refresh_token, the access_token is automatically refreshed and the request is replayed in 
+case the access_token has expired.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
@@ -224,11 +233,15 @@ Fork the repo, develop and test your code changes.
 
 Install all dependencies including development requirements by running:
 
-    $ npm install -d
+~~~~ sh
+$ npm install -d
+~~~~
 
 Tests use mocha. To run all tests you can use
 
-    $ npm test
+~~~~ sh
+$ npm test
+~~~~
 
 which looks for tests in the `./tests` directory.
 

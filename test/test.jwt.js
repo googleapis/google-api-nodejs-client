@@ -24,11 +24,13 @@ describe('JWT auth client', function() {
         'foo@serviceaccount.com',
         '/path/to/key.pem',
         null,
-        ['http://bar', 'http://foo']);
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
     jwt.GAPI = function(opts, callback) {
       assert.equal('foo@serviceaccount.com', opts.iss);
       assert.equal('/path/to/key.pem', opts.keyFile);
       assert.equal('http://bar http://foo', opts.scope);
+      assert.equal('bar@subjectaccount.com', opts.sub);
       setTimeout(function() {
         callback(null);
       }, 0);
@@ -48,7 +50,8 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
-        ['http://bar', 'http://foo']);
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
     jwt.credentials = {
       access_token: 'initial-access-token',
       refresh_token: 'jwt-placeholder'
