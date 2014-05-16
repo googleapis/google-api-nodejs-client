@@ -68,6 +68,74 @@ googleapis
     .execute();
 ~~~~
 
+### Authorization and Authentication
+
+This client comes with an OAuth2 client that allows you to retrieve an access token and
+refreshes the token and re-try the request seamlessly if token is expired. The
+basics of Google's OAuth 2.0 implementation is explained on
+[Google Authorization and Authentication
+documentation](https://developers.google.com/accounts/docs/OAuth2Login).
+
+A complete sample application that authorizes and authenticates with OAuth2.0
+client is available at `examples/oauth2.js`.
+
+#### Consent Page Url
+
+In order to ask for permissions from a user to retrieve an access token, you
+should redirect them to a consent page. In order to create a consent page
+URL:
+
+~~~~ js
+var googleapis = require('googleapis'),
+    OAuth2 = googleapis.auth.OAuth2;
+
+var oauth2Client =
+    new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+
+// generates a url that allows offline access and asks permissions
+// for Google+ scope.
+var url = oauth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: 'https://www.googleapis.com/auth/plus.me'
+});
+~~~~
+
+#### Retrieving Tokens
+Once a user has given permissions on the consent page, Google will redirect
+the page to the redirect url you have provided with a code query parameter.
+
+    GET /oauthcallback?code={authorizationCode}
+
+With the code returned, you can ask for an access token as shown below:
+
+~~~~ js
+oauth2Client.getToken(code, function(err, tokens) {
+  // contains an access_token and optionally a refresh_token.
+  // save them permanently.
+});
+~~~~
+
+#### Making Authenticated Requests
+
+And you can start using oauth2Client to authorize and authenticate your
+requests to Google APIs with the retrieved tokens. If you provide a
+refresh_token, the access_token is automatically refreshed and the request is replayed in 
+case the access_token has expired.
+
+Following sample retrieves Google+ profile of the authenticated user.
+
+~~~~ js
+oauth2Client.credentials = {
+  access_token: 'ACCESS TOKEN HERE',
+  refresh_token: 'REFRESH TOKEN HERE'
+};
+
+client
+  .plus.people.get({ userId: 'me' })
+  .withAuthClient(oauth2Client)
+  .execute(callback);
+~~~~
+
 ### API Client
 
 Client libraries are generated during runtime by metadata provided by Google
@@ -137,74 +205,6 @@ client
   .execute(function(err, results) {
 
   });
-~~~~
-
-### Authorization and Authentication
-
-This client comes with an OAuth2 client that allows you to retrieve an access token and
-refreshes the token and re-try the request seamlessly if token is expired. The
-basics of Google's OAuth 2.0 implementation is explained on
-[Google Authorization and Authentication
-documentation](https://developers.google.com/accounts/docs/OAuth2Login).
-
-A complete sample application that authorizes and authenticates with OAuth2.0
-client is available at `examples/oauth2.js`.
-
-#### Consent Page Url
-
-In order to ask for permissions from a user to retrieve an access token, you
-should redirect them to a consent page. In order to create a consent page
-URL:
-
-~~~~ js
-var googleapis = require('googleapis'),
-    OAuth2 = googleapis.auth.OAuth2;
-
-var oauth2Client =
-    new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-
-// generates a url that allows offline access and asks permissions
-// for Google+ scope.
-var url = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope: 'https://www.googleapis.com/auth/plus.me'
-});
-~~~~
-
-#### Retrieving Tokens
-Once a user has given permissions on the consent page, Google will redirect
-the page to the redirect url you have provided with a code query parameter.
-
-    GET /oauthcallback?code={authorizationCode}
-
-With the code returned, you can ask for an access token as shown below:
-
-~~~~ js
-oauth2Client.getToken(code, function(err, tokens) {
-  // contains an access_token and optionally a refresh_token.
-  // save them permanently.
-});
-~~~~
-
-#### Making Authenticated Requests
-
-And you can start using oauth2Client to authorize and authenticate your
-requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, the access_token is automatically refreshed and the request is replayed in 
-case the access_token has expired.
-
-Following sample retrieves Google+ profile of the authenticated user.
-
-~~~~ js
-oauth2Client.credentials = {
-  access_token: 'ACCESS TOKEN HERE',
-  refresh_token: 'REFRESH TOKEN HERE'
-};
-
-client
-  .plus.people.get({ userId: 'me' })
-  .withAuthClient(oauth2Client)
-  .execute(callback);
 ~~~~
 
 ### Media Uploads
