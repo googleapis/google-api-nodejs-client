@@ -96,7 +96,9 @@ var oauth2Client =
 // for Google+ scope.
 var url = oauth2Client.generateAuthUrl({
   access_type: 'offline',
-  scope: 'https://www.googleapis.com/auth/plus.me'
+  scope: [
+    'https://www.googleapis.com/auth/plus.me',
+    'https://www.googleapis.com/auth/calendar'].join(" ")
 });
 ~~~~
 
@@ -113,27 +115,6 @@ oauth2Client.getToken(code, function(err, tokens) {
   // contains an access_token and optionally a refresh_token.
   // save them permanently.
 });
-~~~~
-
-#### Making Authenticated Requests
-
-And you can start using oauth2Client to authorize and authenticate your
-requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, the access_token is automatically refreshed and the request is replayed in 
-case the access_token has expired.
-
-Following sample retrieves Google+ profile of the authenticated user.
-
-~~~~ js
-oauth2Client.credentials = {
-  access_token: 'ACCESS TOKEN HERE',
-  refresh_token: 'REFRESH TOKEN HERE'
-};
-
-client
-  .plus.people.get({ userId: 'me' })
-  .withAuthClient(oauth2Client)
-  .execute(callback);
 ~~~~
 
 ### API Client
@@ -186,6 +167,32 @@ googleapis
 ~~~~
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
+
+#### Making Authenticated Requests
+
+And you can start using oauth2Client to authorize and authenticate your
+requests to Google APIs with the retrieved tokens. If you provide a
+refresh_token, the access_token is automatically refreshed and the request is replayed in 
+case the access_token has expired.
+
+Following sample retrieves Google+ profile of the authenticated user.
+
+~~~~ js
+var oauth2Client =
+    new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+
+// Retrieve tokens via token exchange explaind above.
+// Or you can set them.
+oauth2Client.credentials = {
+  access_token: 'ACCESS TOKEN HERE',
+  refresh_token: 'REFRESH TOKEN HERE'
+};
+
+client
+  .plus.people.get({ userId: 'me' })
+  .withAuthClient(oauth2Client)
+  .execute(callback);
+~~~~
 
 ### Batch requests (experimental)
 
