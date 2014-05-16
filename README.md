@@ -172,7 +172,7 @@ To learn more about API keys, please see the [documentation](https://developers.
 
 And you can start using oauth2Client to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, the access_token is automatically refreshed and the request is replayed in 
+refresh_token, the access_token is automatically refreshed and the request is replayed in
 case the access_token has expired.
 
 Following sample retrieves Google+ profile of the authenticated user.
@@ -231,49 +231,6 @@ client
 `google-api-nodejs-client` is licensed with Apache 2.0. Full license text is
 available on COPYING file.
 
-## Contributors
+## Contributing
 
-Before making any contributions, please sign one of the contributor
-license agreements below.
-
-Fork the repo, develop and test your code changes.
-
-Install all dependencies including development requirements by running:
-
-~~~~ sh
-$ npm install -d
-~~~~
-
-Tests use mocha. To run all tests you can use
-
-~~~~ sh
-$ npm test
-~~~~
-
-which looks for tests in the `./tests` directory.
-
-Your code should honor the
-[Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
-You can use
-[Closure Linter](https://code.google.com/p/closure-linter/)
-to detect style issues.
-
-Submit a pull request. The repo owner will review your request. If it is
-approved, the change will be merged. If it needs additional work, the repo
-owner will respond with useful comments.
-
-#### Contributor License Agreements
-
-Before creating a pull request, please fill out either the individual or
-corporate Contributor License Agreement.
-
-* If you are an individual writing original source code and you're sure you
-own the intellectual property, then you'll need to sign an
-[individual CLA](http://code.google.com/legal/individual-cla-v1.0.html).
-* If you work for a company that wants to allow you to contribute your work
-to this client library, then you'll need to sign a
-[corporate CLA](http://code.google.com/legal/corporate-cla-v1.0.html).
-
-Follow either of the two links above to access the appropriate CLA and
-instructions for how to sign and return it. Once we receive it, we'll add you
-to the official list of contributors and be able to accept your patches.
+See [CONTRIBUTING](https://github.com/google/google-api-nodejs-client/tree/master/CONTRIBUTING.md).
