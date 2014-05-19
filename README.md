@@ -204,7 +204,7 @@ client
 You can combine multiple requests in a single one by using batch requests.
 
 ~~~~ js
-var getUser =
+var getUserReq =
     client.plus.people.get({ userId: '+BurcuDogan' });
 
 var insertUrlReq =
@@ -212,8 +212,8 @@ var insertUrlReq =
 
 client
     .newBatchRequest()
-    .add(getUser)
-    .add(insertUrl)
+    .add(getUserReq)
+    .add(insertUrlReq)
     .execute(function(err, results) {
         // handle results
     });
