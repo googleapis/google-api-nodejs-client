@@ -37,20 +37,22 @@ googleapis
     .discover('urlshortener', 'v1')
     .discover('plus', 'v1')
     .execute(function(err, client) {
-        if (err) {
-            console.log('Problem during the client discovery.', err);
-            return;
-        }
-        var params = { shortUrl: 'http://goo.gl/DdUKX' };
-        var getUrlReq = client.urlshortener.url.get(params);
-        getUrlReq.execute(function (err, response) {
-            console.log('Long url is', response.longUrl);
-        });
+  if (err) {
+    console.log('Problem during the client discovery.', err);
+    return;
+  }
+  var params = { shortUrl: 'http://goo.gl/DdUKX' };
+  var getUrlReq = client.urlshortener.url.get(params);
 
-        var getUserReq = client.plus.people.get({ userId: '+burcudogan' });
-        getUserReq.execute(function(err, user) {
-            console.log('User id is: ' + user.id);
-        });
+  getUrlReq.execute(function (err, response) {
+    console.log('Long url is', response.longUrl);
+  });
+
+  var getUserReq = client.plus.people.get({ userId: '+burcudogan' });
+
+  getUserReq.execute(function(err, user) {
+    console.log('User id is: ' + user.id);
+  });
 });
 ~~~~
 
@@ -97,13 +99,13 @@ var oauth2Client =
 // generates a url that allows offline access and asks permissions
 // for Google+ scope.
 var scopes = [
-    'https://www.googleapis.com/auth/plus.me',
-    'https://www.googleapis.com/auth/calendar'
+  'https://www.googleapis.com/auth/plus.me',
+  'https://www.googleapis.com/auth/calendar'
 ];
 
 var url = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: scopes.join(" ") // space delimited string of scopes
+  access_type: 'offline',
+  scope: scopes.join(" ") // space delimited string of scopes
 });
 ~~~~
 
@@ -117,8 +119,8 @@ With the code returned, you can ask for an access token as shown below:
 
 ~~~~ js
 oauth2Client.getToken(code, function(err, tokens) {
-    // contains an access_token and optionally a refresh_token.
-    // save them permanently.
+  // contains an access_token and optionally a refresh_token.
+  // save them permanently.
 });
 ~~~~
 
@@ -134,9 +136,9 @@ example of loading a client for
 googleapis
     .discover('urlshortener', 'v1')
     .execute(function(err, client) {
-        // handle discovery errors
-        // make requests
-    });
+  // handle discovery errors
+  // make requests
+});
 ~~~~
 
 ### Requests
@@ -145,13 +147,15 @@ The following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
 ~~~~ js
-googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
-    // handle discovery errors
-    client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-        .execute(function(err, result) {
-            // result.longUrl contains the long url.
-        });
-    });
+googleapis
+    .discover('urlshortener', 'v1')
+    .execute(function(err, client) {
+  // handle discovery errors
+  client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
+      .execute(function(err, result) {
+    // result.longUrl contains the long url.
+  });
+});
 ~~~~
 
 Alternatively, you may need to send an API key with the
@@ -161,14 +165,14 @@ request you are going to make. The following creates and executes a request from
 googleapis
     .discover('plus', 'v1')
     .execute(function(err, client) {
-        // handle discovery errors
-        var getUserAuthdReq = client.plus.people.get({ userId: '+burcudogan' })
-            .withApiKey(API_KEY);
+  // handle discovery errors
+  var getUserAuthdReq = client.plus.people.get({ userId: '+burcudogan' })
+      .withApiKey(API_KEY);
 
-        getUserAuthdReq.execute(function(err, user) {
-            console.log("Result: " + (err ? err.message : user.displayName));
-        });
-    });
+  getUserAuthdReq.execute(function(err, user) {
+    console.log("Result: " + (err ? err.message : user.displayName));
+  });
+});
 ~~~~
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
@@ -189,8 +193,8 @@ var oauth2Client =
 // Retrieve tokens via token exchange explaind above.
 // Or you can set them.
 oauth2Client.credentials = {
-    access_token: 'ACCESS TOKEN HERE',
-    refresh_token: 'REFRESH TOKEN HERE'
+  access_token: 'ACCESS TOKEN HERE',
+  refresh_token: 'REFRESH TOKEN HERE'
 };
 
 client
@@ -215,8 +219,8 @@ client
     .add(getUserReq)
     .add(insertUrlReq)
     .execute(function(err, results) {
-        // handle results
-    });
+  // handle results
+});
 ~~~~
 
 ### Media Uploads
