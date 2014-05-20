@@ -42,13 +42,17 @@ googleapis
     return;
   }
   var params = { shortUrl: 'http://goo.gl/DdUKX' };
-  var req1 = client.urlshortener.url.get(params);
-  req1.execute(function (err, response) {
+  var getUrlReq = client.urlshortener.url.get(params);
+
+  getUrlReq.execute(function (err, response) {
     console.log('Long url is', response.longUrl);
   });
 
-  var req2 = client.plus.people.get({ userId: '+burcudogan' });
-  req2.execute();
+  var getUserReq = client.plus.people.get({ userId: '+burcudogan' });
+
+  getUserReq.execute(function(err, user) {
+    console.log('User id is: ' + user.id);
+  });
 });
 ~~~~
 
@@ -94,11 +98,14 @@ var oauth2Client =
 
 // generates a url that allows offline access and asks permissions
 // for Google+ scope.
+var scopes = [
+  'https://www.googleapis.com/auth/plus.me',
+  'https://www.googleapis.com/auth/calendar'
+];
+
 var url = oauth2Client.generateAuthUrl({
   access_type: 'offline',
-  scope: [
-    'https://www.googleapis.com/auth/plus.me',
-    'https://www.googleapis.com/auth/calendar'].join(" ")
+  scope: scopes.join(" ") // space delimited string of scopes
 });
 ~~~~
 
@@ -127,11 +134,11 @@ example of loading a client for
 
 ~~~~ js
 googleapis
-     .discover('urlshortener', 'v1')
-     .execute(function(err, client) {
-   // handle discovery errors
-   // make requests
- });
+    .discover('urlshortener', 'v1')
+    .execute(function(err, client) {
+  // handle discovery errors
+  // make requests
+});
 ~~~~
 
 ### Requests
@@ -140,13 +147,15 @@ The following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
 ~~~~ js
-googleapis.discover('urlshortener', 'v1').execute(function(err, client) {
+googleapis
+    .discover('urlshortener', 'v1')
+    .execute(function(err, client) {
   // handle discovery errors
   client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
       .execute(function(err, result) {
-        // result.longUrl contains the long url.
-      });
+    // result.longUrl contains the long url.
   });
+});
 ~~~~
 
 Alternatively, you may need to send an API key with the
@@ -154,16 +163,16 @@ request you are going to make. The following creates and executes a request from
 
 ~~~~ js
 googleapis
-  .discover('plus', 'v1')
-  .execute(function(err, client) {
-    // handle discovery errors
-    var request1 = client.plus.people.get({ userId: '+burcudogan' })
-        .withApiKey(API_KEY);
+    .discover('plus', 'v1')
+    .execute(function(err, client) {
+  // handle discovery errors
+  var getUserAuthdReq = client.plus.people.get({ userId: '+burcudogan' })
+      .withApiKey(API_KEY);
 
-    request1.execute(function(err, result) {
-      console.log("Result: " + (err ? err.message : result.displayName));
-    });
+  getUserAuthdReq.execute(function(err, user) {
+    console.log("Result: " + (err ? err.message : user.displayName));
   });
+});
 ~~~~
 
 To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
@@ -189,9 +198,9 @@ oauth2Client.credentials = {
 };
 
 client
-  .plus.people.get({ userId: 'me' })
-  .withAuthClient(oauth2Client)
-  .execute(callback);
+    .plus.people.get({ userId: 'me' })
+    .withAuthClient(oauth2Client)
+    .execute(callback);
 ~~~~
 
 ### Batch requests (experimental)
@@ -199,19 +208,19 @@ client
 You can combine multiple requests in a single one by using batch requests.
 
 ~~~~ js
-var request1 =
+var getUserReq =
     client.plus.people.get({ userId: '+BurcuDogan' });
 
-var request2 =
+var insertUrlReq =
     client.urlshortener.url.insert({ longUrl: 'http://google.com' });
 
 client
-  .newBatchRequest()
-  .add(request1)
-  .add(request2)
-  .execute(function(err, results) {
-
-  });
+    .newBatchRequest()
+    .add(getUserReq)
+    .add(insertUrlReq)
+    .execute(function(err, results) {
+  // handle results
+});
 ~~~~
 
 ### Media Uploads
@@ -222,8 +231,8 @@ with media attachments, take a look at the `examples/mediaupload.js` sample.
 ~~~~ js
 client
     .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
-	.withMedia('text/plain', 'Hello World')
-	.execute();
+    .withMedia('text/plain', 'Hello World')
+    .execute();
 ~~~~
 
 ## License
