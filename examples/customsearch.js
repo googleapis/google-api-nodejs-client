@@ -22,32 +22,32 @@ var API_KEY = 'INSERT YOUR API KEY HERE';
 var SEARCH = 'INSERT A GOOGLE REQUEST HERE';
 
 // Sends the query to the API
-function launchSearch (client, query, callback) {
-	var req = client.customsearch.cse.list({cx : CX, q : query})
-		.withApiKey(API_KEY);
-	req.execute (function (err, response) {
-		callback (err, response);
-	});
+function launchSearch(client, query, callback) {
+  var req = client.customsearch.cse.list({cx: CX, q: query})
+    .withApiKey(API_KEY);
+  req.execute(function(err, response) {
+    callback(err, response);
+  });
 }
 
 // Initializes API
 googleapis
-	.discover('customsearch', 'v1')
-	.execute (function (err, client) {
-		if (err) {
-			console.log('An error occured', err);
-			return;
-		}
-		// Sends request
-		launchSearch (client, SEARCH, function (err, response) {
-			if (err) {
-				console.log('An error occured', err);
-				return;
-			}
-			// Got the response from custom search
-			console.log('Got ' + response.searchInformation.formattedTotalResults + ' results');
-			if (response.items.length > 0) {
-				console.log('First result name is ' + response.items[0].title);
-			}
-		});
-	});
+    .discover('customsearch', 'v1')
+    .execute(function(err, client) {
+  if (err) {
+    console.log('An error occured', err);
+    return;
+  }
+  // Sends request
+  launchSearch(client, SEARCH, function(err, response) {
+    if (err) {
+      console.log('An error occured', err);
+      return;
+    }
+    // Got the response from custom search
+    console.log('Result: ' + response.searchInformation.formattedTotalResults);
+    if (response.items.length > 0) {
+      console.log('First result name is ' + response.items[0].title);
+    }
+  });
+});

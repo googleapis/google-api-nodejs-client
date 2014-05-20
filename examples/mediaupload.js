@@ -22,15 +22,15 @@ auth.setCredentials({
 });
 
 googleapis.discover('drive', 'v2').execute(function(err, client) {
-  
+
   // insertion example
   client
       .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
       .withMedia('text/plain', 'Hello World')
       .withAuthClient(auth)
       .execute(function(err, result) {
-        console.log('error:', err, 'inserted:', result.id)
-      });
+    console.log('error:', err, 'inserted:', result.id);
+  });
 
   // update with no metadata
   client
@@ -38,15 +38,15 @@ googleapis.discover('drive', 'v2').execute(function(err, client) {
       .withMedia('text/plain', 'Hello World updated with no metadata')
       .withAuthClient(auth)
       .execute(function(err, result) {
-        console.log('error:', err, 'updated:', result.id)
-      });
+    console.log('error:', err, 'updated:', result.id);
+  });
 
   // // update example with metadata update
   client
-      .drive.files.update({ fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc'}, { title: 'Updated Test' })
+      .drive.files.update({ fileId: '0B-skmV2...'}, { title: 'Updated Test' })
       .withMedia('text/plain', 'Hello World updated with metadata')
       .withAuthClient(auth)
       .execute(function(err, result) {
-        console.log('error:', err, 'updated:', result.id)
-      });
+    console.log('error:', err, 'updated:', result.id);
+  });
 });

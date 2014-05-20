@@ -78,8 +78,8 @@ describe('Discovery', function() {
       });
   });
 
-  it('should cache discovery metadata should be stored in the configurable '
-    + 'cache directory', function(done) {
+  it('should cache discovery metadata should be stored in the configurable ' +
+        'cache directory', function(done) {
     var customPath = './b041042364d89046c003ca151a6254ef';
     new googleapis.GoogleApis()
       .discover('orkut', 'v2')

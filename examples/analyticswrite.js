@@ -34,8 +34,8 @@ var objectiveMetric = 'ga:goal1Completions';
 // https://developers.google.com/analytics/devguides/platform/experiments#serving-framework
 var servingFramework = 'API';
 
-// Non-valid URLs are used when the user is not redirected when showing an experiment
-// Read more: https://developers.google.com/analytics/devguides/platform/experiments#variations
+// Invalid URLs are used when user is not redirected when showing an experiment
+// Read more: http://goo.gl/oVwKH1
 var variations = [
   {'name': 'Default', 'url': 'http://www.example.com', 'status': 'ACTIVE'},
   {'name': 'Variation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
@@ -66,7 +66,7 @@ googleapis
         .withAuthClient(auth)
         .execute(function(err, result) {
           if (err) {
-            console.log("Error", err);
+            console.log('Error', err);
             return;
           }
         });
