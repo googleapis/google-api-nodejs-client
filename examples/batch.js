@@ -31,7 +31,7 @@ googleapis
       .add(req2)
       .execute(function(err, results) {
         if (err) {
-          console.log("Error", err);
+          console.log('Error', err);
           return;
         }
         results.forEach(function(result) {

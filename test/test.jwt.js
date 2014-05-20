@@ -38,7 +38,7 @@ describe('JWT auth client', function() {
         getToken: function(opt_callback) {
           opt_callback(null, 'initial-access-token');
         }
-      }
+      };
     };
     jwt.authorize(function() {
       assert.equal('initial-access-token', jwt.credentials.access_token);

@@ -61,7 +61,8 @@ describe('Requests', function() {
       var request = client.urlshortener.url.insert(obj);
       var payload = request.generatePayload();
 
-      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url');
+      assert.equal(payload.uri,
+          'https://www.googleapis.com/urlshortener/v1/url');
       assert.equal(payload.method, 'POST');
       assert.equal(payload.json.longUrl, 'http://someurl...');
       done();
@@ -76,7 +77,7 @@ describe('Requests', function() {
     var callback = function(err, client) {
       var req = client.urlshortener.url.list();
       req.transporter = invalidGrantMockTransporter;
-      req.execute(function (err, res) {
+      req.execute(function(err, res) {
         assert.equal(err, 'invalid_grant');
         done();
       });
@@ -93,7 +94,8 @@ describe('Requests', function() {
       var params = { shortUrl: 'a' };
       var request = client.urlshortener.url.get(params);
       var payload = request.generatePayload();
-      assert.equal(payload.uri, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
+      assert.equal(payload.uri,
+          'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
       assert.equal(payload.method, 'GET');
       done();
     });
@@ -162,13 +164,16 @@ describe('Requests', function() {
       var requests = client.newBatchRequest();
       requests.add(client.urlshortener.url.list());
       requests.add(client.urlshortener.url.get());
-      requests.add(client.urlshortener.url.get({ shortUrl: 'http://goo.gl/mR2d' }));
+      requests.add(client.urlshortener.url.get({
+          shortUrl: 'http://goo.gl/mR2d' }));
 
       // should construct the payload in the given order.
       var payload = requests.generatePayload();
-      assert.equal(payload.multipart[0].body, 'GET /urlshortener/v1/url/history\r\n');
+      assert.equal(payload.multipart[0].body,
+          'GET /urlshortener/v1/url/history\r\n');
       assert.equal(payload.multipart[1].body, 'GET /urlshortener/v1/url\r\n');
-      assert.equal(payload.multipart[2].body, 'GET /urlshortener/v1/url?shortUrl=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
+      assert.equal(payload.multipart[2].body,
+          'GET /urlshortener/v1/url?shortUrl=http%3A%2F%2Fgoo.gl%2FmR2d\r\n');
       done();
     });
   });
@@ -178,8 +183,10 @@ describe('Requests', function() {
         .discover('urlshortener', 'v1')
         .execute(function(err, client) {
       var requests = client.newBatchRequest();
-      requests.add(client.urlshortener.url.get({ shortUrl: 'http://goo.gl/mR2d' }));
-      requests.add(client.urlshortener.url.get({ shortUrl: 'http://goo.gl/mR2d' }));
+      requests.add(client.urlshortener.url.get({
+          shortUrl: 'http://goo.gl/mR2d' }));
+      requests.add(client.urlshortener.url.get({
+          shortUrl: 'http://goo.gl/mR2d' }));
       requests.execute(function(err, results) {
         assert.ifError(err);
         done();
@@ -187,22 +194,23 @@ describe('Requests', function() {
     });
   });
 
-  it('should generate a valid basic upload payload if media is set, '
-      + 'metadata is not set', function(done) {
-    googleapis.discover('drive', 'v2').execute(function(err, client){
+  it('should generate a valid basic upload payload if media is set, ' +
+        'metadata is not set', function(done) {
+    googleapis.discover('drive', 'v2').execute(function(err, client) {
       var req = client.drive.files.insert().withMedia('text/plain', 'hey');
 
       var payload = req.generatePayload();
       assert.equal(payload.method, 'POST');
-      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media');
+      assert.equal(payload.uri,
+          'https://www.googleapis.com/upload/drive/v2/files?uploadType=media');
       assert.equal(payload.headers['Content-Type'], 'text/plain');
       assert.equal(payload.body, 'hey');
       done();
     });
   });
 
-  it('should generate a valid multipart upload payload if media and metadata '
-      + 'are set both', function(done) {
+  it('should generate valid multipart upload payload if media and metadata ' +
+        'are both set', function(done) {
     googleapis.discover('drive', 'v2').execute(function(err, client) {
       var req = client.drive.files
           .insert({ title: 'title' })
@@ -210,7 +218,8 @@ describe('Requests', function() {
 
       var payload = req.generatePayload();
       assert.equal(payload.method, 'POST');
-      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(payload.uri, 'https://www.googleapis.com/upload/drive/' +
+          'v2/files?uploadType=multipart');
       assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
       assert.equal(payload.multipart[0].body, '{"title":"title"}');
       assert.equal(payload.multipart[1]['Content-Type'], 'text/plain');
@@ -255,5 +264,4 @@ describe('Requests', function() {
       assert.equal(uri, '/a?q=keyword&p=1');
     });
   });
-
 });
