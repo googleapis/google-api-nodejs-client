@@ -390,8 +390,6 @@ describe('OAuth2 client', function() {
       function(done) {
         var publicKey = fs.readFileSync('./test/data/public.pem',
             'utf-8');
-        var privateKey = fs.readFileSync('./test/data/private.pem',
-            'utf-8');
 
         var maxLifetimeSecs = 86400;
         var now = new Date().getTime() / 1000;
@@ -413,14 +411,9 @@ describe('OAuth2 client', function() {
             '"alg":"RS256"' +
           '}';
 
-        var data = new Buffer(envelope).toString('base64') +
-          '.' + new Buffer(idToken).toString('base64');
-
-        var signer = crypto.createSign('sha256');
-        signer.update(data);
-        var signature = signer.sign('Broken signature', 'base64');
-
-        data += '.' + signature;
+        var data = new Buffer(envelope).toString('base64') + 
+          '.' + new Buffer(idToken).toString('base64') +
+          '.' + 'broken-signature';
 
         var oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
