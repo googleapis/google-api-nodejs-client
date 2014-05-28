@@ -15,7 +15,7 @@ function createReader(api_name, versions) {
   return function(version) {
     if (versions.indexOf(version) !== -1) {
       var Endpoint = require('./' + api_name + '/' + version);
-      return new Endpoint(); // create a new one
+      return Object.freeze(new Endpoint()); // create a new one and freeze
     }
     else {
       throw new Error('Version not available');

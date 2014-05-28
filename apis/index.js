@@ -15,7 +15,7 @@ function createReader(api_name, versions) {
   return function(version) {
     if (versions.indexOf(version) !== -1) {
       var Endpoint = require('./' + api_name + '/' + version);
-      return Object.freeze(new Endpoint()); // freeze it (makes it immutable)
+      return Object.freeze(new Endpoint()); // create a new one and freeze
     }
     else {
       throw new Error('Version not available');
