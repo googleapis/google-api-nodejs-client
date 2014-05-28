@@ -1,33 +1,28 @@
+{% set Name = name|capitalize -%}
 /**
- * <%= title %>
+ * {{ title }}
  *
- * <%= description %>
+ * {{ description }}
  *
- * @author <%= ownerName %>
+ * @author {{ ownerName }}
+ * @this {{ Name }}
  */
 
-function {{ name|capitalize }}() {}
-
-Object.defineProperties({{ name|capitalize }}.prototype, {
-{% for r in resources %}
-  {{ loop.key }}: {
-    value: {},
-    enumerable: true
-  }{% if not loop.last -%},{% endif -%}
-{% endfor %}
-});
-
+function {{ Name }}() {
 {% for rname, r in resources %}
-Object.defineProperties({{ name|capitalize }}.prototype.{{ rname }}, {
-{% for mname, m in r.methods %}
-  {{ mname }}: {
-    value: function() {
-      // TODO
-    },
-    enumerable: true
-  }{% if not loop.last -%},{% endif -%}
-{% endfor %}
-});
-{% endfor %}
+  this.{{ rname }} = {
+    {% for mname, m in r.methods -%}
+    {{ mname }}: function() {
+      // STUB
+    }{%- if not loop.last %},
+    {%- endif -%}
+    {%- endfor %}
+  };
+{% endfor -%}
+}
 
-module.exports = {{ name|capitalize }};
+/**
+ * Export {{ Name }} object
+ * @type {{ Name }}
+ */
+module.exports = {{ Name }};
