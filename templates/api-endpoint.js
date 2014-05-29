@@ -11,12 +11,7 @@
 function {{ Name }}() {
 {% for rname, r in resources %}
   this.{{ rname }} = {
-    {% for mname, m in r.methods -%}
-    {{ mname }}: function() {
-      // STUB
-    }{%- if not loop.last %},
-    {%- endif -%}
-    {%- endfor %}
+    {% include "./resource-partial.js" with r %}
   };
 {% endfor -%}
 }

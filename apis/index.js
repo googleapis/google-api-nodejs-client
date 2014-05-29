@@ -1,37 +1,22 @@
-// can be read from a file
-var apis = {
-  drive: {
-    versions: ['v2.1', 'v2']
-  }
-};
-
-/**
- * Create reader
- * @param  {String} api_name name of api
- * @param  {Array} versions possible version of API
- * @return {[type]}          [description]
- */
-function createReader(api_name, versions) {
-  return function(version) {
-    if (versions.indexOf(version) !== -1) {
-      var Endpoint = require('./' + api_name + '/' + version);
-      return Object.freeze(new Endpoint()); // create a new one and freeze
-    }
-    else {
-      throw new Error('Version not available');
-    }
-  }
-}
-
 var to_export = {};
 
-Object.keys(apis).forEach(function(api_name) {
-  Object.defineProperty(to_export, api_name, {
-    get: function() {
-      return createReader(api_name, apis[api_name].versions);
-    },
-    enumerable: true
-  });
+var path = require('path');
+var fs = require('fs');
+var files = fs.readdirSync('./apis');
+
+files.forEach(function(filename) {
+  var stat = fs.statSync('./apis/' + filename);
+  if (stat.isDirectory()) {
+    Object.defineProperty(to_export, filename, {
+      get: function() {
+        return function(version) {
+          var Endpoint = require('./' + filename + '/' + path.basename(version));
+          return Object.freeze(new Endpoint()); // create a new one and freeze
+        };
+      },
+      enumerable: true
+    });
+  }
 });
 
 /**
