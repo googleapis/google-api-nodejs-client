@@ -10,7 +10,15 @@
  {% endfor -%}
  */
 {{ mname }}: function(query, body, callback) {
-  var url = {{ ('"' + baseUrl + m.path + '"')|buildurl }};
-  /* STUB */
+  query = query || {};
+  var url = {{ ("'" + baseUrl + m.path + "'")|buildurl }};
+  if(self.apiKey) query.key = self.apiKey;
+  var options = {
+    url: url, // from built url above
+    qs: query,
+    method: '{{ m.httpMethod }}',
+    json: body || true // only for POST PUT PATCH requests. Body is JSON.
+  };
+  transporter.request(options, callback);
 }{%- if not loop.last %},
 {% endif %}

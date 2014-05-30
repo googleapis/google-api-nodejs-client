@@ -6,9 +6,9 @@ swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/../templates')});
 
 function buildurl(input) {
   return input
-    .replace(/{/g, '\" + query.')
-    .replace(new RegExp('}\"$', 'g'), '')
-    .replace(new RegExp('}', 'g'), ' + \"');
+    .replace(/{/g, '\' + query.')
+    .replace(new RegExp('}\'$', 'g'), '')
+    .replace(new RegExp('}', 'g'), ' + \'');
 }
 
 /**
