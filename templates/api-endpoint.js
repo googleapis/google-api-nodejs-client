@@ -9,6 +9,27 @@
  */
 
 function {{ Name }}() {
+
+  var self = this;
+
+  this.auth = function(authObject) {
+
+    if (!authObject || typeof authObject !== 'object') {
+      return self;
+    }
+    else {
+      {% set newObj = "new" + Name -%}
+      var {{ newObj }} = new {{ Name }}();
+      if (authObject.authClient) {
+          {{ newObj }}.authClient = authObject.authClient;
+      }
+      if (authObject.apiKey) {
+          {{ newObj }}.apiKey = authObject.apiKey;
+      }
+      return Object.freeze({{ newObj }});
+    }
+  };
+
 {% for rname, r in resources %}
   this.{{ rname }} = {
     {% include "./resource-partial.js" with r %}

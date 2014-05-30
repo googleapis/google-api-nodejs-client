@@ -10,7 +10,8 @@ files.forEach(function(filename) {
     Object.defineProperty(to_export, filename, {
       get: function() {
         return function(version) {
-          var Endpoint = require('./' + filename + '/' + path.basename(version));
+          var Endpoint = require('./' + filename + '/' +
+            path.basename(version));
           return Object.freeze(new Endpoint()); // create a new one and freeze
         };
       },

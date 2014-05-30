@@ -3,6 +3,22 @@ var transporter = new DefaultTransporter();
 var ejs = require('ejs');
 var swig = require('swig');
 swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/../templates')});
+
+function buildurl(input) {
+  return input
+    .replace(/{/g, '\" + query.')
+    .replace(new RegExp('}\"$', 'g'), '')
+    .replace(new RegExp('}', 'g'), ' + \"');
+}
+
+/**
+ * Disable auto-escaping its output
+ * @type {Boolean}
+ */
+buildurl.safe = true;
+
+swig.setFilter('buildurl', buildurl);
+
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 var path = require('path');
