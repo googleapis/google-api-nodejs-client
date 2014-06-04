@@ -3,9 +3,9 @@ var transporter = new DefaultTransporter();
 var ejs = require('ejs');
 var swig = require('swig');
 swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/../templates')});
-
+var BASE_URL = 'https://www.googleapis.com';
 function buildurl(input) {
-  return input
+  return ('\'' + BASE_URL + input + '\'')
     .replace(/{/g, '\' + query.')
     .replace(new RegExp('}\'$', 'g'), '')
     .replace(new RegExp('}', 'g'), ' + \'');
