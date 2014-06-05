@@ -42,37 +42,34 @@ function Urlshortener() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/urlshortener/v1/url';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -84,37 +81,34 @@ function Urlshortener() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/urlshortener/v1/url';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -128,37 +122,34 @@ function Urlshortener() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/urlshortener/v1/url/history';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };

@@ -43,37 +43,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/about';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -90,37 +87,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/apps/' + query.appId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -135,37 +129,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/apps';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -182,37 +173,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/changes/' + query.changeId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -229,37 +217,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/changes';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -276,37 +261,34 @@ function Drive() {
     watch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/changes/watch';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -322,37 +304,34 @@ function Drive() {
     stop: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/channels/stop';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -370,37 +349,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children/' + query.childId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -414,37 +390,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children/' + query.childId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -457,37 +430,34 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -503,37 +473,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -551,37 +518,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -596,37 +560,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -639,37 +600,34 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -686,37 +644,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -730,37 +685,34 @@ function Drive() {
     patch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
-      var method = 'PATCH';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PATCH',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -774,37 +726,34 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -828,37 +777,34 @@ function Drive() {
     copy: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/copy';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -871,37 +817,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -913,37 +856,34 @@ function Drive() {
     emptyTrash: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/trash';
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -958,37 +898,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1008,37 +945,43 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/upload/drive/v2/files';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
 
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
+      query.uploadType = 'multipart';
+      var multipart = [{
+        'Content-Type': 'application/json',
+        body: JSON.stringify(media.metadata || {})
+      }, {
+        'Content-Type': media.mimeType || 'application/octet-stream',
+        body: media.data || ''
+      }];
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        multipart: multipart,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1054,37 +997,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1109,37 +1049,34 @@ function Drive() {
     patch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId;
-      var method = 'PATCH';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PATCH',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1152,37 +1089,34 @@ function Drive() {
     touch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/touch';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1195,37 +1129,34 @@ function Drive() {
     trash: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/trash';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1238,37 +1169,34 @@ function Drive() {
     untrash: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/untrash';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1293,37 +1221,43 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/upload/drive/v2/files/' + query.fileId;
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
 
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
+      query.uploadType = 'multipart';
+      var multipart = [{
+        'Content-Type': 'application/json',
+        body: JSON.stringify(media.metadata || {})
+      }, {
+        'Content-Type': media.mimeType || 'application/octet-stream',
+        body: media.data || ''
+      }];
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        multipart: multipart,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1338,37 +1272,34 @@ function Drive() {
     watch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/watch';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -1386,37 +1317,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents/' + query.parentId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1430,37 +1358,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents/' + query.parentId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1473,37 +1398,34 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1516,37 +1438,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -1564,37 +1483,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1608,37 +1524,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1651,37 +1564,34 @@ function Drive() {
     getIdForEmail: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/permissionIds/' + query.email;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1696,37 +1606,34 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1739,37 +1646,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1784,37 +1688,34 @@ function Drive() {
     patch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
-      var method = 'PATCH';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PATCH',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1829,37 +1730,34 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -1878,37 +1776,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1923,37 +1818,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -1966,37 +1858,34 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2009,37 +1898,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2054,37 +1940,34 @@ function Drive() {
     patch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
-      var method = 'PATCH';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PATCH',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2099,37 +1982,34 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -2147,37 +2027,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/realtime';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2191,37 +2068,43 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/upload/drive/v2/files/' + query.fileId + '/realtime';
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
 
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
+      query.uploadType = 'multipart';
+      var multipart = [{
+        'Content-Type': 'application/json',
+        body: JSON.stringify(media.metadata || {})
+      }, {
+        'Content-Type': media.mimeType || 'application/octet-stream',
+        body: media.data || ''
+      }];
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        multipart: multipart,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -2240,37 +2123,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2286,37 +2166,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2330,37 +2207,34 @@ function Drive() {
     insert: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies';
-      var method = 'POST';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'POST',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2377,37 +2251,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2422,37 +2293,34 @@ function Drive() {
     patch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
-      var method = 'PATCH';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PATCH',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2467,37 +2335,34 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
@@ -2515,37 +2380,34 @@ function Drive() {
     delete: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
-      var method = 'DELETE';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'DELETE',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2559,37 +2421,34 @@ function Drive() {
     get: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2602,37 +2461,34 @@ function Drive() {
     list: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions';
-      var method = 'GET';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'GET',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2646,37 +2502,34 @@ function Drive() {
     patch: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
-      var method = 'PATCH';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PATCH',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     },
 
     /**
@@ -2690,37 +2543,34 @@ function Drive() {
     update: function(params, callback) {
       params = params || {};
       var query = params.query || {};
-      var body = params.body || {};
+      var body = params.body || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
-      var method = 'PUT';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
        * Request object or equivalent when we decide on a good implementation.
+       * And when it all works as expected and iron out the bugs.
        */
 
-      if (self.apiKey) query.key = self.apiKey; // set key as query param if present
-      if (self.authClient && self.authClient.credentials) {
-        headers['Authorization'] = 'Bearer ' + self.authClient.credentials.access_token;
+      if (self.apiKey) {
+        query.key = self.apiKey; // set key as query param if present
       }
-
-      if (params.media) query.uploadType = 'media';
-
-      /**
-       * TODO: Implement media upload stuff here...
-       */
 
       var options = {
         url: url, // from built url above
         qs: query,
-        method: method,
-        headers: headers,
-        json: body || true // only for POST PUT PATCH requests. Body is JSON.
+        method: 'PUT',
+        json: body,
+        headers: headers
       };
 
-      return transporter.request(options, callback); // returns the request obj too
+      if (self.authClient && self.authClient.credentials) {
+        self.authClient.request(options, callback);
+      } else {
+        return transporter.request(options, callback); // returns the request obj too
+      }
     }
 
   };
