@@ -47,7 +47,19 @@ var BEAUTIFY_OPTIONS = {
   'wrap_line_length': 0
 };
 
-
+fs.readFile(API_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
+  transporter.request({
+    uri: DISCOVERY_URL,
+    headers: {
+      'X-User-Ip': '0.0.0.0'
+    }
+  }, function(err, resp) {
+    var apis = resp.items;
+    for (var i in apis) {
+      generateAPITemplate(template, apis[i].discoveryRestUrl);
+    }
+  });
+});
 
 fs.readFile(API_INDEX_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
   var filename = './apis/index.js';
@@ -63,36 +75,6 @@ fs.readFile(API_INDEX_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
 });
 
 function generateAPITemplate(template, api_discovery_url) {
-
-}
-
-function Generator() {
-
-}
-
-Generator.prototype.generateAll = function() {
-  fs.readFile(API_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
-    transporter.request({
-      uri: DISCOVERY_URL,
-      headers: {
-        'X-User-Ip': '0.0.0.0'
-      }
-    }, function(err, resp) {
-      var apis = resp.items;
-      for (var i in apis) {
-        generateAPITemplate(template, apis[i].discoveryRestUrl);
-      }
-    });
-  });
-};
-
-/**
- * Generate an API endpoint from a template and discovery
- * @param  {String} template          Template file contents
- * @param  {[type]} api_discovery_url [description]
- * @return {[type]}                   [description]
- */
-Generator.prototype.generate = function(template, api_discovery_url) {
   transporter.request({
     uri: api_discovery_url
   }, function(err, resp) {
@@ -109,8 +91,4 @@ Generator.prototype.generate = function(template, api_discovery_url) {
       });
     });
   });
-};
-
-Generator.prototype.
-
-
+}
