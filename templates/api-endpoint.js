@@ -1,6 +1,7 @@
 var DefaultTransporter = require('../../lib/transporters.js');
 var transporter = new DefaultTransporter();
 {% set Name = name|capitalize -%}
+
 /**
  * {{ title }}
  *
