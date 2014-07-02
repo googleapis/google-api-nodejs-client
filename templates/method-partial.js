@@ -6,13 +6,13 @@
  * {{ m.description }}
  *
  {% for pname, p in m.parameters -%}
- * @param {{ lb }}{{ p.type }}{{ rb }} query.{{ pname }} {{ p.description }}
+ * @param {{ lb }}{{ p.type }}{{ rb }} params.{{ pname }} {{ p.description }}
  {% endfor -%}
+ * @param {Object} params.resource Body of request
  */
 {{ mname }}: function(params, callback) {
   params = params || {};
-  var query = params.query || {};
-  var body = params.body || true;
+  var resource = params.resource || true;
   var media = params.media || {}; // XXX TODO: Implement media uploads
   var headers = params.headers || {}; // custom headers if we need
   var url = {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }};
@@ -44,7 +44,7 @@
     {%- if m.supportsMediaUpload -%}
     multipart: multipart,
     {%- else -%}
-    json: body,
+    json: resource,
     {%- endif -%}
     headers: headers
   };

@@ -1,9 +1,11 @@
 var DefaultTransporter = require('../lib/transporters');
 var transporter = new DefaultTransporter();
-var ejs = require('ejs');
 var swig = require('swig');
+
 swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/../templates')});
+
 var BASE_URL = 'https://www.googleapis.com';
+
 function buildurl(input) {
   return ('\'' + BASE_URL + input + '\'')
     .replace(/{/g, '\' + query.')
@@ -28,6 +30,7 @@ var DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
 var DISCOVERY_TYPE = 'rest';
 var API_TEMPLATE = './templates/api-endpoint.js';
 var API_INDEX_TEMPLATE = './templates/api-index.js';
+var API_INDEX = './apis/index.js';
 
 var BEAUTIFY_OPTIONS = {
   'indent_size': 2,
@@ -47,36 +50,21 @@ var BEAUTIFY_OPTIONS = {
   'wrap_line_length': 0
 };
 
-fs.readFile(API_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
+function Generator() {
+
+}
+
+/**
+ * Generate API file given template and discovery URL
+ * @param  {String} template          file name of template file
+ * @param  {String} api_discovery_url URL of discovery doc for API
+ */
+Generator.prototype.generateAPI = function(template, api_discovery_url) {
   transporter.request({
-    uri: DISCOVERY_URL,
+    uri: api_discovery_url,
     headers: {
       'X-User-Ip': '0.0.0.0'
     }
-  }, function(err, resp) {
-    var apis = resp.items;
-    for (var i in apis) {
-      generateAPITemplate(template, apis[i].discoveryRestUrl);
-    }
-  });
-});
-
-fs.readFile(API_INDEX_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
-  var filename = './apis/index.js';
-  mkdirp(path.dirname(filename), function(err) {
-    if (err) throw err;
-    var contents = beautify(swig.render(template, { locals: {} }),
-      BEAUTIFY_OPTIONS);
-    fs.writeFile(filename, contents, function(err) {
-      if (err) throw err;
-      console.log('Wrote ' + filename);
-    });
-  });
-});
-
-function generateAPITemplate(template, api_discovery_url) {
-  transporter.request({
-    uri: api_discovery_url
   }, function(err, resp) {
     var contents = beautify(swig.render(template, { locals: resp }),
       BEAUTIFY_OPTIONS);
@@ -91,4 +79,32 @@ function generateAPITemplate(template, api_discovery_url) {
       });
     });
   });
-}
+};
+
+/**
+ * Generate index file
+ */
+Generator.prototype.generateIndex = function() {
+  /**
+   * Copy index template to apis
+   */
+  fs.createReadStream(API_INDEX_TEMPLATE).pipe(fs.createWriteStream(API_INDEX));
+};
+
+var gen = new Generator();
+
+fs.readFile(API_TEMPLATE, { encoding: 'utf8' }, function(err, template) {
+  transporter.request({
+    uri: DISCOVERY_URL,
+    headers: {
+      'X-User-Ip': '0.0.0.0'
+    }
+  }, function(err, resp) {
+    var apis = resp.items;
+    for (var i in apis) {
+      gen.generateAPI(template, apis[i].discoveryRestUrl);
+    }
+  });
+});
+
+gen.generateIndex();

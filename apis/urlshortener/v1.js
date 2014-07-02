@@ -36,13 +36,13 @@ function Urlshortener() {
      *
      * Expands a short URL or gets creation time and analytics.
      *
-     * @param {string} query.projection Additional information to return.
-     * @param {string} query.shortUrl The short URL, including the protocol.
+     * @param {string} params.projection Additional information to return.
+     * @param {string} params.shortUrl The short URL, including the protocol.
+     * @param {Object} params.resource Body of request
      */
     get: function(params, callback) {
       params = params || {};
-      var query = params.query || {};
-      var body = params.body || true;
+      var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/urlshortener/v1/url';
@@ -61,7 +61,7 @@ function Urlshortener() {
         url: url, // from built url above
         qs: query,
         method: 'GET',
-        json: body,
+        json: resource,
         headers: headers
       };
 
@@ -77,11 +77,11 @@ function Urlshortener() {
      *
      * Creates a new short URL.
      *
+     * @param {Object} params.resource Body of request
      */
     insert: function(params, callback) {
       params = params || {};
-      var query = params.query || {};
-      var body = params.body || true;
+      var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/urlshortener/v1/url';
@@ -100,7 +100,7 @@ function Urlshortener() {
         url: url, // from built url above
         qs: query,
         method: 'POST',
-        json: body,
+        json: resource,
         headers: headers
       };
 
@@ -116,13 +116,13 @@ function Urlshortener() {
      *
      * Retrieves a list of URLs shortened by a user.
      *
-     * @param {string} query.projection Additional information to return.
-     * @param {string} query.start-token Token for requesting successive pages of results.
+     * @param {string} params.projection Additional information to return.
+     * @param {string} params.start-token Token for requesting successive pages of results.
+     * @param {Object} params.resource Body of request
      */
     list: function(params, callback) {
       params = params || {};
-      var query = params.query || {};
-      var body = params.body || true;
+      var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
       var url = 'https://www.googleapis.com/urlshortener/v1/url/history';
@@ -141,7 +141,7 @@ function Urlshortener() {
         url: url, // from built url above
         qs: query,
         method: 'GET',
-        json: body,
+        json: resource,
         headers: headers
       };
 
