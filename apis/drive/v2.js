@@ -36,34 +36,34 @@ function Drive() {
      *
      * Gets the information about the current user along with Drive API settings
      *
-     * @param {boolean} params.includeSubscribed When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
-     * @param {string} params.maxChangeIdCount Maximum number of remaining change IDs to count
-     * @param {string} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.includeSubscribed When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
+     * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
+     * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/about';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -83,31 +83,31 @@ function Drive() {
      * Gets a specific app.
      *
      * @param {string} params.appId The ID of the app.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/apps/' + params.appId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -122,34 +122,34 @@ function Drive() {
      *
      * Lists a user&#39;s installed apps.
      *
-     * @param {string} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
-     * @param {string} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
-     * @param {string} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode&#39;s LDML format (http://www.unicode.org/reports/tr35/).
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
+     * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
+     * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode&#39;s LDML format (http://www.unicode.org/reports/tr35/).
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/apps';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -169,31 +169,31 @@ function Drive() {
      * Gets a specific change.
      *
      * @param {string} params.changeId The ID of the change.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/changes/' + params.changeId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -208,36 +208,36 @@ function Drive() {
      *
      * Lists the changes for a user.
      *
-     * @param {boolean} params.includeDeleted Whether to include deleted items.
-     * @param {boolean} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
-     * @param {integer} params.maxResults Maximum number of changes to return.
-     * @param {string} params.pageToken Page token for changes.
-     * @param {string} params.startChangeId Change ID to start listing changes from.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.includeDeleted Whether to include deleted items.
+     * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
+     * @param {integer=} params.maxResults Maximum number of changes to return.
+     * @param {string=} params.pageToken Page token for changes.
+     * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/changes';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -252,36 +252,36 @@ function Drive() {
      *
      * Subscribe to changes for a user.
      *
-     * @param {boolean} params.includeDeleted Whether to include deleted items.
-     * @param {boolean} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
-     * @param {integer} params.maxResults Maximum number of changes to return.
-     * @param {string} params.pageToken Page token for changes.
-     * @param {string} params.startChangeId Change ID to start listing changes from.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.includeDeleted Whether to include deleted items.
+     * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
+     * @param {integer=} params.maxResults Maximum number of changes to return.
+     * @param {string=} params.pageToken Page token for changes.
+     * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {object} params.resource Body of request
      */
     watch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/changes/watch';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -300,31 +300,31 @@ function Drive() {
      *
      * Stop watching resources through this channel
      *
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     stop: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/channels/stop';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -345,31 +345,31 @@ function Drive() {
      *
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -386,31 +386,31 @@ function Drive() {
      *
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -426,31 +426,31 @@ function Drive() {
      * Inserts a file into a folder.
      *
      * @param {string} params.folderId The ID of the folder.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -466,34 +466,34 @@ function Drive() {
      * Lists a folder&#39;s children.
      *
      * @param {string} params.folderId The ID of the folder.
-     * @param {integer} params.maxResults Maximum number of children to return.
-     * @param {string} params.pageToken Page token for children.
-     * @param {string} params.q Query string for searching children.
-     * @param {Object} params.resource Body of request
+     * @param {integer=} params.maxResults Maximum number of children to return.
+     * @param {string=} params.pageToken Page token for children.
+     * @param {string=} params.q Query string for searching children.
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -514,31 +514,31 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -555,32 +555,32 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -596,31 +596,31 @@ function Drive() {
      * Creates a new comment on the given file.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -636,35 +636,35 @@ function Drive() {
      * Lists a file&#39;s comments.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
-     * @param {integer} params.maxResults The maximum number of discussions to include in the response, used for paging.
-     * @param {string} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of &quot;nextPageToken&quot; from the previous response.
-     * @param {string} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
+     * @param {integer=} params.maxResults The maximum number of discussions to include in the response, used for paging.
+     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of &quot;nextPageToken&quot; from the previous response.
+     * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -681,31 +681,31 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PATCH',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -722,31 +722,31 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -765,39 +765,39 @@ function Drive() {
      *
      * Creates a copy of the specified file.
      *
-     * @param {boolean} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {string} params.fileId The ID of the file to copy.
-     * @param {boolean} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param {boolean} params.pinned Whether to pin the head revision of the new copy.
-     * @param {string} params.timedTextLanguage The language of the timed text.
-     * @param {string} params.timedTextTrackName The timed text track name.
-     * @param {string} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param {boolean=} params.pinned Whether to pin the head revision of the new copy.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+     * @param {object} params.resource Body of request
      */
     copy: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/copy';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -813,31 +813,31 @@ function Drive() {
      * Permanently deletes a file by ID. Skips the trash.
      *
      * @param {string} params.fileId The ID of the file to delete.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -852,31 +852,31 @@ function Drive() {
      *
      * Permanently deletes all of the user&#39;s trashed files.
      *
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     emptyTrash: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/trash';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -892,33 +892,33 @@ function Drive() {
      * Gets a file&#39;s metadata by ID.
      *
      * @param {string} params.fileId The ID for the file in question.
-     * @param {string} params.projection This parameter is deprecated and has no function.
-     * @param {boolean} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -933,34 +933,33 @@ function Drive() {
      *
      * Insert a new file.
      *
-     * @param {boolean} params.convert Whether to convert this file to the corresponding Google Docs format.
-     * @param {boolean} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param {boolean} params.pinned Whether to pin the head revision of the uploaded file.
-     * @param {string} params.timedTextLanguage The language of the timed text.
-     * @param {string} params.timedTextTrackName The timed text track name.
-     * @param {boolean} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {string} params.visibility The visibility of the new file. This parameter is only relevant when convert=false.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when convert=false.
+     * @param {object} params.resource Body of request
+     * @param {object} params.media Media object
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/upload/drive/v2/files';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
 
-      query.uploadType = 'multipart';
+      params.uploadType = 'multipart';
       var multipart = [{
         'Content-Type': 'application/json',
         body: JSON.stringify(media.metadata || {})
@@ -969,12 +968,14 @@ function Drive() {
         body: media.data || ''
       }];
 
+      delete params.resource;
+      delete params.media;
+
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        multipart: multipart,
-        headers: headers
+        multipart: multipart
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -989,35 +990,35 @@ function Drive() {
      *
      * Lists the user&#39;s files.
      *
-     * @param {integer} params.maxResults Maximum number of files to return.
-     * @param {string} params.pageToken Page token for files.
-     * @param {string} params.projection This parameter is deprecated and has no function.
-     * @param {string} params.q Query string for searching files.
-     * @param {Object} params.resource Body of request
+     * @param {integer=} params.maxResults Maximum number of files to return.
+     * @param {string=} params.pageToken Page token for files.
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {string=} params.q Query string for searching files.
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1032,44 +1033,44 @@ function Drive() {
      *
      * Updates file metadata and/or content. This method supports patch semantics.
      *
-     * @param {string} params.addParents Comma-separated list of parent IDs to add.
-     * @param {boolean} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
+     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user&#39;s data storage quota).
-     * @param {boolean} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param {boolean} params.pinned Whether to pin the new revision.
-     * @param {string} params.removeParents Comma-separated list of parent IDs to remove.
-     * @param {boolean} params.setModifiedDate Whether to set the modified date with the supplied modified date.
-     * @param {string} params.timedTextLanguage The language of the timed text.
-     * @param {string} params.timedTextTrackName The timed text track name.
-     * @param {boolean} params.updateViewedDate Whether to update the view date after successfully updating the file.
-     * @param {boolean} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user&#39;s data storage quota).
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param {boolean=} params.pinned Whether to pin the new revision.
+     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
+     * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PATCH',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1085,31 +1086,31 @@ function Drive() {
      * Set the file&#39;s updated time to the current server time.
      *
      * @param {string} params.fileId The ID of the file to update.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     touch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/touch';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1125,31 +1126,31 @@ function Drive() {
      * Moves a file to the trash.
      *
      * @param {string} params.fileId The ID of the file to trash.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     trash: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/trash';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1165,31 +1166,31 @@ function Drive() {
      * Restores a file from the trash.
      *
      * @param {string} params.fileId The ID of the file to untrash.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     untrash: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/untrash';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1204,39 +1205,38 @@ function Drive() {
      *
      * Updates file metadata and/or content.
      *
-     * @param {string} params.addParents Comma-separated list of parent IDs to add.
-     * @param {boolean} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
+     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user&#39;s data storage quota).
-     * @param {boolean} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param {boolean} params.pinned Whether to pin the new revision.
-     * @param {string} params.removeParents Comma-separated list of parent IDs to remove.
-     * @param {boolean} params.setModifiedDate Whether to set the modified date with the supplied modified date.
-     * @param {string} params.timedTextLanguage The language of the timed text.
-     * @param {string} params.timedTextTrackName The timed text track name.
-     * @param {boolean} params.updateViewedDate Whether to update the view date after successfully updating the file.
-     * @param {boolean} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user&#39;s data storage quota).
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param {boolean=} params.pinned Whether to pin the new revision.
+     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
+     * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {object} params.resource Body of request
+     * @param {object} params.media Media object
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
 
-      query.uploadType = 'multipart';
+      params.uploadType = 'multipart';
       var multipart = [{
         'Content-Type': 'application/json',
         body: JSON.stringify(media.metadata || {})
@@ -1245,12 +1245,14 @@ function Drive() {
         body: media.data || ''
       }];
 
+      delete params.resource;
+      delete params.media;
+
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        multipart: multipart,
-        headers: headers
+        multipart: multipart
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1266,33 +1268,33 @@ function Drive() {
      * Subscribe to changes on a file
      *
      * @param {string} params.fileId The ID for the file in question.
-     * @param {string} params.projection This parameter is deprecated and has no function.
-     * @param {boolean} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
+     * @param {object} params.resource Body of request
      */
     watch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/watch';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1313,31 +1315,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1354,31 +1356,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1394,31 +1396,31 @@ function Drive() {
      * Adds a parent folder for a file.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1434,31 +1436,31 @@ function Drive() {
      * Lists a file&#39;s parents.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1479,31 +1481,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1520,31 +1522,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1560,31 +1562,31 @@ function Drive() {
      * Returns the permission ID for an email address.
      *
      * @param {string} params.email The email address for which to return a permission ID
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     getIdForEmail: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/permissionIds/' + params.email;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1599,34 +1601,34 @@ function Drive() {
      *
      * Inserts a permission for a file.
      *
-     * @param {string} params.emailMessage A custom message to include in notification emails.
+     * @param {string=} params.emailMessage A custom message to include in notification emails.
      * @param {string} params.fileId The ID for the file.
-     * @param {boolean} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1642,31 +1644,31 @@ function Drive() {
      * Lists a file&#39;s permissions.
      *
      * @param {string} params.fileId The ID for the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1683,32 +1685,32 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean} params.transferOwnership Whether changing a role to &#39;owner&#39; should also downgrade the current owners to writers.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.transferOwnership Whether changing a role to &#39;owner&#39; should also downgrade the current owners to writers.
+     * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PATCH',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1725,32 +1727,32 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean} params.transferOwnership Whether changing a role to &#39;owner&#39; should also downgrade the current owners to writers.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.transferOwnership Whether changing a role to &#39;owner&#39; should also downgrade the current owners to writers.
+     * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1771,32 +1773,32 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
-     * @param {string} params.visibility The visibility of the property.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1813,32 +1815,32 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
-     * @param {string} params.visibility The visibility of the property.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1854,31 +1856,31 @@ function Drive() {
      * Adds a property to a file.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1894,31 +1896,31 @@ function Drive() {
      * Lists a file&#39;s properties.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1935,32 +1937,32 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
-     * @param {string} params.visibility The visibility of the property.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PATCH',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -1977,32 +1979,32 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
-     * @param {string} params.visibility The visibility of the property.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2022,32 +2024,32 @@ function Drive() {
      * Exports the contents of the Realtime API data model associated with this file as JSON.
      *
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
-     * @param {integer} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
-     * @param {Object} params.resource Body of request
+     * @param {integer=} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2062,28 +2064,27 @@ function Drive() {
      *
      * Overwrites the Realtime API data model associated with this file with the provided JSON data model.
      *
-     * @param {string} params.baseRevision The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
+     * @param {string=} params.baseRevision The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
+     * @param {object} params.media Media object
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
 
-      query.uploadType = 'multipart';
+      params.uploadType = 'multipart';
       var multipart = [{
         'Content-Type': 'application/json',
         body: JSON.stringify(media.metadata || {})
@@ -2092,12 +2093,14 @@ function Drive() {
         body: media.data || ''
       }];
 
+      delete params.resource;
+      delete params.media;
+
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        multipart: multipart,
-        headers: headers
+        multipart: multipart
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2119,31 +2122,31 @@ function Drive() {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2160,33 +2163,33 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
+     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
      * @param {string} params.replyId The ID of the reply.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2203,31 +2206,31 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2244,34 +2247,34 @@ function Drive() {
      *
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
-     * @param {integer} params.maxResults The maximum number of replies to include in the response, used for paging.
-     * @param {string} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of &quot;nextPageToken&quot; from the previous response.
-     * @param {Object} params.resource Body of request
+     * @param {boolean=} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
+     * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
+     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of &quot;nextPageToken&quot; from the previous response.
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2289,31 +2292,31 @@ function Drive() {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PATCH',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2331,31 +2334,31 @@ function Drive() {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2376,31 +2379,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'DELETE',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2417,31 +2420,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2457,31 +2460,31 @@ function Drive() {
      * Lists a file&#39;s revisions.
      *
      * @param {string} params.fileId The ID of the file.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2498,31 +2501,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PATCH',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -2539,31 +2542,31 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'PUT',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {

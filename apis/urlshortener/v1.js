@@ -36,33 +36,33 @@ function Urlshortener() {
      *
      * Expands a short URL or gets creation time and analytics.
      *
-     * @param {string} params.projection Additional information to return.
+     * @param {string=} params.projection Additional information to return.
      * @param {string} params.shortUrl The short URL, including the protocol.
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/urlshortener/v1/url';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -77,31 +77,31 @@ function Urlshortener() {
      *
      * Creates a new short URL.
      *
-     * @param {Object} params.resource Body of request
+     * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/urlshortener/v1/url';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'POST',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {
@@ -116,33 +116,33 @@ function Urlshortener() {
      *
      * Retrieves a list of URLs shortened by a user.
      *
-     * @param {string} params.projection Additional information to return.
-     * @param {string} params.start-token Token for requesting successive pages of results.
-     * @param {Object} params.resource Body of request
+     * @param {string=} params.projection Additional information to return.
+     * @param {string=} params.start-token Token for requesting successive pages of results.
+     * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      params = params || {};
+      if (typeof(params) === 'function') {
+        callback = params;
+        params = {};
+      } else {
+        params = params || {};
+      }
       var resource = params.resource || true;
-      var media = params.media || {}; // XXX TODO: Implement media uploads
-      var headers = params.headers || {}; // custom headers if we need
+      var media = params.media || {};
       var url = 'https://www.googleapis.com/urlshortener/v1/url/history';
 
-      /**
-       * Very unmodular code ahead! We can separate a lot of this into the
-       * Request object or equivalent when we decide on a good implementation.
-       * And when it all works as expected and iron out the bugs.
-       */
-
       if (self.apiKey) {
-        query.key = self.apiKey; // set key as query param if present
+        params.key = self.apiKey; // set key as param if present
       }
+
+      delete params.resource;
+      delete params.media;
 
       var options = {
         url: url, // from built url above
-        qs: query,
+        qs: params,
         method: 'GET',
-        json: resource,
-        headers: headers
+        json: resource
       };
 
       if (self.authClient && self.authClient.credentials) {

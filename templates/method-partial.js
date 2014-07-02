@@ -6,29 +6,31 @@
  * {{ m.description }}
  *
  {% for pname, p in m.parameters -%}
- * @param {{ lb }}{{ p.type }}{{ rb }} params.{{ pname }} {{ p.description }}
+ * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description }}
  {% endfor -%}
- * @param {Object} params.resource Body of request
+ * @param {object} params.resource Body of request
+{% if m.supportsMediaUpload -%}
+ * @param {object} params.media Media object
+{% endif -%}
  */
 {{ mname }}: function(params, callback) {
-  params = params || {};
+  if(typeof(params) === 'function') {
+    callback = params;
+    params = {};
+  }
+  else {
+    params = params || {};
+  }
   var resource = params.resource || true;
-  var media = params.media || {}; // XXX TODO: Implement media uploads
-  var headers = params.headers || {}; // custom headers if we need
+  var media = params.media || {};
   var url = {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }};
 
-  /**
-   * Very unmodular code ahead! We can separate a lot of this into the
-   * Request object or equivalent when we decide on a good implementation.
-   * And when it all works as expected and iron out the bugs.
-   */
-
   if(self.apiKey) {
-    query.key = self.apiKey; // set key as query param if present
+    params.key = self.apiKey; // set key as param if present
   }
 
   {% if m.supportsMediaUpload %}
-  query.uploadType = 'multipart';
+  params.uploadType = 'multipart';
   var multipart = [{
     'Content-Type': 'application/json',
     body: JSON.stringify(media.metadata || {})
@@ -37,16 +39,18 @@
     body: media.data || ''
   }];{% endif %}
 
+  delete params.resource;
+  delete params.media;
+
   var options = {
     url: url, // from built url above
-    qs: query,
+    qs: params,
     method: '{{ m.httpMethod }}',
     {%- if m.supportsMediaUpload -%}
-    multipart: multipart,
+    multipart: multipart
     {%- else -%}
-    json: resource,
+    json: resource
     {%- endif -%}
-    headers: headers
   };
 
   if(self.authClient && self.authClient.credentials) {
