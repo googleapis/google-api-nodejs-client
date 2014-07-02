@@ -2,24 +2,9 @@ var DefaultTransporter = require('../lib/transporters');
 var transporter = new DefaultTransporter();
 var swig = require('swig');
 
-swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/../templates')});
-
 var BASE_URL = 'https://www.googleapis.com';
 
-function buildurl(input) {
-  return ('\'' + BASE_URL + input + '\'')
-    .replace(/{/g, '\' + query.')
-    .replace(new RegExp('}\'$', 'g'), '')
-    .replace(new RegExp('}', 'g'), ' + \'');
-}
 
-/**
- * Disable auto-escaping its output
- * @type {Boolean}
- */
-buildurl.safe = true;
-
-swig.setFilter('buildurl', buildurl);
 
 var fs = require('fs');
 var mkdirp = require('mkdirp');
@@ -50,9 +35,29 @@ var BEAUTIFY_OPTIONS = {
   'wrap_line_length': 0
 };
 
-function Generator() {
-
+/**
+ * Build a string used to create a URL from the discovery doc provided URL.
+ * @param  {String} input URL to build from
+ * @return {String}       Resulting built URL
+ */
+function buildurl(input) {
+  return ('\'' + BASE_URL + input + '\'')
+    .replace(/{/g, '\' + params.')
+    .replace(new RegExp('}\'$', 'g'), '')
+    .replace(new RegExp('}', 'g'), ' + \'');
 }
+
+swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/../templates')});
+
+/**
+ * Disable auto-escaping its output
+ * @type {Boolean}
+ */
+buildurl.safe = true;
+
+swig.setFilter('buildurl', buildurl);
+
+function Generator() {}
 
 /**
  * Generate API file given template and discovery URL

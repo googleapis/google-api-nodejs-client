@@ -90,7 +90,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/apps/' + query.appId;
+      var url = 'https://www.googleapis.com/drive/v2/apps/' + params.appId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -176,7 +176,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/changes/' + query.changeId;
+      var url = 'https://www.googleapis.com/drive/v2/changes/' + params.changeId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -352,7 +352,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children/' + query.childId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -393,7 +393,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children/' + query.childId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -433,7 +433,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -476,7 +476,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.folderId + '/children';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -521,7 +521,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -563,7 +563,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -603,7 +603,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -647,7 +647,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -688,7 +688,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -729,7 +729,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -780,7 +780,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/copy';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/copy';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -820,7 +820,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -901,7 +901,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1052,7 +1052,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1092,7 +1092,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/touch';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/touch';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1132,7 +1132,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/trash';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/trash';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1172,7 +1172,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/untrash';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/untrash';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1224,7 +1224,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/upload/drive/v2/files/' + query.fileId;
+      var url = 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1275,7 +1275,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/watch';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/watch';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1320,7 +1320,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents/' + query.parentId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1361,7 +1361,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents/' + query.parentId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1401,7 +1401,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1441,7 +1441,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/parents';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1486,7 +1486,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1527,7 +1527,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1567,7 +1567,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/permissionIds/' + query.email;
+      var url = 'https://www.googleapis.com/drive/v2/permissionIds/' + params.email;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1609,7 +1609,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1649,7 +1649,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1691,7 +1691,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1733,7 +1733,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/permissions/' + query.permissionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1779,7 +1779,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1821,7 +1821,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1861,7 +1861,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1901,7 +1901,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1943,7 +1943,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -1985,7 +1985,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/properties/' + query.propertyKey;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2030,7 +2030,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/realtime';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2071,7 +2071,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/upload/drive/v2/files/' + query.fileId + '/realtime';
+      var url = 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2126,7 +2126,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2169,7 +2169,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2210,7 +2210,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2254,7 +2254,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2296,7 +2296,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2338,7 +2338,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/comments/' + query.commentId + '/replies/' + query.replyId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2383,7 +2383,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2424,7 +2424,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2464,7 +2464,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions';
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions';
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2505,7 +2505,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
@@ -2546,7 +2546,7 @@ function Drive() {
       var resource = params.resource || true;
       var media = params.media || {}; // XXX TODO: Implement media uploads
       var headers = params.headers || {}; // custom headers if we need
-      var url = 'https://www.googleapis.com/drive/v2/files/' + query.fileId + '/revisions/' + query.revisionId;
+      var url = 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId;
 
       /**
        * Very unmodular code ahead! We can separate a lot of this into the
