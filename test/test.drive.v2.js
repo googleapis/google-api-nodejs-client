@@ -6,15 +6,15 @@ var url = require('url'),
 var google = require('../lib/googleapis.js'),
     modulePath = __dirname + '/..';
 
-describe('drive', function() {
+describe('drive:v2', function() {
 
   it('should exist', function(done) {
-    assert.notEqual(typeof(google.drive), null);
+    assert.notEqual(typeof google.drive, null);
     done();
   });
 
   it('should be a function', function(done) {
-    assert.equal(typeof(google.drive), 'function');
+    assert.equal(typeof google.drive, 'function');
     done();
   });
 
