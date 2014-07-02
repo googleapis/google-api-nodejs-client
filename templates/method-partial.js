@@ -6,7 +6,7 @@
  * {{ m.description }}
  *
  {% for pname, p in m.parameters -%}
- * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description }}
+ * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description|safe }}
  {% endfor -%}
  * @param {object} params.resource Body of request
 {% if m.supportsMediaUpload -%}

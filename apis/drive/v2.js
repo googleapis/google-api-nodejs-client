@@ -124,7 +124,7 @@ function Drive() {
      *
      * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
      * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
-     * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode&#39;s LDML format (http://www.unicode.org/reports/tr35/).
+     * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
@@ -638,7 +638,7 @@ function Drive() {
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
      * @param {integer=} params.maxResults The maximum number of discussions to include in the response, used for paging.
-     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of &quot;nextPageToken&quot; from the previous response.
+     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
      * @param {object} params.resource Body of request
      */
@@ -1036,7 +1036,7 @@ function Drive() {
      * @param {string=} params.addParents Comma-separated list of parent IDs to add.
      * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user&#39;s data storage quota).
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
      * @param {boolean=} params.pinned Whether to pin the new revision.
@@ -1208,7 +1208,7 @@ function Drive() {
      * @param {string=} params.addParents Comma-separated list of parent IDs to add.
      * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user&#39;s data storage quota).
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
      * @param {boolean=} params.pinned Whether to pin the new revision.
@@ -1685,7 +1685,7 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.transferOwnership Whether changing a role to &#39;owner&#39; should also downgrade the current owners to writers.
+     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' should also downgrade the current owners to writers.
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
@@ -1727,7 +1727,7 @@ function Drive() {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.transferOwnership Whether changing a role to &#39;owner&#39; should also downgrade the current owners to writers.
+     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' should also downgrade the current owners to writers.
      * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
@@ -2249,7 +2249,7 @@ function Drive() {
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
      * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
-     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of &quot;nextPageToken&quot; from the previous response.
+     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
