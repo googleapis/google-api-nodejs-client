@@ -215,7 +215,7 @@ For example:
 googleapis.transport.defaults({ proxy: 'https://my.proxy.ext:8080/' });
 
 googleapis.discover( 'plus', 'v1' )
-…
+...
 ~~~~
 
 ### Batch requests (experimental)
