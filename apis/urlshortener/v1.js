@@ -47,28 +47,29 @@ function Urlshortener() {
       } else {
         params = params || {};
       }
+
+      var options = {
+        url: 'https://www.googleapis.com/urlshortener/v1/url',
+        method: 'GET'
+      };
+
       var resource = params.resource || true;
-      var media = params.media || {};
-      var url = 'https://www.googleapis.com/urlshortener/v1/url';
+      delete params.resource;
+      var media = params.media;
+      delete params.media;
 
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      delete params.resource;
-      delete params.media;
+      options.json = resource;
 
-      var options = {
-        url: url, // from built url above
-        qs: params,
-        method: 'GET',
-        json: resource
-      };
+      options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
         self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request obj too
+        return transporter.request(options, callback); // returns the request
       }
     },
 
@@ -86,28 +87,29 @@ function Urlshortener() {
       } else {
         params = params || {};
       }
+
+      var options = {
+        url: 'https://www.googleapis.com/urlshortener/v1/url',
+        method: 'POST'
+      };
+
       var resource = params.resource || true;
-      var media = params.media || {};
-      var url = 'https://www.googleapis.com/urlshortener/v1/url';
+      delete params.resource;
+      var media = params.media;
+      delete params.media;
 
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      delete params.resource;
-      delete params.media;
+      options.json = resource;
 
-      var options = {
-        url: url, // from built url above
-        qs: params,
-        method: 'POST',
-        json: resource
-      };
+      options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
         self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request obj too
+        return transporter.request(options, callback); // returns the request
       }
     },
 
@@ -127,28 +129,29 @@ function Urlshortener() {
       } else {
         params = params || {};
       }
+
+      var options = {
+        url: 'https://www.googleapis.com/urlshortener/v1/url/history',
+        method: 'GET'
+      };
+
       var resource = params.resource || true;
-      var media = params.media || {};
-      var url = 'https://www.googleapis.com/urlshortener/v1/url/history';
+      delete params.resource;
+      var media = params.media;
+      delete params.media;
 
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      delete params.resource;
-      delete params.media;
+      options.json = resource;
 
-      var options = {
-        url: url, // from built url above
-        qs: params,
-        method: 'GET',
-        json: resource
-      };
+      options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
         self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request obj too
+        return transporter.request(options, callback); // returns the request
       }
     }
 

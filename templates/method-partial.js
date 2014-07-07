@@ -8,9 +8,10 @@
  {% for pname, p in m.parameters -%}
  * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description|safe }}
  {% endfor -%}
- * @param {object} params.resource Body of request
 {% if m.supportsMediaUpload -%}
- * @param {object} params.media Media object
+ * @param {object} params.media Media object to upload
+{% else -%}
+ * @param {object} params.resource Body of request
 {% endif -%}
  */
 {{ mname }}: function(params, callback) {
@@ -21,43 +22,47 @@
   else {
     params = params || {};
   }
+
+  var options = {
+    url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
+    method: '{{ m.httpMethod }}'
+  };
+
   var resource = params.resource || true;
-  var media = params.media || {};
-  var url = {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }};
+  delete params.resource;
+  var media = params.media;
+  delete params.media;
 
   if(self.apiKey) {
     params.key = self.apiKey; // set key as param if present
   }
 
   {% if m.supportsMediaUpload %}
+
   params.uploadType = 'multipart';
-  var multipart = [{
-    'Content-Type': 'application/json',
-    body: JSON.stringify(media.metadata || {})
-  }, {
-    'Content-Type': media.mimeType || 'application/octet-stream',
-    body: media.data || ''
-  }];{% endif %}
 
-  delete params.resource;
-  delete params.media;
+  if(media) {
+    var multipart = [{
+      'Content-Type': 'application/json',
+      body: JSON.stringify(media.metadata || {})
+    }, {
+      'Content-Type': media.mimeType || 'application/octet-stream',
+      body: media.data || ''
+    }];
 
-  var options = {
-    url: url, // from built url above
-    qs: params,
-    method: '{{ m.httpMethod }}',
-    {%- if m.supportsMediaUpload -%}
-    multipart: multipart
-    {%- else -%}
-    json: resource
-    {%- endif -%}
-  };
+    options.multipart = multipart;
+  }
+  {% else %}
+  options.json = resource;
+  {% endif %}
+
+  options.qs = params;
 
   if(self.authClient && self.authClient.credentials) {
-    self.authClient.request(options, callback);
+    return self.authClient.request(options, callback);
   }
   else {
-    return transporter.request(options, callback); // returns the request obj too
+    return transporter.request(options, callback); // returns the request
   }
 }{%- if not loop.last %},
 {% endif %}

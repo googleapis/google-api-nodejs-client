@@ -2,10 +2,10 @@ var to_export = {};
 
 var path = require('path');
 var fs = require('fs');
-var files = fs.readdirSync('./apis');
+var files = fs.readdirSync(__dirname);
 
 files.forEach(function(filename) {
-  var stat = fs.statSync('./apis/' + filename);
+  var stat = fs.statSync(path.join(__dirname, filename));
   if (stat.isDirectory()) {
     Object.defineProperty(to_export, filename, {
       get: function() {
