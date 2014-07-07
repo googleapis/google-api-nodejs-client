@@ -69,6 +69,13 @@ describe('drive:v2', function() {
         assert.equal(typeof drive.files.insert, 'function');
         done();
       });
+
+      it('should return a Request object', function(done) {
+        var drive = google.drive('v2');
+        var req = drive.files.insert({});
+        assert.equal(req.constructor.name, 'Request');
+        done();
+      });
     });
 
     describe('.get', function() {
@@ -81,6 +88,13 @@ describe('drive:v2', function() {
       it('should be a function', function(done) {
         var drive = google.drive('v2');
         assert.equal(typeof drive.files.get, 'function');
+        done();
+      });
+
+      it('should return a Request object', function(done) {
+        var drive = google.drive('v2');
+        var req = drive.files.get({});
+        assert.equal(req.constructor.name, 'Request');
         done();
       });
     });
