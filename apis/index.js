@@ -45,7 +45,6 @@ files.forEach(function(filename) {
     Object.defineProperty(to_export, filename, {
       get: function() {
         return function(options) {
-          console.log(this);
           var type = typeof options;
           var version;
           if (type === 'string') {
