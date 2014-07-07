@@ -203,6 +203,21 @@ client
     .execute(callback);
 ~~~~
 
+#### Proxies and Default Settings
+
+Use `googleapis.transport.defaults()` to connect to Google APIs via proxy, or
+to set other
+[default options](https://github.com/mikeal/request/blob/master/README.md#requestdefaultsoptions).
+
+For example: 
+
+~~~~ js
+googleapis.transport.defaults({ proxy: 'https://my.proxy.ext:8080/' });
+
+googleapis.discover( 'plus', 'v1' )
+…
+~~~~
+
 ### Batch requests (experimental)
 
 You can combine multiple requests in a single one by using batch requests.
