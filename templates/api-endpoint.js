@@ -1,5 +1,3 @@
-var DefaultTransporter = require('../../lib/transporters.js');
-var transporter = new DefaultTransporter();
 {% set Name = name|capitalize -%}
 
 /**
@@ -11,27 +9,10 @@ var transporter = new DefaultTransporter();
  * @this {{ Name }}
  */
 
-function {{ Name }}() {
+function {{ Name }}(options) {
 
   var self = this;
-
-  this.auth = function(authObject) {
-
-    if (!authObject || typeof authObject !== 'object') {
-      return self;
-    }
-    else {
-      {% set newObj = "new" + Name -%}
-      var {{ newObj }} = new {{ Name }}();
-      if (authObject.authClient) {
-          {{ newObj }}.authClient = authObject.authClient;
-      }
-      if (authObject.apiKey) {
-          {{ newObj }}.apiKey = authObject.apiKey;
-      }
-      return Object.freeze({{ newObj }});
-    }
-  };
+  this.options = options;
 
 {% for rname, r in resources %}
   this.{{ rname }} = {

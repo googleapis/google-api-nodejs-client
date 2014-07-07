@@ -411,7 +411,7 @@ describe('OAuth2 client', function() {
             '"alg":"RS256"' +
           '}';
 
-        var data = new Buffer(envelope).toString('base64') + 
+        var data = new Buffer(envelope).toString('base64') +
           '.' + new Buffer(idToken).toString('base64') +
           '.' + 'broken-signature';
 

@@ -3,7 +3,7 @@
 /**
  * {{ m.id }}
  *
- * {{ m.description }}
+ * {{ m.description|safe }}
  *
  {% for pname, p in m.parameters -%}
  * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description|safe }}
@@ -28,16 +28,13 @@
     method: '{{ m.httpMethod }}'
   };
 
-  var resource = params.resource || true;
-  delete params.resource;
-  var media = params.media;
-  delete params.media;
-
   if(self.apiKey) {
     params.key = self.apiKey; // set key as param if present
   }
 
   {% if m.supportsMediaUpload %}
+  var media = params.media;
+  delete params.media;
 
   params.uploadType = 'multipart';
 
@@ -53,7 +50,8 @@
     options.multipart = multipart;
   }
   {% else %}
-  options.json = resource;
+  options.json = params.resource || true;
+  delete params.resource;
   {% endif %}
 
   options.qs = params;
@@ -62,7 +60,7 @@
     return self.authClient.request(options, callback);
   }
   else {
-    return transporter.request(options, callback); // returns the request
+    return self.google.transporter.request(options, callback); // returns the request
   }
 }{%- if not loop.last %},
 {% endif %}

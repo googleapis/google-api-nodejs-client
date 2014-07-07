@@ -1,5 +1,3 @@
-var DefaultTransporter = require('../../lib/transporters.js');
-var transporter = new DefaultTransporter();
 /**
  * Drive API
  *
@@ -9,25 +7,10 @@ var transporter = new DefaultTransporter();
  * @this Drive
  */
 
-function Drive() {
+function Drive(options) {
 
   var self = this;
-
-  this.auth = function(authObject) {
-
-    if (!authObject || typeof authObject !== 'object') {
-      return self;
-    } else {
-      var newDrive = new Drive();
-      if (authObject.authClient) {
-        newDrive.authClient = authObject.authClient;
-      }
-      if (authObject.apiKey) {
-        newDrive.apiKey = authObject.apiKey;
-      }
-      return Object.freeze(newDrive);
-    }
-  };
+  this.options = options;
 
   this.about = {
 
@@ -54,23 +37,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -99,30 +78,26 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.apps.list
      *
-     * Lists a user&#39;s installed apps.
+     * Lists a user's installed apps.
      *
      * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
      * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
@@ -142,23 +117,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -187,23 +158,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -232,23 +199,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -277,23 +240,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -321,23 +280,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -367,23 +322,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -409,23 +360,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -450,30 +397,26 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.children.list
      *
-     * Lists a folder&#39;s children.
+     * Lists a folder's children.
      *
      * @param {string} params.folderId The ID of the folder.
      * @param {integer=} params.maxResults Maximum number of children to return.
@@ -494,23 +437,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -540,23 +479,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -583,23 +518,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -624,30 +555,26 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.comments.list
      *
-     * Lists a file&#39;s comments.
+     * Lists a file's comments.
      *
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
@@ -669,23 +596,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -711,23 +634,19 @@ function Drive() {
         method: 'PATCH'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -753,23 +672,19 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -805,23 +720,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -846,30 +757,26 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.files.emptyTrash
      *
-     * Permanently deletes all of the user&#39;s trashed files.
+     * Permanently deletes all of the user's trashed files.
      *
      * @param {object} params.resource Body of request
      */
@@ -886,30 +793,26 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.files.get
      *
-     * Gets a file&#39;s metadata by ID.
+     * Gets a file's metadata by ID.
      *
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
@@ -929,23 +832,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -977,14 +876,12 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
+
+      var media = params.media;
+      delete params.media;
 
       params.uploadType = 'multipart';
 
@@ -1003,16 +900,16 @@ function Drive() {
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.files.list
      *
-     * Lists the user&#39;s files.
+     * Lists the user's files.
      *
      * @param {integer=} params.maxResults Maximum number of files to return.
      * @param {string=} params.pageToken Page token for files.
@@ -1033,23 +930,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1086,30 +979,26 @@ function Drive() {
         method: 'PATCH'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.files.touch
      *
-     * Set the file&#39;s updated time to the current server time.
+     * Set the file's updated time to the current server time.
      *
      * @param {string} params.fileId The ID of the file to update.
      * @param {object} params.resource Body of request
@@ -1127,23 +1016,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1168,23 +1053,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1209,23 +1090,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1262,14 +1139,12 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
+
+      var media = params.media;
+      delete params.media;
 
       params.uploadType = 'multipart';
 
@@ -1288,9 +1163,9 @@ function Drive() {
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1317,23 +1192,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -1363,23 +1234,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1405,23 +1272,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1446,30 +1309,26 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.parents.list
      *
-     * Lists a file&#39;s parents.
+     * Lists a file's parents.
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
@@ -1487,23 +1346,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -1533,23 +1388,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1575,23 +1426,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1616,23 +1463,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1659,30 +1502,26 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.permissions.list
      *
-     * Lists a file&#39;s permissions.
+     * Lists a file's permissions.
      *
      * @param {string} params.fileId The ID for the file.
      * @param {object} params.resource Body of request
@@ -1700,23 +1539,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1743,23 +1578,19 @@ function Drive() {
         method: 'PATCH'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1786,23 +1617,19 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -1833,23 +1660,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1876,23 +1699,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -1917,30 +1736,26 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.properties.list
      *
-     * Lists a file&#39;s properties.
+     * Lists a file's properties.
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
@@ -1958,23 +1773,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2001,23 +1812,19 @@ function Drive() {
         method: 'PATCH'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2044,23 +1851,19 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -2090,23 +1893,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2132,14 +1931,12 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
+
+      var media = params.media;
+      delete params.media;
 
       params.uploadType = 'multipart';
 
@@ -2158,9 +1955,9 @@ function Drive() {
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -2191,23 +1988,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2235,23 +2028,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2277,23 +2066,19 @@ function Drive() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2322,23 +2107,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2365,23 +2146,19 @@ function Drive() {
         method: 'PATCH'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2408,23 +2185,19 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
@@ -2454,23 +2227,19 @@ function Drive() {
         method: 'DELETE'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2496,30 +2265,26 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
     /**
      * drive.revisions.list
      *
-     * Lists a file&#39;s revisions.
+     * Lists a file's revisions.
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
@@ -2537,23 +2302,19 @@ function Drive() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2579,23 +2340,19 @@ function Drive() {
         method: 'PATCH'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -2621,23 +2378,19 @@ function Drive() {
         method: 'PUT'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 

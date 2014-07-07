@@ -1,5 +1,3 @@
-var DefaultTransporter = require('../../lib/transporters.js');
-var transporter = new DefaultTransporter();
 /**
  * URL Shortener API
  *
@@ -9,25 +7,10 @@ var transporter = new DefaultTransporter();
  * @this Urlshortener
  */
 
-function Urlshortener() {
+function Urlshortener(options) {
 
   var self = this;
-
-  this.auth = function(authObject) {
-
-    if (!authObject || typeof authObject !== 'object') {
-      return self;
-    } else {
-      var newUrlshortener = new Urlshortener();
-      if (authObject.authClient) {
-        newUrlshortener.authClient = authObject.authClient;
-      }
-      if (authObject.apiKey) {
-        newUrlshortener.apiKey = authObject.apiKey;
-      }
-      return Object.freeze(newUrlshortener);
-    }
-  };
+  this.options = options;
 
   this.url = {
 
@@ -53,23 +36,19 @@ function Urlshortener() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -93,23 +72,19 @@ function Urlshortener() {
         method: 'POST'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     },
 
@@ -135,23 +110,19 @@ function Urlshortener() {
         method: 'GET'
       };
 
-      var resource = params.resource || true;
-      delete params.resource;
-      var media = params.media;
-      delete params.media;
-
       if (self.apiKey) {
         params.key = self.apiKey; // set key as param if present
       }
 
-      options.json = resource;
+      options.json = params.resource || true;
+      delete params.resource;
 
       options.qs = params;
 
       if (self.authClient && self.authClient.credentials) {
-        self.authClient.request(options, callback);
+        return self.authClient.request(options, callback);
       } else {
-        return transporter.request(options, callback); // returns the request
+        return self.google.transporter.request(options, callback); // returns the request
       }
     }
 
