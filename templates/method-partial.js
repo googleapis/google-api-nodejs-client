@@ -15,52 +15,13 @@
 {% endif -%}
  */
 {{ mname }}: function(params, callback) {
-  if(typeof(params) === 'function') {
-    callback = params;
-    params = {};
-  }
-  else {
-    params = params || {};
-  }
-
   var options = {
     url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
     method: '{{ m.httpMethod }}'
   };
 
-  if(self.apiKey) {
-    params.key = self.apiKey; // set key as param if present
-  }
+  var isMedia = {% if m.supportsMediaUpload %}true{% else %}false{% endif %};
 
-  {% if m.supportsMediaUpload %}
-  var media = params.media;
-  delete params.media;
-
-  params.uploadType = 'multipart';
-
-  if(media) {
-    var multipart = [{
-      'Content-Type': 'application/json',
-      body: JSON.stringify(media.metadata || {})
-    }, {
-      'Content-Type': media.mimeType || 'application/octet-stream',
-      body: media.data || ''
-    }];
-
-    options.multipart = multipart;
-  }
-  {% else %}
-  options.json = params.resource || true;
-  delete params.resource;
-  {% endif %}
-
-  options.qs = params;
-
-  if(self.authClient && self.authClient.credentials) {
-    return self.authClient.request(options, callback);
-  }
-  else {
-    return self.google.transporter.request(options, callback); // returns the request
-  }
+  return createAPIRequest(self, params, options, isMedia, callback);
 }{%- if not loop.last %},
 {% endif %}

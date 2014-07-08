@@ -1,3 +1,4 @@
+var createAPIRequest = require('../../lib/apirequest');
 {% set Name = name|capitalize -%}
 
 /**

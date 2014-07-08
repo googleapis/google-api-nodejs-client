@@ -1,3 +1,4 @@
+var createAPIRequest = require('../../lib/apirequest');
 /**
  * Drive API
  *
@@ -25,32 +26,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/about',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -66,32 +49,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/apps/' + params.appId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -105,32 +70,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/apps',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -146,32 +93,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes/' + params.changeId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -187,32 +116,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -228,32 +139,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     watch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes/watch',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -268,32 +161,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     stop: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/channels/stop',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -310,32 +185,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -348,32 +205,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -385,32 +224,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -425,32 +246,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -467,32 +270,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -506,32 +291,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -543,32 +310,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -584,32 +333,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -622,32 +353,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'PATCH'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -660,32 +373,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -708,32 +403,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     copy: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/copy',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -745,32 +422,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -781,32 +440,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     emptyTrash: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/trash',
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -820,32 +461,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -864,46 +487,14 @@ function Drive(options) {
      * @param {object} params.media Media object to upload
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = true;
 
-      var media = params.media;
-      delete params.media;
-
-      params.uploadType = 'multipart';
-
-      if (media) {
-        var multipart = [{
-          'Content-Type': 'application/json',
-          body: JSON.stringify(media.metadata || {})
-        }, {
-          'Content-Type': media.mimeType || 'application/octet-stream',
-          body: media.data || ''
-        }];
-
-        options.multipart = multipart;
-      }
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -918,32 +509,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -967,32 +540,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
         method: 'PATCH'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1004,32 +559,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     touch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/touch',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1041,32 +578,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     trash: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/trash',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1078,32 +597,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     untrash: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/untrash',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1127,46 +628,14 @@ function Drive(options) {
      * @param {object} params.media Media object to upload
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = true;
 
-      var media = params.media;
-      delete params.media;
-
-      params.uploadType = 'multipart';
-
-      if (media) {
-        var multipart = [{
-          'Content-Type': 'application/json',
-          body: JSON.stringify(media.metadata || {})
-        }, {
-          'Content-Type': media.mimeType || 'application/octet-stream',
-          body: media.data || ''
-        }];
-
-        options.multipart = multipart;
-      }
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1180,32 +649,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     watch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/watch',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -1222,32 +673,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1260,32 +693,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1297,32 +712,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1334,32 +731,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -1376,32 +755,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1414,32 +775,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1451,32 +794,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     getIdForEmail: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/permissionIds/' + params.email,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1490,32 +815,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1527,32 +834,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1566,32 +855,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'PATCH'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1605,32 +876,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -1648,32 +901,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1687,32 +922,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1724,32 +941,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1761,32 +960,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1800,32 +981,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'PATCH'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1839,32 +1002,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -1881,32 +1026,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -1919,46 +1046,14 @@ function Drive(options) {
      * @param {object} params.media Media object to upload
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = true;
 
-      var media = params.media;
-      delete params.media;
-
-      params.uploadType = 'multipart';
-
-      if (media) {
-        var multipart = [{
-          'Content-Type': 'application/json',
-          body: JSON.stringify(media.metadata || {})
-        }, {
-          'Content-Type': media.mimeType || 'application/octet-stream',
-          body: media.data || ''
-        }];
-
-        options.multipart = multipart;
-      }
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -1976,32 +1071,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2016,32 +1093,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2054,32 +1113,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     insert: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
         method: 'POST'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2095,32 +1136,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2134,32 +1157,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'PATCH'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2173,32 +1178,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };
@@ -2215,32 +1202,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     delete: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'DELETE'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2253,32 +1222,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     get: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2290,32 +1241,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     list: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions',
         method: 'GET'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2328,32 +1261,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     patch: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'PATCH'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     },
 
     /**
@@ -2366,32 +1281,14 @@ function Drive(options) {
      * @param {object} params.resource Body of request
      */
     update: function(params, callback) {
-      if (typeof(params) === 'function') {
-        callback = params;
-        params = {};
-      } else {
-        params = params || {};
-      }
-
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'PUT'
       };
 
-      if (self.apiKey) {
-        params.key = self.apiKey; // set key as param if present
-      }
+      var isMedia = false;
 
-      options.json = params.resource || true;
-      delete params.resource;
-
-      options.qs = params;
-
-      if (self.authClient && self.authClient.credentials) {
-        return self.authClient.request(options, callback);
-      } else {
-        return self.google.transporter.request(options, callback); // returns the request
-      }
+      return createAPIRequest(self, params, options, isMedia, callback);
     }
 
   };

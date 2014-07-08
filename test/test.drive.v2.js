@@ -24,9 +24,9 @@ describe('drive:v2', function() {
     done();
   });
 
-  it('should be frozen (immutable)', function(done) {
+  it('should not be frozen (immutable)', function(done) {
     var drive = google.drive('v2');
-    assert.equal(Object.isFrozen(drive), true);
+    assert.equal(Object.isFrozen(drive), false);
     done();
   });
 
@@ -84,7 +84,6 @@ describe('drive:v2', function() {
         assert.notEqual(typeof drive.files.get, 'undefined');
         done();
       });
-
       it('should be a function', function(done) {
         var drive = google.drive('v2');
         assert.equal(typeof drive.files.get, 'function');
@@ -119,5 +118,4 @@ describe('drive:v2', function() {
       done();
     });
   });
-
 });
