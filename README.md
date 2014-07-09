@@ -158,27 +158,6 @@ var plus = google.plus({ auth: oauth2Client });
 plus.people.get({ userId: 'me' }, callback);
 ```
 
-<!-- ### Batch requests (experimental)
-
-You can combine multiple requests in a single one by using batch requests.
-
-~~~~ js
-var getUserReq =
-    client.plus.people.get({ userId: '+BurcuDogan' });
-
-var insertUrlReq =
-    client.urlshortener.url.insert({ longUrl: 'http://google.com' });
-
-client
-    .newBatchRequest()
-    .add(getUserReq)
-    .add(insertUrlReq)
-    .execute(function(err, results) {
-  // handle results
-});
-~~~~
- -->
-
 ### Media Uploads
 
 Client supports basic and multipart media uploads. For creation and modification requests
