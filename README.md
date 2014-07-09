@@ -22,18 +22,12 @@ $ npm install googleapis
 
 ``` js
 var google = require('googleapis');
-
 var urlshortener = google.urlshortener('v1');
-var plus = google.plus('v1');
 
-var params = { shortUrl: 'http://goo.gl/DdUKX' };
+var params = { shortUrl: 'http://goo.gl/xKbRu3' };
 
 urlshortener.url.get(params, function (err, response) {
   console.log('Long url is', response.longUrl);
-});
-
-plus.people.get({ userId: '+burcudogan' }, function(err, user) {
-  console.log('User id is: ' + user.id);
 });
 ```
 
