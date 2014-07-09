@@ -20,8 +20,6 @@ $ npm install googleapis
 
 ## Usage
 
-### Making requests
-
 ``` js
 var google = require('googleapis');
 
@@ -50,7 +48,7 @@ basics of Google's OAuth 2.0 implementation is explained on
 [Google Authorization and Authentication
 documentation](https://developers.google.com/accounts/docs/OAuth2Login).
 
-A complete sample application that authorizes and authenticates with OAuth2.0
+A complete sample application that authorizes and authenticates with the OAuth 2.0
 client is available at `examples/oauth2.js`.
 
 #### Consent Page Url
@@ -88,8 +86,8 @@ With the code returned, you can ask for an access token as shown below:
 
 ``` js
 oauth2Client.getToken(code, function(err, tokens) {
-  // contains an access_token and optionally a refresh_token.
-  // save them permanently.
+  // Now tokens contains an access_token and an optional refresh_token. Save them.
+  if(!err) oauth2Client.setCredentials(tokens);
 });
 ```
 
@@ -98,8 +96,16 @@ oauth2Client.getToken(code, function(err, tokens) {
 API Client endpoints are available for many APIs. Below is an
 example of loading a client for [URL Shortener API][urlshort].
 
+Just specify the version as a string to load that particular client.
+Here we load version `v1` of the `urlshortener` client.
 ``` js
-var urlshortener = google.urlshortener('v1'); // load version 'v1' of urlshortener
+var urlshortener = google.urlshortener('v1');
+```
+
+You can also specify additional options when loading a specific client endpoint. For example,
+to specify an default `auth` option (API key or oauth2Client), simply pass it in like so:
+``` js
+var urlshortener = google.urlshortener({ version: 'v1', auth: 'API KEY' || oauth2Client });
 ```
 
 ### Requests
