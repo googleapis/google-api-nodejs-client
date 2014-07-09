@@ -1,4 +1,4 @@
-# Google APIs NodeJS Client Library [![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)][travis]
+# Google APIs NodeJS Client Library [![Build Status][travisimg]][travis]
 
 `google-api-nodejs-client` is Google's officially supported
 [node.js][node] client library for using Google APIs.
@@ -199,6 +199,7 @@ available in [COPYING][copying].
 
 See [CONTRIBUTING][contributing].
 
+[travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
 [bugs]: https://github.com/google/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [travis]: https://travis-ci.org/google/google-api-nodejs-client
