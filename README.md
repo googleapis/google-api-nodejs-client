@@ -1,19 +1,13 @@
-# google-api-nodejs-client [alpha]
-
-[![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)][travis]
+# Google APIs NodeJS Client [![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)][travis]
 
 `google-api-nodejs-client` is Google's officially supported
-[node.js][node] client
-library for accessing Google APIs, it also supports authorization and
-authentication with OAuth 2.0.
+[node.js][node] client library for accessing Google APIs, it
+also supports authorization and authentication with OAuth 2.0.
 
 ### Questions/problems?
 
 * Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)][stackoverflow]
 * If you found a bug, please [file a bug][bugs].
-
-**Note**: This library is currently in *alpha* status, meaning that we can make
-changes in the future that *may not be compatible* with the previous versions.
 
 ## Installation
 
@@ -24,14 +18,14 @@ run the following command:
 $ npm install googleapis
 ~~~~
 
-## Guide
+## Usage
 
 ### Making requests
 
 ``` js
 var google = require('googleapis');
 
-var shortener = google.urlshortener('v1');
+var urlshortener = google.urlshortener('v1');
 var plus = google.plus('v1');
 
 var params = { shortUrl: 'http://goo.gl/DdUKX' };
