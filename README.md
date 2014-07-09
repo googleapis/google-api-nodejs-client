@@ -64,7 +64,7 @@ var scopes = [
 ];
 
 var url = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
+  access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
   scope: scopes.join(' ') // space delimited string of scopes
 });
 ```
@@ -110,7 +110,7 @@ of the given short url:
 ``` js
 var urlshortener = google.urlshortener('v1');
 
-urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' }, function(err, result) {
+urlshortener.url.get({ shortUrl: 'http://goo.gl/Fzv2Ff' }, function(err, result) {
   console.log(result.longUrl); // print the long url
 });
 ```
@@ -122,7 +122,7 @@ from the Google+ API service to retrieve a person profile given a userId:
 ``` js
 var plus = google.plus('v1');
 
-plus.people.get({ key: API_KEY, userId: '+burcudogan' }, function(err, user) {
+plus.people.get({ key: API_KEY, userId: '+google' }, function(err, user) {
   console.log('Result: ' + (err ? err.message : user.displayName));
 });
 ```
