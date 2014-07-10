@@ -29,7 +29,7 @@
     "async": "~0.2.10",
     "gapitoken": "~0.1.2",
     "multipart-stream": "1.0.0",
-    "request": "2.36.0"
+    "request": "2.37.0"
   },
   "devDependencies": {
     "mocha": "1.8.1",
