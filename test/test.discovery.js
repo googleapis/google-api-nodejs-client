@@ -86,7 +86,9 @@ describe('Discovery', function() {
       .withOpts({ cache: { path: customPath } })
       .execute(function(err, client) {
         assert.equal(fs.existsSync(customPath), true);
-        fs.unlink(customPath + '/orkutv2-rest', done);
+        fs.unlink(customPath + '/orkutv2-rest', function() {
+          fs.rmdir(customPath, done); // remove directory after test
+        });
       });
   });
 
