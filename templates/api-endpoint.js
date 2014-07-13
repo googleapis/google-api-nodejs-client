@@ -1,5 +1,5 @@
 var createAPIRequest = require('../../lib/apirequest');
-{% set Name = name|capitalize -%}
+{% set Name = name|capitalize %}
 
 /**
  * {{ title }}
@@ -8,8 +8,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @author {{ ownerName }}
  * @this {{ Name }}
+ * @param {object=} options Options for {{ Name }}
  */
-
 function {{ Name }}(options) {
 
   var self = this;

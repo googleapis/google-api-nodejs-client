@@ -1,4 +1,3 @@
-
 {% if methods %}
 {% for mname, m in methods -%}
   {% include "./method-partial.js" with m %}

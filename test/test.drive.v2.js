@@ -80,43 +80,37 @@ describe('drive:v2', function() {
     });
 
     describe('.get', function() {
-      it('should exist', function(done) {
+      it('should exist', function() {
         var drive = google.drive('v2');
         assert.notEqual(typeof drive.files.get, 'undefined');
-        done();
       });
-      it('should be a function', function(done) {
+      it('should be a function', function() {
         var drive = google.drive('v2');
         assert.equal(typeof drive.files.get, 'function');
-        done();
       });
 
-      it('should return a Request object', function(done) {
+      it('should return a Request object', function() {
         var drive = google.drive('v2');
         var req = drive.files.get({});
         assert.equal(req.constructor.name, 'Request');
-        done();
       });
     });
   });
 
   describe('.options', function() {
-    it('should exist', function(done) {
+    it('should exist', function() {
       var drive = google.drive('v2');
       assert.notEqual(typeof drive.options, 'undefined');
-      done();
     });
 
-    it('should be an object', function(done) {
+    it('should be an object', function() {
       var drive = google.drive('v2');
       assert.equal(typeof drive.options, 'object');
-      done();
     });
 
-    it('should have correct version value', function(done) {
+    it('should have correct version value', function() {
       var drive = google.drive('v2');
       assert.equal(drive.options.version, 'v2');
-      done();
     });
   });
 });

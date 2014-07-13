@@ -1,4 +1,5 @@
 var createAPIRequest = require('../../lib/apirequest');
+
 /**
  * Drive API
  *
@@ -6,8 +7,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @author Google
  * @this Drive
+ * @param {object=} options Options for Drive
  */
-
 function Drive(options) {
 
   var self = this;

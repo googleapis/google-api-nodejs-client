@@ -1,4 +1,5 @@
 var createAPIRequest = require('../../lib/apirequest');
+
 /**
  * URL Shortener API
  *
@@ -6,8 +7,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @author Google
  * @this Urlshortener
+ * @param {object=} options Options for Urlshortener
  */
-
 function Urlshortener(options) {
 
   var self = this;

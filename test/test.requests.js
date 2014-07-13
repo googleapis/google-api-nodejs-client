@@ -20,8 +20,7 @@ var url = require('url'),
     fs = require('fs');
 
 var googleapis = require('../lib/googleapis.js'),
-    MockTransporter = require('./mocks/transporters.js'),
-    requests = require('../lib/requests.js');
+    MockTransporter = require('./mocks/transporters.js');
 
 describe('Requests', function() {
 
@@ -123,55 +122,33 @@ describe('Requests', function() {
     // assert.equal(req.body, 'hey');
   });
 
-  it('should generate valid multipart upload payload if media and metadata are both set', function(done) {
-    // TOOD: Fix this test.
-    // var google = new googleapis.GoogleApis();
-    // var drive = google.drive('v2');
-    // var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' });
-    // assert.equal(req.method, 'POST');
-    // assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
-    // assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
-    // assert.equal(payload.multipart[0].body, '{"title":"title"}');
-    // assert.equal(req.headers['Content-Type'], 'multipart/related;');
-    // assert.equal(payload.multipart[1].body, 'hey');
-    // assert.equal(payload.body, null);
-    // done();
-  });
+  // it('should generate valid multipart upload payload if media and metadata are both set', function(done) {
+  //   // TOOD: Fix this test.
+  //   // var google = new googleapis.GoogleApis();
+  //   // var drive = google.drive('v2');
+  //   // var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' });
+  //   // assert.equal(req.method, 'POST');
+  //   // assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+  //   // assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
+  //   // assert.equal(payload.multipart[0].body, '{"title":"title"}');
+  //   // assert.equal(req.headers['Content-Type'], 'multipart/related;');
+  //   // assert.equal(payload.multipart[1].body, 'hey');
+  //   // assert.equal(payload.body, null);
+  //   // done();
+  // });
 
-  it('should differentiate query params and body object', function(done) {
-    // TODO: Fix this test.
-    // googleapis.discover('drive', 'v2').execute(function(err, client) {
-    //   var req1 = client.drive.files.insert({ title: 'Hello' });
-    //   var req2 = client.drive.files.list({ q: 'title contains "H"' });
-    //   var req3 = client.drive.files.get({ fileId: 'root' });
+  // it('should differentiate query params and body object', function(done) {
+  //   // TODO: Fix this test.
+  //   // googleapis.discover('drive', 'v2').execute(function(err, client) {
+  //   //   var req1 = client.drive.files.insert({ title: 'Hello' });
+  //   //   var req2 = client.drive.files.list({ q: 'title contains "H"' });
+  //   //   var req3 = client.drive.files.get({ fileId: 'root' });
 
-    //   assert.equal(req1.params.title, null);
-    //   assert.equal(req1.body.title, 'Hello');
-    //   assert.equal(req2.params.q, 'title contains "H"');
-    //   assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
-    //   done();
-    // });
-  });
-
-  // describe('buildUri', function() {
-  //   it('should concat path without double or trailing slashes', function() {
-  //     var uri = requests.buildUri('', ['a', '//b/6/n/', 'c', 'd/']);
-  //     assert.equal(uri, '/a/b/6/n/c/d');
-  //   });
-
-  //   it('should avoid null or undefined paths', function() {
-  //     var uri = requests.buildUri('', ['a', null, undefined, 'd']);
-  //     assert.equal(uri, '/a/d');
-  //   });
-
-  //   it('should remove double slashes from root', function() {
-  //     var uri = requests.buildUri('http://root///', ['a']);
-  //     assert.equal(uri, 'http://root/a');
-  //   });
-
-  //   it('should append query params', function() {
-  //     var uri = requests.buildUri('', ['a'], { q: 'keyword', p: 1 });
-  //     assert.equal(uri, '/a?q=keyword&p=1');
-  //   });
+  //   //   assert.equal(req1.params.title, null);
+  //   //   assert.equal(req1.body.title, 'Hello');
+  //   //   assert.equal(req2.params.q, 'title contains "H"');
+  //   //   assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
+  //   //   done();
+  //   // });
   // });
 });

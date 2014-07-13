@@ -35,6 +35,7 @@ describe('Compute auth client', function() {
       done();
     });
   });
+
   it('should refresh token when request fails', function(done) {
     var compute = new googleapis.auth.Compute();
     compute.credentials = {
