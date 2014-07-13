@@ -4,25 +4,6 @@ var path = require('path');
 var fs = require('fs');
 var files = fs.readdirSync(__dirname);
 
-var freezeExceptAuth = function(obj) {
-  var props = Object.getOwnPropertyNames(obj);
-
-  for (var i = 0; i < props.length; i++) {
-    var desc = Object.getOwnPropertyDescriptor(obj, props[i]);
-
-    if ('value' in desc) {
-      desc.writable = false;
-    }
-
-    if (props[i] !== 'auth') {
-      desc.configurable = false;
-    }
-    Object.defineProperty(obj, props[i], desc);
-  }
-
-  return Object.preventExtensions(obj);
-};
-
 var auth = function(authObject) {
   if (typeof authObject === 'string') {
     delete this.auth.authClient;
@@ -59,11 +40,11 @@ files.forEach(function(filename) {
           }
           try {
             var Endpoint = require('./' + filename + '/' +
-            path.basename(version));
+                path.basename(version));
             var ep = new Endpoint(options);
             ep.auth = auth.bind(ep);
-            ep.google = this; // drive.google.transporter
-            return freezeExceptAuth(ep); // create new & freeze
+            ep.google = this; // for drive.google.transporter
+            return Object.freeze(ep); // create new & freeze
           }
           catch (e) {
             throw new Error('Error: Version \"' + version + '\" not found.');

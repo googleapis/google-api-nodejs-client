@@ -13,12 +13,18 @@
 {% else -%}
  * @param {object} params.resource Body of request
 {% endif -%}
+ * @return {object} Request object
  */
 {{ mname }}: function(params, callback) {
   var options = {
     url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
     method: '{{ m.httpMethod }}'
   };
+
+  // Do not append path parameters to query also
+  {% for pname, p in m.parameters -%}
+  {% if p.location == 'path' %}delete params.{{pname}};{% endif %}
+  {% endfor %}
 
   var isMedia = {% if m.supportsMediaUpload %}true{% else %}false{% endif %};
 

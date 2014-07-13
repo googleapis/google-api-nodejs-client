@@ -23,12 +23,15 @@ function Urlshortener(options) {
      * @param {string=} params.projection Additional information to return.
      * @param {string} params.shortUrl The short URL, including the protocol.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -41,12 +44,15 @@ function Urlshortener(options) {
      * Creates a new short URL.
      *
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -61,12 +67,15 @@ function Urlshortener(options) {
      * @param {string=} params.projection Additional information to return.
      * @param {string=} params.start-token Token for requesting successive pages of results.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url/history',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 

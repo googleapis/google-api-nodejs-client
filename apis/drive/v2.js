@@ -24,12 +24,15 @@ function Drive(options) {
      * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
      * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/about',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -47,12 +50,16 @@ function Drive(options) {
      *
      * @param {string} params.appId The ID of the app.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/apps/' + params.appId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.appId;
 
       var isMedia = false;
 
@@ -68,12 +75,15 @@ function Drive(options) {
      * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
      * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/apps',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -91,12 +101,16 @@ function Drive(options) {
      *
      * @param {string} params.changeId The ID of the change.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes/' + params.changeId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.changeId;
 
       var isMedia = false;
 
@@ -114,12 +128,15 @@ function Drive(options) {
      * @param {string=} params.pageToken Page token for changes.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -137,12 +154,15 @@ function Drive(options) {
      * @param {string=} params.pageToken Page token for changes.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     watch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes/watch',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -159,12 +179,15 @@ function Drive(options) {
      * Stop watching resources through this channel
      *
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     stop: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/channels/stop',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -183,12 +206,17 @@ function Drive(options) {
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.childId;
+      delete params.folderId;
 
       var isMedia = false;
 
@@ -203,12 +231,17 @@ function Drive(options) {
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.childId;
+      delete params.folderId;
 
       var isMedia = false;
 
@@ -222,12 +255,16 @@ function Drive(options) {
      *
      * @param {string} params.folderId The ID of the folder.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.folderId;
 
       var isMedia = false;
 
@@ -244,12 +281,16 @@ function Drive(options) {
      * @param {string=} params.pageToken Page token for children.
      * @param {string=} params.q Query string for searching children.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.folderId;
 
       var isMedia = false;
 
@@ -268,12 +309,17 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -289,12 +335,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -308,12 +359,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -331,12 +386,16 @@ function Drive(options) {
      * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -351,12 +410,17 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     patch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'PATCH'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -371,12 +435,17 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -401,12 +470,17 @@ function Drive(options) {
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     copy: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/copy',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -420,12 +494,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to delete.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -438,12 +516,15 @@ function Drive(options) {
      * Permanently deletes all of the user's trashed files.
      *
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     emptyTrash: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/trash',
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -459,12 +540,16 @@ function Drive(options) {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -485,12 +570,15 @@ function Drive(options) {
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
      * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when convert=false.
      * @param {object} params.media Media object to upload
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = true;
 
@@ -507,12 +595,15 @@ function Drive(options) {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.q Query string for searching files.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
 
       var isMedia = false;
 
@@ -538,12 +629,17 @@ function Drive(options) {
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     patch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
         method: 'PATCH'
       };
+
+      // Do not append path parameters to query also
+
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -557,12 +653,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to update.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     touch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/touch',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -576,12 +676,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to trash.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     trash: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/trash',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -595,12 +699,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to untrash.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     untrash: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/untrash',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -626,12 +734,17 @@ function Drive(options) {
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
      * @param {object} params.media Media object to upload
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+
+      delete params.fileId;
 
       var isMedia = true;
 
@@ -647,12 +760,16 @@ function Drive(options) {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     watch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/watch',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -671,12 +788,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.parentId;
 
       var isMedia = false;
 
@@ -691,12 +813,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.parentId;
 
       var isMedia = false;
 
@@ -710,12 +837,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -729,12 +860,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -753,12 +888,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.permissionId;
 
       var isMedia = false;
 
@@ -773,12 +913,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.permissionId;
 
       var isMedia = false;
 
@@ -792,12 +937,16 @@ function Drive(options) {
      *
      * @param {string} params.email The email address for which to return a permission ID
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     getIdForEmail: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/permissionIds/' + params.email,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.email;
 
       var isMedia = false;
 
@@ -813,12 +962,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -832,12 +986,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -853,12 +1011,17 @@ function Drive(options) {
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' should also downgrade the current owners to writers.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     patch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'PATCH'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.permissionId;
 
       var isMedia = false;
 
@@ -874,12 +1037,17 @@ function Drive(options) {
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' should also downgrade the current owners to writers.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.permissionId;
 
       var isMedia = false;
 
@@ -899,12 +1067,17 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.propertyKey;
 
       var isMedia = false;
 
@@ -920,12 +1093,17 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.propertyKey;
 
       var isMedia = false;
 
@@ -939,12 +1117,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -958,12 +1140,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -979,12 +1165,17 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     patch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'PATCH'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.propertyKey;
 
       var isMedia = false;
 
@@ -1000,12 +1191,17 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.propertyKey;
 
       var isMedia = false;
 
@@ -1024,12 +1220,16 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
      * @param {integer=} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -1044,12 +1244,17 @@ function Drive(options) {
      * @param {string=} params.baseRevision The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
      * @param {object} params.media Media object to upload
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+
+      delete params.fileId;
 
       var isMedia = true;
 
@@ -1069,12 +1274,18 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
+      delete params.replyId;
 
       var isMedia = false;
 
@@ -1091,12 +1302,19 @@ function Drive(options) {
      * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
+
+      delete params.replyId;
 
       var isMedia = false;
 
@@ -1111,12 +1329,17 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     insert: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
         method: 'POST'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -1134,12 +1357,17 @@ function Drive(options) {
      * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
      * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -1155,12 +1383,18 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     patch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'PATCH'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
+      delete params.replyId;
 
       var isMedia = false;
 
@@ -1176,12 +1410,18 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+      delete params.commentId;
+      delete params.fileId;
+      delete params.replyId;
 
       var isMedia = false;
 
@@ -1200,12 +1440,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     delete: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'DELETE'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.revisionId;
 
       var isMedia = false;
 
@@ -1220,12 +1465,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     get: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.revisionId;
 
       var isMedia = false;
 
@@ -1239,12 +1489,16 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     list: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions',
         method: 'GET'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
 
       var isMedia = false;
 
@@ -1259,12 +1513,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     patch: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'PATCH'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.revisionId;
 
       var isMedia = false;
 
@@ -1279,12 +1538,17 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {object} params.resource Body of request
+     * @return {object} Request object
      */
     update: function(params, callback) {
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
         method: 'PUT'
       };
+
+      // Do not append path parameters to query also
+      delete params.fileId;
+      delete params.revisionId;
 
       var isMedia = false;
 
