@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-// requires
+'use strict';
+
 var DefaultTransporter = require('../lib/transporters');
 var swig = require('swig');
 var fs = require('fs');

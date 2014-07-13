@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+'use strict';
+
 var url = require('url'),
     assert = require('assert'),
     qs = require('querystring'),
