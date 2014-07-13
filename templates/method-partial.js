@@ -16,17 +16,15 @@
  * @return {object} Request object
  */
 {{ mname }}: function(params, callback) {
+  var isMedia = {% if m.supportsMediaUpload %}true{% else %}false{% endif %};
   var options = {
     url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
     method: '{{ m.httpMethod }}'
   };
 
-  // Do not append path parameters to query also
   {% for pname, p in m.parameters -%}
   {% if p.location == 'path' %}delete params.{{pname}};{% endif %}
   {% endfor %}
-
-  var isMedia = {% if m.supportsMediaUpload %}true{% else %}false{% endif %};
 
   return createAPIRequest(self, params, options, isMedia, callback);
 }{%- if not loop.last %},
