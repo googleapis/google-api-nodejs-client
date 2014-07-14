@@ -19,7 +19,7 @@
 var assert = require('assert');
 var google = require('../lib/googleapis.js');
 
-describe.only('google', function() {
+describe('google', function() {
   describe('.options()', function() {
     it('should be a function', function() {
       assert.equal(typeof google.options, 'function');
@@ -45,6 +45,13 @@ describe.only('google', function() {
     it('should expose _options values', function() {
       google.options({ hello: 'world' });
       assert.equal(google._options.hello, 'world');
+    });
+
+    it('should promote endpoint options over global options', function() {
+      var g = new google.GoogleApis({ hello: 'world' });
+      var drive = g.drive({ version: 'v2', hello: 'changed' });
+      var req = drive.files.get({});
+      assert.equal(req.hello, 'changed');
     });
   });
 });

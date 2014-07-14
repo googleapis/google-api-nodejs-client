@@ -12,7 +12,7 @@ var createAPIRequest = require('../../lib/apirequest');
 function Drive(options) {
 
   var self = this;
-  this.options = options;
+  this._options = options || {};
 
   this.about = {
 

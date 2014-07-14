@@ -12,7 +12,7 @@ var createAPIRequest = require('../../lib/apirequest');
 function Plus(options) {
 
   var self = this;
-  this.options = options;
+  this._options = options || {};
 
   this.activities = {
 

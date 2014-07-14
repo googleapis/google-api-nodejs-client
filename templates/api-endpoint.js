@@ -13,7 +13,7 @@ var createAPIRequest = require('../../lib/apirequest');
 function {{ Name }}(options) {
 
   var self = this;
-  this.options = options;
+  this._options = options || {};
 
 {% for rname, r in resources %}
   this.{{ rname }} = {

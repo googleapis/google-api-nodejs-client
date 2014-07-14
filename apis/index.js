@@ -6,22 +6,6 @@ var path = require('path');
 var fs = require('fs');
 var files = fs.readdirSync(__dirname);
 
-var auth = function(authObject) {
-  if (typeof authObject === 'string') {
-    delete this.auth.authClient;
-    this.auth.apiKey = authObject;
-  }
-  else if (authObject && typeof authObject === 'object') {
-    delete this.auth.apiKey;
-    this.auth.authClient = authObject;
-  }
-  else {
-    delete this.auth.apiKey;
-    delete this.auth.authClient;
-  }
-  return this;
-};
-
 files.forEach(function(filename) {
   var stat = fs.statSync(path.join(__dirname, filename));
   if (stat.isDirectory()) {
@@ -32,10 +16,11 @@ files.forEach(function(filename) {
           var version;
           if (type === 'string') {
             version = options;
-            options = { version: version };
+            options = {};
           }
           else if (type === 'object') {
             version = options.version;
+            delete options.version;
           }
           else {
             throw new Error('Argument error: Accepts only string or object');
@@ -44,7 +29,6 @@ files.forEach(function(filename) {
             var Endpoint = require('./' + filename + '/' +
                 path.basename(version));
             var ep = new Endpoint(options);
-            ep.auth = auth.bind(ep);
             ep.google = this; // for drive.google.transporter
             return Object.freeze(ep); // create new & freeze
           }

@@ -95,20 +95,15 @@ describe('drive:v2', function() {
     });
   });
 
-  describe('.options', function() {
+  describe('._options', function() {
     it('should exist', function() {
       var drive = google.drive('v2');
-      assert.notEqual(typeof drive.options, 'undefined');
+      assert.notEqual(typeof drive._options, 'undefined');
     });
 
     it('should be an object', function() {
       var drive = google.drive('v2');
-      assert.equal(typeof drive.options, 'object');
-    });
-
-    it('should have correct version value', function() {
-      var drive = google.drive('v2');
-      assert.equal(drive.options.version, 'v2');
+      assert.equal(typeof drive._options, 'object');
     });
   });
 });
