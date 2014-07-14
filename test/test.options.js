@@ -48,7 +48,8 @@ describe('google', function() {
     });
 
     it('should promote endpoint options over global options', function() {
-      var g = new google.GoogleApis({ hello: 'world' });
+      var g = new google.GoogleApis();
+      g.options({ hello: 'world' });
       var drive = g.drive({ version: 'v2', hello: 'changed' });
       var req = drive.files.get({});
       assert.equal(req.hello, 'changed');
