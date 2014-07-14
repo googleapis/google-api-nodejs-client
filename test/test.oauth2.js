@@ -86,7 +86,8 @@ describe('OAuth2 client', function() {
     oauth2client.credentials = { refresh_token: 'refresh_token' };
     assert.doesNotThrow(function() {
       var google = new googleapis.GoogleApis();
-      google.urlshortener('v1').url.get(function() {});
+      var options = { auth: oauth2client, shortUrl: '...' };
+      google.urlshortener('v1').url.get(options, function() {});
     });
   });
 

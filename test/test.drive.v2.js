@@ -89,7 +89,7 @@ describe('drive:v2', function() {
 
       it('should return a Request object', function() {
         var drive = google.drive('v2');
-        var req = drive.files.get({});
+        var req = drive.files.get({ fileId: '123' });
         assert.equal(req.constructor.name, 'Request');
       });
     });
