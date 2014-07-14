@@ -1,22 +1,21 @@
 # Google APIs NodeJS Client [![Build Status][travisimg]][travis]
 
-`google-api-nodejs-client` is Google's officially supported
-[node.js][node] client library for using Google APIs.
-It also supports authorization and authentication with OAuth 2.0.
+Google's officially supported [node.js][node] client library for using
+Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
 ### Questions/problems?
 
 * Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)][stackoverflow]
-* If you found a bug, please [file a bug][bugs].
+* If you've found an bug/issue, please [file it on GitHub][bugs].
 
 ## Installation
 
-The library is distributed on `npm`. In order to add it as a dependency,
+This library is distributed on `npm`. In order to add it as a dependency,
 run the following command:
 
-~~~~ sh
+``` sh
 $ npm install googleapis
-~~~~
+```
 
 ## Usage
 
@@ -99,7 +98,7 @@ var urlshortener = google.urlshortener('v1');
 You can also specify additional options when loading a specific client endpoint. For example,
 to specify an default `auth` option (API key or oauth2Client), simply pass it in like so:
 ``` js
-var urlshortener = google.urlshortener({ version: 'v1', auth: 'API KEY' || oauth2Client });
+var urlshortener = google.urlshortener({ version: 'v1', auth: 'API KEY' });
 ```
 
 ### Requests
@@ -120,6 +119,7 @@ request you are going to make. The following creates and executes a request
 from the Google+ API service to retrieve a person profile given a userId:
 
 ``` js
+var API_KEY = 'ABC123';
 var plus = google.plus('v1');
 
 plus.people.get({ key: API_KEY, userId: '+google' }, function(err, user) {
@@ -171,7 +171,7 @@ drive.files.insert({
 
 ## License
 
-`google-api-nodejs-client` is licensed with Apache 2.0. Full license text is
+This library is licensed under Apache 2.0. Full license text is
 available in [COPYING][copying].
 
 ## Contributing
