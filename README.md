@@ -10,7 +10,7 @@ Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
 ## Installation
 
-The library is distributed on `npm`. In order to add it as a dependency,
+This library is distributed on `npm`. In order to add it as a dependency,
 run the following command:
 
 ``` sh
@@ -98,7 +98,7 @@ var urlshortener = google.urlshortener('v1');
 You can also specify additional options when loading a specific client endpoint. For example,
 to specify an default `auth` option (API key or oauth2Client), simply pass it in like so:
 ``` js
-var urlshortener = google.urlshortener({ version: 'v1', auth: 'API KEY' || oauth2Client });
+var urlshortener = google.urlshortener({ version: 'v1', auth: 'API KEY' });
 ```
 
 ### Requests
