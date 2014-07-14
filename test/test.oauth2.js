@@ -107,7 +107,7 @@ describe('OAuth2 client', function() {
     var google = new googleapis.GoogleApis();
     oauth2client.transporter = {
       request: function(opts, callback) {
-        if (i == 1) {
+        if (i === 1) {
           assert.equal(opts.uri, 'https://accounts.google.com/o/oauth2/token');
           return done();
         }

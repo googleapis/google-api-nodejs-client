@@ -27,14 +27,11 @@ function Urlshortener(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url',
         method: 'GET'
       };
-
-      // Do not append path parameters to query also
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -48,14 +45,11 @@ function Urlshortener(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url',
         method: 'POST'
       };
-
-      // Do not append path parameters to query also
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -71,14 +65,11 @@ function Urlshortener(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url/history',
         method: 'GET'
       };
-
-      // Do not append path parameters to query also
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     }

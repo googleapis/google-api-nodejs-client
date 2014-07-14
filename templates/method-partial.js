@@ -23,7 +23,7 @@
   };
 
   {% for pname, p in m.parameters -%}
-  {% if p.location == 'path' %}delete params.{{pname}};{% endif %}
+  {% if p.location === 'path' %}delete params.{{pname}};{% endif %}
   {% endfor %}
 
   return createAPIRequest(self, params, options, isMedia, callback);

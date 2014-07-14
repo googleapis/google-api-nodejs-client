@@ -26,15 +26,13 @@ function Plus(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.activityId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -52,17 +50,15 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/activities/' + params.collection,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.collection;
 
       delete params.userId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -81,14 +77,11 @@ function Plus(options) {
      * @return {object} Request object
      */
     search: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities',
         method: 'GET'
       };
-
-      // Do not append path parameters to query also
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     }
@@ -107,15 +100,13 @@ function Plus(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/comments/' + params.commentId,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.commentId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -133,15 +124,13 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId + '/comments',
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.activityId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     }
@@ -162,17 +151,15 @@ function Plus(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/moments/' + params.collection,
         method: 'POST'
       };
 
-      // Do not append path parameters to query also
       delete params.collection;
 
       delete params.userId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -192,17 +179,15 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/moments/' + params.collection,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.collection;
 
       delete params.userId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -217,15 +202,13 @@ function Plus(options) {
      * @return {object} Request object
      */
     remove: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/moments/' + params.id,
         method: 'DELETE'
       };
 
-      // Do not append path parameters to query also
       delete params.id;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     }
@@ -244,15 +227,13 @@ function Plus(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.userId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -271,17 +252,15 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/people/' + params.collection,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.collection;
 
       delete params.userId;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -299,16 +278,14 @@ function Plus(options) {
      * @return {object} Request object
      */
     listByActivity: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId + '/people/' + params.collection,
         method: 'GET'
       };
 
-      // Do not append path parameters to query also
       delete params.activityId;
       delete params.collection;
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     },
@@ -326,14 +303,11 @@ function Plus(options) {
      * @return {object} Request object
      */
     search: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people',
         method: 'GET'
       };
-
-      // Do not append path parameters to query also
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     }

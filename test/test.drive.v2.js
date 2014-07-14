@@ -16,13 +16,8 @@
 
 'use strict';
 
-var url = require('url'),
-    assert = require('assert'),
-    qs = require('querystring'),
-    fs = require('fs');
-
-var google = require('../lib/googleapis.js'),
-    modulePath = __dirname + '/..';
+var assert = require('assert');
+var google = require('../lib/googleapis.js');
 
 describe('drive:v2', function() {
 

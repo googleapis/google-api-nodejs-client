@@ -25,14 +25,11 @@ function Oauth2(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/oauth2/v2/userinfo',
         method: 'GET'
       };
-
-      // Do not append path parameters to query also
-
-      var isMedia = false;
 
       return createAPIRequest(self, params, options, isMedia, callback);
     }

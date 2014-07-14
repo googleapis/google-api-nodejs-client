@@ -1,3 +1,5 @@
+'use strict';
+
 var to_export = {};
 
 var path = require('path');
