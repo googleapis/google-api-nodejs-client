@@ -19,7 +19,7 @@
 var assert = require('assert');
 var google = require('../lib/googleapis.js');
 
-describe('google', function() {
+describe.only('google', function() {
   describe('.options()', function() {
     it('should be a function', function() {
       assert.equal(typeof google.options, 'function');
@@ -29,6 +29,22 @@ describe('google', function() {
       google.options({ transporter: null });
       assert.notEqual(google.transporter, null);
       assert.equal(typeof google.transporter, 'object');
+    });
+
+    it('should expose _options', function() {
+      google.options({ hello: 'world' });
+      assert.equal(JSON.stringify(google._options), JSON.stringify({ hello: 'world' }));
+    });
+
+    it('should remove transporter if passed in', function() {
+      google.options({ hello: 'world', transporter: 'transporter' });
+      assert.equal(google._options.transporter, undefined);
+      assert.equal(google._options.hello, 'world');
+    });
+
+    it('should expose _options values', function() {
+      google.options({ hello: 'world' });
+      assert.equal(google._options.hello, 'world');
     });
   });
 });
