@@ -7,3 +7,4 @@ apis/*
 !apis/urlshortener/*
 !apis/plus/*
 !apis/oauth2/*
+upload.py
