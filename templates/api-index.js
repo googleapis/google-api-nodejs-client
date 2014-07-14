@@ -1,15 +1,15 @@
 'use strict';
 
-var to_export = {};
-
 var path = require('path');
 var fs = require('fs');
 var files = fs.readdirSync(__dirname);
 
+var APIs = {};
+
 files.forEach(function(filename) {
   var stat = fs.statSync(path.join(__dirname, filename));
   if (stat.isDirectory()) {
-    Object.defineProperty(to_export, filename, {
+    Object.defineProperty(APIs, filename, {
       get: function() {
         return function(options) {
           var type = typeof options;
@@ -17,12 +17,10 @@ files.forEach(function(filename) {
           if (type === 'string') {
             version = options;
             options = {};
-          }
-          else if (type === 'object') {
+          } else if (type === 'object') {
             version = options.version;
             delete options.version;
-          }
-          else {
+          } else {
             throw new Error('Argument error: Accepts only string or object');
           }
           try {
@@ -46,4 +44,4 @@ files.forEach(function(filename) {
  * Export the apis
  * @type {Object}
  */
-module.exports = to_export;
+module.exports = APIs;

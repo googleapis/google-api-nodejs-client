@@ -13,9 +13,15 @@
 {% else -%}
  * @param {object} params.resource Body of request
 {% endif -%}
+{% if m.parameterOrder.length -%}
+ * @throws {Error} If a required parameter is missing.
+{% endif -%}
  * @return {object} Request object
  */
 {{ mname }}: function(params, callback) {
+  {% if m.parameterOrder.length -%}
+  checkRequired(params, ['{{ m.parameterOrder|join("', '")|safe }}']);
+  {%- endif -%}
   var isMedia = {% if m.supportsMediaUpload %}true{% else %}false{% endif %};
   var options = {
     url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},

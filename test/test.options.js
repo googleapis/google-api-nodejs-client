@@ -51,8 +51,16 @@ describe('google', function() {
       var g = new google.GoogleApis();
       g.options({ hello: 'world' });
       var drive = g.drive({ version: 'v2', hello: 'changed' });
-      var req = drive.files.get({});
+      var req = drive.files.get({ fileId: '123' });
       assert.equal(req.hello, 'changed');
+    });
+
+    it('should promote auth apikey options on request basis', function() {
+      var g = new google.GoogleApis();
+      g.options({ auth: 'apikey1' });
+      var drive = g.drive({ version: 'v2', auth: 'apikey2' });
+      var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' });
+      assert.equal(req.url.query, 'key=apikey3');
     });
   });
 });

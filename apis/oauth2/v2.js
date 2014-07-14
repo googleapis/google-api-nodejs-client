@@ -1,4 +1,6 @@
-var createAPIRequest = require('../../lib/apirequest');
+var apirequest = require('../../lib/apirequest');
+var createAPIRequest = apirequest.createAPIRequest;
+var checkRequired = apirequest.checkRequired;
 
 /**
  * Google OAuth2 API

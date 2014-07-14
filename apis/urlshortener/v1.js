@@ -1,4 +1,6 @@
-var createAPIRequest = require('../../lib/apirequest');
+var apirequest = require('../../lib/apirequest');
+var createAPIRequest = apirequest.createAPIRequest;
+var checkRequired = apirequest.checkRequired;
 
 /**
  * URL Shortener API
@@ -24,9 +26,11 @@ function Urlshortener(options) {
      * @param {string=} params.projection Additional information to return.
      * @param {string} params.shortUrl The short URL, including the protocol.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['shortUrl']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/urlshortener/v1/url',

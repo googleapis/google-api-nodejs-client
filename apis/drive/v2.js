@@ -1,4 +1,6 @@
-var createAPIRequest = require('../../lib/apirequest');
+var apirequest = require('../../lib/apirequest');
+var createAPIRequest = apirequest.createAPIRequest;
+var checkRequired = apirequest.checkRequired;
 
 /**
  * Drive API
@@ -48,9 +50,11 @@ function Drive(options) {
      *
      * @param {string} params.appId The ID of the app.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['appId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/apps/' + params.appId,
@@ -94,9 +98,11 @@ function Drive(options) {
      *
      * @param {string} params.changeId The ID of the change.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['changeId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes/' + params.changeId,
@@ -188,9 +194,11 @@ function Drive(options) {
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['folderId', 'childId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
@@ -211,9 +219,11 @@ function Drive(options) {
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['folderId', 'childId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
@@ -233,9 +243,11 @@ function Drive(options) {
      *
      * @param {string} params.folderId The ID of the folder.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['folderId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
@@ -257,9 +269,11 @@ function Drive(options) {
      * @param {string=} params.pageToken Page token for children.
      * @param {string=} params.q Query string for searching children.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['folderId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
@@ -283,9 +297,11 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
@@ -307,9 +323,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
@@ -329,9 +347,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
@@ -354,9 +374,11 @@ function Drive(options) {
      * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
@@ -376,9 +398,11 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
@@ -399,9 +423,11 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
@@ -432,9 +458,11 @@ function Drive(options) {
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     copy: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/copy',
@@ -453,9 +481,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to delete.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
@@ -494,9 +524,11 @@ function Drive(options) {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
@@ -575,9 +607,11 @@ function Drive(options) {
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
@@ -596,9 +630,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to update.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     touch: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/touch',
@@ -617,9 +653,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to trash.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     trash: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/trash',
@@ -638,9 +676,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file to untrash.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     untrash: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/untrash',
@@ -671,9 +711,11 @@ function Drive(options) {
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
      * @param {object} params.media Media object to upload
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = true;
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
@@ -694,9 +736,11 @@ function Drive(options) {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     watch: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/watch',
@@ -720,9 +764,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId', 'parentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
@@ -743,9 +789,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId', 'parentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
@@ -765,9 +813,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
@@ -786,9 +836,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
@@ -812,9 +864,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
@@ -835,9 +889,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
@@ -857,9 +913,11 @@ function Drive(options) {
      *
      * @param {string} params.email The email address for which to return a permission ID
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     getIdForEmail: function(params, callback) {
+      checkRequired(params, ['email']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/permissionIds/' + params.email,
@@ -880,9 +938,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
@@ -901,9 +961,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID for the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
@@ -924,9 +986,11 @@ function Drive(options) {
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' should also downgrade the current owners to writers.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
@@ -948,9 +1012,11 @@ function Drive(options) {
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' should also downgrade the current owners to writers.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
@@ -976,9 +1042,11 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
@@ -1000,9 +1068,11 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
@@ -1022,9 +1092,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
@@ -1043,9 +1115,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
@@ -1066,9 +1140,11 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
@@ -1090,9 +1166,11 @@ function Drive(options) {
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
@@ -1117,9 +1195,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
      * @param {integer=} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime',
@@ -1139,9 +1219,11 @@ function Drive(options) {
      * @param {string=} params.baseRevision The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
      * @param {object} params.media Media object to upload
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = true;
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
@@ -1166,9 +1248,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
@@ -1192,9 +1276,11 @@ function Drive(options) {
      * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
@@ -1217,9 +1303,11 @@ function Drive(options) {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
@@ -1243,9 +1331,11 @@ function Drive(options) {
      * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
      * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
@@ -1267,9 +1357,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
@@ -1292,9 +1384,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
@@ -1320,9 +1414,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
@@ -1343,9 +1439,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
@@ -1365,9 +1463,11 @@ function Drive(options) {
      *
      * @param {string} params.fileId The ID of the file.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions',
@@ -1387,9 +1487,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
@@ -1410,9 +1512,11 @@ function Drive(options) {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     update: function(params, callback) {
+      checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,

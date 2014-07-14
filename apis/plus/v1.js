@@ -1,4 +1,6 @@
-var createAPIRequest = require('../../lib/apirequest');
+var apirequest = require('../../lib/apirequest');
+var createAPIRequest = apirequest.createAPIRequest;
+var checkRequired = apirequest.checkRequired;
 
 /**
  * Google+ API
@@ -23,9 +25,11 @@ function Plus(options) {
      *
      * @param {string} params.activityId The ID of the activity to get.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['activityId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId,
@@ -47,9 +51,11 @@ function Plus(options) {
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/activities/' + params.collection,
@@ -74,9 +80,11 @@ function Plus(options) {
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      * @param {string} params.query Full-text search query string.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     search: function(params, callback) {
+      checkRequired(params, ['query']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities',
@@ -97,9 +105,11 @@ function Plus(options) {
      *
      * @param {string} params.commentId The ID of the comment to get.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['commentId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/comments/' + params.commentId,
@@ -121,9 +131,11 @@ function Plus(options) {
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string=} params.sortOrder The order in which to sort the list of comments.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['activityId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId + '/comments',
@@ -148,9 +160,11 @@ function Plus(options) {
      * @param {boolean=} params.debug Return the moment as written. Should be used only for debugging.
      * @param {string} params.userId The ID of the user to record actions for. The only valid values are "me" and the ID of the authenticated user.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/moments/' + params.collection,
@@ -176,9 +190,11 @@ function Plus(options) {
      * @param {string=} params.type Only moments of this type will be returned.
      * @param {string} params.userId The ID of the user to get moments for. The special value "me" can be used to indicate the authenticated user.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/moments/' + params.collection,
@@ -199,9 +215,11 @@ function Plus(options) {
      *
      * @param {string} params.id The ID of the moment to delete.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     remove: function(params, callback) {
+      checkRequired(params, ['id']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/moments/' + params.id,
@@ -224,9 +242,11 @@ function Plus(options) {
      *
      * @param {string} params.userId The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
+      checkRequired(params, ['userId']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId,
@@ -249,9 +269,11 @@ function Plus(options) {
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     list: function(params, callback) {
+      checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/people/' + params.collection,
@@ -275,9 +297,11 @@ function Plus(options) {
      * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     listByActivity: function(params, callback) {
+      checkRequired(params, ['activityId', 'collection']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId + '/people/' + params.collection,
@@ -300,9 +324,11 @@ function Plus(options) {
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      * @param {string} params.query Specify a query string for full text search of public text in all profiles.
      * @param {object} params.resource Body of request
+     * @throws {Error} If a required parameter is missing.
      * @return {object} Request object
      */
     search: function(params, callback) {
+      checkRequired(params, ['query']);
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/plus/v1/people',
