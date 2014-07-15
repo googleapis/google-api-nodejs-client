@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+'use strict';
+
 var googleapis = require('../lib/googleapis.js');
 
 googleapis

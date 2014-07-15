@@ -16,17 +16,10 @@
 
 'use strict';
 
-var crypto = require('crypto');
+var Generator = require('../lib/generator');
 
-function PemVerifier() {
-  this.verify = function(pubkey, data, signature, encoding) {
-    var verifier = crypto.createVerify('sha256');
-    verifier.update(data);
-    return verifier.verify(pubkey, signature, encoding);
-  };
-}
+// constructors
+var gen = new Generator();
 
-/**
- * Export PemVerifier.
- */
-module.exports = PemVerifier;
+gen.generateAllAPIs();
+gen.generateIndex();

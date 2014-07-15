@@ -13,20 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+var apirequest = require('../../lib/apirequest');
+var createAPIRequest = apirequest.createAPIRequest;
+var checkRequired = apirequest.checkRequired;
+var extend = require('../../lib/utils').extend;
+{% set Name = name|capitalize %}
 
-'use strict';
+/**
+ * {{ title }}
+ *
+ * {{ description }}
+ *
+ * @this {{ Name }}
+ * @param {object=} options Options for {{ Name }}
+ */
+function {{ Name }}(options) {
 
-var crypto = require('crypto');
+  var self = this;
+  this._options = options || {};
 
-function PemVerifier() {
-  this.verify = function(pubkey, data, signature, encoding) {
-    var verifier = crypto.createVerify('sha256');
-    verifier.update(data);
-    return verifier.verify(pubkey, signature, encoding);
+{% for rname, r in resources %}
+  this.{{ rname }} = {
+    {% include "./resource-partial.js" with r %}
   };
+{% endfor -%}
 }
 
 /**
- * Export PemVerifier.
+ * Exports {{ Name }} object
+ * @type {{ Name }}
  */
-module.exports = PemVerifier;
+module.exports = {{ Name }};

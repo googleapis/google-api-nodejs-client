@@ -2,3 +2,9 @@ node_modules/*
 .cache
 b041042364d89046c003ca151a6254ef
 .idea
+apis/*
+!apis/drive/*
+!apis/urlshortener/*
+!apis/plus/*
+!apis/oauth2/*
+upload.py

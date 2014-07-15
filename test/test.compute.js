@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+'use strict';
+
 var assert = require('assert');
 
 var googleapis = require('../lib/googleapis.js');
@@ -35,6 +37,7 @@ describe('Compute auth client', function() {
       done();
     });
   });
+
   it('should refresh token when request fails', function(done) {
     var compute = new googleapis.auth.Compute();
     compute.credentials = {

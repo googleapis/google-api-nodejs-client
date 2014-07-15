@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+'use strict';
+
 var url = require('url'),
     assert = require('assert'),
     qs = require('querystring'),
@@ -33,9 +35,6 @@ describe('OAuth2 client', function() {
 
   var PUBLIC_KEY = '';
   var PRIVATE_KEY = '';
-
-  var urlshortenerDiscoveryTransporter =
-      new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
 
   it('should generate a valid consent page url', function(done) {
     var opts = {
@@ -58,7 +57,7 @@ describe('OAuth2 client', function() {
     done();
   });
 
-  it('should set resonse_type param to code if none is given while' +
+  it('should set response_type param to code if none is given while' +
       'generating the consent page url', function(done) {
     var oauth2client =
         new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -73,74 +72,51 @@ describe('OAuth2 client', function() {
   it('should throw exception no access or refresh token is set before making ' +
       'a request', function() {
     var oauth2client =
-        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
-        .discover('urlshortener', 'v1')
-        .execute(function(err, client) {
-      assert.throws(function() {
-        client
-          .newRequest('dummy', {})
-          .withAuthClient(oauth2client)
-          .execute();
-      }, Error, 'No access or refresh token is set.');
-    });
+      new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    assert.throws(function() {
+      new googleapis.GoogleApis()
+        .urlshortener('v1').url.get({ auth: oauth2client }, function() {
+
+      });
+    }, Error, 'No access or refresh token is set.');
   });
 
-  it('should not throw any exceptions if only refresh token is set',
-      function() {
-    var oauth2client =
-        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+  it('should not throw any exceptions if only refresh token is set', function() {
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     oauth2client.credentials = { refresh_token: 'refresh_token' };
-    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
-        .discover('urlshortener', 'v1')
-        .execute(function(err, client) {
-      assert.doesNotThrow(function() {
-        client
-          .urlshortener.url.list()
-          .withAuthClient(oauth2client)
-          .execute();
-      });
+    assert.doesNotThrow(function() {
+      var google = new googleapis.GoogleApis();
+      var options = { auth: oauth2client, shortUrl: '...' };
+      google.urlshortener('v1').url.get(options, function() {});
     });
   });
 
   it('should set access token type to Bearer if none is set', function(done) {
-    var oauth2client =
-        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     oauth2client.credentials = { access_token: 'foo', refresh_token: '' };
-    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
-        .discover('urlshortener', 'v1')
-        .execute(function(err, client) {
-      var req = client.urlshortener.url.list().withAuthClient(oauth2client);
-      req.execute(function(err, result) {
+    new googleapis.GoogleApis()
+      .urlshortener('v1').url.list({ auth: oauth2client }, function(err, result) {
         assert.equal(oauth2client.credentials.token_type, 'Bearer');
-         done();
-      });
+        done();
     });
   });
 
-  it('should replay the request with a refreshed token if auth failed',
-      function(done) {
+  it('should replay the request with a refreshed token if auth failed', function(done) {
     var i = 0;
-    var oauth2client =
-        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     oauth2client.credentials = { access_token: 'foo', refresh_token: 'bar' };
-    new googleapis.GoogleApis(urlshortenerDiscoveryTransporter)
-        .discover('urlshortener', 'v1')
-        .execute(function(err, client) {
-      var req = client.urlshortener.url.list().withAuthClient(oauth2client);
-      oauth2client.transporter = {
-        request: function(opts, callback) {
-          if (i == 1) {
-            assert.equal(opts.uri,
-                'https://accounts.google.com/o/oauth2/token');
-            return done();
-          }
-          i++;
-          callback(null, null, { statusCode: 401 });
+    var google = new googleapis.GoogleApis();
+    oauth2client.transporter = {
+      request: function(opts, callback) {
+        if (i === 1) {
+          assert.equal(opts.uri, 'https://accounts.google.com/o/oauth2/token');
+          return done();
         }
-      };
-      req.execute();
-    });
+        i++;
+        callback(null, null, { statusCode: 401 });
+      }
+    };
+    google.urlshortener('v1').url.list({ auth: oauth2client });
   });
 
   it('should verify a valid certificate against a jwt',
@@ -411,7 +387,7 @@ describe('OAuth2 client', function() {
             '"alg":"RS256"' +
           '}';
 
-        var data = new Buffer(envelope).toString('base64') + 
+        var data = new Buffer(envelope).toString('base64') +
           '.' + new Buffer(idToken).toString('base64') +
           '.' + 'broken-signature';
 
@@ -759,15 +735,12 @@ describe('OAuth2 client', function() {
         done();
     });
 
-    it('should be able to retrieve a list of Google certificates',
-      function(done) {
-
-        var oauth2client =
-          new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-        oauth2client.getFederatedSignonCerts(function(err, certs) {
-          assert(Object.keys(certs).length > 0);
-          done();
-        });
-
+    it('should be able to retrieve a list of Google certificates', function(done) {
+      // TODO: This makes a real network call. It should not.
+      var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+      oauth2client.getFederatedSignonCerts(function(err, certs) {
+        assert(Object.keys(certs).length > 0);
+        done();
+      });
     });
 });
