@@ -1,47 +1,56 @@
+/**
+ * Copyright 2014 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 'use strict';
 
 var path = require('path');
-var fs = require('fs');
-var files = fs.readdirSync(__dirname);
 
-var APIs = {};
-
-files.forEach(function(filename) {
-  var stat = fs.statSync(path.join(__dirname, filename));
-  if (stat.isDirectory()) {
-    Object.defineProperty(APIs, filename, {
-      get: function() {
-        return function(options) {
-          var type = typeof options;
-          var version;
-          if (type === 'string') {
-            version = options;
-            options = {};
-          } else if (type === 'object') {
-            version = options.version;
-            delete options.version;
-          } else {
-            throw new Error('Argument error: Accepts only string or object');
-          }
-          try {
-            var Endpoint = require('./' + filename + '/' +
-                path.basename(version));
-            var ep = new Endpoint(options);
-            ep.google = this; // for drive.google.transporter
-            return Object.freeze(ep); // create new & freeze
-          }
-          catch (e) {
-            throw new Error('Error: Version \"' + version + '\" not found.');
-          }
-        };
-      },
-      enumerable: true
-    });
+function requireAPI(filename) {
+  return function(options) {
+    var type = typeof options;
+    var version;
+    if (type === 'string') {
+      version = options;
+      options = {};
+    } else if (type === 'object') {
+      version = options.version;
+      delete options.version;
+    } else {
+      throw new Error('Argument error: Accepts only string or object');
+    }
+    try {
+      var Endpoint = require('./' + filename + '/' + path.basename(version));
+      var ep = new Endpoint(options);
+      ep.google = this; // for drive.google.transporter
+      return Object.freeze(ep); // create new & freeze
+    }
+    catch (e) {
+      throw new Error('Error: Version \"' + version + '\" not found.');
+    }
   }
-});
+}
+
+{% set apisNames = items|getAPIs|uniq %}
+var APIs = {
+{% for api in apisNames -%}
+  '{{api}}': requireAPI('{{api}}'){% if loop.last %}{% else %},{% endif %}
+{% endfor -%}
+};
 
 /**
- * Export the apis
+ * Exports the APIs
  * @type {Object}
  */
 module.exports = APIs;
