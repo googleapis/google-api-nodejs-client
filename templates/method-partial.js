@@ -19,6 +19,7 @@
  * @return {object} Request object
  */
 {{ mname }}: function(params, callback) {
+  var params = extend({}, params); // shallow copy
   {% if m.parameterOrder.length -%}
   checkRequired(params, ['{{ m.parameterOrder|join("', '")|safe }}']);
   {%- endif -%}

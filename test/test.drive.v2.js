@@ -82,6 +82,7 @@ describe('drive:v2', function() {
         var drive = google.drive('v2');
         assert.notEqual(typeof drive.files.get, 'undefined');
       });
+
       it('should be a function', function() {
         var drive = google.drive('v2');
         assert.equal(typeof drive.files.get, 'function');
@@ -91,6 +92,18 @@ describe('drive:v2', function() {
         var drive = google.drive('v2');
         var req = drive.files.get({ fileId: '123' });
         assert.equal(req.constructor.name, 'Request');
+      });
+
+      it('should not modify params directly', function() {
+        var drive = google.drive('v2');
+        var options = { fileId: '123' };
+        assert.doesNotThrow(
+          function() {
+            drive.files.get(options);
+            drive.files.get(options);
+          },
+          /Missing required parameter: fileId/
+        );
       });
     });
   });

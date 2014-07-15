@@ -16,6 +16,7 @@
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
 var checkRequired = apirequest.checkRequired;
+var extend = require('../../lib/utils').extend;
 
 /**
  * Drive API
@@ -44,6 +45,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/about',
@@ -68,6 +70,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['appId']);
       var isMedia = false;
       var options = {
@@ -92,6 +95,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/apps',
@@ -116,6 +120,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['changeId']);
       var isMedia = false;
       var options = {
@@ -142,6 +147,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes',
@@ -165,6 +171,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     watch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/changes/watch',
@@ -187,6 +194,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     stop: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/channels/stop',
@@ -212,6 +220,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['folderId', 'childId']);
       var isMedia = false;
       var options = {
@@ -237,6 +246,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['folderId', 'childId']);
       var isMedia = false;
       var options = {
@@ -261,6 +271,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['folderId']);
       var isMedia = false;
       var options = {
@@ -287,6 +298,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['folderId']);
       var isMedia = false;
       var options = {
@@ -315,6 +327,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
@@ -341,6 +354,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
@@ -365,6 +379,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -392,6 +407,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -416,6 +432,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
@@ -441,6 +458,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
@@ -476,6 +494,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     copy: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -499,6 +518,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -520,6 +540,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     emptyTrash: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files/trash',
@@ -542,6 +563,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -571,6 +593,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = true;
       var options = {
         url: 'https://www.googleapis.com/upload/drive/v2/files',
@@ -593,6 +616,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       var isMedia = false;
       var options = {
         url: 'https://www.googleapis.com/drive/v2/files',
@@ -625,6 +649,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -648,6 +673,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     touch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -671,6 +697,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     trash: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -694,6 +721,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     untrash: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -729,6 +757,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = true;
       var options = {
@@ -754,6 +783,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     watch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -782,6 +812,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'parentId']);
       var isMedia = false;
       var options = {
@@ -807,6 +838,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'parentId']);
       var isMedia = false;
       var options = {
@@ -831,6 +863,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -854,6 +887,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -882,6 +916,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
@@ -907,6 +942,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
@@ -931,6 +967,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     getIdForEmail: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['email']);
       var isMedia = false;
       var options = {
@@ -956,6 +993,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -979,6 +1017,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -1004,6 +1043,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
@@ -1030,6 +1070,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'permissionId']);
       var isMedia = false;
       var options = {
@@ -1060,6 +1101,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
@@ -1086,6 +1128,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
@@ -1110,6 +1153,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -1133,6 +1177,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -1158,6 +1203,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
@@ -1184,6 +1230,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'propertyKey']);
       var isMedia = false;
       var options = {
@@ -1213,6 +1260,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -1237,6 +1285,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = true;
       var options = {
@@ -1266,6 +1315,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
@@ -1294,6 +1344,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
@@ -1321,6 +1372,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
@@ -1349,6 +1401,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId']);
       var isMedia = false;
       var options = {
@@ -1375,6 +1428,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
@@ -1402,6 +1456,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'commentId', 'replyId']);
       var isMedia = false;
       var options = {
@@ -1432,6 +1487,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     delete: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
@@ -1457,6 +1513,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
@@ -1481,6 +1538,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId']);
       var isMedia = false;
       var options = {
@@ -1505,6 +1563,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     patch: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {
@@ -1530,6 +1589,7 @@ function Drive(options) {
      * @return {object} Request object
      */
     update: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['fileId', 'revisionId']);
       var isMedia = false;
       var options = {

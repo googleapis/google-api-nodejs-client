@@ -16,6 +16,7 @@
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
 var checkRequired = apirequest.checkRequired;
+var extend = require('../../lib/utils').extend;
 
 /**
  * Google+ API
@@ -43,6 +44,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['activityId']);
       var isMedia = false;
       var options = {
@@ -69,6 +71,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
@@ -98,6 +101,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     search: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['query']);
       var isMedia = false;
       var options = {
@@ -123,6 +127,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['commentId']);
       var isMedia = false;
       var options = {
@@ -149,6 +154,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['activityId']);
       var isMedia = false;
       var options = {
@@ -178,6 +184,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     insert: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
@@ -208,6 +215,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
@@ -233,6 +241,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     remove: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['id']);
       var isMedia = false;
       var options = {
@@ -260,6 +269,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     get: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['userId']);
       var isMedia = false;
       var options = {
@@ -287,6 +297,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     list: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['userId', 'collection']);
       var isMedia = false;
       var options = {
@@ -315,6 +326,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     listByActivity: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['activityId', 'collection']);
       var isMedia = false;
       var options = {
@@ -342,6 +354,7 @@ function Plus(options) {
      * @return {object} Request object
      */
     search: function(params, callback) {
+      var params = extend({}, params); // shallow copy
       checkRequired(params, ['query']);
       var isMedia = false;
       var options = {

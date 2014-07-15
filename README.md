@@ -80,7 +80,9 @@ With the code returned, you can ask for an access token as shown below:
 ``` js
 oauth2Client.getToken(code, function(err, tokens) {
   // Now tokens contains an access_token and an optional refresh_token. Save them.
-  if(!err) oauth2Client.setCredentials(tokens);
+  if(!err) {
+    oauth2Client.setCredentials(tokens);
+  }
 });
 ```
 
@@ -147,7 +149,7 @@ oauth2Client.credentials = {
   refresh_token: 'REFRESH TOKEN HERE'
 };
 
-var plus = google.plus({ auth: oauth2Client });
+var plus = google.plus({ version: 'v1', auth: oauth2Client });
 
 plus.people.get({ userId: 'me' }, callback);
 ```
@@ -166,6 +168,21 @@ drive.files.insert({
     mimeType: 'text/plain'
   },
   media: 'Hello World'
+}, callback);
+```
+
+You can also upload media by specifying `media` as a readable stream:
+
+``` js
+var fs = require('fs');
+var drive = google.drive({ version: 'v2', auth: oauth2Client });
+
+drive.files.insert({
+  resource: {
+    title: 'testimage.png',
+    mimeType: 'image/png'
+  },
+  media: fs.createReadStream('awesome.png') // read streams are awesome!
 }, callback);
 ```
 

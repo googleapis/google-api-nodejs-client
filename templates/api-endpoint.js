@@ -16,6 +16,7 @@
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
 var checkRequired = apirequest.checkRequired;
+var extend = require('../../lib/utils').extend;
 {% set Name = name|capitalize %}
 
 /**
