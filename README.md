@@ -1,76 +1,37 @@
-# google-api-nodejs-client [alpha]
+# Google APIs NodeJS Client [![Build Status][travisimg]][travis]
 
-[![Build Status](https://travis-ci.org/google/google-api-nodejs-client.png)](https://travis-ci.org/google/google-api-nodejs-client)
-
-`google-api-nodejs-client` is Google's officially supported
-[node.js](http://nodejs.org/) client
-library for accessing Google APIs, it also supports authorization and
-authentication with OAuth 2.0.
+Google's officially supported [node.js][node] client library for using
+Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
 ### Questions/problems?
 
-* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)](http://stackoverflow.com/questions/tagged/google-api-nodejs-client)
-* If you found a bug, please [file a bug](https://github.com/google/google-api-nodejs-client/issues).
-
-**Note**: This library is currently in *alpha* status, meaning that we can make
-changes in the future that *may not be compatible* with the previous versions.
+* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)][stackoverflow]
+* If you've found an bug/issue, please [file it on GitHub][bugs].
 
 ## Installation
 
-The library is distributed on `npm`. In order to add it as a dependency,
+This library is distributed on `npm`. In order to add it as a dependency,
 run the following command:
 
-~~~~ sh
+``` sh
 $ npm install googleapis
-~~~~
+```
 
-## Guide
+## Usage
 
-### Discover APIs
+``` js
+var google = require('googleapis');
+var urlshortener = google.urlshortener('v1');
 
-Dynamically load Google APIs and start making requests:
+var params = { shortUrl: 'http://goo.gl/xKbRu3' };
 
-~~~~ js
-var googleapis = require('googleapis');
-
-googleapis
-    .discover('urlshortener', 'v1')
-    .discover('plus', 'v1')
-    .execute(function(err, client) {
-  if (err) {
-    console.log('Problem during the client discovery.', err);
-    return;
-  }
-  var params = { shortUrl: 'http://goo.gl/DdUKX' };
-  var getUrlReq = client.urlshortener.url.get(params);
-
-  getUrlReq.execute(function (err, response) {
-    console.log('Long url is', response.longUrl);
-  });
-
-  var getUserReq = client.plus.people.get({ userId: '+burcudogan' });
-
-  getUserReq.execute(function(err, user) {
-    console.log('User id is: ' + user.id);
-  });
+urlshortener.url.get(params, function (err, response) {
+  console.log('Long url is', response.longUrl);
 });
-~~~~
+```
 
 Supported APIs are listed on
-[Google APIs Explorer](https://developers.google.com/apis-explorer).
-
-#### Discovery Document Caching
-
-Discovery documents are being cached for 5 minutes locally.
-You can configure the directory used to store cached discovery
-files by using the `cache.path` option.
-
-~~~~ js
-googleapis
-    .discover('plus', 'v3')
-    .withOpts({ cache: { path: '<path>' }))
-    .execute();
-~~~~
+[Google APIs Explorer][apiexplorer].
 
 ### Authorization and Authentication
 
@@ -80,21 +41,19 @@ basics of Google's OAuth 2.0 implementation is explained on
 [Google Authorization and Authentication
 documentation](https://developers.google.com/accounts/docs/OAuth2Login).
 
-A complete sample application that authorizes and authenticates with OAuth2.0
+A complete sample application that authorizes and authenticates with the OAuth 2.0
 client is available at `examples/oauth2.js`.
 
 #### Consent Page Url
 
-In order to ask for permissions from a user to retrieve an access token, you
-should redirect them to a consent page. In order to create a consent page
-URL:
+To ask for permissions from a user to retrieve an access token, you
+redirect them to a consent page. To create a consent page URL:
 
-~~~~ js
-var googleapis = require('googleapis'),
-    OAuth2 = googleapis.auth.OAuth2;
+``` js
+var google = require('googleapis'),
+    OAuth2 = google.auth.OAuth2;
 
-var oauth2Client =
-    new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
 // generates a url that allows offline access and asks permissions
 // for Google+ scope.
@@ -104,78 +63,73 @@ var scopes = [
 ];
 
 var url = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope: scopes.join(" ") // space delimited string of scopes
+  access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
+  scope: scopes.join(' ') // space delimited string of scopes
 });
-~~~~
+```
 
 #### Retrieving Tokens
+
 Once a user has given permissions on the consent page, Google will redirect
-the page to the redirect url you have provided with a code query parameter.
+the page to the redirect URL you have provided with a code query parameter.
 
     GET /oauthcallback?code={authorizationCode}
 
 With the code returned, you can ask for an access token as shown below:
 
-~~~~ js
+``` js
 oauth2Client.getToken(code, function(err, tokens) {
-  // contains an access_token and optionally a refresh_token.
-  // save them permanently.
+  // Now tokens contains an access_token and an optional refresh_token. Save them.
+  if(!err) {
+    oauth2Client.setCredentials(tokens);
+  }
 });
-~~~~
+```
 
 ### API Client
 
-Client libraries are generated during runtime by metadata provided by Google
-APIs Discovery Service. Metadata provided by Discovery Service is cached,
-and won't be requested each time you load a client. Below, there is an
-example of loading a client for
-[URL Shortener API](https://developers.google.com/url-shortener/).
+API Client endpoints are available for many APIs. Below is an
+example of loading a client for [URL Shortener API][urlshort].
 
-~~~~ js
-googleapis
-    .discover('urlshortener', 'v1')
-    .execute(function(err, client) {
-  // handle discovery errors
-  // make requests
-});
-~~~~
+Just specify the version as a string to load that particular client.
+Here we load version `v1` of the `urlshortener` client.
+``` js
+var urlshortener = google.urlshortener('v1');
+```
+
+You can also specify additional options when loading a specific client endpoint. For example,
+to specify an default `auth` option (API key or oauth2Client), simply pass it in like so:
+``` js
+var urlshortener = google.urlshortener({ version: 'v1', auth: 'API KEY' });
+```
 
 ### Requests
 
 The following sample loads a client for URL Shortener and retrieves the long url
 of the given short url:
 
-~~~~ js
-googleapis
-    .discover('urlshortener', 'v1')
-    .execute(function(err, client) {
-  // handle discovery errors
-  client.urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-      .execute(function(err, result) {
-    // result.longUrl contains the long url.
-  });
+``` js
+var urlshortener = google.urlshortener('v1');
+
+urlshortener.url.get({ shortUrl: 'http://goo.gl/Fzv2Ff' }, function(err, result) {
+  console.log(result.longUrl); // print the long url
 });
-~~~~
+```
 
 Alternatively, you may need to send an API key with the
-request you are going to make. The following creates and executes a request from the Google+ API service to retrieve a person profile given a userId:
+request you are going to make. The following creates and executes a request
+from the Google+ API service to retrieve a person profile given a userId:
 
-~~~~ js
-googleapis
-    .discover('plus', 'v1')
-    .execute(function(err, client) {
-  // handle discovery errors
-  var getUserAuthdReq = client.plus.people.get({ userId: '+burcudogan' })
-      .withApiKey(API_KEY);
+``` js
+var API_KEY = 'ABC123';
+var plus = google.plus('v1');
 
-  getUserAuthdReq.execute(function(err, user) {
-    console.log("Result: " + (err ? err.message : user.displayName));
-  });
+plus.people.get({ key: API_KEY, userId: '+google' }, function(err, user) {
+  console.log('Result: ' + (err ? err.message : user.displayName));
 });
-~~~~
+```
 
-To learn more about API keys, please see the [documentation](https://developers.google.com/console/help/#UsingKeys).
+To learn more about API keys, please see the [documentation][usingkeys].
 
 #### Making Authenticated Requests
 
@@ -186,60 +140,68 @@ case the access_token has expired.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
-~~~~ js
-var oauth2Client =
-    new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+``` js
+var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
-// Retrieve tokens via token exchange explaind above.
-// Or you can set them.
+// Retrieve tokens via token exchange explained above or set them:
 oauth2Client.credentials = {
   access_token: 'ACCESS TOKEN HERE',
   refresh_token: 'REFRESH TOKEN HERE'
 };
 
-client
-    .plus.people.get({ userId: 'me' })
-    .withAuthClient(oauth2Client)
-    .execute(callback);
-~~~~
+var plus = google.plus({ version: 'v1', auth: oauth2Client });
 
-### Batch requests (experimental)
-
-You can combine multiple requests in a single one by using batch requests.
-
-~~~~ js
-var getUserReq =
-    client.plus.people.get({ userId: '+BurcuDogan' });
-
-var insertUrlReq =
-    client.urlshortener.url.insert({ longUrl: 'http://google.com' });
-
-client
-    .newBatchRequest()
-    .add(getUserReq)
-    .add(insertUrlReq)
-    .execute(function(err, results) {
-  // handle results
-});
-~~~~
+plus.people.get({ userId: 'me' }, callback);
+```
 
 ### Media Uploads
 
 Client supports basic and multipart media uploads. For creation and modification requests
 with media attachments, take a look at the `examples/mediaupload.js` sample.
 
-~~~~ js
-client
-    .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
-    .withMedia('text/plain', 'Hello World')
-    .execute();
-~~~~
+``` js
+var drive = google.drive({ version: 'v2', auth: oauth2Client });
+
+drive.files.insert({
+  resource: {
+    title: 'Test',
+    mimeType: 'text/plain'
+  },
+  media: 'Hello World'
+}, callback);
+```
+
+You can also upload media by specifying `media` as a readable stream:
+
+``` js
+var fs = require('fs');
+var drive = google.drive({ version: 'v2', auth: oauth2Client });
+
+drive.files.insert({
+  resource: {
+    title: 'testimage.png',
+    mimeType: 'image/png'
+  },
+  media: fs.createReadStream('awesome.png') // read streams are awesome!
+}, callback);
+```
 
 ## License
 
-`google-api-nodejs-client` is licensed with Apache 2.0. Full license text is
-available on COPYING file.
+This library is licensed under Apache 2.0. Full license text is
+available in [COPYING][copying].
 
 ## Contributing
 
-See [CONTRIBUTING](https://github.com/google/google-api-nodejs-client/tree/master/CONTRIBUTING.md).
+See [CONTRIBUTING][contributing].
+
+[travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
+[bugs]: https://github.com/google/google-api-nodejs-client/issues
+[node]: http://nodejs.org/
+[travis]: https://travis-ci.org/google/google-api-nodejs-client
+[stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
+[apiexplorer]: https://developers.google.com/apis-explorer
+[urlshort]: https://developers.google.com/url-shortener/
+[usingkeys]: https://developers.google.com/console/help/#UsingKeys
+[contributing]: https://github.com/google/google-api-nodejs-client/tree/master/CONTRIBUTING.md
+[copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
