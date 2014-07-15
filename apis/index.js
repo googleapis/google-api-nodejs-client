@@ -17,6 +17,11 @@
 
 var path = require('path');
 
+/**
+ * Return a Function that requires an API from the disk
+ * @param  {String} filename Filename of API
+ * @return {function}        function used to require the API from disk
+ */
 function requireAPI(filename) {
   return function(options) {
     var type = typeof options;
@@ -40,7 +45,10 @@ function requireAPI(filename) {
     }
   }
 }
-
+/**
+ * APIs to be exported
+ * @type {Object}
+ */
 var APIs = {
   'adexchangebuyer': requireAPI('adexchangebuyer'),
   'adexchangeseller': requireAPI('adexchangeseller'),
