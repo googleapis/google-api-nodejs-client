@@ -17,9 +17,19 @@
 'use strict';
 
 var Generator = require('../lib/generator');
-
+var debug = false;
 // constructors
-var gen = new Generator();
+var gen = new Generator({ debug: debug, includePrivate: false });
 
-gen.generateAllAPIs();
-gen.generateIndex();
+console.log('Generating APIs...');
+gen.generateAllAPIs(function(err, success) {
+  if (err) {
+    throw err;
+  }
+  gen.generateIndex(function(err, filename) {
+    if (err) {
+      throw err;
+    }
+    console.log('Finished generating APIs!');
+  });
+});
