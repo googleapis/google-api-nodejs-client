@@ -51,7 +51,7 @@ var resourceBody = {
   'variations': variations
 };
 
-// Load Google Analytics v3 API resources and methods
+// OLD
 googleapis
     .discover('analytics', 'v3')
     .execute(function(err, client) {
@@ -64,10 +64,15 @@ googleapis
           profileId: profileId
         }, resourceBody)
         .withAuthClient(auth)
-        .execute(function(err, result) {
-          if (err) {
-            console.log('Error', err);
-            return;
-          }
-        });
+        .execute(callback);
 });
+
+// NEW
+var analytics = google.analytics('v3');
+analytics.management.experiments.insert({
+  auth: auth,
+  accountId: accountId,
+  webPropertyId: webPropertyId,
+  profileId: profileId,
+  resource: resourceBody
+}, callback);

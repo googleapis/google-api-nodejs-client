@@ -82,10 +82,8 @@ describe('Requests', function() {
     assert.equal(req.uri.query, 'someAttr=someValue&uploadType=multipart');
   });
 
-  it('should return a single error for single requests', function(done) {
-    // TODO: This makes a real network call. Fix this.
-    var singleResponseMockTransporter = new MockTransporter(__dirname + '/data/res_single_err.json');
-    var google = new googleapis.GoogleApis(singleResponseMockTransporter);
+  it('should return a single response object for single requests', function(done) {
+    var google = new googleapis.GoogleApis();
     var urlshortener = google.urlshortener('v1');
     var obj = { longUrl: 'http://google.com/' };
     urlshortener.url.insert({ resource: obj }, function(err, result) {
@@ -94,7 +92,7 @@ describe('Requests', function() {
       assert.notEqual(result.kind, null);
       assert.notEqual(result.id, null);
       assert.equal(result.longUrl, 'http://google.com/');
-      done();
+      done(err);
     });
   });
 
@@ -104,13 +102,13 @@ describe('Requests', function() {
     var google = new googleapis.GoogleApis(singleResponseMockTransporter);
     var urlshortener = google.urlshortener('v1');
     var obj = { longUrl: 'http://google.com/' };
-    urlshortener.url.insert({ resource: obj }, function(err, result) {
+    var req = urlshortener.url.insert({ resource: obj }, function(err, result) {
       assert.equal(err, null);
       assert.notEqual(result, null);
       assert.notEqual(result.kind, null);
       assert.notEqual(result.id, null);
       assert.equal(result.longUrl, 'http://google.com/');
-      done();
+      done(err);
     });
   });
 
@@ -125,32 +123,31 @@ describe('Requests', function() {
   });
 
   // it('should generate valid multipart upload payload if media and metadata are both set', function(done) {
-  //   // TOOD: Fix this test.
-  //   // var google = new googleapis.GoogleApis();
-  //   // var drive = google.drive('v2');
-  //   // var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' });
-  //   // assert.equal(req.method, 'POST');
-  //   // assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
-  //   // assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
-  //   // assert.equal(payload.multipart[0].body, '{"title":"title"}');
-  //   // assert.equal(req.headers['Content-Type'], 'multipart/related;');
-  //   // assert.equal(payload.multipart[1].body, 'hey');
-  //   // assert.equal(payload.body, null);
-  //   // done();
+    // TOOD: Fix this test.
+    // var google = new googleapis.GoogleApis();
+    // var drive = google.drive('v2');
+    // var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' });
+    // assert.equal(req.method, 'POST');
+    // assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+    // assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
+    // assert.equal(payload.multipart[0].body, '{"title":"title"}');
+    // assert.equal(req.headers['Content-Type'], 'multipart/related;');
+    // assert.equal(payload.multipart[1].body, 'hey');
+    // assert.equal(payload.body, null);
+    // done();
   // });
 
-  // it('should differentiate query params and body object', function(done) {
-  //   // TODO: Fix this test.
-  //   // googleapis.discover('drive', 'v2').execute(function(err, client) {
-  //   //   var req1 = client.drive.files.insert({ title: 'Hello' });
-  //   //   var req2 = client.drive.files.list({ q: 'title contains "H"' });
-  //   //   var req3 = client.drive.files.get({ fileId: 'root' });
-
-  //   //   assert.equal(req1.params.title, null);
-  //   //   assert.equal(req1.body.title, 'Hello');
-  //   //   assert.equal(req2.params.q, 'title contains "H"');
-  //   //   assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
-  //   //   done();
-  //   // });
+  // it('should differentiate query params and body object', function() {
+    // TODO: Fix this test.
+    // googleapis.discover('drive', 'v2').execute(function(err, client) {
+    //   var req1 = client.drive.files.insert({ title: 'Hello' });
+    //   var req2 = client.drive.files.list({ q: 'title contains "H"' });
+    //   var req3 = client.drive.files.get({ fileId: 'root' });
+    //   assert.equal(req1.params.title, null);
+    //   assert.equal(req1.body.title, 'Hello');
+    //   assert.equal(req2.params.q, 'title contains "H"');
+    //   assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
+    //   done();
+    // });
   // });
 });

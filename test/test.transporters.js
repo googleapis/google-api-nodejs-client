@@ -30,22 +30,18 @@ describe('Transporters', function() {
     new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
   var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+';
 
-  it('should set default client user agent if none is set', function(done) {
+  it('should set default client user agent if none is set', function() {
     var opts = urlshortenerDiscoveryTransporter.configure({});
     var re = new RegExp(defaultUserAgentRE);
     assert(re.test(opts.headers['User-Agent']));
-    done();
   });
 
-  it('should append default client user agent to the existing user agent',
-    function(done) {
+  it('should append default client user agent to the existing user agent', function() {
     var applicationName = 'MyTestApplication-1.0';
     var opts = urlshortenerDiscoveryTransporter.configure({
       headers: { 'User-Agent': applicationName }
     });
     var re = new RegExp(applicationName + ' ' + defaultUserAgentRE);
     assert(re.test(opts.headers['User-Agent']));
-    done();
   });
-
 });

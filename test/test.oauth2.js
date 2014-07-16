@@ -75,9 +75,7 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(function() {
       new googleapis.GoogleApis()
-        .urlshortener('v1').url.get({ auth: oauth2client }, function() {
-
-      });
+        .urlshortener('v1').url.get({ auth: oauth2client });
     }, Error, 'No access or refresh token is set.');
   });
 
@@ -87,7 +85,7 @@ describe('OAuth2 client', function() {
     assert.doesNotThrow(function() {
       var google = new googleapis.GoogleApis();
       var options = { auth: oauth2client, shortUrl: '...' };
-      google.urlshortener('v1').url.get(options, function() {});
+      google.urlshortener('v1').url.get(options);
     });
   });
 
@@ -97,7 +95,7 @@ describe('OAuth2 client', function() {
     new googleapis.GoogleApis()
       .urlshortener('v1').url.list({ auth: oauth2client }, function(err, result) {
         assert.equal(oauth2client.credentials.token_type, 'Bearer');
-        done();
+        done(err);
     });
   });
 
