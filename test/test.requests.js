@@ -96,22 +96,6 @@ describe('Requests', function() {
     });
   });
 
-  it('should return a single response object for single requests', function(done) {
-    // TODO: This makes real network calls... fix this.
-    var singleResponseMockTransporter = new MockTransporter(__dirname + '/data/res_single.json');
-    var google = new googleapis.GoogleApis(singleResponseMockTransporter);
-    var urlshortener = google.urlshortener('v1');
-    var obj = { longUrl: 'http://google.com/' };
-    var req = urlshortener.url.insert({ resource: obj }, function(err, result) {
-      assert.equal(err, null);
-      assert.notEqual(result, null);
-      assert.notEqual(result.kind, null);
-      assert.notEqual(result.id, null);
-      assert.equal(result.longUrl, 'http://google.com/');
-      done(err);
-    });
-  });
-
   it('should generate a valid upload if media is set, metadata is not set', function() {
     var google = new googleapis.GoogleApis();
     var drive = google.drive('v2');
