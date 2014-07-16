@@ -23,9 +23,13 @@ var gen = new Generator({ debug: debug, includePrivate: false });
 
 console.log('Generating APIs...');
 gen.generateAllAPIs(function(err, success) {
-  if (err) throw err;
+  if (err) {
+    throw err;
+  }
   gen.generateIndex(function(err, filename) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
     console.log('Finished generating APIs!');
   });
 });
