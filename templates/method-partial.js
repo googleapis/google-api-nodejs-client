@@ -6,15 +6,16 @@
  * {{ m.description|safe }}
  *
  {% for pname, p in m.parameters -%}
- * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description|safe }}
+ * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
- * @param {object} params.media Media object to upload
+ * @param  {object}        params.resource     Media resource metadata
+ * @param  {string|object} params.media        Media body data to upload
 {% else -%}
- * @param {object} params.resource Body of request
+ * @param  {object} params.resource Request body data
 {% endif -%}
 {% if m.parameterOrder.length -%}
- * @throws {Error} If a required parameter is missing.
+ * @throws {Error}  If a required parameter is missing.
 {% endif -%}
  * @return {object} Request object
  */

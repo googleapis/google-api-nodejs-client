@@ -38,10 +38,10 @@ function Urlshortener(options) {
      *
      * Expands a short URL or gets creation time and analytics.
      *
-     * @param {string=} params.projection Additional information to return.
-     * @param {string} params.shortUrl The short URL, including the protocol.
-     * @param {object} params.resource Body of request
-     * @throws {Error} If a required parameter is missing.
+     * @param  {string=} params.projection Additional information to return.
+     * @param  {string} params.shortUrl The short URL, including the protocol.
+     * @param  {object} params.resource Request body data
+     * @throws {Error}  If a required parameter is missing.
      * @return {object} Request object
      */
     get: function(params, callback) {
@@ -61,7 +61,7 @@ function Urlshortener(options) {
      *
      * Creates a new short URL.
      *
-     * @param {object} params.resource Body of request
+     * @param  {object} params.resource Request body data
      * @return {object} Request object
      */
     insert: function(params, callback) {
@@ -80,9 +80,9 @@ function Urlshortener(options) {
      *
      * Retrieves a list of URLs shortened by a user.
      *
-     * @param {string=} params.projection Additional information to return.
-     * @param {string=} params.start-token Token for requesting successive pages of results.
-     * @param {object} params.resource Body of request
+     * @param  {string=} params.projection Additional information to return.
+     * @param  {string=} params.start-token Token for requesting successive pages of results.
+     * @param  {object} params.resource Request body data
      * @return {object} Request object
      */
     list: function(params, callback) {

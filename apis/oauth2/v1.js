@@ -38,7 +38,7 @@ function Oauth2(options) {
      *
      * Get user info
      *
-     * @param {object} params.resource Body of request
+     * @param  {object} params.resource Request body data
      * @return {object} Request object
      */
     get: function(params, callback) {
