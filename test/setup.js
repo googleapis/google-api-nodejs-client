@@ -1,6 +1,6 @@
 var fs = require('fs');
 var nock = require('nock');
-// nock.disableNetConnect();
+nock.disableNetConnect();
 var GOOGLEAPIS = 'https://www.googleapis.com';
 
 // Handle OAuth certificate request
