@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
 
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
@@ -22,7 +22,7 @@ var CLIENT_ID = 'YOUR CLIENT ID HERE';
 var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
 var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
 
-var auth = new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var auth = new google.auth.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 auth.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
 });
@@ -51,23 +51,17 @@ var resourceBody = {
   'variations': variations
 };
 
-// Load Google Analytics v3 API resources and methods
-googleapis
-    .discover('analytics', 'v3')
-    .execute(function(err, client) {
-
-    // Insertion example
-    client
-        .analytics.management.experiments.insert({
-          accountId: accountId,
-          webPropertyId: webPropertyId,
-          profileId: profileId
-        }, resourceBody)
-        .withAuthClient(auth)
-        .execute(function(err, result) {
-          if (err) {
-            console.log('Error', err);
-            return;
-          }
-        });
+var analytics = google.analytics('v3');
+analytics.management.experiments.insert({
+  auth: auth,
+  accountId: accountId,
+  webPropertyId: webPropertyId,
+  profileId: profileId,
+  resource: resourceBody
+}, function(err, body) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(body);
+  }
 });

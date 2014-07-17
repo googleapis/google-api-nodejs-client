@@ -17,50 +17,40 @@
 'use strict';
 
 var assert = require('assert');
-var google = require('../lib/googleapis.js');
+var googleapis = require('../lib/googleapis.js');
+var google, drive, authClient, OAuth2;
 
-describe('google', function() {
-  describe('.options()', function() {
-    it('should be a function', function() {
-      assert.equal(typeof google.options, 'function');
-    });
+describe('Options', function() {
+  beforeEach(function() {
+    google = new googleapis.GoogleApis();
+    drive = google.drive('v2');
+  });
 
-    it('should not let transporter get set to null', function() {
-      google.options({ transporter: null });
-      assert.notEqual(google.transporter, null);
-      assert.equal(typeof google.transporter, 'object');
-    });
+  it('should be a function', function() {
+    assert.equal(typeof google.options, 'function');
+  });
 
-    it('should expose _options', function() {
-      google.options({ hello: 'world' });
-      assert.equal(JSON.stringify(google._options), JSON.stringify({ hello: 'world' }));
-    });
+  it('should expose _options', function() {
+    google.options({ hello: 'world' });
+    assert.equal(JSON.stringify(google._options), JSON.stringify({ hello: 'world' }));
+  });
 
-    it('should remove transporter if passed in', function() {
-      google.options({ hello: 'world', transporter: 'transporter' });
-      assert.equal(google._options.transporter, undefined);
-      assert.equal(google._options.hello, 'world');
-    });
+  it('should expose _options values', function() {
+    google.options({ hello: 'world' });
+    assert.equal(google._options.hello, 'world');
+  });
 
-    it('should expose _options values', function() {
-      google.options({ hello: 'world' });
-      assert.equal(google._options.hello, 'world');
-    });
+  it('should promote endpoint options over global options', function() {
+    google.options({ hello: 'world' });
+    var drive = google.drive({ version: 'v2', hello: 'changed' });
+    var req = drive.files.get({ fileId: '123' });
+    assert.equal(req.hello, 'changed');
+  });
 
-    it('should promote endpoint options over global options', function() {
-      var g = new google.GoogleApis();
-      g.options({ hello: 'world' });
-      var drive = g.drive({ version: 'v2', hello: 'changed' });
-      var req = drive.files.get({ fileId: '123' });
-      assert.equal(req.hello, 'changed');
-    });
-
-    it('should promote auth apikey options on request basis', function() {
-      var g = new google.GoogleApis();
-      g.options({ auth: 'apikey1' });
-      var drive = g.drive({ version: 'v2', auth: 'apikey2' });
-      var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' });
-      assert.equal(req.url.query, 'key=apikey3');
-    });
+  it('should promote auth apikey options on request basis', function() {
+    google.options({ auth: 'apikey1' });
+    var drive = google.drive({ version: 'v2', auth: 'apikey2' });
+    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' });
+    assert.equal(req.url.query, 'key=apikey3');
   });
 });
