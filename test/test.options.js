@@ -16,8 +16,6 @@
 
 'use strict';
 
-'use strict';
-
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 var google, drive, authClient, OAuth2;
@@ -32,21 +30,9 @@ describe('Options', function() {
     assert.equal(typeof google.options, 'function');
   });
 
-  it('should not let transporter get set to null', function() {
-    google.options({ transporter: null });
-    assert.notEqual(google.transporter, null);
-    assert.equal(typeof google.transporter, 'object');
-  });
-
   it('should expose _options', function() {
     google.options({ hello: 'world' });
     assert.equal(JSON.stringify(google._options), JSON.stringify({ hello: 'world' }));
-  });
-
-  it('should remove transporter if passed in', function() {
-    google.options({ hello: 'world', transporter: 'transporter' });
-    assert.equal(google._options.transporter, undefined);
-    assert.equal(google._options.hello, 'world');
   });
 
   it('should expose _options values', function() {
