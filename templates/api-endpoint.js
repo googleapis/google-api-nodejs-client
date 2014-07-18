@@ -23,7 +23,7 @@ var extend = require('../../lib/utils').extend;
  * {{ title }}
  *
  * {{ description }}
- *
+ * @namespace {{ Name }}
  * @this {{ Name }}
  * @param {object=} options Options for {{ Name }}
  */
@@ -33,6 +33,13 @@ function {{ Name }}(options) {
   this._options = options || {};
 
 {% for rname, r in resources %}
+  /**
+   * {{ rname }}
+   *
+   * @memberOf {{ Name }}
+   * @type {object}
+   * @namespace {{ Name }}.{{ rname }}
+   */
   this.{{ rname }} = {
     {% include "./resource-partial.js" with r %}
   };

@@ -4,7 +4,8 @@
  * {{ m.id }}
  *
  * {{ m.description|safe }}
- *
+ * @memberof {{ rname }}
+ * @method {{ mname }}
  {% for pname, p in m.parameters -%}
  * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} {{ p.description|safe }}
  {% endfor -%}

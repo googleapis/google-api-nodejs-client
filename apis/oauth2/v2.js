@@ -22,7 +22,7 @@ var extend = require('../../lib/utils').extend;
  * Google OAuth2 API
  *
  * Lets you access OAuth2 protocol related APIs.
- *
+ * @namespace Oauth2
  * @this Oauth2
  * @param {object=} options Options for Oauth2
  */
@@ -31,13 +31,21 @@ function Oauth2(options) {
   var self = this;
   this._options = options || {};
 
+  /**
+   * userinfo
+   *
+   * @memberOf Oauth2
+   * @type {object}
+   * @namespace Oauth2.userinfo
+   */
   this.userinfo = {
 
     /**
      * oauth2.userinfo.get
      *
      *
-     *
+     * @memberof userinfo
+     * @method get
      * @param  {object} params.resource Request body data
      * @return {object} Request object
      */

@@ -22,7 +22,7 @@ var extend = require('../../lib/utils').extend;
  * URL Shortener API
  *
  * Lets you create, inspect, and manage goo.gl short URLs
- *
+ * @namespace Urlshortener
  * @this Urlshortener
  * @param {object=} options Options for Urlshortener
  */
@@ -31,13 +31,21 @@ function Urlshortener(options) {
   var self = this;
   this._options = options || {};
 
+  /**
+   * url
+   *
+   * @memberOf Urlshortener
+   * @type {object}
+   * @namespace Urlshortener.url
+   */
   this.url = {
 
     /**
      * urlshortener.url.get
      *
      * Expands a short URL or gets creation time and analytics.
-     *
+     * @memberof url
+     * @method get
      * @param  {string=} params.projection Additional information to return.
      * @param  {string} params.shortUrl The short URL, including the protocol.
      * @param  {object} params.resource Request body data
@@ -60,7 +68,8 @@ function Urlshortener(options) {
      * urlshortener.url.insert
      *
      * Creates a new short URL.
-     *
+     * @memberof url
+     * @method insert
      * @param  {object} params.resource Request body data
      * @return {object} Request object
      */
@@ -79,7 +88,8 @@ function Urlshortener(options) {
      * urlshortener.url.list
      *
      * Retrieves a list of URLs shortened by a user.
-     *
+     * @memberof url
+     * @method list
      * @param  {string=} params.projection Additional information to return.
      * @param  {string=} params.start-token Token for requesting successive pages of results.
      * @param  {object} params.resource Request body data

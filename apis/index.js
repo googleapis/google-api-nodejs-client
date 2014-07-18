@@ -66,6 +66,7 @@ var APIs = {
   'books': requireAPI('books'),
   'calendar': requireAPI('calendar'),
   'civicinfo': requireAPI('civicinfo'),
+  'cloudmonitoring': requireAPI('cloudmonitoring'),
   'compute': requireAPI('compute'),
   'content': requireAPI('content'),
   'coordinate': requireAPI('coordinate'),

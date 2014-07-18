@@ -22,7 +22,7 @@ var extend = require('../../lib/utils').extend;
  * Google+ API
  *
  * The Google+ API enables developers to build on top of the Google+ platform.
- *
+ * @namespace Plus
  * @this Plus
  * @param {object=} options Options for Plus
  */
@@ -31,13 +31,21 @@ function Plus(options) {
   var self = this;
   this._options = options || {};
 
+  /**
+   * activities
+   *
+   * @memberOf Plus
+   * @type {object}
+   * @namespace Plus.activities
+   */
   this.activities = {
 
     /**
      * plus.activities.get
      *
      * Get an activity.
-     *
+     * @memberof activities
+     * @method get
      * @param  {string} params.activityId The ID of the activity to get.
      * @param  {object} params.resource Request body data
      * @throws {Error}  If a required parameter is missing.
@@ -61,7 +69,8 @@ function Plus(options) {
      * plus.activities.list
      *
      * List all of the activities in the specified collection for a particular user.
-     *
+     * @memberof activities
+     * @method list
      * @param  {string} params.collection The collection of activities to list.
      * @param  {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
@@ -90,7 +99,8 @@ function Plus(options) {
      * plus.activities.search
      *
      * Search public activities.
-     *
+     * @memberof activities
+     * @method search
      * @param  {string=} params.language Specify the preferred language to search with. See search language codes for available values.
      * @param  {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.orderBy Specifies how to order search results.
@@ -114,13 +124,21 @@ function Plus(options) {
 
   };
 
+  /**
+   * comments
+   *
+   * @memberOf Plus
+   * @type {object}
+   * @namespace Plus.comments
+   */
   this.comments = {
 
     /**
      * plus.comments.get
      *
      * Get a comment.
-     *
+     * @memberof comments
+     * @method get
      * @param  {string} params.commentId The ID of the comment to get.
      * @param  {object} params.resource Request body data
      * @throws {Error}  If a required parameter is missing.
@@ -144,7 +162,8 @@ function Plus(options) {
      * plus.comments.list
      *
      * List all of the comments for an activity.
-     *
+     * @memberof comments
+     * @method list
      * @param  {string} params.activityId The ID of the activity to get comments for.
      * @param  {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
@@ -169,13 +188,21 @@ function Plus(options) {
 
   };
 
+  /**
+   * moments
+   *
+   * @memberOf Plus
+   * @type {object}
+   * @namespace Plus.moments
+   */
   this.moments = {
 
     /**
      * plus.moments.insert
      *
      * Record a moment representing a user's action such as making a purchase or commenting on a blog.
-     *
+     * @memberof moments
+     * @method insert
      * @param  {string} params.collection The collection to which to write moments.
      * @param  {boolean=} params.debug Return the moment as written. Should be used only for debugging.
      * @param  {string} params.userId The ID of the user to record actions for. The only valid values are "me" and the ID of the authenticated user.
@@ -203,7 +230,8 @@ function Plus(options) {
      * plus.moments.list
      *
      * List all of the moments for a particular user.
-     *
+     * @memberof moments
+     * @method list
      * @param  {string} params.collection The collection of moments to list.
      * @param  {integer=} params.maxResults The maximum number of moments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
@@ -234,7 +262,8 @@ function Plus(options) {
      * plus.moments.remove
      *
      * Delete a moment.
-     *
+     * @memberof moments
+     * @method remove
      * @param  {string} params.id The ID of the moment to delete.
      * @param  {object} params.resource Request body data
      * @throws {Error}  If a required parameter is missing.
@@ -256,13 +285,21 @@ function Plus(options) {
 
   };
 
+  /**
+   * people
+   *
+   * @memberOf Plus
+   * @type {object}
+   * @namespace Plus.people
+   */
   this.people = {
 
     /**
      * plus.people.get
      *
      * Get a person's profile. If your app uses scope https://www.googleapis.com/auth/plus.login, this method is guaranteed to return ageRange and language.
-     *
+     * @memberof people
+     * @method get
      * @param  {string} params.userId The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
      * @param  {object} params.resource Request body data
      * @throws {Error}  If a required parameter is missing.
@@ -286,7 +323,8 @@ function Plus(options) {
      * plus.people.list
      *
      * List all of the people in the specified collection.
-     *
+     * @memberof people
+     * @method list
      * @param  {string} params.collection The collection of people to list.
      * @param  {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.orderBy The order to return people in.
@@ -316,7 +354,8 @@ function Plus(options) {
      * plus.people.listByActivity
      *
      * List all of the people in the specified collection for a particular activity.
-     *
+     * @memberof people
+     * @method listByActivity
      * @param  {string} params.activityId The ID of the activity to get the list of people for.
      * @param  {string} params.collection The collection of people to list.
      * @param  {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
@@ -344,7 +383,8 @@ function Plus(options) {
      * plus.people.search
      *
      * Search all public profiles.
-     *
+     * @memberof people
+     * @method search
      * @param  {string=} params.language Specify the preferred language to search with. See search language codes for available values.
      * @param  {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
