@@ -17,6 +17,7 @@
 'use strict';
 
 var assert = require('assert');
+var fs = require('fs');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
 var google, drive, authClient, OAuth2;
@@ -39,5 +40,62 @@ describe('Media', function() {
       scope.done();
       done();
     });
+  });
+
+  it('should generate a valid upload if media is set, metadata is not set', function(done) {
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/drive/v2/files?uploadType=multipart')
+        .reply(201, function(uri, reqBody) {
+      return reqBody; // return request body as response for testing purposes
+    });
+    var resource = { mimeType: 'text/plain' };
+    var media = 'hey';
+    var expectedResp = fs.readFileSync(__dirname + '/fixtures/media-response.txt', { encoding: 'utf8' });
+    var req = drive.files.insert({ resource: resource, media: media }, function(err, body) {
+      assert.equal(req.method, 'POST');
+      assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
+      var boundary = req.src.boundary;
+      expectedResp = expectedResp
+          .replace(/\n/g, '\r\n')
+          .replace(/\$boundary/g, boundary)
+          .replace('$media', media)
+          .replace('$resource', JSON.stringify(resource))
+          .trim();
+      assert.strictEqual(expectedResp, body);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should generate valid multipart upload payload if media and metadata are both set', function(done) {
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/drive/v2/files?uploadType=multipart')
+        .reply(201, function(uri, reqBody) {
+      return reqBody; // return request body as response for testing purposes
+    });
+    var resource = { title: 'title', mimeType: 'text/plain' };
+    var media = 'hey';
+    var expectedResp = fs.readFileSync(__dirname + '/fixtures/media-response.txt', { encoding: 'utf8' });
+    var req = drive.files.insert({ resource: resource, media: media }, function(err, body) {
+      assert.equal(req.method, 'POST');
+      assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
+      var boundary = req.src.boundary;
+      expectedResp = expectedResp
+          .replace(/\n/g, '\r\n')
+          .replace(/\$boundary/g, boundary)
+          .replace('$media', media)
+          .replace('$resource', JSON.stringify(resource))
+          .trim();
+      assert.strictEqual(expectedResp, body);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should not require parameters for insertion requests', function() {
+    var req = drive.files.insert({ someAttr: 'someValue' });
+    assert.equal(req.uri.query, 'someAttr=someValue&uploadType=multipart');
   });
 });
