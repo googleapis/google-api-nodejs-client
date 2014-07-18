@@ -1,5 +1,5 @@
 /**
- * Copyright 2013 Google Inc. All Rights Reserved.
+ * Copyright 2014 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,17 +18,26 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
+var nock = require('nock');
+var google, drive, authClient, OAuth2;
 
-describe('Clients', function() {
+nock.disableNetConnect();
 
-  it('should create request helpers according to the resource on discovery API response', function() {
-    var plus = googleapis.plus('v1');
-    assert.equal(typeof plus.people.get, 'function');
-    assert.equal(typeof plus.activities.search, 'function');
-    assert.equal(typeof plus.comments.list, 'function');
+describe('Media', function() {
+
+  beforeEach(function() {
+    google = new googleapis.GoogleApis();
+    drive = google.drive('v2');
   });
 
-  it('should be able to gen methods for top-level methods', function() {
-    assert.ok(!!googleapis.oauth2('v2').userinfo);
+  it('should post with uploadType=multipart', function(done) {
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/drive/v2/files?uploadType=multipart')
+        .reply(200, { fileId: 'abc123' });
+    var req = drive.files.insert({}, function(err, body) {
+      assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
+      scope.done();
+      done();
+    });
   });
 });

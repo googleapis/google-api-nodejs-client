@@ -21,6 +21,7 @@ var googleapis = require('../lib/googleapis.js');
 var google, drive, authClient, OAuth2;
 
 describe('Options', function() {
+
   beforeEach(function() {
     google = new googleapis.GoogleApis();
     drive = google.drive('v2');

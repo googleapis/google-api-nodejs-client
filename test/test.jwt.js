@@ -17,10 +17,10 @@
 'use strict';
 
 var assert = require('assert');
-
 var googleapis = require('../lib/googleapis.js');
 
 describe('JWT auth client', function() {
+
   it('should get an initial access token', function(done) {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
