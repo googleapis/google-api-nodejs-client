@@ -17,6 +17,7 @@
 'use strict';
 
 var assert = require('assert');
+var fs = require('fs');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
 
@@ -89,14 +90,21 @@ describe('Requests', function() {
     });
     var google = new googleapis.GoogleApis();
     var drive = google.drive('v2');
-    var req = drive.files.insert({ resource: { mimeType: 'text/plain' }, media: 'hey' }, function(err, body) {
+    var resource = { mimeType: 'text/plain' };
+    var media = 'hey';
+    var expectedResp = fs.readFileSync(__dirname + '/fixtures/media-response.txt', { encoding: 'utf8' });
+    var req = drive.files.insert({ resource: resource, media: media }, function(err, body) {
       assert.equal(req.method, 'POST');
       assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
       assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
-      // has empty metadata
-      assert(new RegExp(/Content-Type: application\/json\r\n\r\n{"mimeType":"text\/plain"}\r\n/).test(body));
-      // has plain text media body
-      assert(new RegExp(/Content-Type: text\/plain\r\n\r\nhey\r\n/).test(body));
+      var boundary = req.src.boundary;
+      expectedResp = expectedResp
+          .replace(/\n/g, '\r\n')
+          .replace(/\$boundary/g, boundary)
+          .replace('$media', media)
+          .replace('$resource', JSON.stringify(resource))
+          .trim();
+      assert.strictEqual(expectedResp, body);
       scope.done();
       done();
     });
@@ -110,14 +118,21 @@ describe('Requests', function() {
     });
     var google = new googleapis.GoogleApis();
     var drive = google.drive('v2');
-    var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' }, function(err, body) {
+    var resource = { title: 'title', mimeType: 'text/plain' };
+    var media = 'hey';
+    var expectedResp = fs.readFileSync(__dirname + '/fixtures/media-response.txt', { encoding: 'utf8' });
+    var req = drive.files.insert({ resource: resource, media: media }, function(err, body) {
       assert.equal(req.method, 'POST');
       assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
       assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
-      // has empty metadata
-      assert(new RegExp(/Content-Type: application\/json\r\n\r\n{"title":"title","mimeType":"text\/plain"}\r\n/).test(body));
-      // has plain text media body
-      assert(new RegExp(/Content-Type: text\/plain\r\n\r\nhey\r\n/).test(body));
+      var boundary = req.src.boundary;
+      expectedResp = expectedResp
+          .replace(/\n/g, '\r\n')
+          .replace(/\$boundary/g, boundary)
+          .replace('$media', media)
+          .replace('$resource', JSON.stringify(resource))
+          .trim();
+      assert.strictEqual(expectedResp, body);
       scope.done();
       done();
     });

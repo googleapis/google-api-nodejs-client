@@ -31,7 +31,9 @@ describe('Media', function() {
   });
 
   it('should post with uploadType=multipart', function(done) {
-    var scope = nock('https://www.googleapis.com').post('/upload/drive/v2/files?uploadType=multipart').reply(200, { fileId: 'abc123' });
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/drive/v2/files?uploadType=multipart')
+        .reply(200, { fileId: 'abc123' });
     var req = drive.files.insert({}, function(err, body) {
       assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
       scope.done();
