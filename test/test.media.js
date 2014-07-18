@@ -13,18 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var fs = require('fs');
+
+'use strict';
+
+var assert = require('assert');
+var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
+var google, drive, authClient, OAuth2;
+
 nock.disableNetConnect();
-var GOOGLEAPIS = 'https://www.googleapis.com';
 
-// Handle OAuth certificate request
-var oauthcerts = fs.readFileSync(__dirname + '/data/oauthcerts.json');
-nock(GOOGLEAPIS).get('/oauth2/v1/certs').reply(200, oauthcerts);
+describe('Media', function() {
 
-nock(GOOGLEAPIS).get('/urlshortener/v1/url/history').reply(200, 'Hello from Google!');
-nock(GOOGLEAPIS).post('/urlshortener/v1/url').reply(200, {
-  kind: 'urlshortener#url',
-  id: 'http://goo.gl/mR2d',
-  longUrl: 'http://google.com/'
+  beforeEach(function() {
+    google = new googleapis.GoogleApis();
+    drive = google.drive('v2');
+  });
+
+  it('should post with uploadType=multipart', function(done) {
+    var scope = nock('https://www.googleapis.com').post('/upload/drive/v2/files?uploadType=multipart').reply(200, { fileId: 'abc123' });
+    var req = drive.files.insert({}, function(err, body) {
+      assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
+      scope.done();
+      done();
+    });
+  });
 });

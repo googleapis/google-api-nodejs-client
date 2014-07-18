@@ -16,29 +16,24 @@
 
 'use strict';
 
-var url = require('url'),
-    assert = require('assert'),
-    qs = require('querystring'),
-    fs = require('fs');
-
-var googleapis = require('../lib/googleapis.js'),
-    MockTransporter = require('./mocks/transporters.js');
+var assert = require('assert');
+var googleapis = require('../lib/googleapis.js');
+var DefaultTransporter = require('../lib/transporters');
 
 describe('Transporters', function() {
 
-  var urlshortenerDiscoveryTransporter =
-    new MockTransporter(__dirname + '/data/discovery_urlshortener.json');
   var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+';
+  var transporter = new DefaultTransporter();
 
   it('should set default client user agent if none is set', function() {
-    var opts = urlshortenerDiscoveryTransporter.configure({});
+    var opts = transporter.configure({});
     var re = new RegExp(defaultUserAgentRE);
     assert(re.test(opts.headers['User-Agent']));
   });
 
   it('should append default client user agent to the existing user agent', function() {
     var applicationName = 'MyTestApplication-1.0';
-    var opts = urlshortenerDiscoveryTransporter.configure({
+    var opts = transporter.configure({
       headers: { 'User-Agent': applicationName }
     });
     var re = new RegExp(applicationName + ' ' + defaultUserAgentRE);

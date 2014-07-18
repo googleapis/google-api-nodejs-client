@@ -21,6 +21,7 @@ var googleapis = require('../lib/googleapis.js');
 var google, drive, authClient, OAuth2;
 
 describe('Query params', function() {
+
   beforeEach(function() {
     google = new googleapis.GoogleApis();
     OAuth2 = google.auth.OAuth2;
@@ -74,13 +75,11 @@ describe('Query params', function() {
     assert.equal(req.uri.query, 'key=API%20KEY');
   });
 
-  // it('should not include auth if auth is an OAuth2Client object', function() {
-  //   var req = drive.files.get({
-  //     fileId: '123',
-  //     auth: authClient
-  //   }, function(err, body) {
-  //     console.log(body);
-  //   });
-  //   assert.equal(req.uri.query, null);
-  // });
+  it('should not include auth if auth is an OAuth2Client object', function() {
+    var req = drive.files.get({
+      fileId: '123',
+      auth: authClient
+    });
+    assert.equal(req.uri.query, null);
+  });
 });

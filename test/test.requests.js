@@ -16,13 +16,11 @@
 
 'use strict';
 
-var url = require('url'),
-    assert = require('assert'),
-    qs = require('querystring'),
-    fs = require('fs');
+var assert = require('assert');
+var googleapis = require('../lib/googleapis.js');
+var nock = require('nock');
 
-var googleapis = require('../lib/googleapis.js'),
-    MockTransporter = require('./mocks/transporters.js');
+nock.disableNetConnect();
 
 describe('Requests', function() {
 
@@ -49,22 +47,6 @@ describe('Requests', function() {
     assert.equal(req.method, 'POST');
   });
 
-  it('should handle non-RPC errors for single requests without assuming the errors should be an array', function(done) {
-    // TODO: Fix this test?
-    // var invalidGrantMockTransporter = new MockTransporter(__dirname + '/data/res_invalidgrant.json');
-    // var gapis = new googleapis.GoogleApis();
-    // var callback = function(err, client) {
-    //   var req = client.urlshortener.url.list();
-    //   req.transporter = invalidGrantMockTransporter;
-    //   req.execute(function(err, res) {
-    //     assert.equal(err, 'invalid_grant');
-    //     done();
-    //   });
-    // };
-    // gapis.urlshortener('v1').execute(callback);
-    done();
-  });
-
   it('should generate valid payload if any params are given', function() {
     var google = new googleapis.GoogleApis();
     var urlshortener = google.urlshortener('v1');
@@ -75,7 +57,6 @@ describe('Requests', function() {
   });
 
   it('should not require parameters for insertion requests', function() {
-    // TODO: Better way to test this?
     var google = new googleapis.GoogleApis();
     var drive = google.drive('v2');
     var req = drive.files.insert({ someAttr: 'someValue' });
@@ -84,6 +65,9 @@ describe('Requests', function() {
 
   it('should return a single response object for single requests', function(done) {
     var google = new googleapis.GoogleApis();
+    var scope = nock('https://www.googleapis.com')
+        .post('/urlshortener/v1/url')
+        .replyWithFile(200, __dirname + '/fixtures/urlshort-insert-res.json');
     var urlshortener = google.urlshortener('v1');
     var obj = { longUrl: 'http://google.com/' };
     urlshortener.url.insert({ resource: obj }, function(err, result) {
@@ -92,46 +76,50 @@ describe('Requests', function() {
       assert.notEqual(result.kind, null);
       assert.notEqual(result.id, null);
       assert.equal(result.longUrl, 'http://google.com/');
+      scope.done();
       done(err);
     });
   });
 
-  it('should generate a valid upload if media is set, metadata is not set', function() {
+  it('should generate a valid upload if media is set, metadata is not set', function(done) {
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/drive/v2/files?uploadType=multipart')
+        .reply(201, function(uri, reqBody) {
+      return reqBody; // return request body as response for testing purposes
+    });
     var google = new googleapis.GoogleApis();
     var drive = google.drive('v2');
-    var req = drive.files.insert({ resource: { mimeType: 'text/plain' }, media: 'hey' });
-    assert.equal(req.method, 'POST');
-    assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
-    assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
-    // assert.equal(req.body, 'hey');
+    var req = drive.files.insert({ resource: { mimeType: 'text/plain' }, media: 'hey' }, function(err, body) {
+      assert.equal(req.method, 'POST');
+      assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
+      // has empty metadata
+      assert(new RegExp(/Content-Type: application\/json\r\n\r\n{"mimeType":"text\/plain"}\r\n/).test(body));
+      // has plain text media body
+      assert(new RegExp(/Content-Type: text\/plain\r\n\r\nhey\r\n/).test(body));
+      scope.done();
+      done();
+    });
   });
 
-  // it('should generate valid multipart upload payload if media and metadata are both set', function(done) {
-    // TOOD: Fix this test.
-    // var google = new googleapis.GoogleApis();
-    // var drive = google.drive('v2');
-    // var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' });
-    // assert.equal(req.method, 'POST');
-    // assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
-    // assert.equal(payload.multipart[0]['Content-Type'], 'application/json');
-    // assert.equal(payload.multipart[0].body, '{"title":"title"}');
-    // assert.equal(req.headers['Content-Type'], 'multipart/related;');
-    // assert.equal(payload.multipart[1].body, 'hey');
-    // assert.equal(payload.body, null);
-    // done();
-  // });
-
-  // it('should differentiate query params and body object', function() {
-    // TODO: Fix this test.
-    // googleapis.discover('drive', 'v2').execute(function(err, client) {
-    //   var req1 = client.drive.files.insert({ title: 'Hello' });
-    //   var req2 = client.drive.files.list({ q: 'title contains "H"' });
-    //   var req3 = client.drive.files.get({ fileId: 'root' });
-    //   assert.equal(req1.params.title, null);
-    //   assert.equal(req1.body.title, 'Hello');
-    //   assert.equal(req2.params.q, 'title contains "H"');
-    //   assert.equal(req3.generatePath(req3.params), '/drive/v2/files/root');
-    //   done();
-    // });
-  // });
+  it('should generate valid multipart upload payload if media and metadata are both set', function(done) {
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/drive/v2/files?uploadType=multipart')
+        .reply(201, function(uri, reqBody) {
+      return reqBody; // return request body as response for testing purposes
+    });
+    var google = new googleapis.GoogleApis();
+    var drive = google.drive('v2');
+    var req = drive.files.insert({ resource: { title: 'title', mimeType: 'text/plain' }, media: 'hey' }, function(err, body) {
+      assert.equal(req.method, 'POST');
+      assert.equal(req.uri.href, 'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart');
+      assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
+      // has empty metadata
+      assert(new RegExp(/Content-Type: application\/json\r\n\r\n{"title":"title","mimeType":"text\/plain"}\r\n/).test(body));
+      // has plain text media body
+      assert(new RegExp(/Content-Type: text\/plain\r\n\r\nhey\r\n/).test(body));
+      scope.done();
+      done();
+    });
+  });
 });

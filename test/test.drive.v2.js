@@ -93,18 +93,6 @@ describe('drive:v2', function() {
         var req = drive.files.get({ fileId: '123' });
         assert.equal(req.constructor.name, 'Request');
       });
-
-      it('should not modify params directly', function() {
-        var drive = google.drive('v2');
-        var options = { fileId: '123' };
-        assert.doesNotThrow(
-          function() {
-            drive.files.get(options);
-            drive.files.get(options);
-          },
-          /Missing/
-        );
-      });
     });
   });
 

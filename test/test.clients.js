@@ -16,11 +16,7 @@
 
 'use strict';
 
-var url = require('url'),
-    assert = require('assert'),
-    qs = require('querystring'),
-    fs = require('fs');
-
+var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 
 describe('Clients', function() {
