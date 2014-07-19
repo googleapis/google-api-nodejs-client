@@ -21,6 +21,7 @@ var path = require('path');
  * Return a Function that requires an API from the disk
  * @param  {String} filename Filename of API
  * @return {function}        function used to require the API from disk
+ * @private
  */
 function requireAPI(filename) {
   return function(options) {
@@ -48,6 +49,7 @@ function requireAPI(filename) {
 /**
  * APIs to be exported
  * @type {Object}
+ * @private
  */
 var APIs = {
   'adexchangebuyer': requireAPI('adexchangebuyer'),
@@ -121,3 +123,9 @@ var APIs = {
  * @type {Object}
  */
 module.exports = APIs;
+
+/**
+ * @callback callback
+ * @param {Error} err Error object if an error occurred.
+ * @param {object} data Response data object.
+ */

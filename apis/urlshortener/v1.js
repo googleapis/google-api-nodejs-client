@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+'use strict';
+
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
 var checkRequired = apirequest.checkRequired;
@@ -21,8 +24,10 @@ var extend = require('../../lib/utils').extend;
 /**
  * URL Shortener API
  *
- * Lets you create, inspect, and manage goo.gl short URLs
- * @namespace Urlshortener
+ * @classdesc Lets you create, inspect, and manage goo.gl short URLs
+ * @namespace urlshortener
+ * @version  v1
+ * @variation v1
  * @this Urlshortener
  * @param {object=} options Options for Urlshortener
  */
@@ -31,25 +36,21 @@ function Urlshortener(options) {
   var self = this;
   this._options = options || {};
 
-  /**
-   * url
-   *
-   * @memberOf Urlshortener
-   * @type {object}
-   * @namespace Urlshortener.url
-   */
   this.url = {
 
     /**
      * urlshortener.url.get
+     * @alias urlshortener.url.get
+     * @memberOf! urlshortener(v1)
+     * @description Expands a short URL or gets creation time and analytics.
      *
-     * Expands a short URL or gets creation time and analytics.
-     * @memberof url
-     * @method get
-     * @param  {string=} params.projection Additional information to return.
-     * @param  {string} params.shortUrl The short URL, including the protocol.
-     * @param  {object} params.resource Request body data
+     * @method
+     * @param {object} params - Parameters for request
+     * @param  {string=} params.projection - Additional information to return.
+     * @param  {string} params.shortUrl - The short URL, including the protocol.
+     * @param  {object} params.resource - Request body data
      * @throws {Error}  If a required parameter is missing.
+     * @param {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
@@ -66,11 +67,14 @@ function Urlshortener(options) {
 
     /**
      * urlshortener.url.insert
+     * @alias urlshortener.url.insert
+     * @memberOf! urlshortener(v1)
+     * @description Creates a new short URL.
      *
-     * Creates a new short URL.
-     * @memberof url
-     * @method insert
-     * @param  {object} params.resource Request body data
+     * @method
+     * @param {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
@@ -86,13 +90,16 @@ function Urlshortener(options) {
 
     /**
      * urlshortener.url.list
+     * @alias urlshortener.url.list
+     * @memberOf! urlshortener(v1)
+     * @description Retrieves a list of URLs shortened by a user.
      *
-     * Retrieves a list of URLs shortened by a user.
-     * @memberof url
-     * @method list
-     * @param  {string=} params.projection Additional information to return.
-     * @param  {string=} params.start-token Token for requesting successive pages of results.
-     * @param  {object} params.resource Request body data
+     * @method
+     * @param {object} params - Parameters for request
+     * @param  {string=} params.projection - Additional information to return.
+     * @param  {string=} params.start-token - Token for requesting successive pages of results.
+     * @param  {object} params.resource - Request body data
+     * @param {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {

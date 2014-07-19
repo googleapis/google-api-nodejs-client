@@ -47,7 +47,7 @@
   "scripts": {
     "test": "mocha --reporter spec --timeout 4000",
     "generate": "node scripts/generate",
-    "gen-doc": "jsdoc --recurse apis/ "
+    "gen-doc": "jsdoc -c jsdoc-conf.json ./README.md"
   },
   "license": "Apache 2"
 }

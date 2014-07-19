@@ -6,3 +6,4 @@ apis/*
 !apis/plus/*
 !apis/oauth2/*
 upload.py
+docs/
