@@ -15,6 +15,8 @@
  */
 
 var google = require('../lib/googleapis.js');
+var analytics = google.analytics('v3');
+var OAuth2Client = google.auth.OAuth2;
 
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
@@ -22,7 +24,8 @@ var CLIENT_ID = 'YOUR CLIENT ID HERE';
 var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
 var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
 
-var auth = new google.auth.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var auth = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+
 auth.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
 });
@@ -51,7 +54,7 @@ var resourceBody = {
   'variations': variations
 };
 
-var analytics = google.analytics('v3');
+
 analytics.management.experiments.insert({
   auth: auth,
   accountId: accountId,

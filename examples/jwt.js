@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
+var drive = google.drive('v2');
 
 /**
  * The JWT authorization is ideal for performing server-to-server
@@ -30,7 +31,7 @@ var googleapis = require('../lib/googleapis.js');
  * so the private key must be extracted and converted to a passphrase-less
  * RSA key: openssl pkcs12 -in key.p12 -nodes -nocerts > key.pem
  */
-var authClient = new googleapis.auth.JWT(
+var authClient = new google.auth.JWT(
     'service-account-email@developer.gserviceaccount.com',
     'path/to/key.pem',
     // Contents of private_key.pem if you want to load the pem file yourself
@@ -45,6 +46,9 @@ authClient.authorize(function(err, tokens) {
     console.log(err);
     return;
   }
+
   // Make an authorized request to list Drive files.
-  // googleapis.drive.files.list().withAuthClient(authClient).execute()...
+  drive.files.list({ auth: authClient }, function(err, resp) {
+    // handle err and response
+  });
 });

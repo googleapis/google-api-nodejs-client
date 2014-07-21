@@ -14,20 +14,14 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
+var urlshortener = google.urlshortener('v1');
+var plus = google.plus('v1');
 
 // PUT your API key here or this example will return errors
 // To learn more about API keys, please see:
 // https://developers.google.com/console/help/#UsingKeys
 var API_KEY = 'AIzaSyBzQOyq8uKZKMTRfEPP-Qbrmy98CopcZRY';
 
-googleapis
-  .discover('urlshortener', 'v1')
-  .discover('plus', 'v1')
-  .execute(function(err, client) {
-      client
-          .urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' })
-          .withApiKey(API_KEY).execute();
-      client.plus.people.get({ userId: '+burcudogan' })
-          .withApiKey(API_KEY).execute();
-});
+urlshortener.url.get({ shortUrl: 'http://goo.gl/xKbRu3', auth: API_KEY });
+plus.people.get({ userId: '+google', auth: API_KEY });
