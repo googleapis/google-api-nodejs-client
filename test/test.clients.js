@@ -31,4 +31,31 @@ describe('Clients', function() {
   it('should be able to gen methods for top-level methods', function() {
     assert.ok(!!googleapis.oauth2('v2').userinfo);
   });
+
+  it('should be able to require all api files without error', function() {
+    var fs = require('fs');
+    function getFiles(dir, files_) {
+      files_ = files_ || [];
+      if (typeof files_ === 'undefined') files_ = [];
+      var files = fs.readdirSync(dir);
+      for (var i in files) {
+          if (!files.hasOwnProperty(i)) continue;
+          var name = dir + '/' + files[i];
+          if (fs.statSync(name).isDirectory()) {
+              getFiles(name, files_);
+          } else {
+              files_.push(name);
+          }
+      }
+      return files_;
+    }
+
+    var api_files = getFiles(__dirname + '/../apis');
+
+    assert.doesNotThrow(function() {
+      for (var i in api_files) {
+        var obj = require(api_files[i]);
+      }
+    });
+  });
 });
