@@ -2,12 +2,14 @@
 {% set rb = "}" %}
 /**
  * {{ m.id }}
+ *
+ * {% if m.description %}@desc {{ m.description|safe }}{% endif %}
+ *
  * @alias {{ m.id }}
  * @memberOf! {{ name }}({{ version }})
- * {% if m.description %}@description {{ m.description|safe }}{% endif %}
- *
  * @method
- * @param {object} params - Parameters for request
+ *
+ * @param  {object} params - Parameters for request
  {% for pname, p in m.parameters -%}
  * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} - {{ p.description|safe }}
  {% endfor -%}
@@ -20,7 +22,7 @@
 {% if m.parameterOrder.length -%}
  * @throws {Error}  If a required parameter is missing.
 {% endif -%}
- * @param {callback=} callback - The callback that handles the response.
+ * @param  {callback=} callback - The callback that handles the response.
  * @return {object} Request object
  */
 {{ mname }}: function(params, callback) {
