@@ -17,6 +17,7 @@
 'use strict';
 
 var assert = require('assert');
+var fs = require('fs');
 var googleapis = require('../lib/googleapis.js');
 
 describe('Clients', function() {
@@ -33,7 +34,6 @@ describe('Clients', function() {
   });
 
   it('should be able to require all api files without error', function() {
-    var fs = require('fs');
     function getFiles(dir, files_) {
       files_ = files_ || [];
       if (typeof files_ === 'undefined') files_ = [];

@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "author": "Google Inc.",
   "description": "Google APIs Client Library for Node.js",
   "contributors": [
@@ -30,8 +30,8 @@
     "client library"
   ],
   "dependencies": {
-    "async": "~0.2.10",
-    "gapitoken": "~0.1.2",
+    "async": "0.2.10",
+    "gapitoken": "0.1.2",
     "multipart-stream": "1.0.0",
     "request": "2.37.0"
   },
@@ -42,7 +42,7 @@
     "mkdirp": "0.5.0",
     "js-beautify": "1.5.1",
     "nock": "0.42.1",
-    "jsdoc": "^3.3.0-alpha9"
+    "jsdoc": "3.3.0-alpha9"
   },
   "scripts": {
     "test": "mocha --reporter spec --timeout 4000",
