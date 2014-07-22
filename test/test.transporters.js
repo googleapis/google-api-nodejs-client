@@ -40,7 +40,7 @@ describe('Transporters', function() {
     assert(re.test(opts.headers['User-Agent']));
   });
 
-  it.only('should automatically add content-type', function() {
+  it('should automatically add content-type', function() {
     var google = require('../lib/googleapis');
     var datastore = google.datastore({ version: 'v1beta2' });
     var req = datastore.datasets.beginTransaction({ datasetId: 'test' });
