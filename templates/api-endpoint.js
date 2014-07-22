@@ -13,17 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+'use strict';
+
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
 var checkRequired = apirequest.checkRequired;
 var extend = require('../../lib/utils').extend;
 {% set Name = name|capitalize %}
-
+{% set Version = version|replace('\.', '_')|capitalize %}
+{% set Namespace = [Name, Version]|join('') %}
 /**
  * {{ title }}
  *
- * {{ description }}
- *
+ * @classdesc {{ description }}
+ * @namespace {{ name }}
+ * @version  {{ version }}
+ * @variation {{ version }}
  * @this {{ Name }}
  * @param {object=} options Options for {{ Name }}
  */
@@ -33,6 +39,7 @@ function {{ Name }}(options) {
   this._options = options || {};
 
 {% for rname, r in resources %}
+{% set ResourceNamespace = [Name, rname]|join('.') %}
   this.{{ rname }} = {
     {% include "./resource-partial.js" with r %}
   };

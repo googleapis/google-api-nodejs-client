@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+'use strict';
+
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
 var checkRequired = apirequest.checkRequired;
@@ -21,8 +24,10 @@ var extend = require('../../lib/utils').extend;
 /**
  * Google OAuth2 API
  *
- * Lets you access OAuth2 protocol related APIs.
- *
+ * @classdesc Lets you access OAuth2 protocol related APIs.
+ * @namespace oauth2
+ * @version  v1
+ * @variation v1
  * @this Oauth2
  * @param {object=} options Options for Oauth2
  */
@@ -35,10 +40,14 @@ function Oauth2(options) {
 
     /**
      * oauth2.userinfo.get
+     * @alias oauth2.userinfo.get
+     * @memberOf! oauth2(v1)
+     * @description Get user info
      *
-     * Get user info
-     *
-     * @param  {object} params.resource Request body data
+     * @method
+     * @param {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {

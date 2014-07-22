@@ -30,45 +30,33 @@ describe('Query params', function() {
     drive = google.drive('v2');
   });
 
-  it('should not append ? with no query parameters', function() {
-    var uri = drive.files.get({ fileId: 'ID' }).uri;
-    assert.equal(-1, uri.href.indexOf('?'));
-  });
-
-  it('should be null if no object passed', function() {
-    var req = drive.files.list();
-    assert.equal(req.uri.query, null);
-  });
-
-  it('should be null if params passed are in path', function() {
-    var req = drive.files.get({ fileId: '123' });
-    assert.equal(req.uri.query, null);
-  });
-
-  it('should be set if params passed are optional query params', function() {
-    var req = drive.files.get({ fileId: '123', updateViewedDate: true });
-    assert.equal(req.uri.query, 'updateViewedDate=true');
-  });
-
-  it('should be set if params passed are unknown params', function() {
-    var req = drive.files.get({ fileId: '123', madeThisUp: 'hello' });
-    assert.equal(req.uri.query, 'madeThisUp=hello');
-  });
-
-  it('should chain together with & in order', function() {
+  it('should include auth APIKEY as key=<APIKEY>', function() {
     var req = drive.files.get({
       fileId: '123',
-      madeThisUp: 'hello',
-      thisToo: 'world'
+      auth: 'APIKEY'
     });
-    assert.equal(req.uri.query, 'madeThisUp=hello&thisToo=world');
+    assert.equal(req.uri.query, 'key=APIKEY');
   });
 
-  it('should not include auth if auth is an OAuth2Client object', function() {
+  it('should properly escape params E.g. API KEY to API%20KEY', function() {
     var req = drive.files.get({
       fileId: '123',
-      auth: authClient
+      auth: 'API KEY'
     });
-    assert.equal(req.uri.query, null);
+    assert.equal(req.uri.query, 'key=API%20KEY');
+  });
+
+  it('should use key param over auth apikey param if both provided and', function() {
+    var req = drive.files.get({
+      fileId: '123',
+      auth: 'API KEY',
+      key: 'abc123'
+    });
+    assert.equal(req.uri.query, 'key=abc123');
+  });
+
+  it('should set API key parameter if it is presented', function() {
+    var req = google.urlshortener('v1').url.list({ auth: 'YOUR API KEY' });
+    assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
   });
 });
