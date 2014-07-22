@@ -40,14 +40,14 @@ function Oauth2(options) {
 
     /**
      * oauth2.userinfo.get
+     *
+     * @desc Get user info
+     *
      * @alias oauth2.userinfo.get
      * @memberOf! oauth2(v1)
-     * @description Get user info
      *
-     * @method
-     * @param {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param {callback=} callback - The callback that handles the response.
+     * @param  {object=} params - Parameters for request
+     * @param  {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
