@@ -776,4 +776,36 @@ describe('OAuth2 client', function() {
       });
     });
   });
+
+  it('should set redirect_uri if not provided in options', function() {
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var generated = oauth2client.generateAuthUrl({});
+    var parsed = url.parse(generated);
+    var query = qs.parse(parsed.query);
+    assert.equal(query.redirect_uri, REDIRECT_URI);
+  });
+
+  it('should set client_id if not provided in options', function() {
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var generated = oauth2client.generateAuthUrl({});
+    var parsed = url.parse(generated);
+    var query = qs.parse(parsed.query);
+    assert.equal(query.client_id, CLIENT_ID);
+  });
+
+  it('should override redirect_uri if provided in options', function() {
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var generated = oauth2client.generateAuthUrl({ redirect_uri: 'overridden' });
+    var parsed = url.parse(generated);
+    var query = qs.parse(parsed.query);
+    assert.equal(query.redirect_uri, 'overridden');
+  });
+
+  it('should override client_id if provided in options', function() {
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var generated = oauth2client.generateAuthUrl({ client_id: 'client_override' });
+    var parsed = url.parse(generated);
+    var query = qs.parse(parsed.query);
+    assert.equal(query.client_id, 'client_override');
+  });
 });

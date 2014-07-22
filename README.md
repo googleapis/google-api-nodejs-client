@@ -10,7 +10,7 @@ to learn about migrating your code from `0.x.x` to `1.0.0`. It's pretty easy :)
 
 ### Questions/problems?
 
-* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)][stackoverflow]
+* Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 ## Installation
@@ -47,20 +47,27 @@ for that particular API. These are immutable objects you use to make API calls.
 Example: Creating a `urlshortener` client with version `v1` of the API.
 
 ``` js
+var google = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 ```
 
-Supported APIs are listed on [Google APIs Explorer][apiexplorer].
+Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 
 ### Authorizing and Authenticating
 
-This client comes with an OAuth2 client that allows you to retrieve an access token and
-refreshes the token and retry the request seamlessly if token is expired. The
-basics of Google's OAuth 2.0 implementation is explained on
+This client comes with an [OAuth2][oauth] client that allows you to retrieve an
+access token and refreshes the token and retry the request seamlessly if token
+is expired. The basics of Google's OAuth2 implementation is explained on
 [Google Authorization and Authentication documentation][authdocs].
 
-A complete sample application that authorizes and authenticates with the OAuth 2.0
-client is available at `examples/oauth2.js`.
+In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and
+`REDIRECT_URL`. You can find these pieces of information by going to the
+[Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
+
+For more information about OAuth2 and how it works, [see here][oauth].
+
+A complete sample application that authorizes and authenticates with the OAuth2
+client is available at [`examples/oauth2.js`][oauthexample].
 
 #### Generating an authentication URL
 
@@ -105,12 +112,38 @@ oauth2Client.getToken(code, function(err, tokens) {
 });
 ```
 
+#### Settings global or service-level auth
+
+You can set the `auth` as a global or service-level option so you don't need to
+specify it every request.
+
+Example: Setting a global `auth` option.
+
+``` js
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
+var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+google.options({ auth: oauth2Client }); // set auth as a global default
+```
+
+Example: Setting a service-level `auth` option.
+
+``` js
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
+var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+
+var drive = google.drive({ version: 'v2', auth: oauth2Client });
+```
+
+See the [Options section][options] for more information.
+
 #### Making Authenticated Requests
 
 You can start using OAuth2 to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, the access_token is automatically refreshed and the request is replayed in
-case the access_token has expired.
+`refresh_token`, the `access_token` is automatically refreshed and the
+request is replayed in case the `access_token` has expired.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
@@ -160,11 +193,11 @@ To learn more about API keys, please see the [documentation][usingkeys].
 ### Media Uploads
 
 This client supports multipart media uploads. The resource parameters are
-specified in the `resource` object, and the media body itself is specified in
-the `media` object.
+specified in the `resource` parameter object, and the media body itself is
+specified in the `media` parameter.
 
-Example: Upload a plain text file with the title "Test" and contents
-"Hello World".
+Example: Upload a plain text file to Google Drive with the title "Test" and
+contents "Hello World".
 
 ``` js
 var drive = google.drive({ version: 'v2', auth: oauth2Client });
@@ -183,7 +216,7 @@ This can allow you to upload very large files that cannot fit into memory.
 
 Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
-Example: Upload an image from a readable stream.
+Example: Upload an image to Google Drive from a readable stream.
 
 ``` js
 var fs = require('fs');
@@ -221,18 +254,25 @@ this library to make network calls to the API.
 You may specify additional options either in the global `google` object or on a
 service client basis.
 
+### Available options
+
+The options you specify are attached to the `request` object so whatever
+`request` supports, this library supports.
+
 A full list of supported options can be [found here][requestopts].
 
-#### Global options
+### Global options
 
-Example: Specifying a proxy to be used for each request
+Example: Specifying a default proxy and `auth` to be used for each request
 
 ``` js
 var google = require('googleapis');
-google.options({ proxy: 'http://proxy.example.com' }); // sets options on google
+google.options({ proxy: 'http://proxy.example.com', auth: auth });
+
+// all requests made with this object will use these settings unless overridden
 ```
 
-#### Service-client options
+### Service-client options
 
 You can also specify options when creating a service client. For example, to
 specify a default `auth` option (API key or OAuth2 client), simply pass it in
@@ -241,6 +281,8 @@ like so:
 ``` js
 var auth = 'API KEY'; // or you could use oauth2Client
 var urlshortener = google.urlshortener({ version: 'v1', auth: auth });
+
+// all requests made with this object will use the specified auth
 ```
 
 By doing this, every API call made with this service client will use `'API KEY'`
@@ -248,6 +290,11 @@ to authenticate.
 
 **Note:** Created clients are **immutable** so you must create a new one if you
 want to specify different options.
+
+### Request-level options
+
+You can specify an `auth` object to be used per request. Each request also
+inherits the options specified at the service level and global level.
 
 ## License
 
@@ -274,3 +321,8 @@ See [CONTRIBUTING][contributing].
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
 [stability]: http://nodejs.org/api/stream.html#stream_stream
+[overflowimg]: https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png
+[devconsole]: https://console.developer.google.com
+[oauth]: https://developers.google.com/accounts/docs/OAuth2
+[oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/examples/oauth2.js
+[options]: https://github.com/google/google-api-nodejs-client/tree/master#options

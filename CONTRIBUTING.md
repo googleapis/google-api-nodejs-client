@@ -7,27 +7,43 @@ Fork the repo, develop and test your code changes.
 
 Install all dependencies including development requirements by running:
 
-~~~~ sh
+``` sh
 $ npm install -d
-~~~~
+```
 
-Tests use mocha. To run all tests you can use
+Tests are run using mocha. To run all tests just run:
 
-~~~~ sh
+``` sh
 $ npm test
-~~~~
+```
 
-which looks for tests in the `./tests` directory.
+which looks for tests in the `test/` directory.
 
-Your code should honor the
-[Google JavaScript Style Guide][js-guide].
-You can use
-[Closure Linter][c-linter]
-to detect style issues.
+Your code should honor the [Google JavaScript Style Guide][js-guide].
+You can use [Closure Linter][c-linter] to detect style issues.
 
 Submit a pull request. The repo owner will review your request. If it is
 approved, the change will be merged. If it needs additional work, the repo
 owner will respond with useful comments.
+
+## Generating APIs and Documentation
+
+If you're a developer interested in contributing to this library, the following
+section will be useful for you. Each of the files in `apis/` is generated from
+the discovery docs available online. You can generate these files by running
+the following command:
+
+``` sh
+npm run generate-apis
+```
+
+You can generate the documentation for the APIs by running:
+
+``` sh
+npm run generate-docs
+```
+
+Documentation will be generated in `docs/`.
 
 ## Contributor License Agreements
 

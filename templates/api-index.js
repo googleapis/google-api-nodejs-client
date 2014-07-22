@@ -72,4 +72,3 @@ module.exports = APIs;
  * @param {Error} err Error object if an error occurred.
  * @param {object} data Response data object.
  */
-

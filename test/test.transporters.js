@@ -39,4 +39,11 @@ describe('Transporters', function() {
     var re = new RegExp(applicationName + ' ' + defaultUserAgentRE);
     assert(re.test(opts.headers['User-Agent']));
   });
+
+  it('should automatically add content-type', function() {
+    var google = require('../lib/googleapis');
+    var drive = google.drive('v2');
+    var req = drive.files.list();
+    assert.equal(req.headers['content-type'], 'application/json');
+  });
 });

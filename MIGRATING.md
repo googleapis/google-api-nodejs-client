@@ -118,6 +118,35 @@ drive.files.insert({
 }, callback);
 ```
 
+## Authentication
+
+In `1.0.0` the ability to auth with `.withAuthClient()` and
+`.withApiKey(API_KEY)` is removed.  Now just simply specify your `OAuth2`
+client or API key in the `auth` parameter of any API call.
+You can additionally specify it in global or service specific options to set
+it as a default. See [here][options] for more information.
+
+In `0.x.x` an OAuth2 client was specified like this:
+
+``` js
+client
+  .plus.people.get({ userId: 'me' })
+  .withAuthClient(oauth2Client)
+  .execute(callback);
+```
+
+In `1.0.0`, just put it in the `auth` parameter. It's as easy as:
+
+``` js
+plus.people.get({ userId: 'me', auth: oauth2Client }, callback);
+```
+
+You can also specify an API key instead:
+
+``` js
+plus.people.get({ userId: 'me', auth: 'api key here' }, callback);
+```
+
 ## Batch Requests
 
 Batch requests were experimental before `1.0.0`. We have removed support for batch
@@ -125,3 +154,4 @@ requests in `1.0.0` due to their unpopularity and instability.
 
 [request]: https://github.com/mikeal/request
 [readme]: https://github.com/google/google-api-nodejs-client/tree/master/README.md
+[options]: https://github.com/google/google-api-nodejs-client/tree/master#options

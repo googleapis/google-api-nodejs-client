@@ -3,24 +3,24 @@
 /**
  * {{ m.id }}
  *
- * {% if m.description %}@desc {{ m.description|safe }}{% endif %}
+ * {% if m.description %}@desc {{ m.description|oneLine|safe }}{% endif %}
  *
  * @alias {{ m.id }}
  * @memberOf! {{ name }}({{ version }})
  * @method
  *
- * @param  {object} params - Parameters for request
+ * @param  {object{% if !m.parameterOrder && !m.request %}={% endif %}} params - Parameters for request
  {% for pname, p in m.parameters -%}
- * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} - {{ p.description|safe }}
+ * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} - {{ p.description|oneLine|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
  * @param  {object}        params.resource - Media resource metadata
  * @param  {string|object} params.media - Media body data to upload
-{% else -%}
+{% elif m.request -%}
  * @param  {object} params.resource - Request body data
 {% endif -%}
 {% if m.parameterOrder.length -%}
- * @throws {Error}  If a required parameter is missing.
+ * @throws {Error} If a required parameter is missing.
 {% endif -%}
  * @param  {callback=} callback - The callback that handles the response.
  * @return {object} Request object
