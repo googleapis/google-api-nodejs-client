@@ -33,6 +33,7 @@ describe('OAuth2 client', function() {
   var REDIRECT_URI = 'REDIRECT';
   var ACCESS_TYPE = 'offline';
   var SCOPE = 'scopex';
+  var SCOPE_ARRAY = ['scopex', 'scopey'];
 
   var PUBLIC_KEY = '';
   var PRIVATE_KEY = '';
@@ -55,6 +56,23 @@ describe('OAuth2 client', function() {
     assert.equal(query.scope, SCOPE);
     assert.equal(query.client_id, CLIENT_ID);
     assert.equal(query.redirect_uri, REDIRECT_URI);
+    done();
+  });
+
+  it('should allow scopes to be specified as array', function(done) {
+    var opts = {
+      access_type: ACCESS_TYPE,
+      scope: SCOPE_ARRAY,
+      response_type: 'code token'
+    };
+
+    var oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var generated = oauth2client.generateAuthUrl(opts);
+    var parsed = url.parse(generated);
+    var query = qs.parse(parsed.query);
+
+    assert.equal(query.scope, SCOPE_ARRAY.join(' '));
     done();
   });
 
