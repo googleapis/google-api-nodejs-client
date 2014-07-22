@@ -48,6 +48,23 @@ describe('JWT auth client', function() {
       done();
     });
   });
+
+  it('should accept scope as string', function (done) {
+    var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        'http://foo',
+        'bar@subjectaccount.com');
+
+    jwt.GAPI = function(opts, callback) {
+      assert.equal('http://foo', opts.scope);
+      done();
+    }
+
+    jwt.authorize();
+  });
+
   it('should refresh token when request fails', function(done) {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
