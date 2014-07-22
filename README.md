@@ -3,10 +3,10 @@
 Google's officially supported [node.js][node] client library for using
 Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
-### Migrating to `v1` of this library
+### Migrating to version `1.0.0` of this library
 
-If you've used this library before `v1`, see our [Migration Guide][migrating]
-to learn about migrating your code from pre-`v1` to `v1`. It's pretty easy :)
+If you've used this library before `1.0.0`, see our [Migration Guide][migrating]
+to learn about migrating your code from `0.x.x` to `1.0.0`. It's pretty easy :)
 
 ### Questions/problems?
 
@@ -181,7 +181,7 @@ drive.files.insert({
 You can also upload media by specifying `media` as a [Readable stream][stream].
 This can allow you to upload very large files that cannot fit into memory.
 
-Note: Streams in Node.js are still unstable. Use at your own risk.
+Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
 Example: Upload an image from a readable stream.
 
@@ -273,3 +273,4 @@ See [CONTRIBUTING][contributing].
 [requestopts]: https://github.com/mikeal/request#requestoptions-callback
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
+[stability]: http://nodejs.org/api/stream.html#stream_stream

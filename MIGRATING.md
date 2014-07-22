@@ -1,16 +1,16 @@
-# Migrating to `v1`
+# Migrating from version `0.x.x` to `1.0.0`
 
 Many changes and improvements have been made to the `google-api-nodejs-client`
-library to bring it to `v1`. If you are starting a new project or haven't used
-this library before `v1`, see the [README][readme] to get started as you won't
-need to migrate anything.
+library to bring it to `1.0.0`. If you are starting a new project or haven't used
+this library before version `1.0.0`, see the [README][readme] to get started
+as you won't need to migrate anything.
 
 ## Discovery
 
-Before `v1` the library would "discover" APIs on the fly, introducing
-additional network calls and instability. That has been fixed that in `v1`.
+In `0.x.x` the library would "discover" APIs on the fly, introducing
+additional network calls and instability. That has been fixed in `1.0.0`.
 
-To get the `drive` client in the old library required something like this:
+To get the `drive` client in `0.x.x` required this:
 
 ``` js
 var google = require('googleapis');
@@ -23,11 +23,11 @@ google.discover('drive', 'v2').execute(function(err, client) {
 });
 ```
 
-In `v1` the same thing can be accomplished like this:
+In `1.0.0` the same thing can be accomplished like this:
 
 ``` js
 var google = require('googleapis');
-var drive = google.drive('v2');
+var drive = google.drive('v2'); // no network call! :)
 // drive.files.insert...
 ```
 
@@ -38,14 +38,14 @@ All APIs are immediately accessible without requiring discovery.
 We moved `resource` object from the second parameter to the `resource` property
 in the first parameter object:
 
-Prior to `v1`:
+In `0.x.x`, a resource was specified this way:
 
 ``` js
 var resourceObj = { title: 'updated title' };
 client.drive.files.update({ fileId: 'abc' }, resourceObj).execute();
 ```
 
-New way in `v1`:
+New way in `1.0.0`:
 
 ``` js
 var resourceObj = { title: 'updated title' };
@@ -57,7 +57,7 @@ drive.files.update({ fileId: 'abc', resource: resourceObj })
 Now callbacks are specified in the second parameter and `.execute` is always
 implied.
 
-Old way to specify a callback:
+The `0.x.x` way to specify a callback:
 
 ``` js
 client.drive.files.get({ fileId: 'abc' }).execute(function(err, resp) {
@@ -65,7 +65,7 @@ client.drive.files.get({ fileId: 'abc' }).execute(function(err, resp) {
 });
 ```
 
-How to specify callback in `v1` (in the second parameter):
+How to specify callback in `1.0.0` (in the second parameter):
 
 ``` js
 drive.files.get({ fileId: 'abc' }, function(err, resp) {
@@ -73,8 +73,8 @@ drive.files.get({ fileId: 'abc' }, function(err, resp) {
 });
 ```
 
-**Note:** Prior to `v1`, the library would not execute your requests until you
-specifically called `.execute`. Because this was removed in `v1`, all requests
+**Note:** Prior to `1.0.0`, the library would not execute your requests until you
+specifically called `.execute`. Because this was removed in `1.0.0`, all requests
 now immediately execute, even if a callback is not specified.
 
 ## Media uploads
@@ -83,7 +83,7 @@ Media data is now specified in a `media` parameter instead of in `withMedia()`.
 The mime-type is taken from the `resource` object, so there's no need to specify
 it twice.
 
-Old way to do media uploads prior to `v1`:
+The old `0.x.x` way of uploading media:
 
 ``` js
 client.drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
@@ -91,7 +91,7 @@ client.drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
   .execute(callback);
 ```
 
-New way in `v1` using `resource` and `media` parameters:
+The fancy new way in `1.0.0` using `resource` and `media` parameters:
 
 ``` js
 drive.files.insert({
@@ -120,8 +120,8 @@ drive.files.insert({
 
 ## Batch Requests
 
-Batch requests were experimental before `v1`. We have removed support for batch
-requests in `v1` due to their unpopularity and instability.
+Batch requests were experimental before `1.0.0`. We have removed support for batch
+requests in `1.0.0` due to their unpopularity and instability.
 
 [request]: https://github.com/mikeal/request
 [readme]: https://github.com/google/google-api-nodejs-client/tree/master/README.md
