@@ -47,6 +47,7 @@ for that particular API. These are immutable objects you use to make API calls.
 Example: Creating a `urlshortener` client with version `v1` of the API.
 
 ``` js
+var google = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 ```
 
@@ -58,6 +59,10 @@ This client comes with an OAuth2 client that allows you to retrieve an access to
 refreshes the token and retry the request seamlessly if token is expired. The
 basics of Google's OAuth 2.0 implementation is explained on
 [Google Authorization and Authentication documentation][authdocs].
+
+In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and
+`REDIRECT_URL`. You can find these pieces of information by going to the
+[Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
 
 A complete sample application that authorizes and authenticates with the OAuth 2.0
 client is available at `examples/oauth2.js`.
@@ -109,8 +114,8 @@ oauth2Client.getToken(code, function(err, tokens) {
 
 You can start using OAuth2 to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-refresh_token, the access_token is automatically refreshed and the request is replayed in
-case the access_token has expired.
+`refresh_token`, the `access_token` is automatically refreshed and the
+request is replayed in case the `access_token` has expired.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
@@ -275,3 +280,4 @@ See [CONTRIBUTING][contributing].
 [migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
 [stability]: http://nodejs.org/api/stream.html#stream_stream
 [overflowimg]: https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png
+[devconsole]: https://console.developer.google.com
