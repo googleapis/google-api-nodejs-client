@@ -40,17 +40,17 @@ function Urlshortener(options) {
 
     /**
      * urlshortener.url.get
+     *
+     * @desc Expands a short URL or gets creation time and analytics.
+     *
      * @alias urlshortener.url.get
      * @memberOf! urlshortener(v1)
-     * @description Expands a short URL or gets creation time and analytics.
      *
-     * @method
-     * @param {object} params - Parameters for request
+     * @param  {object} params - Parameters for request
      * @param  {string=} params.projection - Additional information to return.
      * @param  {string} params.shortUrl - The short URL, including the protocol.
-     * @param  {object} params.resource - Request body data
-     * @throws {Error}  If a required parameter is missing.
-     * @param {callback=} callback - The callback that handles the response.
+     * @throws {Error} If a required parameter is missing.
+     * @param  {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
@@ -67,14 +67,15 @@ function Urlshortener(options) {
 
     /**
      * urlshortener.url.insert
+     *
+     * @desc Creates a new short URL.
+     *
      * @alias urlshortener.url.insert
      * @memberOf! urlshortener(v1)
-     * @description Creates a new short URL.
      *
-     * @method
-     * @param {object} params - Parameters for request
+     * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param {callback=} callback - The callback that handles the response.
+     * @param  {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
@@ -90,16 +91,16 @@ function Urlshortener(options) {
 
     /**
      * urlshortener.url.list
+     *
+     * @desc Retrieves a list of URLs shortened by a user.
+     *
      * @alias urlshortener.url.list
      * @memberOf! urlshortener(v1)
-     * @description Retrieves a list of URLs shortened by a user.
      *
-     * @method
-     * @param {object} params - Parameters for request
+     * @param  {object=} params - Parameters for request
      * @param  {string=} params.projection - Additional information to return.
      * @param  {string=} params.start-token - Token for requesting successive pages of results.
-     * @param  {object} params.resource - Request body data
-     * @param {callback=} callback - The callback that handles the response.
+     * @param  {callback=} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {

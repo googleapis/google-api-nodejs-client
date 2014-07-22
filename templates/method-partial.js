@@ -7,7 +7,6 @@
  *
  * @alias {{ m.id }}
  * @memberOf! {{ name }}({{ version }})
- * @method
  *
  * @param  {object{% if !m.parameterOrder && !m.request %}={% endif %}} params - Parameters for request
  {% for pname, p in m.parameters -%}
