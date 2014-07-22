@@ -17,19 +17,29 @@
 'use strict';
 
 var Generator = require('../lib/generator');
+var rimraf = require('rimraf');
 var debug = false;
 // constructors
 var gen = new Generator({ debug: debug, includePrivate: false });
 
-console.log('Generating APIs...');
-gen.generateAllAPIs(function(err, success) {
+console.log('Removing old APIs...');
+rimraf(__dirname + '/../apis', function(err) {
   if (err) {
-    throw err;
+    console.error(err);
+  } else {
+    console.log('Generating APIs...');
+    gen.generateAllAPIs(function(err, success) {
+      if (err) {
+        throw err;
+      }
+      gen.generateIndex(function(err, filename) {
+        if (err) {
+          throw err;
+        }
+        console.log('Finished generating APIs!');
+      });
+    });
   }
-  gen.generateIndex(function(err, filename) {
-    if (err) {
-      throw err;
-    }
-    console.log('Finished generating APIs!');
-  });
 });
+
+
