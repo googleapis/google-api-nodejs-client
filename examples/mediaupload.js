@@ -14,39 +14,44 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
+var drive = google.drive('v2');
 
-var auth = new googleapis.OAuth2Client();
+var auth = new google.auth.OAuth2();
+
 auth.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
 });
 
-googleapis.discover('drive', 'v2').execute(function(err, client) {
+// insertion example
+drive.files.insert({
+  resource: {
+    title: 'Test',
+    mimeType: 'text/plain'
+  },
+  media: 'Hello World',
+  auth: authClient
+}, function(err, response) {
+  console.log('error:', err, 'inserted:', response.id);
+});
 
-  // insertion example
-  client
-      .drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
-      .withMedia('text/plain', 'Hello World')
-      .withAuthClient(auth)
-      .execute(function(err, result) {
-    console.log('error:', err, 'inserted:', result.id);
-  });
+// update with no metadata
+drive.files.update({
+  fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc',
+  media: 'Hello World updated with no metadata',
+  auth: auth
+}, function(err, response) {
+  console.log('error:', err, 'updated:', response.id);
+});
 
-  // update with no metadata
-  client
-      .drive.files.update({ fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc'})
-      .withMedia('text/plain', 'Hello World updated with no metadata')
-      .withAuthClient(auth)
-      .execute(function(err, result) {
-    console.log('error:', err, 'updated:', result.id);
-  });
-
-  // // update example with metadata update
-  client
-      .drive.files.update({ fileId: '0B-skmV2...'}, { title: 'Updated Test' })
-      .withMedia('text/plain', 'Hello World updated with metadata')
-      .withAuthClient(auth)
-      .execute(function(err, result) {
-    console.log('error:', err, 'updated:', result.id);
-  });
+// update example with metadata update
+drive.files.update({
+  fileId: '0B-skmV2...',
+  resource: {
+    title: 'Updated title'
+  },
+  media: 'Hello World updated with metadata',
+  auth: auth
+}, function(err, response) {
+  console.log('error:', err, 'updated:', response.id);
 });

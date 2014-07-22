@@ -16,14 +16,17 @@
 
 var readline = require('readline');
 
-var googleapis = require('../lib/googleapis.js');
-var OAuth2Client = googleapis.OAuth2Client;
+var google = require('../lib/googleapis.js');
+var OAuth2Client = google.auth.OAuth2;
+var plus = google.plus('v1');
 
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
 var CLIENT_ID = 'YOUR CLIENT ID HERE';
 var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
 var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
+
+var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
 var rl = readline.createInterface({
   input: process.stdin,
@@ -34,7 +37,7 @@ function getAccessToken(oauth2Client, callback) {
   // generate consent page url
   var url = oauth2Client.generateAuthUrl({
     access_type: 'offline', // will return a refresh token
-    scope: 'https://www.googleapis.com/auth/plus.me'
+    scope: 'https://www.googleapis.com/auth/plus.me' // can be a space-delimited string or an array of scopes
   });
 
   console.log('Visit the url: ', url);
@@ -49,31 +52,14 @@ function getAccessToken(oauth2Client, callback) {
   });
 }
 
-function getUserProfile(client, authClient, userId, callback) {
-  client
-    .plus.people.get({ userId: userId })
-    .withAuthClient(authClient)
-    .execute(callback);
-}
-
-// load google plus v1 API resources and methods
-googleapis
-  .discover('plus', 'v1')
-  .execute(function(err, client) {
-
-  var oauth2Client =
-    new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-
-  // retrieve an access token
-  getAccessToken(oauth2Client, function() {
-    // retrieve user profile
-    getUserProfile(client, oauth2Client, 'me', function(err, profile) {
-      if (err) {
-        console.log('An error occured', err);
-        return;
-      }
-      console.log(profile.displayName, ':', profile.tagline);
-    });
+// retrieve an access token
+getAccessToken(oauth2Client, function() {
+  // retrieve user profile
+  plus.people.get({ userId: 'me', auth: authClient }, function(err, profile) {
+    if (err) {
+      console.log('An error occured', err);
+      return;
+    }
+    console.log(profile.displayName, ':', profile.tagline);
   });
-
 });
