@@ -42,8 +42,8 @@ describe('Transporters', function() {
 
   it('should automatically add content-type', function() {
     var google = require('../lib/googleapis');
-    var datastore = google.datastore({ version: 'v1beta2' });
-    var req = datastore.datasets.beginTransaction({ datasetId: 'test' });
+    var drive = google.drive('v2');
+    var req = drive.files.list();
     assert.equal(req.headers['content-type'], 'application/json');
   });
 });
