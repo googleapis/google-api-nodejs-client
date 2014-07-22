@@ -50,7 +50,7 @@ Example: Creating a `urlshortener` client with version `v1` of the API.
 var urlshortener = google.urlshortener('v1');
 ```
 
-Supported APIs are listed on [Google APIs Explorer][apiexplorer].
+Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 
 ### Authorizing and Authenticating
 
@@ -160,11 +160,11 @@ To learn more about API keys, please see the [documentation][usingkeys].
 ### Media Uploads
 
 This client supports multipart media uploads. The resource parameters are
-specified in the `resource` object, and the media body itself is specified in
-the `media` object.
+specified in the `resource` parameter object, and the media body itself is
+specified in the `media` parameter.
 
-Example: Upload a plain text file with the title "Test" and contents
-"Hello World".
+Example: Upload a plain text file to Google Drive with the title "Test" and
+contents "Hello World".
 
 ``` js
 var drive = google.drive({ version: 'v2', auth: oauth2Client });
@@ -183,7 +183,7 @@ This can allow you to upload very large files that cannot fit into memory.
 
 Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
-Example: Upload an image from a readable stream.
+Example: Upload an image to Google Drive from a readable stream.
 
 ``` js
 var fs = require('fs');
