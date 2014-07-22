@@ -10,7 +10,7 @@ to learn about migrating your code from `0.x.x` to `1.0.0`. It's pretty easy :)
 
 ### Questions/problems?
 
-* Ask your development related questions on [![Ask a question on Stackoverflow](https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png)][stackoverflow]
+* Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 ## Installation
@@ -249,25 +249,6 @@ to authenticate.
 **Note:** Created clients are **immutable** so you must create a new one if you
 want to specify different options.
 
-## Generating APIs and Documentation
-
-If you're a developer interested in contributing to this library, the following
-section will be useful for you. Each of the files in `apis/` is generated from
-the discovery docs available online. You can generate these files by running
-the following command:
-
-``` sh
-npm run generate-apis
-```
-
-You can generate the documentation for the APIs by running:
-
-``` sh
-npm run generate-docs
-```
-
-Documentation will be generated in `docs/`.
-
 ## License
 
 This library is licensed under Apache 2.0. Full license text is
@@ -293,3 +274,4 @@ See [CONTRIBUTING][contributing].
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
 [stability]: http://nodejs.org/api/stream.html#stream_stream
+[overflowimg]: https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png
