@@ -37,7 +37,7 @@ function getAccessToken(oauth2Client, callback) {
   // generate consent page url
   var url = oauth2Client.generateAuthUrl({
     access_type: 'offline', // will return a refresh token
-    scope: 'https://www.googleapis.com/auth/plus.me'
+    scope: 'https://www.googleapis.com/auth/plus.me' // can be a space-delimited string or an array of scopes
   });
 
   console.log('Visit the url: ', url);
