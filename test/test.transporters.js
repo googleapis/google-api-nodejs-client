@@ -40,10 +40,30 @@ describe('Transporters', function() {
     assert(re.test(opts.headers['User-Agent']));
   });
 
-  it('should automatically add content-type', function() {
+  it('should automatically add content-type for POST requests', function() {
+    var google = require('../lib/googleapis');
+    var drive = google.drive('v2');
+    var req = drive.comments.insert({
+        fileId: 'a'
+    });
+    assert.equal(req.headers['content-type'], 'application/json');
+  });
+
+  it('should not add body for GET requests', function() {
     var google = require('../lib/googleapis');
     var drive = google.drive('v2');
     var req = drive.files.list();
-    assert.equal(req.headers['content-type'], 'application/json');
+    assert.equal(req.headers['content-type'], null);
+    assert.equal(req.body, null);
+  });
+
+  it('should not add body for DELETE requests', function() {
+    var google = require('../lib/googleapis');
+    var drive = google.drive('v2');
+    var req = drive.files.delete({
+        fileId: 'test'
+    });
+    assert.equal(req.headers['content-type'], null);
+    assert.equal(req.body, null);
   });
 });
