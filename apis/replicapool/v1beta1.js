@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Replica Pool API
@@ -51,24 +49,22 @@ function Replicapool(options) {
      * @param  {string} params.projectName - The project ID for this replica pool.
      * @param  {string} params.zone - The zone for this replica pool.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName'],
+        pathParams: ['poolName', 'projectName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -83,24 +79,22 @@ function Replicapool(options) {
      * @param  {string} params.poolName - The name of the replica pool for this request.
      * @param  {string} params.projectName - The project ID for this replica pool.
      * @param  {string} params.zone - The zone for this replica pool.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName'],
+        pathParams: ['poolName', 'projectName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -115,23 +109,22 @@ function Replicapool(options) {
      * @param  {string} params.projectName - The project ID for this replica pool.
      * @param  {string} params.zone - The zone for this replica pool.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone'],
+        pathParams: ['projectName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -147,23 +140,22 @@ function Replicapool(options) {
      * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
      * @param  {string} params.projectName - The project ID for this request.
      * @param  {string} params.zone - The zone for this replica pool.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone'],
+        pathParams: ['projectName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -179,24 +171,22 @@ function Replicapool(options) {
      * @param  {string} params.poolName - The name of the replica pool for this request.
      * @param  {string} params.projectName - The project ID for this replica pool.
      * @param  {string} params.zone - The zone for this replica pool.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resize: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/resize',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/resize',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName'],
+        pathParams: ['poolName', 'projectName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -212,24 +202,22 @@ function Replicapool(options) {
      * @param  {string} params.projectName - The project ID for this replica pool.
      * @param  {string} params.zone - The zone for this replica pool.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     updatetemplate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/updateTemplate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/updateTemplate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName'],
+        pathParams: ['poolName', 'projectName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -250,25 +238,22 @@ function Replicapool(options) {
      * @param  {string} params.replicaName - The name of the replica for this request.
      * @param  {string} params.zone - The zone where the replica lives.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName', 'replicaName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
+        pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.replicaName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -284,25 +269,22 @@ function Replicapool(options) {
      * @param  {string} params.projectName - The project ID for this request.
      * @param  {string} params.replicaName - The name of the replica for this request.
      * @param  {string} params.zone - The zone where the replica lives.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName', 'replicaName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
+        pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.replicaName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -319,24 +301,22 @@ function Replicapool(options) {
      * @param  {string} params.poolName - The replica pool name for this request.
      * @param  {string} params.projectName - The project ID for this request.
      * @param  {string} params.zone - The zone where the replica pool lives.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName'],
+        pathParams: ['poolName', 'projectName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -352,25 +332,22 @@ function Replicapool(options) {
      * @param  {string} params.projectName - The project ID for this request.
      * @param  {string} params.replicaName - The name of the replica for this request.
      * @param  {string} params.zone - The zone where the replica lives.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     restart: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'poolName', 'replicaName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName + '/restart',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName + '/restart',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
+        pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
+        context: self
       };
 
-      delete params.poolName;
-      delete params.projectName;
-      delete params.replicaName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

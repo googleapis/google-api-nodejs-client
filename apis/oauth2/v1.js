@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google OAuth2 API
@@ -47,18 +45,20 @@ function Oauth2(options) {
      * @memberOf! oauth2(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/oauth2/v1/userinfo',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/oauth2/v1/userinfo',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Cloud SQL Administration API
@@ -51,25 +49,22 @@ function Sqladmin(options) {
      * @param  {string} params.dueTime - The time when this run is due to start in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance', 'backupConfiguration', 'dueTime']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/backupRuns/' + params.backupConfiguration,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/backupRuns/' + params.backupConfiguration,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'backupConfiguration', 'dueTime'],
+        pathParams: ['backupConfiguration', 'instance', 'project'],
+        context: self
       };
 
-      delete params.backupConfiguration;
-
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -86,24 +81,22 @@ function Sqladmin(options) {
      * @param  {integer=} params.maxResults - Maximum number of backup runs per response.
      * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance', 'backupConfiguration']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/backupRuns',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/backupRuns',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'backupConfiguration'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -119,18 +112,20 @@ function Sqladmin(options) {
      * @memberOf! sqladmin(v1beta3)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/flags',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/flags',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -148,22 +143,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID of the source as well as the clone Cloud SQL instance.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     clone: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/clone',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/clone',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -177,23 +172,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance to be deleted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -208,23 +202,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance to be exported.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     export: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/export',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/export',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -238,23 +231,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Database instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -269,23 +261,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     import: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/import',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/import',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -299,22 +290,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID of the project to which the newly created Cloud SQL instances should belong.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -329,22 +320,22 @@ function Sqladmin(options) {
      * @param  {integer=} params.maxResults - The maximum number of results to return per response.
      * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
      * @param  {string} params.project - Project ID of the project for which to list Cloud SQL instances.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -359,23 +350,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -389,23 +379,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetSslConfig: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/resetSslConfig',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/resetSslConfig',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -419,23 +408,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance to be restarted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     restart: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/restart',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/restart',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -451,23 +439,22 @@ function Sqladmin(options) {
      * @param  {string} params.dueTime - The time when this run is due to start in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     restoreBackup: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance', 'backupConfiguration', 'dueTime']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/restoreBackup',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/restoreBackup',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'backupConfiguration', 'dueTime'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -482,23 +469,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setRootPassword: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/setRootPassword',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/setRootPassword',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -513,23 +499,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -548,24 +533,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.operation - Instance operation ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/operations/' + params.operation,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/operations/' + params.operation,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'operation'],
+        pathParams: ['instance', 'operation', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.operation;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -581,24 +564,22 @@ function Sqladmin(options) {
      * @param  {integer=} params.maxResults - Maximum number of operations per response.
      * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
      * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/operations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -617,24 +598,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance to be deleted.
      * @param  {string} params.sha1Fingerprint - Sha1 FingerPrint.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance', 'sha1Fingerprint']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts/' + params.sha1Fingerprint,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts/' + params.sha1Fingerprint,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'sha1Fingerprint'],
+        pathParams: ['instance', 'project', 'sha1Fingerprint'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.sha1Fingerprint;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -649,24 +628,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {string} params.sha1Fingerprint - Sha1 FingerPrint.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance', 'sha1Fingerprint']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts/' + params.sha1Fingerprint,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts/' + params.sha1Fingerprint,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'sha1Fingerprint'],
+        pathParams: ['instance', 'project', 'sha1Fingerprint'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.sha1Fingerprint;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -681,23 +658,22 @@ function Sqladmin(options) {
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project to which the newly created Cloud SQL instances should belong.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -711,23 +687,22 @@ function Sqladmin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project for which to list Cloud SQL instances.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -744,22 +719,22 @@ function Sqladmin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID of the project for which to list tiers.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/tiers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/tiers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

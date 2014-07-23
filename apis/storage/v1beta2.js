@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Cloud Storage API
@@ -49,23 +47,22 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -79,23 +76,22 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -109,22 +105,22 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -137,22 +133,22 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -167,23 +163,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -198,23 +193,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/acl/' + params.entity,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -233,22 +227,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string=} params.ifMetagenerationMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -264,22 +258,22 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -294,20 +288,21 @@ function Storage(options) {
      * @param  {string} params.project - A valid API project identifier.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -323,20 +318,21 @@ function Storage(options) {
      * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
      * @param  {string} params.project - A valid API project identifier.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -353,22 +349,22 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -385,22 +381,22 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -417,18 +413,20 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     stop: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/channels/stop',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/channels/stop',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -446,23 +444,22 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -476,23 +473,22 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -506,22 +502,22 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -536,22 +532,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string=} params.ifMetagenerationMatch - If present, only return default ACL listing if the bucket's current metageneration matches this value.
      * @param  {string=} params.ifMetagenerationNotMatch - If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -566,23 +562,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -597,23 +592,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/defaultObjectAcl/' + params.entity,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['bucket', 'entity'],
+        pathParams: ['bucket', 'entity'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -633,25 +627,22 @@ function Storage(options) {
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string} params.object - Name of the object.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object', 'entity'],
+        pathParams: ['bucket', 'entity', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -667,25 +658,22 @@ function Storage(options) {
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string} params.object - Name of the object.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object', 'entity'],
+        pathParams: ['bucket', 'entity', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -701,24 +689,22 @@ function Storage(options) {
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string} params.object - Name of the object.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -733,24 +719,22 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string} params.object - Name of the object.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -767,25 +751,22 @@ function Storage(options) {
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string} params.object - Name of the object.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object', 'entity'],
+        pathParams: ['bucket', 'entity', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -802,25 +783,22 @@ function Storage(options) {
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string} params.object - Name of the object.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object', 'entity']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object', 'entity'],
+        pathParams: ['bucket', 'entity', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-      delete params.entity;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -841,23 +819,22 @@ function Storage(options) {
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's current generation matches the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     compose: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['destinationBucket', 'destinationObject']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.destinationBucket + '/o/' + params.destinationObject + '/compose',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.destinationBucket + '/o/' + params.destinationObject + '/compose',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['destinationBucket', 'destinationObject'],
+        pathParams: ['destinationBucket', 'destinationObject'],
+        context: self
       };
 
-      delete params.destinationBucket;
-      delete params.destinationObject;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -884,27 +861,22 @@ function Storage(options) {
      * @param  {string=} params.sourceGeneration - If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param  {string} params.sourceObject - Name of the source object.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     copy: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['sourceBucket', 'sourceObject', 'destinationBucket', 'destinationObject']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.sourceBucket + '/o/' + params.sourceObject + '/copyTo/b/' + params.destinationBucket + '/o/' + params.destinationObject,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.sourceBucket + '/o/' + params.sourceObject + '/copyTo/b/' + params.destinationBucket + '/o/' + params.destinationObject,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['sourceBucket', 'sourceObject', 'destinationBucket', 'destinationObject'],
+        pathParams: ['destinationBucket', 'destinationObject', 'sourceBucket', 'sourceObject'],
+        context: self
       };
 
-      delete params.destinationBucket;
-      delete params.destinationObject;
-
-      delete params.sourceBucket;
-
-      delete params.sourceObject;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -923,24 +895,22 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param  {string} params.object - Name of the object.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -960,24 +930,22 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param  {string} params.object - Name of the object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -998,22 +966,23 @@ function Storage(options) {
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/storage/v1beta2/b/' + params.bucket + '/o',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/storage/v1beta2/b/' + params.bucket + '/o',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1032,22 +1001,22 @@ function Storage(options) {
      * @param  {string=} params.prefix - Filter results to objects whose names begin with this prefix.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
      * @param  {boolean=} params.versions - If true, lists all versions of a file as distinct results.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1068,24 +1037,22 @@ function Storage(options) {
      * @param  {string} params.object - Name of the object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1106,24 +1073,22 @@ function Storage(options) {
      * @param  {string} params.object - Name of the object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket', 'object']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/' + params.object,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
       };
 
-      delete params.bucket;
-
-      delete params.object;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1143,22 +1108,22 @@ function Storage(options) {
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
      * @param  {boolean=} params.versions - If true, lists all versions of a file as distinct results.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watchAll: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['bucket']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/storage/v1beta2/b/' + params.bucket + '/o/watch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
       };
 
-      delete params.bucket;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

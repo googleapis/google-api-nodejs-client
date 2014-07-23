@@ -1,5 +1,6 @@
 {% set lb = "{" %}
 {% set rb = "}" %}
+{%- set pathParams = m.parameters|getPathParams -%}
 /**
  * {{ m.id }}
  *
@@ -18,27 +19,22 @@
 {% elif m.request -%}
  * @param  {object} params.resource - Request body data
 {% endif -%}
-{% if m.parameterOrder.length -%}
- * @throws {Error} If a required parameter is missing.
-{% endif -%}
- * @param  {callback=} callback - The callback that handles the response.
+ * @param  {callback} callback - The callback that handles the response.
  * @return {object} Request object
  */
 {{ mname }}: function(params, callback) {
-  var params = extend({}, params); // shallow copy
-  {% if m.parameterOrder.length -%}
-  checkRequired(params, ['{{ m.parameterOrder|join("', '")|safe }}']);
-  {%- endif -%}
-  var isMedia = {% if m.supportsMediaUpload %}true{% else %}false{% endif %};
-  var options = {
-    url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
-    method: '{{ m.httpMethod }}'
+  var parameters = {
+    options: {
+      url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
+      method: '{{ m.httpMethod }}'
+    },
+    params: params,
+    {%- if m.parameterOrder.length -%}requiredParams: ['{{ m.parameterOrder|join("', '")|safe }}'],{%- endif -%}
+    {%- if pathParams.length -%}pathParams: ['{{ pathParams|join("', '")|safe }}'],{%- endif -%}
+    {%- if m.supportsMediaUpload -%}isMedia: true,{%- endif -%}
+    context: self
   };
 
-  {% for pname, p in m.parameters -%}
-  {% if p.location === 'path' %}delete params.{{pname}};{% endif %}
-  {% endfor %}
-
-  return createAPIRequest(self, params, options, isMedia, callback);
+  return createAPIRequest(parameters, callback);
 }{%- if not loop.last %},
 {% endif %}

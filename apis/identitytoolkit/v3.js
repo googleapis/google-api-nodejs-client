@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Identity Toolkit API
@@ -48,18 +46,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     createAuthUri: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -72,18 +72,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     deleteAccount: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -96,18 +98,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     downloadAccount: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -120,18 +124,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getAccountInfo: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -144,18 +150,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getOobConfirmationCode: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -167,18 +175,20 @@ function Identitytoolkit(options) {
      * @memberOf! identitytoolkit(v3)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getPublicKeys: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -191,18 +201,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetPassword: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -215,18 +227,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setAccountInfo: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -239,18 +253,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     uploadAccount: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -263,18 +279,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     verifyAssertion: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -287,18 +305,20 @@ function Identitytoolkit(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     verifyPassword: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

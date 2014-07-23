@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Books API
@@ -50,24 +48,22 @@ function Books(options) {
      * @param  {string} params.shelf - ID of bookshelf to retrieve.
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {string} params.userId - ID of user for whom to retrieve bookshelves.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId', 'shelf']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId', 'shelf'],
+        pathParams: ['shelf', 'userId'],
+        context: self
       };
 
-      delete params.shelf;
-
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -81,22 +77,22 @@ function Books(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {string} params.userId - ID of user for whom to retrieve bookshelves.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -116,18 +112,20 @@ function Books(options) {
      * @param  {string=} params.mime_type - The document MIME type. It can be set only if the drive_document_id is set.
      * @param  {string=} params.name - The document name. It can be set only if the drive_document_id is set.
      * @param  {string=} params.upload_client_token -
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addBook: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/cloudloading/addBook',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/cloudloading/addBook',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -140,20 +138,21 @@ function Books(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.volumeId - The id of the book to be removed.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     deleteBook: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['volumeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/cloudloading/deleteBook',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/cloudloading/deleteBook',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['volumeId'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -166,18 +165,20 @@ function Books(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     updateBook: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/cloudloading/updateBook',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/cloudloading/updateBook',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -197,23 +198,22 @@ function Books(options) {
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {string} params.summaryId - The ID for the layer to get the summary for.
      * @param  {string} params.volumeId - The volume to retrieve layers for.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['volumeId', 'summaryId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary/' + params.summaryId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary/' + params.summaryId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['volumeId', 'summaryId'],
+        pathParams: ['summaryId', 'volumeId'],
+        context: self
       };
 
-      delete params.summaryId;
-      delete params.volumeId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -230,22 +230,22 @@ function Books(options) {
      * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {string} params.volumeId - The volume to retrieve layers for.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['volumeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['volumeId'],
+        pathParams: ['volumeId'],
+        context: self
       };
 
-      delete params.volumeId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -265,20 +265,21 @@ function Books(options) {
      * @param  {string=} params.locale - ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {string} params.volumeIds - The volume(s) to release restrictions for.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     releaseDownloadAccess: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['volumeIds', 'cpksver']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/myconfig/releaseDownloadAccess',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/releaseDownloadAccess',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['volumeIds', 'cpksver'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -296,20 +297,21 @@ function Books(options) {
      * @param  {string} params.nonce - The client nonce value.
      * @param  {string} params.source - String to identify the originator of this request.
      * @param  {string} params.volumeId - The volume to request concurrent/download restrictions for.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     requestAccess: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['source', 'volumeId', 'nonce', 'cpksver']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/myconfig/requestAccess',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/requestAccess',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -328,20 +330,21 @@ function Books(options) {
      * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
      * @param  {string} params.source - String to identify the originator of this request.
      * @param  {string=} params.volumeIds - The volume(s) to request download restrictions for.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     syncVolumeLicenses: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['source', 'nonce', 'cpksver']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/myconfig/syncVolumeLicenses',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/syncVolumeLicenses',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['source', 'nonce', 'cpksver'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -361,22 +364,22 @@ function Books(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.annotationId - The ID for the annotation to delete.
        * @param  {string=} params.source - String to identify the originator of this request.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['annotationId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['annotationId'],
+          pathParams: ['annotationId'],
+          context: self
         };
 
-        delete params.annotationId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -390,22 +393,22 @@ function Books(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.annotationId - The ID for the annotation to retrieve.
        * @param  {string=} params.source - String to identify the originator of this request.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['annotationId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['annotationId'],
+          pathParams: ['annotationId'],
+          context: self
         };
 
-        delete params.annotationId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -420,18 +423,20 @@ function Books(options) {
        * @param  {boolean=} params.showOnlySummaryInResponse - Requests that only the summary of the specified layer be provided in the response.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {object} params.resource - Request body data
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
+            method: 'POST'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -454,18 +459,20 @@ function Books(options) {
        * @param  {string=} params.updatedMax - RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
        * @param  {string=} params.updatedMin - RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
        * @param  {string=} params.volumeId - The volume to restrict annotations to.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -479,20 +486,21 @@ function Books(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.layerIds - Array of layer IDs to get the summary for.
        * @param  {string} params.volumeId - Volume id to get the summary for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       summary: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['layerIds', 'volumeId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/summary',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/summary',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['layerIds', 'volumeId'],
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -507,22 +515,22 @@ function Books(options) {
        * @param  {string} params.annotationId - The ID for the annotation to update.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['annotationId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['annotationId'],
+          pathParams: ['annotationId'],
+          context: self
         };
 
-        delete params.annotationId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -540,22 +548,22 @@ function Books(options) {
        * @param  {string} params.shelf - ID of bookshelf to which to add a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to add.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       addVolume: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['shelf', 'volumeId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/addVolume',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/addVolume',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['shelf', 'volumeId'],
+          pathParams: ['shelf'],
+          context: self
         };
 
-        delete params.shelf;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -569,22 +577,22 @@ function Books(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.shelf - ID of bookshelf from which to remove a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       clearVolumes: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['shelf']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/clearVolumes',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/clearVolumes',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['shelf'],
+          pathParams: ['shelf'],
+          context: self
         };
 
-        delete params.shelf;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -598,22 +606,22 @@ function Books(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.shelf - ID of bookshelf to retrieve.
        * @param  {string=} params.source - String to identify the originator of this request.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['shelf']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['shelf'],
+          pathParams: ['shelf'],
+          context: self
         };
 
-        delete params.shelf;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -626,18 +634,20 @@ function Books(options) {
        *
        * @param  {object=} params - Parameters for request
        * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -653,22 +663,22 @@ function Books(options) {
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to move.
        * @param  {integer} params.volumePosition - Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       moveVolume: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['shelf', 'volumeId', 'volumePosition']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/moveVolume',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/moveVolume',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['shelf', 'volumeId', 'volumePosition'],
+          pathParams: ['shelf'],
+          context: self
         };
 
-        delete params.shelf;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -683,22 +693,22 @@ function Books(options) {
        * @param  {string} params.shelf - ID of bookshelf from which to remove a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to remove.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       removeVolume: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['shelf', 'volumeId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/removeVolume',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/removeVolume',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['shelf', 'volumeId'],
+          pathParams: ['shelf'],
+          context: self
         };
 
-        delete params.shelf;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -716,22 +726,22 @@ function Books(options) {
        * @param  {string=} params.contentVersion - Volume content version for which this reading position is requested.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume for which to retrieve a reading position.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['volumeId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['volumeId'],
+          pathParams: ['volumeId'],
+          context: self
         };
 
-        delete params.volumeId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -750,22 +760,22 @@ function Books(options) {
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.timestamp - RFC 3339 UTC format timestamp associated with this reading position.
        * @param  {string} params.volumeId - ID of volume for which to update the reading position.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       setPosition: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['volumeId', 'timestamp', 'position']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId + '/setPosition',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId + '/setPosition',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['volumeId', 'timestamp', 'position'],
+          pathParams: ['volumeId'],
+          context: self
         };
 
-        delete params.volumeId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }
@@ -791,18 +801,20 @@ function Books(options) {
      * @param  {string=} params.product - device product
      * @param  {string=} params.serial - device serial
      * @param  {string=} params.volumeId - Volume id to exercise the offer
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     accept: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/promooffer/accept',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/promooffer/accept',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -821,18 +833,20 @@ function Books(options) {
      * @param  {string=} params.offerId - Offer to dimiss
      * @param  {string=} params.product - device product
      * @param  {string=} params.serial - device serial
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     dismiss: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/promooffer/dismiss',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/promooffer/dismiss',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -850,18 +864,20 @@ function Books(options) {
      * @param  {string=} params.model - device model
      * @param  {string=} params.product - device product
      * @param  {string=} params.serial - device serial
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/promooffer/get',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/promooffer/get',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -882,22 +898,22 @@ function Books(options) {
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {string} params.volumeId - ID of volume to retrieve.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['volumeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['volumeId'],
+        pathParams: ['volumeId'],
+        context: self
       };
 
-      delete params.volumeId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -922,20 +938,21 @@ function Books(options) {
      * @param  {boolean=} params.showPreorders - Set to true to show books available for preorder. Defaults to false.
      * @param  {string=} params.source - String to identify the originator of this request.
      * @param  {integer=} params.startIndex - Index of the first result to return (starts at 0)
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['q']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/books/v1/volumes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/volumes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['q'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

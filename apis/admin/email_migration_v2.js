@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Email Migration API v2
@@ -50,22 +48,23 @@ function Admin(options) {
      * @param  {string} params.userKey - The email or immutable id of the user
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/email/v2/users/' + params.userKey + '/mail',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/email/v2/users/' + params.userKey + '/mail',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

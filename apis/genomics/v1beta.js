@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Genomics API
@@ -51,22 +49,22 @@ function Genomics(options) {
      * @param  {string=} params.contig - Required. The contig to query over.
      * @param  {string} params.datasetId - The ID of the dataset to query over. It must be public. Private datasets will return an unauthorized exception.
      * @param  {string=} params.position - Required. The 1-based position to query at.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.datasetId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.datasetId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -83,18 +81,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/callsets',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -107,22 +107,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callsetId - The ID of the callset to be deleted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['callsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['callsetId'],
+        pathParams: ['callsetId'],
+        context: self
       };
 
-      delete params.callsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -135,22 +135,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callsetId - The ID of the callset.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['callsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['callsetId'],
+        pathParams: ['callsetId'],
+        context: self
       };
 
-      delete params.callsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -164,22 +164,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.callsetId - The ID of the callset to be updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['callsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['callsetId'],
+        pathParams: ['callsetId'],
+        context: self
       };
 
-      delete params.callsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -192,18 +192,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     search: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/callsets/search',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/search',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -217,22 +219,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.callsetId - The ID of the callset to be updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['callsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['callsetId'],
+        pathParams: ['callsetId'],
+        context: self
       };
 
-      delete params.callsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -249,18 +251,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/datasets',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -273,22 +277,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be deleted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -301,22 +305,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -331,18 +335,20 @@ function Genomics(options) {
      * @param  {string=} params.maxResults - The maximum number of results returned by this request.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param  {string=} params.projectId - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/datasets',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -356,22 +362,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -385,22 +391,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -419,18 +425,20 @@ function Genomics(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {object} params.resource - Request body data
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       create: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/genomics/v1beta/experimental/jobs/create',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/genomics/v1beta/experimental/jobs/create',
+            method: 'POST'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }
@@ -449,22 +457,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.jobId - The ID of the job.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/jobs/' + params.jobId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/jobs/' + params.jobId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['jobId'],
+        pathParams: ['jobId'],
+        context: self
       };
 
-      delete params.jobId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -477,18 +485,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     search: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/jobs/search',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/jobs/search',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -505,18 +515,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     search: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/reads/search',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/reads/search',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -533,22 +545,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.readsetId - The ID of the readset to be deleted. The caller must have WRITE permissions to the dataset associated with this readset.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['readsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['readsetId'],
+        pathParams: ['readsetId'],
+        context: self
       };
 
-      delete params.readsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -561,18 +573,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     export: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/export',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/export',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -585,22 +599,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.readsetId - The ID of the readset.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['readsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['readsetId'],
+        pathParams: ['readsetId'],
+        context: self
       };
 
-      delete params.readsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -613,18 +627,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     import: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/import',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/import',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -638,22 +654,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.readsetId - The ID of the readset to be updated. The caller must have WRITE permissions to the dataset associated with this readset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['readsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['readsetId'],
+        pathParams: ['readsetId'],
+        context: self
       };
 
-      delete params.readsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -666,18 +682,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     search: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/search',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/search',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -691,22 +709,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.readsetId - The ID of the readset to be updated. The caller must have WRITE permissions to the dataset associated with this readset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['readsetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['readsetId'],
+        pathParams: ['readsetId'],
+        context: self
       };
 
-      delete params.readsetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -723,18 +741,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -747,22 +767,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant to be deleted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['variantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['variantId'],
+        pathParams: ['variantId'],
+        context: self
       };
 
-      delete params.variantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -775,18 +795,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     export: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/export',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/export',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -799,22 +821,22 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['variantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['variantId'],
+        pathParams: ['variantId'],
+        context: self
       };
 
-      delete params.variantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -827,18 +849,20 @@ function Genomics(options) {
      *
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.datasetId - Required. The ID of the dataset to get variant summary information for.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getSummary: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/summary',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/summary',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -851,18 +875,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     import: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/import',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/import',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -876,22 +902,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant to be updated..
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['variantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['variantId'],
+        pathParams: ['variantId'],
+        context: self
       };
 
-      delete params.variantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -904,18 +930,20 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     search: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/search',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/search',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -929,22 +957,22 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant to be updated..
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['variantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['variantId'],
+        pathParams: ['variantId'],
+        context: self
       };
 
-      delete params.variantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

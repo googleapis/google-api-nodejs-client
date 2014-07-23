@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Play Android Developer API
@@ -50,24 +48,22 @@ function Androidpublisher(options) {
      * @param  {string} params.packageName - The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      * @param  {string} params.productId - The inapp product SKU (for example, 'com.some.thing.inapp1').
      * @param  {string} params.token - The token provided to the user's device when the inapp product was purchased.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['packageName', 'productId', 'token']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/inapp/' + params.productId + '/purchases/' + params.token,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/inapp/' + params.productId + '/purchases/' + params.token,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['packageName', 'productId', 'token'],
+        pathParams: ['packageName', 'productId', 'token'],
+        context: self
       };
 
-      delete params.packageName;
-      delete params.productId;
-      delete params.token;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -86,24 +82,22 @@ function Androidpublisher(options) {
      * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
      * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     cancel: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['packageName', 'subscriptionId', 'token']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/subscriptions/' + params.subscriptionId + '/purchases/' + params.token + '/cancel',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/subscriptions/' + params.subscriptionId + '/purchases/' + params.token + '/cancel',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['packageName', 'subscriptionId', 'token'],
+        pathParams: ['packageName', 'subscriptionId', 'token'],
+        context: self
       };
 
-      delete params.packageName;
-      delete params.subscriptionId;
-      delete params.token;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -118,24 +112,22 @@ function Androidpublisher(options) {
      * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
      * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['packageName', 'subscriptionId', 'token']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/subscriptions/' + params.subscriptionId + '/purchases/' + params.token,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/subscriptions/' + params.subscriptionId + '/purchases/' + params.token,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['packageName', 'subscriptionId', 'token'],
+        pathParams: ['packageName', 'subscriptionId', 'token'],
+        context: self
       };
 
-      delete params.packageName;
-      delete params.subscriptionId;
-      delete params.token;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Mirror API
@@ -51,24 +49,22 @@ function Mirror(options) {
      * @param  {string} params.accountType - Account type to be passed to Android Account Manager.
      * @param  {string} params.userToken - The ID for the user.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userToken', 'accountType', 'accountName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/accounts/' + params.userToken + '/' + params.accountType + '/' + params.accountName,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/accounts/' + params.userToken + '/' + params.accountType + '/' + params.accountName,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userToken', 'accountType', 'accountName'],
+        pathParams: ['accountName', 'accountType', 'userToken'],
+        context: self
       };
 
-      delete params.accountName;
-      delete params.accountType;
-      delete params.userToken;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -85,22 +81,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the contact.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -113,22 +109,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the contact.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -141,18 +137,20 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/contacts',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/contacts',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -164,18 +162,20 @@ function Mirror(options) {
      * @memberOf! mirror(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/contacts',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/contacts',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -189,22 +189,22 @@ function Mirror(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the contact.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -218,22 +218,22 @@ function Mirror(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the contact.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -250,22 +250,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the location or latest for the last known location.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/locations/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/locations/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -277,18 +277,20 @@ function Mirror(options) {
      * @memberOf! mirror(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/locations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/locations',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -305,22 +307,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/settings/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/settings/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -337,22 +339,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the subscription.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/subscriptions/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/subscriptions/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -365,18 +367,20 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/subscriptions',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/subscriptions',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -388,18 +392,20 @@ function Mirror(options) {
      * @memberOf! mirror(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/subscriptions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/subscriptions',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -413,22 +419,22 @@ function Mirror(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the subscription.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/subscriptions/' + params.id,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/subscriptions/' + params.id,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -445,22 +451,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the timeline item.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -473,22 +479,22 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the timeline item.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -502,18 +508,21 @@ function Mirror(options) {
      * @param  {object} params - Parameters for request
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/mirror/v1/timeline',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/mirror/v1/timeline',
+          method: 'POST'
+        },
+        params: params,
+        isMedia: true,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -532,18 +541,20 @@ function Mirror(options) {
      * @param  {string=} params.pageToken - Token for the page of results to return.
      * @param  {boolean=} params.pinnedOnly - If true, only pinned items will be returned.
      * @param  {string=} params.sourceItemId - If provided, only items with the given sourceItemId will be returned.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/timeline',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/timeline',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -557,22 +568,22 @@ function Mirror(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the timeline item.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -587,22 +598,23 @@ function Mirror(options) {
      * @param  {string} params.id - The ID of the timeline item.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

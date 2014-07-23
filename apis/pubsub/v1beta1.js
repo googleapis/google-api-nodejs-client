@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Cloud Pub/Sub API
@@ -48,18 +46,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     acknowledge: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/acknowledge',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/acknowledge',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -72,18 +72,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -96,22 +98,22 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.subscription - The subscription to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['subscription']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/' + params.subscription,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/' + params.subscription,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
+        context: self
       };
 
-      delete params.subscription;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -124,22 +126,22 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.subscription - The name of the subscription to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['subscription']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/' + params.subscription,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/' + params.subscription,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
+        context: self
       };
 
-      delete params.subscription;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -154,18 +156,20 @@ function Pubsub(options) {
      * @param  {integer=} params.maxResults - Maximum number of subscriptions to return.
      * @param  {string=} params.pageToken - The value obtained in the last ListSubscriptionsResponse for continuation.
      * @param  {string=} params.query - A valid label query expression.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -178,18 +182,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     modifyAckDeadline: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/modifyAckDeadline',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/modifyAckDeadline',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -202,18 +208,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     modifyPushConfig: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/modifyPushConfig',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/modifyPushConfig',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -226,18 +234,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     pull: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/pull',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/pull',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -254,18 +264,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/topics',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -278,22 +290,22 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.topic - Name of the topic to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['topic']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/topics/' + params.topic,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/' + params.topic,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: self
       };
 
-      delete params.topic;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -306,22 +318,22 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.topic - The name of the topic to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['topic']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/topics/' + params.topic,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/' + params.topic,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: self
       };
 
-      delete params.topic;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -336,18 +348,20 @@ function Pubsub(options) {
      * @param  {integer=} params.maxResults - Maximum number of topics to return.
      * @param  {string=} params.pageToken - The value obtained in the last ListTopicsResponse for continuation.
      * @param  {string=} params.query - A valid label query expression.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/topics',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -360,18 +374,20 @@ function Pubsub(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     publish: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pubsub/v1beta1/topics/publish',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/publish',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

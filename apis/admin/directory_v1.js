@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Admin Directory API
@@ -49,23 +47,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.codeId - The unique ID of the ASP to be deleted.
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'codeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps/' + params.codeId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps/' + params.codeId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['userKey', 'codeId'],
+        pathParams: ['codeId', 'userKey'],
+        context: self
       };
 
-      delete params.codeId;
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -79,23 +76,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.codeId - The unique ID of the ASP.
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'codeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps/' + params.codeId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps/' + params.codeId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey', 'codeId'],
+        pathParams: ['codeId', 'userKey'],
+        context: self
       };
 
-      delete params.codeId;
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -108,22 +104,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -140,18 +136,20 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     stop: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1//admin/directory_v1/channels/stop',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1//admin/directory_v1/channels/stop',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -170,23 +168,22 @@ function Admin(options) {
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.deviceId - Immutable id of Chrome OS Device
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'deviceId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId', 'deviceId'],
+        pathParams: ['customerId', 'deviceId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.deviceId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -205,22 +202,22 @@ function Admin(options) {
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.query - Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
      * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -236,23 +233,22 @@ function Admin(options) {
      * @param  {string} params.deviceId - Immutable id of Chrome OS Device
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'deviceId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customerId', 'deviceId'],
+        pathParams: ['customerId', 'deviceId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.deviceId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -268,23 +264,22 @@ function Admin(options) {
      * @param  {string} params.deviceId - Immutable id of Chrome OS Device
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'deviceId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customerId', 'deviceId'],
+        pathParams: ['customerId', 'deviceId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.deviceId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -301,22 +296,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
       };
 
-      delete params.groupKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -329,22 +324,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
       };
 
-      delete params.groupKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -357,18 +352,20 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -385,18 +382,20 @@ function Admin(options) {
      * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 200
      * @param  {string=} params.pageToken - Token to specify next page in the list
      * @param  {string=} params.userKey - Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -410,22 +409,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
       };
 
-      delete params.groupKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -439,22 +438,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
       };
 
-      delete params.groupKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -472,23 +471,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group
      * @param  {string} params.memberKey - Email or immutable Id of the member
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey', 'memberKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
       };
 
-      delete params.groupKey;
-      delete params.memberKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -502,23 +500,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group
      * @param  {string} params.memberKey - Email or immutable Id of the member
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey', 'memberKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
       };
 
-      delete params.groupKey;
-      delete params.memberKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -532,22 +529,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupKey - Email or immutable Id of the group
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
       };
 
-      delete params.groupKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -563,22 +560,22 @@ function Admin(options) {
      * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 200
      * @param  {string=} params.pageToken - Token to specify next page in the list
      * @param  {string=} params.roles - Comma separated role values to filter list results on.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
       };
 
-      delete params.groupKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -593,23 +590,22 @@ function Admin(options) {
      * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
      * @param  {string} params.memberKey - Email or immutable Id of the user. If Id, it should match with id of member object
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey', 'memberKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
       };
 
-      delete params.groupKey;
-      delete params.memberKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -624,23 +620,22 @@ function Admin(options) {
      * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
      * @param  {string} params.memberKey - Email or immutable Id of the user. If Id, it should match with id of member object
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupKey', 'memberKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
       };
 
-      delete params.groupKey;
-      delete params.memberKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -659,23 +654,22 @@ function Admin(options) {
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.resourceId - Immutable id of Mobile Device
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     action: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'resourceId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId + '/action',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId + '/action',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'resourceId'],
+        pathParams: ['customerId', 'resourceId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.resourceId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -689,23 +683,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.resourceId - Immutable id of Mobile Device
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'resourceId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customerId', 'resourceId'],
+        pathParams: ['customerId', 'resourceId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.resourceId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -720,24 +713,22 @@ function Admin(options) {
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string} params.resourceId - Immutable id of Mobile Device
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'resourceId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId', 'resourceId'],
+        pathParams: ['customerId', 'resourceId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      delete params.resourceId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -756,22 +747,22 @@ function Admin(options) {
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.query - Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
      * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -789,23 +780,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customer - The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
      * @param  {string} params.notificationId - The unique ID of the notification.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customer', 'notificationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customer', 'notificationId'],
+        pathParams: ['customer', 'notificationId'],
+        context: self
       };
 
-      delete params.customer;
-      delete params.notificationId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -819,23 +809,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customer - The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
      * @param  {string} params.notificationId - The unique ID of the notification.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customer', 'notificationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer', 'notificationId'],
+        pathParams: ['customer', 'notificationId'],
+        context: self
       };
 
-      delete params.customer;
-      delete params.notificationId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -851,22 +840,22 @@ function Admin(options) {
      * @param  {string=} params.language - The ISO 639-1 code of the language notifications are returned in. The default is English (en).
      * @param  {integer=} params.maxResults - Maximum number of notifications to return per page. The default is 100.
      * @param  {string=} params.pageToken - The token to specify the page of results to retrieve.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customer']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
       };
 
-      delete params.customer;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -881,23 +870,22 @@ function Admin(options) {
      * @param  {string} params.customer - The unique ID for the customer's Google account.
      * @param  {string} params.notificationId - The unique ID of the notification.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customer', 'notificationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customer', 'notificationId'],
+        pathParams: ['customer', 'notificationId'],
+        context: self
       };
 
-      delete params.customer;
-      delete params.notificationId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -912,23 +900,22 @@ function Admin(options) {
      * @param  {string} params.customer - The unique ID for the customer's Google account.
      * @param  {string} params.notificationId - The unique ID of the notification.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customer', 'notificationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customer', 'notificationId'],
+        pathParams: ['customer', 'notificationId'],
+        context: self
       };
 
-      delete params.customer;
-      delete params.notificationId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -946,23 +933,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.orgUnitPath - Full path of the organization unit
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'orgUnitPath']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.orgUnitPath;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -976,23 +962,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.orgUnitPath - Full path of the organization unit
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'orgUnitPath']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.orgUnitPath;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1006,22 +991,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1036,22 +1021,22 @@ function Admin(options) {
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string=} params.orgUnitPath - the URL-encoded organization unit
      * @param  {string=} params.type - Whether to return all sub-organizations or just immediate children
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1066,23 +1051,22 @@ function Admin(options) {
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.orgUnitPath - Full path of the organization unit
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'orgUnitPath']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.orgUnitPath;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1097,23 +1081,22 @@ function Admin(options) {
      * @param  {string} params.customerId - Immutable id of the Google Apps account
      * @param  {string} params.orgUnitPath - Full path of the organization unit
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'orgUnitPath']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.orgUnitPath;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1131,23 +1114,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.clientId - The Client ID of the application the token is issued to.
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'clientId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens/' + params.clientId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens/' + params.clientId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['userKey', 'clientId'],
+        pathParams: ['clientId', 'userKey'],
+        context: self
       };
 
-      delete params.clientId;
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1161,23 +1143,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.clientId - The Client ID of the application the token is issued to.
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'clientId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens/' + params.clientId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens/' + params.clientId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey', 'clientId'],
+        pathParams: ['clientId', 'userKey'],
+        context: self
       };
 
-      delete params.clientId;
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1190,22 +1171,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1222,22 +1203,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1250,22 +1231,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1278,18 +1259,20 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1310,18 +1293,20 @@ function Admin(options) {
      * @param  {string=} params.query - Query string search. Should be of the form "" where field can be any of supported fields, operators can be one of '=' for exact match or ':' for prefix match. For prefix match, the value should always be followed by a *.
      * @param  {string=} params.showDeleted - If set to true retrieves the list of deleted users. Default is false
      * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1335,22 +1320,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user as admin
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     makeAdmin: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/makeAdmin',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/makeAdmin',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1364,22 +1349,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user. If Id, it should match with id of user object
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1393,22 +1378,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - The immutable id of the user
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     undelete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/undelete',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/undelete',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1422,22 +1407,22 @@ function Admin(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user. If Id, it should match with id of user object
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1459,18 +1444,20 @@ function Admin(options) {
      * @param  {string=} params.showDeleted - If set to true retrieves the list of deleted users. Default is false
      * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1487,22 +1474,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     generate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes/generate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes/generate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1515,22 +1502,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Email or immutable Id of the user
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     invalidate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes/invalidate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes/invalidate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1543,22 +1530,22 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
       };
 
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

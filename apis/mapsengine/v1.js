@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Maps Engine API
@@ -48,22 +46,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the asset.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/assets/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/assets/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -86,18 +84,20 @@ function Mapsengine(options) {
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {string=} params.type - An asset type restriction. If set, only resources of this type will be returned.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/assets',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/assets',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -114,22 +114,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     cancelProcessing: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/cancelProcessing',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/cancelProcessing',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -143,18 +143,20 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.process - Whether to queue the created layer for processing.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -167,22 +169,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer. Only the layer creator or project owner are permitted to delete. If the layer is published, or included in a map, the request will fail. Unpublish the layer, and remove it from all maps prior to deleting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -196,22 +198,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
      * @param  {string=} params.version -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -233,18 +235,20 @@ function Mapsengine(options) {
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -258,22 +262,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -286,22 +290,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     process: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/process',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/process',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -314,22 +318,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     publish: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/publish',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/publish',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -342,22 +346,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     unpublish: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/unpublish',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/unpublish',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -374,18 +378,20 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -398,22 +404,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map. Only the map creator or project owner are permitted to delete. If the map is published the request will fail. Unpublish the map prior to deleting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -427,22 +433,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map.
      * @param  {string=} params.version -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -464,18 +470,20 @@ function Mapsengine(options) {
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -489,22 +497,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -517,22 +525,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     publish: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id + '/publish',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id + '/publish',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -545,22 +553,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     unpublish: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id + '/unpublish',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/maps/' + params.id + '/unpublish',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -576,18 +584,20 @@ function Mapsengine(options) {
      * @memberOf! mapsengine(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/projects',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/projects',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -604,22 +614,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster collection.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     cancelProcessing: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/cancelProcessing',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/cancelProcessing',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -632,18 +642,20 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -656,22 +668,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster collection. Only the raster collection creator or project owner are permitted to delete. If the rastor collection is included in a layer, the request will fail. Remove the raster collection from all layers prior to deleting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -684,22 +696,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster collection.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -721,18 +733,20 @@ function Mapsengine(options) {
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -746,22 +760,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster collection.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -774,22 +788,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster collection.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     process: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/process',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/process',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -806,22 +820,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster. Only the raster creator or project owner are permitted to delete. If the raster is included in a layer or mosaic, the request will fail. Remove it from all parents prior to deleting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -834,22 +848,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -863,22 +877,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the raster.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -891,18 +905,20 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     upload: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/rasters/upload',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasters/upload',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -919,18 +935,20 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/tables',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/tables',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -943,22 +961,22 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the table. Only the table creator or project owner are permitted to delete. If the table is included in a layer, the request will fail. Remove it from all layers prior to deleting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -972,22 +990,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the table.
      * @param  {string=} params.version -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1009,18 +1027,20 @@ function Mapsengine(options) {
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/tables',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/tables',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1034,22 +1054,22 @@ function Mapsengine(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the table.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1062,18 +1082,20 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     upload: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/mapsengine/v1/tables/upload',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/tables/upload',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

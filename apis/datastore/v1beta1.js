@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Cloud Datastore API
@@ -49,22 +47,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     allocateIds: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/allocateIds',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/allocateIds',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -78,22 +76,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     beginTransaction: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/beginTransaction',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/beginTransaction',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -107,22 +105,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     blindWrite: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/blindWrite',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/blindWrite',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -136,22 +134,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     commit: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/commit',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/commit',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -165,22 +163,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     lookup: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/lookup',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/lookup',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -194,22 +192,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     rollback: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/rollback',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/rollback',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -223,22 +221,22 @@ function Datastore(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Identifies the dataset.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     runQuery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/runQuery',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/datastore/v1beta1/datasets/' + params.datasetId + '/runQuery',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

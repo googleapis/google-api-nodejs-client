@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Analytics API
@@ -61,20 +59,21 @@ function Analytics(options) {
        * @param  {string=} params.sort - A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
        * @param  {string} params.start-date - Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['ids', 'start-date', 'end-date', 'metrics']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/data/ga',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/data/ga',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -99,20 +98,21 @@ function Analytics(options) {
        * @param  {string=} params.sort - A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
        * @param  {string} params.start-date - Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['ids', 'start-date', 'end-date', 'metrics']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/data/mcf',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/data/mcf',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -133,20 +133,21 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of entries to include in this feed.
        * @param  {string} params.metrics - A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
        * @param  {string=} params.sort - A comma-separated list of dimensions or metrics that determine the sort order for real time data.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['ids', 'metrics']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/data/realtime',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/data/realtime',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['ids', 'metrics'],
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }
@@ -168,18 +169,20 @@ function Analytics(options) {
        * @param  {object=} params - Parameters for request
        * @param  {integer=} params.max-results - The maximum number of filters to include in this response.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accountSummaries',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accountSummaries',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -196,23 +199,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to delete the user link for.
        * @param  {string} params.linkId - Link ID to delete the user link for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks/' + params.linkId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks/' + params.linkId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'linkId'],
+          pathParams: ['accountId', 'linkId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -226,22 +228,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to create the user link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -256,22 +258,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to retrieve the user links for.
        * @param  {integer=} params.max-results - The maximum number of account-user links to include in this response.
        * @param  {integer=} params.start-index - An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -286,23 +288,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to update the account-user link for.
        * @param  {string} params.linkId - Link ID to update the account-user link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks/' + params.linkId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks/' + params.linkId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'linkId'],
+          pathParams: ['accountId', 'linkId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -319,18 +320,20 @@ function Analytics(options) {
        * @param  {object=} params - Parameters for request
        * @param  {integer=} params.max-results - The maximum number of accounts to include in this response.
        * @param  {integer=} params.start-index - An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -349,24 +352,22 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of custom data sources to include in this response.
        * @param  {integer=} params.start-index - A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property Id for the custom data sources to retrieve.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -386,26 +387,22 @@ function Analytics(options) {
        * @param  {string} params.date - Date for which data is to be deleted. Date should be formatted as YYYY-MM-DD.
        * @param  {string} params.type - Type of data for this delete.
        * @param  {string} params.webPropertyId - Web property Id associated with daily upload delete.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'type']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'type'],
+          pathParams: ['accountId', 'customDataSourceId', 'date', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-        delete params.date;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -424,25 +421,22 @@ function Analytics(options) {
        * @param  {string} params.start-date - Start date of the form YYYY-MM-DD.
        * @param  {integer=} params.start-index - A 1-based index of the first daily upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property Id for the daily uploads to retrieve.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId', 'start-date', 'end-date']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'start-date', 'end-date'],
+          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -463,27 +457,23 @@ function Analytics(options) {
        * @param  {string} params.webPropertyId - Web property Id associated with daily upload.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       upload: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'appendNumber', 'type']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'appendNumber', 'type'],
+          pathParams: ['accountId', 'customDataSourceId', 'date', 'webPropertyId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.customDataSourceId;
-        delete params.date;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -502,25 +492,22 @@ function Analytics(options) {
        * @param  {string} params.experimentId - ID of the experiment to delete
        * @param  {string} params.profileId - View (Profile) ID to which the experiment belongs
        * @param  {string} params.webPropertyId - Web property ID to which the experiment belongs
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'experimentId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+          pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.experimentId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -536,25 +523,22 @@ function Analytics(options) {
        * @param  {string} params.experimentId - Experiment ID to retrieve the experiment for.
        * @param  {string} params.profileId - View (Profile) ID to retrieve the experiment for.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the experiment for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'experimentId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+          pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.experimentId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -570,24 +554,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to create the experiment for.
        * @param  {string} params.webPropertyId - Web property ID to create the experiment for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -604,26 +586,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to retrieve experiments for.
        * @param  {integer=} params.start-index - An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID to retrieve experiments for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.profileId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -640,25 +618,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID of the experiment to update.
        * @param  {string} params.webPropertyId - Web property ID of the experiment to update.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'experimentId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+          pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.experimentId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -675,25 +650,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID of the experiment to update.
        * @param  {string} params.webPropertyId - Web property ID of the experiment to update.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'experimentId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+          pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.experimentId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -710,23 +682,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to delete the filter for.
        * @param  {string} params.filterId - ID of the filter to be deleted.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'filterId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'filterId'],
+          pathParams: ['accountId', 'filterId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.filterId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -740,23 +711,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to retrieve filters for.
        * @param  {string} params.filterId - Filter ID to retrieve filters for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'filterId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'filterId'],
+          pathParams: ['accountId', 'filterId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.filterId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -770,22 +740,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to create filter for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -800,22 +770,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to retrieve filters for.
        * @param  {integer=} params.max-results - The maximum number of filters to include in this response.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -830,23 +800,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to which the filter belongs.
        * @param  {string} params.filterId - ID of the filter to be updated.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'filterId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'filterId'],
+          pathParams: ['accountId', 'filterId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.filterId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -861,23 +830,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to which the filter belongs.
        * @param  {string} params.filterId - ID of the filter to be updated.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'filterId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'filterId'],
+          pathParams: ['accountId', 'filterId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.filterId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -896,25 +864,22 @@ function Analytics(options) {
        * @param  {string} params.goalId - Goal ID to retrieve the goal for.
        * @param  {string} params.profileId - View (Profile) ID to retrieve the goal for.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the goal for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'goalId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.goalId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -930,24 +895,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to create the goal for.
        * @param  {string} params.webPropertyId - Web property ID to create the goal for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -964,26 +927,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
        * @param  {integer=} params.start-index - An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.profileId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1000,25 +959,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to update the goal.
        * @param  {string} params.webPropertyId - Web property ID to update the goal.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'goalId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.goalId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1035,25 +991,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to update the goal.
        * @param  {string} params.webPropertyId - Web property ID to update the goal.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'goalId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.goalId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1072,25 +1025,22 @@ function Analytics(options) {
        * @param  {string} params.linkId - ID of the profile filter link to delete.
        * @param  {string} params.profileId - Profile ID to which the filter link belongs.
        * @param  {string} params.webPropertyId - Web property Id to which the profile filter link belongs.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1106,25 +1056,22 @@ function Analytics(options) {
        * @param  {string} params.linkId - ID of the profile filter link.
        * @param  {string} params.profileId - Profile ID to retrieve filter link for.
        * @param  {string} params.webPropertyId - Web property Id to retrieve profile filter link for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1140,24 +1087,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - Profile ID to create filter link for.
        * @param  {string} params.webPropertyId - Web property Id to create profile filter link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1174,26 +1119,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.profileId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1210,25 +1151,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - Profile ID to which filter link belongs
        * @param  {string} params.webPropertyId - Web property Id to which profile filter link belongs
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1245,25 +1183,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - Profile ID to which filter link belongs
        * @param  {string} params.webPropertyId - Web property Id to which profile filter link belongs
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1282,25 +1217,22 @@ function Analytics(options) {
        * @param  {string} params.linkId - Link ID to delete the user link for.
        * @param  {string} params.profileId - View (Profile) ID to delete the user link for.
        * @param  {string} params.webPropertyId - Web Property ID to delete the user link for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks/' + params.linkId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks/' + params.linkId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1316,24 +1248,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to create the user link for.
        * @param  {string} params.webPropertyId - Web Property ID to create the user link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1350,26 +1280,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
        * @param  {integer=} params.start-index - An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.profileId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1386,25 +1312,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile ID) to update the user link for.
        * @param  {string} params.webPropertyId - Web Property ID to update the user link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks/' + params.linkId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks/' + params.linkId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1422,24 +1345,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to delete the view (profile) for.
        * @param  {string} params.profileId - ID of the view (profile) to be deleted.
        * @param  {string} params.webPropertyId - Web property ID to delete the view (profile) for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1454,24 +1375,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to retrieve the goal for.
        * @param  {string} params.profileId - View (Profile) ID to retrieve the goal for.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the goal for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1486,23 +1405,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to create the view (profile) for.
        * @param  {string} params.webPropertyId - Web property ID to create the view (profile) for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1518,24 +1436,22 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of views (profiles) to include in this response.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1551,24 +1467,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - ID of the view (profile) to be updated.
        * @param  {string} params.webPropertyId - Web property ID to which the view (profile) belongs
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1584,24 +1498,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - ID of the view (profile) to be updated.
        * @param  {string} params.webPropertyId - Web property ID to which the view (profile) belongs
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1618,18 +1530,20 @@ function Analytics(options) {
        * @param  {object=} params - Parameters for request
        * @param  {integer=} params.max-results - The maximum number of segments to include in this response.
        * @param  {integer=} params.start-index - An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/segments',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/segments',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1648,25 +1562,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to retrieve unsampled report for.
        * @param  {string} params.unsampledReportId - ID of the unsampled report to retrieve.
        * @param  {string} params.webPropertyId - Web property ID to retrieve unsampled reports for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports/' + params.unsampledReportId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports/' + params.unsampledReportId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
+          pathParams: ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.unsampledReportId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1682,24 +1593,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to create the unsampled report for.
        * @param  {string} params.webPropertyId - Web property ID to create the unsampled report for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.profileId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1716,26 +1625,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
        * @param  {integer=} params.start-index - An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.profileId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1754,24 +1659,22 @@ function Analytics(options) {
        * @param  {string} params.customDataSourceId - Custom data source Id for the uploads to be deleted.
        * @param  {string} params.webPropertyId - Web property Id for the uploads to be deleted.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       deleteUploadData: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/deleteUploadData',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/deleteUploadData',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1787,25 +1690,22 @@ function Analytics(options) {
        * @param  {string} params.customDataSourceId - Custom data source Id for upload to retrieve.
        * @param  {string} params.uploadId - Upload Id to retrieve.
        * @param  {string} params.webPropertyId - Web property Id for the upload to retrieve.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads/' + params.uploadId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads/' + params.uploadId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
+          pathParams: ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-        delete params.uploadId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1822,25 +1722,22 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of uploads to include in this response.
        * @param  {integer=} params.start-index - A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property Id for the uploads to retrieve.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1855,24 +1752,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account Id for migration.
        * @param  {string} params.customDataSourceId - Custom data source Id for migration.
        * @param  {string} params.webPropertyId - Web property Id for migration.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       migrateDataImport: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/migrateDataImport',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/migrateDataImport',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1889,24 +1784,23 @@ function Analytics(options) {
        * @param  {string} params.webPropertyId - Web property UA-string associated with the upload.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       uploadData: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'customDataSourceId']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.accountId;
-        delete params.customDataSourceId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -1924,24 +1818,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - ID of the account which the given web property belongs to.
        * @param  {string} params.webPropertyAdWordsLinkId - Web property AdWords link ID.
        * @param  {string} params.webPropertyId - Web property ID to delete the AdWords link for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+          pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyAdWordsLinkId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1956,24 +1848,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - ID of the account which the given web property belongs to.
        * @param  {string} params.webPropertyAdWordsLinkId - Web property-AdWords link ID.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the AdWords link for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+          pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyAdWordsLinkId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -1988,23 +1878,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - ID of the Google Analytics account to create the link for.
        * @param  {string} params.webPropertyId - Web property ID to create the link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2020,24 +1909,22 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of webProperty-AdWords links to include in this response.
        * @param  {integer=} params.start-index - An index of the first webProperty-AdWords link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the AdWords links for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2053,24 +1940,22 @@ function Analytics(options) {
        * @param  {string} params.webPropertyAdWordsLinkId - Web property-AdWords link ID.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the AdWords link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+          pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyAdWordsLinkId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2086,24 +1971,22 @@ function Analytics(options) {
        * @param  {string} params.webPropertyAdWordsLinkId - Web property-AdWords link ID.
        * @param  {string} params.webPropertyId - Web property ID to retrieve the AdWords link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+          pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyAdWordsLinkId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -2120,23 +2003,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to retrieve the web property for.
        * @param  {string} params.webPropertyId - ID to retrieve the web property for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2150,22 +2032,22 @@ function Analytics(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.accountId - Account ID to create the web property for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2180,22 +2062,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
        * @param  {integer=} params.max-results - The maximum number of web properties to include in this response.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2210,23 +2092,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to which the web property belongs
        * @param  {string} params.webPropertyId - Web property ID
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2241,23 +2122,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to which the web property belongs
        * @param  {string} params.webPropertyId - Web property ID
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -2275,24 +2155,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to delete the user link for.
        * @param  {string} params.linkId - Link ID to delete the user link for.
        * @param  {string} params.webPropertyId - Web Property ID to delete the user link for.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks/' + params.linkId,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks/' + params.linkId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2307,23 +2185,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to create the user link for.
        * @param  {string} params.webPropertyId - Web Property ID to create the user link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2339,24 +2216,22 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of webProperty-user Links to include in this response.
        * @param  {integer=} params.start-index - An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -2372,24 +2247,22 @@ function Analytics(options) {
        * @param  {string} params.linkId - Link ID to update the account-user link for.
        * @param  {string} params.webPropertyId - Web property ID to update the account-user link for.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'linkId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks/' + params.linkId,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks/' + params.linkId,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'linkId'],
+          pathParams: ['accountId', 'linkId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-        delete params.linkId;
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }
@@ -2410,22 +2283,22 @@ function Analytics(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.reportType - Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['reportType']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v3/metadata/' + params.reportType + '/columns',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/metadata/' + params.reportType + '/columns',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['reportType'],
+          pathParams: ['reportType'],
+          context: self
         };
 
-        delete params.reportType;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }
@@ -2444,18 +2317,20 @@ function Analytics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     createAccountTicket: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/analytics/v3/provisioning/createAccountTicket',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/analytics/v3/provisioning/createAccountTicket',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

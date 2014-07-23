@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * YouTube Data API
@@ -49,20 +47,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/activities',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/activities',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -83,20 +82,21 @@ function Youtube(options) {
      * @param  {string=} params.publishedAfter - The publishedAfter parameter specifies the earliest date and time that an activity could have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be included in the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      * @param  {string=} params.publishedBefore - The publishedBefore parameter specifies the date and time before which an activity must have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be excluded from the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code. YouTube uses this value when the authorized user's previous activity on YouTube does not provide enough information to generate the activity feed.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/activities',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/activities',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -115,18 +115,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
+          method: 'POST'
+        },
+        params: params,
+        isMedia: true,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -143,20 +146,21 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies the YouTube channelSection ID for the resource that is being deleted. In a channelSection resource, the id property specifies the YouTube channelSection ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/channelSections',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -172,20 +176,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/channelSections',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -202,20 +207,21 @@ function Youtube(options) {
      * @param  {boolean=} params.mine - Set this parameter's value to true to retrieve a feed of the authenticated user's channelSections.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set part=snippet, the API response will also contain all of those nested properties.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/channelSections',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -229,20 +235,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/channelSections',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -268,20 +275,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, statistics, topicDetails, and invideoPromotion.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/channels',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -296,20 +304,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are id and invideoPromotion.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/channels',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -329,20 +338,21 @@ function Youtube(options) {
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of the YouTube channel category ID(s) for the resource(s) that are being retrieved. In a guideCategory resource, the id property specifies the YouTube channel category ID.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more guideCategory resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a guideCategory resource, the snippet property contains other properties, such as the category's title. If you set part=snippet, the API response will also contain all of those nested properties.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/guideCategories',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/guideCategories',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -360,20 +370,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.hl - The hl parameter specifies the language that should be used for text values in the API response.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more i18nLanguage resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/i18nLanguages',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/i18nLanguages',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -391,20 +402,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.hl - The hl parameter specifies the language that should be used for text values in the API response.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more i18nRegion resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/i18nRegions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/i18nRegions',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -425,20 +437,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      * @param  {string=} params.streamId - The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     bind: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id', 'part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/bind',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/bind',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id', 'part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -457,20 +470,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      * @param  {string=} params.walltime - The walltime parameter specifies the wall clock time at which the specified slate change will occur. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     control: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id', 'part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/control',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/control',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id', 'part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -485,20 +499,21 @@ function Youtube(options) {
      * @param  {string} params.id - The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -514,20 +529,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -547,20 +563,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -577,20 +594,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     transition: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['broadcastStatus', 'id', 'part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/transition',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/transition',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['broadcastStatus', 'id', 'part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -606,20 +624,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -638,20 +657,21 @@ function Youtube(options) {
      * @param  {string} params.id - The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveStreams',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -667,20 +687,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveStreams',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -699,20 +720,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveStreams',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -728,20 +750,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/liveStreams',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -758,20 +781,21 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlistItems',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -786,20 +810,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, and status.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlistItems',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -818,20 +843,21 @@ function Youtube(options) {
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      * @param  {string=} params.playlistId - The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
      * @param  {string=} params.videoId - The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlistItems',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -845,20 +871,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlistItems',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -876,20 +903,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies the YouTube playlist ID for the playlist that is being deleted. In a playlist resource, the id property specifies the playlist's ID.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlists',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -905,20 +933,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and status.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlists',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -938,20 +967,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, status, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlists',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -966,20 +996,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist's privacy setting is contained in the status part. As such, if your request is updating a private playlist, and the request's part parameter value includes the status part, the playlist's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the playlist will revert to the default privacy setting.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/playlists',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1024,20 +1055,21 @@ function Youtube(options) {
      * @param  {string=} params.videoLicense - The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos.
      * @param  {string=} params.videoSyndicated - The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com.
      * @param  {string=} params.videoType - The videoType parameter lets you restrict a search to a particular type of videos.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/search',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/search',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1054,20 +1086,21 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies the YouTube subscription ID for the resource that is being deleted. In a subscription resource, the id property specifies the YouTube subscription ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/subscriptions',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/subscriptions',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1081,20 +1114,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/subscriptions',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/subscriptions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1117,20 +1151,21 @@ function Youtube(options) {
      * @param  {string=} params.order - The order parameter specifies the method that will be used to sort resources in the API response.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/subscriptions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/subscriptions',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1150,20 +1185,22 @@ function Youtube(options) {
      * @param  {string} params.videoId - The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     set: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['videoId']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['videoId'],
+        isMedia: true,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1183,20 +1220,21 @@ function Youtube(options) {
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of video category IDs for the resources that you are retrieving.
      * @param  {string} params.part - The part parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/videoCategories',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/videoCategories',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1214,20 +1252,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/videos',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/videos',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1241,20 +1280,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) for which you are retrieving rating data. In a video resource, the id property specifies the video's ID.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getRating: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/videos/getRating',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/videos/getRating',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1274,20 +1314,22 @@ function Youtube(options) {
      * @param  {boolean=} params.stabilize - The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/youtube/v3/videos',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        isMedia: true,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1309,20 +1351,21 @@ function Youtube(options) {
      * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, fileDetails, liveStreamingDetails, player, processingDetails, recordingDetails, statistics, status, suggestions, and topicDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to select a video chart available in the specified region. This parameter can only be used in conjunction with the chart parameter. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param  {string=} params.videoCategoryId - The videoCategoryId parameter identifies the video category for which the chart should be retrieved. This parameter can only be used in conjunction with the chart parameter. By default, charts are not restricted to a particular category.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/videos',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/videos',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1337,20 +1380,21 @@ function Youtube(options) {
      * @param  {string} params.id - The id parameter specifies the YouTube video ID of the video that is being rated or having its rating removed.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.rating - Specifies the rating to record.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     rate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id', 'rating']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/videos/rate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/videos/rate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id', 'rating'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1365,20 +1409,21 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, fileDetails, liveStreamingDetails, player, processingDetails, recordingDetails, statistics, status, suggestions, and topicDetails.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.  In addition, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['part']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/videos',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/videos',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['part'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1398,20 +1443,22 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     set: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['channelId']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['channelId'],
+        isMedia: true,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1425,20 +1472,21 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.channelId - The channelId parameter specifies a YouTube channel ID for which the watermark is being unset.
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     unset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['channelId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/v3/watermarks/unset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/watermarks/unset',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['channelId'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

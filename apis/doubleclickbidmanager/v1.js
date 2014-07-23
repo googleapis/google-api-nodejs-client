@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * DoubleClick Bid Manager API
@@ -48,18 +46,20 @@ function Doubleclickbidmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     downloadlineitems: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/downloadlineitems',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/downloadlineitems',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -72,18 +72,20 @@ function Doubleclickbidmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     uploadlineitems: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/uploadlineitems',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/uploadlineitems',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -100,18 +102,20 @@ function Doubleclickbidmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     createquery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -124,22 +128,22 @@ function Doubleclickbidmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.queryId - Query ID to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     deletequery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['queryId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['queryId'],
+        pathParams: ['queryId'],
+        context: self
       };
 
-      delete params.queryId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -152,22 +156,22 @@ function Doubleclickbidmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.queryId - Query ID to retrieve.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getquery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['queryId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['queryId'],
+        pathParams: ['queryId'],
+        context: self
       };
 
-      delete params.queryId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -179,18 +183,20 @@ function Doubleclickbidmanager(options) {
      * @memberOf! doubleclickbidmanager(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listqueries: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -204,22 +210,22 @@ function Doubleclickbidmanager(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.queryId - Query ID to run.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     runquery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['queryId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['queryId'],
+        pathParams: ['queryId'],
+        context: self
       };
 
-      delete params.queryId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -236,22 +242,22 @@ function Doubleclickbidmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.queryId - Query ID with which the reports are associated.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listreports: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['queryId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/' + params.queryId + '/reports',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/' + params.queryId + '/reports',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['queryId'],
+        pathParams: ['queryId'],
+        context: self
       };
 
-      delete params.queryId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

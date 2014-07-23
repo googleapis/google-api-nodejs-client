@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Compute Engine Autoscaler API
@@ -50,24 +48,22 @@ function Autoscaler(options) {
      * @param  {string} params.autoscaler - Name of the Autoscaler resource.
      * @param  {string} params.project - Project ID of Autoscaler resource.
      * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'autoscaler']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'zone'],
+        context: self
       };
 
-      delete params.autoscaler;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -82,24 +78,22 @@ function Autoscaler(options) {
      * @param  {string} params.autoscaler - Name of the Autoscaler resource.
      * @param  {string} params.project - Project ID of Autoscaler resource.
      * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'autoscaler']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'zone'],
+        context: self
       };
 
-      delete params.autoscaler;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -114,23 +108,22 @@ function Autoscaler(options) {
      * @param  {string} params.project - Project ID of Autoscaler resource.
      * @param  {string} params.zone - Zone name of Autoscaler resource.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -147,23 +140,22 @@ function Autoscaler(options) {
      * @param  {string=} params.pageToken -
      * @param  {string} params.project - Project ID of Autoscaler resource.
      * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -179,24 +171,22 @@ function Autoscaler(options) {
      * @param  {string} params.project - Project ID of Autoscaler resource.
      * @param  {string} params.zone - Zone name of Autoscaler resource.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'autoscaler']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'zone'],
+        context: self
       };
 
-      delete params.autoscaler;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -212,24 +202,22 @@ function Autoscaler(options) {
      * @param  {string} params.project - Project ID of Autoscaler resource.
      * @param  {string} params.zone - Zone name of Autoscaler resource.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'autoscaler']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'zone'],
+        context: self
       };
 
-      delete params.autoscaler;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -248,24 +236,22 @@ function Autoscaler(options) {
      * @param  {string} params.operation -
      * @param  {string} params.project -
      * @param  {string} params.zone -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'operation'],
+        pathParams: ['operation', 'project', 'zone'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -280,24 +266,22 @@ function Autoscaler(options) {
      * @param  {string} params.operation -
      * @param  {string} params.project -
      * @param  {string} params.zone -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'operation'],
+        pathParams: ['operation', 'project', 'zone'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -314,23 +298,22 @@ function Autoscaler(options) {
      * @param  {string=} params.pageToken -
      * @param  {string} params.project -
      * @param  {string} params.zone -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

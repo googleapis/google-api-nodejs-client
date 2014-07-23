@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Enterprise Apps Reseller API
@@ -48,22 +46,22 @@ function Reseller(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Id of the Customer
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -77,18 +75,20 @@ function Reseller(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.customerAuthToken - An auth token needed for inserting a customer for which domain already exists. Can be generated at https://www.google.com/a/cpanel//TransferToken. Optional.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -102,22 +102,22 @@ function Reseller(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Id of the Customer
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -131,22 +131,22 @@ function Reseller(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Id of the Customer
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -165,23 +165,22 @@ function Reseller(options) {
      * @param  {string} params.customerId - Id of the Customer
      * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     changePlan: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'subscriptionId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changePlan',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changePlan',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.subscriptionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -196,23 +195,22 @@ function Reseller(options) {
      * @param  {string} params.customerId - Id of the Customer
      * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     changeRenewalSettings: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'subscriptionId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeRenewalSettings',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeRenewalSettings',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.subscriptionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -227,23 +225,22 @@ function Reseller(options) {
      * @param  {string} params.customerId - Id of the Customer
      * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     changeSeats: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'subscriptionId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeSeats',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeSeats',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.subscriptionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -258,24 +255,22 @@ function Reseller(options) {
      * @param  {string} params.customerId - Id of the Customer
      * @param  {string} params.deletionType - Whether the subscription is to be fully cancelled or downgraded
      * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'subscriptionId', 'deletionType']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      delete params.subscriptionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -289,23 +284,22 @@ function Reseller(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Id of the Customer
      * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'subscriptionId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.subscriptionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -320,22 +314,22 @@ function Reseller(options) {
      * @param  {string=} params.customerAuthToken - An auth token needed for transferring a subscription. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken. Optional.
      * @param  {string} params.customerId - Id of the Customer
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
       };
 
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -352,18 +346,20 @@ function Reseller(options) {
      * @param  {string=} params.customerNamePrefix - Prefix of the customer's domain name by which the subscriptions should be filtered. Optional
      * @param  {integer=} params.maxResults - Maximum number of results to return
      * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/subscriptions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/subscriptions',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -377,23 +373,22 @@ function Reseller(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Id of the Customer
      * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     startPaidService: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'subscriptionId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/startPaidService',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/startPaidService',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
       };
 
-      delete params.customerId;
-      delete params.subscriptionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

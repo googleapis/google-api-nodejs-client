@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Gmail API
@@ -52,22 +50,23 @@ function Gmail(options) {
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       create: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -81,23 +80,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the draft to delete.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -112,23 +110,22 @@ function Gmail(options) {
        * @param  {string=} params.format - The format to return the draft in.
        * @param  {string} params.id - The ID of the draft to retrieve.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -143,22 +140,22 @@ function Gmail(options) {
        * @param  {integer=} params.maxResults - Maximum number of drafts to return.
        * @param  {string=} params.pageToken - Page token to retrieve a specific page of results in the list.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -173,22 +170,23 @@ function Gmail(options) {
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       send: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -204,23 +202,23 @@ function Gmail(options) {
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -240,22 +238,22 @@ function Gmail(options) {
        * @param  {string=} params.pageToken - Page token to retrieve a specific page of results in the list.
        * @param  {string=} params.startHistoryId - Required. Returns history records after the specified startHistoryId. The supplied startHistoryId should be obtained from the historyId of a message, thread, or previous list response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date startHistoryId typically returns an HTTP 404 error code. A historyId is typically valid for at least a week, but in some circumstances may be valid for only a few hours. If you receive an HTTP 404 error response, your application should perform a full sync. If you receive no nextPageToken in the response, there are no updates to retrieve and you can store the returned historyId for a future request.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/history',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/history',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -272,22 +270,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       create: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -301,23 +299,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the label to delete.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -331,23 +328,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the label to retrieve.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -360,22 +356,22 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -390,23 +386,22 @@ function Gmail(options) {
        * @param  {string} params.id - The ID of the label to update.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       patch: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
-          method: 'PATCH'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -421,23 +416,22 @@ function Gmail(options) {
        * @param  {string} params.id - The ID of the label to update.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
-          method: 'PUT'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -454,23 +448,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the message to delete.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -485,23 +478,22 @@ function Gmail(options) {
        * @param  {string=} params.format - The format to return the message in.
        * @param  {string} params.id - The ID of the message to retrieve.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -516,22 +508,23 @@ function Gmail(options) {
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       import: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -546,22 +539,23 @@ function Gmail(options) {
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -579,22 +573,22 @@ function Gmail(options) {
        * @param  {string=} params.pageToken - Page token to retrieve a specific page of results in the list.
        * @param  {string=} params.q - Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -609,23 +603,22 @@ function Gmail(options) {
        * @param  {string} params.id - The ID of the message to modify.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       modify: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/modify',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/modify',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -640,22 +633,23 @@ function Gmail(options) {
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
        * @param  {string|object} params.media - Media body data to upload
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       send: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = true;
-        var options = {
-          url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          isMedia: true,
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -669,23 +663,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the message to Trash.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       trash: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/trash',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/trash',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -699,23 +692,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the message to remove from Trash.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       untrash: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/untrash',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/untrash',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -732,23 +724,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - ID of the Thread to delete.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       delete: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id,
-          method: 'DELETE'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -762,23 +753,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the thread to retrieve.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       get: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id,
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -796,22 +786,22 @@ function Gmail(options) {
        * @param  {string=} params.pageToken - Page token to retrieve a specific page of results in the list.
        * @param  {string=} params.q - Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
         };
 
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -826,23 +816,22 @@ function Gmail(options) {
        * @param  {string} params.id - The ID of the thread to modify.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Request body data
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       modify: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/modify',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/modify',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -856,23 +845,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the thread to Trash.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       trash: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/trash',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/trash',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       },
 
       /**
@@ -886,23 +874,22 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the thread to remove from Trash.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       untrash: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['userId', 'id']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/untrash',
-          method: 'POST'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/untrash',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId', 'id'],
+          pathParams: ['id', 'userId'],
+          context: self
         };
 
-        delete params.id;
-        delete params.userId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }

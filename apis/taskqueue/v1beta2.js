@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * TaskQueue API
@@ -50,23 +48,22 @@ function Taskqueue(options) {
      * @param  {boolean=} params.getStats - Whether to get stats. Optional.
      * @param  {string} params.project - The project under which the queue lies.
      * @param  {string} params.taskqueue - The id of the taskqueue to get the properties of.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue'],
+        pathParams: ['project', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -85,24 +82,22 @@ function Taskqueue(options) {
      * @param  {string} params.project - The project under which the queue lies.
      * @param  {string} params.task - The id of the task to delete.
      * @param  {string} params.taskqueue - The taskqueue to delete a task from.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue', 'task'],
+        pathParams: ['project', 'task', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.task;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -117,24 +112,22 @@ function Taskqueue(options) {
      * @param  {string} params.project - The project under which the queue lies.
      * @param  {string} params.task - The task to get properties of.
      * @param  {string} params.taskqueue - The taskqueue in which the task belongs.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue', 'task'],
+        pathParams: ['project', 'task', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.task;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -149,23 +142,22 @@ function Taskqueue(options) {
      * @param  {string} params.project - The project under which the queue lies
      * @param  {string} params.taskqueue - The taskqueue to insert the task into
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue'],
+        pathParams: ['project', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -183,24 +175,22 @@ function Taskqueue(options) {
      * @param  {string} params.project - The project under which the queue lies.
      * @param  {string=} params.tag - The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
      * @param  {string} params.taskqueue - The taskqueue to lease a task from.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     lease: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue', 'numTasks', 'leaseSecs']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/lease',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/lease',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue', 'numTasks', 'leaseSecs'],
+        pathParams: ['project', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -214,23 +204,22 @@ function Taskqueue(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - The project under which the queue lies.
      * @param  {string} params.taskqueue - The id of the taskqueue to list tasks from.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue'],
+        pathParams: ['project', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -247,24 +236,22 @@ function Taskqueue(options) {
      * @param  {string} params.task -
      * @param  {string} params.taskqueue -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue', 'task', 'newLeaseSeconds']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue', 'task', 'newLeaseSeconds'],
+        pathParams: ['project', 'task', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.task;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -281,24 +268,22 @@ function Taskqueue(options) {
      * @param  {string} params.task -
      * @param  {string} params.taskqueue -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'taskqueue', 'task', 'newLeaseSeconds']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'taskqueue', 'task', 'newLeaseSeconds'],
+        pathParams: ['project', 'task', 'taskqueue'],
+        context: self
       };
 
-      delete params.project;
-      delete params.task;
-      delete params.taskqueue;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

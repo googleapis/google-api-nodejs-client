@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Fusion Tables API
@@ -49,23 +47,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.columnId - Name or identifier for the column being deleted.
      * @param  {string} params.tableId - Table from which the column is being deleted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'columnId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tableId', 'columnId'],
+        pathParams: ['columnId', 'tableId'],
+        context: self
       };
 
-      delete params.columnId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -79,23 +76,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.columnId - Name or identifier for the column that is being requested.
      * @param  {string} params.tableId - Table to which the column belongs.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'columnId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId', 'columnId'],
+        pathParams: ['columnId', 'tableId'],
+        context: self
       };
 
-      delete params.columnId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -109,22 +105,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table for which a new column is being added.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -139,22 +135,22 @@ function Fusiontables(options) {
      * @param  {integer=} params.maxResults - Maximum number of columns to return. Optional. Default is 5.
      * @param  {string=} params.pageToken - Continuation token specifying which result page to return. Optional.
      * @param  {string} params.tableId - Table whose columns are being listed.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -169,23 +165,22 @@ function Fusiontables(options) {
      * @param  {string} params.columnId - Name or identifier for the column that is being updated.
      * @param  {string} params.tableId - Table for which the column is being updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'columnId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['tableId', 'columnId'],
+        pathParams: ['columnId', 'tableId'],
+        context: self
       };
 
-      delete params.columnId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -200,23 +195,22 @@ function Fusiontables(options) {
      * @param  {string} params.columnId - Name or identifier for the column that is being updated.
      * @param  {string} params.tableId - Table for which the column is being updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'columnId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['tableId', 'columnId'],
+        pathParams: ['columnId', 'tableId'],
+        context: self
       };
 
-      delete params.columnId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -235,20 +229,21 @@ function Fusiontables(options) {
      * @param  {boolean=} params.hdrs - Should column names be included (in the first row)?. Default is true.
      * @param  {string} params.sql - An SQL SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
      * @param  {boolean=} params.typed - Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     sql: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['sql']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/query',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/query',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['sql'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -263,20 +258,21 @@ function Fusiontables(options) {
      * @param  {boolean=} params.hdrs - Should column names be included (in the first row)?. Default is true.
      * @param  {string} params.sql - An SQL SELECT/SHOW/DESCRIBE statement.
      * @param  {boolean=} params.typed - Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     sqlGet: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['sql']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/query',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/query',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['sql'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -294,23 +290,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.styleId - Identifier (within a table) for the style being deleted
      * @param  {string} params.tableId - Table from which the style is being deleted
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'styleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tableId', 'styleId'],
+        pathParams: ['styleId', 'tableId'],
+        context: self
       };
 
-      delete params.styleId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -324,23 +319,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.styleId - Identifier (integer) for a specific style in a table
      * @param  {string} params.tableId - Table to which the requested style belongs
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'styleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId', 'styleId'],
+        pathParams: ['styleId', 'tableId'],
+        context: self
       };
 
-      delete params.styleId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -354,22 +348,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table for which a new style is being added
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -384,22 +378,22 @@ function Fusiontables(options) {
      * @param  {integer=} params.maxResults - Maximum number of styles to return. Optional. Default is 5.
      * @param  {string=} params.pageToken - Continuation token specifying which result page to return. Optional.
      * @param  {string} params.tableId - Table whose styles are being listed
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -414,23 +408,22 @@ function Fusiontables(options) {
      * @param  {integer} params.styleId - Identifier (within a table) for the style being updated.
      * @param  {string} params.tableId - Table whose style is being updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'styleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['tableId', 'styleId'],
+        pathParams: ['styleId', 'tableId'],
+        context: self
       };
 
-      delete params.styleId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -445,23 +438,22 @@ function Fusiontables(options) {
      * @param  {integer} params.styleId - Identifier (within a table) for the style being updated.
      * @param  {string} params.tableId - Table whose style is being updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'styleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['tableId', 'styleId'],
+        pathParams: ['styleId', 'tableId'],
+        context: self
       };
 
-      delete params.styleId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -479,22 +471,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.copyPresentation - Whether to also copy tabs, styles, and templates. Default is false.
      * @param  {string} params.tableId - ID of the table that is being copied.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     copy: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/copy',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/copy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -507,22 +499,22 @@ function Fusiontables(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - ID of the table that is being deleted.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -535,22 +527,22 @@ function Fusiontables(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Identifier(ID) for the table being requested.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -570,22 +562,23 @@ function Fusiontables(options) {
      * @param  {string} params.tableId - The table into which new rows are being imported.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     importRows: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -602,20 +595,22 @@ function Fusiontables(options) {
      * @param  {string} params.name - The name to be assigned to the new table.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     importTable: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['name']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['name'],
+        isMedia: true,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -628,18 +623,20 @@ function Fusiontables(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -653,18 +650,20 @@ function Fusiontables(options) {
      * @param  {object=} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of styles to return. Optional. Default is 5.
      * @param  {string=} params.pageToken - Continuation token specifying which result page to return. Optional.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -679,22 +678,22 @@ function Fusiontables(options) {
      * @param  {boolean=} params.replaceViewDefinition - Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param  {string} params.tableId - ID of the table that is being updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -709,22 +708,22 @@ function Fusiontables(options) {
      * @param  {boolean=} params.replaceViewDefinition - Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param  {string} params.tableId - ID of the table that is being updated.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -742,23 +741,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table from which the template is being deleted
      * @param  {integer} params.templateId - Identifier for the template which is being deleted
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'templateId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tableId', 'templateId'],
+        pathParams: ['tableId', 'templateId'],
+        context: self
       };
 
-      delete params.tableId;
-      delete params.templateId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -772,23 +770,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table to which the template belongs
      * @param  {integer} params.templateId - Identifier for the template that is being requested
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'templateId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId', 'templateId'],
+        pathParams: ['tableId', 'templateId'],
+        context: self
       };
 
-      delete params.tableId;
-      delete params.templateId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -802,22 +799,22 @@ function Fusiontables(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table for which a new template is being created
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -832,22 +829,22 @@ function Fusiontables(options) {
      * @param  {integer=} params.maxResults - Maximum number of templates to return. Optional. Default is 5.
      * @param  {string=} params.pageToken - Continuation token specifying which results page to return. Optional.
      * @param  {string} params.tableId - Identifier for the table whose templates are being requested
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
       };
 
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -862,23 +859,22 @@ function Fusiontables(options) {
      * @param  {string} params.tableId - Table to which the updated template belongs
      * @param  {integer} params.templateId - Identifier for the template that is being updated
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'templateId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['tableId', 'templateId'],
+        pathParams: ['tableId', 'templateId'],
+        context: self
       };
 
-      delete params.tableId;
-      delete params.templateId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -893,23 +889,22 @@ function Fusiontables(options) {
      * @param  {string} params.tableId - Table to which the updated template belongs
      * @param  {integer} params.templateId - Identifier for the template that is being updated
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tableId', 'templateId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['tableId', 'templateId'],
+        pathParams: ['tableId', 'templateId'],
+        context: self
       };
 
-      delete params.tableId;
-      delete params.templateId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

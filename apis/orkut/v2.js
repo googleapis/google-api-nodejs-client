@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Orkut API
@@ -49,23 +47,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - ID of the activity.
      * @param  {string} params.userId - ID of the user to be removed from the activity.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/acl/' + params.userId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/acl/' + params.userId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['activityId', 'userId'],
+        pathParams: ['activityId', 'userId'],
+        context: self
       };
 
-      delete params.activityId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -82,22 +79,22 @@ function Orkut(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - ID of the activity to remove.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -114,24 +111,22 @@ function Orkut(options) {
      * @param  {integer=} params.maxResults - The maximum number of activities to include in the response.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
      * @param  {string} params.userId - The ID of the user whose activities will be listed. Can be me to refer to the viewer (i.e. the authenticated user).
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId', 'collection']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/activities/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/activities/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId', 'collection'],
+        pathParams: ['collection', 'userId'],
+        context: self
       };
 
-      delete params.collection;
-
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -148,22 +143,22 @@ function Orkut(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - ID of the activity to get the visibility.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/visibility',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/visibility',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -177,22 +172,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - ID of the activity.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/visibility',
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/visibility',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -206,22 +201,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - ID of the activity.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/visibility',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/visibility',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -239,23 +234,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.badgeId - The ID of the badge that will be retrieved.
      * @param  {string} params.userId - The ID of the user whose badges will be listed. Can be me to refer to caller.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId', 'badgeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/badges/' + params.badgeId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/badges/' + params.badgeId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId', 'badgeId'],
+        pathParams: ['badgeId', 'userId'],
+        context: self
       };
 
-      delete params.badgeId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -268,22 +262,22 @@ function Orkut(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userId - The id of the user whose badges will be listed. Can be me to refer to caller.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/badges',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/badges',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -300,22 +294,22 @@ function Orkut(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.commentId - ID of the comment to remove.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['commentId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/comments/' + params.commentId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/comments/' + params.commentId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['commentId'],
+        pathParams: ['commentId'],
+        context: self
       };
 
-      delete params.commentId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -329,22 +323,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.commentId - ID of the comment to get.
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['commentId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/comments/' + params.commentId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/comments/' + params.commentId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['commentId'],
+        pathParams: ['commentId'],
+        context: self
       };
 
-      delete params.commentId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -358,22 +352,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - The ID of the activity to contain the new comment.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/comments',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/comments',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -390,22 +384,22 @@ function Orkut(options) {
      * @param  {integer=} params.maxResults - The maximum number of activities to include in the response.
      * @param  {string=} params.orderBy - Sort search results.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/comments',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/' + params.activityId + '/comments',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -423,22 +417,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - The ID of the community to get.
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId'],
+        pathParams: ['communityId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -454,22 +448,22 @@ function Orkut(options) {
      * @param  {integer=} params.maxResults - The maximum number of communities to include in the response.
      * @param  {string=} params.orderBy - How to order the communities by.
      * @param  {string} params.userId - The ID of the user whose communities will be listed. Can be me to refer to caller.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/communities',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/communities',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -487,23 +481,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - ID of the community.
      * @param  {string} params.userId - ID of the user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/followers/' + params.userId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/followers/' + params.userId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['communityId', 'userId'],
+        pathParams: ['communityId', 'userId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -517,23 +510,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - ID of the community.
      * @param  {string} params.userId - ID of the user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/followers/' + params.userId,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/followers/' + params.userId,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['communityId', 'userId'],
+        pathParams: ['communityId', 'userId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -551,23 +543,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - ID of the community.
      * @param  {string} params.userId - ID of the user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members/' + params.userId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members/' + params.userId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['communityId', 'userId'],
+        pathParams: ['communityId', 'userId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -582,24 +573,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - ID of the community.
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
      * @param  {string} params.userId - ID of the user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members/' + params.userId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members/' + params.userId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId', 'userId'],
+        pathParams: ['communityId', 'userId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -613,23 +602,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - ID of the community.
      * @param  {string} params.userId - ID of the user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members/' + params.userId,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members/' + params.userId,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['communityId', 'userId'],
+        pathParams: ['communityId', 'userId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -646,22 +634,22 @@ function Orkut(options) {
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
      * @param  {integer=} params.maxResults - The maximum number of members to include in the response.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/members',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId'],
+        pathParams: ['communityId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -680,24 +668,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community whose message will be moved to the trash folder.
      * @param  {string} params.messageId - The ID of the message to be moved to the trash folder.
      * @param  {string} params.topicId - The ID of the topic whose message will be moved to the trash folder.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'topicId', 'messageId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId + '/messages/' + params.messageId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId + '/messages/' + params.messageId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['communityId', 'topicId', 'messageId'],
+        pathParams: ['communityId', 'messageId', 'topicId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.messageId;
-      delete params.topicId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -712,23 +698,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community the message should be added to.
      * @param  {string} params.topicId - The ID of the topic the message should be added to.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'topicId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId + '/messages',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId + '/messages',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['communityId', 'topicId'],
+        pathParams: ['communityId', 'topicId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.topicId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -745,24 +730,22 @@ function Orkut(options) {
      * @param  {integer=} params.maxResults - The maximum number of messages to include in the response.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
      * @param  {string} params.topicId - The ID of the topic which messages will be listed.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'topicId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId + '/messages',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId + '/messages',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId', 'topicId'],
+        pathParams: ['communityId', 'topicId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      delete params.topicId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -781,23 +764,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community whose poll is being commented.
      * @param  {string} params.pollId - The ID of the poll being commented.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'pollId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId + '/comments',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId + '/comments',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['communityId', 'pollId'],
+        pathParams: ['communityId', 'pollId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.pollId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -814,24 +796,22 @@ function Orkut(options) {
      * @param  {integer=} params.maxResults - The maximum number of comments to include in the response.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
      * @param  {string} params.pollId - The ID of the community whose polls will be listed.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'pollId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId + '/comments',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId + '/comments',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId', 'pollId'],
+        pathParams: ['communityId', 'pollId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      delete params.pollId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -850,23 +830,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community whose poll is being voted.
      * @param  {string} params.pollId - The ID of the poll being voted.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'pollId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId + '/votes',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId + '/votes',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['communityId', 'pollId'],
+        pathParams: ['communityId', 'pollId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.pollId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -885,24 +864,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community for whose poll will be retrieved.
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
      * @param  {string} params.pollId - The ID of the poll to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'pollId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls/' + params.pollId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId', 'pollId'],
+        pathParams: ['communityId', 'pollId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      delete params.pollId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -918,22 +895,22 @@ function Orkut(options) {
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
      * @param  {integer=} params.maxResults - The maximum number of polls to include in the response.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/polls',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId'],
+        pathParams: ['communityId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -951,22 +928,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - The ID of the community whose related communities will be listed.
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/related',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/related',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId'],
+        pathParams: ['communityId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -984,23 +961,22 @@ function Orkut(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.communityId - The ID of the community whose topic will be moved to the trash folder.
      * @param  {string} params.topicId - The ID of the topic to be moved to the trash folder.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'topicId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['communityId', 'topicId'],
+        pathParams: ['communityId', 'topicId'],
+        context: self
       };
 
-      delete params.communityId;
-      delete params.topicId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1015,24 +991,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community whose topic will be retrieved.
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
      * @param  {string} params.topicId - The ID of the topic to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId', 'topicId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics/' + params.topicId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId', 'topicId'],
+        pathParams: ['communityId', 'topicId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      delete params.topicId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1047,22 +1021,22 @@ function Orkut(options) {
      * @param  {integer} params.communityId - The ID of the community the topic should be added to.
      * @param  {boolean=} params.isShout - Whether this topic is a shout.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['communityId'],
+        pathParams: ['communityId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1078,22 +1052,22 @@ function Orkut(options) {
      * @param  {string=} params.hl - Specifies the interface language (host language) of your user interface.
      * @param  {integer=} params.maxResults - The maximum number of topics to include in the response.
      * @param  {string=} params.pageToken - A continuation token that allows pagination.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['communityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/communities/' + params.communityId + '/topics',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['communityId'],
+        pathParams: ['communityId'],
+        context: self
       };
 
-      delete params.communityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1110,22 +1084,22 @@ function Orkut(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userId - The ID of the user whose counters will be listed. Can be me to refer to caller.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/counters',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/people/' + params.userId + '/counters',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1142,18 +1116,20 @@ function Orkut(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/orkut/v2/activities/scraps',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/orkut/v2/activities/scraps',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

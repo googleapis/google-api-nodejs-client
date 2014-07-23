@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Civic Information API
@@ -48,18 +46,20 @@ function Civicinfo(options) {
      *
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.query - The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     search: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/civicinfo/v1/representatives/division_search',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/civicinfo/v1/representatives/division_search',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -75,18 +75,20 @@ function Civicinfo(options) {
      * @memberOf! civicinfo(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     electionQuery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/civicinfo/v1/elections',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/civicinfo/v1/elections',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -101,22 +103,22 @@ function Civicinfo(options) {
      * @param  {string} params.electionId - The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
      * @param  {boolean=} params.officialOnly - If set to true, only data from official state sources will be returned.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     voterInfoQuery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['electionId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/civicinfo/v1/voterinfo/' + params.electionId + '/lookup',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/civicinfo/v1/voterinfo/' + params.electionId + '/lookup',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['electionId'],
+        pathParams: ['electionId'],
+        context: self
       };
 
-      delete params.electionId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -136,18 +138,20 @@ function Civicinfo(options) {
      * @param  {string=} params.ocdId - The division to look up. May only be specified if the address field is not given in the request body.
      * @param  {boolean=} params.recursive - When ocd_id is supplied, return all divisions which are hierarchically nested within the queried division. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     representativeInfoQuery: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/civicinfo/v1/representatives/lookup',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/civicinfo/v1/representatives/lookup',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

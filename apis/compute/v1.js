@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Compute Engine API
@@ -51,22 +49,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/addresses',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/addresses',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -81,24 +79,22 @@ function Compute(options) {
      * @param  {string} params.address - Name of the address resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'address']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses/' + params.address,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses/' + params.address,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'address'],
+        pathParams: ['address', 'project', 'region'],
+        context: self
       };
 
-      delete params.address;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -113,24 +109,22 @@ function Compute(options) {
      * @param  {string} params.address - Name of the address resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'address']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses/' + params.address,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses/' + params.address,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'address'],
+        pathParams: ['address', 'project', 'region'],
+        context: self
       };
 
-      delete params.address;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -145,23 +139,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -178,23 +171,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -212,23 +204,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.backendService - Name of the BackendService resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'backendService']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
       };
 
-      delete params.backendService;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -242,23 +233,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.backendService - Name of the BackendService resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'backendService']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
       };
 
-      delete params.backendService;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -273,23 +263,22 @@ function Compute(options) {
      * @param  {string} params.backendService - Name of the BackendService resource to which the queried instance belongs.
      * @param  {string} params.project -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getHealth: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'backendService']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService + '/getHealth',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService + '/getHealth',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
       };
 
-      delete params.backendService;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -303,22 +292,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -334,22 +323,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -364,23 +353,22 @@ function Compute(options) {
      * @param  {string} params.backendService - Name of the BackendService resource to update.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'backendService']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
       };
 
-      delete params.backendService;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -395,23 +383,22 @@ function Compute(options) {
      * @param  {string} params.backendService - Name of the BackendService resource to update.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'backendService']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
       };
 
-      delete params.backendService;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -431,22 +418,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/diskTypes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/diskTypes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -461,24 +448,22 @@ function Compute(options) {
      * @param  {string} params.diskType - Name of the disk type resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'diskType']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/diskTypes/' + params.diskType,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/diskTypes/' + params.diskType,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'diskType'],
+        pathParams: ['diskType', 'project', 'zone'],
+        context: self
       };
 
-      delete params.diskType;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -495,23 +480,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/diskTypes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/diskTypes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -531,22 +515,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/disks',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/disks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -562,24 +546,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     createSnapshot: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'disk']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk + '/createSnapshot',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk + '/createSnapshot',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
+        context: self
       };
 
-      delete params.disk;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -594,24 +576,22 @@ function Compute(options) {
      * @param  {string} params.disk - Name of the persistent disk resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'disk']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
+        context: self
       };
 
-      delete params.disk;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -626,24 +606,22 @@ function Compute(options) {
      * @param  {string} params.disk - Name of the persistent disk resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'disk']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
+        context: self
       };
 
-      delete params.disk;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -659,24 +637,22 @@ function Compute(options) {
      * @param  {string=} params.sourceImage - Optional. Source image to restore onto a disk.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -693,23 +669,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -727,23 +702,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.firewall - Name of the firewall resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'firewall']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'firewall'],
+        pathParams: ['firewall', 'project'],
+        context: self
       };
 
-      delete params.firewall;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -757,23 +731,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.firewall - Name of the firewall resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'firewall']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'firewall'],
+        pathParams: ['firewall', 'project'],
+        context: self
       };
 
-      delete params.firewall;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -787,22 +760,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -818,22 +791,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -848,23 +821,22 @@ function Compute(options) {
      * @param  {string} params.firewall - Name of the firewall resource to update.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'firewall']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'firewall'],
+        pathParams: ['firewall', 'project'],
+        context: self
       };
 
-      delete params.firewall;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -879,23 +851,22 @@ function Compute(options) {
      * @param  {string} params.firewall - Name of the firewall resource to update.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'firewall']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'firewall'],
+        pathParams: ['firewall', 'project'],
+        context: self
       };
 
-      delete params.firewall;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -915,22 +886,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/forwardingRules',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/forwardingRules',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -945,24 +916,22 @@ function Compute(options) {
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'forwardingRule']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project', 'region'],
+        context: self
       };
 
-      delete params.forwardingRule;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -977,24 +946,22 @@ function Compute(options) {
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'forwardingRule']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project', 'region'],
+        context: self
       };
 
-      delete params.forwardingRule;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1009,23 +976,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1042,23 +1008,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1074,24 +1039,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setTarget: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'forwardingRule']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule + '/setTarget',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule + '/setTarget',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project', 'region'],
+        context: self
       };
 
-      delete params.forwardingRule;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1109,23 +1072,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Name of the address resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'address']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses/' + params.address,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses/' + params.address,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'address'],
+        pathParams: ['address', 'project'],
+        context: self
       };
 
-      delete params.address;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1139,23 +1101,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Name of the address resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'address']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses/' + params.address,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses/' + params.address,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'address'],
+        pathParams: ['address', 'project'],
+        context: self
       };
 
-      delete params.address;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1169,22 +1130,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1200,22 +1161,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1233,23 +1194,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'forwardingRule']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project'],
+        context: self
       };
 
-      delete params.forwardingRule;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1263,23 +1223,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'forwardingRule']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project'],
+        context: self
       };
 
-      delete params.forwardingRule;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1293,22 +1252,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1324,22 +1283,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1354,23 +1313,22 @@ function Compute(options) {
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource in which target is to be set.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setTarget: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'forwardingRule']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule + '/setTarget',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule + '/setTarget',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project'],
+        context: self
       };
 
-      delete params.forwardingRule;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1390,22 +1348,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/operations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1419,23 +1377,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations/' + params.operation,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations/' + params.operation,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'operation'],
+        pathParams: ['operation', 'project'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1449,23 +1406,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations/' + params.operation,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations/' + params.operation,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'operation'],
+        pathParams: ['operation', 'project'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1481,22 +1437,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1514,23 +1470,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'httpHealthCheck']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'httpHealthCheck'],
+        pathParams: ['httpHealthCheck', 'project'],
+        context: self
       };
 
-      delete params.httpHealthCheck;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1544,23 +1499,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'httpHealthCheck']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'httpHealthCheck'],
+        pathParams: ['httpHealthCheck', 'project'],
+        context: self
       };
 
-      delete params.httpHealthCheck;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1574,22 +1528,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1605,22 +1559,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1635,23 +1589,22 @@ function Compute(options) {
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to update.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'httpHealthCheck']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'httpHealthCheck'],
+        pathParams: ['httpHealthCheck', 'project'],
+        context: self
       };
 
-      delete params.httpHealthCheck;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1666,23 +1619,22 @@ function Compute(options) {
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to update.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'httpHealthCheck']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'httpHealthCheck'],
+        pathParams: ['httpHealthCheck', 'project'],
+        context: self
       };
 
-      delete params.httpHealthCheck;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1700,23 +1652,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.image - Name of the image resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'image']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'image'],
+        pathParams: ['image', 'project'],
+        context: self
       };
 
-      delete params.image;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1731,23 +1682,22 @@ function Compute(options) {
      * @param  {string} params.image - Image name.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     deprecate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'image']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image + '/deprecate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image + '/deprecate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'image'],
+        pathParams: ['image', 'project'],
+        context: self
       };
 
-      delete params.image;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1761,23 +1711,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.image - Name of the image resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'image']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'image'],
+        pathParams: ['image', 'project'],
+        context: self
       };
 
-      delete params.image;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1791,22 +1740,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1822,22 +1771,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1858,25 +1807,22 @@ function Compute(options) {
      * @param  {string} params.project - Project name.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addAccessConfig: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance', 'networkInterface']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/addAccessConfig',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/addAccessConfig',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1892,22 +1838,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/instances',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/instances',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1923,24 +1869,22 @@ function Compute(options) {
      * @param  {string} params.project - Project name.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     attachDisk: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/attachDisk',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/attachDisk',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1955,24 +1899,22 @@ function Compute(options) {
      * @param  {string} params.instance - Name of the instance resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1989,25 +1931,22 @@ function Compute(options) {
      * @param  {string} params.networkInterface - Network interface name.
      * @param  {string} params.project - Project name.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     deleteAccessConfig: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance', 'accessConfig', 'networkInterface']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/deleteAccessConfig',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/deleteAccessConfig',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2023,24 +1962,22 @@ function Compute(options) {
      * @param  {string} params.instance - Instance name.
      * @param  {string} params.project - Project name.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     detachDisk: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance', 'deviceName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/detachDisk',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/detachDisk',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'deviceName'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2055,24 +1992,22 @@ function Compute(options) {
      * @param  {string} params.instance - Name of the instance resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2087,24 +2022,22 @@ function Compute(options) {
      * @param  {string} params.instance - Name of the instance scoping this request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getSerialPortOutput: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/serialPort',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/serialPort',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2119,23 +2052,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2152,23 +2084,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2183,24 +2114,22 @@ function Compute(options) {
      * @param  {string} params.instance - Name of the instance scoping this request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/reset',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2217,24 +2146,22 @@ function Compute(options) {
      * @param  {string} params.instance - Instance name.
      * @param  {string} params.project - Project name.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setDiskAutoDelete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance', 'autoDelete', 'deviceName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setDiskAutoDelete',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setDiskAutoDelete',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2250,24 +2177,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setMetadata: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setMetadata',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setMetadata',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2283,24 +2208,22 @@ function Compute(options) {
      * @param  {string} params.project - Project name.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setScheduling: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setScheduling',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setScheduling',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2316,24 +2239,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setTags: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'instance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setTags',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setTags',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
 
-      delete params.instance;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2351,23 +2272,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.license - Name of the license resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'license']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/licenses/' + params.license,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/licenses/' + params.license,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'license'],
+        pathParams: ['license', 'project'],
+        context: self
       };
 
-      delete params.license;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2387,22 +2307,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/machineTypes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/machineTypes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2417,24 +2337,22 @@ function Compute(options) {
      * @param  {string} params.machineType - Name of the machine type resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'machineType']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/machineTypes/' + params.machineType,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/machineTypes/' + params.machineType,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'machineType'],
+        pathParams: ['machineType', 'project', 'zone'],
+        context: self
       };
 
-      delete params.machineType;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2451,23 +2369,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/machineTypes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/machineTypes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2485,23 +2402,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.network - Name of the network resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'network']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks/' + params.network,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks/' + params.network,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
       };
 
-      delete params.network;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2515,23 +2431,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.network - Name of the network resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'network']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks/' + params.network,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks/' + params.network,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
       };
 
-      delete params.network;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2545,22 +2460,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2576,22 +2491,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2608,22 +2523,22 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project resource to retrieve.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2637,22 +2552,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setCommonInstanceMetadata: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/setCommonInstanceMetadata',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/setCommonInstanceMetadata',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2666,22 +2581,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setUsageExportBucket: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/setUsageExportBucket',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/setUsageExportBucket',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2700,24 +2615,22 @@ function Compute(options) {
      * @param  {string} params.operation - Name of the operation resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations/' + params.operation,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations/' + params.operation,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'operation'],
+        pathParams: ['operation', 'project', 'region'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2732,24 +2645,22 @@ function Compute(options) {
      * @param  {string} params.operation - Name of the operation resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations/' + params.operation,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations/' + params.operation,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'operation'],
+        pathParams: ['operation', 'project', 'region'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2766,23 +2677,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2800,23 +2710,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2832,22 +2741,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2865,23 +2774,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.route - Name of the route resource to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'route']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes/' + params.route,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes/' + params.route,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'route'],
+        pathParams: ['project', 'route'],
+        context: self
       };
 
-      delete params.project;
-      delete params.route;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2895,23 +2803,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.route - Name of the route resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'route']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes/' + params.route,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes/' + params.route,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'route'],
+        pathParams: ['project', 'route'],
+        context: self
       };
 
-      delete params.project;
-      delete params.route;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2925,22 +2832,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -2956,22 +2863,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2989,23 +2896,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.snapshot - Name of the persistent disk snapshot resource to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'snapshot']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots/' + params.snapshot,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots/' + params.snapshot,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'snapshot'],
+        pathParams: ['project', 'snapshot'],
+        context: self
       };
 
-      delete params.project;
-      delete params.snapshot;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3019,23 +2925,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.snapshot - Name of the persistent disk snapshot resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'snapshot']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots/' + params.snapshot,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots/' + params.snapshot,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'snapshot'],
+        pathParams: ['project', 'snapshot'],
+        context: self
       };
 
-      delete params.project;
-      delete params.snapshot;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3051,22 +2956,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -3084,23 +2989,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'targetHttpProxy']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies/' + params.targetHttpProxy,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies/' + params.targetHttpProxy,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpProxy'],
+        pathParams: ['project', 'targetHttpProxy'],
+        context: self
       };
 
-      delete params.project;
-      delete params.targetHttpProxy;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3114,23 +3018,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'targetHttpProxy']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies/' + params.targetHttpProxy,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies/' + params.targetHttpProxy,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpProxy'],
+        pathParams: ['project', 'targetHttpProxy'],
+        context: self
       };
 
-      delete params.project;
-      delete params.targetHttpProxy;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3144,22 +3047,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3175,22 +3078,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3205,23 +3108,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource whose URL map is to be set.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setUrlMap: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'targetHttpProxy']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/targetHttpProxies/' + params.targetHttpProxy + '/setUrlMap',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/targetHttpProxies/' + params.targetHttpProxy + '/setUrlMap',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpProxy'],
+        pathParams: ['project', 'targetHttpProxy'],
+        context: self
       };
 
-      delete params.project;
-      delete params.targetHttpProxy;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -3241,22 +3143,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/targetInstances',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/targetInstances',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3271,24 +3173,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.targetInstance - Name of the TargetInstance resource to delete.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'targetInstance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances/' + params.targetInstance,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances/' + params.targetInstance,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'targetInstance'],
+        pathParams: ['project', 'targetInstance', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.targetInstance;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3303,24 +3203,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.targetInstance - Name of the TargetInstance resource to return.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'targetInstance']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances/' + params.targetInstance,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances/' + params.targetInstance,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'targetInstance'],
+        pathParams: ['project', 'targetInstance', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.targetInstance;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3335,23 +3233,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3368,23 +3265,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -3404,24 +3300,22 @@ function Compute(options) {
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to which health_check_url is to be added.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addHealthCheck: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/addHealthCheck',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/addHealthCheck',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3437,24 +3331,22 @@ function Compute(options) {
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to which instance_url is to be added.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addInstance: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/addInstance',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/addInstance',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3470,22 +3362,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     aggregatedList: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/targetPools',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/targetPools',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3500,24 +3392,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3532,24 +3422,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3565,24 +3453,22 @@ function Compute(options) {
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to which the queried instance belongs.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getHealth: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/getHealth',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/getHealth',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3597,23 +3483,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3630,23 +3515,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3662,24 +3546,22 @@ function Compute(options) {
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to which health_check_url is to be removed.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     removeHealthCheck: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/removeHealthCheck',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/removeHealthCheck',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3695,24 +3577,22 @@ function Compute(options) {
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to which instance_url is to be removed.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     removeInstance: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/removeInstance',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/removeInstance',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3729,24 +3609,22 @@ function Compute(options) {
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource for which the backup is to be set.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setBackup: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'region', 'targetPool']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/setBackup',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/setBackup',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetPool'],
+        pathParams: ['project', 'region', 'targetPool'],
+        context: self
       };
 
-      delete params.project;
-      delete params.region;
-      delete params.targetPool;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -3764,23 +3642,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'urlMap']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'urlMap'],
+        pathParams: ['project', 'urlMap'],
+        context: self
       };
 
-      delete params.project;
-      delete params.urlMap;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3794,23 +3671,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'urlMap']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'urlMap'],
+        pathParams: ['project', 'urlMap'],
+        context: self
       };
 
-      delete params.project;
-      delete params.urlMap;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3824,22 +3700,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3855,22 +3731,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3885,23 +3761,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to update.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'urlMap']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'urlMap'],
+        pathParams: ['project', 'urlMap'],
+        context: self
       };
 
-      delete params.project;
-      delete params.urlMap;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3916,23 +3791,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to update.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'urlMap']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'urlMap'],
+        pathParams: ['project', 'urlMap'],
+        context: self
       };
 
-      delete params.project;
-      delete params.urlMap;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -3947,23 +3821,22 @@ function Compute(options) {
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to be validated as.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     validate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'urlMap']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap + '/validate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap + '/validate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'urlMap'],
+        pathParams: ['project', 'urlMap'],
+        context: self
       };
 
-      delete params.project;
-      delete params.urlMap;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -3982,24 +3855,22 @@ function Compute(options) {
      * @param  {string} params.operation - Name of the operation resource to delete.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'operation'],
+        pathParams: ['operation', 'project', 'zone'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -4014,24 +3885,22 @@ function Compute(options) {
      * @param  {string} params.operation - Name of the operation resource to return.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone', 'operation']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'operation'],
+        pathParams: ['operation', 'project', 'zone'],
+        context: self
       };
 
-      delete params.operation;
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -4048,23 +3917,22 @@ function Compute(options) {
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -4082,23 +3950,22 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone resource to return.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
       };
 
-      delete params.project;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -4114,22 +3981,22 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

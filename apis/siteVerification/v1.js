@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Site Verification API
@@ -48,22 +46,22 @@ function Siteverification(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id of a verified site or domain.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -76,22 +74,22 @@ function Siteverification(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id of a verified site or domain.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -104,18 +102,20 @@ function Siteverification(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getToken: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/token',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/token',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -129,20 +129,21 @@ function Siteverification(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.verificationMethod - The method to use for verifying a site or domain.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['verificationMethod']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/webResource',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['verificationMethod'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -154,18 +155,20 @@ function Siteverification(options) {
      * @memberOf! siteVerification(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/webResource',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -179,22 +182,22 @@ function Siteverification(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id of a verified site or domain.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -208,22 +211,22 @@ function Siteverification(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id of a verified site or domain.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

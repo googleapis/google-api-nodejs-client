@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Analytics API
@@ -57,20 +55,21 @@ function Analytics(options) {
      * @param  {string=} params.sort - A comma-separated list of dimensions or metrics that determine the sort order for the report data.
      * @param  {string} params.start-date - Start date for fetching report data. All requests should specify a start date formatted as YYYY-MM-DD.
      * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['ids', 'start-date', 'end-date', 'metrics']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/analytics/v2.4/data',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/analytics/v2.4/data',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -90,18 +89,20 @@ function Analytics(options) {
        * @param  {object=} params - Parameters for request
        * @param  {integer=} params.max-results - The maximum number of accounts to include in this response.
        * @param  {integer=} params.start-index - An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v2.4/management/accounts',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -121,26 +122,22 @@ function Analytics(options) {
        * @param  {string} params.profileId - View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
        * @param  {integer=} params.start-index - An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId', 'profileId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+          pathParams: ['accountId', 'profileId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.profileId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -159,24 +156,22 @@ function Analytics(options) {
        * @param  {integer=} params.max-results - The maximum number of views (profiles) to include in this response.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {string} params.webPropertyId - Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId', 'webPropertyId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        delete params.webPropertyId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -193,18 +188,20 @@ function Analytics(options) {
        * @param  {object=} params - Parameters for request
        * @param  {integer=} params.max-results - The maximum number of advanced segments to include in this response.
        * @param  {integer=} params.start-index - An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v2.4/management/segments',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v2.4/management/segments',
+            method: 'GET'
+          },
+          params: params,
+          context: self
         };
 
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     },
@@ -222,22 +219,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
        * @param  {integer=} params.max-results - The maximum number of web properties to include in this response.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @throws {Error} If a required parameter is missing.
-       * @param  {callback=} callback - The callback that handles the response.
+       * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
-        var params = extend({}, params); // shallow copy
-        checkRequired(params, ['accountId']);
-        var isMedia = false;
-        var options = {
-          url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties',
-          method: 'GET'
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
         };
 
-        delete params.accountId;
-
-        return createAPIRequest(self, params, options, isMedia, callback);
+        return createAPIRequest(parameters, callback);
       }
 
     }

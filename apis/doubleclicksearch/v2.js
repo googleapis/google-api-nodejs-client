@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * DoubleClick Search API
@@ -58,25 +56,22 @@ function Doubleclicksearch(options) {
      * @param  {integer} params.rowCount - The number of conversions to return per call.
      * @param  {integer} params.startDate - First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      * @param  {integer} params.startRow - The 0-based starting index for retrieving conversions results.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount', 'startDate', 'startRow']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/' + params.agencyId + '/advertiser/' + params.advertiserId + '/engine/' + params.engineAccountId + '/conversion',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/' + params.agencyId + '/advertiser/' + params.advertiserId + '/engine/' + params.engineAccountId + '/conversion',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount', 'startDate', 'startRow'],
+        pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
+        context: self
       };
 
-      delete params.advertiserId;
-      delete params.agencyId;
-
-      delete params.engineAccountId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -89,18 +84,20 @@ function Doubleclicksearch(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -120,20 +117,21 @@ function Doubleclicksearch(options) {
      * @param  {integer} params.startDate - First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      * @param  {integer} params.startRow - The 0-based starting index for retrieving conversions results.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount', 'startDate', 'startRow']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount', 'startDate', 'startRow'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -146,18 +144,20 @@ function Doubleclicksearch(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
+          method: 'PUT'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -170,18 +170,20 @@ function Doubleclicksearch(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     updateAvailability: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -198,18 +200,20 @@ function Doubleclicksearch(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     generate: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/generate',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/generate',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -222,22 +226,22 @@ function Doubleclicksearch(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.reportId - ID of the report request being polled.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['reportId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/' + params.reportId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/' + params.reportId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['reportId'],
+        pathParams: ['reportId'],
+        context: self
       };
 
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -251,23 +255,22 @@ function Doubleclicksearch(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.reportFragment - The index of the report fragment to download.
      * @param  {string} params.reportId - ID of the report.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getFile: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['reportId', 'reportFragment']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/' + params.reportId + '/files/' + params.reportFragment,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/' + params.reportId + '/files/' + params.reportFragment,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['reportId', 'reportFragment'],
+        pathParams: ['reportFragment', 'reportId'],
+        context: self
       };
 
-      delete params.reportFragment;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -280,18 +283,20 @@ function Doubleclicksearch(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     request: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/reports',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -309,23 +314,22 @@ function Doubleclicksearch(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.advertiserId - DS ID of the advertiser.
      * @param  {string} params.agencyId - DS ID of the agency.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['agencyId', 'advertiserId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/' + params.agencyId + '/advertiser/' + params.advertiserId + '/savedcolumns',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/' + params.agencyId + '/advertiser/' + params.advertiserId + '/savedcolumns',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['agencyId', 'advertiserId'],
+        pathParams: ['advertiserId', 'agencyId'],
+        context: self
       };
 
-      delete params.advertiserId;
-      delete params.agencyId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

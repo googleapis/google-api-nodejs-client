@@ -22,6 +22,8 @@ var DefaultTransporter = require('../lib/transporters');
 
 describe('Transporters', function() {
 
+  function doNothing() {}
+
   var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+';
   var transporter = new DefaultTransporter();
 
@@ -45,14 +47,14 @@ describe('Transporters', function() {
     var drive = google.drive('v2');
     var req = drive.comments.insert({
         fileId: 'a'
-    });
+    }, doNothing);
     assert.equal(req.headers['content-type'], 'application/json');
   });
 
   it('should not add body for GET requests', function() {
     var google = require('../lib/googleapis');
     var drive = google.drive('v2');
-    var req = drive.files.list();
+    var req = drive.files.list(doNothing);
     assert.equal(req.headers['content-type'], null);
     assert.equal(req.body, null);
   });
@@ -62,7 +64,7 @@ describe('Transporters', function() {
     var drive = google.drive('v2');
     var req = drive.files.delete({
         fileId: 'test'
-    });
+    }, doNothing);
     assert.equal(req.headers['content-type'], null);
     assert.equal(req.body, null);
   });
