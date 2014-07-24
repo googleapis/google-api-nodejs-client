@@ -29,8 +29,23 @@ describe('Clients', function() {
     assert.equal(typeof plus.comments.list, 'function');
   });
 
-  it('should be able to gen methods for top-level methods', function() {
-    assert.ok(!!googleapis.oauth2('v2').userinfo);
+  it('should be able to gen top level methods', function() {
+    assert.equal(typeof googleapis.oauth2('v2').tokeninfo, 'function');
+    assert.equal(typeof googleapis.freebase('v1').reconcile, 'function');
+  });
+
+  it('should be able to gen top level methods and resources', function() {
+    var oauth2 = googleapis.oauth2('v2');
+    assert.equal(typeof oauth2.tokeninfo, 'function');
+    assert.equal(typeof oauth2.userinfo, 'object');
+  });
+
+  it('should be able to gen nested resources and methods', function() {
+    var oauth2 = googleapis.oauth2('v2');
+    assert.equal(typeof oauth2.userinfo, 'object');
+    assert.equal(typeof oauth2.userinfo.v2, 'object');
+    assert.equal(typeof oauth2.userinfo.v2.me, 'object');
+    assert.equal(typeof oauth2.userinfo.v2.me.get, 'function');
   });
 
   it('should be able to require all api files without error', function() {

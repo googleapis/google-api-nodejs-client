@@ -615,8 +615,127 @@ function Mirror(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    attachments: {
+
+      /**
+       * mirror.timeline.attachments.delete
+       *
+       * @desc Deletes an attachment from a timeline item.
+       *
+       * @alias mirror.timeline.attachments.delete
+       * @memberOf! mirror(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.attachmentId - The ID of the attachment.
+       * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments/' + params.attachmentId,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['itemId', 'attachmentId'],
+          pathParams: ['attachmentId', 'itemId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mirror.timeline.attachments.get
+       *
+       * @desc Retrieves an attachment on a timeline item by item ID and attachment ID.
+       *
+       * @alias mirror.timeline.attachments.get
+       * @memberOf! mirror(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.attachmentId - The ID of the attachment.
+       * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments/' + params.attachmentId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['itemId', 'attachmentId'],
+          pathParams: ['attachmentId', 'itemId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mirror.timeline.attachments.insert
+       *
+       * @desc Adds a new attachment to a timeline item.
+       *
+       * @alias mirror.timeline.attachments.insert
+       * @memberOf! mirror(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
+       * @param  {object}        params.resource - Media resource metadata
+       * @param  {string|object} params.media - Media body data to upload
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['itemId'],
+          pathParams: ['itemId'],
+          isMedia: true,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mirror.timeline.attachments.list
+       *
+       * @desc Returns a list of attachments for a timeline item.
+       *
+       * @alias mirror.timeline.attachments.list
+       * @memberOf! mirror(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.itemId - The ID of the timeline item whose attachments should be listed.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['itemId'],
+          pathParams: ['itemId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 }
 

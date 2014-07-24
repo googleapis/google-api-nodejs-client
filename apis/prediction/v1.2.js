@@ -34,6 +34,35 @@ function Prediction(options) {
   var self = this;
   this._options = options || {};
 
+  /**
+   * prediction.predict
+   *
+   * @desc Submit data and request a prediction
+   *
+   * @alias prediction.predict
+   * @memberOf! prediction(v1.2)
+   *
+   * @param  {object} params - Parameters for request
+   * @param  {string} params.data - mybucket%2Fmydata resource in Google Storage
+   * @param  {object} params.resource - Request body data
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.predict = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data + '/predict',
+        method: 'POST'
+      },
+      params: params,
+      requiredParams: ['data'],
+      pathParams: ['data'],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
   this.hostedmodels = {
 
     /**

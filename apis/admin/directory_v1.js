@@ -454,8 +454,96 @@ function Admin(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    aliases: {
+
+      /**
+       * directory.groups.aliases.delete
+       *
+       * @desc Remove a alias for the group
+       *
+       * @alias directory.groups.aliases.delete
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.alias - The alias to be removed
+       * @param  {string} params.groupKey - Email or immutable Id of the group
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/aliases/' + params.alias,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['groupKey', 'alias'],
+          pathParams: ['alias', 'groupKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.groups.aliases.insert
+       *
+       * @desc Add a alias for the group
+       *
+       * @alias directory.groups.aliases.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.groupKey - Email or immutable Id of the group
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/aliases',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['groupKey'],
+          pathParams: ['groupKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.groups.aliases.list
+       *
+       * @desc List all aliases for a group
+       *
+       * @alias directory.groups.aliases.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.groupKey - Email or immutable Id of the group
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/aliases',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['groupKey'],
+          pathParams: ['groupKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.members = {
@@ -1458,8 +1546,244 @@ function Admin(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    aliases: {
+
+      /**
+       * directory.users.aliases.delete
+       *
+       * @desc Remove a alias for the user
+       *
+       * @alias directory.users.aliases.delete
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.alias - The alias to be removed
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases/' + params.alias,
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userKey', 'alias'],
+          pathParams: ['alias', 'userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.users.aliases.insert
+       *
+       * @desc Add a alias for the user
+       *
+       * @alias directory.users.aliases.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.users.aliases.list
+       *
+       * @desc List all aliases for a user
+       *
+       * @alias directory.users.aliases.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.users.aliases.watch
+       *
+       * @desc Watch for changes in user aliases list
+       *
+       * @alias directory.users.aliases.watch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      watch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases/watch',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    photos: {
+
+      /**
+       * directory.users.photos.delete
+       *
+       * @desc Remove photos for the user
+       *
+       * @alias directory.users.photos.delete
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.users.photos.get
+       *
+       * @desc Retrieve photo of a user
+       *
+       * @alias directory.users.photos.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.users.photos.patch
+       *
+       * @desc Add a photo for the user. This method supports patch semantics.
+       *
+       * @alias directory.users.photos.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.users.photos.update
+       *
+       * @desc Add a photo for the user
+       *
+       * @alias directory.users.photos.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userKey - Email or immutable Id of the user
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.verificationCodes = {

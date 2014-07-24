@@ -37,12 +37,22 @@ function {{ Name }}(options) {
   var self = this;
   this._options = options || {};
 
+{% if methods %}
+  {% set globalmethods = true %}
+  {% for mname, m in methods %}
+    {% include "./method-partial.js" with m %}
+  {% endfor -%}
+{%- endif -%}
+
+{% if resources %}
+{% set globalmethods = false %}
 {% for rname, r in resources %}
 {% set ResourceNamespace = [Name, rname]|join('.') %}
   this.{{ rname }} = {
     {% include "./resource-partial.js" with r %}
   };
-{% endfor -%}
+{%- endfor -%}
+{%- endif -%}
 }
 
 /**

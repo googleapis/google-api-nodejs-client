@@ -220,8 +220,8 @@ function Gmail(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     history: {
 
       /**
@@ -255,8 +255,8 @@ function Gmail(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     labels: {
 
       /**
@@ -433,8 +433,8 @@ function Gmail(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     messages: {
 
       /**
@@ -708,9 +708,42 @@ function Gmail(options) {
         };
 
         return createAPIRequest(parameters, callback);
-      }
+      },
 
+      attachments: {
+
+        /**
+         * gmail.users.messages.attachments.get
+         *
+         * @desc Gets the specified message attachment.
+         *
+         * @alias gmail.users.messages.attachments.get
+         * @memberOf! gmail(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.id - The ID of the attachment.
+         * @param  {string} params.messageId - The ID of the message containing the attachment.
+         * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.messageId + '/attachments/' + params.id,
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId', 'messageId', 'id'],
+            pathParams: ['id', 'messageId', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
     },
+
     threads: {
 
       /**
@@ -891,9 +924,7 @@ function Gmail(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 }
 
