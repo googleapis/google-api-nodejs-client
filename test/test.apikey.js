@@ -22,7 +22,7 @@ var google, drive, authClient, OAuth2;
 
 describe('API key', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   beforeEach(function() {
     google = new googleapis.GoogleApis();
@@ -36,7 +36,7 @@ describe('API key', function() {
     var req = drive.files.get({
       fileId: '123',
       auth: 'APIKEY'
-    }, doNothing);
+    }, noop);
     assert.equal(req.uri.query, 'key=APIKEY');
   });
 
@@ -44,7 +44,7 @@ describe('API key', function() {
     var req = drive.files.get({
       fileId: '123',
       auth: 'API KEY'
-    }, doNothing);
+    }, noop);
     assert.equal(req.uri.query, 'key=API%20KEY');
   });
 
@@ -53,12 +53,12 @@ describe('API key', function() {
       fileId: '123',
       auth: 'API KEY',
       key: 'abc123'
-    }, doNothing);
+    }, noop);
     assert.equal(req.uri.query, 'key=abc123');
   });
 
   it('should set API key parameter if it is presented', function() {
-    var req = google.urlshortener('v1').url.list({ auth: 'YOUR API KEY' }, doNothing);
+    var req = google.urlshortener('v1').url.list({ auth: 'YOUR API KEY' }, noop);
     assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
   });
 });

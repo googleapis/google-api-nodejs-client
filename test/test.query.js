@@ -22,7 +22,7 @@ var google, drive, authClient, OAuth2;
 
 describe('Query params', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   beforeEach(function() {
     google = new googleapis.GoogleApis();
@@ -33,27 +33,27 @@ describe('Query params', function() {
   });
 
   it('should not append ? with no query parameters', function() {
-    var uri = drive.files.get({ fileId: 'ID' }, doNothing).uri;
+    var uri = drive.files.get({ fileId: 'ID' }, noop).uri;
     assert.equal(-1, uri.href.indexOf('?'));
   });
 
   it('should be null if no object passed', function() {
-    var req = drive.files.list(doNothing);
+    var req = drive.files.list(noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should be null if params passed are in path', function() {
-    var req = drive.files.get({ fileId: '123' }, doNothing);
+    var req = drive.files.get({ fileId: '123' }, noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should be set if params passed are optional query params', function() {
-    var req = drive.files.get({ fileId: '123', updateViewedDate: true }, doNothing);
+    var req = drive.files.get({ fileId: '123', updateViewedDate: true }, noop);
     assert.equal(req.uri.query, 'updateViewedDate=true');
   });
 
   it('should be set if params passed are unknown params', function() {
-    var req = drive.files.get({ fileId: '123', madeThisUp: 'hello' }, doNothing);
+    var req = drive.files.get({ fileId: '123', madeThisUp: 'hello' }, noop);
     assert.equal(req.uri.query, 'madeThisUp=hello');
   });
 
@@ -62,7 +62,7 @@ describe('Query params', function() {
       fileId: '123',
       madeThisUp: 'hello',
       thisToo: 'world'
-    }, doNothing);
+    }, noop);
     assert.equal(req.uri.query, 'madeThisUp=hello&thisToo=world');
   });
 
@@ -70,7 +70,7 @@ describe('Query params', function() {
     var req = drive.files.get({
       fileId: '123',
       auth: authClient
-    }, doNothing);
+    }, noop);
     assert.equal(req.uri.query, null);
   });
 });

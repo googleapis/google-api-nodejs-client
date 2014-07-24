@@ -28,7 +28,7 @@ nock.disableNetConnect();
 
 describe('OAuth2 client', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   var CLIENT_ID = 'CLIENT_ID';
   var CLIENT_SECRET = 'CLIENT_SECRET';
@@ -96,7 +96,7 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(function() {
       new googleapis.GoogleApis()
-        .urlshortener('v1').url.get({ shortUrl: '123', auth: oauth2client }, doNothing);
+        .urlshortener('v1').url.get({ shortUrl: '123', auth: oauth2client }, noop);
     }, Error, 'No access or refresh token is set.');
   });
 
@@ -106,7 +106,7 @@ describe('OAuth2 client', function() {
     assert.doesNotThrow(function() {
       var google = new googleapis.GoogleApis();
       var options = { auth: oauth2client, shortUrl: '...' };
-      google.urlshortener('v1').url.get(options, doNothing);
+      google.urlshortener('v1').url.get(options, noop);
     });
   });
 
@@ -140,7 +140,7 @@ describe('OAuth2 client', function() {
         callback(null, null, { statusCode: 401 });
       }
     };
-    google.urlshortener('v1').url.list({ auth: oauth2client }, doNothing);
+    google.urlshortener('v1').url.list({ auth: oauth2client }, noop);
   });
 
   it('should verify a valid certificate against a jwt', function(done) {

@@ -22,7 +22,7 @@ var google, drive, authClient, OAuth2;
 
 describe('Path params', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   beforeEach(function() {
     google = new googleapis.GoogleApis();
@@ -31,7 +31,7 @@ describe('Path params', function() {
 
   it('should not throw error if not included and required', function(done) {
     assert.doesNotThrow(function() {
-      drive.files.get({}, doNothing);
+      drive.files.get({}, noop);
       done();
     });
   });
@@ -51,12 +51,12 @@ describe('Path params', function() {
   });
 
   it('should return null request object if not included and required', function() {
-    var req = drive.files.get({}, doNothing);
+    var req = drive.files.get({}, noop);
     assert.equal(req, null);
   });
 
   it('should return null request object if not included and required and no callback', function() {
-    var req = drive.files.get({}, doNothing);
+    var req = drive.files.get({}, noop);
     assert.equal(req, null);
   });
 
@@ -66,28 +66,28 @@ describe('Path params', function() {
     assert.doesNotThrow(
       function() {
         // should not modify options object
-        drive.files.get(options, doNothing);
-        drive.files.get(options, doNothing);
+        drive.files.get(options, noop);
+        drive.files.get(options, noop);
       });
   });
 
   it('should be put in URL of path', function() {
-    var req = drive.files.get({ fileId: 'abc123' }, doNothing);
+    var req = drive.files.get({ fileId: 'abc123' }, noop);
     assert.equal(req.uri.path, '/drive/v2/files/abc123');
   });
 
   it('should be put in URL of pathname', function() {
-    var req = drive.files.get({ fileId: '123abc' }, doNothing);
+    var req = drive.files.get({ fileId: '123abc' }, noop);
     assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
   });
 
   it('should keep query params null if only path params', function() {
-    var req = drive.files.get({ fileId: '123abc' }, doNothing);
+    var req = drive.files.get({ fileId: '123abc' }, noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should keep query params as is', function() {
-    var req = drive.files.get({ fileId: '123abc', hello: 'world' }, doNothing);
+    var req = drive.files.get({ fileId: '123abc', hello: 'world' }, noop);
     assert.equal(req.uri.query, 'hello=world');
   });
 });

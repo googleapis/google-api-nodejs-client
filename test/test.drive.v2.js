@@ -21,7 +21,7 @@ var google = require('../lib/googleapis.js');
 
 describe('drive:v2', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   it('should exist', function(done) {
     assert.notEqual(typeof google.drive, null);
@@ -73,7 +73,7 @@ describe('drive:v2', function() {
 
       it('should return a Request object', function(done) {
         var drive = google.drive('v2');
-        var req = drive.files.insert({}, doNothing);
+        var req = drive.files.insert({}, noop);
         assert.equal(req.constructor.name, 'Request');
         done();
       });
@@ -92,7 +92,7 @@ describe('drive:v2', function() {
 
       it('should return a Request object', function() {
         var drive = google.drive('v2');
-        var req = drive.files.get({ fileId: '123' }, doNothing);
+        var req = drive.files.get({ fileId: '123' }, noop);
         assert.equal(req.constructor.name, 'Request');
       });
     });

@@ -22,7 +22,7 @@ var google, drive, authClient, OAuth2;
 
 describe('Options', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   beforeEach(function() {
     google = new googleapis.GoogleApis();
@@ -46,28 +46,28 @@ describe('Options', function() {
   it('should promote endpoint options over global options', function() {
     google.options({ hello: 'world' });
     var drive = google.drive({ version: 'v2', hello: 'changed' });
-    var req = drive.files.get({ fileId: '123' }, doNothing);
+    var req = drive.files.get({ fileId: '123' }, noop);
     assert.equal(req.hello, 'changed');
   });
 
   it('should promote auth apikey options on request basis', function() {
     google.options({ auth: 'apikey1' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
-    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, doNothing);
+    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, noop);
     assert.equal(req.url.query, 'key=apikey3');
   });
 
   it('should apply google options to request object like proxy', function() {
     google.options({ proxy: 'http://proxy.example.com' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
-    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, doNothing);
+    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, noop);
     assert.equal(req.proxy.host, 'proxy.example.com');
     assert.equal(req.proxy.protocol, 'http:');
   });
 
   it('should apply endpoint options to request object like proxy', function() {
     var drive = google.drive({ version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com' });
-    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, doNothing);
+    var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, noop);
     assert.equal(req.proxy.host, 'proxy.example.com');
     assert.equal(req.proxy.protocol, 'http:');
   });

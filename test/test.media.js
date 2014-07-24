@@ -26,7 +26,7 @@ nock.disableNetConnect();
 
 describe('Media', function() {
 
-  function doNothing() {}
+  function noop() {}
 
   beforeEach(function() {
     google = new googleapis.GoogleApis();
@@ -97,7 +97,7 @@ describe('Media', function() {
   });
 
   it('should not require parameters for insertion requests', function() {
-    var req = drive.files.insert({ someAttr: 'someValue' }, doNothing);
+    var req = drive.files.insert({ someAttr: 'someValue' }, noop);
     assert.equal(req.uri.query, 'someAttr=someValue&uploadType=multipart');
   });
 });
