@@ -345,8 +345,73 @@ function Dfareporting(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    files: {
+
+      /**
+       * dfareporting.reports.files.get
+       *
+       * @desc Retrieves a report file.
+       *
+       * @alias dfareporting.reports.files.get
+       * @memberOf! dfareporting(v1.2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.fileId - The ID of the report file.
+       * @param  {string} params.profileId - The DFA profile ID.
+       * @param  {string} params.reportId - The ID of the report.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/dfareporting/v1.2/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/files/' + params.fileId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['profileId', 'reportId', 'fileId'],
+          pathParams: ['fileId', 'profileId', 'reportId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dfareporting.reports.files.list
+       *
+       * @desc Lists files for a report.
+       *
+       * @alias dfareporting.reports.files.list
+       * @memberOf! dfareporting(v1.2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {integer=} params.maxResults - Maximum number of results to return.
+       * @param  {string=} params.pageToken - The value of the nextToken from the previous result page.
+       * @param  {string} params.profileId - The DFA profile ID.
+       * @param  {string} params.reportId - The ID of the parent report.
+       * @param  {string=} params.sortField - The field by which to sort the list.
+       * @param  {string=} params.sortOrder - Order of sorted results, default is 'DESCENDING'.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/dfareporting/v1.2/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/files',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['profileId', 'reportId'],
+          pathParams: ['profileId', 'reportId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.userProfiles = {

@@ -440,9 +440,7 @@ function Genomics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 
   this.jobs = {

@@ -93,8 +93,43 @@ function Books(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    volumes: {
+
+      /**
+       * books.bookshelves.volumes.list
+       *
+       * @desc Retrieves volumes in a specific bookshelf for the specified user.
+       *
+       * @alias books.bookshelves.volumes.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {integer=} params.maxResults - Maximum number of results to return
+       * @param  {string} params.shelf - ID of bookshelf to retrieve volumes.
+       * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {integer=} params.startIndex - Index of the first element to return (starts at 0)
+       * @param  {string} params.userId - ID of user for whom to retrieve bookshelf volumes.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf + '/volumes',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId', 'shelf'],
+          pathParams: ['shelf', 'userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.cloudloading = {
@@ -246,8 +281,164 @@ function Books(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    annotationData: {
+
+      /**
+       * books.layers.annotationData.get
+       *
+       * @desc Gets the annotation data.
+       *
+       * @alias books.layers.annotationData.get
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {boolean=} params.allowWebDefinitions - For the dictionary layer. Whether or not to allow web definitions.
+       * @param  {string} params.annotationDataId - The ID of the annotation data to retrieve.
+       * @param  {string} params.contentVersion - The content version for the volume you are trying to retrieve.
+       * @param  {integer=} params.h - The requested pixel height for any images. If height is provided width must also be provided.
+       * @param  {string} params.layerId - The ID for the layer to get the annotations.
+       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param  {integer=} params.scale - The requested scale for the image.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string} params.volumeId - The volume to retrieve annotations for.
+       * @param  {integer=} params.w - The requested pixel width for any images. If width is provided height must also be provided.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/data/' + params.annotationDataId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
+          pathParams: ['annotationDataId', 'layerId', 'volumeId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * books.layers.annotationData.list
+       *
+       * @desc Gets the annotation data for a volume and layer.
+       *
+       * @alias books.layers.annotationData.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.annotationDataId - The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
+       * @param  {string} params.contentVersion - The content version for the requested volume.
+       * @param  {integer=} params.h - The requested pixel height for any images. If height is provided width must also be provided.
+       * @param  {string} params.layerId - The ID for the layer to get the annotation data.
+       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param  {integer=} params.maxResults - Maximum number of results to return
+       * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
+       * @param  {integer=} params.scale - The requested scale for the image.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string=} params.updatedMax - RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+       * @param  {string=} params.updatedMin - RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+       * @param  {string} params.volumeId - The volume to retrieve annotation data for.
+       * @param  {integer=} params.w - The requested pixel width for any images. If width is provided height must also be provided.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/data',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['volumeId', 'layerId', 'contentVersion'],
+          pathParams: ['layerId', 'volumeId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    volumeAnnotations: {
+
+      /**
+       * books.layers.volumeAnnotations.get
+       *
+       * @desc Gets the volume annotation.
+       *
+       * @alias books.layers.volumeAnnotations.get
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.annotationId - The ID of the volume annotation to retrieve.
+       * @param  {string} params.layerId - The ID for the layer to get the annotations.
+       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string} params.volumeId - The volume to retrieve annotations for.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/annotations/' + params.annotationId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['volumeId', 'layerId', 'annotationId'],
+          pathParams: ['annotationId', 'layerId', 'volumeId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * books.layers.volumeAnnotations.list
+       *
+       * @desc Gets the volume annotations for a volume and layer.
+       *
+       * @alias books.layers.volumeAnnotations.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.contentVersion - The content version for the requested volume.
+       * @param  {string=} params.endOffset - The end offset to end retrieving data from.
+       * @param  {string=} params.endPosition - The end position to end retrieving data from.
+       * @param  {string} params.layerId - The ID for the layer to get the annotations.
+       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param  {integer=} params.maxResults - Maximum number of results to return
+       * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
+       * @param  {boolean=} params.showDeleted - Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string=} params.startOffset - The start offset to start retrieving data from.
+       * @param  {string=} params.startPosition - The start position to start retrieving data from.
+       * @param  {string=} params.updatedMax - RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+       * @param  {string=} params.updatedMin - RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+       * @param  {string=} params.volumeAnnotationsVersion - The version of the volume annotations that you are requesting.
+       * @param  {string} params.volumeId - The volume to retrieve annotations for.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['volumeId', 'layerId', 'contentVersion'],
+          pathParams: ['layerId', 'volumeId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.myconfig = {
@@ -532,8 +723,8 @@ function Books(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     bookshelves: {
 
       /**
@@ -709,9 +900,47 @@ function Books(options) {
         };
 
         return createAPIRequest(parameters, callback);
-      }
+      },
 
+      volumes: {
+
+        /**
+         * books.mylibrary.bookshelves.volumes.list
+         *
+         * @desc Gets volume information for volumes on a bookshelf.
+         *
+         * @alias books.mylibrary.bookshelves.volumes.list
+         * @memberOf! books(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
+         * @param  {integer=} params.maxResults - Maximum number of results to return
+         * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
+         * @param  {string=} params.q - Full-text search query string in this bookshelf.
+         * @param  {string} params.shelf - The bookshelf ID or name retrieve volumes for.
+         * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
+         * @param  {string=} params.source - String to identify the originator of this request.
+         * @param  {integer=} params.startIndex - Index of the first element to return (starts at 0)
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/volumes',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['shelf'],
+            pathParams: ['shelf'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
     },
+
     readingpositions: {
 
       /**
@@ -777,9 +1006,7 @@ function Books(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 
   this.promooffer = {
@@ -953,8 +1180,169 @@ function Books(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    associated: {
+
+      /**
+       * books.volumes.associated.list
+       *
+       * @desc Return a list of associated books.
+       *
+       * @alias books.volumes.associated.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.association - Association type.
+       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string} params.volumeId - ID of the source volume.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/associated',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['volumeId'],
+          pathParams: ['volumeId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    mybooks: {
+
+      /**
+       * books.volumes.mybooks.list
+       *
+       * @desc Return a list of books in My Library.
+       *
+       * @alias books.volumes.mybooks.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object=} params - Parameters for request
+       * @param  {string=} params.acquireMethod - How the book was aquired
+       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
+       * @param  {integer=} params.maxResults - Maximum number of results to return.
+       * @param  {string=} params.processingState - The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {integer=} params.startIndex - Index of the first result to return (starts at 0)
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/mybooks',
+            method: 'GET'
+          },
+          params: params,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    recommended: {
+
+      /**
+       * books.volumes.recommended.list
+       *
+       * @desc Return a list of recommended books for the current user.
+       *
+       * @alias books.volumes.recommended.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object=} params - Parameters for request
+       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/recommended',
+            method: 'GET'
+          },
+          params: params,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * books.volumes.recommended.rate
+       *
+       * @desc Rate a recommended book for the current user.
+       *
+       * @alias books.volumes.recommended.rate
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param  {string} params.rating - Rating to be given to the volume.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string} params.volumeId - ID of the source volume.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      rate: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/recommended/rate',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['rating', 'volumeId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    useruploaded: {
+
+      /**
+       * books.volumes.useruploaded.list
+       *
+       * @desc Return a list of books uploaded by the current user.
+       *
+       * @alias books.volumes.useruploaded.list
+       * @memberOf! books(v1)
+       *
+       * @param  {object=} params - Parameters for request
+       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param  {integer=} params.maxResults - Maximum number of results to return.
+       * @param  {string=} params.processingState - The processing state of the user uploaded volumes to be returned.
+       * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {integer=} params.startIndex - Index of the first result to return (starts at 0)
+       * @param  {string=} params.volumeId - The ids of the volumes to be returned. If not specified all that match the processingState are returned.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/volumes/useruploaded',
+            method: 'GET'
+          },
+          params: params,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 }
 

@@ -288,8 +288,38 @@ function Blogger(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    blogs: {
+
+      /**
+       * blogger.users.blogs.list
+       *
+       * @desc Retrieves a list of blogs, possibly filtered.
+       *
+       * @alias blogger.users.blogs.list
+       * @memberOf! blogger(v2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userId - ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/blogger/v2/users/' + params.userId + '/blogs',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 }
 

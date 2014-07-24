@@ -61,6 +61,64 @@ function Oauth2(options) {
     return createAPIRequest(parameters, callback);
   };
 
+  this.userinfo = {
+
+    /**
+     * oauth2.userinfo.get
+     *
+     *
+     *
+     * @alias oauth2.userinfo.get
+     * @memberOf! oauth2(v2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/oauth2/v2/userinfo',
+          method: 'GET'
+        },
+        params: params,
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    v2: {
+
+      me: {
+
+        /**
+         * oauth2.userinfo.v2.me.get
+         *
+         *
+         *
+         * @alias oauth2.userinfo.v2.me.get
+         * @memberOf! oauth2(v2)
+         *
+         * @param  {object=} params - Parameters for request
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/userinfo/v2/me',
+              method: 'GET'
+            },
+            params: params,
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    }
+  };
 }
 
 /**

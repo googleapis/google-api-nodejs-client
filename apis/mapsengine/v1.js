@@ -98,8 +98,40 @@ function Mapsengine(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    parents: {
+
+      /**
+       * mapsengine.assets.parents.list
+       *
+       * @desc Return all parent ids of the specified asset.
+       *
+       * @alias mapsengine.assets.parents.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset whose parents will be listed.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 50.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/assets/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.layers = {
@@ -362,8 +394,40 @@ function Mapsengine(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    parents: {
+
+      /**
+       * mapsengine.layers.parents.list
+       *
+       * @desc Return all parent ids of the specified layer.
+       *
+       * @alias mapsengine.layers.parents.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the layer whose parents will be listed.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 50.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/layers/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.maps = {
@@ -804,8 +868,138 @@ function Mapsengine(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    parents: {
+
+      /**
+       * mapsengine.rasterCollections.parents.list
+       *
+       * @desc Return all parent ids of the specified raster collection.
+       *
+       * @alias mapsengine.rasterCollections.parents.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the raster collection whose parents will be listed.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 50.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    rasters: {
+
+      /**
+       * mapsengine.rasterCollections.rasters.batchDelete
+       *
+       * @desc Remove rasters from an existing raster collection.  Up to 50 rasters can be included in a single batchDelete request. Each batchDelete request is atomic.
+       *
+       * @alias mapsengine.rasterCollections.rasters.batchDelete
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the raster collection to which these rasters belong.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/rasters/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.rasterCollections.rasters.batchInsert
+       *
+       * @desc Add rasters to an existing raster collection. Rasters must be successfully processed in order to be added to a raster collection.  Up to 50 rasters can be included in a single batchInsert request. Each batchInsert request is atomic.
+       *
+       * @alias mapsengine.rasterCollections.rasters.batchInsert
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the raster collection to which these rasters belong.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchInsert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/rasters/batchInsert',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.rasterCollections.rasters.list
+       *
+       * @desc Return all rasters within a raster collection.
+       *
+       * @alias mapsengine.rasterCollections.rasters.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.bbox - A bounding box, expressed as "west,south,east,north". If set, only assets which intersect this bounding box will be returned.
+       * @param  {string=} params.createdAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been created at or after this time.
+       * @param  {string=} params.createdBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been created at or before this time.
+       * @param  {string=} params.creatorEmail - An email address representing a user. Returned assets that have been created by the user associated with the provided email address.
+       * @param  {string} params.id - The ID of the raster collection to which these rasters belong.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
+       * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
+       * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/rasterCollections/' + params.id + '/rasters',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.rasters = {
@@ -919,8 +1113,75 @@ function Mapsengine(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    files: {
+
+      /**
+       * mapsengine.rasters.files.insert
+       *
+       * @desc Upload a file to a raster asset.
+       *
+       * @alias mapsengine.rasters.files.insert
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.filename - The file name of this uploaded file.
+       * @param  {string} params.id - The ID of the raster asset.
+       * @param  {object}        params.resource - Media resource metadata
+       * @param  {string|object} params.media - Media body data to upload
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/mapsengine/v1/rasters/' + params.id + '/files',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id', 'filename'],
+          pathParams: ['id'],
+          isMedia: true,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    parents: {
+
+      /**
+       * mapsengine.rasters.parents.list
+       *
+       * @desc Return all parent ids of the specified rasters.
+       *
+       * @alias mapsengine.rasters.parents.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the rasters whose parents will be listed.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 50.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.tables = {
@@ -1096,8 +1357,233 @@ function Mapsengine(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    features: {
+
+      /**
+       * mapsengine.tables.features.batchDelete
+       *
+       * @desc Delete all features matching the given IDs.
+       *
+       * @alias mapsengine.tables.features.batchDelete
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the table that contains the features to be deleted.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id + '/features/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.features.batchInsert
+       *
+       * @desc Append features to an existing table.  A single batchInsert request can create:  - Up to 50 features. - A combined total of 10 000 vertices. Feature limits are documented in the Supported data formats and limits article of the Google Maps Engine help center. Note that free and paid accounts have different limits.  For more information about inserting features, read Creating features in the Google Maps Engine developer's guide.
+       *
+       * @alias mapsengine.tables.features.batchInsert
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the table to append the features to.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchInsert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id + '/features/batchInsert',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.features.batchPatch
+       *
+       * @desc Update the supplied features.  A single batchPatch request can update:  - Up to 50 features. - A combined total of 10 000 vertices. Feature limits are documented in the Supported data formats and limits article of the Google Maps Engine help center. Note that free and paid accounts have different limits.  Feature updates use HTTP PATCH semantics:  - A supplied value replaces an existing value (if any) in that field. - Omitted fields remain unchanged. - Complex values in geometries and properties must be replaced as atomic units. For example, providing just the coordinates of a geometry is not allowed; the complete geometry, including type, must be supplied. - Setting a property's value to null deletes that property. For more information about updating features, read Updating features in the Google Maps Engine developer's guide.
+       *
+       * @alias mapsengine.tables.features.batchPatch
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the table containing the features to be patched.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchPatch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id + '/features/batchPatch',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.features.get
+       *
+       * @desc Return a single feature, given its ID.
+       *
+       * @alias mapsengine.tables.features.get
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the feature to get.
+       * @param  {string=} params.select - A SQL-like projection clause used to specify returned properties. If this parameter is not included, all properties are returned.
+       * @param  {string} params.tableId - The ID of the table.
+       * @param  {string=} params.version - The table version to access. See Accessing Public Data for information.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.tableId + '/features/' + params.id,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['tableId', 'id'],
+          pathParams: ['id', 'tableId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.features.list
+       *
+       * @desc Return all features readable by the current user.
+       *
+       * @alias mapsengine.tables.features.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the table to which these features belong.
+       * @param  {string=} params.include - A comma separated list of optional data to include. Optional data available: schema.
+       * @param  {string=} params.intersects - A geometry literal that specifies the spatial restriction of the query.
+       * @param  {integer=} params.limit - The total number of features to return from the query, irrespective of the number of pages.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging.
+       * @param  {string=} params.orderBy - An SQL-like order by clause used to sort results. If this parameter is not included, the order of features is undefined.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {string=} params.select - A SQL-like projection clause used to specify returned properties. If this parameter is not included, all properties are returned.
+       * @param  {string=} params.version - The table version to access. See Accessing Public Data for information.
+       * @param  {string=} params.where - An SQL-like predicate used to filter results.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id + '/features',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    files: {
+
+      /**
+       * mapsengine.tables.files.insert
+       *
+       * @desc Upload a file to a placeholder table asset. See Table Upload in the Developer's Guide for more information. Supported file types are listed in the Supported data formats and limits article of the Google Maps Engine help center.
+       *
+       * @alias mapsengine.tables.files.insert
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.filename - The file name of this uploaded file.
+       * @param  {string} params.id - The ID of the table asset.
+       * @param  {object}        params.resource - Media resource metadata
+       * @param  {string|object} params.media - Media body data to upload
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/upload/mapsengine/v1/tables/' + params.id + '/files',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id', 'filename'],
+          pathParams: ['id'],
+          isMedia: true,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    parents: {
+
+      /**
+       * mapsengine.tables.parents.list
+       *
+       * @desc Return all parent ids of the specified table.
+       *
+       * @alias mapsengine.tables.parents.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the table whose parents will be listed.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 50.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 }
 

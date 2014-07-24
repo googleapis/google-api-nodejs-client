@@ -36,5 +36,5 @@
   };
 
   return createAPIRequest(parameters, callback);
-}{%- if globalmethods -%};{%- elif not loop.last %},
-{% endif %}
+}{%- if globalmethods -%};{%- elif not loop.last -%},
+{%- endif -%}

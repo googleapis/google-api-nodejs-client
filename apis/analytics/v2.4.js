@@ -104,8 +104,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     goals: {
 
       /**
@@ -139,8 +139,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     profiles: {
 
       /**
@@ -173,8 +173,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     segments: {
 
       /**
@@ -203,8 +203,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     webproperties: {
 
       /**
@@ -236,9 +236,7 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 }
 

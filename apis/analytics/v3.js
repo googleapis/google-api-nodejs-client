@@ -75,8 +75,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     mcf: {
 
       /**
@@ -114,8 +114,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     realtime: {
 
       /**
@@ -149,9 +149,7 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 
   this.management = {
@@ -184,8 +182,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     accountUserLinks: {
 
       /**
@@ -305,8 +303,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     accounts: {
 
       /**
@@ -335,8 +333,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     customDataSources: {
 
       /**
@@ -369,8 +367,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     dailyUploads: {
 
       /**
@@ -475,8 +473,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     experiments: {
 
       /**
@@ -667,8 +665,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     filters: {
 
       /**
@@ -847,8 +845,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     goals: {
 
       /**
@@ -1008,8 +1006,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     profileFilterLinks: {
 
       /**
@@ -1200,8 +1198,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     profileUserLinks: {
 
       /**
@@ -1329,8 +1327,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     profiles: {
 
       /**
@@ -1515,8 +1513,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     segments: {
 
       /**
@@ -1545,8 +1543,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     unsampledReports: {
 
       /**
@@ -1642,8 +1640,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     uploads: {
 
       /**
@@ -1802,8 +1800,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     webPropertyAdWordsLinks: {
 
       /**
@@ -1988,8 +1986,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     webproperties: {
 
       /**
@@ -2139,8 +2137,8 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     },
+
     webpropertyUserLinks: {
 
       /**
@@ -2264,9 +2262,7 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 
   this.metadata = {
@@ -2300,9 +2296,7 @@ function Analytics(options) {
 
         return createAPIRequest(parameters, callback);
       }
-
     }
-
   };
 
   this.provisioning = {

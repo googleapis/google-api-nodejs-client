@@ -125,8 +125,41 @@ function Adexchangeseller(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    customchannels: {
+
+      /**
+       * adexchangeseller.adunits.customchannels.list
+       *
+       * @desc List all custom channels which the specified ad unit belongs to.
+       *
+       * @alias adexchangeseller.adunits.customchannels.list
+       * @memberOf! adexchangeseller(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.adClientId - Ad client which contains the ad unit.
+       * @param  {string} params.adUnitId - Ad unit for which to list custom channels.
+       * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
+       * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/adunits/' + params.adUnitId + '/customchannels',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['adClientId', 'adUnitId'],
+          pathParams: ['adClientId', 'adUnitId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.customchannels = {
@@ -188,8 +221,42 @@ function Adexchangeseller(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    adunits: {
+
+      /**
+       * adexchangeseller.customchannels.adunits.list
+       *
+       * @desc List all ad units in the specified custom channel.
+       *
+       * @alias adexchangeseller.customchannels.adunits.list
+       * @memberOf! adexchangeseller(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.adClientId - Ad client which contains the custom channel.
+       * @param  {string} params.customChannelId - Custom channel for which to list ad units.
+       * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
+       * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
+       * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId + '/adunits',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['adClientId', 'customChannelId'],
+          pathParams: ['adClientId', 'customChannelId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.reports = {
@@ -227,8 +294,68 @@ function Adexchangeseller(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    saved: {
+
+      /**
+       * adexchangeseller.reports.saved.generate
+       *
+       * @desc Generate an Ad Exchange report based on the saved report ID sent in the query parameters.
+       *
+       * @alias adexchangeseller.reports.saved.generate
+       * @memberOf! adexchangeseller(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+       * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
+       * @param  {string} params.savedReportId - The saved report to retrieve.
+       * @param  {integer=} params.startIndex - Index of the first row of report data to return.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      generate: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/adexchangeseller/v1/reports/' + params.savedReportId,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['savedReportId'],
+          pathParams: ['savedReportId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * adexchangeseller.reports.saved.list
+       *
+       * @desc List all saved reports in this Ad Exchange account.
+       *
+       * @alias adexchangeseller.reports.saved.list
+       * @memberOf! adexchangeseller(v1)
+       *
+       * @param  {object=} params - Parameters for request
+       * @param  {integer=} params.maxResults - The maximum number of saved reports to include in the response, used for paging.
+       * @param  {string=} params.pageToken - A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/adexchangeseller/v1/reports/saved',
+            method: 'GET'
+          },
+          params: params,
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.urlchannels = {

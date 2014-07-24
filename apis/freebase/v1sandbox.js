@@ -112,7 +112,6 @@ function Freebase(options) {
 
     return createAPIRequest(parameters, callback);
   };
-
 }
 
 /**
