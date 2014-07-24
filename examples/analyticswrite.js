@@ -24,9 +24,9 @@ var CLIENT_ID = 'YOUR CLIENT ID HERE';
 var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
 var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
 
-var auth = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
-auth.setCredentials({
+oauth2Client.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
 });
 
@@ -56,7 +56,7 @@ var resourceBody = {
 
 
 analytics.management.experiments.insert({
-  auth: auth,
+  auth: oauth2Client,
   accountId: accountId,
   webPropertyId: webPropertyId,
   profileId: profileId,

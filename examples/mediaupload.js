@@ -16,10 +16,17 @@
 
 var google = require('../lib/googleapis.js');
 var drive = google.drive('v2');
+var OAuth2Client = google.auth.OAuth2;
 
-var auth = new google.auth.OAuth2();
+// Client ID and client secret are available at
+// https://code.google.com/apis/console
+var CLIENT_ID = 'YOUR CLIENT ID HERE';
+var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
+var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
 
-auth.setCredentials({
+var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+
+oauth2Client.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
 });
 
@@ -30,7 +37,7 @@ drive.files.insert({
     mimeType: 'text/plain'
   },
   media: 'Hello World',
-  auth: authClient
+  auth: oauth2Client
 }, function(err, response) {
   console.log('error:', err, 'inserted:', response.id);
 });
@@ -39,7 +46,7 @@ drive.files.insert({
 drive.files.update({
   fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc',
   media: 'Hello World updated with no metadata',
-  auth: auth
+  auth: oauth2Client
 }, function(err, response) {
   console.log('error:', err, 'updated:', response.id);
 });
@@ -51,7 +58,7 @@ drive.files.update({
     title: 'Updated title'
   },
   media: 'Hello World updated with metadata',
-  auth: auth
+  auth: oauth2Client
 }, function(err, response) {
   console.log('error:', err, 'updated:', response.id);
 });
