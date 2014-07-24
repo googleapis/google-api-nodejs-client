@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * URL Shortener API
@@ -49,20 +47,21 @@ function Urlshortener(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.projection - Additional information to return.
      * @param  {string} params.shortUrl - The short URL, including the protocol.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['shortUrl']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/urlshortener/v1/url',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/urlshortener/v1/url',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['shortUrl'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -75,18 +74,20 @@ function Urlshortener(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/urlshortener/v1/url',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/urlshortener/v1/url',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -100,18 +101,20 @@ function Urlshortener(options) {
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.projection - Additional information to return.
      * @param  {string=} params.start-token - Token for requesting successive pages of results.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/urlshortener/v1/url/history',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/urlshortener/v1/url/history',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

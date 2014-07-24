@@ -3,10 +3,10 @@
 Google's officially supported [node.js][node] client library for using
 Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
-### Migrating to version `1.0.0` of this library
+### Migrating to version `1.0` of this library
 
-If you've used this library before `1.0.0`, see our [Migration Guide][migrating]
-to learn about migrating your code from `0.x.x` to `1.0.0`. It's pretty easy :)
+If you've used this library before `1.0`, see our [Migration Guide][migrating]
+to learn about migrating your code from `0.x.x` to `1.0`. It's pretty easy :)
 
 ### Questions/problems?
 

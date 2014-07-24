@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Ad Exchange Buyer API
@@ -48,22 +46,22 @@ function Adexchangebuyer(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {integer} params.id - The account id
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -75,18 +73,20 @@ function Adexchangebuyer(options) {
      * @memberOf! adexchangebuyer(v1.3)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -100,22 +100,22 @@ function Adexchangebuyer(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.id - The account id
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -129,22 +129,22 @@ function Adexchangebuyer(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.id - The account id
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -162,23 +162,22 @@ function Adexchangebuyer(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.accountId - The id for the account that will serve this creative.
      * @param  {string} params.buyerCreativeId - The buyer-specific id for this creative.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId', 'buyerCreativeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives/' + params.accountId + '/' + params.buyerCreativeId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives/' + params.accountId + '/' + params.buyerCreativeId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['accountId', 'buyerCreativeId'],
+        pathParams: ['accountId', 'buyerCreativeId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.buyerCreativeId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -191,18 +190,20 @@ function Adexchangebuyer(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -219,18 +220,20 @@ function Adexchangebuyer(options) {
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      * @param  {string=} params.pageToken - A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      * @param  {string=} params.statusFilter - When specified, only creatives having the given status are returned.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -247,22 +250,22 @@ function Adexchangebuyer(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The direct deal id
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -274,18 +277,20 @@ function Adexchangebuyer(options) {
      * @memberOf! adexchangebuyer(v1.3)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -306,20 +311,21 @@ function Adexchangebuyer(options) {
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      * @param  {string=} params.pageToken - A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      * @param  {string} params.startDateTime - The start time of the report in ISO 8601 timestamp format using UTC.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId', 'endDateTime', 'startDateTime']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/performancereport',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/performancereport',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['accountId', 'endDateTime', 'startDateTime'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -337,23 +343,22 @@ function Adexchangebuyer(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The account id to delete the pretargeting config for.
      * @param  {string} params.configId - The specific id of the configuration to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId', 'configId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['accountId', 'configId'],
+        pathParams: ['accountId', 'configId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.configId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -367,23 +372,22 @@ function Adexchangebuyer(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The account id to get the pretargeting config for.
      * @param  {string} params.configId - The specific id of the configuration to retrieve.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId', 'configId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['accountId', 'configId'],
+        pathParams: ['accountId', 'configId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.configId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -397,22 +401,22 @@ function Adexchangebuyer(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The account id to insert the pretargeting config for.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: self
       };
 
-      delete params.accountId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -425,22 +429,22 @@ function Adexchangebuyer(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The account id to get the pretargeting configs for.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: self
       };
 
-      delete params.accountId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -455,23 +459,22 @@ function Adexchangebuyer(options) {
      * @param  {string} params.accountId - The account id to update the pretargeting config for.
      * @param  {string} params.configId - The specific id of the configuration to update.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId', 'configId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['accountId', 'configId'],
+        pathParams: ['accountId', 'configId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.configId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -486,23 +489,22 @@ function Adexchangebuyer(options) {
      * @param  {string} params.accountId - The account id to update the pretargeting config for.
      * @param  {string} params.configId - The specific id of the configuration to update.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['accountId', 'configId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['accountId', 'configId'],
+        pathParams: ['accountId', 'configId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.configId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

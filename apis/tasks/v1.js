@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Tasks API
@@ -48,22 +46,22 @@ function Tasks(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tasklist - Task list identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -76,22 +74,22 @@ function Tasks(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tasklist - Task list identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -104,18 +102,20 @@ function Tasks(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -129,18 +129,20 @@ function Tasks(options) {
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.maxResults - Maximum number of task lists returned on one page. Optional. The default is 100.
      * @param  {string=} params.pageToken - Token specifying the result page to return. Optional.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -154,22 +156,22 @@ function Tasks(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tasklist - Task list identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -183,22 +185,22 @@ function Tasks(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.tasklist - Task list identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -215,22 +217,22 @@ function Tasks(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tasklist - Task list identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     clear: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/clear',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/clear',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -244,23 +246,22 @@ function Tasks(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.task - Task identifier.
      * @param  {string} params.tasklist - Task list identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tasklist', 'task'],
+        pathParams: ['task', 'tasklist'],
+        context: self
       };
 
-      delete params.task;
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -274,23 +275,22 @@ function Tasks(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.task - Task identifier.
      * @param  {string} params.tasklist - Task list identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tasklist', 'task'],
+        pathParams: ['task', 'tasklist'],
+        context: self
       };
 
-      delete params.task;
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -306,22 +306,22 @@ function Tasks(options) {
      * @param  {string=} params.previous - Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      * @param  {string} params.tasklist - Task list identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -344,22 +344,22 @@ function Tasks(options) {
      * @param  {boolean=} params.showHidden - Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      * @param  {string} params.tasklist - Task list identifier.
      * @param  {string=} params.updatedMin - Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tasklist'],
+        pathParams: ['tasklist'],
+        context: self
       };
 
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -375,23 +375,22 @@ function Tasks(options) {
      * @param  {string=} params.previous - New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
      * @param  {string} params.task - Task identifier.
      * @param  {string} params.tasklist - Task list identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     move: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task + '/move',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task + '/move',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['tasklist', 'task'],
+        pathParams: ['task', 'tasklist'],
+        context: self
       };
 
-      delete params.task;
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -406,23 +405,22 @@ function Tasks(options) {
      * @param  {string} params.task - Task identifier.
      * @param  {string} params.tasklist - Task list identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['tasklist', 'task'],
+        pathParams: ['task', 'tasklist'],
+        context: self
       };
 
-      delete params.task;
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -437,23 +435,22 @@ function Tasks(options) {
      * @param  {string} params.task - Task identifier.
      * @param  {string} params.tasklist - Task list identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['tasklist', 'task']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['tasklist', 'task'],
+        pathParams: ['task', 'tasklist'],
+        context: self
       };
 
-      delete params.task;
-      delete params.tasklist;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

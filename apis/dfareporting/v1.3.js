@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * DFA Reporting API
@@ -51,22 +49,22 @@ function Dfareporting(options) {
      * @param  {string=} params.pageToken - The value of the nextToken from the previous result page.
      * @param  {string} params.profileId - The DFA user profile ID.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     query: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/dimensionvalues/query',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/dimensionvalues/query',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
       };
 
-      delete params.profileId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -84,23 +82,22 @@ function Dfareporting(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.fileId - The ID of the report file.
      * @param  {string} params.reportId - The ID of the report.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['reportId', 'fileId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/reports/' + params.reportId + '/files/' + params.fileId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/reports/' + params.reportId + '/files/' + params.fileId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['reportId', 'fileId'],
+        pathParams: ['fileId', 'reportId'],
+        context: self
       };
 
-      delete params.fileId;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -118,22 +115,22 @@ function Dfareporting(options) {
      * @param  {string=} params.scope - The scope that defines which results are returned, default is 'MINE'.
      * @param  {string=} params.sortField - The field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is 'DESCENDING'.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/files',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/files',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
       };
 
-      delete params.profileId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -151,23 +148,22 @@ function Dfareporting(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
      * @param  {string} params.reportId - The ID of the report.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId', 'reportId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['profileId', 'reportId'],
+        pathParams: ['profileId', 'reportId'],
+        context: self
       };
 
-      delete params.profileId;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -181,23 +177,22 @@ function Dfareporting(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
      * @param  {string} params.reportId - The ID of the report.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId', 'reportId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['profileId', 'reportId'],
+        pathParams: ['profileId', 'reportId'],
+        context: self
       };
 
-      delete params.profileId;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -211,22 +206,22 @@ function Dfareporting(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
       };
 
-      delete params.profileId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -244,22 +239,22 @@ function Dfareporting(options) {
      * @param  {string=} params.scope - The scope that defines which results are returned, default is 'MINE'.
      * @param  {string=} params.sortField - The field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is 'DESCENDING'.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
       };
 
-      delete params.profileId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -274,23 +269,22 @@ function Dfareporting(options) {
      * @param  {string} params.profileId - The DFA user profile ID.
      * @param  {string} params.reportId - The ID of the report.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId', 'reportId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['profileId', 'reportId'],
+        pathParams: ['profileId', 'reportId'],
+        context: self
       };
 
-      delete params.profileId;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -305,23 +299,22 @@ function Dfareporting(options) {
      * @param  {string} params.profileId - The DFA profile ID.
      * @param  {string} params.reportId - The ID of the report.
      * @param  {boolean=} params.synchronous - If set and true, tries to run the report synchronously.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     run: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId', 'reportId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/run',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/run',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['profileId', 'reportId'],
+        pathParams: ['profileId', 'reportId'],
+        context: self
       };
 
-      delete params.profileId;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -336,23 +329,22 @@ function Dfareporting(options) {
      * @param  {string} params.profileId - The DFA user profile ID.
      * @param  {string} params.reportId - The ID of the report.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId', 'reportId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['profileId', 'reportId'],
+        pathParams: ['profileId', 'reportId'],
+        context: self
       };
 
-      delete params.profileId;
-      delete params.reportId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -369,22 +361,22 @@ function Dfareporting(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The user profile ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['profileId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
       };
 
-      delete params.profileId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -396,18 +388,20 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v1.3)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

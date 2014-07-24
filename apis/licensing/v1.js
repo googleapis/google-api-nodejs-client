@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Enterprise License Manager API
@@ -50,24 +48,22 @@ function Licensing(options) {
      * @param  {string} params.productId - Name for product
      * @param  {string} params.skuId - Name for sku
      * @param  {string} params.userId - email id or unique Id of the user
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'skuId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['productId', 'skuId', 'userId'],
+        pathParams: ['productId', 'skuId', 'userId'],
+        context: self
       };
 
-      delete params.productId;
-      delete params.skuId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -82,24 +78,22 @@ function Licensing(options) {
      * @param  {string} params.productId - Name for product
      * @param  {string} params.skuId - Name for sku
      * @param  {string} params.userId - email id or unique Id of the user
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'skuId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['productId', 'skuId', 'userId'],
+        pathParams: ['productId', 'skuId', 'userId'],
+        context: self
       };
 
-      delete params.productId;
-      delete params.skuId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -114,23 +108,22 @@ function Licensing(options) {
      * @param  {string} params.productId - Name for product
      * @param  {string} params.skuId - Name for sku
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'skuId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['productId', 'skuId'],
+        pathParams: ['productId', 'skuId'],
+        context: self
       };
 
-      delete params.productId;
-      delete params.skuId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -146,22 +139,22 @@ function Licensing(options) {
      * @param  {integer=} params.maxResults - Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
      * @param  {string=} params.pageToken - Token to fetch the next page.Optional. By default server will return first page
      * @param  {string} params.productId - Name for product
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listForProduct: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/users',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/users',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['productId', 'customerId'],
+        pathParams: ['productId'],
+        context: self
       };
 
-      delete params.productId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -178,23 +171,22 @@ function Licensing(options) {
      * @param  {string=} params.pageToken - Token to fetch the next page.Optional. By default server will return first page
      * @param  {string} params.productId - Name for product
      * @param  {string} params.skuId - Name for sku
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listForProductAndSku: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'skuId', 'customerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/users',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/users',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['productId', 'skuId', 'customerId'],
+        pathParams: ['productId', 'skuId'],
+        context: self
       };
 
-      delete params.productId;
-      delete params.skuId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -210,24 +202,22 @@ function Licensing(options) {
      * @param  {string} params.skuId - Name for sku for which license would be revoked
      * @param  {string} params.userId - email id or unique Id of the user
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'skuId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['productId', 'skuId', 'userId'],
+        pathParams: ['productId', 'skuId', 'userId'],
+        context: self
       };
 
-      delete params.productId;
-      delete params.skuId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -243,24 +233,22 @@ function Licensing(options) {
      * @param  {string} params.skuId - Name for sku for which license would be revoked
      * @param  {string} params.userId - email id or unique Id of the user
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['productId', 'skuId', 'userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['productId', 'skuId', 'userId'],
+        pathParams: ['productId', 'skuId', 'userId'],
+        context: self
       };
 
-      delete params.productId;
-      delete params.skuId;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

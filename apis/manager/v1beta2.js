@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Deployment Manager API
@@ -50,24 +48,22 @@ function Manager(options) {
      * @param  {string} params.deploymentName -
      * @param  {string} params.projectId -
      * @param  {string} params.region -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'region', 'deploymentName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments/' + params.deploymentName,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments/' + params.deploymentName,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['projectId', 'region', 'deploymentName'],
+        pathParams: ['deploymentName', 'projectId', 'region'],
+        context: self
       };
 
-      delete params.deploymentName;
-      delete params.projectId;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -82,24 +78,22 @@ function Manager(options) {
      * @param  {string} params.deploymentName -
      * @param  {string} params.projectId -
      * @param  {string} params.region -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'region', 'deploymentName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments/' + params.deploymentName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments/' + params.deploymentName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'region', 'deploymentName'],
+        pathParams: ['deploymentName', 'projectId', 'region'],
+        context: self
       };
 
-      delete params.deploymentName;
-      delete params.projectId;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -114,23 +108,22 @@ function Manager(options) {
      * @param  {string} params.projectId -
      * @param  {string} params.region -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId', 'region'],
+        pathParams: ['projectId', 'region'],
+        context: self
       };
 
-      delete params.projectId;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -146,23 +139,22 @@ function Manager(options) {
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectId -
      * @param  {string} params.region -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'region'],
+        pathParams: ['projectId', 'region'],
+        context: self
       };
 
-      delete params.projectId;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -180,23 +172,22 @@ function Manager(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId -
      * @param  {string} params.templateName -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'templateName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates/' + params.templateName,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates/' + params.templateName,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['projectId', 'templateName'],
+        pathParams: ['projectId', 'templateName'],
+        context: self
       };
 
-      delete params.projectId;
-      delete params.templateName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -210,23 +201,22 @@ function Manager(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId -
      * @param  {string} params.templateName -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'templateName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates/' + params.templateName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates/' + params.templateName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'templateName'],
+        pathParams: ['projectId', 'templateName'],
+        context: self
       };
 
-      delete params.projectId;
-      delete params.templateName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -240,22 +230,22 @@ function Manager(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -270,22 +260,22 @@ function Manager(options) {
      * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectId -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

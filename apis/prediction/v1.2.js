@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Prediction API
@@ -49,22 +47,22 @@ function Prediction(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.hostedModelName - The name of a hosted model
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     predict: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['hostedModelName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.2/hostedmodels/' + params.hostedModelName + '/predict',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.2/hostedmodels/' + params.hostedModelName + '/predict',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['hostedModelName'],
+        pathParams: ['hostedModelName'],
+        context: self
       };
 
-      delete params.hostedModelName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -81,22 +79,22 @@ function Prediction(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.data - mybucket/mydata resource in Google Storage
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['data']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['data'],
+        pathParams: ['data'],
+        context: self
       };
 
-      delete params.data;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -109,22 +107,22 @@ function Prediction(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.data - mybucket/mydata resource in Google Storage
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['data']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['data'],
+        pathParams: ['data'],
+        context: self
       };
 
-      delete params.data;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -138,18 +136,20 @@ function Prediction(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.data - mybucket/mydata resource in Google Storage
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.2/training',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.2/training',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -163,22 +163,22 @@ function Prediction(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.data - mybucket/mydata resource in Google Storage
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['data']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.2/training/' + params.data,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['data'],
+        pathParams: ['data'],
+        context: self
       };
 
-      delete params.data;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

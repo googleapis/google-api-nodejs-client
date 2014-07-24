@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Prediction API
@@ -49,22 +47,22 @@ function Prediction(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.hostedModelName - The name of a hosted model.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     predict: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['hostedModelName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.4/hostedmodels/' + params.hostedModelName + '/predict',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.4/hostedmodels/' + params.hostedModelName + '/predict',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['hostedModelName'],
+        pathParams: ['hostedModelName'],
+        context: self
       };
 
-      delete params.hostedModelName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -81,22 +79,22 @@ function Prediction(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The unique name for the predictive model.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -109,22 +107,22 @@ function Prediction(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The unique name for the predictive model.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -137,18 +135,20 @@ function Prediction(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -162,22 +162,22 @@ function Prediction(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The unique name for the predictive model.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     predict: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id + '/predict',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id + '/predict',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -191,22 +191,22 @@ function Prediction(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The unique name for the predictive model.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['id']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
       };
 
-      delete params.id;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

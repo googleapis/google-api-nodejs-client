@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Affiliate Network API
@@ -50,23 +48,22 @@ function Gan(options) {
      * @param  {string=} params.advertiserId - The ID of the advertiser to look up. Optional.
      * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
      * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/advertiser',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/advertiser',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -87,23 +84,22 @@ function Gan(options) {
      * @param  {string=} params.relationshipStatus - Filters out all advertisers for which do not have the given relationship status with the requesting publisher.
      * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
      * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/advertisers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/advertisers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -122,22 +118,22 @@ function Gan(options) {
      * @param  {string=} params.advertiser - The advertiser ID of a card issuer whose offers to include. Optional, may be repeated.
      * @param  {string=} params.projection - The set of fields to return.
      * @param  {string} params.publisher - The ID of the publisher in question.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['publisher']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/publishers/' + params.publisher + '/ccOffers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/publishers/' + params.publisher + '/ccOffers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['publisher'],
+        pathParams: ['publisher'],
+        context: self
       };
 
-      delete params.publisher;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -171,23 +167,22 @@ function Gan(options) {
      * @param  {string=} params.sku - Caret(^) delimited list of SKUs. Filters out all events that do not reference one of the given SKU. Optional.
      * @param  {string=} params.status - Filters out all events that do not have the given status. Valid values: 'active', 'canceled'. Optional.
      * @param  {string=} params.type - Filters out all events that are not of the given type. Valid values: 'action', 'transaction', 'charge'. Optional.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/events',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/events',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -206,24 +201,22 @@ function Gan(options) {
      * @param  {string} params.linkId - The ID of the link to look up.
      * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
      * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId', 'linkId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/link/' + params.linkId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/link/' + params.linkId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId', 'linkId'],
+        pathParams: ['linkId', 'role', 'roleId'],
+        context: self
       };
 
-      delete params.linkId;
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -238,23 +231,22 @@ function Gan(options) {
      * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
      * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/link',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/link',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -281,23 +273,22 @@ function Gan(options) {
      * @param  {string=} params.searchText - Field for full text search across title and merchandising text, supports link id search.
      * @param  {string=} params.startDateMax - The end of the start date range.
      * @param  {string=} params.startDateMin - The beginning of the start date range.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/links',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/links',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -316,23 +307,22 @@ function Gan(options) {
      * @param  {string=} params.publisherId - The ID of the publisher to look up. Optional.
      * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
      * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/publisher',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/publisher',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -353,23 +343,22 @@ function Gan(options) {
      * @param  {string=} params.relationshipStatus - Filters out all publishers for which do not have the given relationship status with the requesting publisher.
      * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
      * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/publishers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/publishers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId'],
+        pathParams: ['role', 'roleId'],
+        context: self
       };
 
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -399,24 +388,22 @@ function Gan(options) {
      * @param  {string=} params.startDate - The start date (inclusive), in RFC 3339 format, for the report data to be returned. Defaults to one day before endDate, if that is given, or yesterday. Optional.
      * @param  {integer=} params.startIndex - Offset on which to return results when paging. Optional.
      * @param  {string=} params.status - Filters out all events that do not have the given status. Valid values: 'active', 'canceled', or 'invalid'. Optional.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['role', 'roleId', 'reportType']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/report/' + params.reportType,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/report/' + params.reportType,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['role', 'roleId', 'reportType'],
+        pathParams: ['reportType', 'role', 'roleId'],
+        context: self
       };
 
-      delete params.reportType;
-      delete params.role;
-      delete params.roleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

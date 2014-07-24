@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Content API for Shopping
@@ -48,18 +46,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/accounts/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/accounts/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -73,23 +73,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The ID of the account.
      * @param  {string} params.merchantId - The ID of the managing account.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -103,23 +102,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The ID of the account.
      * @param  {string} params.merchantId - The ID of the managing account.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -133,22 +131,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -163,22 +161,22 @@ function Content(options) {
      * @param  {integer=} params.maxResults - The maximum number of accounts to return in the response, used for paging.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -193,23 +191,22 @@ function Content(options) {
      * @param  {string} params.accountId - The ID of the account.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -224,23 +221,22 @@ function Content(options) {
      * @param  {string} params.accountId - The ID of the account.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -259,23 +255,22 @@ function Content(options) {
      * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountshipping/' + params.accountId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountshipping/' + params.accountId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -292,18 +287,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/accountstatuses/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/accountstatuses/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -317,23 +314,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The ID of the account.
      * @param  {string} params.merchantId - The ID of the managing account.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountstatuses/' + params.accountId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountstatuses/' + params.accountId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -348,22 +344,22 @@ function Content(options) {
      * @param  {integer=} params.maxResults - The maximum number of account statuses to return in the response, used for paging.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountstatuses',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountstatuses',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -382,23 +378,22 @@ function Content(options) {
      * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'accountId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounttax/' + params.accountId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounttax/' + params.accountId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
       };
 
-      delete params.accountId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -415,18 +410,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     batch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/datafeedsNativeBatch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/datafeedsNativeBatch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -439,18 +436,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/datafeeds/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/datafeeds/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -464,23 +463,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datafeedId -
      * @param  {string} params.merchantId -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'datafeedId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'datafeedId'],
+        pathParams: ['datafeedId', 'merchantId'],
+        context: self
       };
 
-      delete params.datafeedId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -494,23 +492,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datafeedId -
      * @param  {string} params.merchantId -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'datafeedId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'datafeedId'],
+        pathParams: ['datafeedId', 'merchantId'],
+        context: self
       };
 
-      delete params.datafeedId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -524,22 +521,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.merchantId -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -552,22 +549,22 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.merchantId -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -582,23 +579,22 @@ function Content(options) {
      * @param  {string} params.datafeedId -
      * @param  {string} params.merchantId -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'datafeedId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'datafeedId'],
+        pathParams: ['datafeedId', 'merchantId'],
+        context: self
       };
 
-      delete params.datafeedId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -613,23 +609,22 @@ function Content(options) {
      * @param  {string} params.datafeedId -
      * @param  {string} params.merchantId -
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'datafeedId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'datafeedId'],
+        pathParams: ['datafeedId', 'merchantId'],
+        context: self
       };
 
-      delete params.datafeedId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -646,18 +641,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     batch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/datafeedstatusesNativeBatch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/datafeedstatusesNativeBatch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -670,18 +667,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/datafeedstatuses/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/datafeedstatuses/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -695,23 +694,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datafeedId -
      * @param  {string} params.merchantId -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'datafeedId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeedstatuses/' + params.datafeedId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeedstatuses/' + params.datafeedId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'datafeedId'],
+        pathParams: ['datafeedId', 'merchantId'],
+        context: self
       };
 
-      delete params.datafeedId;
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -724,22 +722,22 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.merchantId -
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeedstatuses',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeedstatuses',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -756,18 +754,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/inventory/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/inventory/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -783,24 +783,22 @@ function Content(options) {
      * @param  {string} params.productId - The ID of the product for which to update price and availability.
      * @param  {string} params.storeCode - The code of the store for which to update price and availability. Use online to update price and availability of an online product.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     set: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'storeCode', 'productId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/inventory/' + params.storeCode + '/products/' + params.productId,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/inventory/' + params.storeCode + '/products/' + params.productId,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'storeCode', 'productId'],
+        pathParams: ['merchantId', 'productId', 'storeCode'],
+        context: self
       };
 
-      delete params.merchantId;
-      delete params.productId;
-      delete params.storeCode;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -818,18 +816,20 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/products/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/products/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -844,23 +844,22 @@ function Content(options) {
      * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string} params.productId - The ID of the product.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'productId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products/' + params.productId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products/' + params.productId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: self
       };
 
-      delete params.merchantId;
-      delete params.productId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -874,23 +873,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string} params.productId - The ID of the product.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'productId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products/' + params.productId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products/' + params.productId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: self
       };
 
-      delete params.merchantId;
-      delete params.productId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -905,22 +903,22 @@ function Content(options) {
      * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -935,22 +933,22 @@ function Content(options) {
      * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -967,18 +965,20 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     custombatch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/productstatuses/batch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/productstatuses/batch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -992,23 +992,22 @@ function Content(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string} params.productId - The ID of the product.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId', 'productId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/productstatuses/' + params.productId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/productstatuses/' + params.productId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: self
       };
 
-      delete params.merchantId;
-      delete params.productId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1023,22 +1022,22 @@ function Content(options) {
      * @param  {integer=} params.maxResults - The maximum number of product statuses to return in the response, used for paging.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['merchantId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/productstatuses',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/productstatuses',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
       };
 
-      delete params.merchantId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

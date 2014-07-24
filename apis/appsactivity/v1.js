@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Apps Activity API
@@ -54,18 +52,20 @@ function Appsactivity(options) {
      * @param  {string=} params.pageToken - A token to retrieve a specific page of results.
      * @param  {string=} params.source - The Google service from which to return activities. Possible values of source are:  - drive.google.com
      * @param  {string=} params.userId - Indicates the user to return activity for. Use the special value me to indicate the currently authenticated user.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/appsactivity/v1/activities',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/appsactivity/v1/activities',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

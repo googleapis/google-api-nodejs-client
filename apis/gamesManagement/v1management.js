@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Play Game Services Management API
@@ -48,22 +46,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['achievementId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/achievements/' + params.achievementId + '/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/achievements/' + params.achievementId + '/reset',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['achievementId'],
+        pathParams: ['achievementId'],
+        context: self
       };
 
-      delete params.achievementId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -75,18 +73,20 @@ function Gamesmanagement(options) {
      * @memberOf! gamesManagement(v1management)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetAll: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/achievements/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/achievements/reset',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -99,22 +99,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetForAllPlayers: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['achievementId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/achievements/' + params.achievementId + '/resetForAllPlayers',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/achievements/' + params.achievementId + '/resetForAllPlayers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['achievementId'],
+        pathParams: ['achievementId'],
+        context: self
       };
 
-      delete params.achievementId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -133,22 +133,22 @@ function Gamesmanagement(options) {
      * @param  {string} params.applicationId - The application being requested.
      * @param  {integer=} params.maxResults - The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listHidden: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['applicationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['applicationId'],
+        pathParams: ['applicationId'],
+        context: self
       };
 
-      delete params.applicationId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -165,22 +165,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.eventId - The ID of the event.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/events/' + params.eventId + '/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/events/' + params.eventId + '/reset',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['eventId'],
+        pathParams: ['eventId'],
+        context: self
       };
 
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -192,18 +192,20 @@ function Gamesmanagement(options) {
      * @memberOf! gamesManagement(v1management)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetAll: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/events/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/events/reset',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -216,22 +218,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.eventId - The ID of the event.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetForAllPlayers: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/events/' + params.eventId + '/resetForAllPlayers',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/events/' + params.eventId + '/resetForAllPlayers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['eventId'],
+        pathParams: ['eventId'],
+        context: self
       };
 
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -249,23 +251,22 @@ function Gamesmanagement(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.applicationId - The application being requested.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     hide: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['applicationId', 'playerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden/' + params.playerId,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden/' + params.playerId,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['applicationId', 'playerId'],
+        pathParams: ['applicationId', 'playerId'],
+        context: self
       };
 
-      delete params.applicationId;
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -279,23 +280,22 @@ function Gamesmanagement(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.applicationId - The application being requested.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     unhide: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['applicationId', 'playerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden/' + params.playerId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden/' + params.playerId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['applicationId', 'playerId'],
+        pathParams: ['applicationId', 'playerId'],
+        context: self
       };
 
-      delete params.applicationId;
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -312,22 +312,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.questId - The ID of the quest.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['questId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/quests/' + params.questId + '/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/quests/' + params.questId + '/reset',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['questId'],
+        pathParams: ['questId'],
+        context: self
       };
 
-      delete params.questId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -343,18 +343,20 @@ function Gamesmanagement(options) {
      * @memberOf! gamesManagement(v1management)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/rooms/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/rooms/reset',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -371,22 +373,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['leaderboardId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/leaderboards/' + params.leaderboardId + '/scores/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/leaderboards/' + params.leaderboardId + '/scores/reset',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['leaderboardId'],
+        pathParams: ['leaderboardId'],
+        context: self
       };
 
-      delete params.leaderboardId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -399,22 +401,22 @@ function Gamesmanagement(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     resetForAllPlayers: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['leaderboardId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/leaderboards/' + params.leaderboardId + '/scores/resetForAllPlayers',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/leaderboards/' + params.leaderboardId + '/scores/resetForAllPlayers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['leaderboardId'],
+        pathParams: ['leaderboardId'],
+        context: self
       };
 
-      delete params.leaderboardId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -430,18 +432,20 @@ function Gamesmanagement(options) {
      * @memberOf! gamesManagement(v1management)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reset: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/reset',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/reset',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

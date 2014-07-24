@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * CustomSearch API
@@ -79,20 +77,21 @@ function Customsearch(options) {
      * @param  {string=} params.siteSearchFilter - Controls whether to include or exclude results from the site named in the as_sitesearch parameter
      * @param  {string=} params.sort - The sort expression to apply to the results
      * @param  {integer=} params.start - The index of the first result to return
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['q']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/customsearch/v1',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/customsearch/v1',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['q'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

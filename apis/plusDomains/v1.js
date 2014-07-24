@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google+ Domains API
@@ -48,22 +46,22 @@ function Plusdomains(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - The ID of the activity to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -78,22 +76,22 @@ function Plusdomains(options) {
      * @param  {boolean=} params.preview - If "true", extract the potential media attachments for a URL. The response will include all possible attachments for a URL, including video, photos, and articles based on the content of the page.
      * @param  {string} params.userId - The ID of the user to create the activity on behalf of. Its value should be "me", to indicate the authenticated user.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/activities',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/activities',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -109,24 +107,22 @@ function Plusdomains(options) {
      * @param  {integer=} params.maxResults - The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param  {string} params.userId - The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId', 'collection']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/activities/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/activities/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId', 'collection'],
+        pathParams: ['collection', 'userId'],
+        context: self
       };
 
-      delete params.collection;
-
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -145,22 +141,22 @@ function Plusdomains(options) {
      * @param  {integer=} params.maxResults - The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param  {string} params.userId - The ID of the user to get audiences for. The special value "me" can be used to indicate the authenticated user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/audiences',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/audiences',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -179,22 +175,22 @@ function Plusdomains(options) {
      * @param  {string} params.circleId - The ID of the circle to add the person to.
      * @param  {string=} params.email - Email of the people to add to the circle. Optional, can be repeated.
      * @param  {string=} params.userId - IDs of the people to add to the circle. Optional, can be repeated.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addPeople: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -207,22 +203,22 @@ function Plusdomains(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.circleId - The ID of the circle to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -236,22 +232,22 @@ function Plusdomains(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.userId - The ID of the user to create the circle on behalf of. The value "me" can be used to indicate the authenticated user.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/circles',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/circles',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -266,22 +262,22 @@ function Plusdomains(options) {
      * @param  {integer=} params.maxResults - The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param  {string} params.userId - The ID of the user to get circles for. The special value "me" can be used to indicate the authenticated user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/circles',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/circles',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -295,22 +291,22 @@ function Plusdomains(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.circleId - The ID of the circle to update.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -323,22 +319,22 @@ function Plusdomains(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.circleId - The ID of the circle to delete.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     remove: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -353,22 +349,22 @@ function Plusdomains(options) {
      * @param  {string} params.circleId - The ID of the circle to remove the person from.
      * @param  {string=} params.email - Email of the people to add to the circle. Optional, can be repeated.
      * @param  {string=} params.userId - IDs of the people to remove from the circle. Optional, can be repeated.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     removePeople: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -382,22 +378,22 @@ function Plusdomains(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.circleId - The ID of the circle to update.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -414,22 +410,22 @@ function Plusdomains(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.commentId - The ID of the comment to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['commentId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/comments/' + params.commentId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/comments/' + params.commentId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['commentId'],
+        pathParams: ['commentId'],
+        context: self
       };
 
-      delete params.commentId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -443,22 +439,22 @@ function Plusdomains(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.activityId - The ID of the activity to reply to.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/comments',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/comments',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -474,22 +470,22 @@ function Plusdomains(options) {
      * @param  {integer=} params.maxResults - The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param  {string=} params.sortOrder - The order in which to sort the list of comments.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/comments',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/comments',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['activityId'],
+        pathParams: ['activityId'],
+        context: self
       };
 
-      delete params.activityId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -509,23 +505,23 @@ function Plusdomains(options) {
      * @param  {string} params.userId - The ID of the user to create the activity on behalf of.
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId', 'collection']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userId', 'collection'],
+        pathParams: ['collection', 'userId'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.collection;
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -542,22 +538,22 @@ function Plusdomains(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userId - The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -574,24 +570,22 @@ function Plusdomains(options) {
      * @param  {string=} params.orderBy - The order to return people in.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param  {string} params.userId - Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId', 'collection']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/people/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/people/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId', 'collection'],
+        pathParams: ['collection', 'userId'],
+        context: self
       };
 
-      delete params.collection;
-
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -607,23 +601,22 @@ function Plusdomains(options) {
      * @param  {string} params.collection - The collection of people to list.
      * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listByActivity: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['activityId', 'collection']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/people/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/people/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['activityId', 'collection'],
+        pathParams: ['activityId', 'collection'],
+        context: self
       };
 
-      delete params.activityId;
-      delete params.collection;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -638,22 +631,22 @@ function Plusdomains(options) {
      * @param  {string} params.circleId - The ID of the circle to get the members of.
      * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listByCircle: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['circleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['circleId'],
+        pathParams: ['circleId'],
+        context: self
       };
 
-      delete params.circleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

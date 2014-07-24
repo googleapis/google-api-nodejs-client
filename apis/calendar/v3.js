@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Calendar API
@@ -49,23 +47,22 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {string} params.ruleId - ACL rule identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'ruleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'ruleId'],
+        pathParams: ['calendarId', 'ruleId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.ruleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -79,23 +76,22 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {string} params.ruleId - ACL rule identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'ruleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'ruleId'],
+        pathParams: ['calendarId', 'ruleId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.ruleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -109,22 +105,22 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -141,22 +137,22 @@ function Calendar(options) {
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {boolean=} params.showDeleted - Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
      * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -171,23 +167,22 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {string} params.ruleId - ACL rule identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'ruleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'ruleId'],
+        pathParams: ['calendarId', 'ruleId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.ruleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -202,23 +197,22 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {string} params.ruleId - ACL rule identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'ruleId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'ruleId'],
+        pathParams: ['calendarId', 'ruleId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.ruleId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -236,22 +230,22 @@ function Calendar(options) {
      * @param  {boolean=} params.showDeleted - Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
      * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/watch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -268,22 +262,22 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -296,22 +290,22 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -325,18 +319,20 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -354,18 +350,20 @@ function Calendar(options) {
      * @param  {boolean=} params.showDeleted - Whether to include deleted calendar list entries in the result. Optional. The default is False.
      * @param  {boolean=} params.showHidden - Whether to show hidden entries. Optional. The default is False.
      * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -380,22 +378,22 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -410,22 +408,22 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -444,18 +442,20 @@ function Calendar(options) {
      * @param  {boolean=} params.showHidden - Whether to show hidden entries. Optional. The default is False.
      * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/watch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -472,22 +472,22 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     clear: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/clear',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/clear',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -500,22 +500,22 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -528,22 +528,22 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -556,18 +556,20 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -581,22 +583,22 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -610,22 +612,22 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -642,18 +644,20 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     stop: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/channels/stop',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/channels/stop',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -669,18 +673,20 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/colors',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/colors',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -699,23 +705,22 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {string} params.eventId - Event identifier.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the deletion of the event. Optional. The default is False.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'eventId'],
+        pathParams: ['calendarId', 'eventId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -732,23 +737,22 @@ function Calendar(options) {
      * @param  {string} params.eventId - Event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'eventId'],
+        pathParams: ['calendarId', 'eventId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -762,22 +766,22 @@ function Calendar(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     import: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/import',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/import',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -793,22 +797,22 @@ function Calendar(options) {
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the new event. Optional. The default is False.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -831,23 +835,22 @@ function Calendar(options) {
      * @param  {string=} params.timeMax - Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time.
      * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time.
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     instances: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId + '/instances',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId + '/instances',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'eventId'],
+        pathParams: ['calendarId', 'eventId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -877,22 +880,22 @@ function Calendar(options) {
      * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time.
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -908,24 +911,22 @@ function Calendar(options) {
      * @param  {string} params.destination - Calendar identifier of the target calendar where the event is to be moved to.
      * @param  {string} params.eventId - Event identifier.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the change of the event's organizer. Optional. The default is False.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     move: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'eventId', 'destination']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId + '/move',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId + '/move',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'eventId', 'destination'],
+        pathParams: ['calendarId', 'eventId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -943,23 +944,22 @@ function Calendar(options) {
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'eventId'],
+        pathParams: ['calendarId', 'eventId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -974,22 +974,22 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the event. Optional. The default is False.
      * @param  {string} params.text - The text describing the event to be created.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     quickAdd: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'text']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/quickAdd',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/quickAdd',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'text'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1007,23 +1007,22 @@ function Calendar(options) {
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId', 'eventId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['calendarId', 'eventId'],
+        pathParams: ['calendarId', 'eventId'],
+        context: self
       };
 
-      delete params.calendarId;
-      delete params.eventId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1054,22 +1053,22 @@ function Calendar(options) {
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['calendarId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/watch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: self
       };
 
-      delete params.calendarId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1086,18 +1085,20 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     query: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/freeBusy',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/freeBusy',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1114,22 +1115,22 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.setting - The id of the user setting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['setting']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/settings/' + params.setting,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/settings/' + params.setting,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['setting'],
+        pathParams: ['setting'],
+        context: self
       };
 
-      delete params.setting;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1144,18 +1145,20 @@ function Calendar(options) {
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/settings',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/settings',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1171,18 +1174,20 @@ function Calendar(options) {
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/calendar/v3/users/me/settings/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/calendar/v3/users/me/settings/watch',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

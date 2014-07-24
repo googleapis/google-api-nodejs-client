@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * YouTube Analytics API
@@ -48,20 +46,21 @@ function Youtubeanalytics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter identifies the content owner that the user is acting on behalf of.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['onBehalfOfContentOwner']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/analytics/v1beta1/batchReportDefinitions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1beta1/batchReportDefinitions',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['onBehalfOfContentOwner'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -79,20 +78,21 @@ function Youtubeanalytics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.batchReportDefinitionId - The batchReportDefinitionId parameter specifies the ID of the batch reportort definition for which you are retrieving reports.
      * @param  {string} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter identifies the content owner that the user is acting on behalf of.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['batchReportDefinitionId', 'onBehalfOfContentOwner']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/analytics/v1beta1/batchReports',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1beta1/batchReports',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['batchReportDefinitionId', 'onBehalfOfContentOwner'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -117,20 +117,21 @@ function Youtubeanalytics(options) {
      * @param  {string=} params.sort - A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '-' prefix causes descending sort order.
      * @param  {string} params.start-date - The start date for fetching YouTube Analytics data. The value should be in YYYY-MM-DD format.
      * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     query: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['ids', 'start-date', 'end-date', 'metrics']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/youtube/analytics/v1beta1/reports',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1beta1/reports',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

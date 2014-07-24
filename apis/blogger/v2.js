@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Blogger API
@@ -48,22 +46,22 @@ function Blogger(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.blogId - The ID of the blog to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId'],
+        pathParams: ['blogId'],
+        context: self
       };
 
-      delete params.blogId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -82,24 +80,22 @@ function Blogger(options) {
      * @param  {string} params.blogId - ID of the blog to containing the comment.
      * @param  {string} params.commentId - The ID of the comment to get.
      * @param  {string} params.postId - ID of the post to fetch posts from.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId', 'postId', 'commentId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId', 'postId', 'commentId'],
+        pathParams: ['blogId', 'commentId', 'postId'],
+        context: self
       };
 
-      delete params.blogId;
-      delete params.commentId;
-      delete params.postId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -117,24 +113,22 @@ function Blogger(options) {
      * @param  {string=} params.pageToken - Continuation token if request is paged.
      * @param  {string} params.postId - ID of the post to fetch posts from.
      * @param  {string=} params.startDate - Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId', 'postId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts/' + params.postId + '/comments',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts/' + params.postId + '/comments',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId', 'postId'],
+        pathParams: ['blogId', 'postId'],
+        context: self
       };
 
-      delete params.blogId;
-
-      delete params.postId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -152,23 +146,22 @@ function Blogger(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.blogId - ID of the blog containing the page.
      * @param  {string} params.pageId - The ID of the page to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId', 'pageId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/pages/' + params.pageId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/pages/' + params.pageId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId', 'pageId'],
+        pathParams: ['blogId', 'pageId'],
+        context: self
       };
 
-      delete params.blogId;
-      delete params.pageId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -182,22 +175,22 @@ function Blogger(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.blogId - ID of the blog to fetch pages from.
      * @param  {boolean=} params.fetchBodies - Whether to retrieve the Page bodies.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/pages',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/pages',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId'],
+        pathParams: ['blogId'],
+        context: self
       };
 
-      delete params.blogId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -215,23 +208,22 @@ function Blogger(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.blogId - ID of the blog to fetch the post from.
      * @param  {string} params.postId - The ID of the post
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId', 'postId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts/' + params.postId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts/' + params.postId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId', 'postId'],
+        pathParams: ['blogId', 'postId'],
+        context: self
       };
 
-      delete params.blogId;
-      delete params.postId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -248,22 +240,22 @@ function Blogger(options) {
      * @param  {integer=} params.maxResults - Maximum number of posts to fetch.
      * @param  {string=} params.pageToken - Continuation token if the request is paged.
      * @param  {string=} params.startDate - Earliest post date to fetch, a date-time with RFC 3339 formatting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['blogId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/blogs/' + params.blogId + '/posts',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['blogId'],
+        pathParams: ['blogId'],
+        context: self
       };
 
-      delete params.blogId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -280,22 +272,22 @@ function Blogger(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userId - The ID of the user to get.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/blogger/v2/users/' + params.userId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v2/users/' + params.userId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
       };
 
-      delete params.userId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

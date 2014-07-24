@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Resource Views API
@@ -51,24 +49,22 @@ function Resourceviews(options) {
      * @param  {string} params.region - The region name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addresources: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName + '/addResources',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName + '/addResources',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region', 'resourceViewName'],
+        pathParams: ['projectName', 'region', 'resourceViewName'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-      delete params.resourceViewName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -83,24 +79,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region', 'resourceViewName'],
+        pathParams: ['projectName', 'region', 'resourceViewName'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-      delete params.resourceViewName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -115,24 +109,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region', 'resourceViewName'],
+        pathParams: ['projectName', 'region', 'resourceViewName'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-      delete params.resourceViewName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -147,23 +139,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region'],
+        pathParams: ['projectName', 'region'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -179,23 +170,22 @@ function Resourceviews(options) {
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region'],
+        pathParams: ['projectName', 'region'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -212,24 +202,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listresources: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName + '/resources',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName + '/resources',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region', 'resourceViewName'],
+        pathParams: ['projectName', 'region', 'resourceViewName'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-      delete params.resourceViewName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -245,24 +233,22 @@ function Resourceviews(options) {
      * @param  {string} params.region - The region name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     removeresources: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'region', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName + '/removeResources',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/regions/' + params.region + '/resourceViews/' + params.resourceViewName + '/removeResources',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'region', 'resourceViewName'],
+        pathParams: ['projectName', 'region', 'resourceViewName'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.region;
-      delete params.resourceViewName;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -282,24 +268,22 @@ function Resourceviews(options) {
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     addresources: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName + '/addResources',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName + '/addResources',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'resourceViewName'],
+        pathParams: ['projectName', 'resourceViewName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.resourceViewName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -314,24 +298,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'resourceViewName'],
+        pathParams: ['projectName', 'resourceViewName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.resourceViewName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -346,24 +328,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'resourceViewName'],
+        pathParams: ['projectName', 'resourceViewName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.resourceViewName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -378,23 +358,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone'],
+        pathParams: ['projectName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -410,23 +389,22 @@ function Resourceviews(options) {
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone'],
+        pathParams: ['projectName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -443,24 +421,22 @@ function Resourceviews(options) {
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listresources: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName + '/resources',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName + '/resources',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'resourceViewName'],
+        pathParams: ['projectName', 'resourceViewName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.resourceViewName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -476,24 +452,22 @@ function Resourceviews(options) {
      * @param  {string} params.resourceViewName - The name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     removeresources: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectName', 'zone', 'resourceViewName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName + '/removeResources',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/resourceViews/' + params.resourceViewName + '/removeResources',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectName', 'zone', 'resourceViewName'],
+        pathParams: ['projectName', 'resourceViewName', 'zone'],
+        context: self
       };
 
-      delete params.projectName;
-      delete params.resourceViewName;
-      delete params.zone;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

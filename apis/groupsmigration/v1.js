@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Groups Migration API
@@ -50,22 +48,23 @@ function Groupsmigration(options) {
      * @param  {string} params.groupId - The group ID
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupId']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['groupId'],
+        pathParams: ['groupId'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.groupId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

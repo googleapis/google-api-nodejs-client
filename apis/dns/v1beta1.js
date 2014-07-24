@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Cloud DNS API
@@ -50,23 +48,22 @@ function Dns(options) {
      * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param  {string} params.project - Identifies the project addressed by this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'managedZone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'managedZone'],
+        pathParams: ['managedZone', 'project'],
+        context: self
       };
 
-      delete params.managedZone;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -81,24 +78,22 @@ function Dns(options) {
      * @param  {string} params.changeId - The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
      * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param  {string} params.project - Identifies the project addressed by this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'managedZone', 'changeId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes/' + params.changeId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes/' + params.changeId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'managedZone', 'changeId'],
+        pathParams: ['changeId', 'managedZone', 'project'],
+        context: self
       };
 
-      delete params.changeId;
-      delete params.managedZone;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -116,24 +111,22 @@ function Dns(options) {
      * @param  {string} params.project - Identifies the project addressed by this request.
      * @param  {string=} params.sortBy - Sorting criterion. The only supported value is change sequence.
      * @param  {string=} params.sortOrder - Sorting order direction: 'ascending' or 'descending'.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'managedZone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'managedZone'],
+        pathParams: ['managedZone', 'project'],
+        context: self
       };
 
-      delete params.managedZone;
-
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -151,22 +144,22 @@ function Dns(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Identifies the project addressed by this request.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -180,23 +173,22 @@ function Dns(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param  {string} params.project - Identifies the project addressed by this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'managedZone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'managedZone'],
+        pathParams: ['managedZone', 'project'],
+        context: self
       };
 
-      delete params.managedZone;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -210,23 +202,22 @@ function Dns(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param  {string} params.project - Identifies the project addressed by this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'managedZone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'managedZone'],
+        pathParams: ['managedZone', 'project'],
+        context: self
       };
 
-      delete params.managedZone;
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -241,22 +232,22 @@ function Dns(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      * @param  {string=} params.pageToken - Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      * @param  {string} params.project - Identifies the project addressed by this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -273,22 +264,22 @@ function Dns(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Identifies the project addressed by this request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -310,24 +301,22 @@ function Dns(options) {
      * @param  {string=} params.pageToken - Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      * @param  {string} params.project - Identifies the project addressed by this request.
      * @param  {string=} params.type - Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'managedZone']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/rrsets',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/rrsets',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'managedZone'],
+        pathParams: ['managedZone', 'project'],
+        context: self
       };
 
-      delete params.managedZone;
-
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

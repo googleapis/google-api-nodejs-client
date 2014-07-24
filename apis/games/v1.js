@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Play Game Services API
@@ -50,18 +48,20 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {integer=} params.maxResults - The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/achievements',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/achievements',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -80,22 +80,22 @@ function Games(options) {
      * @param  {string} params.achievementId - The ID of the achievement used by this method.
      * @param  {string=} params.requestId - A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
      * @param  {integer} params.stepsToIncrement - The number of steps to increment.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     increment: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['achievementId', 'stepsToIncrement']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/increment',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/increment',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['achievementId', 'stepsToIncrement'],
+        pathParams: ['achievementId'],
+        context: self
       };
 
-      delete params.achievementId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -112,22 +112,22 @@ function Games(options) {
      * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param  {string=} params.state - Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['playerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/achievements',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/achievements',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['playerId'],
+        pathParams: ['playerId'],
+        context: self
       };
 
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -140,22 +140,22 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reveal: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['achievementId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/reveal',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/reveal',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['achievementId'],
+        pathParams: ['achievementId'],
+        context: self
       };
 
-      delete params.achievementId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -169,22 +169,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.achievementId - The ID of the achievement used by this method.
      * @param  {integer} params.steps - The minimum value to set the steps to.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     setStepsAtLeast: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['achievementId', 'steps']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/setStepsAtLeast',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/setStepsAtLeast',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['achievementId', 'steps'],
+        pathParams: ['achievementId'],
+        context: self
       };
 
-      delete params.achievementId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -197,22 +197,22 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     unlock: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['achievementId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/unlock',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/unlock',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['achievementId'],
+        pathParams: ['achievementId'],
+        context: self
       };
 
-      delete params.achievementId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -225,18 +225,20 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     updateMultiple: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/achievements/updateMultiple',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/achievements/updateMultiple',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -255,22 +257,22 @@ function Games(options) {
      * @param  {string} params.applicationId - The application being requested.
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string=} params.platformType - Restrict application details returned to the specific platform.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['applicationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/applications/' + params.applicationId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/applications/' + params.applicationId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['applicationId'],
+        pathParams: ['applicationId'],
+        context: self
       };
 
-      delete params.applicationId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -282,18 +284,20 @@ function Games(options) {
      * @memberOf! games(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     played: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/applications/played',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/applications/played',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -312,18 +316,20 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {integer=} params.maxResults - The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listByPlayer: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/events',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/events',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -338,18 +344,20 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {integer=} params.maxResults - The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listDefinitions: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/eventDefinitions',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/eventDefinitions',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -363,18 +371,20 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     record: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/events',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/events',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -392,22 +402,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['leaderboardId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['leaderboardId'],
+        pathParams: ['leaderboardId'],
+        context: self
       };
 
-      delete params.leaderboardId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -422,18 +432,20 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {integer=} params.maxResults - The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/leaderboards',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/leaderboards',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -449,18 +461,20 @@ function Games(options) {
      * @memberOf! games(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getMetagameConfig: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/metagameConfig',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/metagameConfig',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -477,24 +491,22 @@ function Games(options) {
      * @param  {integer=} params.maxResults - The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listCategoriesByPlayer: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['playerId', 'collection']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/categories/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/categories/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['playerId', 'collection'],
+        pathParams: ['collection', 'playerId'],
+        context: self
       };
 
-      delete params.collection;
-
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -512,22 +524,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['playerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/' + params.playerId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['playerId'],
+        pathParams: ['playerId'],
+        context: self
       };
 
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -543,22 +555,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {integer=} params.maxResults - The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['collection']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/me/players/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/me/players/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['collection'],
+        pathParams: ['collection'],
+        context: self
       };
 
-      delete params.collection;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -575,18 +587,20 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     remove: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/pushtokens/remove',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/pushtokens/remove',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -599,18 +613,20 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/pushtokens',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/pushtokens',
+          method: 'PUT'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -629,23 +645,22 @@ function Games(options) {
      * @param  {string} params.milestoneId - The ID of the milestone.
      * @param  {string} params.questId - The ID of the quest.
      * @param  {string} params.requestId - A numeric ID to ensure that the request is handled correctly across retries. Your client application must generate this ID randomly.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     claim: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['questId', 'milestoneId', 'requestId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/quests/' + params.questId + '/milestones/' + params.milestoneId + '/claim',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/quests/' + params.questId + '/milestones/' + params.milestoneId + '/claim',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['questId', 'milestoneId', 'requestId'],
+        pathParams: ['milestoneId', 'questId'],
+        context: self
       };
 
-      delete params.milestoneId;
-      delete params.questId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -663,22 +678,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.questId - The ID of the quest.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     accept: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['questId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/quests/' + params.questId + '/accept',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/quests/' + params.questId + '/accept',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['questId'],
+        pathParams: ['questId'],
+        context: self
       };
 
-      delete params.questId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -694,22 +709,22 @@ function Games(options) {
      * @param  {integer=} params.maxResults - The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
      * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['playerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/quests',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/quests',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['playerId'],
+        pathParams: ['playerId'],
+        context: self
       };
 
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -726,20 +741,21 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.clientRevision - The revision of the client SDK used by your application. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     check: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['clientRevision']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/revisions/check',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/revisions/check',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['clientRevision'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -757,18 +773,20 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/create',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/create',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -782,22 +800,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.roomId - The ID of the room.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     decline: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['roomId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/decline',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/decline',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['roomId'],
+        pathParams: ['roomId'],
+        context: self
       };
 
-      delete params.roomId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -810,22 +828,22 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.roomId - The ID of the room.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     dismiss: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['roomId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/dismiss',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/dismiss',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['roomId'],
+        pathParams: ['roomId'],
+        context: self
       };
 
-      delete params.roomId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -839,22 +857,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.roomId - The ID of the room.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['roomId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['roomId'],
+        pathParams: ['roomId'],
+        context: self
       };
 
-      delete params.roomId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -869,22 +887,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.roomId - The ID of the room.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     join: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['roomId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/join',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/join',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['roomId'],
+        pathParams: ['roomId'],
+        context: self
       };
 
-      delete params.roomId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -899,22 +917,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.roomId - The ID of the room.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     leave: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['roomId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/leave',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/leave',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['roomId'],
+        pathParams: ['roomId'],
+        context: self
       };
 
-      delete params.roomId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -929,18 +947,20 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {integer=} params.maxResults - The maximum number of rooms to return in the response, used for paging. For any response, the actual number of rooms to return may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -955,22 +975,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.roomId - The ID of the room.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     reportStatus: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['roomId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/reportstatus',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/reportstatus',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['roomId'],
+        pathParams: ['roomId'],
+        context: self
       };
 
-      delete params.roomId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -993,25 +1013,22 @@ function Games(options) {
      * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param  {string} params.timeSpan - The time span for the scores and ranks you're requesting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['playerId', 'leaderboardId', 'timeSpan']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/leaderboards/' + params.leaderboardId + '/scores/' + params.timeSpan,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/leaderboards/' + params.leaderboardId + '/scores/' + params.timeSpan,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
+        pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
+        context: self
       };
 
-      delete params.leaderboardId;
-
-      delete params.playerId;
-      delete params.timeSpan;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1029,24 +1046,22 @@ function Games(options) {
      * @param  {integer=} params.maxResults - The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {string} params.timeSpan - The time span for the scores and ranks you're requesting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['leaderboardId', 'collection', 'timeSpan']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/scores/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/scores/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
+        pathParams: ['collection', 'leaderboardId'],
+        context: self
       };
 
-      delete params.collection;
-
-      delete params.leaderboardId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1066,24 +1081,22 @@ function Games(options) {
      * @param  {integer=} params.resultsAbove - The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
      * @param  {boolean=} params.returnTopIfAbsent - True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
      * @param  {string} params.timeSpan - The time span for the scores and ranks you're requesting.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     listWindow: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['leaderboardId', 'collection', 'timeSpan']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/window/' + params.collection,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/window/' + params.collection,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
+        pathParams: ['collection', 'leaderboardId'],
+        context: self
       };
 
-      delete params.collection;
-
-      delete params.leaderboardId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1099,22 +1112,22 @@ function Games(options) {
      * @param  {string} params.leaderboardId - The ID of the leaderboard.
      * @param  {string} params.score - The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
      * @param  {string=} params.scoreTag - Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     submit: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['leaderboardId', 'score']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/scores',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/scores',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['leaderboardId', 'score'],
+        pathParams: ['leaderboardId'],
+        context: self
       };
 
-      delete params.leaderboardId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1128,18 +1141,20 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     submitMultiple: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/leaderboards/scores',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/leaderboards/scores',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1157,22 +1172,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.snapshotId - The ID of the snapshot.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['snapshotId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/snapshots/' + params.snapshotId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/snapshots/' + params.snapshotId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['snapshotId'],
+        pathParams: ['snapshotId'],
+        context: self
       };
 
-      delete params.snapshotId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1188,22 +1203,22 @@ function Games(options) {
      * @param  {integer=} params.maxResults - The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['playerId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/snapshots',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/snapshots',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['playerId'],
+        pathParams: ['playerId'],
+        context: self
       };
 
-      delete params.playerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1220,22 +1235,22 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.matchId - The ID of the match.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     cancel: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/cancel',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/cancel',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1249,18 +1264,20 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     create: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/create',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/create',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1274,22 +1291,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     decline: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/decline',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/decline',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1302,22 +1319,22 @@ function Games(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.matchId - The ID of the match.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     dismiss: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/dismiss',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/dismiss',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1332,22 +1349,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     finish: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/finish',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/finish',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1362,22 +1379,22 @@ function Games(options) {
      * @param  {boolean=} params.includeMatchData - Get match data along with metadata.
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1391,22 +1408,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     join: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/join',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/join',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1420,22 +1437,22 @@ function Games(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     leave: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/leave',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/leave',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1451,22 +1468,22 @@ function Games(options) {
      * @param  {string} params.matchId - The ID of the match.
      * @param  {integer} params.matchVersion - The version of the match being updated.
      * @param  {string=} params.pendingParticipantId - The ID of another participant who should take their turn next. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     leaveTurn: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId', 'matchVersion']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/leaveTurn',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/leaveTurn',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId', 'matchVersion'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1483,18 +1500,20 @@ function Games(options) {
      * @param  {integer=} params.maxCompletedMatches - The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
      * @param  {integer=} params.maxResults - The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1509,22 +1528,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
      * @param  {string=} params.requestId - A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     rematch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/rematch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/rematch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1541,18 +1560,20 @@ function Games(options) {
      * @param  {integer=} params.maxCompletedMatches - The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
      * @param  {integer=} params.maxResults - The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
      * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     sync: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/sync',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/sync',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -1567,22 +1588,22 @@ function Games(options) {
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string} params.matchId - The ID of the match.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     takeTurn: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['matchId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/turn',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/turn',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['matchId'],
+        pathParams: ['matchId'],
+        context: self
       };
 
-      delete params.matchId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * PageSpeed Insights API
@@ -53,20 +51,21 @@ function Pagespeedonline(options) {
      * @param  {boolean=} params.screenshot - Indicates if binary data containing a screenshot should be included
      * @param  {string=} params.strategy - The analysis strategy to use
      * @param  {string} params.url - The URL to fetch and analyze
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     runpagespeed: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['url']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['url'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Google Maps Coordinate API
@@ -48,22 +46,22 @@ function Coordinate(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.teamId - Team ID
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/custom_fields',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/custom_fields',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['teamId'],
+        pathParams: ['teamId'],
+        context: self
       };
 
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -81,23 +79,22 @@ function Coordinate(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.jobId - Job number
      * @param  {string} params.teamId - Team ID
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['teamId', 'jobId'],
+        pathParams: ['jobId', 'teamId'],
+        context: self
       };
 
-      delete params.jobId;
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -120,22 +117,22 @@ function Coordinate(options) {
      * @param  {string} params.teamId - Team ID
      * @param  {string} params.title - Job title
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'address', 'lat', 'lng', 'title']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['teamId', 'address', 'lat', 'lng', 'title'],
+        pathParams: ['teamId'],
+        context: self
       };
 
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -151,22 +148,22 @@ function Coordinate(options) {
      * @param  {string=} params.minModifiedTimestampMs - Minimum time a job was modified in milliseconds since epoch.
      * @param  {string=} params.pageToken - Continuation token
      * @param  {string} params.teamId - Team ID
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['teamId'],
+        pathParams: ['teamId'],
+        context: self
       };
 
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -191,24 +188,22 @@ function Coordinate(options) {
      * @param  {string} params.teamId - Team ID
      * @param  {string=} params.title - Job title
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['teamId', 'jobId'],
+        pathParams: ['jobId', 'teamId'],
+        context: self
       };
 
-      delete params.jobId;
-
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -233,24 +228,22 @@ function Coordinate(options) {
      * @param  {string} params.teamId - Team ID
      * @param  {string=} params.title - Job title
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['teamId', 'jobId'],
+        pathParams: ['jobId', 'teamId'],
+        context: self
       };
 
-      delete params.jobId;
-
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -271,23 +264,22 @@ function Coordinate(options) {
      * @param  {string} params.startTimestampMs - Start timestamp in milliseconds since the epoch.
      * @param  {string} params.teamId - Team ID
      * @param  {string} params.workerEmail - Worker email address.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'workerEmail', 'startTimestampMs']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/workers/' + params.workerEmail + '/locations',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/workers/' + params.workerEmail + '/locations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['teamId', 'workerEmail', 'startTimestampMs'],
+        pathParams: ['teamId', 'workerEmail'],
+        context: self
       };
 
-      delete params.teamId;
-      delete params.workerEmail;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -305,23 +297,22 @@ function Coordinate(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.jobId - Job number
      * @param  {string} params.teamId - Team ID
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['teamId', 'jobId'],
+        pathParams: ['jobId', 'teamId'],
+        context: self
       };
 
-      delete params.jobId;
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -340,24 +331,22 @@ function Coordinate(options) {
      * @param  {string=} params.startTime - Scheduled start time in milliseconds since epoch.
      * @param  {string} params.teamId - Team ID
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['teamId', 'jobId'],
+        pathParams: ['jobId', 'teamId'],
+        context: self
       };
 
-      delete params.jobId;
-
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -376,24 +365,22 @@ function Coordinate(options) {
      * @param  {string=} params.startTime - Scheduled start time in milliseconds since epoch.
      * @param  {string} params.teamId - Team ID
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['teamId', 'jobId'],
+        pathParams: ['jobId', 'teamId'],
+        context: self
       };
 
-      delete params.jobId;
-
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -410,22 +397,22 @@ function Coordinate(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.teamId - Team ID
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['teamId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/workers',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/workers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['teamId'],
+        pathParams: ['teamId'],
+        context: self
       };
 
-      delete params.teamId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

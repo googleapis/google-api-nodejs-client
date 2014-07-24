@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * BigQuery API
@@ -50,24 +48,22 @@ function Bigquery(options) {
      * @param  {string} params.datasetId - Dataset ID of dataset being deleted
      * @param  {boolean=} params.deleteContents - If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
      * @param  {string} params.projectId - Project ID of the dataset being deleted
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -81,23 +77,22 @@ function Bigquery(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - Dataset ID of the requested dataset
      * @param  {string} params.projectId - Project ID of the requested dataset
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -111,22 +106,22 @@ function Bigquery(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId - Project ID of the new dataset
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -142,22 +137,22 @@ function Bigquery(options) {
      * @param  {integer=} params.maxResults - The maximum number of results to return
      * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
      * @param  {string} params.projectId - Project ID of the datasets to be listed
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -172,23 +167,22 @@ function Bigquery(options) {
      * @param  {string} params.datasetId - Dataset ID of the dataset being updated
      * @param  {string} params.projectId - Project ID of the dataset being updated
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -203,23 +197,22 @@ function Bigquery(options) {
      * @param  {string} params.datasetId - Dataset ID of the dataset being updated
      * @param  {string} params.projectId - Project ID of the dataset being updated
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -237,23 +230,22 @@ function Bigquery(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.jobId - Job ID of the requested job
      * @param  {string} params.projectId - Project ID of the requested job
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/jobs/' + params.jobId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/jobs/' + params.jobId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: self
       };
 
-      delete params.jobId;
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -271,24 +263,22 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the query job
      * @param  {string=} params.startIndex - Zero-based index of the starting row
      * @param  {integer=} params.timeoutMs - How long to wait for the query to complete, in milliseconds, before returning. Default is to return immediately. If the timeout passes before the job completes, the request will fail with a TIMEOUT error
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     getQueryResults: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'jobId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/queries/' + params.jobId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/queries/' + params.jobId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: self
       };
 
-      delete params.jobId;
-
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -303,22 +293,23 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the project that will be billed for the job
      * @param  {object}        params.resource - Media resource metadata
      * @param  {string|object} params.media - Media body data to upload
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = true;
-      var options = {
-        url: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        isMedia: true,
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -336,22 +327,22 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the jobs to list
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields
      * @param  {string=} params.stateFilter - Filter for job state
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/jobs',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/jobs',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -365,22 +356,22 @@ function Bigquery(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId - Project ID of the project billed for the query
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     query: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/queries',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/queries',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
       };
 
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -398,18 +389,20 @@ function Bigquery(options) {
      * @param  {object=} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of results to return
      * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -429,24 +422,22 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the destination table.
      * @param  {string} params.tableId - Table ID of the destination table.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insertAll: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId', 'tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId + '/insertAll',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId + '/insertAll',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -464,26 +455,22 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the table to read
      * @param  {string=} params.startIndex - Zero-based index of the starting row to read
      * @param  {string} params.tableId - Table ID of the table to read
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId', 'tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId + '/data',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId + '/data',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      delete params.projectId;
-
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -502,24 +489,22 @@ function Bigquery(options) {
      * @param  {string} params.datasetId - Dataset ID of the table to delete
      * @param  {string} params.projectId - Project ID of the table to delete
      * @param  {string} params.tableId - Table ID of the table to delete
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId', 'tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
-        method: 'DELETE'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -534,24 +519,22 @@ function Bigquery(options) {
      * @param  {string} params.datasetId - Dataset ID of the requested table
      * @param  {string} params.projectId - Project ID of the requested table
      * @param  {string} params.tableId - Table ID of the requested table
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId', 'tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -566,23 +549,22 @@ function Bigquery(options) {
      * @param  {string} params.datasetId - Dataset ID of the new table
      * @param  {string} params.projectId - Project ID of the new table
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -598,24 +580,22 @@ function Bigquery(options) {
      * @param  {integer=} params.maxResults - Maximum number of results to return
      * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
      * @param  {string} params.projectId - Project ID of the tables to list
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
       };
 
-      delete params.datasetId;
-
-      delete params.projectId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -631,24 +611,22 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the table to update
      * @param  {string} params.tableId - Table ID of the table to update
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId', 'tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -664,24 +642,22 @@ function Bigquery(options) {
      * @param  {string} params.projectId - Project ID of the table to update
      * @param  {string} params.tableId - Table ID of the table to update
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['projectId', 'datasetId', 'tableId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/datasets/' + params.datasetId + '/tables/' + params.tableId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
       };
 
-      delete params.datasetId;
-      delete params.projectId;
-      delete params.tableId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

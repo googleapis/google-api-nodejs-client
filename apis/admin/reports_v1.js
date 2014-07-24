@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Admin Reports API
@@ -57,24 +55,22 @@ function Admin(options) {
      * @param  {string=} params.pageToken - Token to specify next page.
      * @param  {string=} params.startTime - Return events which occured at or after this time.
      * @param  {string} params.userKey - Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'applicationName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey', 'applicationName'],
+        pathParams: ['applicationName', 'userKey'],
+        context: self
       };
 
-      delete params.applicationName;
-
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -97,24 +93,22 @@ function Admin(options) {
      * @param  {string=} params.startTime - Return events which occured at or after this time.
      * @param  {string} params.userKey - Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     watch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'applicationName']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName + '/watch',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName + '/watch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userKey', 'applicationName'],
+        pathParams: ['applicationName', 'userKey'],
+        context: self
       };
 
-      delete params.applicationName;
-
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -131,18 +125,20 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     stop: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/reports/v1//admin/reports_v1/channels/stop',
-        method: 'POST'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/reports/v1//admin/reports_v1/channels/stop',
+          method: 'POST'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -162,22 +158,22 @@ function Admin(options) {
      * @param  {string} params.date - Represents the date in yyyy-mm-dd format for which the data is to be fetched.
      * @param  {string=} params.pageToken - Token to specify next page.
      * @param  {string=} params.parameters - Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['date']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/' + params.date,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/' + params.date,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['date'],
+        pathParams: ['date'],
+        context: self
       };
 
-      delete params.date;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -200,24 +196,22 @@ function Admin(options) {
      * @param  {string=} params.pageToken - Token to specify next page.
      * @param  {string=} params.parameters - Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      * @param  {string} params.userKey - Represents the profile id or the user email for which the data should be filtered.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['userKey', 'date']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/admin/reports/v1/usage/users/' + params.userKey + '/dates/' + params.date,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/reports/v1/usage/users/' + params.userKey + '/dates/' + params.date,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userKey', 'date'],
+        pathParams: ['date', 'userKey'],
+        context: self
       };
 
-      delete params.date;
-
-      delete params.userKey;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

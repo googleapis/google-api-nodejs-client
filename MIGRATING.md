@@ -1,14 +1,14 @@
-# Migrating from version `0.x.x` to `1.0.0`
+# Migrating from version `0.x.x` to `1.0`
 
 Many changes and improvements have been made to the `google-api-nodejs-client`
-library to bring it to `1.0.0`. If you are starting a new project or haven't used
-this library before version `1.0.0`, see the [README][readme] to get started
+library to bring it to `1.0`. If you are starting a new project or haven't used
+this library before version `1.0`, see the [README][readme] to get started
 as you won't need to migrate anything.
 
 ## Discovery
 
 In `0.x.x` the library would "discover" APIs on the fly, introducing
-additional network calls and instability. That has been fixed in `1.0.0`.
+additional network calls and instability. That has been fixed in `1.0`.
 
 To get the `drive` client in `0.x.x` required this:
 
@@ -23,7 +23,7 @@ google.discover('drive', 'v2').execute(function(err, client) {
 });
 ```
 
-In `1.0.0` the same thing can be accomplished like this:
+In `1.0` the same thing can be accomplished like this:
 
 ``` js
 var google = require('googleapis');
@@ -45,7 +45,7 @@ var resourceObj = { title: 'updated title' };
 client.drive.files.update({ fileId: 'abc' }, resourceObj).execute();
 ```
 
-New way in `1.0.0`:
+New way in `1.0`:
 
 ``` js
 var resourceObj = { title: 'updated title' };
@@ -65,7 +65,7 @@ client.drive.files.get({ fileId: 'abc' }).execute(function(err, resp) {
 });
 ```
 
-How to specify callback in `1.0.0` (in the second parameter):
+How to specify callback in `1.0` (in the second parameter):
 
 ``` js
 drive.files.get({ fileId: 'abc' }, function(err, resp) {
@@ -73,8 +73,8 @@ drive.files.get({ fileId: 'abc' }, function(err, resp) {
 });
 ```
 
-**Note:** Prior to `1.0.0`, the library would not execute your requests until you
-specifically called `.execute`. Because this was removed in `1.0.0`, all requests
+**Note:** Prior to `1.0`, the library would not execute your requests until you
+specifically called `.execute`. Because this was removed in `1.0`, all requests
 now immediately execute, even if a callback is not specified.
 
 ## Media uploads
@@ -91,7 +91,7 @@ client.drive.files.insert({ title: 'Test', mimeType: 'text/plain' })
   .execute(callback);
 ```
 
-The fancy new way in `1.0.0` using `resource` and `media` parameters:
+The fancy new way in `1.0` using `resource` and `media` parameters:
 
 ``` js
 drive.files.insert({
@@ -120,7 +120,7 @@ drive.files.insert({
 
 ## Authentication
 
-In `1.0.0` the ability to auth with `.withAuthClient()` and
+In `1.0` the ability to auth with `.withAuthClient()` and
 `.withApiKey(API_KEY)` is removed.  Now just simply specify your `OAuth2`
 client or API key in the `auth` parameter of any API call.
 You can additionally specify it in global or service specific options to set
@@ -135,7 +135,7 @@ client
   .execute(callback);
 ```
 
-In `1.0.0`, just put it in the `auth` parameter. It's as easy as:
+In `1.0`, just put it in the `auth` parameter. It's as easy as:
 
 ``` js
 plus.people.get({ userId: 'me', auth: oauth2Client }, callback);
@@ -149,8 +149,8 @@ plus.people.get({ userId: 'me', auth: 'api key here' }, callback);
 
 ## Batch Requests
 
-Batch requests were experimental before `1.0.0`. We have removed support for batch
-requests in `1.0.0` due to their unpopularity and instability.
+Batch requests were experimental before `1.0`. We have removed support for batch
+requests in `1.0` due to their unpopularity and instability.
 
 [request]: https://github.com/mikeal/request
 [readme]: https://github.com/google/google-api-nodejs-client/tree/master/README.md

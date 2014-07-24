@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Cloud Monitoring API
@@ -52,22 +50,22 @@ function Cloudmonitoring(options) {
      * @param  {string} params.project - The project id. The value can be the numeric project ID or string-based project name.
      * @param  {string=} params.query - The query used to search against existing metrics. Separate keywords with a space; the service joins all keywords with AND, meaning that all keywords must match for a metric to be returned. If this field is omitted, all metrics are returned. If an empty string is passed with this field, no metrics are returned.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/metricDescriptors',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/metricDescriptors',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
       };
 
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -92,24 +90,22 @@ function Cloudmonitoring(options) {
      * @param  {string=} params.timespan - Length of the time interval to query, which is an alternative way to declare the interval: (youngest - timespan, youngest]. The timespan and oldest parameters should not be used together. Units:   - s: second  - m: minute  - h: hour  - d: day  - w: week  Examples: 2s, 3m, 4w. Only one unit is allowed, for example: 2w3d is not allowed; you should use 17d instead.  If neither oldest nor timespan is specified, the default time interval will be (youngest - 4 hours, youngest].
      * @param  {string} params.youngest - End of the time interval (inclusive), which is expressed as an RFC 3339 timestamp.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'metric', 'youngest']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/timeseries/' + params.metric,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/timeseries/' + params.metric,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'metric', 'youngest'],
+        pathParams: ['metric', 'project'],
+        context: self
       };
 
-      delete params.metric;
-
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -134,24 +130,22 @@ function Cloudmonitoring(options) {
      * @param  {string=} params.timespan - Length of the time interval to query, which is an alternative way to declare the interval: (youngest - timespan, youngest]. The timespan and oldest parameters should not be used together. Units:   - s: second  - m: minute  - h: hour  - d: day  - w: week  Examples: 2s, 3m, 4w. Only one unit is allowed, for example: 2w3d is not allowed; you should use 17d instead.  If neither oldest nor timespan is specified, the default time interval will be (youngest - 4 hours, youngest].
      * @param  {string} params.youngest - End of the time interval (inclusive), which is expressed as an RFC 3339 timestamp.
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['project', 'metric', 'youngest']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/timeseriesDescriptors/' + params.metric,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/timeseriesDescriptors/' + params.metric,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'metric', 'youngest'],
+        pathParams: ['metric', 'project'],
+        context: self
       };
 
-      delete params.metric;
-
-      delete params.project;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

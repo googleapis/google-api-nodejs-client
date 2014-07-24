@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Enterprise Audit API
@@ -58,24 +56,22 @@ function Audit(options) {
      * @param  {string=} params.eventName - Name of the event being queried.
      * @param  {integer=} params.maxResults - Number of activity records to be shown in each page.
      * @param  {string=} params.startTime - Return events which occured at or after this time.
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['customerId', 'applicationId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/apps/reporting/audit/v1/' + params.customerId + '/' + params.applicationId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reporting/audit/v1/' + params.customerId + '/' + params.applicationId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId', 'applicationId'],
+        pathParams: ['applicationId', 'customerId'],
+        context: self
       };
 
-      delete params.applicationId;
-
-      delete params.customerId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

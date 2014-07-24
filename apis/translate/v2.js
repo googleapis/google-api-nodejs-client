@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Translate API
@@ -48,20 +46,21 @@ function Translate(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.q - The text to detect
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['q']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/language/translate/v2/detect',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/language/translate/v2/detect',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['q'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -78,18 +77,20 @@ function Translate(options) {
      *
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.target - the language and collation in which the localized results should be returned
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/language/translate/v2/languages',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/language/translate/v2/languages',
+          method: 'GET'
+        },
+        params: params,
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -110,20 +111,21 @@ function Translate(options) {
      * @param  {string} params.q - The text to translate
      * @param  {string=} params.source - The source language of the text
      * @param  {string} params.target - The target language into which the text should be translated
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['q', 'target']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/language/translate/v2',
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/language/translate/v2',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['q', 'target'],
+        context: self
       };
 
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

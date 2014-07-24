@@ -18,8 +18,6 @@
 
 var apirequest = require('../../lib/apirequest');
 var createAPIRequest = apirequest.createAPIRequest;
-var checkRequired = apirequest.checkRequired;
-var extend = require('../../lib/utils').extend;
 
 /**
  * Groups Settings API
@@ -48,22 +46,22 @@ function Groupssettings(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupUniqueId - The resource ID
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupUniqueId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
-        method: 'GET'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['groupUniqueId'],
+        pathParams: ['groupUniqueId'],
+        context: self
       };
 
-      delete params.groupUniqueId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -77,22 +75,22 @@ function Groupssettings(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupUniqueId - The resource ID
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     patch: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupUniqueId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
-        method: 'PATCH'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['groupUniqueId'],
+        pathParams: ['groupUniqueId'],
+        context: self
       };
 
-      delete params.groupUniqueId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     },
 
     /**
@@ -106,22 +104,22 @@ function Groupssettings(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupUniqueId - The resource ID
      * @param  {object} params.resource - Request body data
-     * @throws {Error} If a required parameter is missing.
-     * @param  {callback=} callback - The callback that handles the response.
+     * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
-      var params = extend({}, params); // shallow copy
-      checkRequired(params, ['groupUniqueId']);
-      var isMedia = false;
-      var options = {
-        url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
-        method: 'PUT'
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['groupUniqueId'],
+        pathParams: ['groupUniqueId'],
+        context: self
       };
 
-      delete params.groupUniqueId;
-
-      return createAPIRequest(self, params, options, isMedia, callback);
+      return createAPIRequest(parameters, callback);
     }
 
   };

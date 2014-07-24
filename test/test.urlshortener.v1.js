@@ -24,12 +24,14 @@ nock.disableNetConnect();
 
 describe('Urlshortener', function() {
 
+  function noop() {}
+
   it('should generate a valid payload for single requests', function() {
     var google = new googleapis.GoogleApis();
     var urlshortener = google.urlshortener('v1');
     var obj = { longUrl: 'http://someurl...' };
 
-    var req = urlshortener.url.insert(obj);
+    var req = urlshortener.url.insert(obj, noop);
     assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...');
     assert.equal(req.method, 'POST');
   });
@@ -38,7 +40,7 @@ describe('Urlshortener', function() {
     var google = new googleapis.GoogleApis();
     var urlshortener = google.urlshortener('v1');
     var params = { shortUrl: 'a' };
-    var req = urlshortener.url.get(params);
+    var req = urlshortener.url.get(params, noop);
     assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
     assert.equal(req.method, 'GET');
   });
