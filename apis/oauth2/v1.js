@@ -34,34 +34,33 @@ function Oauth2(options) {
   var self = this;
   this._options = options || {};
 
-  this.userinfo = {
+  /**
+   * oauth2.tokeninfo
+   *
+   * @desc Get token info
+   *
+   * @alias oauth2.tokeninfo
+   * @memberOf! oauth2(v1)
+   *
+   * @param  {object=} params - Parameters for request
+   * @param  {string=} params.access_token - The oauth2 access token
+   * @param  {string=} params.id_token - The ID token
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.tokeninfo = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
+        method: 'POST'
+      },
+      params: params,
+      context: self
+    };
 
-    /**
-     * oauth2.userinfo.get
-     *
-     * @desc Get user info
-     *
-     * @alias oauth2.userinfo.get
-     * @memberOf! oauth2(v1)
-     *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/oauth2/v1/userinfo',
-          method: 'GET'
-        },
-        params: params,
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
+    return createAPIRequest(parameters, callback);
   };
+
 }
 
 /**

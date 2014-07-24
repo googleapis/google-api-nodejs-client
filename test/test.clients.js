@@ -29,8 +29,9 @@ describe('Clients', function() {
     assert.equal(typeof plus.comments.list, 'function');
   });
 
-  it('should be able to gen methods for top-level methods', function() {
-    assert.ok(!!googleapis.oauth2('v2').userinfo);
+  it('should be able to gen top level methods', function() {
+    assert.equal(typeof googleapis.oauth2('v2').tokeninfo, 'function');
+    assert.equal(typeof googleapis.freebase('v1').reconcile, 'function');
   });
 
   it('should be able to require all api files without error', function() {

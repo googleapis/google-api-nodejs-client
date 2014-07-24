@@ -22,7 +22,7 @@
  * @param  {callback} callback - The callback that handles the response.
  * @return {object} Request object
  */
-{{ mname }}: function(params, callback) {
+{% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function(params, callback) {
   var parameters = {
     options: {
       url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
@@ -36,5 +36,5 @@
   };
 
   return createAPIRequest(parameters, callback);
-}{%- if not loop.last %},
+}{%- if globalmethods -%};{%- elif not loop.last %},
 {% endif %}
