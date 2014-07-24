@@ -37,6 +37,7 @@ var authClient = new google.auth.JWT(
     // Contents of private_key.pem if you want to load the pem file yourself
     // (do not use the path parameter above if using this param)
     'key',
+    // Scopes can be specified either as an array or as a single, space-delimited string
     ['https://www.googleapis.com/auth/drive.readonly'],
     // User to impersonate (leave empty if no impersonation needed)
     'subject-account-email@example.com');
