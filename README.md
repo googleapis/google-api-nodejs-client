@@ -13,6 +13,12 @@ to learn about migrating your code from `0.x.x` to `1.0`. It's pretty easy :)
 * Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
+### Working with Google Cloud APIs?
+
+If you're working with [Google Cloud Platform][cloudplatform] APIs such as
+Datastore, Cloud Storage or Pub/Sub, consider using [`gcloud`][gcloud], a
+Node idiomatic client for Google Cloud services.
+
 ## Installation
 
 This library is distributed on `npm`. In order to add it as a dependency,
@@ -326,3 +332,5 @@ See [CONTRIBUTING][contributing].
 [oauth]: https://developers.google.com/accounts/docs/OAuth2
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/examples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
+[gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
+[cloudplatform]: https://developers.google.com/cloud/
