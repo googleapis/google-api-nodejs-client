@@ -129,15 +129,28 @@ it as a default. See [here][options] for more information.
 In `0.x.x` an OAuth2 client was specified like this:
 
 ``` js
+var googleapis = require('googleapis');
+var OAuth2Client = googleapis.OAuth2Client;
+
+var oauth2Client = new OAuth2Client(/* .. */);
+
+// ... discover plus api and get client object here ...
+
 client
   .plus.people.get({ userId: 'me' })
   .withAuthClient(oauth2Client)
   .execute(callback);
 ```
 
-In `1.0`, just put it in the `auth` parameter. It's as easy as:
+In `1.0`, OAuth2Client is now available at `google.auth.OAuth2` and now you can
+just put your `oauth2Client` right in the `auth` parameter. It's as easy as:
 
 ``` js
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2; // changed from google.OAuth2Client
+var plus = google.plus('v1');
+
+var oauth2Client = new OAuth2(/* .. */); // initialized the same way
 plus.people.get({ userId: 'me', auth: oauth2Client }, callback);
 ```
 
