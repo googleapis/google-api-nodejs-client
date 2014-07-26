@@ -15,7 +15,7 @@
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
 {% if m.request -%}
- * @param  {object}        params.resource - Media resource metadata
+ * @param  {object} params.resource - Media resource metadata
 {% endif -%}
  * @param  {object} params.media - Media object
  * @param  {string} params.media.mimeType - Media mime-type

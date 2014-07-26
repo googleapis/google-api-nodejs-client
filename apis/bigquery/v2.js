@@ -291,7 +291,7 @@ function Bigquery(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId - Project ID of the project that will be billed for the job
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents

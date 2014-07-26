@@ -75,7 +75,7 @@ function Drive(options) {
      * @memberOf! drive(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents
@@ -142,7 +142,7 @@ function Drive(options) {
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.updateModifiedDate - Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents

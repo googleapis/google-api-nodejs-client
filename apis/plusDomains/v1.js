@@ -503,7 +503,7 @@ function Plusdomains(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.collection -
      * @param  {string} params.userId - The ID of the user to create the activity on behalf of.
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents

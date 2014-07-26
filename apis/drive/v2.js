@@ -693,7 +693,7 @@ function Drive(options) {
      * @param  {string=} params.timedTextTrackName - The timed text track name.
      * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
      * @param  {string=} params.visibility - The visibility of the new file. This parameter is only relevant when convert=false.
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents
@@ -892,7 +892,7 @@ function Drive(options) {
      * @param  {string=} params.timedTextTrackName - The timed text track name.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
      * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents

@@ -48,7 +48,7 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
+       * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
        * @param  {string|object} params.media.body - Media body contents
@@ -171,7 +171,7 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
+       * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
        * @param  {string|object} params.media.body - Media body contents
@@ -206,7 +206,7 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the draft to update.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
+       * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
        * @param  {string|object} params.media.body - Media body contents
@@ -515,7 +515,7 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
+       * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
        * @param  {string|object} params.media.body - Media body contents
@@ -549,7 +549,7 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
+       * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
        * @param  {string|object} params.media.body - Media body contents
@@ -646,7 +646,7 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
+       * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
        * @param  {string|object} params.media.body - Media body contents

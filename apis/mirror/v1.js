@@ -506,7 +506,7 @@ function Mirror(options) {
      * @memberOf! mirror(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents
@@ -599,7 +599,7 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the timeline item.
-     * @param  {object}        params.resource - Media resource metadata
+     * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
      * @param  {string|object} params.media.body - Media body contents
