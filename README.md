@@ -212,8 +212,8 @@ To learn more about API keys, please see the [documentation][usingkeys].
 ### Media Uploads
 
 This client supports multipart media uploads. The resource parameters are
-specified in the `resource` parameter object, and the media body itself is
-specified in the `media` parameter.
+specified in the `resource` parameter object, and the media itself is
+specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
 
 Example: Upload a plain text file to Google Drive with the title "Test" and
 contents "Hello World".
@@ -226,11 +226,14 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: 'Hello World'
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World'
+  }
 }, callback);
 ```
 
-You can also upload media by specifying `media` as a [Readable stream][stream].
+You can also upload media by specifying `media.body` as a [Readable stream][stream].
 This can allow you to upload very large files that cannot fit into memory.
 
 Note: Your readable stream may be [unstable][stability]. Use at your own risk.
@@ -246,7 +249,10 @@ drive.files.insert({
     title: 'testimage.png',
     mimeType: 'image/png'
   },
-  media: fs.createReadStream('awesome.png') // read streams are awesome!
+  media: {
+    mimeType: 'image/png',
+    body: fs.createReadStream('awesome.png') // read streams are awesome!
+  }
 }, callback);
 ```
 

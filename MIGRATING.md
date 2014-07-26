@@ -80,8 +80,6 @@ now immediately execute, even if a callback is not specified.
 ## Media uploads
 
 Media data is now specified in a `media` parameter instead of in `withMedia()`.
-The mime-type is taken from the `resource` object, so there's no need to specify
-it twice.
 
 The old `0.x.x` way of uploading media:
 
@@ -99,7 +97,10 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: 'Hello World'
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World'
+  }
 }, callback);
 ```
 
@@ -114,7 +115,10 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: fs.createReadStream('hello.txt')
+  media: {
+    mimeType: 'text/plain',
+    body: fs.createReadStream('hello.txt')
+  }
 }, callback);
 ```
 
