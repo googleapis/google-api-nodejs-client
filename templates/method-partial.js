@@ -14,8 +14,12 @@
  * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} - {{ p.description|oneLine|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
+{% if m.request -%}
  * @param  {object}        params.resource - Media resource metadata
- * @param  {string|object} params.media - Media body data to upload
+{% endif -%}
+ * @param  {object} params.media - Media object
+ * @param  {string} params.media.mimeType - Media mime-type
+ * @param  {string|object} params.media.body - Media body contents
 {% elif m.request -%}
  * @param  {object} params.resource - Request body data
 {% endif -%}

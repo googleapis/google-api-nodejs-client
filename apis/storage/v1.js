@@ -972,7 +972,9 @@ function Storage(options) {
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

@@ -114,7 +114,9 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1184,8 +1186,9 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      * @param  {string} params.videoId - The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1315,7 +1318,9 @@ function Youtube(options) {
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, fileDetails, liveStreamingDetails, player, processingDetails, recordingDetails, statistics, status, suggestions, and topicDetails. However, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      * @param  {boolean=} params.stabilize - The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1445,7 +1450,9 @@ function Youtube(options) {
      * @param  {string} params.channelId - The channelId parameter specifies a YouTube channel ID for which the watermark is being provided.
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

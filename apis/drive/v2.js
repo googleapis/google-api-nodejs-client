@@ -694,7 +694,9 @@ function Drive(options) {
      * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
      * @param  {string=} params.visibility - The visibility of the new file. This parameter is only relevant when convert=false.
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -891,7 +893,9 @@ function Drive(options) {
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
      * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1500,8 +1504,9 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.baseRevision - The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
      * @param  {string} params.fileId - The ID of the file that the Realtime API data model is associated with.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

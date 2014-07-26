@@ -49,7 +49,9 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -170,7 +172,9 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -203,7 +207,9 @@ function Gmail(options) {
        * @param  {string} params.id - The ID of the draft to update.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -510,7 +516,9 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -542,7 +550,9 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -637,7 +647,9 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */

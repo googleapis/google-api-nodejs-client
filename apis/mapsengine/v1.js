@@ -1128,8 +1128,9 @@ function Mapsengine(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.filename - The file name of this uploaded file.
        * @param  {string} params.id - The ID of the raster asset.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -1531,8 +1532,9 @@ function Mapsengine(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.filename - The file name of this uploaded file.
        * @param  {string} params.id - The ID of the table asset.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */

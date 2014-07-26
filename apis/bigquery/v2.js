@@ -292,7 +292,9 @@ function Bigquery(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId - Project ID of the project that will be billed for the job
      * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
