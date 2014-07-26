@@ -568,10 +568,11 @@ function Fusiontables(options) {
     importRows: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/import',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
         isMedia: true,
@@ -601,10 +602,11 @@ function Fusiontables(options) {
     importTable: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/import',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
         requiredParams: ['name'],
         isMedia: true,
         context: self

@@ -979,10 +979,11 @@ function Storage(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/storage/v1/b/' + params.bucket + '/o',
+          url: 'https://www.googleapis.com/storage/v1/b/' + params.bucket + '/o',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/storage/v1/b/' + params.bucket + '/o',
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
         isMedia: true,

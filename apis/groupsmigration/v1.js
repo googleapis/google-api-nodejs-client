@@ -54,10 +54,11 @@ function Groupsmigration(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
+          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupId + '/archive',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
         isMedia: true,

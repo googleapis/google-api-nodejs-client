@@ -514,10 +514,11 @@ function Mirror(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/mirror/v1/timeline',
+          url: 'https://www.googleapis.com/mirror/v1/timeline',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline',
         isMedia: true,
         context: self
       };
@@ -604,10 +605,11 @@ function Mirror(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
           method: 'PUT'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
         requiredParams: ['id'],
         pathParams: ['id'],
         isMedia: true,
@@ -695,10 +697,11 @@ function Mirror(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
+            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
           requiredParams: ['itemId'],
           pathParams: ['itemId'],
           isMedia: true,

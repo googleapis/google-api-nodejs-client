@@ -25,10 +25,11 @@
 {% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function(params, callback) {
   var parameters = {
     options: {
-      url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
+      url: {{ (basePath + m.path)|buildurl }},
       method: '{{ m.httpMethod }}'
     },
     params: params,
+    {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ m.mediaUpload.protocols.simple.path|buildurl }},{%- endif -%}
     {%- if m.parameterOrder.length -%}requiredParams: ['{{ m.parameterOrder|join("', '")|safe }}'],{%- endif -%}
     {%- if pathParams.length -%}pathParams: ['{{ pathParams|join("', '")|safe }}'],{%- endif -%}
     {%- if m.supportsMediaUpload -%}isMedia: true,{%- endif -%}

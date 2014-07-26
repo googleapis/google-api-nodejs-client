@@ -511,10 +511,11 @@ function Plusdomains(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
         isMedia: true,

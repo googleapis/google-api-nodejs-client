@@ -83,10 +83,11 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/drive/v1/files',
+          url: 'https://www.googleapis.com/drive/v1/files',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files',
         isMedia: true,
         context: self
       };
@@ -147,10 +148,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
           method: 'PUT'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files/' + params.id,
         requiredParams: ['id'],
         pathParams: ['id'],
         isMedia: true,

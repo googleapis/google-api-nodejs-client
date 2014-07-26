@@ -299,10 +299,11 @@ function Bigquery(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/jobs',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
         isMedia: true,

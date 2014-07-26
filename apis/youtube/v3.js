@@ -121,10 +121,11 @@ function Youtube(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
+          url: 'https://www.googleapis.com/youtube/v3/channelBanners/insert',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
         isMedia: true,
         context: self
       };
@@ -1191,10 +1192,11 @@ function Youtube(options) {
     set: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
+          url: 'https://www.googleapis.com/youtube/v3/thumbnails/set',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
         requiredParams: ['videoId'],
         isMedia: true,
         context: self
@@ -1320,10 +1322,11 @@ function Youtube(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+          url: 'https://www.googleapis.com/youtube/v3/videos',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
         requiredParams: ['part'],
         isMedia: true,
         context: self
@@ -1449,10 +1452,11 @@ function Youtube(options) {
     set: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
+          url: 'https://www.googleapis.com/youtube/v3/watermarks/set',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
         requiredParams: ['channelId'],
         isMedia: true,
         context: self

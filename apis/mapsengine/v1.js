@@ -1136,10 +1136,11 @@ function Mapsengine(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/mapsengine/v1/rasters/' + params.id + '/files',
+            url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id + '/files',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/v1/rasters/' + params.id + '/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
           isMedia: true,
@@ -1538,10 +1539,11 @@ function Mapsengine(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/mapsengine/v1/tables/' + params.id + '/files',
+            url: 'https://www.googleapis.com/mapsengine/v1/tables/' + params.id + '/files',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/v1/tables/' + params.id + '/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
           isMedia: true,

@@ -56,10 +56,11 @@ function Gmail(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           isMedia: true,
@@ -176,10 +177,11 @@ function Gmail(options) {
       send: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/send',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           isMedia: true,
@@ -208,10 +210,11 @@ function Gmail(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
             method: 'PUT'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
           isMedia: true,
@@ -514,10 +517,11 @@ function Gmail(options) {
       import: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/import',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           isMedia: true,
@@ -545,10 +549,11 @@ function Gmail(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           isMedia: true,
@@ -639,10 +644,11 @@ function Gmail(options) {
       send: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/send',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           isMedia: true,

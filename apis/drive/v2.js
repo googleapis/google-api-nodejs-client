@@ -701,10 +701,11 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/drive/v2/files',
+          url: 'https://www.googleapis.com/drive/v2/files',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
         isMedia: true,
         context: self
       };
@@ -897,10 +898,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
+          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
           method: 'PUT'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         isMedia: true,
@@ -1506,10 +1508,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
+          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime',
           method: 'PUT'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         isMedia: true,
