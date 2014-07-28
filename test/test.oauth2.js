@@ -90,14 +90,14 @@ describe('OAuth2 client', function() {
     done();
   });
 
-  it('should not throw exception no access or refresh token is set before making ' +
-      'a request', function() {
-    var oauth2client =
-      new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    assert.doesNotThrow(function() {
-      new googleapis.GoogleApis()
-        .urlshortener('v1').url.get({ shortUrl: '123', auth: oauth2client }, noop);
-    });
+  it('should return err no access or refresh token is set before making a request', function(done) {
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    new googleapis.GoogleApis()
+      .urlshortener('v1').url.get({ shortUrl: '123', auth: oauth2client }, function(err, result) {
+        assert.equal(err.message, 'No access or refresh token is set.');
+        assert.equal(result, null);
+        done();
+      });
   });
 
   it('should not throw any exceptions if only refresh token is set', function() {
@@ -811,25 +811,21 @@ describe('OAuth2 client', function() {
     assert.equal(query.client_id, 'client_override');
   });
 
-  it('should return error in callback and not throw on request', function(done) {
+  it('should return error in callback on request', function(done) {
     var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    assert.doesNotThrow(function() {
-      oauth2client.request({}, function(err, result) {
-        assert.equal(err.message, 'No access or refresh token is set.');
-        assert.equal(result, null);
-        done();
-      });
+    oauth2client.request({}, function(err, result) {
+      assert.equal(err.message, 'No access or refresh token is set.');
+      assert.equal(result, null);
+      done();
     });
   });
 
-  it('should return error in callback and not throw on refreshAccessToken', function(done) {
+  it('should return error in callback on refreshAccessToken', function(done) {
     var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    assert.doesNotThrow(function() {
-      oauth2client.refreshAccessToken(function(err, result) {
-        assert.equal(err.message, 'No refresh token is set.');
-        assert.equal(result, null);
-        done();
-      });
+    oauth2client.refreshAccessToken(function(err, result) {
+      assert.equal(err.message, 'No refresh token is set.');
+      assert.equal(result, null);
+      done();
     });
   });
 });
