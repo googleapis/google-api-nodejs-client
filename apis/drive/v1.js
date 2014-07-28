@@ -90,7 +90,6 @@ function Drive(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files',
-        isMedia: true,
         context: self
       };
 
@@ -159,7 +158,6 @@ function Drive(options) {
         mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files/' + params.id,
         requiredParams: ['id'],
         pathParams: ['id'],
-        isMedia: true,
         context: self
       };
 

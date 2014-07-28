@@ -708,7 +708,6 @@ function Drive(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
-        isMedia: true,
         context: self
       };
 
@@ -909,7 +908,6 @@ function Drive(options) {
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        isMedia: true,
         context: self
       };
 
@@ -1520,7 +1518,6 @@ function Drive(options) {
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        isMedia: true,
         context: self
       };
 

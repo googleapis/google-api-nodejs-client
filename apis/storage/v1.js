@@ -988,7 +988,6 @@ function Storage(options) {
         mediaUrl: 'https://www.googleapis.com/upload/storage/v1/b/' + params.bucket + '/o',
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        isMedia: true,
         context: self
       };
 

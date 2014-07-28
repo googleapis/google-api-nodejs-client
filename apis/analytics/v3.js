@@ -469,7 +469,6 @@ function Analytics(options) {
           mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'appendNumber', 'type'],
           pathParams: ['accountId', 'customDataSourceId', 'date', 'webPropertyId'],
-          isMedia: true,
           context: self
         };
 
@@ -1798,7 +1797,6 @@ function Analytics(options) {
           mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          isMedia: true,
           context: self
         };
 

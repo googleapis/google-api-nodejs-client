@@ -520,7 +520,6 @@ function Plusdomains(options) {
         mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        isMedia: true,
         context: self
       };
 

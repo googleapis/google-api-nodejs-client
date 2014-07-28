@@ -1144,7 +1144,6 @@ function Mapsengine(options) {
           mediaUrl: 'https://www.googleapis.com/upload/mapsengine/v1/rasters/' + params.id + '/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
-          isMedia: true,
           context: self
         };
 
@@ -1548,7 +1547,6 @@ function Mapsengine(options) {
           mediaUrl: 'https://www.googleapis.com/upload/mapsengine/v1/tables/' + params.id + '/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
-          isMedia: true,
           context: self
         };
 

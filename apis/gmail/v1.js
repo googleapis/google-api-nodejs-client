@@ -65,7 +65,6 @@ function Gmail(options) {
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -188,7 +187,6 @@ function Gmail(options) {
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -223,7 +221,6 @@ function Gmail(options) {
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
-          isMedia: true,
           context: self
         };
 
@@ -532,7 +529,6 @@ function Gmail(options) {
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -566,7 +562,6 @@ function Gmail(options) {
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -663,7 +658,6 @@ function Gmail(options) {
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 

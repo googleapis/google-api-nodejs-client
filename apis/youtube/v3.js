@@ -128,7 +128,6 @@ function Youtube(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
-        isMedia: true,
         context: self
       };
 
@@ -1201,7 +1200,6 @@ function Youtube(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
         requiredParams: ['videoId'],
-        isMedia: true,
         context: self
       };
 
@@ -1333,7 +1331,6 @@ function Youtube(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
         requiredParams: ['part'],
-        isMedia: true,
         context: self
       };
 
@@ -1465,7 +1462,6 @@ function Youtube(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
         requiredParams: ['channelId'],
-        isMedia: true,
         context: self
       };
 

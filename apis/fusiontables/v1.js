@@ -576,7 +576,6 @@ function Fusiontables(options) {
         mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        isMedia: true,
         context: self
       };
 
@@ -610,7 +609,6 @@ function Fusiontables(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
         requiredParams: ['name'],
-        isMedia: true,
         context: self
       };
 

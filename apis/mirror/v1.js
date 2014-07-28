@@ -521,7 +521,6 @@ function Mirror(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline',
-        isMedia: true,
         context: self
       };
 
@@ -616,7 +615,6 @@ function Mirror(options) {
         mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
         requiredParams: ['id'],
         pathParams: ['id'],
-        isMedia: true,
         context: self
       };
 
@@ -709,7 +707,6 @@ function Mirror(options) {
           mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
           requiredParams: ['itemId'],
           pathParams: ['itemId'],
-          isMedia: true,
           context: self
         };
 

@@ -63,7 +63,6 @@ function Admin(options) {
         mediaUrl: 'https://www.googleapis.com/upload/email/v2/users/' + params.userKey + '/mail',
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        isMedia: true,
         context: self
       };
 

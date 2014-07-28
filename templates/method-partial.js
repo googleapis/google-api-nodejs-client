@@ -36,7 +36,6 @@
     {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ m.mediaUpload.protocols.simple.path|buildurl }},{%- endif -%}
     {%- if m.parameterOrder.length -%}requiredParams: ['{{ m.parameterOrder|join("', '")|safe }}'],{%- endif -%}
     {%- if pathParams.length -%}pathParams: ['{{ pathParams|join("', '")|safe }}'],{%- endif -%}
-    {%- if m.supportsMediaUpload -%}isMedia: true,{%- endif -%}
     context: self
   };
 

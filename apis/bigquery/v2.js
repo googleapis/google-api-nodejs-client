@@ -308,7 +308,6 @@ function Bigquery(options) {
         mediaUrl: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        isMedia: true,
         context: self
       };
 

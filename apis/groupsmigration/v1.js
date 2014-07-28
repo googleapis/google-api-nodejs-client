@@ -62,7 +62,6 @@ function Groupsmigration(options) {
         mediaUrl: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
-        isMedia: true,
         context: self
       };
 
