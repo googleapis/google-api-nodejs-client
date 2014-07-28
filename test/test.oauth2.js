@@ -813,10 +813,12 @@ describe('OAuth2 client', function() {
 
   it('should return error in callback and not throw on request', function(done) {
     var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    oauth2client.request({}, function(err, result) {
-      assert.equal(err.message, 'No access or refresh token is set.');
-      assert.equal(result, null);
-      done();
+    assert.doesNotThrow(function() {
+      oauth2client.request({}, function(err, result) {
+        assert.equal(err.message, 'No access or refresh token is set.');
+        assert.equal(result, null);
+        done();
+      });
     });
   });
 
