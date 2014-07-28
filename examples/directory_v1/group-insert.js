@@ -30,7 +30,6 @@ var jwt = new GoogleApis.auth.JWT(
   , authData.subject
 );
 
-
 // Authorize
 jwt.authorize(function (err, data) {
     if (err) { throw err; }

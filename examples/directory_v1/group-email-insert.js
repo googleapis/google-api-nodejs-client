@@ -30,12 +30,10 @@ var jwt = new GoogleApis.auth.JWT(
   , authData.subject
 );
 
-
 // Authorize
 jwt.authorize(function (err, data) {
     if (err) { throw err; }
     console.log("You have been successfully authenticated: ", data);
-
 
     // Insert member in Google group
     GoogleAdmin.members.insert({
