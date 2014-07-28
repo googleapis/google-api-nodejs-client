@@ -41,7 +41,7 @@ jwt.authorize(function (err, data) {
 
     // Insert member in Google group
     GoogleAdmin.members.insert({
-        groupKey: "johnnys1@jillix.com"
+        groupKey: "my_group@example.com"
       , resource: {
             email: "me@example.com"
         }
