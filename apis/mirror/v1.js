@@ -506,19 +506,21 @@ function Mirror(options) {
      * @memberOf! mirror(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.resource - Media resource metadata
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/mirror/v1/timeline',
+          url: 'https://www.googleapis.com/mirror/v1/timeline',
           method: 'POST'
         },
         params: params,
-        isMedia: true,
+        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline',
         context: self
       };
 
@@ -596,21 +598,23 @@ function Mirror(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the timeline item.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.resource - Media resource metadata
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
           method: 'PUT'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
         requiredParams: ['id'],
         pathParams: ['id'],
-        isMedia: true,
         context: self
       };
 
@@ -687,21 +691,22 @@ function Mirror(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
+            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
           requiredParams: ['itemId'],
           pathParams: ['itemId'],
-          isMedia: true,
           context: self
         };
 

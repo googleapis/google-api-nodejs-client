@@ -80,8 +80,6 @@ now immediately execute, even if a callback is not specified.
 ## Media uploads
 
 Media data is now specified in a `media` parameter instead of in `withMedia()`.
-The mime-type is taken from the `resource` object, so there's no need to specify
-it twice.
 
 The old `0.x.x` way of uploading media:
 
@@ -99,7 +97,10 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: 'Hello World'
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World'
+  }
 }, callback);
 ```
 
@@ -114,7 +115,10 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: fs.createReadStream('hello.txt')
+  media: {
+    mimeType: 'text/plain',
+    body: fs.createReadStream('hello.txt')
+  }
 }, callback);
 ```
 
@@ -129,15 +133,28 @@ it as a default. See [here][options] for more information.
 In `0.x.x` an OAuth2 client was specified like this:
 
 ``` js
+var googleapis = require('googleapis');
+var OAuth2Client = googleapis.OAuth2Client;
+
+var oauth2Client = new OAuth2Client(/* .. */);
+
+// ... discover plus api and get client object here ...
+
 client
   .plus.people.get({ userId: 'me' })
   .withAuthClient(oauth2Client)
   .execute(callback);
 ```
 
-In `1.0`, just put it in the `auth` parameter. It's as easy as:
+In `1.0`, OAuth2Client is now available at `google.auth.OAuth2` and now you can
+just put your `oauth2Client` right in the `auth` parameter. It's as easy as:
 
 ``` js
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2; // changed from google.OAuth2Client
+var plus = google.plus('v1');
+
+var oauth2Client = new OAuth2(/* .. */); // initialized the same way
 plus.people.get({ userId: 'me', auth: oauth2Client }, callback);
 ```
 

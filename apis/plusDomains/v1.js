@@ -503,21 +503,23 @@ function Plusdomains(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.collection -
      * @param  {string} params.userId - The ID of the user to create the activity on behalf of.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.resource - Media resource metadata
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
+          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        isMedia: true,
         context: self
       };
 

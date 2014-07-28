@@ -291,21 +291,23 @@ function Bigquery(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.projectId - Project ID of the project that will be billed for the job
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.resource - Media resource metadata
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
+          url: 'https://www.googleapis.com/bigquery/v2/projects/' + params.projectId + '/jobs',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/bigquery/v2/projects/' + params.projectId + '/jobs',
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        isMedia: true,
         context: self
       };
 

@@ -48,21 +48,23 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -168,21 +170,23 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       send: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/send',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -200,21 +204,23 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.id - The ID of the draft to update.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
             method: 'PUT'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
-          isMedia: true,
           context: self
         };
 
@@ -506,21 +512,23 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       import: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/import',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -537,21 +545,23 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 
@@ -631,21 +641,23 @@ function Gmail(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       send: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
+            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/send',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          isMedia: true,
           context: self
         };
 

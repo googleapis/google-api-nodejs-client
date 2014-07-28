@@ -13,6 +13,12 @@ to learn about migrating your code from `0.x.x` to `1.0`. It's pretty easy :)
 * Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
+### Working with Google Cloud APIs?
+
+If you're working with [Google Cloud Platform][cloudplatform] APIs such as
+Datastore, Cloud Storage or Pub/Sub, consider using [`gcloud`][gcloud], a
+Node idiomatic client for Google Cloud services.
+
 ## Installation
 
 This library is distributed on `npm`. In order to add it as a dependency,
@@ -142,8 +148,8 @@ See the [Options section][options] for more information.
 
 You can start using OAuth2 to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-`refresh_token`, the `access_token` is automatically refreshed and the
-request is replayed in case the `access_token` has expired.
+`refresh_token` and the `access_token` has expired, the `access_token` will be
+automatically refreshed and the request is replayed.
 
 Following sample retrieves Google+ profile of the authenticated user.
 
@@ -160,6 +166,19 @@ oauth2Client.setCredentials({
 
 plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
   // handle err and response
+});
+```
+
+#### Manually refreshing access token
+
+If you need to manually refresh the `access_token` associated with your OAuth2
+client, make sure you have a `refresh_token` set in your credentials first and
+then call:
+
+``` js
+oauth2Client.refreshAccessToken(function(err, tokens) {
+  // your access_token is now refreshed and stored in oauth2Client
+  // store these new tokens in a safe place (e.g. database)
 });
 ```
 
@@ -193,8 +212,8 @@ To learn more about API keys, please see the [documentation][usingkeys].
 ### Media Uploads
 
 This client supports multipart media uploads. The resource parameters are
-specified in the `resource` parameter object, and the media body itself is
-specified in the `media` parameter.
+specified in the `resource` parameter object, and the media itself is
+specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
 
 Example: Upload a plain text file to Google Drive with the title "Test" and
 contents "Hello World".
@@ -207,11 +226,14 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: 'Hello World'
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World'
+  }
 }, callback);
 ```
 
-You can also upload media by specifying `media` as a [Readable stream][stream].
+You can also upload media by specifying `media.body` as a [Readable stream][stream].
 This can allow you to upload very large files that cannot fit into memory.
 
 Note: Your readable stream may be [unstable][stability]. Use at your own risk.
@@ -227,7 +249,10 @@ drive.files.insert({
     title: 'testimage.png',
     mimeType: 'image/png'
   },
-  media: fs.createReadStream('awesome.png') // read streams are awesome!
+  media: {
+    mimeType: 'image/png',
+    body: fs.createReadStream('awesome.png') // read streams are awesome!
+  }
 }, callback);
 ```
 
@@ -326,3 +351,5 @@ See [CONTRIBUTING][contributing].
 [oauth]: https://developers.google.com/accounts/docs/OAuth2
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/examples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
+[gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
+[cloudplatform]: https://developers.google.com/cloud/

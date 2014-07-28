@@ -36,7 +36,10 @@ drive.files.insert({
     title: 'Test',
     mimeType: 'text/plain'
   },
-  media: 'Hello World',
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World updated with metadata'
+  }
   auth: oauth2Client
 }, function(err, response) {
   console.log('error:', err, 'inserted:', response.id);
@@ -45,7 +48,10 @@ drive.files.insert({
 // update with no metadata
 drive.files.update({
   fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc',
-  media: 'Hello World updated with no metadata',
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World updated with metadata'
+  }
   auth: oauth2Client
 }, function(err, response) {
   console.log('error:', err, 'updated:', response.id);
@@ -57,7 +63,10 @@ drive.files.update({
   resource: {
     title: 'Updated title'
   },
-  media: 'Hello World updated with metadata',
+  media: {
+    mimeType: 'text/plain',
+    body: 'Hello World updated with metadata'
+  }
   auth: oauth2Client
 }, function(err, response) {
   console.log('error:', err, 'updated:', response.id);
