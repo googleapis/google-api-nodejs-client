@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
+var analytics = google.analytics('v3');
+var OAuth2Client = google.auth.OAuth2;
 
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
@@ -22,8 +24,9 @@ var CLIENT_ID = 'YOUR CLIENT ID HERE';
 var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
 var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
 
-var auth = new googleapis.OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-auth.setCredentials({
+var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+
+oauth2Client.setCredentials({
   access_token: 'ACCESS TOKEN HERE'
 });
 
@@ -34,8 +37,8 @@ var objectiveMetric = 'ga:goal1Completions';
 // https://developers.google.com/analytics/devguides/platform/experiments#serving-framework
 var servingFramework = 'API';
 
-// Non-valid URLs are used when the user is not redirected when showing an experiment
-// Read more: https://developers.google.com/analytics/devguides/platform/experiments#variations
+// Invalid URLs are used when user is not redirected when showing an experiment
+// Read more: http://goo.gl/oVwKH1
 var variations = [
   {'name': 'Default', 'url': 'http://www.example.com', 'status': 'ACTIVE'},
   {'name': 'Variation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
@@ -51,23 +54,17 @@ var resourceBody = {
   'variations': variations
 };
 
-// Load Google Analytics v3 API resources and methods
-googleapis
-    .discover('analytics', 'v3')
-    .execute(function(err, client) {
 
-    // Insertion example
-    client
-        .analytics.management.experiments.insert({
-          accountId: accountId,
-          webPropertyId: webPropertyId,
-          profileId: profileId
-        }, resourceBody)
-        .withAuthClient(auth)
-        .execute(function(err, result) {
-          if (err) {
-            console.log("Error", err);
-            return;
-          }
-        });
+analytics.management.experiments.insert({
+  auth: oauth2Client,
+  accountId: accountId,
+  webPropertyId: webPropertyId,
+  profileId: profileId,
+  resource: resourceBody
+}, function(err, body) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(body);
+  }
 });

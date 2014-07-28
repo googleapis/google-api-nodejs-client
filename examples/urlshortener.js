@@ -14,25 +14,16 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
+var urlshortener = google.urlshortener('v1');
 
-googleapis
-    .discover('urlshortener', 'v1')
-    .execute(function(err, client) {
+var printResult = function(err, result) {
+  if (err) {
+    console.log('Error occurred: ', err);
+  } else {
+    console.log('Result: ', result);
+  }
+};
 
-  var printResult = function(err, result) {
-    if (err) {
-      console.log('Error occurred: ', err);
-    } else {
-      console.log('Result: ', result);
-    }
-  };
-
-  client.urlshortener.url
-      .get({ shortUrl: 'http://goo.gl/DdUKX' })
-      .execute(printResult);
-
-  client.urlshortener.url
-      .insert({ longUrl: 'http://somelongurl.com' })
-      .execute(printResult);
-});
+urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' }, printResult);
+urlshortener.url.insert({ longUrl: 'http://somelongurl.com' }, printResult);

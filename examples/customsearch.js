@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var googleapis = require('../lib/googleapis.js');
+var google = require('../lib/googleapis.js');
+var customsearch = google.customsearch('v1');
 
 // You can get a custom search engine id at
 // https://www.google.com/cse/create/new
@@ -21,33 +22,14 @@ var CX = 'INSERT YOUR CUSTOM SEARCH ENGINE ID here';
 var API_KEY = 'INSERT YOUR API KEY HERE';
 var SEARCH = 'INSERT A GOOGLE REQUEST HERE';
 
-// Sends the query to the API
-function launchSearch (client, query, callback) {
-	var req = client.customsearch.cse.list({cx : CX, q : query})
-		.withApiKey(API_KEY);
-	req.execute (function (err, response) {
-		callback (err, response);
-	});
-}
-
-// Initializes API
-googleapis
-	.discover('customsearch', 'v1')
-	.execute (function (err, client) {
-		if (err) {
-			console.log('An error occured', err);
-			return;
-		}
-		// Sends request
-		launchSearch (client, SEARCH, function (err, response) {
-			if (err) {
-				console.log('An error occured', err);
-				return;
-			}
-			// Got the response from custom search
-			console.log('Got ' + response.searchInformation.formattedTotalResults + ' results');
-			if (response.items.length > 0) {
-				console.log('First result name is ' + response.items[0].title);
-			}
-		});
-	});
+customsearch.cse.list({ cx: CX, q: query, auth: API_KEY }, function(err, resp) {
+  if (err) {
+    console.log('An error occured', err);
+    return;
+  }
+  // Got the response from custom search
+  console.log('Result: ' + resp.searchInformation.formattedTotalResults);
+  if (resp.items.length > 0) {
+    console.log('First result name is ' + resp.items[0].title);
+  }
+});

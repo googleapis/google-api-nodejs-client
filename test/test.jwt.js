@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
+'use strict';
 
+var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 
 describe('JWT auth client', function() {
+
   it('should get an initial access token', function(done) {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
@@ -38,7 +40,7 @@ describe('JWT auth client', function() {
         getToken: function(opt_callback) {
           opt_callback(null, 'initial-access-token');
         }
-      }
+      };
     };
     jwt.authorize(function() {
       assert.equal('initial-access-token', jwt.credentials.access_token);
@@ -46,6 +48,23 @@ describe('JWT auth client', function() {
       done();
     });
   });
+
+  it('should accept scope as string', function (done) {
+    var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        'http://foo',
+        'bar@subjectaccount.com');
+
+    jwt.GAPI = function(opts, callback) {
+      assert.equal('http://foo', opts.scope);
+      done();
+    }
+
+    jwt.authorize();
+  });
+
   it('should refresh token when request fails', function(done) {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
