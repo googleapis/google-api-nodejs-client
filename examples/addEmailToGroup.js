@@ -14,100 +14,40 @@
  * limitations under the License.
  */
 
-/**
- *  # Creating a Service Account using the Google Developers Console
- *
- *  1. From the [Google Developers Console](https://cloud.google.com/console), select your project or create a new one.
- *
- *  2. Under "APIs & auth", click "Credentials".
- *
- *  3. Under "OAuth", click the "Create new client ID" button.
- *
- *  4. Select "Service account" as the application type and click "Create Client ID".
- *
- *  5. The key for your new service account should prompt for download automatically. Note that your key is protected with a password.
- *  IMPORTANT: keep a secure copy of the key, as Google keeps only the public key.
- *
- *  6. Convert the downloaded key to PEM, so we can use it from the Node [crypto](http://nodejs.org/api/crypto.html) module.
- *
- *  To do this, run the following in Terminal:
- *  ```bash
- *  openssl pkcs12 -in downloaded-key-file.p12 -out your-key-file.pem -nodes
- *  ```
- *
- *  You will be asked for the password you received during step 5.
- *
- *  That's it! You now have a service account with an email address and a key that you can use from your Node application.
- *
- *  [Source. Thanks!](https://github.com/extrabacon/google-oauth-jwt)
- *
- *  # Setting authentication data
- *  Create a file named `authData.json` containing:
- *  {
- *      "email":    "215406603088-l......rf19misb7rvrmu@developer.gserviceaccount.com"
- *    , "keyFile":  "./keyFile.pem"
- *    , "key":      "f5938a7....734e68bf1a6d5ad02"
- *    , "scopes":   [
- *          "https://www.googleapis.com/auth/admin.directory.group"
- *        , "https://www.googleapis.com/auth/admin.directory.group.member"
- *      ]
- *  }
- *
- *  Provide credentials of your Google Application in `email` and `key` fields.
- *
- * */
-
-// dependencies
+// Dependencies
 var Assert = require('assert')
   , GoogleApis = require('googleapis')
   , authData = require("./authData")
   ;
 
-// output
 console.log("Auth data is: ", authData);
 
-// set jwt data
+// Create JWT auth object
 var jwt = new GoogleApis.auth.JWT(
     authData.email
   , authData.keyFile
   , authData.key
   , authData.scopes
-  , "admin@example.com"
+  , authData.subject
 );
 
-// authorize
+
+// Authorize
 jwt.authorize(function (err, data) {
-
-    // output error
-    if (err) {
-        console.log("Error: ", err);
-        return;
-    }
-
-    // output
+    if (err) { throw err; }
     console.log("You have been successfully authenticated: ", data);
 
-    // get client
-    GoogleApis
-        .discover('admin', 'directory_v1')
-        .withAuthClient(jwt)
-        .execute(function (err, client) {
+    // Get Google Admin API
+    var GoogleAdmin = GoogleApis.admin("directory_v1");
 
-            // handle error
-            if (err) {
-                return callback(err);
-            }
-
-            // create the group member insert request
-            var request = client.admin.members.insert({
-                groupKey: "some_group@example.com"
-            }, {
-                email: "me@example.com"
-            });
-
-            // and execute it
-            request.execute(function (err, data) {
-                console.log(err, data);
-            });
-        });
+    // Insert member in Google group
+    GoogleAdmin.members.insert({
+        groupKey: "johnnys1@jillix.com"
+      , resource: {
+            email: "me@example.com"
+        }
+      , auth: jwt
+    }, function (err, data) {
+        console.log(err || data);
+    });
 });
