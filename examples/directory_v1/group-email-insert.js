@@ -36,8 +36,6 @@ jwt.authorize(function (err, data) {
     if (err) { throw err; }
     console.log("You have been successfully authenticated: ", data);
 
-    // Get Google Admin API
-    var GoogleAdmin = GoogleApis.admin("directory_v1");
 
     // Insert member in Google group
     GoogleAdmin.members.insert({
