@@ -15,8 +15,7 @@
  */
 
 // Dependencies
-var Assert = require('assert')
-  , GoogleApis = require('googleapis')
+var GoogleApis = require('googleapis')
   , authData = require("./authData")
   ;
 
