@@ -15,13 +15,13 @@
  */
 
 // Dependencies
-var GoogleApis = require('googleapis');
+var googleapis = require('googleapis');
 var authData = require('./authData');
 
 console.log('Auth data is: ', authData);
 
 // Create JWT auth object
-var jwt = new GoogleApis.auth.JWT(
+var jwt = new googleapis.auth.JWT(
   authData.email,
   authData.keyFile,
   authData.key,
@@ -35,10 +35,10 @@ jwt.authorize(function (err, data) {
   console.log('You have been successfully authenticated: ', data);
 
   // Get Google Admin API
-  var GoogleAdmin = GoogleApis.admin('directory_v1');
+  var admin = googleapis.admin('directory_v1');
 
   // Insert group
-  GoogleAdmin.groups.insert({
+  admin.groups.insert({
     resource: { email: 'some_group@example.com' },
     auth: jwt
   }, function (err, data) {

@@ -15,13 +15,13 @@
  */
 
 // Dependencies
-var GoogleApis = require('googleapis');
+var googleapis = require('googleapis');
 var authData = require('./authData');
 
 console.log('Auth data is: ', authData);
 
 // Create JWT auth object
-var jwt = new GoogleApis.auth.JWT(
+var jwt = new googleapis.auth.JWT(
   authData.email,
   authData.keyFile,
   authData.key,
@@ -34,8 +34,11 @@ jwt.authorize(function (err, data) {
   if (err) { throw err; }
   console.log('You have been successfully authenticated: ', data);
 
+  // Get Google Admin API
+  var admin = googleapis.admin('directory_v1');
+
   // Delete member from Google group
-  GoogleAdmin.members.delete({
+  admin.members.delete({
     groupKey: 'my_group@example.com',
     memberKey: 'me@example.com',
     auth: jwt
