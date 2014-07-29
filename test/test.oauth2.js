@@ -125,24 +125,6 @@ describe('OAuth2 client', function() {
     });
   });
 
-  it('should replay the request with a refreshed token if auth failed', function(done) {
-    var i = 0;
-    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    oauth2client.credentials = { access_token: 'foo', refresh_token: 'bar' };
-    var google = new googleapis.GoogleApis();
-    oauth2client.transporter = {
-      request: function(opts, callback) {
-        if (i === 1) {
-          assert.equal(opts.uri, 'https://accounts.google.com/o/oauth2/token');
-          return done();
-        }
-        i++;
-        callback(null, null, { statusCode: 401 });
-      }
-    };
-    google.urlshortener('v1').url.list({ auth: oauth2client }, noop);
-  });
-
   it('should verify a valid certificate against a jwt', function(done) {
     var publicKey = fs.readFileSync('./test/fixtures/public.pem', 'utf-8');
     var privateKey = fs.readFileSync('./test/fixtures/private.pem', 'utf-8');
@@ -825,6 +807,79 @@ describe('OAuth2 client', function() {
     oauth2client.refreshAccessToken(function(err, result) {
       assert.equal(err.message, 'No refresh token is set.');
       assert.equal(result, null);
+      done();
+    });
+  });
+
+  it('should refresh if access token is expired', function(done) {
+    var scope = nock('https://accounts.google.com')
+        .post('/o/oauth2/token')
+        .reply(200, { access_token: 'abc123', expires_in: 1 });
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var google = new googleapis.GoogleApis();
+    var drive = google.drive({ version: 'v2', auth: oauth2client });
+    var now = (new Date()).getTime();
+    var twoSecondsAgo = now - 2000;
+    oauth2client.credentials = { refresh_token: 'abc', expiry_date: twoSecondsAgo };
+    drive.files.get({ fileId: 'wat' }, function(err, result) {
+      var expiry_date = oauth2client.credentials.expiry_date;
+      assert.notEqual(expiry_date, undefined);
+      assert(expiry_date > now);
+      assert(expiry_date < now + 5000);
+      assert.equal(oauth2client.credentials.refresh_token, 'abc');
+      assert.equal(oauth2client.credentials.access_token, 'abc123');
+      assert.equal(oauth2client.credentials.expires_in, 1);
+      assert.equal(oauth2client.credentials.token_type, 'Bearer');
+      scope.done();
+      done();
+    });
+  });
+
+  it('should make request if access token not expired', function(done) {
+    var scope = nock('https://accounts.google.com')
+        .post('/o/oauth2/token')
+        .reply(200, { access_token: 'abc123', expires_in: 10000 });
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var google = new googleapis.GoogleApis();
+    var drive = google.drive({ version: 'v2', auth: oauth2client });
+    var now = (new Date()).getTime();
+    var tenSecondsFromNow = now + 10000;
+    oauth2client.credentials = { access_token: 'abc123', refresh_token: 'abc', expiry_date: tenSecondsFromNow };
+    drive.files.get({ fileId: 'wat' }, function(err, result) {
+      assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
+        access_token: 'abc123',
+        refresh_token: 'abc',
+        expiry_date: tenSecondsFromNow,
+        token_type: 'Bearer'
+      }));
+
+      assert.throws(function() {
+        scope.done();
+      }, 'AssertionError');
+      nock.cleanAll();
+      done();
+    });
+  });
+
+  it('should refresh if have refresh token but no access token', function(done) {
+    var scope = nock('https://accounts.google.com')
+        .post('/o/oauth2/token')
+        .reply(200, { access_token: 'abc123', expires_in: 1 });
+    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    var google = new googleapis.GoogleApis();
+    var drive = google.drive({ version: 'v2', auth: oauth2client });
+    var now = (new Date()).getTime();
+    oauth2client.credentials = { refresh_token: 'abc' };
+    drive.files.get({ fileId: 'wat' }, function(err, result) {
+      var expiry_date = oauth2client.credentials.expiry_date;
+      assert.notEqual(expiry_date, undefined);
+      assert(expiry_date > now);
+      assert(expiry_date < now + 4000);
+      assert.equal(oauth2client.credentials.refresh_token, 'abc');
+      assert.equal(oauth2client.credentials.access_token, 'abc123');
+      assert.equal(oauth2client.credentials.expires_in, 1);
+      assert.equal(oauth2client.credentials.token_type, 'Bearer');
+      scope.done();
       done();
     });
   });

@@ -18,6 +18,9 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
+var nock = require('nock');
+
+nock.disableNetConnect();
 
 describe('Compute auth client', function() {
 
@@ -27,7 +30,8 @@ describe('Compute auth client', function() {
       request: function(opts, opt_callback) {
         opt_callback(null, {
           'access_token': 'initial-access-token',
-          'token_type': 'Bearer'
+          'token_type': 'Bearer',
+          'expires_in': 3600
         }, {});
       }
     };
@@ -38,25 +42,36 @@ describe('Compute auth client', function() {
     });
   });
 
-  it('should refresh token when request fails', function(done) {
+  it('should refresh if access token has expired', function(done) {
+    var scope = nock('http://metadata')
+        .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
+        .reply(200, { access_token: 'abc123', expires_in: 10000 });
+    var compute = new googleapis.auth.Compute();
+    compute.credentials = {
+      access_token: 'initial-access-token',
+      refresh_token: 'compute-placeholder',
+      expiry_date: (new Date()).getTime() - 2000
+    };
+    compute.request({}, function() {
+      assert.equal(compute.credentials.access_token, 'abc123');
+      scope.done();
+      done();
+    });
+  });
+
+  it('should not refresh if access token has expired', function(done) {
+    var scope = nock('http://metadata')
+        .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
+        .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
     compute.credentials = {
       access_token: 'initial-access-token',
       refresh_token: 'compute-placeholder'
     };
-    compute.transporter = {
-      request: function(opts, opt_callback) {
-        opt_callback({}, {}, { statusCode: 401 });
-      }
-    };
-    compute.refreshToken_ = function(token, callback) {
-      callback(null, {
-        'access_token': 'another-access-token',
-        'token_type': 'Bearer'
-      });
-    };
     compute.request({}, function() {
-      assert.equal('another-access-token', compute.credentials.access_token);
+      assert.equal(compute.credentials.access_token, 'initial-access-token');
+      assert.equal(false, scope.isDone());
+      nock.cleanAll();
       done();
     });
   });
