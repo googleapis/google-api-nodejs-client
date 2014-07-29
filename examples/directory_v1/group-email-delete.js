@@ -32,12 +32,12 @@ var jwt = new GoogleApis.auth.JWT(
 // Authorize
 jwt.authorize(function (err, data) {
     if (err) { throw err; }
-    console.log("You have been successfully authenticated: ", data);
+    console.log('You have been successfully authenticated: ', data);
 
     // Delete member from Google group
     GoogleAdmin.members.delete({
-        groupKey: "my_group@example.com",
-        memberKey: "me@example.com",
+        groupKey: 'my_group@example.com',
+        memberKey: 'me@example.com',
         auth: jwt
     }, function (err, data) {
         console.log(err || data);

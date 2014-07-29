@@ -32,14 +32,14 @@ var jwt = new GoogleApis.auth.JWT(
 // Authorize
 jwt.authorize(function (err, data) {
     if (err) { throw err; }
-    console.log("You have been successfully authenticated: ", data);
+    console.log('You have been successfully authenticated: ', data);
 
     // Get Google Admin API
-    var GoogleAdmin = GoogleApis.admin("directory_v1");
+    var GoogleAdmin = GoogleApis.admin('directory_v1');
 
     // Insert group
     GoogleAdmin.groups.insert({
-        resource: { email: "some_group@example.com" },
+        resource: { email: 'some_group@example.com' },
         auth: jwt
     }, function (err, data) {
         console.log(err || data);
