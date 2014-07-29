@@ -885,7 +885,7 @@ describe('OAuth2 client', function() {
   });
 
   describe('revokeCredentials()', function() {
-      it('should revoke credentials if access token present', function(done) {
+    it('should revoke credentials if access token present', function(done) {
       var scope = nock('https://accounts.google.com')
           .get('/o/oauth2/revoke?token=abc')
           .reply(200, { success: true });
@@ -909,6 +909,22 @@ describe('OAuth2 client', function() {
         assert.equal(err.message, 'No access token to revoke.');
         assert.equal(result, null);
         assert.equal(JSON.stringify(oauth2client.credentials), '{}');
+        done();
+      });
+    });
+  });
+
+  describe('getToken()', function() {
+    it('should return expiry_date object with expires_in', function(done) {
+      var now = (new Date()).getTime();
+      var scope = nock('https://accounts.google.com')
+          .post('/o/oauth2/token')
+          .reply(200, { access_token: 'abc', refresh_token: '123', expires_in: 10 });
+      var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+      oauth2client.getToken('code here', function(err, tokens) {
+        assert(tokens.expiry_date > now + (10 * 1000));
+        assert(tokens.expiry_date < now + (15 * 1000));
+        scope.done();
         done();
       });
     });
