@@ -14,8 +14,12 @@
  * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} - {{ p.description|oneLine|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
- * @param  {object}        params.resource - Media resource metadata
- * @param  {string|object} params.media - Media body data to upload
+{% if m.request -%}
+ * @param  {object} params.resource - Media resource metadata
+{% endif -%}
+ * @param  {object} params.media - Media object
+ * @param  {string} params.media.mimeType - Media mime-type
+ * @param  {string|object} params.media.body - Media body contents
 {% elif m.request -%}
  * @param  {object} params.resource - Request body data
 {% endif -%}
@@ -25,13 +29,13 @@
 {% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function(params, callback) {
   var parameters = {
     options: {
-      url: {{ m.mediaUpload.protocols.simple.path|default(basePath + m.path)|buildurl }},
+      url: {{ (basePath + m.path)|buildurl }},
       method: '{{ m.httpMethod }}'
     },
     params: params,
+    {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ m.mediaUpload.protocols.simple.path|buildurl }},{%- endif -%}
     {%- if m.parameterOrder.length -%}requiredParams: ['{{ m.parameterOrder|join("', '")|safe }}'],{%- endif -%}
     {%- if pathParams.length -%}pathParams: ['{{ pathParams|join("', '")|safe }}'],{%- endif -%}
-    {%- if m.supportsMediaUpload -%}isMedia: true,{%- endif -%}
     context: self
   };
 

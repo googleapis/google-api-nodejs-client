@@ -46,21 +46,22 @@ function Groupsmigration(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupId - The group ID
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
+          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupId + '/archive',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/groups/v1/groups/' + params.groupId + '/archive',
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
-        isMedia: true,
         context: self
       };
 

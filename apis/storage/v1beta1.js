@@ -649,21 +649,23 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      * @param  {string=} params.name - Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.resource - Media resource metadata
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/storage/v1beta1/b/' + params.bucket + '/o',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/storage/v1beta1/b/' + params.bucket + '/o',
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        isMedia: true,
         context: self
       };
 

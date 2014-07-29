@@ -46,21 +46,23 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.userKey - The email or immutable id of the user
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.resource - Media resource metadata
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/email/v2/users/' + params.userKey + '/mail',
+          url: 'https://www.googleapis.com/email/v2/users/' + params.userKey + '/mail',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/email/v2/users/' + params.userKey + '/mail',
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        isMedia: true,
         context: self
       };
 

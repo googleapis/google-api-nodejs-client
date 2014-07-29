@@ -381,6 +381,34 @@ function Genomics(options) {
     },
 
     /**
+     * genomics.datasets.undelete
+     *
+     * @desc Undeletes a dataset by restoring a dataset which was deleted via this API. This operation is only possible for a week after the deletion occurred.
+     *
+     * @alias genomics.datasets.undelete
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.datasetId - The ID of the dataset to be undeleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId + '/undelete',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['datasetId'],
+        pathParams: ['datasetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * genomics.datasets.update
      *
      * @desc Updates a dataset.
@@ -446,6 +474,34 @@ function Genomics(options) {
   this.jobs = {
 
     /**
+     * genomics.jobs.cancel
+     *
+     * @desc Cancels a job by ID. Note that it is possible for partial results to be generated and stored for cancelled jobs.
+     *
+     * @alias genomics.jobs.cancel
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.jobId - Required. The ID of the job.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/jobs/' + params.jobId + '/cancel',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['jobId'],
+        pathParams: ['jobId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * genomics.jobs.get
      *
      * @desc Gets a job by ID.
@@ -454,7 +510,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - The ID of the job.
+     * @param  {string} params.jobId - Required. The ID of the job.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

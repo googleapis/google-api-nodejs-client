@@ -18,7 +18,8 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
-var google, drive, authClient, OAuth2;
+var OAuth2 = googleapis.auth.OAuth2;
+var google, drive, authClient;
 
 describe('Options', function() {
 
@@ -27,6 +28,7 @@ describe('Options', function() {
   beforeEach(function() {
     google = new googleapis.GoogleApis();
     drive = google.drive('v2');
+
   });
 
   it('should be a function', function() {
@@ -70,5 +72,16 @@ describe('Options', function() {
     var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, noop);
     assert.equal(req.proxy.host, 'proxy.example.com');
     assert.equal(req.proxy.protocol, 'http:');
+    assert.equal(req.uri.query, 'key=apikey3');
+  });
+
+  it('should apply endpoint options like proxy to oauth transporter', function() {
+    authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
+    authClient.setCredentials({ access_token: 'abc' });
+    var drive = google.drive({ version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com' });
+    var req = drive.files.get({ auth: authClient, fileId: 'woot' }, noop);
+    assert.equal(req.proxy.host, 'proxy.example.com');
+    assert.equal(req.proxy.protocol, 'http:');
+    assert.equal(req.headers['Authorization'], 'Bearer abc');
   });
 });

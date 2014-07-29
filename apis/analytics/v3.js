@@ -453,21 +453,22 @@ function Analytics(options) {
        * @param  {boolean=} params.reset - Reset/Overwrite all previous appends for this date and start over with this file as the first upload.
        * @param  {string} params.type - Type of data for this upload.
        * @param  {string} params.webPropertyId - Web property Id associated with daily upload.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       upload: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'appendNumber', 'type'],
           pathParams: ['accountId', 'customDataSourceId', 'date', 'webPropertyId'],
-          isMedia: true,
           context: self
         };
 
@@ -1780,21 +1781,22 @@ function Analytics(options) {
        * @param  {string} params.accountId - Account Id associated with the upload.
        * @param  {string} params.customDataSourceId - Custom data source Id to which the data being uploaded belongs.
        * @param  {string} params.webPropertyId - Web property UA-string associated with the upload.
-       * @param  {object}        params.resource - Media resource metadata
-       * @param  {string|object} params.media - Media body data to upload
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       uploadData: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
             method: 'POST'
           },
           params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          isMedia: true,
           context: self
         };
 

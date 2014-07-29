@@ -560,21 +560,22 @@ function Fusiontables(options) {
      * @param  {boolean=} params.isStrict - Whether the CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
      * @param  {integer=} params.startLine - The index of the first line from which to start importing, inclusive. Default is 0.
      * @param  {string} params.tableId - The table into which new rows are being imported.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     importRows: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/import',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        isMedia: true,
         context: self
       };
 
@@ -593,20 +594,21 @@ function Fusiontables(options) {
      * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ','.
      * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
      * @param  {string} params.name - The name to be assigned to the new table.
-     * @param  {object}        params.resource - Media resource metadata
-     * @param  {string|object} params.media - Media body data to upload
+     * @param  {object} params.media - Media object
+     * @param  {string} params.media.mimeType - Media mime-type
+     * @param  {string|object} params.media.body - Media body contents
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     importTable: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/import',
           method: 'POST'
         },
         params: params,
+        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
         requiredParams: ['name'],
-        isMedia: true,
         context: self
       };
 
