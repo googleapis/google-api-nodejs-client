@@ -22,24 +22,24 @@ console.log('Auth data is: ', authData);
 
 // Create JWT auth object
 var jwt = new GoogleApis.auth.JWT(
-    authData.email,
-    authData.keyFile,
-    authData.key,
-    authData.scopes,
-    authData.subject
+  authData.email,
+  authData.keyFile,
+  authData.key,
+  authData.scopes,
+  authData.subject
 );
 
 // Authorize
 jwt.authorize(function (err, data) {
-    if (err) { throw err; }
-    console.log('You have been successfully authenticated: ', data);
+  if (err) { throw err; }
+  console.log('You have been successfully authenticated: ', data);
 
-    // Insert member in Google group
-    GoogleAdmin.members.insert({
-        groupKey: 'my_group@example.com',
-        resource: { email: 'me@example.com' },
-        auth: jwt
-    }, function (err, data) {
-        console.log(err || data);
-    });
+  // Insert member in Google group
+  GoogleAdmin.members.insert({
+    groupKey: 'my_group@example.com',
+    resource: { email: 'me@example.com' },
+    auth: jwt
+  }, function (err, data) {
+    console.log(err || data);
+  });
 });
