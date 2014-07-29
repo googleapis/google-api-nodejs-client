@@ -891,8 +891,6 @@ describe('OAuth2 client', function() {
           .reply(200, { success: true });
       var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       var google = new googleapis.GoogleApis();
-      var drive = google.drive({ version: 'v2', auth: oauth2client });
-      var now = (new Date()).getTime();
       oauth2client.credentials = { access_token: 'abc', refresh_token: 'abc' };
       oauth2client.revokeCredentials(function(err, result) {
         assert.equal(err, null);
@@ -906,8 +904,6 @@ describe('OAuth2 client', function() {
     it('should clear credentials and return error if no access token to revoke', function(done) {
       var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       var google = new googleapis.GoogleApis();
-      var drive = google.drive({ version: 'v2', auth: oauth2client });
-      var now = (new Date()).getTime();
       oauth2client.credentials = { refresh_token: 'abc' };
       oauth2client.revokeCredentials(function(err, result) {
         assert.equal(err.message, 'No access token to revoke.');
