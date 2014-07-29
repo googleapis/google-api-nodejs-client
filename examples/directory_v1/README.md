@@ -37,5 +37,5 @@ Replace the `keyFile.pem` file with the generated file generated in the previous
 Then you can run examples.
 
 ```sh
-$ node ... .js
+$ node <example-you-want-to-run>.js
 ```
