@@ -15,19 +15,18 @@
  */
 
 // Dependencies
-var GoogleApis = require('googleapis')
-  , authData = require("./authData")
-  ;
+var GoogleApis = require('googleapis');
+var authData = require('./authData');
 
-console.log("Auth data is: ", authData);
+console.log('Auth data is: ', authData);
 
 // Create JWT auth object
 var jwt = new GoogleApis.auth.JWT(
-    authData.email
-  , authData.keyFile
-  , authData.key
-  , authData.scopes
-  , authData.subject
+    authData.email,
+    authData.keyFile,
+    authData.key,
+    authData.scopes,
+    authData.subject
 );
 
 // Authorize
@@ -37,9 +36,9 @@ jwt.authorize(function (err, data) {
 
     // Delete member from Google group
     GoogleAdmin.members.delete({
-        groupKey: "my_group@example.com"
-      , memberKey: "me@example.com"
-      , auth: jwt
+        groupKey: "my_group@example.com",
+        memberKey: "me@example.com",
+        auth: jwt
     }, function (err, data) {
         console.log(err || data);
     });

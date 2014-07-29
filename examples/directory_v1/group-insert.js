@@ -15,19 +15,18 @@
  */
 
 // Dependencies
-var GoogleApis = require('googleapis')
-  , authData = require("./authData")
-  ;
+var GoogleApis = require('googleapis');
+var authData = require('./authData');
 
-console.log("Auth data is: ", authData);
+console.log('Auth data is: ', authData);
 
 // Create JWT auth object
 var jwt = new GoogleApis.auth.JWT(
-    authData.email
-  , authData.keyFile
-  , authData.key
-  , authData.scopes
-  , authData.subject
+    authData.email,
+    authData.keyFile,
+    authData.key,
+    authData.scopes,
+    authData.subject
 );
 
 // Authorize
@@ -40,8 +39,8 @@ jwt.authorize(function (err, data) {
 
     // Insert group
     GoogleAdmin.groups.insert({
-        resource: { email: "some_group@example.com" }
-      , auth: jwt
+        resource: { email: "some_group@example.com" },
+        auth: jwt
     }, function (err, data) {
         console.log(err || data);
     });
