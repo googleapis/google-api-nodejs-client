@@ -3,7 +3,7 @@ Content-Type: application/json
 
 $resource
 --$boundary
-Content-Type: text/plain
+Content-Type: $mimeType
 
 $media
 --$boundary--
