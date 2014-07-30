@@ -18,6 +18,9 @@
 
 var assert = require('assert');
 var google = require('../lib/googleapis.js');
+var nock = require('nock');
+
+nock.disableNetConnect();
 
 describe('drive:v2', function() {
 
@@ -107,6 +110,20 @@ describe('drive:v2', function() {
     it('should be an object', function() {
       var drive = google.drive('v2');
       assert.equal(typeof drive._options, 'object');
+    });
+  });
+
+  describe('.files.list()', function() {
+    it('should not return missing param error', function(done) {
+      Array.prototype.lol = function() {};
+      var scope = nock('https://www.googleapis.com')
+        .get('/drive/v2/files?q=hello')
+        .reply(200);
+      var drive = google.drive('v2');
+      var req = drive.files.list({ q: 'hello' }, function(err, body) {
+        assert.equal(err, null);
+        done();
+      });
     });
   });
 });
