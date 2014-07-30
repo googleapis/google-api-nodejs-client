@@ -1,0 +1,10 @@
+{
+  "email": "21........misb7rvrmu@developer.gserviceaccount.com",
+  "keyFile": "./keyFile.pem",
+  "key": "f5938a...............68bf1a6d5ad02",
+  "scopes": [
+    "https://www.googleapis.com/auth/admin.directory.group",
+    "https://www.googleapis.com/auth/admin.directory.group.member"
+  ],
+  "subject":  "admin@example.com"
+}
