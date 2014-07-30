@@ -828,7 +828,6 @@ describe('OAuth2 client', function() {
       assert(expiry_date < now + 5000);
       assert.equal(oauth2client.credentials.refresh_token, 'abc');
       assert.equal(oauth2client.credentials.access_token, 'abc123');
-      assert.equal(oauth2client.credentials.expires_in, 1);
       assert.equal(oauth2client.credentials.token_type, 'Bearer');
       scope.done();
       done();
@@ -877,7 +876,6 @@ describe('OAuth2 client', function() {
       assert(expiry_date < now + 4000);
       assert.equal(oauth2client.credentials.refresh_token, 'abc');
       assert.equal(oauth2client.credentials.access_token, 'abc123');
-      assert.equal(oauth2client.credentials.expires_in, 1);
       assert.equal(oauth2client.credentials.token_type, 'Bearer');
       scope.done();
       done();
@@ -915,7 +913,7 @@ describe('OAuth2 client', function() {
   });
 
   describe('getToken()', function() {
-    it('should return expiry_date object with expires_in', function(done) {
+    it('should return expiry_date', function(done) {
       var now = (new Date()).getTime();
       var scope = nock('https://accounts.google.com')
           .post('/o/oauth2/token')
