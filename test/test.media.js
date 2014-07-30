@@ -204,4 +204,29 @@ describe('Media', function() {
       done();
     });
   });
+
+  it('should return err, {object}body, resp for streaming media requests', function(done) {
+    var scope = nock('https://www.googleapis.com')
+        .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
+        .reply(201, function(uri, reqBody) {
+      return JSON.stringify({ hello: 'world' });
+    });
+
+    var gmail = google.gmail('v1');
+    var resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
+    var body = fs.createReadStream(__dirname + '/fixtures/mediabody.txt');
+    var media = { mimeType: 'message/rfc822', body: body };
+    var req = gmail.users.drafts.create({
+      userId: 'me',
+      resource: resource,
+      media: media
+    }, function(err, body, resp) {
+      assert.equal(typeof body, 'object');
+      assert.equal(body.hello, 'world');
+      assert.equal(typeof resp, 'object');
+      assert.equal(resp.body, JSON.stringify(body));
+      scope.done();
+      done();
+    });
+  });
 });
