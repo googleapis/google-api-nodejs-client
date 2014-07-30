@@ -1,2 +1,4 @@
-tests/*
-examples/*
+test
+examples
+docs
+node_modules
