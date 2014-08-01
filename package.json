@@ -48,7 +48,8 @@
   "scripts": {
     "test": "mocha --reporter spec --timeout 4000",
     "generate-apis": "node scripts/generate",
-    "generate-docs": "jsdoc -c jsdoc-conf.json ./README.md"
+    "generate-docs": "jsdoc -c jsdoc-conf.json ./README.md",
+    "prepare": "npm run generate-apis && npm test && npm version patch"
   },
   "license": "Apache 2"
 }

@@ -574,6 +574,64 @@ function Blogger(options) {
     },
 
     /**
+     * blogger.pages.publish
+     *
+     * @desc Publishes a draft page.
+     *
+     * @alias blogger.pages.publish
+     * @memberOf! blogger(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.blogId - The ID of the blog.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    publish: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId + '/publish',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['blogId', 'pageId'],
+        pathParams: ['blogId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * blogger.pages.revert
+     *
+     * @desc Revert a published or scheduled page to draft state.
+     *
+     * @alias blogger.pages.revert
+     * @memberOf! blogger(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.blogId - The ID of the blog.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    revert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId + '/revert',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['blogId', 'pageId'],
+        pathParams: ['blogId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * blogger.pages.update
      *
      * @desc Update a page.
