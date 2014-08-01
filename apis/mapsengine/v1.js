@@ -1493,7 +1493,7 @@ function Mapsengine(options) {
        * @param  {string=} params.include - A comma separated list of optional data to include. Optional data available: schema.
        * @param  {string=} params.intersects - A geometry literal that specifies the spatial restriction of the query.
        * @param  {integer=} params.limit - The total number of features to return from the query, irrespective of the number of pages.
-       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging. The maximum supported value is 1000.
        * @param  {string=} params.orderBy - An SQL-like order by clause used to sort results. If this parameter is not included, the order of features is undefined.
        * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string=} params.select - A SQL-like projection clause used to specify returned properties. If this parameter is not included, all properties are returned.

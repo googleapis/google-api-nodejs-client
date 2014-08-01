@@ -25,21 +25,20 @@ var gen = new Generator({ debug: debug, includePrivate: false });
 console.log('Removing old APIs...');
 rimraf(__dirname + '/../apis', function(err) {
   if (err) {
-    console.error(err);
-  } else {
-    console.log('Generating APIs...');
-    gen.generateAllAPIs(function(err, success) {
+    throw err;
+  }
+  console.log('Generating APIs...');
+  gen.generateAllAPIs(function(err, success) {
+    if (err) {
+      throw err;
+    }
+    gen.generateIndex(function(err, filename) {
       if (err) {
         throw err;
       }
-      gen.generateIndex(function(err, filename) {
-        if (err) {
-          throw err;
-        }
-        console.log('Finished generating APIs!');
-      });
+      console.log('Finished generating APIs!');
     });
-  }
+  });
 });
 
 

@@ -83,7 +83,7 @@ function Cloudmonitoring(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.count - Maximum number of data points per page, which is used for pagination of results.
      * @param  {string=} params.labels - A collection of labels for the matching time series, which are represented as:   - key==value: key equals the value  - key=~value: key regex matches the value  - key!=value: key does not equal the value  - key!~value: key regex does not match the value  For example, to list all of the time series descriptors for the region us-central1, you could specify: label=cloud.googleapis.com%2Flocation=~us-central1.*
-     * @param  {string} params.metric - Metric names are protocol-free URLs as listed in the Supported Metrics page. For example, appengine.googleapis.com/http/server/response_count or compute.googleapis.com/instance/disk/read_ops_count.
+     * @param  {string} params.metric - Metric names are protocol-free URLs as listed in the Supported Metrics page. For example, compute.googleapis.com/instance/disk/read_ops_count.
      * @param  {string=} params.oldest - Start of the time interval (exclusive), which is expressed as an RFC 3339 timestamp. If neither oldest nor timespan is specified, the default time interval will be (youngest - 4 hours, youngest]
      * @param  {string=} params.pageToken - The pagination token, which is used to page through large result sets. Set this value to the value of the nextPageToken to retrieve the next page of results.
      * @param  {string} params.project - The project ID to which this time series belongs. The value can be the numeric project ID or string-based project name.
@@ -123,7 +123,7 @@ function Cloudmonitoring(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.count - Maximum number of time series descriptors per page. Used for pagination. If not specified, count = 100.
      * @param  {string=} params.labels - A collection of labels for the matching time series, which are represented as:   - key==value: key equals the value  - key=~value: key regex matches the value  - key!=value: key does not equal the value  - key!~value: key regex does not match the value  For example, to list all of the time series descriptors for the region us-central1, you could specify: label=cloud.googleapis.com%2Flocation=~us-central1.*
-     * @param  {string} params.metric - Metric names are protocol-free URLs as listed in the Supported Metrics page. For example, appengine.googleapis.com/http/server/response_count or compute.googleapis.com/instance/disk/read_ops_count.
+     * @param  {string} params.metric - Metric names are protocol-free URLs as listed in the Supported Metrics page. For example, compute.googleapis.com/instance/disk/read_ops_count.
      * @param  {string=} params.oldest - Start of the time interval (exclusive), which is expressed as an RFC 3339 timestamp. If neither oldest nor timespan is specified, the default time interval will be (youngest - 4 hours, youngest]
      * @param  {string=} params.pageToken - The pagination token, which is used to page through large result sets. Set this value to the value of the nextPageToken to retrieve the next page of results.
      * @param  {string} params.project - The project ID to which this time series belongs. The value can be the numeric project ID or string-based project name.
