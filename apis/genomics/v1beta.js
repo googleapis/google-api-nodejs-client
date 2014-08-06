@@ -779,8 +779,44 @@ function Genomics(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    coveragebuckets: {
+
+      /**
+       * genomics.readsets.coveragebuckets.list
+       *
+       * @desc Lists fixed width coverage buckets for a readset, each of which correspond to a range of a reference sequence. Each bucket summarizes coverage information across its corresponding genomic range. Coverage is defined as the number of reads which are aligned to a given base in the reference sequence. Coverage buckets are available at various bucket widths, enabling various coverage "zoom levels". The caller must have READ permissions for the target readset.
+       *
+       * @alias genomics.readsets.coveragebuckets.list
+       * @memberOf! genomics(v1beta)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.maxResults - The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
+       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param  {string=} params.range.sequenceEnd - The end position of the range on the reference, 1-based exclusive. If specified, sequenceName must also be specified.
+       * @param  {string=} params.range.sequenceName - The reference sequence name, for example "chr1", "1", or "chrX".
+       * @param  {string=} params.range.sequenceStart - The start position of the range on the reference, 1-based inclusive. If specified, sequenceName must also be specified.
+       * @param  {string} params.readsetId - Required. The ID of the readset over which coverage is requested.
+       * @param  {string=} params.targetBucketWidth - The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucket_width in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucket_width is currently 2048 base pairs; this is subject to change.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId + '/coveragebuckets',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['readsetId'],
+          pathParams: ['readsetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.variants = {
