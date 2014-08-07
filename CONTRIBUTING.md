@@ -45,6 +45,16 @@ npm run generate-docs
 
 Documentation will be generated in `docs/`.
 
+## Preparing for release
+
+Before releasing a new version, you should generate all APIs, run tests,
+bump the version in `package.json` and create a git tag for the release. You
+can automate all this with a patch version bump (version += 0.0.1) by running:
+
+``` sh
+npm run prepare
+```
+
 ## Contributor License Agreements
 
 Before creating a pull request, please fill out either the individual or
