@@ -166,4 +166,31 @@ describe('JWT auth client', function() {
       done();
     });
   });
+
+  it('should return expiry_date in milliseconds', function(done) {
+    var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+    jwt.credentials = {
+      refresh_token: 'jwt-placeholder'
+    };
+
+    var dateInSeconds = (new Date()).getTime() / 1000;
+
+    jwt.gapi = {
+      getToken: function(callback) {
+        callback(null, 'token');
+      },
+      token_expires: dateInSeconds
+    };
+
+    jwt.refreshToken_({}, function(err, creds) {
+      assert.notEqual(dateInSeconds, creds.expiry_date);
+      assert.equal(dateInSeconds * 1000, creds.expiry_date);
+      done();
+    });
+  });
 });
