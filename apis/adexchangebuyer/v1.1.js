@@ -22,7 +22,7 @@ var createAPIRequest = apirequest.createAPIRequest;
 /**
  * Ad Exchange Buyer API
  *
- * @classdesc Lets you manage your Ad Exchange Buyer account.
+ * @classdesc Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
  * @namespace adexchangebuyer
  * @version  v1.1
  * @variation v1.1

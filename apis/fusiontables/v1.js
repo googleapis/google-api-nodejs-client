@@ -730,6 +730,99 @@ function Fusiontables(options) {
 
   };
 
+  this.task = {
+
+    /**
+     * fusiontables.task.delete
+     *
+     * @desc Deletes the task, unless already started.
+     *
+     * @alias fusiontables.task.delete
+     * @memberOf! fusiontables(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.tableId - Table from which the task is being deleted.
+     * @param  {string} params.taskId -
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/tasks/' + params.taskId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['tableId', 'taskId'],
+        pathParams: ['tableId', 'taskId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * fusiontables.task.get
+     *
+     * @desc Retrieves a specific task by its id.
+     *
+     * @alias fusiontables.task.get
+     * @memberOf! fusiontables(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.tableId - Table to which the task belongs.
+     * @param  {string} params.taskId -
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/tasks/' + params.taskId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId', 'taskId'],
+        pathParams: ['tableId', 'taskId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * fusiontables.task.list
+     *
+     * @desc Retrieves a list of tasks.
+     *
+     * @alias fusiontables.task.list
+     * @memberOf! fusiontables(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {integer=} params.maxResults - Maximum number of columns to return. Optional. Default is 5.
+     * @param  {string=} params.pageToken -
+     * @param  {integer=} params.startIndex -
+     * @param  {string} params.tableId - Table whose tasks are being listed.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/tasks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.template = {
 
     /**

@@ -22,7 +22,7 @@ var createAPIRequest = apirequest.createAPIRequest;
 /**
  * Ad Exchange Buyer API
  *
- * @classdesc Lets you manage your Ad Exchange Buyer account.
+ * @classdesc Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
  * @namespace adexchangebuyer
  * @version  v1.3
  * @variation v1.3
@@ -141,6 +141,63 @@ function Adexchangebuyer(options) {
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.billingInfo = {
+
+    /**
+     * adexchangebuyer.billingInfo.get
+     *
+     * @desc Returns the billing information for one account specified by account ID.
+     *
+     * @alias adexchangebuyer.billingInfo.get
+     * @memberOf! adexchangebuyer(v1.3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {integer} params.accountId - The account id.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/' + params.accountId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.billingInfo.list
+     *
+     * @desc Retrieves a list of billing information for all accounts of the authenticated user.
+     *
+     * @alias adexchangebuyer.billingInfo.list
+     * @memberOf! adexchangebuyer(v1.3)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo',
+          method: 'GET'
+        },
+        params: params,
         context: self
       };
 
