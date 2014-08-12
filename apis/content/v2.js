@@ -241,40 +241,6 @@ function Content(options) {
 
   };
 
-  this.accountshipping = {
-
-    /**
-     * content.accountshipping.patch
-     *
-     * @desc Updates the shipping settings of the account. This method supports patch semantics.
-     *
-     * @alias content.accountshipping.patch
-     * @memberOf! content(v2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountshipping/' + params.accountId,
-          method: 'PATCH'
-        },
-        params: params,
-        requiredParams: ['merchantId', 'accountId'],
-        pathParams: ['accountId', 'merchantId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   this.accountstatuses = {
 
     /**
@@ -356,40 +322,6 @@ function Content(options) {
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  this.accounttax = {
-
-    /**
-     * content.accounttax.patch
-     *
-     * @desc Updates the tax settings of the account. This method supports patch semantics.
-     *
-     * @alias content.accounttax.patch
-     * @memberOf! content(v2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounttax/' + params.accountId,
-          method: 'PATCH'
-        },
-        params: params,
-        requiredParams: ['merchantId', 'accountId'],
-        pathParams: ['accountId', 'merchantId'],
         context: self
       };
 
