@@ -214,7 +214,7 @@ function Mapsengine(options) {
         batchInsert: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/mapsengine/exp2/rastercollections/' + params.id + '/permissions/batchInsert',
+              url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchInsert',
               method: 'POST'
             },
             params: params,
@@ -251,6 +251,34 @@ function Mapsengine(options) {
             options: {
               url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchInsert',
               method: 'POST'
+            },
+            params: params,
+            requiredParams: ['id'],
+            pathParams: ['id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * mapsengine.assets.tables.permissions.list
+         *
+         * @desc Return all of the permissions for the specified asset.
+         *
+         * @alias mapsengine.assets.tables.permissions.list
+         * @memberOf! mapsengine(exp2)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.id - The ID of the asset whose permissions will be listed.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions',
+              method: 'GET'
             },
             params: params,
             requiredParams: ['id'],
@@ -589,6 +617,34 @@ function Mapsengine(options) {
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.layers.permissions.list
+       *
+       * @desc Return all of the permissions for the specified asset.
+       *
+       * @alias mapsengine.layers.permissions.list
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset whose permissions will be listed.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };
@@ -821,6 +877,34 @@ function Mapsengine(options) {
           options: {
             url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchInsert',
             method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.maps.permissions.list
+       *
+       * @desc Return all of the permissions for the specified asset.
+       *
+       * @alias mapsengine.maps.permissions.list
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset whose permissions will be listed.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions',
+            method: 'GET'
           },
           params: params,
           requiredParams: ['id'],
@@ -1194,6 +1278,37 @@ function Mapsengine(options) {
       }
     },
 
+    permissions: {
+
+      /**
+       * mapsengine.rasterCollections.permissions.list
+       *
+       * @desc Return all of the permissions for the specified asset.
+       *
+       * @alias mapsengine.rasterCollections.permissions.list
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset whose permissions will be listed.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
     rasters: {
 
       /**
@@ -1501,6 +1616,37 @@ function Mapsengine(options) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    permissions: {
+
+      /**
+       * mapsengine.rasters.permissions.list
+       *
+       * @desc Return all of the permissions for the specified asset.
+       *
+       * @alias mapsengine.rasters.permissions.list
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset whose permissions will be listed.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions',
             method: 'GET'
           },
           params: params,
