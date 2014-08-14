@@ -333,32 +333,6 @@ function Content(options) {
   this.datafeeds = {
 
     /**
-     * content.datafeeds.batch
-     *
-     *
-     *
-     * @alias content.datafeeds.batch
-     * @memberOf! content(v2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    batch: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/content/v2/datafeedsNativeBatch',
-          method: 'POST'
-        },
-        params: params,
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * content.datafeeds.custombatch
      *
      *
@@ -562,32 +536,6 @@ function Content(options) {
   };
 
   this.datafeedstatuses = {
-
-    /**
-     * content.datafeedstatuses.batch
-     *
-     *
-     *
-     * @alias content.datafeedstatuses.batch
-     * @memberOf! content(v2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    batch: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/content/v2/datafeedstatusesNativeBatch',
-          method: 'POST'
-        },
-        params: params,
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * content.datafeedstatuses.custombatch

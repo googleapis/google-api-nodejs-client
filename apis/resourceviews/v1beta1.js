@@ -166,7 +166,7 @@ function Resourceviews(options) {
      * @memberOf! resourceviews(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 500, inclusive. (Default: 50)
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
@@ -197,7 +197,7 @@ function Resourceviews(options) {
      * @memberOf! resourceviews(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 500, inclusive. (Default: 50)
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.region - The region name of the resource view.
@@ -385,7 +385,7 @@ function Resourceviews(options) {
      * @memberOf! resourceviews(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 500, inclusive. (Default: 50)
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.zone - The zone name of the resource view.
@@ -416,7 +416,7 @@ function Resourceviews(options) {
      * @memberOf! resourceviews(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 500, inclusive. (Default: 50)
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param  {string} params.projectName - The project name of the resource view.
      * @param  {string} params.resourceViewName - The name of the resource view.

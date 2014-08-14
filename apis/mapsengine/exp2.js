@@ -191,104 +191,6 @@ function Mapsengine(options) {
 
         return createAPIRequest(parameters, callback);
       }
-    },
-
-    rasterCollections: {
-
-      permissions: {
-
-        /**
-         * mapsengine.assets.rasterCollections.permissions.batchInsert
-         *
-         * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
-         *
-         * @alias mapsengine.assets.rasterCollections.permissions.batchInsert
-         * @memberOf! mapsengine(exp2)
-         *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.id - The ID of the asset to which permissions will be added.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
-         * @return {object} Request object
-         */
-        batchInsert: function(params, callback) {
-          var parameters = {
-            options: {
-              url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchInsert',
-              method: 'POST'
-            },
-            params: params,
-            requiredParams: ['id'],
-            pathParams: ['id'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      }
-    },
-
-    tables: {
-
-      permissions: {
-
-        /**
-         * mapsengine.assets.tables.permissions.batchInsert
-         *
-         * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
-         *
-         * @alias mapsengine.assets.tables.permissions.batchInsert
-         * @memberOf! mapsengine(exp2)
-         *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.id - The ID of the asset to which permissions will be added.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
-         * @return {object} Request object
-         */
-        batchInsert: function(params, callback) {
-          var parameters = {
-            options: {
-              url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchInsert',
-              method: 'POST'
-            },
-            params: params,
-            requiredParams: ['id'],
-            pathParams: ['id'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * mapsengine.assets.tables.permissions.list
-         *
-         * @desc Return all of the permissions for the specified asset.
-         *
-         * @alias mapsengine.assets.tables.permissions.list
-         * @memberOf! mapsengine(exp2)
-         *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.id - The ID of the asset whose permissions will be listed.
-         * @param  {callback} callback - The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function(params, callback) {
-          var parameters = {
-            options: {
-              url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions',
-              method: 'GET'
-            },
-            params: params,
-            requiredParams: ['id'],
-            pathParams: ['id'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      }
     }
   };
 
@@ -1281,6 +1183,35 @@ function Mapsengine(options) {
     permissions: {
 
       /**
+       * mapsengine.rasterCollections.permissions.batchInsert
+       *
+       * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       *
+       * @alias mapsengine.rasterCollections.permissions.batchInsert
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset to which permissions will be added.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchInsert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchInsert',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * mapsengine.rasterCollections.permissions.list
        *
        * @desc Return all of the permissions for the specified asset.
@@ -2051,6 +1982,66 @@ function Mapsengine(options) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/parents',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    permissions: {
+
+      /**
+       * mapsengine.tables.permissions.batchInsert
+       *
+       * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       *
+       * @alias mapsengine.tables.permissions.batchInsert
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset to which permissions will be added.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchInsert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchInsert',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.permissions.list
+       *
+       * @desc Return all of the permissions for the specified asset.
+       *
+       * @alias mapsengine.tables.permissions.list
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset whose permissions will be listed.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions',
             method: 'GET'
           },
           params: params,
