@@ -306,7 +306,7 @@ function Mirror(options) {
      * @memberOf! mirror(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.
+     * @param  {string} params.id - The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.  - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
