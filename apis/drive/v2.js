@@ -570,7 +570,7 @@ function Drive(options) {
      * @param  {string} params.fileId - The ID of the file to copy.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the head revision of the new copy.
+     * @param  {boolean=} params.pinned - Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.timedTextLanguage - The language of the timed text.
      * @param  {string=} params.timedTextTrackName - The timed text track name.
      * @param  {string=} params.visibility - The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
@@ -688,7 +688,7 @@ function Drive(options) {
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the head revision of the uploaded file.
+     * @param  {boolean=} params.pinned - Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.timedTextLanguage - The language of the timed text.
      * @param  {string=} params.timedTextTrackName - The timed text track name.
      * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
@@ -759,7 +759,7 @@ function Drive(options) {
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the new revision.
+     * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.removeParents - Comma-separated list of parent IDs to remove.
      * @param  {boolean=} params.setModifiedDate - Whether to set the modified date with the supplied modified date.
      * @param  {string=} params.timedTextLanguage - The language of the timed text.
@@ -884,7 +884,7 @@ function Drive(options) {
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the new revision.
+     * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.removeParents - Comma-separated list of parent IDs to remove.
      * @param  {boolean=} params.setModifiedDate - Whether to set the modified date with the supplied modified date.
      * @param  {string=} params.timedTextLanguage - The language of the timed text.

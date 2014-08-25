@@ -325,6 +325,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
@@ -410,6 +411,7 @@ function Mapsengine(options) {
      * @memberOf! mapsengine(exp2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.force - If set to true, the API will allow publication of the layer even if it's out of date. If not true, you'll need to reprocess any out-of-date layer before publishing.
      * @param  {string} params.id - The ID of the layer.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -495,7 +497,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.layers.permissions.batchInsert
        *
-       * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
        * @alias mapsengine.layers.permissions.batchInsert
        * @memberOf! mapsengine(exp2)
@@ -653,6 +655,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
@@ -711,6 +714,7 @@ function Mapsengine(options) {
      * @memberOf! mapsengine(exp2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.force - If set to true, the API will allow publication of the map even if it's out of date. If false, the map must have a processingStatus of complete before publishing.
      * @param  {string} params.id - The ID of the map.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -763,7 +767,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.maps.permissions.batchInsert
        *
-       * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
        * @alias mapsengine.maps.permissions.batchInsert
        * @memberOf! mapsengine(exp2)
@@ -1071,6 +1075,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
@@ -1185,7 +1190,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.rasterCollections.permissions.batchInsert
        *
-       * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
        * @alias mapsengine.rasterCollections.permissions.batchInsert
        * @memberOf! mapsengine(exp2)
@@ -1415,6 +1420,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
@@ -1454,6 +1460,34 @@ function Mapsengine(options) {
         options: {
           url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
           method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.rasters.process
+     *
+     * @desc Process a raster asset.
+     *
+     * @alias mapsengine.rasters.process
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the raster.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    process: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/process',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['id'],
@@ -1693,6 +1727,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
@@ -1999,7 +2034,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.tables.permissions.batchInsert
        *
-       * @desc Add permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
        * @alias mapsengine.tables.permissions.batchInsert
        * @memberOf! mapsengine(exp2)

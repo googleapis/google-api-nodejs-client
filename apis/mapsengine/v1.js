@@ -82,6 +82,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {string=} params.type - An asset type restriction. If set, only resources of this type will be returned.
      * @param  {callback} callback - The callback that handles the response.
@@ -265,7 +266,9 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -349,6 +352,7 @@ function Mapsengine(options) {
      * @memberOf! mapsengine(v1)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.force - If set to true, the API will allow publication of the layer even if it's out of date. If not true, you'll need to reprocess any out-of-date layer before publishing.
      * @param  {string} params.id - The ID of the layer.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -532,7 +536,9 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -588,6 +594,7 @@ function Mapsengine(options) {
      * @memberOf! mapsengine(v1)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.force - If set to true, the API will allow publication of the map even if it's out of date. If false, the map must have a processingStatus of complete before publishing.
      * @param  {string} params.id - The ID of the map.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -662,8 +669,102 @@ function Mapsengine(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
+    },
 
+    icons: {
+
+      /**
+       * mapsengine.projects.icons.create
+       *
+       * @desc Create an icon.
+       *
+       * @alias mapsengine.projects.icons.create
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectId - The ID of the project.
+       * @param  {object} params.resource - Media resource metadata
+       * @param  {object} params.media - Media object
+       * @param  {string} params.media.mimeType - Media mime-type
+       * @param  {string|object} params.media.body - Media body contents
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/projects/' + params.projectId + '/icons',
+            method: 'POST'
+          },
+          params: params,
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/v1/projects/' + params.projectId + '/icons',
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.projects.icons.get
+       *
+       * @desc Return metadata for a specific icon
+       *
+       * @alias mapsengine.projects.icons.get
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the icon.
+       * @param  {string} params.projectId - The ID of the project.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/projects/' + params.projectId + '/icons/' + params.id,
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectId', 'id'],
+          pathParams: ['id', 'projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.projects.icons.list
+       *
+       * @desc Return all icons in the current project
+       *
+       * @alias mapsengine.projects.icons.list
+       * @memberOf! mapsengine(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 50.
+       * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {string} params.projectId - The ID of the project.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/v1/projects/' + params.projectId + '/icons',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.rasterCollections = {
@@ -795,7 +896,9 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -981,6 +1084,7 @@ function Mapsengine(options) {
        * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
        * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
        * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
        * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -1061,6 +1165,44 @@ function Mapsengine(options) {
     },
 
     /**
+     * mapsengine.rasters.list
+     *
+     * @desc Return all rasters readable by the current user.
+     *
+     * @alias mapsengine.rasters.list
+     * @memberOf! mapsengine(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.bbox - A bounding box, expressed as "west,south,east,north". If set, only assets which intersect this bounding box will be returned.
+     * @param  {string=} params.createdAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been created at or after this time.
+     * @param  {string=} params.createdBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been created at or before this time.
+     * @param  {string=} params.creatorEmail - An email address representing a user. Returned assets that have been created by the user associated with the provided email address.
+     * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
+     * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
+     * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
+     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
+     * @param  {string} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasters',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * mapsengine.rasters.patch
      *
      * @desc Mutate a raster asset.
@@ -1079,6 +1221,34 @@ function Mapsengine(options) {
         options: {
           url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id,
           method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.rasters.process
+     *
+     * @desc Process a raster asset.
+     *
+     * @alias mapsengine.rasters.process
+     * @memberOf! mapsengine(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the raster.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    process: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/v1/rasters/' + params.id + '/process',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['id'],
@@ -1287,7 +1457,9 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

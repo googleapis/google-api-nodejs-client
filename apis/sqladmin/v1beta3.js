@@ -39,7 +39,7 @@ function Sqladmin(options) {
     /**
      * sql.backupRuns.get
      *
-     * @desc Retrieves a resource containing information about a backup run.
+     * @desc Retrieves information about a specified backup run for a Cloud SQL instance.
      *
      * @alias sql.backupRuns.get
      * @memberOf! sqladmin(v1beta3)
@@ -70,7 +70,7 @@ function Sqladmin(options) {
     /**
      * sql.backupRuns.list
      *
-     * @desc Lists all backup runs associated with a given instance and configuration in the reverse chronological order of the enqueued time.
+     * @desc Lists all backup runs associated with a Cloud SQL instance.
      *
      * @alias sql.backupRuns.list
      * @memberOf! sqladmin(v1beta3)
@@ -106,7 +106,7 @@ function Sqladmin(options) {
     /**
      * sql.flags.list
      *
-     * @desc List all available database flags for Google Cloud SQL instances.
+     * @desc Lists all database flags that can be set for Google Cloud SQL instances.
      *
      * @alias sql.flags.list
      * @memberOf! sqladmin(v1beta3)
@@ -135,7 +135,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.clone
      *
-     * @desc Creates a Cloud SQL instance as a clone of the source instance.
+     * @desc Creates a Cloud SQL instance as a clone of a source instance.
      *
      * @alias sql.instances.clone
      * @memberOf! sqladmin(v1beta3)
@@ -223,7 +223,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.get
      *
-     * @desc Retrieves a resource containing information about a Cloud SQL instance.
+     * @desc Retrieves information about a Cloud SQL instance.
      *
      * @alias sql.instances.get
      * @memberOf! sqladmin(v1beta3)
@@ -252,7 +252,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.import
      *
-     * @desc Imports data into a Cloud SQL instance from a MySQL dump file in Google Cloud Storage.
+     * @desc Imports data into a Cloud SQL instance from a MySQL dump file stored in a Google Cloud Storage bucket.
      *
      * @alias sql.instances.import
      * @memberOf! sqladmin(v1beta3)
@@ -311,7 +311,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.list
      *
-     * @desc Lists instances under a given project in the alphabetical order of the instance name.
+     * @desc Lists instances for a given project, in alphabetical order by instance name.
      *
      * @alias sql.instances.list
      * @memberOf! sqladmin(v1beta3)
@@ -341,7 +341,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.patch
      *
-     * @desc Updates settings of a Cloud SQL instance. Caution: This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use patch.. This method supports patch semantics.
+     * @desc Updates the settings of a Cloud SQL instance. This method supports patch semantics.
      *
      * @alias sql.instances.patch
      * @memberOf! sqladmin(v1beta3)
@@ -369,9 +369,38 @@ function Sqladmin(options) {
     },
 
     /**
+     * sql.instances.promoteReplica
+     *
+     * @desc Promotes the read replica instance to be a stand-alone Cloud SQL instance.
+     *
+     * @alias sql.instances.promoteReplica
+     * @memberOf! sqladmin(v1beta3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instance - Cloud SQL read replica instance name.
+     * @param  {string} params.project - ID of the project that contains the read replica.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    promoteReplica: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/promoteReplica',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * sql.instances.resetSslConfig
      *
-     * @desc Deletes all client certificates and generates a new server SSL certificate for the instance. The changes will not take effect until the instance is restarted. Existing instances without a server certificate will need to call this once to set a server certificate.
+     * @desc Deletes all client certificates and generates a new server SSL certificate for a Cloud SQL instance.
      *
      * @alias sql.instances.resetSslConfig
      * @memberOf! sqladmin(v1beta3)
@@ -460,7 +489,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.setRootPassword
      *
-     * @desc Sets the password for the root user.
+     * @desc Sets the password for the root user of the specified Cloud SQL instance.
      *
      * @alias sql.instances.setRootPassword
      * @memberOf! sqladmin(v1beta3)
@@ -490,7 +519,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.update
      *
-     * @desc Updates settings of a Cloud SQL instance. Caution: This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use patch.
+     * @desc Updates the settings of a Cloud SQL instance.
      *
      * @alias sql.instances.update
      * @memberOf! sqladmin(v1beta3)
@@ -524,7 +553,7 @@ function Sqladmin(options) {
     /**
      * sql.operations.get
      *
-     * @desc Retrieves an instance operation that has been performed on an instance.
+     * @desc Retrieves information about a specific operation that was performed on a Cloud SQL instance.
      *
      * @alias sql.operations.get
      * @memberOf! sqladmin(v1beta3)
@@ -554,7 +583,7 @@ function Sqladmin(options) {
     /**
      * sql.operations.list
      *
-     * @desc Lists all instance operations that have been performed on the given Cloud SQL instance in the reverse chronological order of the start time.
+     * @desc Lists all operations that have been performed on a Cloud SQL instance.
      *
      * @alias sql.operations.list
      * @memberOf! sqladmin(v1beta3)
@@ -589,7 +618,7 @@ function Sqladmin(options) {
     /**
      * sql.sslCerts.delete
      *
-     * @desc Deletes the SSL certificate. The change will not take effect until the instance is restarted.
+     * @desc Deletes an SSL certificate from a Cloud SQL instance.
      *
      * @alias sql.sslCerts.delete
      * @memberOf! sqladmin(v1beta3)
@@ -619,7 +648,7 @@ function Sqladmin(options) {
     /**
      * sql.sslCerts.get
      *
-     * @desc Retrieves a particular SSL certificate. Does not include the private key (required for usage). The private key must be saved from the response to initial creation.
+     * @desc Retrieves an SSL certificate as specified by its SHA-1 fingerprint.
      *
      * @alias sql.sslCerts.get
      * @memberOf! sqladmin(v1beta3)
@@ -649,7 +678,7 @@ function Sqladmin(options) {
     /**
      * sql.sslCerts.insert
      *
-     * @desc Creates an SSL certificate and returns it along with the private key and server certificate authority. The new certificate will not be usable until the instance is restarted.
+     * @desc Creates an SSL certificate and returns the certificate, the associated private key, and the server certificate authority.
      *
      * @alias sql.sslCerts.insert
      * @memberOf! sqladmin(v1beta3)
@@ -679,7 +708,7 @@ function Sqladmin(options) {
     /**
      * sql.sslCerts.list
      *
-     * @desc Lists all of the current SSL certificates for the instance.
+     * @desc Lists all of the current SSL certificates defined for a Cloud SQL instance.
      *
      * @alias sql.sslCerts.list
      * @memberOf! sqladmin(v1beta3)
@@ -712,7 +741,7 @@ function Sqladmin(options) {
     /**
      * sql.tiers.list
      *
-     * @desc Lists all available service tiers for Google Cloud SQL, for example D1, D2. For related information, see Pricing.
+     * @desc Lists service tiers that can be used to create Google Cloud SQL instances.
      *
      * @alias sql.tiers.list
      * @memberOf! sqladmin(v1beta3)
