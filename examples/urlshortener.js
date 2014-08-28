@@ -26,4 +26,6 @@ var printResult = function(err, result) {
 };
 
 urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' }, printResult);
-urlshortener.url.insert({ longUrl: 'http://somelongurl.com' }, printResult);
+urlshortener.url.insert({ resource: {
+    longUrl: 'http://somelongurl.com' }
+}, printResult);
