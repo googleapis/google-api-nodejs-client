@@ -18,18 +18,18 @@ var customsearch = google.customsearch('v1');
 
 // You can get a custom search engine id at
 // https://www.google.com/cse/create/new
-var CX = 'INSERT YOUR CUSTOM SEARCH ENGINE ID here';
-var API_KEY = 'INSERT YOUR API KEY HERE';
-var SEARCH = 'INSERT A GOOGLE REQUEST HERE';
+const CX = 'INSERT YOUR CUSTOM SEARCH ENGINE ID here';
+const API_KEY = 'INSERT YOUR API KEY HERE';
+const SEARCH = 'INSERT A GOOGLE REQUEST HERE';
 
-customsearch.cse.list({ cx: CX, q: query, auth: API_KEY }, function(err, resp) {
+customsearch.cse.list({ cx: CX, q: SEARCH, auth: API_KEY }, function(err, resp) {
   if (err) {
     console.log('An error occured', err);
     return;
   }
   // Got the response from custom search
   console.log('Result: ' + resp.searchInformation.formattedTotalResults);
-  if (resp.items.length > 0) {
+  if (resp.items && resp.items.length > 0) {
     console.log('First result name is ' + resp.items[0].title);
   }
 });
