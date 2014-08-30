@@ -26,7 +26,7 @@ Submit a pull request. The repo owner will review your request. If it is
 approved, the change will be merged. If it needs additional work, the repo
 owner will respond with useful comments.
 
-## Generating APIs and Documentation
+## Generating APIs
 
 If you're a developer interested in contributing to this library, the following
 section will be useful for you. Each of the files in `apis/` is generated from
@@ -36,6 +36,20 @@ the following command:
 ``` sh
 npm run generate-apis
 ```
+
+You can pass in a custom Discovery URL:
+
+``` sh
+node scripts/generate --discovery-url "http://discoveryurl.example.com"
+```
+
+Or a custom Base URL:
+
+``` sh
+node scripts/generate --base-url "http://baseurl.example.com"
+```
+
+## Generating Documentation
 
 You can generate the documentation for the APIs by running:
 
