@@ -37,7 +37,7 @@ function requireAPI(filename) {
       throw new Error('Argument error: Accepts only string or object');
     }
     try {
-      var Endpoint = require(__dirname + '/' + filename + '/' + path.basename(version));
+      var Endpoint = require(path.join(__dirname, filename, path.basename(version)));
       var ep = new Endpoint(options);
       ep.google = this; // for drive.google.transporter
       return Object.freeze(ep); // create new & freeze
