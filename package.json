@@ -17,6 +17,9 @@
       "email": "monsur@google.com"
     }
   ],
+  "engines": {
+    "node": ">=0.10"
+  },
   "main": "./lib/googleapis",
   "repository": {
     "type": "git",
