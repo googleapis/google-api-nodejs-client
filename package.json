@@ -41,6 +41,7 @@
   "devDependencies": {
     "js-beautify": "1.5.1",
     "jsdoc": "3.3.0-alpha9",
+    "jshint": "^2.5.5",
     "mkdirp": "0.5.0",
     "mocha": "1.8.1",
     "nock": "0.42.1",
@@ -49,10 +50,11 @@
     "url": "0.7.9"
   },
   "scripts": {
+    "lint": "jshint lib test scripts apis",
     "test": "mocha --reporter spec --timeout 4000",
     "generate-apis": "node scripts/generate",
     "generate-docs": "jsdoc -c jsdoc-conf.json ./README.md",
-    "prepare": "npm run generate-apis && npm test && npm version patch"
+    "prepare": "npm run generate-apis && npm test && npm run lint && npm version patch"
   },
   "license": "Apache-2.0"
 }
