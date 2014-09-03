@@ -115,12 +115,11 @@ describe('drive:v2', function() {
 
   describe('.files.list()', function() {
     it('should not return missing param error', function(done) {
-      Array.prototype.lol = function() {};
-      var scope = nock('https://www.googleapis.com')
+      nock('https://www.googleapis.com')
         .get('/drive/v2/files?q=hello')
         .reply(200);
       var drive = google.drive('v2');
-      var req = drive.files.list({ q: 'hello' }, function(err, body) {
+      drive.files.list({ q: 'hello' }, function(err) {
         assert.equal(err, null);
         done();
       });

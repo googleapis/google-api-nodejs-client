@@ -32,7 +32,10 @@ describe('Urlshortener', function() {
     var obj = { longUrl: 'http://someurl...' };
 
     var req = urlshortener.url.insert(obj, noop);
-    assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...');
+    assert.equal(
+      req.uri.href,
+      'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
+    );
     assert.equal(req.method, 'POST');
   });
 

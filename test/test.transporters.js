@@ -17,14 +17,13 @@
 'use strict';
 
 var assert = require('assert');
-var googleapis = require('../lib/googleapis.js');
 var DefaultTransporter = require('../lib/transporters');
 
 describe('Transporters', function() {
 
   function noop() {}
 
-  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+';
+  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+.\\d+.\\d+';
   var transporter = new DefaultTransporter();
 
   it('should set default client user agent if none is set', function() {

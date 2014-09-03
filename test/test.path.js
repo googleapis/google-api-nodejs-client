@@ -18,7 +18,7 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
-var google, drive, authClient, OAuth2;
+var google, drive;
 
 describe('Path params', function() {
 
@@ -37,14 +37,14 @@ describe('Path params', function() {
   });
 
   it('should return an err object if not included and required', function(done) {
-    var req = drive.files.get({}, function(err, resp) {
+    drive.files.get({}, function(err) {
       assert.notEqual(err, null);
       done();
     });
   });
 
   it('should return null response object if not included and required', function(done) {
-    var req = drive.files.get({}, function(err, resp) {
+    drive.files.get({}, function(err, resp) {
       assert.equal(resp, null);
       done();
     });

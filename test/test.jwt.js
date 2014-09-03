@@ -60,7 +60,7 @@ describe('JWT auth client', function() {
         'http://foo',
         'bar@subjectaccount.com');
 
-    jwt.GAPI = function(opts, callback) {
+    jwt.GAPI = function(opts) {
       assert.equal('http://foo', opts.scope);
       done();
     };
