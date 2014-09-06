@@ -16,7 +16,7 @@
 'use strict';
 
 var path = require('path');
-
+var util = require('util');
 /**
  * Return a Function that requires an API from the disk
  * @param  {String} filename Filename of API
@@ -43,8 +43,7 @@ function requireAPI(filename) {
       return Object.freeze(ep); // create new & freeze
     }
     catch (e) {
-      console.log(e);
-      throw new Error('Error: Version \"' + version + '\" not found.');
+      throw new Error(util.format('Unable to load endpoint %s("%s"): %s', filename, version, e.message));
     }
   };
 }
