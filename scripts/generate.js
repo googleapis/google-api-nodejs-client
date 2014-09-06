@@ -18,12 +18,13 @@
 
 var Generator = require('../lib/generator');
 var rimraf = require('rimraf');
+var path = require('path')
 var debug = false;
 // constructors
 var gen = new Generator({ debug: debug, includePrivate: false });
 
 console.log('Removing old APIs...');
-rimraf(__dirname + '/../apis', function(err) {
+rimraf(path.join(__dirname, '..', 'apis'), function(err) {
   if (err) {
     throw err;
   }
