@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
@@ -47,20 +49,20 @@ function Genomics(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.allele - Required. The allele to look for ('A', 'C', 'G' or 'T').
      * @param  {string=} params.contig - Required. The contig to query over.
-     * @param  {string} params.datasetId - The ID of the dataset to query over. It must be public. Private datasets will return an unauthorized exception.
-     * @param  {string=} params.position - Required. The 1-based position to query at.
+     * @param  {string=} params.position - Required. The 0-based position to query.
+     * @param  {string} params.variantsetId - The ID of the variantset to query over. It must be public. Private variantsets will return an unauthorized exception.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.datasetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.variantsetId,
           method: 'GET'
         },
         params: params,
-        requiredParams: ['datasetId'],
-        pathParams: ['datasetId'],
+        requiredParams: ['variantsetId'],
+        pathParams: ['variantsetId'],
         context: self
       };
 
@@ -932,13 +934,13 @@ function Genomics(options) {
     /**
      * genomics.variants.getSummary
      *
-     * @desc Gets a summary of all the variant data in a dataset.
+     * @desc Gets a summary of all the variant data in a variantset.
      *
      * @alias genomics.variants.getSummary
      * @memberOf! genomics(v1beta)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {string=} params.datasetId - Required. The ID of the dataset to get variant summary information for.
+     * @param  {string=} params.variantsetId - Required. The ID of the variant set to get variant summary information for.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

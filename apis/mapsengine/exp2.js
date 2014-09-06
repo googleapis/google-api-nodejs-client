@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
@@ -83,8 +85,9 @@ function Mapsengine(options) {
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {string=} params.type - An asset type restriction. If set, only resources of this type will be returned.
+     * @param  {string=} params.type - A comma separated list of asset types. Returned assets will have one of the types from the provided list. Supported values are 'map', 'layer', 'rasterCollection' and 'table'.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -135,34 +138,6 @@ function Mapsengine(options) {
     },
 
     permissions: {
-
-      /**
-       * mapsengine.assets.permissions.getIdForEmail
-       *
-       * @desc Return permission ID given an email address.
-       *
-       * @alias mapsengine.assets.permissions.getIdForEmail
-       * @memberOf! mapsengine(exp2)
-       *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.email - The email address to be translated into permission ID.
-       * @param  {callback} callback - The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIdForEmail: function(params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/permissionids/' + params.email,
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['email'],
-          pathParams: ['email'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * mapsengine.assets.permissions.list
@@ -328,6 +303,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -658,6 +634,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {string=} params.version -
      * @param  {callback} callback - The callback that handles the response.
@@ -821,6 +798,38 @@ function Mapsengine(options) {
         return createAPIRequest(parameters, callback);
       }
     }
+  };
+
+  this.permissionIds = {
+
+    /**
+     * mapsengine.permissionIds.getIdForEmail
+     *
+     * @desc Return permission ID given an email address.
+     *
+     * @alias mapsengine.permissionIds.getIdForEmail
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.email - The email address to be translated into permission ID.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIdForEmail: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/permissionIds/' + params.email,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['email'],
+        pathParams: ['email'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
   };
 
   this.projects = {
@@ -1078,6 +1087,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1324,6 +1334,7 @@ function Mapsengine(options) {
        * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
        * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+       * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
        * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -1423,6 +1434,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1730,6 +1742,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1766,6 +1779,34 @@ function Mapsengine(options) {
         options: {
           url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
           method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.tables.process
+     *
+     * @desc Process a table asset.
+     *
+     * @alias mapsengine.tables.process
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the table.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    process: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/process',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['id'],

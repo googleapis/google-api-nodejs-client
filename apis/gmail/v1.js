@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
@@ -483,6 +485,7 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {string=} params.format - The format to return the message in.
        * @param  {string} params.id - The ID of the message to retrieve.
+       * @param  {string=} params.metadataHeaders - When given and format is METADATA, only include headers specified.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -505,12 +508,13 @@ function Gmail(options) {
       /**
        * gmail.users.messages.import
        *
-       * @desc Directly imports a message into only this user's mailbox, similar to receiving via SMTP. Does not send a message.
+       * @desc Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message.
        *
        * @alias gmail.users.messages.import
        * @memberOf! gmail(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.internalDateSource - Source for Gmail's internal date of the message.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object
@@ -538,12 +542,13 @@ function Gmail(options) {
       /**
        * gmail.users.messages.insert
        *
-       * @desc Directly inserts a message into only this user's mailbox. Does not send a message.
+       * @desc Directly inserts a message into only this user's mailbox similar to IMAP APPEND, bypassing most scanning and classification. Does not send a message.
        *
        * @alias gmail.users.messages.insert
        * @memberOf! gmail(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.internalDateSource - Source for Gmail's internal date of the message.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Media resource metadata
        * @param  {object} params.media - Media object

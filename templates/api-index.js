@@ -37,13 +37,15 @@ function requireAPI(filename) {
       throw new Error('Argument error: Accepts only string or object');
     }
     try {
-      var Endpoint = require(path.join(__dirname, filename, path.basename(version)));
+      var endpointPath = path.join(__dirname, filename, path.basename(version));
+      var Endpoint = require(endpointPath);
       var ep = new Endpoint(options);
       ep.google = this; // for drive.google.transporter
       return Object.freeze(ep); // create new & freeze
     }
     catch (e) {
-      throw new Error(util.format('Unable to load endpoint %s("%s"): %s', filename, version, e.message));
+      throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
+        filename, version, e.message));
     }
   };
 }

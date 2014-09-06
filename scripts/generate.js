@@ -18,7 +18,7 @@
 
 var Generator = require('../lib/generator');
 var rimraf = require('rimraf');
-var path = require('path')
+var path = require('path');
 var debug = false;
 // constructors
 var gen = new Generator({ debug: debug, includePrivate: false });

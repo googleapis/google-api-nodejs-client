@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
@@ -317,7 +319,7 @@ function Bigquery(options) {
     /**
      * bigquery.jobs.list
      *
-     * @desc Lists all the Jobs in the specified project that were started by the user.
+     * @desc Lists all the Jobs in the specified project that were started by the user. The job list returns in reverse chronological order of when the jobs were created, starting with the most recent job created.
      *
      * @alias bigquery.jobs.list
      * @memberOf! bigquery(v2)

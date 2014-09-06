@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
@@ -146,6 +148,35 @@ function Androidpublisher(options) {
         params: params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidpublisher.edits.validate
+     *
+     * @desc Checks that the edit can be successfully committed. The edit's changes are not applied to the live app.
+     *
+     * @alias androidpublisher.edits.validate
+     * @memberOf! androidpublisher(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.editId - Unique identifier for this edit.
+     * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    validate: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + ':validate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['packageName', 'editId'],
+        pathParams: ['editId', 'packageName'],
         context: self
       };
 

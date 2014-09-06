@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
@@ -225,63 +227,6 @@ function Adexchangebuyer(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
-          method: 'GET'
-        },
-        params: params,
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  this.directDeals = {
-
-    /**
-     * adexchangebuyer.directDeals.get
-     *
-     * @desc Gets one direct deal by ID.
-     *
-     * @alias adexchangebuyer.directDeals.get
-     * @memberOf! adexchangebuyer(v1.2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The direct deal id
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/directdeals/' + params.id,
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['id'],
-        pathParams: ['id'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * adexchangebuyer.directDeals.list
-     *
-     * @desc Retrieves the authenticated user's list of direct deals.
-     *
-     * @alias adexchangebuyer.directDeals.list
-     * @memberOf! adexchangebuyer(v1.2)
-     *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/directdeals',
           method: 'GET'
         },
         params: params,
