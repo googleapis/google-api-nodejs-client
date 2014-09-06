@@ -47,7 +47,8 @@
     "nock": "0.42.1",
     "rimraf": "2.2.8",
     "swig": "1.3.2",
-    "url": "0.7.9"
+    "url": "0.7.9",
+    "minimist": "1.1.0"
   },
   "scripts": {
     "lint": "jshint lib test scripts apis",
