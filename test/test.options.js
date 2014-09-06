@@ -82,6 +82,6 @@ describe('Options', function() {
     var req = drive.files.get({ auth: authClient, fileId: 'woot' }, noop);
     assert.equal(req.proxy.host, 'proxy.example.com');
     assert.equal(req.proxy.protocol, 'http:');
-    assert.equal(req.headers['Authorization'], 'Bearer abc');
+    assert.equal(req.headers.Authorization, 'Bearer abc');
   });
 });

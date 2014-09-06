@@ -37,9 +37,6 @@ describe('OAuth2 client', function() {
   var SCOPE = 'scopex';
   var SCOPE_ARRAY = ['scopex', 'scopey'];
 
-  var PUBLIC_KEY = '';
-  var PRIVATE_KEY = '';
-
   it('should generate a valid consent page url', function(done) {
     var opts = {
       access_type: ACCESS_TYPE,
@@ -118,7 +115,7 @@ describe('OAuth2 client', function() {
 
     var google = new googleapis.GoogleApis();
     var urlshortener = google.urlshortener('v1');
-    urlshortener.url.list({ auth: oauth2client }, function(err, result) {
+    urlshortener.url.list({ auth: oauth2client }, function(err) {
       assert.equal(oauth2client.credentials.token_type, 'Bearer');
       scope.done();
       done(err);
@@ -206,8 +203,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Wrong recipient/
     );
@@ -220,10 +220,6 @@ describe('OAuth2 client', function() {
         'utf-8');
     var privateKey = fs.readFileSync('./test/fixtures/private.pem',
         'utf-8');
-
-    var maxLifetimeSecs = 86400;
-    var now = new Date().getTime() / 1000;
-    var expiry = now + (maxLifetimeSecs / 2);
 
     var idToken = '{' +
         '"iss":"testissuer",' +
@@ -255,8 +251,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Wrong number of segments/
     );
@@ -303,8 +302,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-          {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Can\'t parse token envelope/
     );
@@ -351,8 +353,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-          {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Can\'t parse token payload/
     );
@@ -392,8 +397,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Invalid token signature/
     );
@@ -407,9 +415,7 @@ describe('OAuth2 client', function() {
     var privateKey = fs.readFileSync('./test/fixtures/private.pem',
         'utf-8');
 
-    var maxLifetimeSecs = 86400;
     var now = new Date().getTime() / 1000;
-    var expiry = now + (maxLifetimeSecs / 2);
 
     var idToken = '{' +
         '"iss":"testissuer",' +
@@ -439,8 +445,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /No expiration time/
     );
@@ -486,8 +495,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /No issue time/
     );
@@ -533,8 +545,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Expiration time too far in future/
     );
@@ -579,8 +594,13 @@ describe('OAuth2 client', function() {
 
     var oauth2client =
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    var login = oauth2client.verifySignedJwtWithCerts(data,
-        {keyid: publicKey}, 'testaudience', 'testissuer', maxExpiry);
+    oauth2client.verifySignedJwtWithCerts(
+      data,
+      {keyid: publicKey},
+      'testaudience',
+      'testissuer',
+      maxExpiry
+    );
 
     done();
   });
@@ -625,8 +645,11 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
       },
       /Token used too early/
     );
@@ -641,7 +664,6 @@ describe('OAuth2 client', function() {
         'utf-8');
 
     var maxLifetimeSecs = 86400;
-    var clockSkews = 300;
     var now = (new Date().getTime() / 1000);
     var expiry = now + (maxLifetimeSecs / 2);
     var idToken = '{' +
@@ -673,8 +695,12 @@ describe('OAuth2 client', function() {
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     assert.throws(
       function() {
-        var login = oauth2client.verifySignedJwtWithCerts(data,
-            {keyid: publicKey}, 'testaudience', 'testissuer');
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience',
+          'testissuer'
+        );
       },
       /Invalid issuer/
     );
@@ -689,7 +715,6 @@ describe('OAuth2 client', function() {
         'utf-8');
 
     var maxLifetimeSecs = 86400;
-    var clockSkews = 300;
     var now = (new Date().getTime() / 1000);
     var expiry = now + (maxLifetimeSecs / 2);
     var idToken = '{' +
@@ -719,46 +744,53 @@ describe('OAuth2 client', function() {
 
     var oauth2client =
       new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    var login = oauth2client.verifySignedJwtWithCerts(data,
-        {keyid: publicKey}, 'testaudience', 'testissuer');
+    oauth2client.verifySignedJwtWithCerts(
+      data,
+      {keyid: publicKey},
+      'testaudience',
+      'testissuer'
+    );
 
     done();
   });
 
   it('should be able to retrieve a list of Google certificates', function(done) {
-    var scope = nock('https://www.googleapis.com').get('/oauth2/v1/certs').replyWithFile(200, __dirname + '/fixtures/oauthcerts.json');
+    var scope = nock('https://www.googleapis.com')
+      .get('/oauth2/v1/certs')
+      .replyWithFile(200, __dirname + '/fixtures/oauthcerts.json');
     var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     oauth2client.getFederatedSignonCerts(function(err, certs) {
       assert.equal(err, null);
       assert.equal(Object.keys(certs).length, 2);
-      assert.notEqual(certs['a15eea964ab9cce480e5ef4f47cb17b9fa7d0b21'], null);
+      assert.notEqual(certs.a15eea964ab9cce480e5ef4f47cb17b9fa7d0b21, null);
       assert.notEqual(certs['39596dc3a3f12aa74b481579e4ec944f86d24b95'], null);
       scope.done();
       done();
     });
   });
 
-  it('should be able to retrieve a list of Google certificates from cache the second time', function(done) {
-    var scope = nock('https://www.googleapis.com')
-        .defaultReplyHeaders({
-          'Cache-Control': 'public, max-age=23641, must-revalidate, no-transform',
-          'Content-Type': 'application/json'
-        })
-        .get('/oauth2/v1/certs')
-        .once()
-        .replyWithFile(200, __dirname + '/fixtures/oauthcerts.json');
-    var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-    oauth2client.getFederatedSignonCerts(function(err, certs) {
-      assert.equal(err, null);
-      assert.equal(Object.keys(certs).length, 2);
-      scope.done(); // has retrieved from nock... nock no longer will reply
+  it('should be able to retrieve a list of Google certificates from cache again', function(done) {
+      var scope = nock('https://www.googleapis.com')
+          .defaultReplyHeaders({
+            'Cache-Control': 'public, max-age=23641, must-revalidate, no-transform',
+            'Content-Type': 'application/json'
+          })
+          .get('/oauth2/v1/certs')
+          .once()
+          .replyWithFile(200, __dirname + '/fixtures/oauthcerts.json');
+      var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       oauth2client.getFederatedSignonCerts(function(err, certs) {
         assert.equal(err, null);
         assert.equal(Object.keys(certs).length, 2);
-        scope.done();
-        done();
-      });
-    });
+        scope.done(); // has retrieved from nock... nock no longer will reply
+        oauth2client.getFederatedSignonCerts(function(err, certs) {
+          assert.equal(err, null);
+          assert.equal(Object.keys(certs).length, 2);
+          scope.done();
+          done();
+        });
+      }
+    );
   });
 
   it('should set redirect_uri if not provided in options', function() {
@@ -821,7 +853,7 @@ describe('OAuth2 client', function() {
     var now = (new Date()).getTime();
     var twoSecondsAgo = now - 2000;
     oauth2client.credentials = { refresh_token: 'abc', expiry_date: twoSecondsAgo };
-    drive.files.get({ fileId: 'wat' }, function(err, result) {
+    drive.files.get({ fileId: 'wat' }, function() {
       var expiry_date = oauth2client.credentials.expiry_date;
       assert.notEqual(expiry_date, undefined);
       assert(expiry_date > now);
@@ -843,8 +875,12 @@ describe('OAuth2 client', function() {
     var drive = google.drive({ version: 'v2', auth: oauth2client });
     var now = (new Date()).getTime();
     var tenSecondsFromNow = now + 10000;
-    oauth2client.credentials = { access_token: 'abc123', refresh_token: 'abc', expiry_date: tenSecondsFromNow };
-    drive.files.get({ fileId: 'wat' }, function(err, result) {
+    oauth2client.credentials = {
+      access_token: 'abc123',
+      refresh_token: 'abc',
+      expiry_date: tenSecondsFromNow
+    };
+    drive.files.get({ fileId: 'wat' }, function() {
       assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
         access_token: 'abc123',
         refresh_token: 'abc',
@@ -869,7 +905,7 @@ describe('OAuth2 client', function() {
     var drive = google.drive({ version: 'v2', auth: oauth2client });
     var now = (new Date()).getTime();
     oauth2client.credentials = { refresh_token: 'abc' };
-    drive.files.get({ fileId: 'wat' }, function(err, result) {
+    drive.files.get({ fileId: 'wat' }, function() {
       var expiry_date = oauth2client.credentials.expiry_date;
       assert.notEqual(expiry_date, undefined);
       assert(expiry_date > now);
@@ -888,7 +924,6 @@ describe('OAuth2 client', function() {
           .get('/o/oauth2/revoke?token=abc')
           .reply(200, { success: true });
       var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-      var google = new googleapis.GoogleApis();
       oauth2client.credentials = { access_token: 'abc', refresh_token: 'abc' };
       oauth2client.revokeCredentials(function(err, result) {
         assert.equal(err, null);
@@ -901,7 +936,6 @@ describe('OAuth2 client', function() {
 
     it('should clear credentials and return error if no access token to revoke', function(done) {
       var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-      var google = new googleapis.GoogleApis();
       oauth2client.credentials = { refresh_token: 'abc' };
       oauth2client.revokeCredentials(function(err, result) {
         assert.equal(err.message, 'No access token to revoke.');

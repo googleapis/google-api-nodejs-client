@@ -7,7 +7,7 @@
   "immed": true,
   "indent": 2,
   "latedef": "nofunc",
-  "maxlen": 80,
+  "maxlen": 100,
   "newcap": true,
   "node": true,
   "noarg": true,

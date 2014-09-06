@@ -22,11 +22,11 @@ var googleapis = require('../lib/googleapis.js');
 
 describe('Clients', function() {
 
-  it('should create request helpers according to the resource on discovery API response', function() {
-    var plus = googleapis.plus('v1');
-    assert.equal(typeof plus.people.get, 'function');
-    assert.equal(typeof plus.activities.search, 'function');
-    assert.equal(typeof plus.comments.list, 'function');
+  it('should create request helpers according to resource on discovery API response', function() {
+      var plus = googleapis.plus('v1');
+      assert.equal(typeof plus.people.get, 'function');
+      assert.equal(typeof plus.activities.search, 'function');
+      assert.equal(typeof plus.comments.list, 'function');
   });
 
   it('should be able to gen top level methods', function() {
@@ -51,10 +51,14 @@ describe('Clients', function() {
   it('should be able to require all api files without error', function() {
     function getFiles(dir, files_) {
       files_ = files_ || [];
-      if (typeof files_ === 'undefined') files_ = [];
+      if (typeof files_ === 'undefined') {
+        files_ = [];
+      }
       var files = fs.readdirSync(dir);
       for (var i in files) {
-          if (!files.hasOwnProperty(i)) continue;
+          if (!files.hasOwnProperty(i)) {
+            continue;
+          }
           var name = dir + '/' + files[i];
           if (fs.statSync(name).isDirectory()) {
               getFiles(name, files_);
@@ -69,7 +73,7 @@ describe('Clients', function() {
 
     assert.doesNotThrow(function() {
       for (var i in api_files) {
-        var obj = require(api_files[i]);
+        require(api_files[i]);
       }
     });
   });

@@ -46,7 +46,7 @@ function requireAPI(filename) {
       console.log(e);
       throw new Error('Error: Version \"' + version + '\" not found.');
     }
-  }
+  };
 }
 
 {%- set apisNames = items|getAPIs|uniq -%}

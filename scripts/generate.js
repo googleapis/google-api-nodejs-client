@@ -28,11 +28,11 @@ rimraf(__dirname + '/../apis', function(err) {
     throw err;
   }
   console.log('Generating APIs...');
-  gen.generateAllAPIs(function(err, success) {
+  gen.generateAllAPIs(function(err) {
     if (err) {
       throw err;
     }
-    gen.generateIndex(function(err, filename) {
+    gen.generateIndex(function(err) {
       if (err) {
         throw err;
       }
@@ -40,5 +40,3 @@ rimraf(__dirname + '/../apis', function(err) {
     });
   });
 });
-
-
