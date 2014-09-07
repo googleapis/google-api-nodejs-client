@@ -39,6 +39,8 @@
     "request": "2.37.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.1",
+    "istanbul": "~0.3.2",
     "js-beautify": "1.5.1",
     "jsdoc": "3.3.0-alpha9",
     "jshint": "^2.5.5",
@@ -55,7 +57,9 @@
     "test": "mocha --reporter spec --timeout 4000",
     "generate-apis": "node scripts/generate",
     "generate-docs": "jsdoc -c jsdoc-conf.json ./README.md",
-    "prepare": "npm run generate-apis && npm test && npm run lint && npm version patch"
+    "prepare": "npm run generate-apis && npm test && npm run lint && npm version patch",
+    "coverage": "istanbul cover -x 'apis/**' _mocha -- --reporter spec --timeout 4000",
+    "coveralls": "istanbul cover -x 'apis/**' _mocha --report lcovonly -- --reporter spec --timeout 4000 && cat coverage/lcov.info | coveralls"
   },
   "license": "Apache-2.0"
 }
