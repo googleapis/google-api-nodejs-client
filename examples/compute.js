@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
-var googleapis = require('../lib/googleapis.js');
+var request = require('request');
+var google = require('../lib/googleapis.js');
+var compute = google.compute('v1');
+var uri = 'http://metadata/computeMetadata/v1/project/project-id';
+var headers = { 'Metadata-Flavor': 'Google' };
 
-var compute = new googleapis.auth.Compute();
-compute.authorize(function(err, result) {
-  console.log(err, result);
+// This example can be run from a GCE VM in your project.  The example fetches
+// your project ID from the VM's metadata server, and then uses the Compute API
+// to fetch the list of GCE zones in your project.
+
+google.options({ auth: new google.auth.Compute() });
+request.get({ uri: uri, headers: headers }, function(error, response, project) {
+  if (!error && response.statusCode == 200) {
+    compute.zones.list({ project: project }, function(error, result) {
+      console.log(error, result);
+    });
+  }
 });
