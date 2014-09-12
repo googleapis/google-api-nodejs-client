@@ -1,4 +1,4 @@
-# Google APIs Node.js Client [![Build Status][travisimg]][travis]
+# Google APIs Node.js Client [![Build Status][travisimg]][travis] [![Code Coverage][coverallsimg]][coveralls]
 
 Google's officially supported [node.js][node] client library for using
 Google APIs. It also supports authorization and authentication with OAuth 2.0.
@@ -353,3 +353,5 @@ See [CONTRIBUTING][contributing].
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
 [gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
 [cloudplatform]: https://developers.google.com/cloud/
+[coveralls]: https://coveralls.io/r/google/google-api-nodejs-client?branch=master
+[coverallsimg]: https://coveralls.io/repos/google/google-api-nodejs-client/badge.png?branch=master
