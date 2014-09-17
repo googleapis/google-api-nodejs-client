@@ -24,20 +24,14 @@ nock.disableNetConnect();
 
 describe('Compute auth client', function() {
 
-  it('should get an initial access token', function(done) {
+  it('should get an access token for the first request', function(done) {
+    var scope = nock('http://metadata')
+        .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
+        .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
-    compute.transporter = {
-      request: function(opts, opt_callback) {
-        opt_callback(null, {
-          'access_token': 'initial-access-token',
-          'token_type': 'Bearer',
-          'expires_in': 3600
-        }, {});
-      }
-    };
-    compute.authorize(function() {
-      assert.equal('initial-access-token', compute.credentials.access_token);
-      assert.equal('compute-placeholder', compute.credentials.refresh_token);
+    compute.request({}, function() {
+      assert.equal(compute.credentials.access_token, 'abc123');
+      scope.done();
       done();
     });
   });
@@ -47,11 +41,8 @@ describe('Compute auth client', function() {
         .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
         .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
-    compute.credentials = {
-      access_token: 'initial-access-token',
-      refresh_token: 'compute-placeholder',
-      expiry_date: (new Date()).getTime() - 2000
-    };
+    compute.credentials.access_token = 'initial-access-token';
+    compute.credentials.expiry_date = (new Date()).getTime() - 10000;
     compute.request({}, function() {
       assert.equal(compute.credentials.access_token, 'abc123');
       scope.done();
@@ -59,15 +50,13 @@ describe('Compute auth client', function() {
     });
   });
 
-  it('should not refresh if access token has expired', function(done) {
+  it('should not refresh if access token has not expired', function(done) {
     var scope = nock('http://metadata')
         .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
         .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
-    compute.credentials = {
-      access_token: 'initial-access-token',
-      refresh_token: 'compute-placeholder'
-    };
+    compute.credentials.access_token = 'initial-access-token';
+    compute.credentials.expiry_date = (new Date()).getTime() + 10000;
     compute.request({}, function() {
       assert.equal(compute.credentials.access_token, 'initial-access-token');
       assert.equal(false, scope.isDone());
