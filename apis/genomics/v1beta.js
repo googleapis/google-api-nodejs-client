@@ -48,21 +48,21 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.allele - Required. The allele to look for ('A', 'C', 'G' or 'T').
-     * @param  {string=} params.contig - Required. The contig to query over.
      * @param  {string=} params.position - Required. The 0-based position to query.
-     * @param  {string} params.variantsetId - The ID of the variantset to query over. It must be public. Private variantsets will return an unauthorized exception.
+     * @param  {string=} params.referenceName - Required. The reference to query over.
+     * @param  {string} params.variantSetId - The ID of the variant set to query over. It must be public. Private variant sets will return an unauthorized exception.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.variantsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.variantSetId,
           method: 'GET'
         },
         params: params,
-        requiredParams: ['variantsetId'],
-        pathParams: ['variantsetId'],
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
         context: self
       };
 
@@ -76,7 +76,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.create
      *
-     * @desc Creates a new callset.
+     * @desc Creates a new call set.
      *
      * @alias genomics.callsets.create
      * @memberOf! genomics(v1beta)
@@ -102,25 +102,25 @@ function Genomics(options) {
     /**
      * genomics.callsets.delete
      *
-     * @desc Deletes a callset.
+     * @desc Deletes a call set.
      *
      * @alias genomics.callsets.delete
      * @memberOf! genomics(v1beta)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.callsetId - The ID of the callset to be deleted.
+     * @param  {string} params.callSetId - The ID of the callset to be deleted.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
           method: 'DELETE'
         },
         params: params,
-        requiredParams: ['callsetId'],
-        pathParams: ['callsetId'],
+        requiredParams: ['callSetId'],
+        pathParams: ['callSetId'],
         context: self
       };
 
@@ -130,25 +130,25 @@ function Genomics(options) {
     /**
      * genomics.callsets.get
      *
-     * @desc Gets a callset by ID.
+     * @desc Gets a call set by ID.
      *
      * @alias genomics.callsets.get
      * @memberOf! genomics(v1beta)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.callsetId - The ID of the callset.
+     * @param  {string} params.callSetId - The ID of the callset.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
           method: 'GET'
         },
         params: params,
-        requiredParams: ['callsetId'],
-        pathParams: ['callsetId'],
+        requiredParams: ['callSetId'],
+        pathParams: ['callSetId'],
         context: self
       };
 
@@ -158,13 +158,13 @@ function Genomics(options) {
     /**
      * genomics.callsets.patch
      *
-     * @desc Updates a callset. This method supports patch semantics.
+     * @desc Updates a call set. This method supports patch semantics.
      *
      * @alias genomics.callsets.patch
      * @memberOf! genomics(v1beta)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.callsetId - The ID of the callset to be updated.
+     * @param  {string} params.callSetId - The ID of the callset to be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -172,12 +172,12 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
           method: 'PATCH'
         },
         params: params,
-        requiredParams: ['callsetId'],
-        pathParams: ['callsetId'],
+        requiredParams: ['callSetId'],
+        pathParams: ['callSetId'],
         context: self
       };
 
@@ -187,7 +187,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.search
      *
-     * @desc Gets a list of callsets matching the criteria.
+     * @desc Gets a list of call sets matching the criteria.
      *
      * @alias genomics.callsets.search
      * @memberOf! genomics(v1beta)
@@ -213,13 +213,13 @@ function Genomics(options) {
     /**
      * genomics.callsets.update
      *
-     * @desc Updates a callset.
+     * @desc Updates a call set.
      *
      * @alias genomics.callsets.update
      * @memberOf! genomics(v1beta)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.callsetId - The ID of the callset to be updated.
+     * @param  {string} params.callSetId - The ID of the callset to be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -227,12 +227,12 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
           method: 'PUT'
         },
         params: params,
-        requiredParams: ['callsetId'],
-        pathParams: ['callsetId'],
+        requiredParams: ['callSetId'],
+        pathParams: ['callSetId'],
         context: self
       };
 
@@ -932,32 +932,6 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.variants.getSummary
-     *
-     * @desc Gets a summary of all the variant data in a variantset.
-     *
-     * @alias genomics.variants.getSummary
-     * @memberOf! genomics(v1beta)
-     *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.variantsetId - Required. The ID of the variant set to get variant summary information for.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    getSummary: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/summary',
-          method: 'GET'
-        },
-        params: params,
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * genomics.variants.import
      *
      * @desc Creates variant data by asynchronously importing the provided information.
@@ -977,35 +951,6 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * genomics.variants.patch
-     *
-     * @desc Updates a variant. This method supports patch semantics.
-     *
-     * @alias genomics.variants.patch
-     * @memberOf! genomics(v1beta)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantId - The ID of the variant to be updated..
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
-          method: 'PATCH'
-        },
-        params: params,
-        requiredParams: ['variantId'],
-        pathParams: ['variantId'],
         context: self
       };
 
@@ -1041,7 +986,7 @@ function Genomics(options) {
     /**
      * genomics.variants.update
      *
-     * @desc Updates a variant.
+     * @desc Updates a variant's names and info fields. All other modifications are silently ignored. Returns the modified variant without its calls.
      *
      * @alias genomics.variants.update
      * @memberOf! genomics(v1beta)
@@ -1061,6 +1006,92 @@ function Genomics(options) {
         params: params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.variantsets = {
+
+    /**
+     * genomics.variantsets.delete
+     *
+     * @desc Deletes the contents of a variant set. The variant set object is not deleted.
+     *
+     * @alias genomics.variantsets.delete
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - The ID of the variant set to be deleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/' + params.variantSetId,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.get
+     *
+     * @desc Gets a variant set by ID.
+     *
+     * @alias genomics.variantsets.get
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - Required. The ID of the variant set.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/' + params.variantSetId,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.search
+     *
+     * @desc Returns a list of all variant sets matching search criteria.
+     *
+     * @alias genomics.variantsets.search
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/search',
+          method: 'POST'
+        },
+        params: params,
         context: self
       };
 

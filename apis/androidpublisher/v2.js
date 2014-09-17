@@ -1476,6 +1476,37 @@ function Androidpublisher(options) {
       },
 
       /**
+       * androidpublisher.purchases.subscriptions.defer
+       *
+       * @desc Defers a user's subscription purchase until a specified future expiration time.
+       *
+       * @alias androidpublisher.purchases.subscriptions.defer
+       * @memberOf! androidpublisher(v2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
+       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      defer: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':defer',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['packageName', 'subscriptionId', 'token'],
+          pathParams: ['packageName', 'subscriptionId', 'token'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * androidpublisher.purchases.subscriptions.get
        *
        * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
@@ -1495,6 +1526,66 @@ function Androidpublisher(options) {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token,
             method: 'GET'
+          },
+          params: params,
+          requiredParams: ['packageName', 'subscriptionId', 'token'],
+          pathParams: ['packageName', 'subscriptionId', 'token'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * androidpublisher.purchases.subscriptions.refund
+       *
+       * @desc Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
+       *
+       * @alias androidpublisher.purchases.subscriptions.refund
+       * @memberOf! androidpublisher(v2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
+       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      refund: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':refund',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['packageName', 'subscriptionId', 'token'],
+          pathParams: ['packageName', 'subscriptionId', 'token'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * androidpublisher.purchases.subscriptions.revoke
+       *
+       * @desc Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
+       *
+       * @alias androidpublisher.purchases.subscriptions.revoke
+       * @memberOf! androidpublisher(v2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
+       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      revoke: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':revoke',
+            method: 'POST'
           },
           params: params,
           requiredParams: ['packageName', 'subscriptionId', 'token'],

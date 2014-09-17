@@ -264,7 +264,7 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the layer should be returned. When version is set to published, the published version of the layer will be returned. Please use the layers.getPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -272,6 +272,35 @@ function Mapsengine(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.layers.getPublished
+     *
+     * @desc Return the published metadata for a particular layer.
+     *
+     * @alias mapsengine.layers.getPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the layer.
+     * @param  {string=} params.version -
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/published',
           method: 'GET'
         },
         params: params,
@@ -312,6 +341,34 @@ function Mapsengine(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mapsengine/exp2/layers',
+          method: 'GET'
+        },
+        params: params,
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.layers.listPublished
+     *
+     * @desc Return all published layers readable by the current user.
+     *
+     * @alias mapsengine.layers.listPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
+     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/published',
           method: 'GET'
         },
         params: params,
@@ -471,11 +528,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.layers.permissions.batchInsert
+       * mapsengine.layers.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.layers.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.layers.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.layers.permissions.batchInsert
+       * @alias mapsengine.layers.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -484,10 +570,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -595,7 +681,7 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the map should be returned. When version is set to published, the published version of the map will be returned. Please use the maps.getPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -603,6 +689,34 @@ function Mapsengine(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.maps.getPublished
+     *
+     * @desc Return the published metadata for a particular map.
+     *
+     * @alias mapsengine.maps.getPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the map.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/published',
           method: 'GET'
         },
         params: params,
@@ -636,7 +750,7 @@ function Mapsengine(options) {
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the maps should be returned. When version is set to published this parameter will filter the result set to include only maps that are published. Please use the maps.listPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -644,6 +758,34 @@ function Mapsengine(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mapsengine/exp2/maps',
+          method: 'GET'
+        },
+        params: params,
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.maps.listPublished
+     *
+     * @desc Return all published maps readable by the current user.
+     *
+     * @alias mapsengine.maps.listPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
+     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/published',
           method: 'GET'
         },
         params: params,
@@ -742,11 +884,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.maps.permissions.batchInsert
+       * mapsengine.maps.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.maps.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.maps.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.maps.permissions.batchInsert
+       * @alias mapsengine.maps.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -755,10 +926,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -897,7 +1068,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.projects.icons.get
        *
-       * @desc Return metadata for a specific icon
+       * @desc Return an icon or its associated metadata
        *
        * @alias mapsengine.projects.icons.get
        * @memberOf! mapsengine(exp2)
@@ -1198,11 +1369,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.rasterCollections.permissions.batchInsert
+       * mapsengine.rasterCollections.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.rasterCollections.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.rasterCollections.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.rasterCollections.permissions.batchInsert
+       * @alias mapsengine.rasterCollections.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -1211,10 +1411,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -2073,11 +2273,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.tables.permissions.batchInsert
+       * mapsengine.tables.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.tables.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.tables.permissions.batchInsert
+       * @alias mapsengine.tables.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -2086,10 +2315,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,

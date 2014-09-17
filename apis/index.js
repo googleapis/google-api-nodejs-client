@@ -116,6 +116,7 @@ var APIs = {
   'translate': requireAPI('translate'),
   'urlshortener': requireAPI('urlshortener'),
   'webfonts': requireAPI('webfonts'),
+  'webmasters': requireAPI('webmasters'),
   'youtube': requireAPI('youtube'),
   'youtubeAnalytics': requireAPI('youtubeAnalytics')
 };

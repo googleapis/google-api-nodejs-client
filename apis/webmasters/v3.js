@@ -1,0 +1,408 @@
+/**
+ * Copyright 2014 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* jshint maxlen: false */
+
+'use strict';
+
+var apirequest = require('../../lib/apirequest');
+var createAPIRequest = apirequest.createAPIRequest;
+
+/**
+ * Webmaster Tools API
+ *
+ * @classdesc Lets you view Google Webmaster Tools data for your verified sites.
+ * @namespace webmasters
+ * @version  v3
+ * @variation v3
+ * @this Webmasters
+ * @param {object=} options Options for Webmasters
+ */
+function Webmasters(options) {
+
+  var self = this;
+  this._options = options || {};
+
+  this.sitemaps = {
+
+    /**
+     * webmasters.sitemaps.delete
+     *
+     * @desc Deletes a sitemap from this site.
+     *
+     * @alias webmasters.sitemaps.delete
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.feedpath - The URL of the actual sitemap (for example http://www.example.com/sitemap.xml).
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps/' + params.feedpath,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['siteUrl', 'feedpath'],
+        pathParams: ['feedpath', 'siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.sitemaps.get
+     *
+     * @desc Retrieves information about a specific sitemap.
+     *
+     * @alias webmasters.sitemaps.get
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.feedpath - The URL of the actual sitemap (for example http://www.example.com/sitemap.xml).
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps/' + params.feedpath,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['siteUrl', 'feedpath'],
+        pathParams: ['feedpath', 'siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.sitemaps.list
+     *
+     * @desc Lists sitemaps uploaded to the site.
+     *
+     * @alias webmasters.sitemaps.list
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string=} params.sitemapIndex - A URL of a site's sitemap index.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['siteUrl'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.sitemaps.submit
+     *
+     * @desc Submits a sitemap for a site.
+     *
+     * @alias webmasters.sitemaps.submit
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.feedpath - The URL of the sitemap to add.
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    submit: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps/' + params.feedpath,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['siteUrl', 'feedpath'],
+        pathParams: ['feedpath', 'siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.sites = {
+
+    /**
+     * webmasters.sites.add
+     *
+     * @desc Adds a site to the set of the user's sites in Webmaster Tools.
+     *
+     * @alias webmasters.sites.add
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.siteUrl - The URL of the site to add.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    add: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl,
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['siteUrl'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.sites.delete
+     *
+     * @desc Removes a site from the set of the user's Webmaster Tools sites.
+     *
+     * @alias webmasters.sites.delete
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['siteUrl'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.sites.get
+     *
+     * @desc Retrieves information about specific site.
+     *
+     * @alias webmasters.sites.get
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['siteUrl'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.sites.list
+     *
+     * @desc Lists your Webmaster Tools sites.
+     *
+     * @alias webmasters.sites.list
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites',
+          method: 'GET'
+        },
+        params: params,
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.urlcrawlerrorscounts = {
+
+    /**
+     * webmasters.urlcrawlerrorscounts.query
+     *
+     * @desc Retrieves a time series of the number of URL crawl errors per error category and platform.
+     *
+     * @alias webmasters.urlcrawlerrorscounts.query
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.category - The crawl error category, for example 'serverError'. If not specified, we return results for all categories.
+     * @param  {boolean=} params.latestCountsOnly - If true, returns only the latest crawl error counts.
+     * @param  {string=} params.platform - The user agent type (platform) that made the request, for example 'web'. If not specified, we return results for all platforms.
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    query: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsCounts/query',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['siteUrl'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.urlcrawlerrorssamples = {
+
+    /**
+     * webmasters.urlcrawlerrorssamples.get
+     *
+     * @desc Retrieves details about crawl errors for a site's sample URL.
+     *
+     * @alias webmasters.urlcrawlerrorssamples.get
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.category - The crawl error category, for example 'authPermissions'
+     * @param  {string} params.platform - The user agent type (platform) that made the request, for example 'web'
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.url - The relative path (without the site) of the sample URL; must be one of the URLs returned by list
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsSamples/' + params.url,
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['siteUrl', 'url', 'category', 'platform'],
+        pathParams: ['siteUrl', 'url'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.urlcrawlerrorssamples.list
+     *
+     * @desc Lists a site's sample URLs for the specified crawl error category and platform.
+     *
+     * @alias webmasters.urlcrawlerrorssamples.list
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.category - The crawl error category, for example 'authPermissions'
+     * @param  {string} params.platform - The user agent type (platform) that made the request, for example 'web'
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsSamples',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['siteUrl', 'category', 'platform'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * webmasters.urlcrawlerrorssamples.markAsFixed
+     *
+     * @desc Marks the provided site's sample URL as fixed, and removes it from the samples list.
+     *
+     * @alias webmasters.urlcrawlerrorssamples.markAsFixed
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.category - The crawl error category, for example 'authPermissions'
+     * @param  {string} params.platform - The user agent type (platform) that made the request, for example 'web'
+     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.url - The relative path (without the site) of the sample URL; must be one of the URLs returned by list
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    markAsFixed: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsSamples/' + params.url,
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['siteUrl', 'url', 'category', 'platform'],
+        pathParams: ['siteUrl', 'url'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+}
+
+/**
+ * Exports Webmasters object
+ * @type Webmasters
+ */
+module.exports = Webmasters;
