@@ -28,7 +28,7 @@ This library is distributed on `npm`. In order to add it as a dependency,
 run the following command:
 
 ``` sh
-$ npm install googleapis
+$ npm install googleapis --save
 ```
 
 ## Usage
