@@ -293,7 +293,6 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @param  {string=} params.version -
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1808,6 +1807,64 @@ function Mapsengine(options) {
     permissions: {
 
       /**
+       * mapsengine.rasters.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.rasters.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.rasters.permissions.batchUpdate
+       *
+       * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       *
+       * @alias mapsengine.rasters.permissions.batchUpdate
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset to which permissions will be added.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchUpdate: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions/batchUpdate',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * mapsengine.rasters.permissions.list
        *
        * @desc Return all of the permissions for the specified asset.
@@ -2077,7 +2134,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.tables.features.batchInsert
        *
-       * @desc Append the supplied features.
+       * @desc Append features to an existing table.  A single batchInsert request can create:  - Up to 50 features. - A combined total of 10 000 vertices. Feature limits are documented in the Supported data formats and limits article of the Google Maps Engine help center. Note that free and paid accounts have different limits.  For more information about inserting features, read Creating features in the Google Maps Engine developer's guide.
        *
        * @alias mapsengine.tables.features.batchInsert
        * @memberOf! mapsengine(exp2)
@@ -2106,7 +2163,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.tables.features.batchPatch
        *
-       * @desc Patch the supplied features.
+       * @desc Update the supplied features.  A single batchPatch request can update:  - Up to 50 features. - A combined total of 10 000 vertices. Feature limits are documented in the Supported data formats and limits article of the Google Maps Engine help center. Note that free and paid accounts have different limits.  Feature updates use HTTP PATCH semantics:  - A supplied value replaces an existing value (if any) in that field. - Omitted fields remain unchanged. - Complex values in geometries and properties must be replaced as atomic units. For example, providing just the coordinates of a geometry is not allowed; the complete geometry, including type, must be supplied. - Setting a property's value to null deletes that property. For more information about updating features, read Updating features in the Google Maps Engine developer's guide.
        *
        * @alias mapsengine.tables.features.batchPatch
        * @memberOf! mapsengine(exp2)
@@ -2176,7 +2233,7 @@ function Mapsengine(options) {
        * @param  {string=} params.include - A comma separated list of optional data to include. Optional data available: schema.
        * @param  {string=} params.intersects - A geometry literal that specifies the spatial restriction of the query.
        * @param  {integer=} params.limit - The total number of features to return from the query, irrespective of the number of pages.
-       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging. The maximum supported value is 1000.
        * @param  {string=} params.orderBy - An SQL-like order by clause used to sort results. If this parameter is not included, the order of features is undefined.
        * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string=} params.select - A SQL-like projection clause used to specify returned properties. If this parameter is not included, all properties are returned.

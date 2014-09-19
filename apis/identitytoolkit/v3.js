@@ -196,7 +196,7 @@ function Identitytoolkit(options) {
     /**
      * identitytoolkit.relyingparty.resetPassword
      *
-     * @desc Set account info for a user.
+     * @desc Reset password for a user.
      *
      * @alias identitytoolkit.relyingparty.resetPassword
      * @memberOf! identitytoolkit(v3)

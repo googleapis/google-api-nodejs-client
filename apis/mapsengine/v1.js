@@ -233,7 +233,7 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the layer should be returned. When version is set to published, the published version of the layer will be returned. Please use the layers.getPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

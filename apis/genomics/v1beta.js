@@ -335,7 +335,7 @@ function Genomics(options) {
      *
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.maxResults - The maximum number of results returned by this request.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -795,12 +795,12 @@ function Genomics(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string=} params.maxResults - The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
-       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string=} params.range.sequenceEnd - The end position of the range on the reference, 1-based exclusive. If specified, sequenceName must also be specified.
-       * @param  {string=} params.range.sequenceName - The reference sequence name, for example "chr1", "1", or "chrX".
+       * @param  {string=} params.range.sequenceName - The reference sequence name, for example chr1, 1, or chrX.
        * @param  {string=} params.range.sequenceStart - The start position of the range on the reference, 1-based inclusive. If specified, sequenceName must also be specified.
        * @param  {string} params.readsetId - Required. The ID of the readset over which coverage is requested.
-       * @param  {string=} params.targetBucketWidth - The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucket_width in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucket_width is currently 2048 base pairs; this is subject to change.
+       * @param  {string=} params.targetBucketWidth - The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucketWidth in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucketWidth is currently 2048 base pairs; this is subject to change.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -992,7 +992,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.variantId - The ID of the variant to be updated..
+     * @param  {string} params.variantId - The ID of the variant to be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
