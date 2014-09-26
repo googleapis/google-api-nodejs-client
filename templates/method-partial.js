@@ -34,8 +34,8 @@
     },
     params: params,
     {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ m.mediaUpload.protocols.simple.path|buildurl }},{%- endif -%}
-    {%- if m.parameterOrder.length -%}requiredParams: ['{{ m.parameterOrder|join("', '")|safe }}'],{%- endif -%}
-    {%- if pathParams.length -%}pathParams: ['{{ pathParams|join("', '")|safe }}'],{%- endif -%}
+    requiredParams: [{%- if m.parameterOrder.length -%}'{{ m.parameterOrder|join("', '")|safe }}'{%- endif -%}],
+    pathParams: [{%- if pathParams.length -%}'{{ pathParams|join("', '")|safe }}'{%- endif -%}],
     context: self
   };
 
