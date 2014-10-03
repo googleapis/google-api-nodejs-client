@@ -6,6 +6,10 @@
 Google's officially supported [node.js][node] client library for using
 Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
+### Alpha
+
+This library is in Alpha. We will make an effort to support the library, but we reserve the right to make incompatible changes when necessary.
+
 ### Migrating to version `1.0` of this library
 
 If you've used this library before `1.0`, see our [Migration Guide][migrating]
@@ -21,6 +25,8 @@ to learn about migrating your code from `0.x.x` to `1.0`. It's pretty easy :)
 If you're working with [Google Cloud Platform][cloudplatform] APIs such as
 Datastore, Cloud Storage or Pub/Sub, consider using [`gcloud`][gcloud], a
 Node idiomatic client for Google Cloud services.
+
+
 
 ## Installation
 
