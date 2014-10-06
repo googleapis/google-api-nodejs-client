@@ -54,7 +54,7 @@ function Tasks(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'DELETE'
         },
         params: params,
@@ -82,7 +82,7 @@ function Tasks(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'GET'
         },
         params: params,
@@ -164,7 +164,7 @@ function Tasks(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'PATCH'
         },
         params: params,
@@ -193,7 +193,7 @@ function Tasks(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/' + params.tasklist,
+          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'PUT'
         },
         params: params,
@@ -225,7 +225,7 @@ function Tasks(options) {
     clear: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/clear',
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/clear',
           method: 'POST'
         },
         params: params,
@@ -254,7 +254,7 @@ function Tasks(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'DELETE'
         },
         params: params,
@@ -283,7 +283,7 @@ function Tasks(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'GET'
         },
         params: params,
@@ -314,7 +314,7 @@ function Tasks(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks',
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
           method: 'POST'
         },
         params: params,
@@ -352,7 +352,7 @@ function Tasks(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks',
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
           method: 'GET'
         },
         params: params,
@@ -383,7 +383,7 @@ function Tasks(options) {
     move: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task + '/move',
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}/move',
           method: 'POST'
         },
         params: params,
@@ -413,7 +413,7 @@ function Tasks(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'PATCH'
         },
         params: params,
@@ -443,7 +443,7 @@ function Tasks(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/tasks/v1/lists/' + params.tasklist + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'PUT'
         },
         params: params,

@@ -58,11 +58,11 @@ function Admin(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/email/v2/users/' + params.userKey + '/mail',
+          url: 'https://www.googleapis.com/email/v2/users/{userKey}/mail',
           method: 'POST'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/email/v2/users/' + params.userKey + '/mail',
+        mediaUrl: 'https://www.googleapis.com/upload/email/v2/users/{userKey}/mail',
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self

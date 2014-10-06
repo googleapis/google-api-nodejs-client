@@ -57,7 +57,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/beacons/' + params.variantSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/beacons/{variantSetId}',
           method: 'GET'
         },
         params: params,
@@ -115,7 +115,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
           method: 'DELETE'
         },
         params: params,
@@ -143,7 +143,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
           method: 'GET'
         },
         params: params,
@@ -172,7 +172,7 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
           method: 'PATCH'
         },
         params: params,
@@ -227,7 +227,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/' + params.callSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
           method: 'PUT'
         },
         params: params,
@@ -285,7 +285,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
           method: 'DELETE'
         },
         params: params,
@@ -313,7 +313,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
           method: 'GET'
         },
         params: params,
@@ -370,7 +370,7 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
           method: 'PATCH'
         },
         params: params,
@@ -398,7 +398,7 @@ function Genomics(options) {
     undelete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId + '/undelete',
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}/undelete',
           method: 'POST'
         },
         params: params,
@@ -427,7 +427,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/' + params.datasetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
           method: 'PUT'
         },
         params: params,
@@ -491,7 +491,7 @@ function Genomics(options) {
     cancel: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/jobs/' + params.jobId + '/cancel',
+          url: 'https://www.googleapis.com/genomics/v1beta/jobs/{jobId}/cancel',
           method: 'POST'
         },
         params: params,
@@ -519,7 +519,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/jobs/' + params.jobId,
+          url: 'https://www.googleapis.com/genomics/v1beta/jobs/{jobId}',
           method: 'GET'
         },
         params: params,
@@ -607,7 +607,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
           method: 'DELETE'
         },
         params: params,
@@ -661,7 +661,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
           method: 'GET'
         },
         params: params,
@@ -716,7 +716,7 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
           method: 'PATCH'
         },
         params: params,
@@ -771,7 +771,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
           method: 'PUT'
         },
         params: params,
@@ -807,7 +807,7 @@ function Genomics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/genomics/v1beta/readsets/' + params.readsetId + '/coveragebuckets',
+            url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}/coveragebuckets',
             method: 'GET'
           },
           params: params,
@@ -865,7 +865,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/{variantId}',
           method: 'DELETE'
         },
         params: params,
@@ -919,7 +919,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/{variantId}',
           method: 'GET'
         },
         params: params,
@@ -934,7 +934,7 @@ function Genomics(options) {
     /**
      * genomics.variants.import
      *
-     * @desc Creates variant data by asynchronously importing the provided information.
+     * @desc Creates variant data by asynchronously importing the provided information. The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a VariantSet.
      *
      * @alias genomics.variants.import
      * @memberOf! genomics(v1beta)
@@ -1000,7 +1000,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/' + params.variantId,
+          url: 'https://www.googleapis.com/genomics/v1beta/variants/{variantId}',
           method: 'PUT'
         },
         params: params,
@@ -1032,7 +1032,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/' + params.variantSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
           method: 'DELETE'
         },
         params: params,
@@ -1060,8 +1060,37 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/' + params.variantSetId,
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
           method: 'GET'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.mergeVariants
+     *
+     * @desc Merges the given variants with existing variants. Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded.
+     *
+     * @alias genomics.variantsets.mergeVariants
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - The destination variant set.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    mergeVariants: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}/mergeVariants',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['variantSetId'],

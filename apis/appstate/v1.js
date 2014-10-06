@@ -55,7 +55,7 @@ function Appstate(options) {
     clear: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey + '/clear',
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}/clear',
           method: 'POST'
         },
         params: params,
@@ -83,7 +83,7 @@ function Appstate(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey,
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'DELETE'
         },
         params: params,
@@ -111,7 +111,7 @@ function Appstate(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey,
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'GET'
         },
         params: params,
@@ -167,7 +167,7 @@ function Appstate(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey,
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'PUT'
         },
         params: params,

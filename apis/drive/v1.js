@@ -56,7 +56,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/{id}',
           method: 'GET'
         },
         params: params,
@@ -118,7 +118,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -153,11 +153,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/{id}',
           method: 'PUT'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files/' + params.id,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files/{id}',
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self

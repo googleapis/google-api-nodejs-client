@@ -54,7 +54,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'GET'
         },
         params: params,
@@ -108,7 +108,7 @@ function Adexchangebuyer(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -137,7 +137,7 @@ function Adexchangebuyer(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'PUT'
         },
         params: params,
@@ -169,7 +169,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/' + params.accountId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -227,7 +227,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives/' + params.accountId + '/' + params.buyerCreativeId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
         },
         params: params,
@@ -315,7 +315,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals/{id}',
           method: 'GET'
         },
         params: params,
@@ -408,7 +408,7 @@ function Adexchangebuyer(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'DELETE'
         },
         params: params,
@@ -437,7 +437,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'GET'
         },
         params: params,
@@ -466,7 +466,7 @@ function Adexchangebuyer(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}',
           method: 'POST'
         },
         params: params,
@@ -494,7 +494,7 @@ function Adexchangebuyer(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -524,7 +524,7 @@ function Adexchangebuyer(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'PATCH'
         },
         params: params,
@@ -554,7 +554,7 @@ function Adexchangebuyer(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/' + params.accountId + '/' + params.configId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'PUT'
         },
         params: params,

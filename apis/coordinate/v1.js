@@ -54,7 +54,7 @@ function Coordinate(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/custom_fields',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/custom_fields',
           method: 'GET'
         },
         params: params,
@@ -87,7 +87,7 @@ function Coordinate(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}',
           method: 'GET'
         },
         params: params,
@@ -125,7 +125,7 @@ function Coordinate(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs',
           method: 'POST'
         },
         params: params,
@@ -156,7 +156,7 @@ function Coordinate(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs',
           method: 'GET'
         },
         params: params,
@@ -196,7 +196,7 @@ function Coordinate(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}',
           method: 'PATCH'
         },
         params: params,
@@ -236,7 +236,7 @@ function Coordinate(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId,
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}',
           method: 'PUT'
         },
         params: params,
@@ -272,7 +272,7 @@ function Coordinate(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/workers/' + params.workerEmail + '/locations',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/workers/{workerEmail}/locations',
           method: 'GET'
         },
         params: params,
@@ -305,7 +305,7 @@ function Coordinate(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule',
           method: 'GET'
         },
         params: params,
@@ -339,7 +339,7 @@ function Coordinate(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule',
           method: 'PATCH'
         },
         params: params,
@@ -373,7 +373,7 @@ function Coordinate(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/jobs/' + params.jobId + '/schedule',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule',
           method: 'PUT'
         },
         params: params,
@@ -405,7 +405,7 @@ function Coordinate(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/coordinate/v1/teams/' + params.teamId + '/workers',
+          url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/workers',
           method: 'GET'
         },
         params: params,

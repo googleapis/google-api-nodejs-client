@@ -57,7 +57,7 @@ function Sqladmin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/backupRuns/' + params.backupConfiguration,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns/{backupConfiguration}',
           method: 'GET'
         },
         params: params,
@@ -89,7 +89,7 @@ function Sqladmin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/backupRuns',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns',
           method: 'GET'
         },
         params: params,
@@ -151,7 +151,7 @@ function Sqladmin(options) {
     clone: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/clone',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/clone',
           method: 'POST'
         },
         params: params,
@@ -180,7 +180,7 @@ function Sqladmin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
           method: 'DELETE'
         },
         params: params,
@@ -210,7 +210,7 @@ function Sqladmin(options) {
     export: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/export',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/export',
           method: 'POST'
         },
         params: params,
@@ -239,7 +239,7 @@ function Sqladmin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
           method: 'GET'
         },
         params: params,
@@ -269,7 +269,7 @@ function Sqladmin(options) {
     import: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/import',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/import',
           method: 'POST'
         },
         params: params,
@@ -298,7 +298,7 @@ function Sqladmin(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances',
           method: 'POST'
         },
         params: params,
@@ -328,7 +328,7 @@ function Sqladmin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances',
           method: 'GET'
         },
         params: params,
@@ -358,7 +358,7 @@ function Sqladmin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
           method: 'PATCH'
         },
         params: params,
@@ -387,7 +387,7 @@ function Sqladmin(options) {
     promoteReplica: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/promoteReplica',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/promoteReplica',
           method: 'POST'
         },
         params: params,
@@ -416,7 +416,7 @@ function Sqladmin(options) {
     resetSslConfig: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/resetSslConfig',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/resetSslConfig',
           method: 'POST'
         },
         params: params,
@@ -445,7 +445,7 @@ function Sqladmin(options) {
     restart: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/restart',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/restart',
           method: 'POST'
         },
         params: params,
@@ -476,7 +476,7 @@ function Sqladmin(options) {
     restoreBackup: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/restoreBackup',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/restoreBackup',
           method: 'POST'
         },
         params: params,
@@ -506,7 +506,7 @@ function Sqladmin(options) {
     setRootPassword: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/setRootPassword',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/setRootPassword',
           method: 'POST'
         },
         params: params,
@@ -536,7 +536,7 @@ function Sqladmin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
           method: 'PUT'
         },
         params: params,
@@ -570,7 +570,7 @@ function Sqladmin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -601,7 +601,7 @@ function Sqladmin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/operations',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/operations',
           method: 'GET'
         },
         params: params,
@@ -635,7 +635,7 @@ function Sqladmin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts/' + params.sha1Fingerprint,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
           method: 'DELETE'
         },
         params: params,
@@ -665,7 +665,7 @@ function Sqladmin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts/' + params.sha1Fingerprint,
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
           method: 'GET'
         },
         params: params,
@@ -695,7 +695,7 @@ function Sqladmin(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts',
           method: 'POST'
         },
         params: params,
@@ -724,7 +724,7 @@ function Sqladmin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/instances/' + params.instance + '/sslCerts',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts',
           method: 'GET'
         },
         params: params,
@@ -756,7 +756,7 @@ function Sqladmin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/' + params.project + '/tiers',
+          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/tiers',
           method: 'GET'
         },
         params: params,

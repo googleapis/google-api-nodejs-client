@@ -54,7 +54,7 @@ function Plusdomains(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId,
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}',
           method: 'GET'
         },
         params: params,
@@ -84,7 +84,7 @@ function Plusdomains(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/activities',
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities',
           method: 'POST'
         },
         params: params,
@@ -115,7 +115,7 @@ function Plusdomains(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/activities/' + params.collection,
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities/{collection}',
           method: 'GET'
         },
         params: params,
@@ -149,7 +149,7 @@ function Plusdomains(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/audiences',
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/audiences',
           method: 'GET'
         },
         params: params,
@@ -183,7 +183,7 @@ function Plusdomains(options) {
     addPeople: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'PUT'
         },
         params: params,
@@ -211,7 +211,7 @@ function Plusdomains(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'GET'
         },
         params: params,
@@ -240,7 +240,7 @@ function Plusdomains(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/circles',
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
           method: 'POST'
         },
         params: params,
@@ -270,7 +270,7 @@ function Plusdomains(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/circles',
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
           method: 'GET'
         },
         params: params,
@@ -299,7 +299,7 @@ function Plusdomains(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'PATCH'
         },
         params: params,
@@ -327,7 +327,7 @@ function Plusdomains(options) {
     remove: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'DELETE'
         },
         params: params,
@@ -357,7 +357,7 @@ function Plusdomains(options) {
     removePeople: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'DELETE'
         },
         params: params,
@@ -386,7 +386,7 @@ function Plusdomains(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId,
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'PUT'
         },
         params: params,
@@ -418,7 +418,7 @@ function Plusdomains(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/plusDomains/v1/comments/{commentId}',
           method: 'GET'
         },
         params: params,
@@ -447,7 +447,7 @@ function Plusdomains(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/comments',
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
           method: 'POST'
         },
         params: params,
@@ -478,7 +478,7 @@ function Plusdomains(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/comments',
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
           method: 'GET'
         },
         params: params,
@@ -515,11 +515,11 @@ function Plusdomains(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/media/{collection}',
           method: 'POST'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/' + params.userId + '/media/' + params.collection,
+        mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/{userId}/media/{collection}',
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
         context: self
@@ -548,7 +548,7 @@ function Plusdomains(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId,
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}',
           method: 'GET'
         },
         params: params,
@@ -580,7 +580,7 @@ function Plusdomains(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/people/' + params.userId + '/people/' + params.collection,
+          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/people/{collection}',
           method: 'GET'
         },
         params: params,
@@ -611,7 +611,7 @@ function Plusdomains(options) {
     listByActivity: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/' + params.activityId + '/people/' + params.collection,
+          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/people/{collection}',
           method: 'GET'
         },
         params: params,
@@ -641,7 +641,7 @@ function Plusdomains(options) {
     listByCircle: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/' + params.circleId + '/people',
+          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'GET'
         },
         params: params,

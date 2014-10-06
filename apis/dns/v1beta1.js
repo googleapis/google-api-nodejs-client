@@ -56,7 +56,7 @@ function Dns(options) {
     create: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes',
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones/{managedZone}/changes',
           method: 'POST'
         },
         params: params,
@@ -86,7 +86,7 @@ function Dns(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes/' + params.changeId,
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones/{managedZone}/changes/{changeId}',
           method: 'GET'
         },
         params: params,
@@ -119,7 +119,7 @@ function Dns(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/changes',
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones/{managedZone}/changes',
           method: 'GET'
         },
         params: params,
@@ -152,7 +152,7 @@ function Dns(options) {
     create: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones',
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones',
           method: 'POST'
         },
         params: params,
@@ -181,7 +181,7 @@ function Dns(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone,
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones/{managedZone}',
           method: 'DELETE'
         },
         params: params,
@@ -210,7 +210,7 @@ function Dns(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone,
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones/{managedZone}',
           method: 'GET'
         },
         params: params,
@@ -240,7 +240,7 @@ function Dns(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones',
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones',
           method: 'GET'
         },
         params: params,
@@ -272,7 +272,7 @@ function Dns(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project,
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}',
           method: 'GET'
         },
         params: params,
@@ -309,7 +309,7 @@ function Dns(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dns/v1beta1/projects/' + params.project + '/managedZones/' + params.managedZone + '/rrsets',
+          url: 'https://www.googleapis.com/dns/v1beta1/projects/{project}/managedZones/{managedZone}/rrsets',
           method: 'GET'
         },
         params: params,

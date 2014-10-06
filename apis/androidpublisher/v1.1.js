@@ -56,7 +56,7 @@ function Androidpublisher(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/inapp/' + params.productId + '/purchases/' + params.token,
+          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/{packageName}/inapp/{productId}/purchases/{token}',
           method: 'GET'
         },
         params: params,
@@ -90,7 +90,7 @@ function Androidpublisher(options) {
     cancel: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/subscriptions/' + params.subscriptionId + '/purchases/' + params.token + '/cancel',
+          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel',
           method: 'POST'
         },
         params: params,
@@ -120,7 +120,7 @@ function Androidpublisher(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/' + params.packageName + '/subscriptions/' + params.subscriptionId + '/purchases/' + params.token,
+          url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}',
           method: 'GET'
         },
         params: params,

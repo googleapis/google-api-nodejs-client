@@ -55,7 +55,7 @@ function Adsense(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -114,7 +114,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients',
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients',
             method: 'GET'
           },
           params: params,
@@ -147,7 +147,7 @@ function Adsense(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits/' + params.adUnitId,
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'GET'
           },
           params: params,
@@ -179,7 +179,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits',
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'GET'
           },
           params: params,
@@ -213,7 +213,7 @@ function Adsense(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits/' + params.adUnitId + '/customchannels',
+              url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
               method: 'GET'
             },
             params: params,
@@ -247,7 +247,7 @@ function Adsense(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId,
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}',
             method: 'GET'
           },
           params: params,
@@ -278,7 +278,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/customchannels',
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/customchannels',
             method: 'GET'
           },
           params: params,
@@ -313,7 +313,7 @@ function Adsense(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId + '/adunits',
+              url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
               method: 'GET'
             },
             params: params,
@@ -355,7 +355,7 @@ function Adsense(options) {
       generate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/reports',
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/reports',
             method: 'GET'
           },
           params: params,
@@ -389,7 +389,7 @@ function Adsense(options) {
         generate: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/reports/' + params.savedReportId,
+              url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/reports/{savedReportId}',
               method: 'GET'
             },
             params: params,
@@ -419,7 +419,7 @@ function Adsense(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/reports/saved',
+              url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/reports/saved',
               method: 'GET'
             },
             params: params,
@@ -452,7 +452,7 @@ function Adsense(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/savedadstyles/' + params.savedAdStyleId,
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/savedadstyles/{savedAdStyleId}',
             method: 'GET'
           },
           params: params,
@@ -482,7 +482,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/savedadstyles',
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/savedadstyles',
             method: 'GET'
           },
           params: params,
@@ -516,7 +516,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/urlchannels',
+            url: 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/urlchannels',
             method: 'GET'
           },
           params: params,
@@ -580,7 +580,7 @@ function Adsense(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/adunits/' + params.adUnitId,
+          url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/adunits/{adUnitId}',
           method: 'GET'
         },
         params: params,
@@ -611,7 +611,7 @@ function Adsense(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/adunits',
+          url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/adunits',
           method: 'GET'
         },
         params: params,
@@ -644,7 +644,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/adunits/' + params.adUnitId + '/customchannels',
+            url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
             method: 'GET'
           },
           params: params,
@@ -677,7 +677,7 @@ function Adsense(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId,
+          url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
         },
         params: params,
@@ -707,7 +707,7 @@ function Adsense(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/customchannels',
           method: 'GET'
         },
         params: params,
@@ -741,7 +741,7 @@ function Adsense(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId + '/adunits',
+            url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
             method: 'GET'
           },
           params: params,
@@ -815,7 +815,7 @@ function Adsense(options) {
       generate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsense/v1.2/reports/' + params.savedReportId,
+            url: 'https://www.googleapis.com/adsense/v1.2/reports/{savedReportId}',
             method: 'GET'
           },
           params: params,
@@ -874,7 +874,7 @@ function Adsense(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/savedadstyles/' + params.savedAdStyleId,
+          url: 'https://www.googleapis.com/adsense/v1.2/savedadstyles/{savedAdStyleId}',
           method: 'GET'
         },
         params: params,
@@ -935,7 +935,7 @@ function Adsense(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsense/v1.2/adclients/' + params.adClientId + '/urlchannels',
+          url: 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/urlchannels',
           method: 'GET'
         },
         params: params,

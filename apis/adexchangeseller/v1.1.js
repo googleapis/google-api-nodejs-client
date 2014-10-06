@@ -54,7 +54,7 @@ function Adexchangeseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/accounts/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -118,7 +118,7 @@ function Adexchangeseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/adunits/' + params.adUnitId,
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}',
           method: 'GET'
         },
         params: params,
@@ -149,7 +149,7 @@ function Adexchangeseller(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/adunits',
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits',
           method: 'GET'
         },
         params: params,
@@ -182,7 +182,7 @@ function Adexchangeseller(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/adunits/' + params.adUnitId + '/customchannels',
+            url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
             method: 'GET'
           },
           params: params,
@@ -245,7 +245,7 @@ function Adexchangeseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId,
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
         },
         params: params,
@@ -275,7 +275,7 @@ function Adexchangeseller(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels',
           method: 'GET'
         },
         params: params,
@@ -309,7 +309,7 @@ function Adexchangeseller(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId + '/adunits',
+            url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
             method: 'GET'
           },
           params: params,
@@ -400,7 +400,7 @@ function Adexchangeseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/preferreddeals/' + params.dealId,
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/preferreddeals/{dealId}',
           method: 'GET'
         },
         params: params,
@@ -497,7 +497,7 @@ function Adexchangeseller(options) {
       generate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports/' + params.savedReportId,
+            url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports/{savedReportId}',
             method: 'GET'
           },
           params: params,
@@ -558,7 +558,7 @@ function Adexchangeseller(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/' + params.adClientId + '/urlchannels',
+          url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/urlchannels',
           method: 'GET'
         },
         params: params,

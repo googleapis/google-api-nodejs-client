@@ -55,7 +55,7 @@ function Discovery(options) {
     getRest: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/discovery/v1/apis/' + params.api + '/' + params.version + '/rest',
+          url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
           method: 'GET'
         },
         params: params,

@@ -55,7 +55,7 @@ function Androidpublisher(options) {
     commit: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + ':commit',
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit',
           method: 'POST'
         },
         params: params,
@@ -84,7 +84,7 @@ function Androidpublisher(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId,
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
           method: 'DELETE'
         },
         params: params,
@@ -113,7 +113,7 @@ function Androidpublisher(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId,
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
           method: 'GET'
         },
         params: params,
@@ -142,7 +142,7 @@ function Androidpublisher(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits',
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits',
           method: 'POST'
         },
         params: params,
@@ -171,7 +171,7 @@ function Androidpublisher(options) {
     validate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + ':validate',
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate',
           method: 'POST'
         },
         params: params,
@@ -204,7 +204,7 @@ function Androidpublisher(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'DELETE'
           },
           params: params,
@@ -234,7 +234,7 @@ function Androidpublisher(options) {
       deleteall: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/listings',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
             method: 'DELETE'
           },
           params: params,
@@ -265,7 +265,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'GET'
           },
           params: params,
@@ -295,7 +295,7 @@ function Androidpublisher(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/listings',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
             method: 'GET'
           },
           params: params,
@@ -327,7 +327,7 @@ function Androidpublisher(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'PATCH'
           },
           params: params,
@@ -359,7 +359,7 @@ function Androidpublisher(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'PUT'
           },
           params: params,
@@ -391,7 +391,7 @@ function Androidpublisher(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
             method: 'GET'
           },
           params: params,
@@ -423,11 +423,11 @@ function Androidpublisher(options) {
       upload: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks',
+          mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
           context: self
@@ -456,7 +456,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/details',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'GET'
           },
           params: params,
@@ -486,7 +486,7 @@ function Androidpublisher(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/details',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'PATCH'
           },
           params: params,
@@ -516,7 +516,7 @@ function Androidpublisher(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/details',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'PUT'
           },
           params: params,
@@ -550,7 +550,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/expansionFiles/' + params.expansionFileType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'GET'
           },
           params: params,
@@ -582,7 +582,7 @@ function Androidpublisher(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/expansionFiles/' + params.expansionFileType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'PATCH'
           },
           params: params,
@@ -614,7 +614,7 @@ function Androidpublisher(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/expansionFiles/' + params.expansionFileType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'PUT'
           },
           params: params,
@@ -648,11 +648,11 @@ function Androidpublisher(options) {
       upload: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/expansionFiles/' + params.expansionFileType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/apks/' + params.apkVersionCode + '/expansionFiles/' + params.expansionFileType,
+          mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
           pathParams: ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
           context: self
@@ -684,7 +684,7 @@ function Androidpublisher(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language + '/' + params.imageType + '/' + params.imageId,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}',
             method: 'DELETE'
           },
           params: params,
@@ -715,7 +715,7 @@ function Androidpublisher(options) {
       deleteall: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language + '/' + params.imageType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'DELETE'
           },
           params: params,
@@ -746,7 +746,7 @@ function Androidpublisher(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language + '/' + params.imageType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'GET'
           },
           params: params,
@@ -780,11 +780,11 @@ function Androidpublisher(options) {
       upload: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language + '/' + params.imageType,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language + '/' + params.imageType,
+          mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
           requiredParams: ['packageName', 'editId', 'language', 'imageType'],
           pathParams: ['editId', 'imageType', 'language', 'packageName'],
           context: self
@@ -814,7 +814,7 @@ function Androidpublisher(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'DELETE'
           },
           params: params,
@@ -843,7 +843,7 @@ function Androidpublisher(options) {
       deleteall: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
             method: 'DELETE'
           },
           params: params,
@@ -873,7 +873,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'GET'
           },
           params: params,
@@ -902,7 +902,7 @@ function Androidpublisher(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
             method: 'GET'
           },
           params: params,
@@ -933,7 +933,7 @@ function Androidpublisher(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'PATCH'
           },
           params: params,
@@ -964,7 +964,7 @@ function Androidpublisher(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/listings/' + params.language,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'PUT'
           },
           params: params,
@@ -997,7 +997,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/testers/' + params.track,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'GET'
           },
           params: params,
@@ -1028,7 +1028,7 @@ function Androidpublisher(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/testers/' + params.track,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'PATCH'
           },
           params: params,
@@ -1059,7 +1059,7 @@ function Androidpublisher(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/testers/' + params.track,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'PUT'
           },
           params: params,
@@ -1092,7 +1092,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/tracks/' + params.track,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'GET'
           },
           params: params,
@@ -1121,7 +1121,7 @@ function Androidpublisher(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/tracks',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks',
             method: 'GET'
           },
           params: params,
@@ -1152,7 +1152,7 @@ function Androidpublisher(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/tracks/' + params.track,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'PATCH'
           },
           params: params,
@@ -1183,7 +1183,7 @@ function Androidpublisher(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/edits/' + params.editId + '/tracks/' + params.track,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'PUT'
           },
           params: params,
@@ -1242,7 +1242,7 @@ function Androidpublisher(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/inappproducts/' + params.sku,
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'DELETE'
         },
         params: params,
@@ -1271,7 +1271,7 @@ function Androidpublisher(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/inappproducts/' + params.sku,
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'GET'
         },
         params: params,
@@ -1301,7 +1301,7 @@ function Androidpublisher(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/inappproducts',
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
           method: 'POST'
         },
         params: params,
@@ -1332,7 +1332,7 @@ function Androidpublisher(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/inappproducts',
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
           method: 'GET'
         },
         params: params,
@@ -1363,7 +1363,7 @@ function Androidpublisher(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/inappproducts/' + params.sku,
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'PATCH'
         },
         params: params,
@@ -1394,7 +1394,7 @@ function Androidpublisher(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/inappproducts/' + params.sku,
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'PUT'
         },
         params: params,
@@ -1430,7 +1430,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/products/' + params.productId + '/tokens/' + params.token,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/products/{productId}/tokens/{token}',
             method: 'GET'
           },
           params: params,
@@ -1463,7 +1463,7 @@ function Androidpublisher(options) {
       cancel: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':cancel',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel',
             method: 'POST'
           },
           params: params,
@@ -1494,7 +1494,7 @@ function Androidpublisher(options) {
       defer: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':defer',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer',
             method: 'POST'
           },
           params: params,
@@ -1524,7 +1524,7 @@ function Androidpublisher(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token,
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}',
             method: 'GET'
           },
           params: params,
@@ -1554,7 +1554,7 @@ function Androidpublisher(options) {
       refund: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':refund',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund',
             method: 'POST'
           },
           params: params,
@@ -1584,7 +1584,7 @@ function Androidpublisher(options) {
       revoke: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/androidpublisher/v2/applications/' + params.packageName + '/purchases/subscriptions/' + params.subscriptionId + '/tokens/' + params.token + ':revoke',
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke',
             method: 'POST'
           },
           params: params,

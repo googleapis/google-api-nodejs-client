@@ -58,7 +58,7 @@ function Cloudmonitoring(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/metricDescriptors',
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/{project}/metricDescriptors',
           method: 'GET'
         },
         params: params,
@@ -98,7 +98,7 @@ function Cloudmonitoring(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/timeseries/' + params.metric,
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/{project}/timeseries/{metric}',
           method: 'GET'
         },
         params: params,
@@ -138,7 +138,7 @@ function Cloudmonitoring(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/' + params.project + '/timeseriesDescriptors/' + params.metric,
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/{project}/timeseriesDescriptors/{metric}',
           method: 'GET'
         },
         params: params,

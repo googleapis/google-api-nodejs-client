@@ -54,7 +54,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'GET'
         },
         params: params,
@@ -108,7 +108,7 @@ function Adexchangebuyer(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -137,7 +137,7 @@ function Adexchangebuyer(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/' + params.id,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'PUT'
         },
         params: params,
@@ -170,7 +170,7 @@ function Adexchangebuyer(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives/' + params.accountId + '/' + params.buyerCreativeId,
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
         },
         params: params,

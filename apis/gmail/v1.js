@@ -60,11 +60,11 @@ function Gmail(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts',
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -90,7 +90,7 @@ function Gmail(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'DELETE'
           },
           params: params,
@@ -120,7 +120,7 @@ function Gmail(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'GET'
           },
           params: params,
@@ -150,7 +150,7 @@ function Gmail(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
             method: 'GET'
           },
           params: params,
@@ -182,11 +182,11 @@ function Gmail(options) {
       send: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/send',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/send',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/send',
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -216,11 +216,11 @@ function Gmail(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'PUT'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/drafts/' + params.id,
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts/{id}',
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
           context: self
@@ -252,7 +252,7 @@ function Gmail(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/history',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/history',
             method: 'GET'
           },
           params: params,
@@ -284,7 +284,7 @@ function Gmail(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
             method: 'POST'
           },
           params: params,
@@ -313,7 +313,7 @@ function Gmail(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'DELETE'
           },
           params: params,
@@ -342,7 +342,7 @@ function Gmail(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'GET'
           },
           params: params,
@@ -370,7 +370,7 @@ function Gmail(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
             method: 'GET'
           },
           params: params,
@@ -400,7 +400,7 @@ function Gmail(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'PATCH'
           },
           params: params,
@@ -430,7 +430,7 @@ function Gmail(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/labels/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'PUT'
           },
           params: params,
@@ -462,7 +462,7 @@ function Gmail(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
             method: 'DELETE'
           },
           params: params,
@@ -493,7 +493,7 @@ function Gmail(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
             method: 'GET'
           },
           params: params,
@@ -526,11 +526,11 @@ function Gmail(options) {
       import: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/import',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/import',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/import',
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages/import',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -560,11 +560,11 @@ function Gmail(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages',
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -594,7 +594,7 @@ function Gmail(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
             method: 'GET'
           },
           params: params,
@@ -624,7 +624,7 @@ function Gmail(options) {
       modify: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/modify',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/modify',
             method: 'POST'
           },
           params: params,
@@ -656,11 +656,11 @@ function Gmail(options) {
       send: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/send',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/send',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/' + params.userId + '/messages/send',
+          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages/send',
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -686,7 +686,7 @@ function Gmail(options) {
       trash: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/trash',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/trash',
             method: 'POST'
           },
           params: params,
@@ -715,7 +715,7 @@ function Gmail(options) {
       untrash: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.id + '/untrash',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/untrash',
             method: 'POST'
           },
           params: params,
@@ -747,7 +747,7 @@ function Gmail(options) {
         get: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/messages/' + params.messageId + '/attachments/' + params.id,
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}',
               method: 'GET'
             },
             params: params,
@@ -780,7 +780,7 @@ function Gmail(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
             method: 'DELETE'
           },
           params: params,
@@ -809,7 +809,7 @@ function Gmail(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id,
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
             method: 'GET'
           },
           params: params,
@@ -842,7 +842,7 @@ function Gmail(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads',
             method: 'GET'
           },
           params: params,
@@ -872,7 +872,7 @@ function Gmail(options) {
       modify: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/modify',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/modify',
             method: 'POST'
           },
           params: params,
@@ -901,7 +901,7 @@ function Gmail(options) {
       trash: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/trash',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/trash',
             method: 'POST'
           },
           params: params,
@@ -930,7 +930,7 @@ function Gmail(options) {
       untrash: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/gmail/v1/users/' + params.userId + '/threads/' + params.id + '/untrash',
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/untrash',
             method: 'POST'
           },
           params: params,

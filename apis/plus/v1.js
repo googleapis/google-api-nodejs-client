@@ -54,7 +54,7 @@ function Plus(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId,
+          url: 'https://www.googleapis.com/plus/v1/activities/{activityId}',
           method: 'GET'
         },
         params: params,
@@ -85,7 +85,7 @@ function Plus(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/activities/' + params.collection,
+          url: 'https://www.googleapis.com/plus/v1/people/{userId}/activities/{collection}',
           method: 'GET'
         },
         params: params,
@@ -148,7 +148,7 @@ function Plus(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/plus/v1/comments/{commentId}',
           method: 'GET'
         },
         params: params,
@@ -179,7 +179,7 @@ function Plus(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId + '/comments',
+          url: 'https://www.googleapis.com/plus/v1/activities/{activityId}/comments',
           method: 'GET'
         },
         params: params,
@@ -214,7 +214,7 @@ function Plus(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/moments/' + params.collection,
+          url: 'https://www.googleapis.com/plus/v1/people/{userId}/moments/{collection}',
           method: 'POST'
         },
         params: params,
@@ -247,7 +247,7 @@ function Plus(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/moments/' + params.collection,
+          url: 'https://www.googleapis.com/plus/v1/people/{userId}/moments/{collection}',
           method: 'GET'
         },
         params: params,
@@ -275,7 +275,7 @@ function Plus(options) {
     remove: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/moments/' + params.id,
+          url: 'https://www.googleapis.com/plus/v1/moments/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -307,7 +307,7 @@ function Plus(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/people/' + params.userId,
+          url: 'https://www.googleapis.com/plus/v1/people/{userId}',
           method: 'GET'
         },
         params: params,
@@ -339,7 +339,7 @@ function Plus(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/people/' + params.userId + '/people/' + params.collection,
+          url: 'https://www.googleapis.com/plus/v1/people/{userId}/people/{collection}',
           method: 'GET'
         },
         params: params,
@@ -370,7 +370,7 @@ function Plus(options) {
     listByActivity: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/plus/v1/activities/' + params.activityId + '/people/' + params.collection,
+          url: 'https://www.googleapis.com/plus/v1/activities/{activityId}/people/{collection}',
           method: 'GET'
         },
         params: params,

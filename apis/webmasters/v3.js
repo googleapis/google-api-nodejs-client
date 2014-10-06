@@ -55,7 +55,7 @@ function Webmasters(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps/' + params.feedpath,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'DELETE'
         },
         params: params,
@@ -84,7 +84,7 @@ function Webmasters(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps/' + params.feedpath,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'GET'
         },
         params: params,
@@ -113,7 +113,7 @@ function Webmasters(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps',
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps',
           method: 'GET'
         },
         params: params,
@@ -142,7 +142,7 @@ function Webmasters(options) {
     submit: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/sitemaps/' + params.feedpath,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'PUT'
         },
         params: params,
@@ -174,7 +174,7 @@ function Webmasters(options) {
     add: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'PUT'
         },
         params: params,
@@ -202,7 +202,7 @@ function Webmasters(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'DELETE'
         },
         params: params,
@@ -230,7 +230,7 @@ function Webmasters(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'GET'
         },
         params: params,
@@ -290,7 +290,7 @@ function Webmasters(options) {
     query: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsCounts/query',
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query',
           method: 'GET'
         },
         params: params,
@@ -325,7 +325,7 @@ function Webmasters(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsSamples/' + params.url,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
           method: 'GET'
         },
         params: params,
@@ -355,7 +355,7 @@ function Webmasters(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsSamples',
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples',
           method: 'GET'
         },
         params: params,
@@ -386,7 +386,7 @@ function Webmasters(options) {
     markAsFixed: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/webmasters/v3/sites/' + params.siteUrl + '/urlCrawlErrorsSamples/' + params.url,
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
           method: 'DELETE'
         },
         params: params,

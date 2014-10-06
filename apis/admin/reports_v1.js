@@ -63,7 +63,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName,
+          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}',
           method: 'GET'
         },
         params: params,
@@ -101,7 +101,7 @@ function Admin(options) {
     watch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName + '/watch',
+          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch',
           method: 'POST'
         },
         params: params,
@@ -166,7 +166,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/' + params.date,
+          url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/{date}',
           method: 'GET'
         },
         params: params,
@@ -204,7 +204,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/usage/users/' + params.userKey + '/dates/' + params.date,
+          url: 'https://www.googleapis.com/admin/reports/v1/usage/users/{userKey}/dates/{date}',
           method: 'GET'
         },
         params: params,

@@ -56,7 +56,7 @@ function Resourceviews(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -88,7 +88,7 @@ function Resourceviews(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/operations',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations',
           method: 'GET'
         },
         params: params,
@@ -123,7 +123,7 @@ function Resourceviews(options) {
     addResources: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView + '/addResources',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/addResources',
           method: 'POST'
         },
         params: params,
@@ -153,7 +153,7 @@ function Resourceviews(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView,
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
           method: 'DELETE'
         },
         params: params,
@@ -183,7 +183,7 @@ function Resourceviews(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView,
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
           method: 'GET'
         },
         params: params,
@@ -214,7 +214,7 @@ function Resourceviews(options) {
     getService: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView + '/getService',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/getService',
           method: 'POST'
         },
         params: params,
@@ -244,7 +244,7 @@ function Resourceviews(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
           method: 'POST'
         },
         params: params,
@@ -275,7 +275,7 @@ function Resourceviews(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
           method: 'GET'
         },
         params: params,
@@ -310,7 +310,7 @@ function Resourceviews(options) {
     listResources: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView + '/resources',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/resources',
           method: 'GET'
         },
         params: params,
@@ -341,7 +341,7 @@ function Resourceviews(options) {
     removeResources: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView + '/removeResources',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/removeResources',
           method: 'POST'
         },
         params: params,
@@ -372,7 +372,7 @@ function Resourceviews(options) {
     setService: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/resourceViews/' + params.resourceView + '/setService',
+          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/setService',
           method: 'POST'
         },
         params: params,
