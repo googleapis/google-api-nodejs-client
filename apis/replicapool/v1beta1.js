@@ -57,7 +57,7 @@ function Replicapool(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName,
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
           method: 'POST'
         },
         params: params,
@@ -87,7 +87,7 @@ function Replicapool(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName,
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
           method: 'GET'
         },
         params: params,
@@ -117,7 +117,7 @@ function Replicapool(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools',
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
           method: 'POST'
         },
         params: params,
@@ -148,7 +148,7 @@ function Replicapool(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools',
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
           method: 'GET'
         },
         params: params,
@@ -179,7 +179,7 @@ function Replicapool(options) {
     resize: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/resize',
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize',
           method: 'POST'
         },
         params: params,
@@ -210,7 +210,7 @@ function Replicapool(options) {
     updatetemplate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/updateTemplate',
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate',
           method: 'POST'
         },
         params: params,
@@ -246,7 +246,7 @@ function Replicapool(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName,
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
           method: 'POST'
         },
         params: params,
@@ -277,7 +277,7 @@ function Replicapool(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName,
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
           method: 'GET'
         },
         params: params,
@@ -309,7 +309,7 @@ function Replicapool(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas',
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas',
           method: 'GET'
         },
         params: params,
@@ -340,7 +340,7 @@ function Replicapool(options) {
     restart: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/' + params.projectName + '/zones/' + params.zone + '/pools/' + params.poolName + '/replicas/' + params.replicaName + '/restart',
+          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart',
           method: 'POST'
         },
         params: params,

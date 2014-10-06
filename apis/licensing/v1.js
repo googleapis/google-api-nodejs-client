@@ -56,7 +56,7 @@ function Licensing(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'DELETE'
         },
         params: params,
@@ -86,7 +86,7 @@ function Licensing(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'GET'
         },
         params: params,
@@ -116,7 +116,7 @@ function Licensing(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user',
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user',
           method: 'POST'
         },
         params: params,
@@ -147,7 +147,7 @@ function Licensing(options) {
     listForProduct: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/users',
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/users',
           method: 'GET'
         },
         params: params,
@@ -179,7 +179,7 @@ function Licensing(options) {
     listForProductAndSku: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/users',
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/users',
           method: 'GET'
         },
         params: params,
@@ -210,7 +210,7 @@ function Licensing(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'PATCH'
         },
         params: params,
@@ -241,7 +241,7 @@ function Licensing(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/' + params.productId + '/sku/' + params.skuId + '/user/' + params.userId,
+          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'PUT'
         },
         params: params,

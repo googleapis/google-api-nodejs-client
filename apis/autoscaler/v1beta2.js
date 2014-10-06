@@ -56,7 +56,7 @@ function Autoscaler(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
         },
         params: params,
@@ -86,7 +86,7 @@ function Autoscaler(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
         },
         params: params,
@@ -116,7 +116,7 @@ function Autoscaler(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
         },
         params: params,
@@ -148,7 +148,7 @@ function Autoscaler(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
         },
         params: params,
@@ -179,7 +179,7 @@ function Autoscaler(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'PATCH'
         },
         params: params,
@@ -210,7 +210,7 @@ function Autoscaler(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'PUT'
         },
         params: params,
@@ -244,7 +244,7 @@ function Autoscaler(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -274,7 +274,7 @@ function Autoscaler(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -306,7 +306,7 @@ function Autoscaler(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations',
           method: 'GET'
         },
         params: params,

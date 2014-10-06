@@ -81,7 +81,7 @@ function Content(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'DELETE'
         },
         params: params,
@@ -110,7 +110,7 @@ function Content(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -139,7 +139,7 @@ function Content(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
           method: 'POST'
         },
         params: params,
@@ -169,7 +169,7 @@ function Content(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
           method: 'GET'
         },
         params: params,
@@ -199,7 +199,7 @@ function Content(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'PATCH'
         },
         params: params,
@@ -229,7 +229,7 @@ function Content(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'PUT'
         },
         params: params,
@@ -288,7 +288,7 @@ function Content(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountstatuses/' + params.accountId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -318,7 +318,7 @@ function Content(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/accountstatuses',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses',
           method: 'GET'
         },
         params: params,
@@ -377,7 +377,7 @@ function Content(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'DELETE'
         },
         params: params,
@@ -406,7 +406,7 @@ function Content(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'GET'
         },
         params: params,
@@ -435,7 +435,7 @@ function Content(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
           method: 'POST'
         },
         params: params,
@@ -463,7 +463,7 @@ function Content(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
           method: 'GET'
         },
         params: params,
@@ -493,7 +493,7 @@ function Content(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'PATCH'
         },
         params: params,
@@ -523,7 +523,7 @@ function Content(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeeds/' + params.datafeedId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'PUT'
         },
         params: params,
@@ -582,7 +582,7 @@ function Content(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeedstatuses/' + params.datafeedId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses/{datafeedId}',
           method: 'GET'
         },
         params: params,
@@ -610,7 +610,7 @@ function Content(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/datafeedstatuses',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses',
           method: 'GET'
         },
         params: params,
@@ -671,7 +671,7 @@ function Content(options) {
     set: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/inventory/' + params.storeCode + '/products/' + params.productId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/inventory/{storeCode}/products/{productId}',
           method: 'POST'
         },
         params: params,
@@ -732,7 +732,7 @@ function Content(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products/' + params.productId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
           method: 'DELETE'
         },
         params: params,
@@ -761,7 +761,7 @@ function Content(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products/' + params.productId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
           method: 'GET'
         },
         params: params,
@@ -791,7 +791,7 @@ function Content(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
           method: 'POST'
         },
         params: params,
@@ -821,7 +821,7 @@ function Content(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/products',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
           method: 'GET'
         },
         params: params,
@@ -880,7 +880,7 @@ function Content(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/productstatuses/' + params.productId,
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses/{productId}',
           method: 'GET'
         },
         params: params,
@@ -910,7 +910,7 @@ function Content(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/content/v2/' + params.merchantId + '/productstatuses',
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses',
           method: 'GET'
         },
         params: params,

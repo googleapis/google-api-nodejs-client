@@ -24,35 +24,35 @@ var util = require('util');
  * @private
  */
 function requireAPI(filename) {
-  return function(options) {
-    var type = typeof options;
-    var version;
-    if (type === 'string') {
-      version = options;
-      options = {};
-    } else if (type === 'object') {
-      version = options.version;
-      delete options.version;
-    } else {
-      throw new Error('Argument error: Accepts only string or object');
-    }
-    try {
-      var endpointPath = path.join(__dirname, filename, path.basename(version));
-      var Endpoint = require(endpointPath);
-      var ep = new Endpoint(options);
-      ep.google = this; // for drive.google.transporter
-      return Object.freeze(ep); // create new & freeze
-    } catch (e) {
-      throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
-        filename, version, e.message));
-    }
-  };
-}
-/**
- * APIs to be exported
- * @type {Object}
- * @private
- */
+    return function(options) {
+      var type = typeof options;
+      var version;
+      if (type === 'string') {
+        version = options;
+        options = {};
+      } else if (type === 'object') {
+        version = options.version;
+        delete options.version;
+      } else {
+        throw new Error('Argument error: Accepts only string or object');
+      }
+      try {
+        var endpointPath = path.join(__dirname, filename, path.basename(version));
+        var Endpoint = require(endpointPath);
+        var ep = new Endpoint(options);
+        ep.google = this; // for drive.google.transporter
+        return Object.freeze(ep); // create new & freeze
+      } catch (e) {
+        throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
+          filename, version, e.message));
+      }
+    };
+  }
+  /**
+   * APIs to be exported
+   * @type {Object}
+   * @private
+   */
 var APIs = {
   'adexchangebuyer': requireAPI('adexchangebuyer'),
   'adexchangeseller': requireAPI('adexchangeseller'),
@@ -97,7 +97,6 @@ var APIs = {
   'mapsengine': requireAPI('mapsengine'),
   'mirror': requireAPI('mirror'),
   'oauth2': requireAPI('oauth2'),
-  'orkut': requireAPI('orkut'),
   'pagespeedonline': requireAPI('pagespeedonline'),
   'plus': requireAPI('plus'),
   'plusDomains': requireAPI('plusDomains'),

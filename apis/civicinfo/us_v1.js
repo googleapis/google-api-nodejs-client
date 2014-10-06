@@ -111,7 +111,7 @@ function Civicinfo(options) {
     voterInfoQuery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/civicinfo/us_v1/voterinfo/' + params.electionId + '/lookup',
+          url: 'https://www.googleapis.com/civicinfo/us_v1/voterinfo/{electionId}/lookup',
           method: 'POST'
         },
         params: params,

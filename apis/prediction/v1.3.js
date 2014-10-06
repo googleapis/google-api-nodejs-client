@@ -55,7 +55,7 @@ function Prediction(options) {
     predict: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.3/hostedmodels/' + params.hostedModelName + '/predict',
+          url: 'https://www.googleapis.com/prediction/v1.3/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
         },
         params: params,
@@ -87,7 +87,7 @@ function Prediction(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.3/training/' + params.data,
+          url: 'https://www.googleapis.com/prediction/v1.3/training/{data}',
           method: 'DELETE'
         },
         params: params,
@@ -115,7 +115,7 @@ function Prediction(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.3/training/' + params.data,
+          url: 'https://www.googleapis.com/prediction/v1.3/training/{data}',
           method: 'GET'
         },
         params: params,
@@ -170,7 +170,7 @@ function Prediction(options) {
     predict: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.3/training/' + params.data + '/predict',
+          url: 'https://www.googleapis.com/prediction/v1.3/training/{data}/predict',
           method: 'POST'
         },
         params: params,
@@ -199,7 +199,7 @@ function Prediction(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.3/training/' + params.data,
+          url: 'https://www.googleapis.com/prediction/v1.3/training/{data}',
           method: 'PUT'
         },
         params: params,

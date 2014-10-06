@@ -136,7 +136,7 @@ function Doubleclickbidmanager(options) {
     deletequery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'DELETE'
         },
         params: params,
@@ -164,7 +164,7 @@ function Doubleclickbidmanager(options) {
     getquery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'GET'
         },
         params: params,
@@ -218,7 +218,7 @@ function Doubleclickbidmanager(options) {
     runquery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'POST'
         },
         params: params,
@@ -250,7 +250,7 @@ function Doubleclickbidmanager(options) {
     listreports: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/' + params.queryId + '/reports',
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/{queryId}/reports',
           method: 'GET'
         },
         params: params,

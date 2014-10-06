@@ -64,7 +64,7 @@ function Audit(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reporting/audit/v1/' + params.customerId + '/' + params.applicationId,
+          url: 'https://www.googleapis.com/apps/reporting/audit/v1/{customerId}/{applicationId}',
           method: 'GET'
         },
         params: params,

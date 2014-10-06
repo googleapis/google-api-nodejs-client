@@ -54,7 +54,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/assets/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/assets/{id}',
           method: 'GET'
         },
         params: params,
@@ -124,7 +124,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/assets/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/assets/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -155,7 +155,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/assets/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/assets/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -187,7 +187,7 @@ function Mapsengine(options) {
     cancelProcessing: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/cancelProcessing',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/cancelProcessing',
           method: 'POST'
         },
         params: params,
@@ -242,7 +242,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -271,7 +271,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}',
           method: 'GET'
         },
         params: params,
@@ -299,7 +299,7 @@ function Mapsengine(options) {
     getPublished: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/published',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/published',
           method: 'GET'
         },
         params: params,
@@ -394,7 +394,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -422,7 +422,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -451,7 +451,7 @@ function Mapsengine(options) {
     publish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/publish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/publish',
           method: 'POST'
         },
         params: params,
@@ -479,7 +479,7 @@ function Mapsengine(options) {
     unpublish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/unpublish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/unpublish',
           method: 'POST'
         },
         params: params,
@@ -511,7 +511,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -543,7 +543,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/permissions/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -572,7 +572,7 @@ function Mapsengine(options) {
       batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions/batchUpdate',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -600,7 +600,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -658,7 +658,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -687,7 +687,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}',
           method: 'GET'
         },
         params: params,
@@ -715,7 +715,7 @@ function Mapsengine(options) {
     getPublished: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/published',
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/published',
           method: 'GET'
         },
         params: params,
@@ -811,7 +811,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -840,7 +840,7 @@ function Mapsengine(options) {
     publish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/publish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/publish',
           method: 'POST'
         },
         params: params,
@@ -868,7 +868,7 @@ function Mapsengine(options) {
     unpublish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/unpublish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/unpublish',
           method: 'POST'
         },
         params: params,
@@ -899,7 +899,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/permissions/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -928,7 +928,7 @@ function Mapsengine(options) {
       batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchUpdate',
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -956,7 +956,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -968,38 +968,6 @@ function Mapsengine(options) {
         return createAPIRequest(parameters, callback);
       }
     }
-  };
-
-  this.permissionIds = {
-
-    /**
-     * mapsengine.permissionIds.getIdForEmail
-     *
-     * @desc Return permission ID given an email address.
-     *
-     * @alias mapsengine.permissionIds.getIdForEmail
-     * @memberOf! mapsengine(exp2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.email - The email address to be translated into permission ID.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIdForEmail: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/permissionIds/' + params.email,
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['email'],
-        pathParams: ['email'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
   };
 
   this.projects = {
@@ -1051,11 +1019,11 @@ function Mapsengine(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/projects/' + params.projectId + '/icons',
+            url: 'https://www.googleapis.com/mapsengine/exp2/projects/{projectId}/icons',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/projects/' + params.projectId + '/icons',
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/projects/{projectId}/icons',
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
           context: self
@@ -1081,7 +1049,7 @@ function Mapsengine(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/projects/' + params.projectId + '/icons/' + params.id,
+            url: 'https://www.googleapis.com/mapsengine/exp2/projects/{projectId}/icons/{id}',
             method: 'GET'
           },
           params: params,
@@ -1111,7 +1079,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/projects/' + params.projectId + '/icons',
+            url: 'https://www.googleapis.com/mapsengine/exp2/projects/{projectId}/icons',
             method: 'GET'
           },
           params: params,
@@ -1143,7 +1111,7 @@ function Mapsengine(options) {
     cancelProcessing: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/cancelProcessing',
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/cancelProcessing',
           method: 'POST'
         },
         params: params,
@@ -1197,7 +1165,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1225,7 +1193,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}',
           method: 'GET'
         },
         params: params,
@@ -1292,7 +1260,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -1320,7 +1288,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -1352,7 +1320,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -1384,7 +1352,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/permissions/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -1413,7 +1381,7 @@ function Mapsengine(options) {
       batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchUpdate',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -1441,7 +1409,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -1473,7 +1441,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/rasters/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/rasters/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -1502,7 +1470,7 @@ function Mapsengine(options) {
       batchInsert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/rasters/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/rasters/batchInsert',
             method: 'POST'
           },
           params: params,
@@ -1541,7 +1509,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/rasters',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/rasters',
             method: 'GET'
           },
           params: params,
@@ -1573,7 +1541,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1601,7 +1569,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}',
           method: 'GET'
         },
         params: params,
@@ -1669,7 +1637,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -1697,7 +1665,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -1757,11 +1725,11 @@ function Mapsengine(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/files',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/files',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/rasters/' + params.id + '/files',
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/rasters/{id}/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
           context: self
@@ -1791,7 +1759,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -1823,7 +1791,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/permissions/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -1852,7 +1820,7 @@ function Mapsengine(options) {
       batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions/batchUpdate',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -1880,7 +1848,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -1938,7 +1906,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1967,7 +1935,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}',
           method: 'GET'
         },
         params: params,
@@ -2034,7 +2002,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -2062,7 +2030,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -2119,7 +2087,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -2148,7 +2116,7 @@ function Mapsengine(options) {
       batchInsert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features/batchInsert',
             method: 'POST'
           },
           params: params,
@@ -2177,7 +2145,7 @@ function Mapsengine(options) {
       batchPatch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features/batchPatch',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features/batchPatch',
             method: 'POST'
           },
           params: params,
@@ -2208,7 +2176,7 @@ function Mapsengine(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.tableId + '/features/' + params.id,
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{tableId}/features/{id}',
             method: 'GET'
           },
           params: params,
@@ -2245,7 +2213,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features',
             method: 'GET'
           },
           params: params,
@@ -2280,11 +2248,11 @@ function Mapsengine(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/files',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/files',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/tables/' + params.id + '/files',
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/tables/{id}/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
           context: self
@@ -2314,7 +2282,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -2346,7 +2314,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/permissions/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -2375,7 +2343,7 @@ function Mapsengine(options) {
       batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchUpdate',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -2403,7 +2371,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/permissions',
             method: 'GET'
           },
           params: params,

@@ -56,7 +56,7 @@ function Manager(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments/' + params.deploymentName,
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments/{deploymentName}',
           method: 'DELETE'
         },
         params: params,
@@ -86,7 +86,7 @@ function Manager(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments/' + params.deploymentName,
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments/{deploymentName}',
           method: 'GET'
         },
         params: params,
@@ -116,7 +116,7 @@ function Manager(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments',
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments',
           method: 'POST'
         },
         params: params,
@@ -147,7 +147,7 @@ function Manager(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/regions/' + params.region + '/deployments',
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments',
           method: 'GET'
         },
         params: params,
@@ -180,7 +180,7 @@ function Manager(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates/' + params.templateName,
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates/{templateName}',
           method: 'DELETE'
         },
         params: params,
@@ -209,7 +209,7 @@ function Manager(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates/' + params.templateName,
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates/{templateName}',
           method: 'GET'
         },
         params: params,
@@ -238,7 +238,7 @@ function Manager(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates',
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates',
           method: 'POST'
         },
         params: params,
@@ -268,7 +268,7 @@ function Manager(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/manager/v1beta2/projects/' + params.projectId + '/templates',
+          url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates',
           method: 'GET'
         },
         params: params,

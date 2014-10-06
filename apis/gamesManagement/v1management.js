@@ -54,7 +54,7 @@ function Gamesmanagement(options) {
     reset: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/achievements/' + params.achievementId + '/reset',
+          url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/reset',
           method: 'POST'
         },
         params: params,
@@ -92,9 +92,34 @@ function Gamesmanagement(options) {
     },
 
     /**
+     * gamesManagement.achievements.resetAllForAllPlayers
+     *
+     * @desc Resets all draft achievements for all players. This method is only available to user accounts for your developer console.
+     *
+     * @alias gamesManagement.achievements.resetAllForAllPlayers
+     * @memberOf! gamesManagement(v1management)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    resetAllForAllPlayers: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/achievements/resetAllForAllPlayers',
+          method: 'POST'
+        },
+        params: params,
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * gamesManagement.achievements.resetForAllPlayers
      *
-     * @desc Resets the achievement with the given ID for the all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
+     * @desc Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
      *
      * @alias gamesManagement.achievements.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
@@ -107,12 +132,38 @@ function Gamesmanagement(options) {
     resetForAllPlayers: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/achievements/' + params.achievementId + '/resetForAllPlayers',
+          url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/resetForAllPlayers',
           method: 'POST'
         },
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * gamesManagement.achievements.resetMultipleForAllPlayers
+     *
+     * @desc Resets the achievement with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.
+     *
+     * @alias gamesManagement.achievements.resetMultipleForAllPlayers
+     * @memberOf! gamesManagement(v1management)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    resetMultipleForAllPlayers: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1management/achievements/resetMultipleForAllPlayers',
+          method: 'POST'
+        },
+        params: params,
         context: self
       };
 
@@ -141,7 +192,7 @@ function Gamesmanagement(options) {
     listHidden: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden',
+          url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden',
           method: 'GET'
         },
         params: params,
@@ -173,7 +224,7 @@ function Gamesmanagement(options) {
     reset: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/events/' + params.eventId + '/reset',
+          url: 'https://www.googleapis.com/games/v1management/events/{eventId}/reset',
           method: 'POST'
         },
         params: params,
@@ -226,7 +277,7 @@ function Gamesmanagement(options) {
     resetForAllPlayers: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/events/' + params.eventId + '/resetForAllPlayers',
+          url: 'https://www.googleapis.com/games/v1management/events/{eventId}/resetForAllPlayers',
           method: 'POST'
         },
         params: params,
@@ -259,7 +310,7 @@ function Gamesmanagement(options) {
     hide: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden/' + params.playerId,
+          url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
           method: 'POST'
         },
         params: params,
@@ -288,7 +339,7 @@ function Gamesmanagement(options) {
     unhide: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/applications/' + params.applicationId + '/players/hidden/' + params.playerId,
+          url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
           method: 'DELETE'
         },
         params: params,
@@ -320,7 +371,7 @@ function Gamesmanagement(options) {
     reset: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/quests/' + params.questId + '/reset',
+          url: 'https://www.googleapis.com/games/v1management/quests/{questId}/reset',
           method: 'POST'
         },
         params: params,
@@ -381,7 +432,7 @@ function Gamesmanagement(options) {
     reset: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/leaderboards/' + params.leaderboardId + '/scores/reset',
+          url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/reset',
           method: 'POST'
         },
         params: params,
@@ -409,7 +460,7 @@ function Gamesmanagement(options) {
     resetForAllPlayers: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1management/leaderboards/' + params.leaderboardId + '/scores/resetForAllPlayers',
+          url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers',
           method: 'POST'
         },
         params: params,

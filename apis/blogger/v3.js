@@ -56,7 +56,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/users/' + params.userId + '/blogs/' + params.blogId,
+          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}',
           method: 'GET'
         },
         params: params,
@@ -90,7 +90,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}',
           method: 'GET'
         },
         params: params,
@@ -150,7 +150,7 @@ function Blogger(options) {
     listByUser: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/users/' + params.userId + '/blogs',
+          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs',
           method: 'GET'
         },
         params: params,
@@ -184,7 +184,7 @@ function Blogger(options) {
     approve: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId + '/approve',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve',
           method: 'POST'
         },
         params: params,
@@ -214,7 +214,7 @@ function Blogger(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}',
           method: 'DELETE'
         },
         params: params,
@@ -245,7 +245,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}',
           method: 'GET'
         },
         params: params,
@@ -281,7 +281,7 @@ function Blogger(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/comments',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments',
           method: 'GET'
         },
         params: params,
@@ -314,7 +314,7 @@ function Blogger(options) {
     listByBlog: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/comments',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/comments',
           method: 'GET'
         },
         params: params,
@@ -344,7 +344,7 @@ function Blogger(options) {
     markAsSpam: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId + '/spam',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam',
           method: 'POST'
         },
         params: params,
@@ -374,7 +374,7 @@ function Blogger(options) {
     removeContent: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/comments/' + params.commentId + '/removecontent',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent',
           method: 'POST'
         },
         params: params,
@@ -407,7 +407,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pageviews',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pageviews',
           method: 'GET'
         },
         params: params,
@@ -440,7 +440,7 @@ function Blogger(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'DELETE'
         },
         params: params,
@@ -470,7 +470,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'GET'
         },
         params: params,
@@ -500,7 +500,7 @@ function Blogger(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages',
           method: 'POST'
         },
         params: params,
@@ -531,7 +531,7 @@ function Blogger(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages',
           method: 'GET'
         },
         params: params,
@@ -563,7 +563,7 @@ function Blogger(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'PATCH'
         },
         params: params,
@@ -592,7 +592,7 @@ function Blogger(options) {
     publish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId + '/publish',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}/publish',
           method: 'POST'
         },
         params: params,
@@ -621,7 +621,7 @@ function Blogger(options) {
     revert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId + '/revert',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}/revert',
           method: 'POST'
         },
         params: params,
@@ -653,7 +653,7 @@ function Blogger(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/pages/' + params.pageId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'PUT'
         },
         params: params,
@@ -688,7 +688,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/users/' + params.userId + '/blogs/' + params.blogId + '/posts/' + params.postId,
+          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}/posts/{postId}',
           method: 'GET'
         },
         params: params,
@@ -726,7 +726,7 @@ function Blogger(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/users/' + params.userId + '/blogs/' + params.blogId + '/posts',
+          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}/posts',
           method: 'GET'
         },
         params: params,
@@ -759,7 +759,7 @@ function Blogger(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'DELETE'
         },
         params: params,
@@ -792,7 +792,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'GET'
         },
         params: params,
@@ -823,7 +823,7 @@ function Blogger(options) {
     getByPath: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/bypath',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/bypath',
           method: 'GET'
         },
         params: params,
@@ -855,7 +855,7 @@ function Blogger(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts',
           method: 'POST'
         },
         params: params,
@@ -893,7 +893,7 @@ function Blogger(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts',
           method: 'GET'
         },
         params: params,
@@ -928,7 +928,7 @@ function Blogger(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'PATCH'
         },
         params: params,
@@ -958,7 +958,7 @@ function Blogger(options) {
     publish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/publish',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/publish',
           method: 'POST'
         },
         params: params,
@@ -987,7 +987,7 @@ function Blogger(options) {
     revert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId + '/revert',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/revert',
           method: 'POST'
         },
         params: params,
@@ -1018,7 +1018,7 @@ function Blogger(options) {
     search: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/search',
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/search',
           method: 'GET'
         },
         params: params,
@@ -1053,7 +1053,7 @@ function Blogger(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/blogs/' + params.blogId + '/posts/' + params.postId,
+          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'PUT'
         },
         params: params,
@@ -1085,7 +1085,7 @@ function Blogger(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/blogger/v3/users/' + params.userId,
+          url: 'https://www.googleapis.com/blogger/v3/users/{userId}',
           method: 'GET'
         },
         params: params,

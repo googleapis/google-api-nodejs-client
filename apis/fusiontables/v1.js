@@ -55,7 +55,7 @@ function Fusiontables(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'DELETE'
         },
         params: params,
@@ -84,7 +84,7 @@ function Fusiontables(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'GET'
         },
         params: params,
@@ -113,7 +113,7 @@ function Fusiontables(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns',
           method: 'POST'
         },
         params: params,
@@ -143,7 +143,7 @@ function Fusiontables(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns',
           method: 'GET'
         },
         params: params,
@@ -173,7 +173,7 @@ function Fusiontables(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'PATCH'
         },
         params: params,
@@ -203,7 +203,7 @@ function Fusiontables(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/columns/' + params.columnId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'PUT'
         },
         params: params,
@@ -298,7 +298,7 @@ function Fusiontables(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'DELETE'
         },
         params: params,
@@ -327,7 +327,7 @@ function Fusiontables(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'GET'
         },
         params: params,
@@ -356,7 +356,7 @@ function Fusiontables(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles',
           method: 'POST'
         },
         params: params,
@@ -386,7 +386,7 @@ function Fusiontables(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles',
           method: 'GET'
         },
         params: params,
@@ -416,7 +416,7 @@ function Fusiontables(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'PATCH'
         },
         params: params,
@@ -446,7 +446,7 @@ function Fusiontables(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/styles/' + params.styleId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'PUT'
         },
         params: params,
@@ -479,7 +479,7 @@ function Fusiontables(options) {
     copy: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/copy',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/copy',
           method: 'POST'
         },
         params: params,
@@ -507,7 +507,7 @@ function Fusiontables(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'DELETE'
         },
         params: params,
@@ -535,7 +535,7 @@ function Fusiontables(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'GET'
         },
         params: params,
@@ -571,11 +571,11 @@ function Fusiontables(options) {
     importRows: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/import',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/import',
           method: 'POST'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/' + params.tableId + '/import',
+        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/{tableId}/import',
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
         context: self
@@ -688,7 +688,7 @@ function Fusiontables(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'PATCH'
         },
         params: params,
@@ -718,7 +718,7 @@ function Fusiontables(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'PUT'
         },
         params: params,
@@ -751,7 +751,7 @@ function Fusiontables(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/tasks/' + params.taskId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/tasks/{taskId}',
           method: 'DELETE'
         },
         params: params,
@@ -780,7 +780,7 @@ function Fusiontables(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/tasks/' + params.taskId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/tasks/{taskId}',
           method: 'GET'
         },
         params: params,
@@ -811,7 +811,7 @@ function Fusiontables(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/tasks',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/tasks',
           method: 'GET'
         },
         params: params,
@@ -844,7 +844,7 @@ function Fusiontables(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'DELETE'
         },
         params: params,
@@ -873,7 +873,7 @@ function Fusiontables(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'GET'
         },
         params: params,
@@ -902,7 +902,7 @@ function Fusiontables(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates',
           method: 'POST'
         },
         params: params,
@@ -932,7 +932,7 @@ function Fusiontables(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates',
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates',
           method: 'GET'
         },
         params: params,
@@ -962,7 +962,7 @@ function Fusiontables(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'PATCH'
         },
         params: params,
@@ -992,7 +992,7 @@ function Fusiontables(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/' + params.tableId + '/templates/' + params.templateId,
+          url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'PUT'
         },
         params: params,

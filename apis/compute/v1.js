@@ -57,7 +57,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/addresses',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/addresses',
           method: 'GET'
         },
         params: params,
@@ -87,7 +87,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses/' + params.address,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses/{address}',
           method: 'DELETE'
         },
         params: params,
@@ -117,7 +117,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses/' + params.address,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses/{address}',
           method: 'GET'
         },
         params: params,
@@ -147,7 +147,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses',
           method: 'POST'
         },
         params: params,
@@ -179,7 +179,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/addresses',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses',
           method: 'GET'
         },
         params: params,
@@ -212,7 +212,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'DELETE'
         },
         params: params,
@@ -241,7 +241,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'GET'
         },
         params: params,
@@ -271,7 +271,7 @@ function Compute(options) {
     getHealth: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService + '/getHealth',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}/getHealth',
           method: 'POST'
         },
         params: params,
@@ -300,7 +300,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices',
           method: 'POST'
         },
         params: params,
@@ -331,7 +331,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices',
           method: 'GET'
         },
         params: params,
@@ -361,7 +361,7 @@ function Compute(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
         },
         params: params,
@@ -391,7 +391,7 @@ function Compute(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/backendServices/' + params.backendService,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'PUT'
         },
         params: params,
@@ -426,7 +426,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/diskTypes',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/diskTypes',
           method: 'GET'
         },
         params: params,
@@ -456,7 +456,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/diskTypes/' + params.diskType,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/diskTypes/{diskType}',
           method: 'GET'
         },
         params: params,
@@ -488,7 +488,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/diskTypes',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/diskTypes',
           method: 'GET'
         },
         params: params,
@@ -523,7 +523,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/disks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/disks',
           method: 'GET'
         },
         params: params,
@@ -554,7 +554,7 @@ function Compute(options) {
     createSnapshot: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk + '/createSnapshot',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
           method: 'POST'
         },
         params: params,
@@ -584,7 +584,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'DELETE'
         },
         params: params,
@@ -614,7 +614,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks/' + params.disk,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'GET'
         },
         params: params,
@@ -645,7 +645,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks',
           method: 'POST'
         },
         params: params,
@@ -677,7 +677,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/disks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks',
           method: 'GET'
         },
         params: params,
@@ -710,7 +710,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'DELETE'
         },
         params: params,
@@ -739,7 +739,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'GET'
         },
         params: params,
@@ -768,7 +768,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls',
           method: 'POST'
         },
         params: params,
@@ -799,7 +799,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls',
           method: 'GET'
         },
         params: params,
@@ -829,7 +829,7 @@ function Compute(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'PATCH'
         },
         params: params,
@@ -859,7 +859,7 @@ function Compute(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/firewalls/' + params.firewall,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'PUT'
         },
         params: params,
@@ -894,7 +894,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/forwardingRules',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/forwardingRules',
           method: 'GET'
         },
         params: params,
@@ -924,7 +924,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'DELETE'
         },
         params: params,
@@ -954,7 +954,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'GET'
         },
         params: params,
@@ -984,7 +984,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules',
           method: 'POST'
         },
         params: params,
@@ -1016,7 +1016,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules',
           method: 'GET'
         },
         params: params,
@@ -1047,7 +1047,7 @@ function Compute(options) {
     setTarget: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/forwardingRules/' + params.forwardingRule + '/setTarget',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
         },
         params: params,
@@ -1080,7 +1080,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses/' + params.address,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses/{address}',
           method: 'DELETE'
         },
         params: params,
@@ -1109,7 +1109,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses/' + params.address,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses/{address}',
           method: 'GET'
         },
         params: params,
@@ -1138,7 +1138,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses',
           method: 'POST'
         },
         params: params,
@@ -1169,7 +1169,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/addresses',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses',
           method: 'GET'
         },
         params: params,
@@ -1202,7 +1202,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'DELETE'
         },
         params: params,
@@ -1231,7 +1231,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'GET'
         },
         params: params,
@@ -1260,7 +1260,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules',
           method: 'POST'
         },
         params: params,
@@ -1291,7 +1291,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules',
           method: 'GET'
         },
         params: params,
@@ -1321,7 +1321,7 @@ function Compute(options) {
     setTarget: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/forwardingRules/' + params.forwardingRule + '/setTarget',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
         },
         params: params,
@@ -1356,7 +1356,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/operations',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/operations',
           method: 'GET'
         },
         params: params,
@@ -1385,7 +1385,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations/' + params.operation,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -1414,7 +1414,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations/' + params.operation,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -1445,7 +1445,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/operations',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations',
           method: 'GET'
         },
         params: params,
@@ -1478,7 +1478,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'DELETE'
         },
         params: params,
@@ -1507,7 +1507,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'GET'
         },
         params: params,
@@ -1536,7 +1536,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks',
           method: 'POST'
         },
         params: params,
@@ -1567,7 +1567,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks',
           method: 'GET'
         },
         params: params,
@@ -1597,7 +1597,7 @@ function Compute(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PATCH'
         },
         params: params,
@@ -1627,7 +1627,7 @@ function Compute(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/httpHealthChecks/' + params.httpHealthCheck,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PUT'
         },
         params: params,
@@ -1660,7 +1660,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}',
           method: 'DELETE'
         },
         params: params,
@@ -1690,7 +1690,7 @@ function Compute(options) {
     deprecate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image + '/deprecate',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}/deprecate',
           method: 'POST'
         },
         params: params,
@@ -1719,7 +1719,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images/' + params.image,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}',
           method: 'GET'
         },
         params: params,
@@ -1748,7 +1748,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images',
           method: 'POST'
         },
         params: params,
@@ -1779,7 +1779,129 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/images',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.instanceTemplates = {
+
+    /**
+     * compute.instanceTemplates.delete
+     *
+     * @desc Deletes the specified instance template resource.
+     *
+     * @alias compute.instanceTemplates.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instanceTemplate - Name of the instance template resource to delete.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'instanceTemplate'],
+        pathParams: ['instanceTemplate', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instanceTemplates.get
+     *
+     * @desc Returns the specified instance template resource.
+     *
+     * @alias compute.instanceTemplates.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instanceTemplate - Name of the instance template resource to return.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'instanceTemplate'],
+        pathParams: ['instanceTemplate', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instanceTemplates.insert
+     *
+     * @desc Creates an instance template resource in the specified project using the data included in the request.
+     *
+     * @alias compute.instanceTemplates.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instanceTemplates.list
+     *
+     * @desc Retrieves the list of instance template resources contained within the specified project.
+     *
+     * @alias compute.instanceTemplates.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates',
           method: 'GET'
         },
         params: params,
@@ -1815,7 +1937,7 @@ function Compute(options) {
     addAccessConfig: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/addAccessConfig',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
           method: 'POST'
         },
         params: params,
@@ -1846,7 +1968,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/instances',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instances',
           method: 'GET'
         },
         params: params,
@@ -1877,7 +1999,7 @@ function Compute(options) {
     attachDisk: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/attachDisk',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
           method: 'POST'
         },
         params: params,
@@ -1907,7 +2029,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'DELETE'
         },
         params: params,
@@ -1939,7 +2061,7 @@ function Compute(options) {
     deleteAccessConfig: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/deleteAccessConfig',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
           method: 'POST'
         },
         params: params,
@@ -1970,7 +2092,7 @@ function Compute(options) {
     detachDisk: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/detachDisk',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
           method: 'POST'
         },
         params: params,
@@ -2000,7 +2122,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'GET'
         },
         params: params,
@@ -2030,7 +2152,7 @@ function Compute(options) {
     getSerialPortOutput: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/serialPort',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
           method: 'GET'
         },
         params: params,
@@ -2060,7 +2182,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances',
           method: 'POST'
         },
         params: params,
@@ -2092,7 +2214,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances',
           method: 'GET'
         },
         params: params,
@@ -2122,7 +2244,7 @@ function Compute(options) {
     reset: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/reset',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reset',
           method: 'POST'
         },
         params: params,
@@ -2154,7 +2276,7 @@ function Compute(options) {
     setDiskAutoDelete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setDiskAutoDelete',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
           method: 'POST'
         },
         params: params,
@@ -2185,7 +2307,7 @@ function Compute(options) {
     setMetadata: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setMetadata',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
           method: 'POST'
         },
         params: params,
@@ -2216,7 +2338,7 @@ function Compute(options) {
     setScheduling: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setScheduling',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
           method: 'POST'
         },
         params: params,
@@ -2247,7 +2369,7 @@ function Compute(options) {
     setTags: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/instances/' + params.instance + '/setTags',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setTags',
           method: 'POST'
         },
         params: params,
@@ -2280,7 +2402,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/licenses/' + params.license,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/licenses/{license}',
           method: 'GET'
         },
         params: params,
@@ -2315,7 +2437,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/machineTypes',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/machineTypes',
           method: 'GET'
         },
         params: params,
@@ -2345,7 +2467,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/machineTypes/' + params.machineType,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes/{machineType}',
           method: 'GET'
         },
         params: params,
@@ -2377,7 +2499,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/machineTypes',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes',
           method: 'GET'
         },
         params: params,
@@ -2410,7 +2532,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks/' + params.network,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}',
           method: 'DELETE'
         },
         params: params,
@@ -2439,7 +2561,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks/' + params.network,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}',
           method: 'GET'
         },
         params: params,
@@ -2468,7 +2590,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks',
           method: 'POST'
         },
         params: params,
@@ -2499,7 +2621,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/networks',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks',
           method: 'GET'
         },
         params: params,
@@ -2531,7 +2653,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}',
           method: 'GET'
         },
         params: params,
@@ -2560,7 +2682,7 @@ function Compute(options) {
     setCommonInstanceMetadata: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/setCommonInstanceMetadata',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/setCommonInstanceMetadata',
           method: 'POST'
         },
         params: params,
@@ -2589,7 +2711,7 @@ function Compute(options) {
     setUsageExportBucket: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/setUsageExportBucket',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/setUsageExportBucket',
           method: 'POST'
         },
         params: params,
@@ -2623,7 +2745,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -2653,7 +2775,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -2685,7 +2807,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/operations',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations',
           method: 'GET'
         },
         params: params,
@@ -2718,7 +2840,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}',
           method: 'GET'
         },
         params: params,
@@ -2749,7 +2871,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions',
           method: 'GET'
         },
         params: params,
@@ -2782,7 +2904,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes/' + params.route,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes/{route}',
           method: 'DELETE'
         },
         params: params,
@@ -2811,7 +2933,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes/' + params.route,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes/{route}',
           method: 'GET'
         },
         params: params,
@@ -2840,7 +2962,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes',
           method: 'POST'
         },
         params: params,
@@ -2871,7 +2993,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/routes',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes',
           method: 'GET'
         },
         params: params,
@@ -2904,7 +3026,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots/' + params.snapshot,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots/{snapshot}',
           method: 'DELETE'
         },
         params: params,
@@ -2933,7 +3055,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots/' + params.snapshot,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots/{snapshot}',
           method: 'GET'
         },
         params: params,
@@ -2964,7 +3086,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/snapshots',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots',
           method: 'GET'
         },
         params: params,
@@ -2997,7 +3119,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies/' + params.targetHttpProxy,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'DELETE'
         },
         params: params,
@@ -3026,7 +3148,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies/' + params.targetHttpProxy,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'GET'
         },
         params: params,
@@ -3055,7 +3177,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies',
           method: 'POST'
         },
         params: params,
@@ -3086,7 +3208,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/targetHttpProxies',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies',
           method: 'GET'
         },
         params: params,
@@ -3116,7 +3238,7 @@ function Compute(options) {
     setUrlMap: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/targetHttpProxies/' + params.targetHttpProxy + '/setUrlMap',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
           method: 'POST'
         },
         params: params,
@@ -3151,7 +3273,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/targetInstances',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetInstances',
           method: 'GET'
         },
         params: params,
@@ -3181,7 +3303,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances/' + params.targetInstance,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'DELETE'
         },
         params: params,
@@ -3211,7 +3333,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances/' + params.targetInstance,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'GET'
         },
         params: params,
@@ -3241,7 +3363,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances',
           method: 'POST'
         },
         params: params,
@@ -3273,7 +3395,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/targetInstances',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances',
           method: 'GET'
         },
         params: params,
@@ -3308,7 +3430,7 @@ function Compute(options) {
     addHealthCheck: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/addHealthCheck',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
           method: 'POST'
         },
         params: params,
@@ -3339,7 +3461,7 @@ function Compute(options) {
     addInstance: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/addInstance',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
           method: 'POST'
         },
         params: params,
@@ -3370,7 +3492,7 @@ function Compute(options) {
     aggregatedList: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/aggregated/targetPools',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetPools',
           method: 'GET'
         },
         params: params,
@@ -3400,7 +3522,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'DELETE'
         },
         params: params,
@@ -3430,7 +3552,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'GET'
         },
         params: params,
@@ -3461,7 +3583,7 @@ function Compute(options) {
     getHealth: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/getHealth',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
           method: 'POST'
         },
         params: params,
@@ -3491,7 +3613,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools',
           method: 'POST'
         },
         params: params,
@@ -3523,7 +3645,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools',
           method: 'GET'
         },
         params: params,
@@ -3554,7 +3676,7 @@ function Compute(options) {
     removeHealthCheck: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/removeHealthCheck',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
           method: 'POST'
         },
         params: params,
@@ -3585,7 +3707,7 @@ function Compute(options) {
     removeInstance: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/removeInstance',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
           method: 'POST'
         },
         params: params,
@@ -3617,7 +3739,7 @@ function Compute(options) {
     setBackup: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/regions/' + params.region + '/targetPools/' + params.targetPool + '/setBackup',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
           method: 'POST'
         },
         params: params,
@@ -3650,7 +3772,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'DELETE'
         },
         params: params,
@@ -3679,7 +3801,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'GET'
         },
         params: params,
@@ -3708,7 +3830,7 @@ function Compute(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps',
           method: 'POST'
         },
         params: params,
@@ -3739,7 +3861,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps',
           method: 'GET'
         },
         params: params,
@@ -3769,7 +3891,7 @@ function Compute(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PATCH'
         },
         params: params,
@@ -3799,7 +3921,7 @@ function Compute(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PUT'
         },
         params: params,
@@ -3829,7 +3951,7 @@ function Compute(options) {
     validate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/global/urlMaps/' + params.urlMap + '/validate',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}/validate',
           method: 'POST'
         },
         params: params,
@@ -3863,7 +3985,7 @@ function Compute(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -3893,7 +4015,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -3925,7 +4047,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone + '/operations',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations',
           method: 'GET'
         },
         params: params,
@@ -3958,7 +4080,7 @@ function Compute(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones/' + params.zone,
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}',
           method: 'GET'
         },
         params: params,
@@ -3989,7 +4111,7 @@ function Compute(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/compute/v1/projects/' + params.project + '/zones',
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones',
           method: 'GET'
         },
         params: params,

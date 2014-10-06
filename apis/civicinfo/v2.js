@@ -174,7 +174,7 @@ function Civicinfo(options) {
     representativeInfoByDivision: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/civicinfo/v2/representatives/' + params.ocdId,
+          url: 'https://www.googleapis.com/civicinfo/v2/representatives/{ocdId}',
           method: 'GET'
         },
         params: params,

@@ -56,7 +56,7 @@ function Books(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf,
+          url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}',
           method: 'GET'
         },
         params: params,
@@ -85,7 +85,7 @@ function Books(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves',
+          url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves',
           method: 'GET'
         },
         params: params,
@@ -120,7 +120,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf + '/volumes',
+            url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes',
             method: 'GET'
           },
           params: params,
@@ -241,7 +241,7 @@ function Books(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary/' + params.summaryId,
+          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary/{summaryId}',
           method: 'GET'
         },
         params: params,
@@ -273,7 +273,7 @@ function Books(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary',
+          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary',
           method: 'GET'
         },
         params: params,
@@ -312,7 +312,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/data/' + params.annotationDataId,
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}',
             method: 'GET'
           },
           params: params,
@@ -352,7 +352,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/data',
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data',
             method: 'GET'
           },
           params: params,
@@ -387,7 +387,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}',
             method: 'GET'
           },
           params: params,
@@ -429,7 +429,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId,
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}',
             method: 'GET'
           },
           params: params,
@@ -563,7 +563,7 @@ function Books(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'DELETE'
           },
           params: params,
@@ -592,7 +592,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'GET'
           },
           params: params,
@@ -714,7 +714,7 @@ function Books(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'PUT'
           },
           params: params,
@@ -747,7 +747,7 @@ function Books(options) {
       addVolume: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/addVolume',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume',
             method: 'POST'
           },
           params: params,
@@ -776,7 +776,7 @@ function Books(options) {
       clearVolumes: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/clearVolumes',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes',
             method: 'POST'
           },
           params: params,
@@ -805,7 +805,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}',
             method: 'GET'
           },
           params: params,
@@ -862,7 +862,7 @@ function Books(options) {
       moveVolume: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/moveVolume',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume',
             method: 'POST'
           },
           params: params,
@@ -892,7 +892,7 @@ function Books(options) {
       removeVolume: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/removeVolume',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume',
             method: 'POST'
           },
           params: params,
@@ -929,7 +929,7 @@ function Books(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/volumes',
+              url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes',
               method: 'GET'
             },
             params: params,
@@ -963,7 +963,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}',
             method: 'GET'
           },
           params: params,
@@ -997,7 +997,7 @@ function Books(options) {
       setPosition: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId + '/setPosition',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}/setPosition',
             method: 'POST'
           },
           params: params,
@@ -1133,7 +1133,7 @@ function Books(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId,
+          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}',
           method: 'GET'
         },
         params: params,
@@ -1205,7 +1205,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/associated',
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/associated',
             method: 'GET'
           },
           params: params,

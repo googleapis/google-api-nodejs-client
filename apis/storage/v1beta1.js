@@ -55,7 +55,7 @@ function Storage(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'DELETE'
         },
         params: params,
@@ -84,7 +84,7 @@ function Storage(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'GET'
         },
         params: params,
@@ -113,7 +113,7 @@ function Storage(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/acl',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
           method: 'POST'
         },
         params: params,
@@ -141,7 +141,7 @@ function Storage(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/acl',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
           method: 'GET'
         },
         params: params,
@@ -171,7 +171,7 @@ function Storage(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'PATCH'
         },
         params: params,
@@ -201,7 +201,7 @@ function Storage(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'PUT'
         },
         params: params,
@@ -233,7 +233,7 @@ function Storage(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'DELETE'
         },
         params: params,
@@ -262,7 +262,7 @@ function Storage(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'GET'
         },
         params: params,
@@ -349,7 +349,7 @@ function Storage(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'PATCH'
         },
         params: params,
@@ -379,7 +379,7 @@ function Storage(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'PUT'
         },
         params: params,
@@ -413,7 +413,7 @@ function Storage(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'DELETE'
         },
         params: params,
@@ -443,7 +443,7 @@ function Storage(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'GET'
         },
         params: params,
@@ -473,7 +473,7 @@ function Storage(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object + '/acl',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
           method: 'POST'
         },
         params: params,
@@ -502,7 +502,7 @@ function Storage(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object + '/acl',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
           method: 'GET'
         },
         params: params,
@@ -533,7 +533,7 @@ function Storage(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PATCH'
         },
         params: params,
@@ -564,7 +564,7 @@ function Storage(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object + '/acl/' + params.entity,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PUT'
         },
         params: params,
@@ -597,7 +597,7 @@ function Storage(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'DELETE'
         },
         params: params,
@@ -627,7 +627,7 @@ function Storage(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'GET'
         },
         params: params,
@@ -661,11 +661,11 @@ function Storage(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
           method: 'POST'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/storage/v1beta1/b/' + params.bucket + '/o',
+        mediaUrl: 'https://www.googleapis.com/upload/storage/v1beta1/b/{bucket}/o',
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
         context: self
@@ -695,7 +695,7 @@ function Storage(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o',
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
           method: 'GET'
         },
         params: params,
@@ -726,7 +726,7 @@ function Storage(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'PATCH'
         },
         params: params,
@@ -757,7 +757,7 @@ function Storage(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/storage/v1beta1/b/' + params.bucket + '/o/' + params.object,
+          url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'PUT'
         },
         params: params,

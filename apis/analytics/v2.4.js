@@ -130,7 +130,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
           },
           params: params,
@@ -164,7 +164,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
           },
           params: params,
@@ -227,7 +227,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties',
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties',
             method: 'GET'
           },
           params: params,

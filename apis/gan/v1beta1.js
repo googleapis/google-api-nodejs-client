@@ -56,7 +56,7 @@ function Gan(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/advertiser',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/advertiser',
           method: 'GET'
         },
         params: params,
@@ -92,7 +92,7 @@ function Gan(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/advertisers',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/advertisers',
           method: 'GET'
         },
         params: params,
@@ -126,7 +126,7 @@ function Gan(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/publishers/' + params.publisher + '/ccOffers',
+          url: 'https://www.googleapis.com/gan/v1beta1/publishers/{publisher}/ccOffers',
           method: 'GET'
         },
         params: params,
@@ -175,7 +175,7 @@ function Gan(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/events',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/events',
           method: 'GET'
         },
         params: params,
@@ -209,7 +209,7 @@ function Gan(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/link/' + params.linkId,
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/link/{linkId}',
           method: 'GET'
         },
         params: params,
@@ -239,7 +239,7 @@ function Gan(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/link',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/link',
           method: 'POST'
         },
         params: params,
@@ -281,7 +281,7 @@ function Gan(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/links',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/links',
           method: 'GET'
         },
         params: params,
@@ -315,7 +315,7 @@ function Gan(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/publisher',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/publisher',
           method: 'GET'
         },
         params: params,
@@ -351,7 +351,7 @@ function Gan(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/publishers',
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/publishers',
           method: 'GET'
         },
         params: params,
@@ -396,7 +396,7 @@ function Gan(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/gan/v1beta1/' + params.role + '/' + params.roleId + '/report/' + params.reportType,
+          url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/report/{reportType}',
           method: 'GET'
         },
         params: params,

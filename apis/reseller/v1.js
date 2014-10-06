@@ -54,7 +54,7 @@ function Reseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId,
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'GET'
         },
         params: params,
@@ -110,7 +110,7 @@ function Reseller(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId,
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'PATCH'
         },
         params: params,
@@ -139,7 +139,7 @@ function Reseller(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId,
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'PUT'
         },
         params: params,
@@ -173,7 +173,7 @@ function Reseller(options) {
     changePlan: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changePlan',
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan',
           method: 'POST'
         },
         params: params,
@@ -203,7 +203,7 @@ function Reseller(options) {
     changeRenewalSettings: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeRenewalSettings',
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings',
           method: 'POST'
         },
         params: params,
@@ -233,7 +233,7 @@ function Reseller(options) {
     changeSeats: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeSeats',
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats',
           method: 'POST'
         },
         params: params,
@@ -263,7 +263,7 @@ function Reseller(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'DELETE'
         },
         params: params,
@@ -292,7 +292,7 @@ function Reseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'GET'
         },
         params: params,
@@ -322,7 +322,7 @@ function Reseller(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions',
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions',
           method: 'POST'
         },
         params: params,
@@ -381,7 +381,7 @@ function Reseller(options) {
     startPaidService: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/startPaidService',
+          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
           method: 'POST'
         },
         params: params,
