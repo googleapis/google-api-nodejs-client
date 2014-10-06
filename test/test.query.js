@@ -18,7 +18,7 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
-var google, drive, authClient, OAuth2;
+var google, drive, authClient, OAuth2, gmail;
 
 describe('Query params', function() {
 
@@ -30,6 +30,7 @@ describe('Query params', function() {
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');
     authClient.setCredentials({ access_token: 'abc123' });
     drive = google.drive('v2');
+    gmail = google.gmail('v1');
   });
 
   it('should not append ? with no query parameters', function() {
@@ -72,5 +73,14 @@ describe('Query params', function() {
       auth: authClient
     }, noop);
     assert.equal(req.uri.query, null);
+  });
+
+  it('should handle multi-value query params properly', function() {
+    var req = gmail.users.messages.get({
+      userId: 'me',
+      id: 'abc123',
+      metadataHeaders: ['To', 'Date']
+    }, noop);
+    assert.equal(req.uri.query, 'metadataHeaders=To&metadataHeaders=Date');
   });
 });

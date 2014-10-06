@@ -56,7 +56,7 @@ describe('Options', function() {
     google.options({ auth: 'apikey1' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
     var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, noop);
-    assert.equal(req.url.query, 'key=apikey3');
+    assert.equal(req.uri.query, 'key=apikey3');
   });
 
   it('should apply google options to request object like proxy', function() {
