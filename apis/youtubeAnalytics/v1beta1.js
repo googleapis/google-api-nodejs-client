@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * YouTube Analytics API
@@ -59,6 +58,7 @@ function Youtubeanalytics(options) {
         },
         params: params,
         requiredParams: ['onBehalfOfContentOwner'],
+        pathParams: [],
         context: self
       };
 
@@ -91,6 +91,7 @@ function Youtubeanalytics(options) {
         },
         params: params,
         requiredParams: ['batchReportDefinitionId', 'onBehalfOfContentOwner'],
+        pathParams: [],
         context: self
       };
 
@@ -130,6 +131,7 @@ function Youtubeanalytics(options) {
         },
         params: params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+        pathParams: [],
         context: self
       };
 

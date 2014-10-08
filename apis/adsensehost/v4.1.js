@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * AdSense Host API
@@ -87,6 +86,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['filterAdClientId'],
+        pathParams: [],
         context: self
       };
 
@@ -464,6 +464,8 @@ function Adsensehost(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -498,6 +500,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['productCode', 'websiteUrl'],
+        pathParams: [],
         context: self
       };
 
@@ -525,6 +528,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['token'],
+        pathParams: [],
         context: self
       };
 
@@ -744,6 +748,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['startDate', 'endDate'],
+        pathParams: [],
         context: self
       };
 

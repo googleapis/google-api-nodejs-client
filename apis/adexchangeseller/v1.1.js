@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Ad Exchange Seller API
@@ -91,6 +90,8 @@ function Adexchangeseller(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -218,6 +219,8 @@ function Adexchangeseller(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -346,6 +349,8 @@ function Adexchangeseller(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -374,6 +379,8 @@ function Adexchangeseller(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -431,6 +438,8 @@ function Adexchangeseller(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -470,6 +479,7 @@ function Adexchangeseller(options) {
         },
         params: params,
         requiredParams: ['startDate', 'endDate'],
+        pathParams: [],
         context: self
       };
 
@@ -530,6 +540,8 @@ function Adexchangeseller(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 

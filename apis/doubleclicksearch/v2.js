@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * DoubleClick Search API
@@ -96,6 +95,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -130,6 +131,7 @@ function Doubleclicksearch(options) {
         },
         params: params,
         requiredParams: ['advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount', 'startDate', 'startRow'],
+        pathParams: [],
         context: self
       };
 
@@ -156,6 +158,8 @@ function Doubleclicksearch(options) {
           method: 'PUT'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -182,6 +186,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -212,6 +218,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -295,6 +303,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

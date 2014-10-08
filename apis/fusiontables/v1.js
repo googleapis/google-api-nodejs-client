@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Fusion Tables API
@@ -242,6 +241,7 @@ function Fusiontables(options) {
         },
         params: params,
         requiredParams: ['sql'],
+        pathParams: [],
         context: self
       };
 
@@ -271,6 +271,7 @@ function Fusiontables(options) {
         },
         params: params,
         requiredParams: ['sql'],
+        pathParams: [],
         context: self
       };
 
@@ -611,6 +612,7 @@ function Fusiontables(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v1/tables/import',
         requiredParams: ['name'],
+        pathParams: [],
         context: self
       };
 
@@ -637,6 +639,8 @@ function Fusiontables(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -664,6 +668,8 @@ function Fusiontables(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

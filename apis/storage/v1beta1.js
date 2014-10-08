@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Cloud Storage API
@@ -295,6 +294,8 @@ function Storage(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -325,6 +326,7 @@ function Storage(options) {
         },
         params: params,
         requiredParams: ['projectId'],
+        pathParams: [],
         context: self
       };
 

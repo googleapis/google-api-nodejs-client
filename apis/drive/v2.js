@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Drive API
@@ -60,6 +59,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -120,6 +121,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -182,6 +185,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -213,6 +218,8 @@ function Drive(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -243,6 +250,8 @@ function Drive(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -642,6 +651,8 @@ function Drive(options) {
           method: 'DELETE'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -710,6 +721,8 @@ function Drive(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -740,6 +753,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
