@@ -32,90 +32,75 @@ function createJSON() {
   };
 }
 
-function fromJSONShouldThrow(json) {
-  var thrown = false;
-  try {
-    googleapis.auth.googleCredentials.fromJSON(json);
-  }
-  catch (err) {
-    thrown = true;
-  }
-
-  assert.equal(true, thrown);
+function fromJSONShouldError(json) {
+  googleapis.credentials.fromJSON(json, function(err, result) {
+    assert.equal(true, err instanceof Error);
+  });
 }
 
 describe('googleCredentials', function() {
   describe('.fromJson', function () {
 
-    it('should throw on null json', function () {
-      fromJSONShouldThrow(null);
+    it('should error on null json', function () {
+      fromJSONShouldError(null);
     });
 
-    it('should throw on empty json', function () {
-      var json = {
-      };
-
-      fromJSONShouldThrow(json);
+    it('should error on empty json', function () {
+      fromJSONShouldError({});
     });
 
-    it('should throw on missing client_email', function () {
+    it('should error on missing client_email', function () {
       var json = createJSON();
       delete json.client_email;
 
-      fromJSONShouldThrow(json);
+      fromJSONShouldError(json);
     });
 
-    it('should throw on missing private_key', function () {
+    it('should error on missing private_key', function () {
       var json = createJSON();
       delete json.private_key;
 
-      fromJSONShouldThrow(json);
+      fromJSONShouldError(json);
     });
 
     it('should create JWT with client_email', function () {
       var json = createJSON();
-      var auth = googleapis.auth.googleCredentials.fromJSON(json);
-
-      assert.equal(json.client_email, auth.email);
+      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err == null);
+        assert.equal(json.client_email, result.email);
+      });
     });
 
     it('should create JWT with private_key', function () {
       var json = createJSON();
-      var auth = googleapis.auth.googleCredentials.fromJSON(json);
-
-      assert.equal(json.private_key, auth.key);
-    });
-
-    it('should create JWT with createScoped method', function () {
-      var json = createJSON();
-      var auth = googleapis.auth.googleCredentials.fromJSON(json);
-
-      assert.equal(true, auth.hasOwnProperty("createScoped"));
-      assert.equal('function', typeof auth.createScoped);
+      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err == null);
+        assert.equal(json.private_key, result.key);
+      });
     });
 
     it('should create JWT with null scopes', function () {
       var json = createJSON();
-      var auth = googleapis.auth.googleCredentials.fromJSON(json);
-
-      assert.equal(true, auth.hasOwnProperty("scopes"));
-      assert.equal(null, auth.scopes);
+      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err == null);
+        assert.equal(true, result.scopes == null);
+      });
     });
 
     it('should create JWT with null subject', function () {
       var json = createJSON();
-      var auth = googleapis.auth.googleCredentials.fromJSON(json);
-
-      assert.equal(true, auth.hasOwnProperty("subject"));
-      assert.equal(null, auth.subject);
+      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err == null);
+        assert.equal(true, result.subject == null);
+      });
     });
 
     it('should create JWT with null keyFile', function () {
       var json = createJSON();
-      var auth = googleapis.auth.googleCredentials.fromJSON(json);
-
-      assert.equal(true, auth.hasOwnProperty("keyFile"));
-      assert.equal(null, auth.keyFile);
+      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err == null);
+        assert.equal(true, result.keyFile == null);
+      });
     });
   });
 });
