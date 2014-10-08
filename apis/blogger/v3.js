@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Blogger API
@@ -124,6 +123,7 @@ function Blogger(options) {
         },
         params: params,
         requiredParams: ['url'],
+        pathParams: [],
         context: self
       };
 

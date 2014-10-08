@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Site Verification API
@@ -114,6 +113,8 @@ function Siteverification(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -142,6 +143,7 @@ function Siteverification(options) {
         },
         params: params,
         requiredParams: ['verificationMethod'],
+        pathParams: [],
         context: self
       };
 
@@ -167,6 +169,8 @@ function Siteverification(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
