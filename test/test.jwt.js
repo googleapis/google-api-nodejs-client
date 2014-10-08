@@ -193,4 +193,90 @@ describe('JWT auth client', function() {
       done();
     });
   });
+
+  describe('.createScoped', function() {
+    it('should clone stuff', function() {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+      var clone = jwt.createScoped('x');
+
+      assert.equal(jwt.email, clone.email);
+      assert.equal(jwt.keyFile, clone.keyFile);
+      assert.equal(jwt.key, clone.key);
+      assert.equal(jwt.subject, clone.subject);
+    });
+
+    it('should handle string scope', function() {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+      var clone = jwt.createScoped('newscope');
+      assert.equal('newscope', clone.scopes);
+    });
+
+    it('should handle array scope', function() {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+      var clone = jwt.createScoped(['gorilla', 'chimpanzee', 'orangutan']);
+      assert.equal(3, clone.scopes.length);
+      assert.equal('gorilla', clone.scopes[0]);
+      assert.equal('chimpanzee', clone.scopes[1]);
+      assert.equal('orangutan', clone.scopes[2]);
+    });
+
+    it('should handle null scope', function() {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+      var clone = jwt.createScoped();
+      assert.equal(null, clone.scopes);
+    });
+
+    it('should set scope when scope was null', function() {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        'bar@subjectaccount.com');
+
+      var clone = jwt.createScoped('hi');
+      assert.equal('hi', clone.scopes);
+    });
+
+    it('should handle nulls', function() {
+      var jwt = new googleapis.auth.JWT();
+
+      var clone = jwt.createScoped('hi');
+      assert.equal(jwt.email, null);
+      assert.equal(jwt.keyFile, null);
+      assert.equal(jwt.key, null);
+      assert.equal(jwt.subject, null);
+      assert.equal('hi', clone.scopes);
+    });
+
+    it('should not return the original instance', function() {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+      var clone = jwt.createScoped('hi');
+      assert.notEqual(jwt, clone);
+    });
+  });
 });
