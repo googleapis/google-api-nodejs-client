@@ -19,6 +19,7 @@
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
+var fs = require('fs');
 
 nock.disableNetConnect();
 
@@ -32,40 +33,42 @@ function createJSON() {
   };
 }
 
-function fromJSONShouldError(json) {
-  googleapis.credentials.fromJSON(json, function(err, result) {
-    assert.equal(true, err instanceof Error);
-  });
-}
-
 describe('googleCredentials', function() {
   describe('.fromJson', function () {
 
     it('should error on null json', function () {
-      fromJSONShouldError(null);
+      googleapis.credentials.fromJSON(null, function(err, result) {
+        assert.equal(true, err instanceof Error);
+      });
     });
 
     it('should error on empty json', function () {
-      fromJSONShouldError({});
+      googleapis.credentials.fromJSON({}, function(err, result) {
+        assert.equal(true, err instanceof Error);
+      });
     });
 
     it('should error on missing client_email', function () {
       var json = createJSON();
       delete json.client_email;
 
-      fromJSONShouldError(json);
+      googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err instanceof Error);
+      });
     });
 
     it('should error on missing private_key', function () {
       var json = createJSON();
       delete json.private_key;
 
-      fromJSONShouldError(json);
+      googleapis.credentials.fromJSON(json, function(err, result) {
+        assert.equal(true, err instanceof Error);
+      });
     });
 
     it('should create JWT with client_email', function () {
       var json = createJSON();
-      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+      googleapis.credentials.fromJSON(json, function(err, result) {
         assert.equal(true, err == null);
         assert.equal(json.client_email, result.email);
       });
@@ -73,7 +76,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with private_key', function () {
       var json = createJSON();
-      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+      googleapis.credentials.fromJSON(json, function(err, result) {
         assert.equal(true, err == null);
         assert.equal(json.private_key, result.key);
       });
@@ -81,7 +84,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with null scopes', function () {
       var json = createJSON();
-      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+      googleapis.credentials.fromJSON(json, function(err, result) {
         assert.equal(true, err == null);
         assert.equal(true, result.scopes == null);
       });
@@ -89,7 +92,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with null subject', function () {
       var json = createJSON();
-      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+      googleapis.credentials.fromJSON(json, function(err, result) {
         assert.equal(true, err == null);
         assert.equal(true, result.subject == null);
       });
@@ -97,9 +100,39 @@ describe('googleCredentials', function() {
 
     it('should create JWT with null keyFile', function () {
       var json = createJSON();
-      var auth = googleapis.credentials.fromJSON(json, function(err, result) {
+      googleapis.credentials.fromJSON(json, function(err, result) {
         assert.equal(true, err == null);
         assert.equal(true, result.keyFile == null);
+      });
+    });
+  });
+
+  describe('.fromStream', function () {
+
+    it('should error on null stream', function () {
+      googleapis.credentials.fromStream(null, function(err, result) {
+        assert.equal(true, err instanceof Error);
+      });
+    });
+
+    it('should read the stream and create a jwt', function () {
+      // Read the contents of the file into a json object.
+      var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
+      var json = JSON.parse(fileContents);
+
+      // Now open a stream on the same file.
+      var stream = fs.createReadStream('./test/fixtures/private.json');
+
+      // And pass it into the fromStream method.
+      googleapis.credentials.fromStream(stream, function(err, result) {
+        assert.equal(null, err);
+
+        // Ensure that the correct bits were pulled from the stream.
+        assert.equal(json.private_key, result.key);
+        assert.equal(json.client_email, result.email);
+        assert.equal(null, result.keyFile);
+        assert.equal(null, result.subject);
+        assert.equal(null, result.scope);
       });
     });
   });
