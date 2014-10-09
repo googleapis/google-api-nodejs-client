@@ -69,7 +69,7 @@ describe('googleCredentials', function() {
     it('should create JWT with client_email', function () {
       var json = createJSON();
       googleapis.credentials.fromJSON(json, function(err, result) {
-        assert.equal(true, err == null);
+        assert.equal(null, err);
         assert.equal(json.client_email, result.email);
       });
     });
@@ -77,7 +77,7 @@ describe('googleCredentials', function() {
     it('should create JWT with private_key', function () {
       var json = createJSON();
       googleapis.credentials.fromJSON(json, function(err, result) {
-        assert.equal(true, err == null);
+        assert.equal(null, err);
         assert.equal(json.private_key, result.key);
       });
     });
@@ -85,37 +85,38 @@ describe('googleCredentials', function() {
     it('should create JWT with null scopes', function () {
       var json = createJSON();
       googleapis.credentials.fromJSON(json, function(err, result) {
-        assert.equal(true, err == null);
-        assert.equal(true, result.scopes == null);
+        assert.equal(null, err);
+        assert.equal(null, result.scopes);
       });
     });
 
     it('should create JWT with null subject', function () {
       var json = createJSON();
       googleapis.credentials.fromJSON(json, function(err, result) {
-        assert.equal(true, err == null);
-        assert.equal(true, result.subject == null);
+        assert.equal(null, err);
+        assert.equal(null, result.subject);
       });
     });
 
     it('should create JWT with null keyFile', function () {
       var json = createJSON();
       googleapis.credentials.fromJSON(json, function(err, result) {
-        assert.equal(true, err == null);
-        assert.equal(true, result.keyFile == null);
+        assert.equal(null, err);
+        assert.equal(null, result.keyFile);
       });
     });
   });
 
   describe('.fromStream', function () {
 
-    it('should error on null stream', function () {
+    it('should error on null stream', function (done) {
       googleapis.credentials.fromStream(null, function(err, result) {
         assert.equal(true, err instanceof Error);
+        done();
       });
     });
 
-    it('should read the stream and create a jwt', function () {
+    it('should read the stream and create a jwt', function (done) {
       // Read the contents of the file into a json object.
       var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
       var json = JSON.parse(fileContents);
@@ -133,6 +134,8 @@ describe('googleCredentials', function() {
         assert.equal(null, result.keyFile);
         assert.equal(null, result.subject);
         assert.equal(null, result.scope);
+
+        done();
       });
     });
   });
