@@ -72,6 +72,7 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -95,6 +96,7 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -125,6 +127,7 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -151,6 +154,7 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -171,6 +175,7 @@ describe('JWT auth client', function() {
     var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -199,6 +204,7 @@ describe('JWT auth client', function() {
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -214,6 +220,7 @@ describe('JWT auth client', function() {
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -225,6 +232,7 @@ describe('JWT auth client', function() {
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -239,6 +247,7 @@ describe('JWT auth client', function() {
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
@@ -250,6 +259,7 @@ describe('JWT auth client', function() {
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         null,
         'bar@subjectaccount.com');
 
@@ -272,11 +282,80 @@ describe('JWT auth client', function() {
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
+        null,
         ['http://bar', 'http://foo'],
         'bar@subjectaccount.com');
 
       var clone = jwt.createScoped('hi');
       assert.notEqual(jwt, clone);
+    });
+  });
+
+  describe('.createScopedRequired', function() {
+    it('should return true when scopes is null', function () {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        null,
+        'bar@subjectaccount.com');
+
+      assert.equal(true, jwt.createScopedRequired());
+    });
+
+    it('should return true when scopes is an empty array', function () {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        [],
+        'bar@subjectaccount.com');
+
+      assert.equal(true, jwt.createScopedRequired());
+    });
+
+    it('should return true when scopes is an empty string', function () {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        '',
+        'bar@subjectaccount.com');
+
+      assert.equal(true, jwt.createScopedRequired());
+    });
+
+    it('should return false when scopes is a filled-in string', function () {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        'http://foo',
+        'bar@subjectaccount.com');
+
+      assert.equal(false, jwt.createScopedRequired());
+    });
+
+    it('should return false when scopes is a filled-in array', function () {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        ['http://bar', 'http://foo'],
+        'bar@subjectaccount.com');
+
+      assert.equal(false, jwt.createScopedRequired());
+    });
+
+    it('should return false when scopes is not an array or a string, but can be used as a string', function () {
+      var jwt = new googleapis.auth.JWT(
+        'foo@serviceaccount.com',
+        '/path/to/key.pem',
+        null,
+        2,
+        'bar@subjectaccount.com');
+
+      assert.equal(false, jwt.createScopedRequired());
     });
   });
 });
