@@ -18,6 +18,7 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
+var googleCredentials = require('../lib/auth/googlecredentials.js');
 var nock = require('nock');
 var fs = require('fs');
 
@@ -31,6 +32,10 @@ function createJSON() {
     "client_id": "client123",
     "type": "service_account"
   };
+}
+
+function stringEndsWith(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
 describe('googleCredentials', function() {
@@ -135,6 +140,101 @@ describe('googleCredentials', function() {
         assert.equal(null, result.subject);
         assert.equal(null, result.scope);
 
+        done();
+      });
+    });
+  });
+
+  describe('._getApplicationCredentialsFromFilePath', function () {
+
+    it('should error on null file path', function (done) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath(null, function (err, result) {
+        assert.equal(true, err instanceof Error);
+        done();
+      });
+    });
+
+    it('should error on empty file path', function (done) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath('', function (err, result) {
+        assert.equal(true, err instanceof Error);
+        done();
+      });
+    });
+
+    it('should error on non-string file path', function (done) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath(2, function (err, result) {
+        assert.equal(true, err instanceof Error);
+        done();
+      });
+    });
+
+    it('should error on invalid file path', function (done) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath('./nonexistantfile.json', function (err, result) {
+        assert.equal(true, err instanceof Error);
+        done();
+      });
+    });
+
+    it('should error on directory', function (done) {
+      // Make sure that the following path actually does point to a directory.
+      var directory = './test/fixtures';
+      assert.equal(true, fs.lstatSync(directory).isDirectory());
+
+      googleapis.credentials._getApplicationCredentialsFromFilePath(directory, function (err, result) {
+        assert.equal(true, err instanceof Error);
+        done();
+      });
+    });
+
+    it('should handle errors thrown from createReadStream', function (done) {
+      var gc = new googleCredentials();
+      gc.internals.createReadStream = function(filePath) {
+        throw new Error('Hans and Chewbacca');
+      }
+
+      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+        assert.equal(true, stringEndsWith(err.message, 'Hans and Chewbacca'));
+        done();
+      });
+    });
+
+    it('should handle errors thrown from fromStream', function (done) {
+      var gc = new googleCredentials();
+      gc.fromStream = function(stream, callback) {
+        throw new Error('Darth Maul');
+      }
+
+      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+        assert.equal(true, stringEndsWith(err.message, 'Darth Maul'));
+        done();
+      });
+    });
+
+    it('should handle errors passed from fromStream', function (done) {
+      var gc = new googleCredentials();
+      gc.fromStream = function(stream, callback) {
+        callback(new Error('Princess Leia'));
+      }
+
+      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+        assert.equal(true, stringEndsWith(err.message, 'Princess Leia'));
+        done();
+      });
+    });
+
+    it('should correctly read the file and create a valid JWT', function (done) {
+      // Read the contents of the file into a json object.
+      var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
+      var json = JSON.parse(fileContents);
+
+      // Now pass the same path to the credentials loader.
+      googleapis.credentials._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+        assert.equal(null, err);
+        assert.equal(json.private_key, result.key);
+        assert.equal(json.client_email, result.email);
+        assert.equal(null, result.keyFile);
+        assert.equal(null, result.subject);
+        assert.equal(null, result.scope);
         done();
       });
     });
