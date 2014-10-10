@@ -40,6 +40,24 @@ function stringEndsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
+// Simulates a path join.
+function pathJoin(item1, item2) {
+  return item1 + ':' + item2;
+}
+
+// Returns true.
+function returnsTrue() {
+  return true;
+}
+
+// Returns false.
+function returnsFalse() {
+  return false;
+}
+
+// Nothing.
+function noop() { }
+
 // Executes the doneCallback after the nTH call.
 function doneWhen(doneCallback, count) {
   var i = 0;
@@ -355,4 +373,312 @@ describe('googleCredentials', function() {
       step();
     });
   });
+
+  describe('._tryGetApplicationCredentialsFromWellKnownFile', function () {
+
+    it('should build the correct directory for Windows', function () {
+      var correctLocation = false;
+
+      // Set up mocks.
+      var gc = new googleCredentials();
+      gc._pathJoin = pathJoin;
+      gc._isWindows = returnsTrue;
+      gc._fileExists = returnsTrue;
+
+      gc._getEnvironmentVariable = function (name) {
+        if (name == 'APPDATA') {
+          return 'foo';
+        }
+      }
+
+      gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
+        if (filePath == 'foo:gcloud:application_default_credentials.json') {
+          correctLocation = true;
+        }
+      }
+
+      // Execute.
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile();
+
+      assert.equal(true, handled);
+      assert.equal(true, correctLocation);
+    });
+
+    it('should build the correct directory for non-Windows', function () {
+      var correctLocation = false;
+
+      // Set up mocks.
+      var gc = new googleCredentials();
+      gc._pathJoin = pathJoin;
+      gc._isWindows = returnsFalse;
+      gc._fileExists = returnsTrue;
+
+      gc._getEnvironmentVariable = function (name) {
+        if (name == 'HOME') {
+          return 'foo';
+        }
+      }
+
+      gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
+        if (filePath == 'foo:.config:gcloud:application_default_credentials.json') {
+          correctLocation = true;
+        }
+      }
+
+      // Execute.
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile();
+
+      assert.equal(true, handled);
+      assert.equal(true, correctLocation);
+    });
+
+    it('should fail on Windows when APPDATA is not defined', function (done) {
+      var correctLocation = false;
+
+      // Set up mocks.
+      var gc = new googleCredentials();
+      gc._pathJoin = pathJoin;
+      gc._isWindows = returnsTrue;
+      gc._fileExists = returnsTrue;
+      gc._getApplicationCredentialsFromFilePath = noop;
+
+      gc._getEnvironmentVariable = function (name) {
+        if (name == 'APPDATA') {
+          return null;
+        }
+
+        return 'foo';
+      }
+
+      // The test ends successfully after 1 step has completed.
+      var step = doneWhen(done, 1);
+
+      // Execute.
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+        step(); // Should not get called.
+      });
+
+      assert.equal(false, handled);
+      step(); // Should get called.
+    });
+
+    it('should fail on non-Windows when HOME is not defined', function (done) {
+      var correctLocation = false;
+
+      // Set up mocks.
+      var gc = new googleCredentials();
+      gc._pathJoin = pathJoin;
+      gc._isWindows = returnsFalse;
+      gc._fileExists = returnsTrue;
+      gc._getApplicationCredentialsFromFilePath = noop;
+
+      gc._getEnvironmentVariable = function (name) {
+        if (name == 'HOME') {
+          return null;
+        }
+
+        return 'foo';
+      }
+
+      // The test ends successfully after 1 step has completed.
+      var step = doneWhen(done, 1);
+
+      // Execute.
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+        step(); // Should not get called.
+      });
+
+      assert.equal(false, handled);
+      step(); // Should get called.
+    });
+
+    it('should fail on Windows when file does not exist', function (done) {
+      var correctLocation = false;
+
+      // Set up mocks.
+      var gc = new googleCredentials();
+      gc._pathJoin = pathJoin;
+      gc._isWindows = returnsTrue;
+      gc._fileExists = returnsFalse;
+      gc._getApplicationCredentialsFromFilePath = noop;
+
+      gc._getEnvironmentVariable = function (name) {
+        if (name == 'APPDATA') {
+          return 'foo';
+        }
+      }
+
+      // The test ends successfully after 1 step has completed.
+      var step = doneWhen(done, 1);
+
+      // Execute.
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+        step(); // Should not get called.
+      });
+
+      assert.equal(false, handled);
+      step(); // Should get called.
+    });
+
+    it('should fail on non-Windows when file does not exist', function (done) {
+      var correctLocation = false;
+
+      // Set up mocks.
+      var gc = new googleCredentials();
+      gc._pathJoin = pathJoin;
+      gc._isWindows = returnsFalse;
+      gc._fileExists = returnsFalse;
+      gc._getApplicationCredentialsFromFilePath = noop;
+
+      gc._getEnvironmentVariable = function (name) {
+        if (name == 'HOME') {
+          return 'foo';
+        }
+      }
+
+      // The test ends successfully after 1 step has completed.
+      var step = doneWhen(done, 1);
+
+      // Execute.
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+        step(); // Should not get called.
+      });
+
+      assert.equal(false, handled);
+      step(); // Should get called.
+    });
+  });
+
+  it('should succeeds on Windows', function (done) {
+    var correctLocation = false;
+
+    // Set up mocks.
+    var gc = new googleCredentials();
+    gc._pathJoin = pathJoin;
+    gc._isWindows = returnsTrue;
+    gc._fileExists = returnsTrue;
+
+    gc._getEnvironmentVariable = function(name) {
+      if (name == 'APPDATA') {
+        return 'foo';
+      }
+    }
+
+    gc._getApplicationCredentialsFromFilePath = function(filePath, callback) {
+      callback(null, 'hello');
+    };
+
+    // The test ends successfully after 2 steps have completed.
+    var step = doneWhen(done, 2);
+
+    // Execute.
+    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function(err, result) {
+      assert.equal(null, err);
+      assert.equal('hello', result);
+      step();
+    });
+
+    assert.equal(true, handled);
+    step();
+  });
+
+  it('should succeeds on non-Windows', function (done) {
+    var correctLocation = false;
+
+    // Set up mocks.
+    var gc = new googleCredentials();
+    gc._pathJoin = pathJoin;
+    gc._isWindows = returnsFalse;
+    gc._fileExists = returnsTrue;
+
+    gc._getEnvironmentVariable = function(name) {
+      if (name == 'HOME') {
+        return 'foo';
+      }
+    }
+
+    gc._getApplicationCredentialsFromFilePath = function(filePath, callback) {
+      callback(null, 'hello');
+    };
+
+    // The test ends successfully after 2 steps have completed.
+    var step = doneWhen(done, 2);
+
+    // Execute.
+    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function(err, result) {
+      assert.equal(null, err);
+      assert.equal('hello', result);
+      step();
+    });
+
+    assert.equal(true, handled);
+    step();
+  });
+
+  it('should pass along a failure on Windows', function (done) {
+    var correctLocation = false;
+
+    // Set up mocks.
+    var gc = new googleCredentials();
+    gc._pathJoin = pathJoin;
+    gc._isWindows = returnsTrue;
+    gc._fileExists = returnsTrue;
+
+    gc._getEnvironmentVariable = function(name) {
+      if (name == 'APPDATA') {
+        return 'foo';
+      }
+    }
+
+    gc._getApplicationCredentialsFromFilePath = function(filePath, callback) {
+      callback(new Error('hello'));
+    };
+
+    // The test ends successfully after 2 steps have completed.
+    var step = doneWhen(done, 2);
+
+    // Execute.
+    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function(err, result) {
+      assert.equal('hello', err.message);
+      assert.equal(null, result);
+      step();
+    });
+
+    assert.equal(true, handled);
+    step();
+  });
+
+  it('should pass along a failure on non-Windows', function (done) {
+    var correctLocation = false;
+
+    // Set up mocks.
+    var gc = new googleCredentials();
+    gc._pathJoin = pathJoin;
+    gc._isWindows = returnsFalse;
+    gc._fileExists = returnsTrue;
+
+    gc._getEnvironmentVariable = function(name) {
+      if (name == 'HOME') {
+        return 'foo';
+      }
+    }
+
+    gc._getApplicationCredentialsFromFilePath = function(filePath, callback) {
+      callback(new Error('hello'));
+    };
+
+    // The test ends successfully after 2 steps have completed.
+    var step = doneWhen(done, 2);
+
+    // Execute.
+    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function(err, result) {
+      assert.equal('hello', err.message);
+      assert.equal(null, result);
+      step();
+    });
+
+    assert.equal(true, handled);
+    step();
+  });
+
 });
