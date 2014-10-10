@@ -45,21 +45,18 @@ function pathJoin(item1, item2) {
   return item1 + ':' + item2;
 }
 
-// Returns true.
-function returnsTrue() {
-  return true;
+// Returns the value.
+function returns(value) {
+  return function() {
+    return value;
+  }
 }
 
-// Returns false.
-function returnsFalse() {
-  return false;
-}
+// Intercepts the specified environment variable, returning the specified value.
+function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmentVariableValue) {
+  var originalGetEnvironmentVariableFunction = gc._getEnvironmentVariable;
 
-// Injects a value for a specific environment variable, allowing other variables to fall through
-// to the default handler.
-function insertEnvironmentVariable(
-  originalGetEnvironmentVariableFunction, environmentVariableName, environmentVariableValue) {
-  return function(name) {
+  gc._getEnvironmentVariable = function(name) {
     if (name == environmentVariableName) {
       return environmentVariableValue;
     }
@@ -68,16 +65,17 @@ function insertEnvironmentVariable(
   }
 }
 
-// Injects a value for the GOOGLE_APPLICATION_CREDENTIALS environment variable on the given GoogleCredentials instance.
-function insertEnvironmentVariableIntoGC(
-  googleCredentials, environmentVariableName, environmentVariableValue) {
-  googleCredentials._getEnvironmentVariable = insertEnvironmentVariable(
-    googleCredentials._getEnvironmentVariable, environmentVariableName, environmentVariableValue);
-}
+// Intercepts the specified file path and inserts the mock file path.
+function insertWellKnownFilePathIntoGC(gc, filePath, mockFilePath) {
+  var originalMockWellKnownFilePathFunction = gc._mockWellKnownFilePath;
 
-// Injects a value for the GOOGLE_APPLICATION_CREDENTIALS environment variable on the given GoogleCredentials instance.
-function insertGoogleApplicationCredentialsEnvVar(googleCredentials) {
-  insertEnvironmentVariableIntoGC(googleCredentials, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+  gc._mockWellKnownFilePath = function(path) {
+    if (path == filePath) {
+      return mockFilePath;
+    }
+
+    return originalMockWellKnownFilePathFunction(filePath);
+  }
 }
 
 // Nothing.
@@ -312,9 +310,7 @@ describe('googleCredentials', function() {
     it('should return false when env var is not set', function (done) {
       // Set up a mock to return a null path string.
       var gc = new googleCredentials();
-      gc._getEnvironmentVariable = function (name) {
-        return null;
-      }
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', null);
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
@@ -331,9 +327,7 @@ describe('googleCredentials', function() {
     it('should return false when env var is empty string', function (done) {
       // Set up a mock to return an empty path string.
       var gc = new googleCredentials();
-      gc._getEnvironmentVariable = function (name) {
-        return '';
-      }
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', '');
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
@@ -350,9 +344,7 @@ describe('googleCredentials', function() {
     it('should handle invalid environment variable', function (done) {
       // Set up a mock to return a path to an invalid file.
       var gc = new googleCredentials();
-      gc._getEnvironmentVariable = function (name) {
-        return './nonexistantfile.json';
-      }
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './nonexistantfile.json');
 
       // The test ends successfully after 2 steps have completed.
       var step = doneWhen(done, 2);
@@ -370,11 +362,7 @@ describe('googleCredentials', function() {
     it('should handle valid environment variable', function (done) {
       // Set up a mock to return path to a valid credentials file.
       var gc = new googleCredentials();
-      gc._getEnvironmentVariable = function (name) {
-        return './test/fixtures/private.json';
-      }
-
-      var x = 1;
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
 
       // Read the contents of the file into a json object.
       var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
@@ -406,15 +394,10 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._isWindows = returnsTrue;
-      gc._fileExists = returnsTrue;
-
-      gc._getEnvironmentVariable = function (name) {
-        if (name == 'APPDATA') {
-          return 'foo';
-        }
-      }
+      gc._osType = returns('Windows');
+      gc._fileExists = returns(true);
 
       gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
         if (filePath == 'foo:gcloud:application_default_credentials.json') {
@@ -434,15 +417,11 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
       gc._pathJoin = pathJoin;
-      gc._isWindows = returnsFalse;
-      gc._fileExists = returnsTrue;
+      gc._osType = returns('Linux');
+      gc._fileExists = returns(true);
 
-      gc._getEnvironmentVariable = function (name) {
-        if (name == 'HOME') {
-          return 'foo';
-        }
-      }
 
       gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
         if (filePath == 'foo:.config:gcloud:application_default_credentials.json') {
@@ -462,18 +441,11 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'APPDATA', null);
       gc._pathJoin = pathJoin;
-      gc._isWindows = returnsTrue;
-      gc._fileExists = returnsTrue;
+      gc._osType = returns('Windows');
+      gc._fileExists = returns(true);
       gc._getApplicationCredentialsFromFilePath = noop;
-
-      gc._getEnvironmentVariable = function (name) {
-        if (name == 'APPDATA') {
-          return null;
-        }
-
-        return 'foo';
-      }
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
@@ -492,18 +464,11 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'HOME', null);
       gc._pathJoin = pathJoin;
-      gc._isWindows = returnsFalse;
-      gc._fileExists = returnsTrue;
+      gc._osType = returns('Linux');
+      gc._fileExists = returns(true);
       gc._getApplicationCredentialsFromFilePath = noop;
-
-      gc._getEnvironmentVariable = function (name) {
-        if (name == 'HOME') {
-          return null;
-        }
-
-        return 'foo';
-      }
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
@@ -522,16 +487,11 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._isWindows = returnsTrue;
-      gc._fileExists = returnsFalse;
+      gc._osType = returns('Windows');
+      gc._fileExists = returns(false);
       gc._getApplicationCredentialsFromFilePath = noop;
-
-      gc._getEnvironmentVariable = function (name) {
-        if (name == 'APPDATA') {
-          return 'foo';
-        }
-      }
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
@@ -550,16 +510,11 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
       gc._pathJoin = pathJoin;
-      gc._isWindows = returnsFalse;
-      gc._fileExists = returnsFalse;
+      gc._osType = returns('Linux');
+      gc._fileExists = returns(false);
       gc._getApplicationCredentialsFromFilePath = noop;
-
-      gc._getEnvironmentVariable = function (name) {
-        if (name == 'HOME') {
-          return 'foo';
-        }
-      }
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
@@ -579,15 +534,10 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
     gc._pathJoin = pathJoin;
-    gc._isWindows = returnsTrue;
-    gc._fileExists = returnsTrue;
-
-    gc._getEnvironmentVariable = function (name) {
-      if (name == 'APPDATA') {
-        return 'foo';
-      }
-    }
+    gc._osType = returns('Windows');
+    gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(null, 'hello');
@@ -612,15 +562,10 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
     gc._pathJoin = pathJoin;
-    gc._isWindows = returnsFalse;
-    gc._fileExists = returnsTrue;
-
-    gc._getEnvironmentVariable = function (name) {
-      if (name == 'HOME') {
-        return 'foo';
-      }
-    }
+    gc._osType = returns('Linux');
+    gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(null, 'hello');
@@ -645,15 +590,10 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
     gc._pathJoin = pathJoin;
-    gc._isWindows = returnsTrue;
-    gc._fileExists = returnsTrue;
-
-    gc._getEnvironmentVariable = function (name) {
-      if (name == 'APPDATA') {
-        return 'foo';
-      }
-    }
+    gc._osType = returns('Windows');
+    gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(new Error('hello'));
@@ -678,15 +618,10 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
     gc._pathJoin = pathJoin;
-    gc._isWindows = returnsFalse;
-    gc._fileExists = returnsTrue;
-
-    gc._getEnvironmentVariable = function (name) {
-      if (name == 'HOME') {
-        return 'foo';
-      }
-    }
+    gc._osType = returns('Linux');
+    gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(new Error('hello'));
@@ -714,7 +649,7 @@ describe('googleCredentials', function() {
 
       // Set up a new GoogleCredentials and prepare it for local environment variable handling.
       var gc = new googleCredentials();
-      insertGoogleApplicationCredentialsEnvVar(gc);
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
 
       // Ask for credentials, the first time.
       gc.getApplicationDefault(function (err, result) {
@@ -746,7 +681,7 @@ describe('googleCredentials', function() {
           // Now create a second GoogleCredentials instance, and ask for credentials. We should
           // get a new credentials instance this time.
           var gc2 = new googleCredentials();
-          insertGoogleApplicationCredentialsEnvVar(gc2);
+          insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
 
           // Step 2 has completed.
           step();
@@ -763,6 +698,61 @@ describe('googleCredentials', function() {
             step();
           });
         });
+      });
+    });
+
+    it('should use environment variable when it is set', function (done) {
+      // We expect private.json to be the file that is used.
+      var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
+      var json = JSON.parse(fileContents);
+
+      // Set up the creds.
+      // * Environment variable is set up to point to private.json
+      // * Well-known file is set up to point to private2.json
+      var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
+      gc._pathJoin = pathJoin;
+      gc._osType = returns('Windows');
+      gc._fileExists = returns(true);
+      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json', './test/fixtures/private2.json');
+
+      // Execute.
+      gc.getApplicationDefault(function (err, result) {
+        assert.equal(null, err);
+        assert.equal(json.private_key, result.key);
+        assert.equal(json.client_email, result.email);
+        assert.equal(null, result.keyFile);
+        assert.equal(null, result.subject);
+        assert.equal(null, result.scope);
+        done();
+      });
+    });
+
+    it('should use well-known file when it is available and env var is not set', function (done) {
+      // We expect private2.json to be the file that is used.
+      var fileContents = fs.readFileSync('./test/fixtures/private2.json', 'utf-8');
+      var json = JSON.parse(fileContents);
+
+      // Set up the creds.
+      // * Environment variable is not set.
+      // * Well-known file is set up to point to private2.json
+      var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
+      gc._pathJoin = pathJoin;
+      gc._osType = returns('Windows');
+      gc._fileExists = returns(true);
+      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json', './test/fixtures/private2.json');
+
+      // Execute.
+      gc.getApplicationDefault(function (err, result) {
+        assert.equal(null, err);
+        assert.equal(json.private_key, result.key);
+        assert.equal(json.client_email, result.email);
+        assert.equal(null, result.keyFile);
+        assert.equal(null, result.subject);
+        assert.equal(null, result.scope);
+        done();
       });
     });
   });

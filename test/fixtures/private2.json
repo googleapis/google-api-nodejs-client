@@ -1,0 +1,7 @@
+{
+  "private_key_id": "key456",
+  "private_key": "privatekey2",
+  "client_email": "goodbye@youarecool.com",
+  "client_id": "client456",
+  "type": "service_account"
+}
