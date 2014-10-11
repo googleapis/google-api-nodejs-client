@@ -157,6 +157,35 @@ function Reseller(options) {
   this.subscriptions = {
 
     /**
+     * reseller.subscriptions.activate
+     *
+     * @desc Activates a subscription previously suspended by the reseller
+     *
+     * @alias reseller.subscriptions.activate
+     * @memberOf! reseller(v1sandbox)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Id of the Customer
+     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    activate: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/activate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * reseller.subscriptions.changePlan
      *
      * @desc Changes the plan of a subscription
@@ -385,6 +414,35 @@ function Reseller(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * reseller.subscriptions.suspend
+     *
+     * @desc Suspends an active subscription
+     *
+     * @alias reseller.subscriptions.suspend
+     * @memberOf! reseller(v1sandbox)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Id of the Customer
+     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    suspend: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/suspend',
           method: 'POST'
         },
         params: params,

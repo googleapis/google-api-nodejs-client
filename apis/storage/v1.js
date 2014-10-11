@@ -926,7 +926,7 @@ function Storage(options) {
     /**
      * storage.objects.get
      *
-     * @desc Retrieves objects or their metadata.
+     * @desc Retrieves an object or its metadata.
      *
      * @alias storage.objects.get
      * @memberOf! storage(v1)

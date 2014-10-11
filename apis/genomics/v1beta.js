@@ -1129,6 +1129,35 @@ function Genomics(options) {
     },
 
     /**
+     * genomics.variantsets.patch
+     *
+     * @desc Updates a variant set's metadata. All other modifications are silently ignored. Returns the modified variant set. This method supports patch semantics.
+     *
+     * @alias genomics.variantsets.patch
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - The ID of the variant to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * genomics.variantsets.search
      *
      * @desc Returns a list of all variant sets matching search criteria.
@@ -1150,6 +1179,35 @@ function Genomics(options) {
         params: params,
         requiredParams: [],
         pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.update
+     *
+     * @desc Updates a variant set's metadata. All other modifications are silently ignored. Returns the modified variant set.
+     *
+     * @alias genomics.variantsets.update
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - The ID of the variant to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
         context: self
       };
 
