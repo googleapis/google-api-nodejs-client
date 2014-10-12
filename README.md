@@ -297,7 +297,7 @@ A full list of supported options can be [found here][requestopts].
 
 ### Global options
 
-Example: Specifying a default proxy and `auth` to be used for each request
+Example: Specifying a default proxy and `auth` to be used for each request.
 
 ``` js
 var google = require('googleapis');
