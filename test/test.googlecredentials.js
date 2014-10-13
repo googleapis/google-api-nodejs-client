@@ -52,6 +52,12 @@ function returns(value) {
   }
 }
 
+function callsBack(value) {
+  return function(callback) {
+    callback(value);
+  }
+}
+
 // Intercepts the specified environment variable, returning the specified value.
 function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmentVariableValue) {
   var originalGetEnvironmentVariableFunction = gc._getEnvironmentVariable;
@@ -709,12 +715,14 @@ describe('googleCredentials', function() {
       // Set up the creds.
       // * Environment variable is set up to point to private.json
       // * Well-known file is set up to point to private2.json
+      // * Running on GCE is set to true.
       var gc = new googleCredentials();
       insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
       gc._fileExists = returns(true);
+      gc._checkIsGCE = callsBack(true);
       insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json', './test/fixtures/private2.json');
 
       // Execute.
@@ -737,11 +745,13 @@ describe('googleCredentials', function() {
       // Set up the creds.
       // * Environment variable is not set.
       // * Well-known file is set up to point to private2.json
+      // * Running on GCE is set to true.
       var gc = new googleCredentials();
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
       gc._fileExists = returns(true);
+      gc._checkIsGCE = callsBack(true);
       insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json', './test/fixtures/private2.json');
 
       // Execute.
@@ -752,6 +762,28 @@ describe('googleCredentials', function() {
         assert.equal(null, result.keyFile);
         assert.equal(null, result.subject);
         assert.equal(null, result.scope);
+        done();
+      });
+    });
+
+    it('should use GCE when well-known file and env var are not set', function (done) {
+      // Set up the creds.
+      // * Environment variable is not set.
+      // * Well-known file is not set.
+      // * Running on GCE is set to true.
+      var gc = new googleCredentials();
+      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
+      gc._pathJoin = pathJoin;
+      gc._osType = returns('Windows');
+      gc._fileExists = returns(false);
+      gc._checkIsGCE = callsBack(true);
+
+      // Execute.
+      gc.getApplicationDefault(function (err, result) {
+        assert.equal(null, err);
+
+        // This indicates that we got a ComputeClient instance back, rather than a JWTClient.
+        assert.equal('compute-placeholder', result.credentials.refresh_token);
         done();
       });
     });
@@ -771,7 +803,7 @@ describe('googleCredentials', function() {
       assert.notEqual(true, gc._checked_is_gce);
 
       // Execute.
-      gc._checkIsGCE(function() {
+      gc._checkIsGCE(function () {
         // Assert that the flags are set.
         assert.equal(true, gc._is_gce);
         assert.equal(true, gc._checked_is_gce);
@@ -791,7 +823,7 @@ describe('googleCredentials', function() {
       assert.notEqual(true, gc._checked_is_gce);
 
       // Execute.
-      gc._checkIsGCE(function() {
+      gc._checkIsGCE(function () {
         // Assert that the flags are set.
         assert.equal(false, gc._is_gce);
         assert.equal(true, gc._checked_is_gce);
@@ -812,7 +844,7 @@ describe('googleCredentials', function() {
       assert.equal(0, gc.transporter.executionCount);
 
       // Execute.
-      gc._checkIsGCE(function() {
+      gc._checkIsGCE(function () {
         // Assert.
         assert.equal(true, gc._checked_is_gce);
         assert.equal(true, gc._is_gce);
@@ -821,7 +853,7 @@ describe('googleCredentials', function() {
         // Execute a second time, check that we still get the correct values back,
         // but the execution count has not rev'd again, indicating that we
         // got the cached values this time.
-        gc._checkIsGCE(function() {
+        gc._checkIsGCE(function () {
           assert.equal(true, gc._checked_is_gce);
           assert.equal(true, gc._is_gce);
           assert.equal(1, gc.transporter.executionCount);
@@ -882,6 +914,20 @@ describe('googleCredentials', function() {
         });
       });
     });
+  });
+
+  describe('._getApplicationCredentialsFromGCE', function (done) {
+
+   /* it('should throw with not _is_gce', function (done) {
+      var gc = new googleCredentials();
+
+      try {
+        gc._getApplicationCredentialsFromGCE(function () {
+        });
+        assert.equals(true, false);
+      } catch (e) {
+      }
+    });*/
   });
 });
 
