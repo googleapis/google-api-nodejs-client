@@ -669,7 +669,7 @@ describe('googleCredentials', function() {
         step();
 
         // Ask for credentials again, from the same gc instance. We expect a cached instance this time.
-        gc.getApplicationDefault(function(err2, result2) {
+        gc.getApplicationDefault(function (err2, result2) {
           assert.equal(null, err2);
           assert.notEqual(null, result2);
 
@@ -686,7 +686,7 @@ describe('googleCredentials', function() {
           // Step 2 has completed.
           step();
 
-          gc2.getApplicationDefault(function(err3, result3) {
+          gc2.getApplicationDefault(function (err3, result3) {
             assert.equal(null, err3);
             assert.notEqual(null, result3);
 
@@ -756,4 +756,163 @@ describe('googleCredentials', function() {
       });
     });
   });
+
+  describe('._checkIsGCE', function (done) {
+
+    it('should set the _is_gce flag when running on GCE', function (done) {
+      var gc = new googleCredentials();
+
+      // Mock the transport layer to return the correct header indicating that
+      // we're running on GCE.
+      gc.transporter = new MockTransporter(true);
+
+      // Assert on the initial values.
+      assert.notEqual(true, gc._is_gce);
+      assert.notEqual(true, gc._checked_is_gce);
+
+      // Execute.
+      gc._checkIsGCE(function() {
+        // Assert that the flags are set.
+        assert.equal(true, gc._is_gce);
+        assert.equal(true, gc._checked_is_gce);
+
+        done();
+      });
+    });
+
+    it('should not set the _is_gce flag when not running on GCE', function (done) {
+      var gc = new googleCredentials();
+
+      // Mock the transport layer to indicate that we're not running on GCE.
+      gc.transporter = new MockTransporter(false);
+
+      // Assert on the initial values.
+      assert.notEqual(true, gc._is_gce);
+      assert.notEqual(true, gc._checked_is_gce);
+
+      // Execute.
+      gc._checkIsGCE(function() {
+        // Assert that the flags are set.
+        assert.equal(false, gc._is_gce);
+        assert.equal(true, gc._checked_is_gce);
+
+        done();
+      });
+    });
+
+    it('Does not execute the second time when running on GCE', function (done) {
+      var gc = new googleCredentials();
+
+      // Mock the transport layer to indicate that we're not running on GCE.
+      gc.transporter = new MockTransporter(true);
+
+      // Assert on the initial values.
+      assert.notEqual(true, gc._checked_is_gce);
+      assert.notEqual(true, gc._is_gce);
+      assert.equal(0, gc.transporter.executionCount);
+
+      // Execute.
+      gc._checkIsGCE(function() {
+        // Assert.
+        assert.equal(true, gc._checked_is_gce);
+        assert.equal(true, gc._is_gce);
+        assert.equal(1, gc.transporter.executionCount);
+
+        // Execute a second time, check that we still get the correct values back,
+        // but the execution count has not rev'd again, indicating that we
+        // got the cached values this time.
+        gc._checkIsGCE(function() {
+          assert.equal(true, gc._checked_is_gce);
+          assert.equal(true, gc._is_gce);
+          assert.equal(1, gc.transporter.executionCount);
+        })
+
+        done();
+      });
+    });
+
+    it('Does not execute the second time when not running on GCE', function (done) {
+      var gc = new googleCredentials();
+
+      // Mock the transport layer to indicate that we're not running on GCE.
+      gc.transporter = new MockTransporter(false);
+
+      // Assert on the initial values.
+      assert.notEqual(true, gc._checked_is_gce);
+      assert.notEqual(true, gc._is_gce);
+      assert.equal(0, gc.transporter.executionCount);
+
+      // Execute.
+      gc._checkIsGCE(function () {
+        // Assert.
+        assert.equal(true, gc._checked_is_gce);
+        assert.equal(false, gc._is_gce);
+        assert.equal(1, gc.transporter.executionCount);
+
+        // Execute a second time, check that we still get the correct values back,
+        // but the execution count has not rev'd again, indicating that we
+        // got the cached values this time.
+        gc._checkIsGCE(function () {
+          assert.equal(true, gc._checked_is_gce);
+          assert.equal(false, gc._is_gce);
+          assert.equal(1, gc.transporter.executionCount);
+        })
+
+        done();
+      });
+
+
+      it('Returns false on transport error', function (done) {
+        var gc = new googleCredentials();
+
+        // Mock the transport layer to indicate that we're not running on GCE, but also to throw an error.
+        gc.transporter = new MockTransporter(true, true);
+
+        // Assert on the initial values.
+        assert.notEqual(true, gc._checked_is_gce);
+        assert.notEqual(true, gc._is_gce);
+
+        // Execute.
+        gc._checkIsGCE(function () {
+          // Assert that _is_gce is set to false due to the error.
+          assert.equal(true, gc._checked_is_gce);
+          assert.equal(false, gc._is_gce);
+
+          done();
+        });
+      });
+    });
+  });
 });
+
+// Mocks the transporter class to simulate GCE.
+function MockTransporter(simulate_gce, throw_error) {
+  this.is_gce = false;
+
+  if (simulate_gce) {
+    this.is_gce = true;
+  }
+
+  this.throw_error = throw_error;
+  this.executionCount = 0;
+}
+
+MockTransporter.prototype.request = function(options, callback) {
+  if (options.method == 'GET' && options.uri == 'http://metadata.google.internal') {
+
+    this.executionCount += 1;
+
+    var err = null;
+    var response = { headers: { } };
+
+    if (this.throw_error) {
+      err = new Error('blah');
+    } else if (this.is_gce) {
+      response.headers['Metadata-Flavor'] = 'Google';
+    }
+
+    callback(err, null, response);
+  } else {
+    throw new Error('unexpected request');
+  }
+}
