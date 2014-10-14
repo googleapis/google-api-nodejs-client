@@ -24,44 +24,90 @@ nock.disableNetConnect();
 
 describe('Compute auth client', function() {
 
-  it('should get an access token for the first request', function(done) {
+  it('should get an access token for the first request', function (done) {
     var scope = nock('http://metadata')
-        .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
-        .reply(200, { access_token: 'abc123', expires_in: 10000 });
+      .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
+      .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
-    compute.request({}, function() {
+    compute.request({}, function () {
       assert.equal(compute.credentials.access_token, 'abc123');
       scope.done();
       done();
     });
   });
 
-  it('should refresh if access token has expired', function(done) {
+  it('should refresh if access token has expired', function (done) {
     var scope = nock('http://metadata')
-        .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
-        .reply(200, { access_token: 'abc123', expires_in: 10000 });
+      .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
+      .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
     compute.credentials.access_token = 'initial-access-token';
     compute.credentials.expiry_date = (new Date()).getTime() - 10000;
-    compute.request({}, function() {
+    compute.request({}, function () {
       assert.equal(compute.credentials.access_token, 'abc123');
       scope.done();
       done();
     });
   });
 
-  it('should not refresh if access token has not expired', function(done) {
+  it('should not refresh if access token has not expired', function (done) {
     var scope = nock('http://metadata')
-        .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
-        .reply(200, { access_token: 'abc123', expires_in: 10000 });
+      .get('/computeMetadata/v1beta1/instance/service-accounts/default/token')
+      .reply(200, { access_token: 'abc123', expires_in: 10000 });
     var compute = new googleapis.auth.Compute();
     compute.credentials.access_token = 'initial-access-token';
     compute.credentials.expiry_date = (new Date()).getTime() + 10000;
-    compute.request({}, function() {
+    compute.request({}, function () {
       assert.equal(compute.credentials.access_token, 'initial-access-token');
       assert.equal(false, scope.isDone());
       nock.cleanAll();
       done();
+    });
+  });
+
+  describe('.createScopedRequired', function () {
+    it('should return false', function () {
+      var compute = new googleapis.auth.Compute();
+      assert.equal(false, compute.createScopedRequired());
+    });
+  });
+
+  describe('.createScoped', function () {
+    it('should throw when passing null', function () {
+      var compute = new googleapis.auth.Compute();
+
+      try {
+        compute.createScoped();
+        assert.equal(true, false);
+      } catch (e) {
+        assert.equal(true, e instanceof Error);
+      }
+    });
+  });
+
+  describe('.createScoped', function () {
+    it('should throw when passing single scope', function () {
+      var compute = new googleapis.auth.Compute();
+
+      try {
+        compute.createScoped('https://www.googleapis.com/auth/youtube');
+        assert.equal(true, false);
+      } catch (e) {
+        assert.equal(true, e instanceof Error);
+      }
+    });
+  });
+
+  describe('.createScoped', function () {
+    it('should throw when passing array scope', function () {
+      var compute = new googleapis.auth.Compute();
+
+      try {
+        compute.createScoped([ 'https://www.googleapis.com/auth/youtube' ]);
+        assert.equal(true, false);
+      } catch (e) {
+        assert.equal(true, e instanceof Error);
+      }
     });
   });
 });

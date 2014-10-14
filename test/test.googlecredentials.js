@@ -962,7 +962,7 @@ MockTransporter.prototype.request = function(options, callback) {
     if (this.throw_error) {
       err = new Error('blah');
     } else if (this.is_gce) {
-      response.headers['Metadata-Flavor'] = 'Google';
+      response.headers['metadata-flavor'] = 'Google';
     }
 
     callback(err, null, response);
