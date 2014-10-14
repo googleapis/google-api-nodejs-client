@@ -653,9 +653,17 @@ describe('googleCredentials', function() {
       // The test ends successfully after 3 steps have completed.
       var step = doneWhen(done, 3);
 
+      // Create a function which will set up a GoogleCredentials instance to match on
+      // an environment variable json file, but not on anything else.
+      var setUpGCForEnvironmentVariable = function(creds) {
+        insertEnvironmentVariableIntoGC(creds, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+        creds._fileExists = returns(false);
+        creds._checkIsGCE = callsBack(false);
+      };
+
       // Set up a new GoogleCredentials and prepare it for local environment variable handling.
       var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+      setUpGCForEnvironmentVariable(gc);
 
       // Ask for credentials, the first time.
       gc.getApplicationDefault(function (err, result) {
@@ -687,7 +695,7 @@ describe('googleCredentials', function() {
           // Now create a second GoogleCredentials instance, and ask for credentials. We should
           // get a new credentials instance this time.
           var gc2 = new googleCredentials();
-          insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+          setUpGCForEnvironmentVariable(gc2);
 
           // Step 2 has completed.
           step();
