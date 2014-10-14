@@ -22,6 +22,16 @@ var nock = require('nock');
 
 nock.disableNetConnect();
 
+describe('Initial credentials', function() {
+
+  it('should create a dummy refresh token string', function () {
+    // It is important that the compute client is created with a refresh token value filled
+    // in, or else the rest of the logic will not work.
+    var compute = new googleapis.auth.Compute();
+    assert.equal('compute-placeholder', compute.credentials.refresh_token);
+  });
+});
+
 describe('Compute auth client', function() {
 
   it('should get an access token for the first request', function (done) {
