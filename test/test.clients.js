@@ -20,6 +20,8 @@ var assert = require('assert');
 var fs = require('fs');
 var googleapis = require('../lib/googleapis.js');
 
+function noop() {}
+
 describe('Clients', function() {
 
   it('should create request helpers according to resource on discovery API response', function() {
@@ -76,5 +78,44 @@ describe('Clients', function() {
         require(api_files[i]);
       }
     });
+  });
+
+  it('should support default params', function() {
+    var store = googleapis.datastore({ version: 'v1beta2', params: { myParam: '123' } });
+    var req = store.datasets.lookup({ datasetId: '123' }, noop);
+    // If the default param handling is broken, query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = req.uri.query || '';
+
+    assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
+  });
+
+  it('should allow default params to be overriden per-request', function() {
+    var store = googleapis.datastore({ version: 'v1beta2', params: { myParam: '123' } });
+    // Override the default datasetId param for this particular API call
+    var req = store.datasets.lookup({ datasetId: '123', myParam: '456' }, noop);
+    // If the default param handling is broken, query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = req.uri.query || '';
+
+    assert.notEqual(query.indexOf('myParam=456'), -1, 'Default param not found in query');
+  });
+
+  it('should include default params when only callback is provided to API call', function() {
+    var store = googleapis.datastore({
+      version: 'v1beta2',
+      params: {
+        datasetId: '123', // We must set this here - it is a required param
+        myParam: '123'
+      }
+    });
+
+    // No params given - only callback
+    var req = store.datasets.lookup(noop);
+    // If the default param handling is broken, req or query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = (req && req.uri.query) || '';
+
+    assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
   });
 });
