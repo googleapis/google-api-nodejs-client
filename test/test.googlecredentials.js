@@ -923,20 +923,6 @@ describe('googleCredentials', function() {
       });
     });
   });
-
-  describe('._getApplicationCredentialsFromGCE', function (done) {
-
-   /* it('should throw with not _is_gce', function (done) {
-      var gc = new googleCredentials();
-
-      try {
-        gc._getApplicationCredentialsFromGCE(function () {
-        });
-        assert.equals(true, false);
-      } catch (e) {
-      }
-    });*/
-  });
 });
 
 // Mocks the transporter class to simulate GCE.

@@ -85,39 +85,24 @@ describe('Compute auth client', function() {
   describe('.createScoped', function () {
     it('should throw when passing null', function () {
       var compute = new googleapis.auth.Compute();
-
-      try {
-        compute.createScoped();
-        assert.equal(true, false);
-      } catch (e) {
-        assert.equal(true, e instanceof Error);
-      }
+      var scoped = compute.createScoped();
+      assert.equal(compute, scoped);
     });
   });
 
   describe('.createScoped', function () {
     it('should throw when passing single scope', function () {
       var compute = new googleapis.auth.Compute();
-
-      try {
-        compute.createScoped('https://www.googleapis.com/auth/youtube');
-        assert.equal(true, false);
-      } catch (e) {
-        assert.equal(true, e instanceof Error);
-      }
+      var scoped = compute.createScoped('https://www.googleapis.com/auth/youtube');
+      assert.equal(compute, scoped);
     });
   });
 
   describe('.createScoped', function () {
     it('should throw when passing array scope', function () {
       var compute = new googleapis.auth.Compute();
-
-      try {
-        compute.createScoped([ 'https://www.googleapis.com/auth/youtube' ]);
-        assert.equal(true, false);
-      } catch (e) {
-        assert.equal(true, e instanceof Error);
-      }
+      var scoped = compute.createScoped([ 'https://www.googleapis.com/auth/youtube' ]);
+      assert.equal(compute, scoped);
     });
   });
 
