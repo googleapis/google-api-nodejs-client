@@ -144,7 +144,7 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function(err, result) {
         assert.equal(403, err.code);
-        assert.equal('A Forbidden error code was returned. This may be because the Compute Engine instance does not ' +
+        assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
           'have the correct permission scopes specified. Dinosaurus Rex', err.message);
         done();
       });
@@ -172,7 +172,7 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function(err, result) {
         assert.equal(404, err.code);
-        assert.equal('A Not Found error code was returned. This may be because the Compute Engine instance does not ' +
+        assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
           'have any permission scopes specified. Dinosaurus Rex', err.message);
         done();
       });
@@ -197,7 +197,7 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function(err, result) {
         assert.equal(403, err.code);
-        assert.equal('A Forbidden error code was returned. This may be because the Compute Engine instance does not ' +
+        assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
           'have the correct permission scopes specified. Dinosaurus Rex', err.message);
         done();
       });
@@ -222,7 +222,7 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function(err, result) {
         assert.equal(404, err.code);
-        assert.equal('A Not Found error code was returned. This may be because the Compute Engine instance does not ' +
+        assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
           'have any permission scopes specified. Dinosaurus Rex', err.message);
         done();
       });
