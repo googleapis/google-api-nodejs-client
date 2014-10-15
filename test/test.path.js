@@ -43,6 +43,13 @@ describe('Path params', function() {
     });
   });
 
+  it('should be mentioned in err.message when missing', function (done) {
+    drive.files.get({}, function(err) {
+      assert.notEqual(err.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
+      done();
+    });
+  });
+
   it('should return null response object if not included and required', function(done) {
     drive.files.get({}, function(err, resp) {
       assert.equal(resp, null);
