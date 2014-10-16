@@ -291,32 +291,42 @@ service client basis.
 ### Available options
 
 The options you specify are attached to the `request` object so whatever
-`request` supports, this library supports.
+`request` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
 
 A full list of supported options can be [found here][requestopts].
 
 ### Global options
 
-Example: Specifying a default proxy and `auth` to be used for each request.
+#### Example: Specifying a default proxy and `auth` to be used for each request.
 
 ``` js
 var google = require('googleapis');
 google.options({ proxy: 'http://proxy.example.com', auth: auth });
 
-// all requests made with this object will use these settings unless overridden
+// All requests made with this object will use these settings unless overridden.
+```
+
+#### Example: Specifying global request parameters.
+
+```js
+var google = require('googleapis');
+google.options({ params: { quotaUser: 'user123@example.com' } });
+
+// All requests from all services will contain the above query parameter
+// unless overriden either in a service client or in individual API calls.
 ```
 
 ### Service-client options
 
-You can also specify options when creating a service client. For example, to
-specify a default `auth` option (API key or OAuth2 client), simply pass it in
-like so:
+You can also specify options when creating a service client.
 
-``` js
+#### Example: Specifying a default `auth` option (API key or OAuth2 client)
+
+```js
 var auth = 'API KEY'; // or you could use oauth2Client
 var urlshortener = google.urlshortener({ version: 'v1', auth: auth });
 
-// all requests made with this object will use the specified auth
+// All requests made with this object will use the specified auth.
 ```
 
 By doing this, every API call made with this service client will use `'API KEY'`
@@ -324,6 +334,20 @@ to authenticate.
 
 **Note:** Created clients are **immutable** so you must create a new one if you
 want to specify different options.
+
+#### Example: Specifying default service client query parameters
+
+```js
+var urlshortener = google.urlshortener({
+  version: 'v1',
+  params: { quotaUser: 'user123@example.com' }
+});
+// All requests made with this service client will contain the
+// quotaUser query parameter unless overriden in individual API calls.
+
+// Calls with this drive client will NOT contain the quotaUser query parameter.
+var drive = google.drive('v2');
+```
 
 ### Request-level options
 
