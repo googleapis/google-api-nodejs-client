@@ -107,7 +107,7 @@ describe('Compute auth client', function() {
   });
 
   describe('._postComputeRequest', function () {
-    it('should return a helpful message on request 403', function (done) {
+    it('should return a helpful message on request err.code 403', function (done) {
       var compute = new googleapis.auth.Compute();
 
       // Mock the credentials object.
@@ -118,7 +118,7 @@ describe('Compute auth client', function() {
       };
 
       // Mock the _makeRequest method to return a 403.
-      compute._makeRequest = function(opts, callback) {
+      compute._makeRequest = function (opts, callback) {
         callback({
           'errors': [
             {'domain': 'global', 'reason': 'something', 'message': 'Dinosaurus Rex'}
@@ -127,7 +127,7 @@ describe('Compute auth client', function() {
           'message': 'Dinosaurus Rex' })
       };
 
-      compute.request({ }, function(err, result) {
+      compute.request({ }, function (err, result) {
         assert.equal(403, err.code);
         assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
           'have the correct permission scopes specified. Dinosaurus Rex', err.message);
@@ -135,7 +135,7 @@ describe('Compute auth client', function() {
       });
     });
 
-    it('should return a helpful message on request 404', function (done) {
+    it('should return a helpful message on request err.code 404', function (done) {
       var compute = new googleapis.auth.Compute();
 
       // Mock the credentials object.
@@ -146,7 +146,7 @@ describe('Compute auth client', function() {
       };
 
       // Mock the _makeRequest method to return a 404.
-      compute._makeRequest = function(opts, callback) {
+      compute._makeRequest = function (opts, callback) {
         callback({
           'errors': [
             {'domain': 'global', 'reason': 'something', 'message': 'Dinosaurus Rex'}
@@ -155,7 +155,7 @@ describe('Compute auth client', function() {
           'message': 'Dinosaurus Rex' })
       };
 
-      compute.request({ }, function(err, result) {
+      compute.request({ }, function (err, result) {
         assert.equal(404, err.code);
         assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
           'have any permission scopes specified. Dinosaurus Rex', err.message);
@@ -163,7 +163,7 @@ describe('Compute auth client', function() {
       });
     });
 
-    it('should return a helpful message on token refresh 403', function (done) {
+    it('should return a helpful message on token refresh err.code 403', function (done) {
       var compute = new googleapis.auth.Compute();
 
       // Mock the credentials object with a null access token, to force a refresh.
@@ -174,13 +174,13 @@ describe('Compute auth client', function() {
       };
 
       // Mock the refreshAccessToken method to return a 403.
-      compute.refreshAccessToken = function(callback) {
+      compute.refreshAccessToken = function (callback) {
         callback({
           'code': 403,
           'message': 'Dinosaurus Rex' })
       };
 
-      compute.request({ }, function(err, result) {
+      compute.request({ }, function (err, result) {
         assert.equal(403, err.code);
         assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
           'have the correct permission scopes specified. Dinosaurus Rex', err.message);
@@ -188,7 +188,7 @@ describe('Compute auth client', function() {
       });
     });
 
-    it('should return a helpful message on token refresh 404', function (done) {
+    it('should return a helpful message on token refresh err.code 404', function (done) {
       var compute = new googleapis.auth.Compute();
 
       // Mock the credentials object with a null access token, to force a refresh.
@@ -199,17 +199,111 @@ describe('Compute auth client', function() {
       };
 
       // Mock the refreshAccessToken method to return a 404.
-      compute.refreshAccessToken = function(callback) {
+      compute.refreshAccessToken = function (callback) {
         callback({
           'code': 404,
           'message': 'Dinosaurus Rex' })
       };
 
-      compute.request({ }, function(err, result) {
+      compute.request({ }, function (err, result) {
         assert.equal(404, err.code);
         assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
           'have any permission scopes specified. Dinosaurus Rex', err.message);
         done();
+      });
+    });
+
+    describe('._postComputeRequest', function () {
+      it('should return a helpful message on request response.statusCode 403', function (done) {
+        var compute = new googleapis.auth.Compute();
+
+        // Mock the credentials object.
+        compute.credentials = {
+          refresh_token: 'hello',
+          access_token: 'goodbye',
+          expiry_date: new Date(9999, 1, 1)
+        };
+
+        // Mock the _makeRequest method to return a 403.
+        compute._makeRequest = function (opts, callback) {
+          callback(null, 'a weird response body', { 'statusCode': 403 });
+        };
+
+        compute.request({ }, function (err, result, response) {
+          assert.equal(403, response.statusCode);
+          assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
+            'have the correct permission scopes specified.', err.message);
+          done();
+        });
+      });
+
+      it('should return a helpful message on request response.statusCode 404', function (done) {
+        var compute = new googleapis.auth.Compute();
+
+        // Mock the credentials object.
+        compute.credentials = {
+          refresh_token: 'hello',
+          access_token: 'goodbye',
+          expiry_date: new Date(9999, 1, 1)
+        };
+
+        // Mock the _makeRequest method to return a 404.
+        compute._makeRequest = function (opts, callback) {
+          callback(null, 'a weird response body', { 'statusCode': 404 });
+        };
+
+        compute.request({ }, function (err, result, response) {
+          assert.equal(404, response.statusCode);
+          assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
+            'have any permission scopes specified.', err.message);
+          done();
+        });
+      });
+
+      it('should return a helpful message on token refresh response.statusCode 403', function (done) {
+        var compute = new googleapis.auth.Compute();
+
+        // Mock the credentials object with a null access token, to force a refresh.
+        compute.credentials = {
+          refresh_token: 'hello',
+          access_token: null,
+          expiry_date: 1
+        };
+
+        // Mock the refreshAccessToken method to return a 403.
+        compute.refreshAccessToken = function (callback) {
+          callback(null, 'a weird response body', { 'statusCode': 403 });
+        };
+
+        compute.request({ }, function (err, result, response) {
+          assert.equal(403, response.statusCode);
+          assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
+            'have the correct permission scopes specified. Could not refresh access token.', err.message);
+          done();
+        });
+      });
+
+      it('should return a helpful message on token refresh response.statusCode 404', function (done) {
+        var compute = new googleapis.auth.Compute();
+
+        // Mock the credentials object with a null access token, to force a refresh.
+        compute.credentials = {
+          refresh_token: 'hello',
+          access_token: null,
+          expiry_date: 1
+        };
+
+        // Mock the refreshAccessToken method to return a 404.
+        compute.refreshAccessToken = function (callback) {
+          callback(null, 'a weird response body', { 'statusCode': 404 });
+        };
+
+        compute.request({ }, function (err, result, response) {
+          assert.equal(404, response.statusCode);
+          assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
+            'have any permission scopes specified. Could not refresh access token.', err.message);
+          done();
+        });
       });
     });
   });
