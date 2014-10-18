@@ -37,6 +37,34 @@ function Gmail(options) {
 
   this.users = {
 
+    /**
+     * gmail.users.getProfile
+     *
+     * @desc Gets the current user's Gmail profile.
+     *
+     * @alias gmail.users.getProfile
+     * @memberOf! gmail(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getProfile: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gmail/v1/users/{userId}/profile',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
     drafts: {
 
       /**

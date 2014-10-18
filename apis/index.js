@@ -110,6 +110,7 @@ var APIs = {
   'spectrum': requireAPI('spectrum'),
   'sqladmin': requireAPI('sqladmin'),
   'storage': requireAPI('storage'),
+  'tagmanager': requireAPI('tagmanager'),
   'taskqueue': requireAPI('taskqueue'),
   'tasks': requireAPI('tasks'),
   'translate': requireAPI('translate'),

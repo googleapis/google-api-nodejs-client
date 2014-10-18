@@ -169,7 +169,7 @@ function Analytics(options) {
        * @memberOf! analytics(v3)
        *
        * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.max-results - The maximum number of filters to include in this response.
+       * @param  {integer=} params.max-results - The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
