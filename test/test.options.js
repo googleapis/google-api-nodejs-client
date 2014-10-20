@@ -52,6 +52,16 @@ describe('Options', function() {
     assert.equal(req.hello, 'changed');
   });
 
+  it('should support global request params', function() {
+    google.options({ params: { myParam: '123' } });
+    var req = drive.files.get({ fileId: '123' }, noop);
+    // If the default param handling is broken, query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = req.uri.query || '';
+
+    assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
+  });
+
   it('should promote auth apikey options on request basis', function() {
     google.options({ auth: 'apikey1' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
