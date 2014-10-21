@@ -71,6 +71,23 @@ describe('Transporters', function() {
     assert.equal(req.body, null);
   });
 
+  it('should return 4xx responses as errors, but preserve body', function (done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(400, 'There was an error!');
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert.ok(err instanceof Error, 'err should be instance of Error');
+      assert.equal(err.message, 'There was an error!');
+      assert.strictEqual(err.code, 400, 'err.code should indicate HTTP status code');
+      assert.equal(result, 'There was an error!');
+      scope.done();
+      done();
+    });
+  });
+
   it('should return 5xx responses as errors', function(done) {
     var google = require('../lib/googleapis');
     var scope = nock('https://www.googleapis.com')
@@ -79,8 +96,10 @@ describe('Transporters', function() {
     var urlshortener = google.urlshortener('v1');
     var obj = { longUrl: 'http://google.com/' };
     urlshortener.url.insert({ resource: obj }, function(err, result) {
-      assert.deepEqual(err, { code: 500, message: 'There was an error!' });
-      assert.equal(result, null);
+      assert.ok(err instanceof Error, 'err should be instance of Error');
+      assert.equal(err.message, 'There was an error!');
+      assert.strictEqual(err.code, 500, 'err.code should indicate HTTP status code');
+      assert.strictEqual(result, null, 'result should be null on HTTP 5xx error');
       scope.done();
       done();
     });
