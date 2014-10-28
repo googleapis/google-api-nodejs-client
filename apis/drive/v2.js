@@ -668,6 +668,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
@@ -940,6 +941,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.

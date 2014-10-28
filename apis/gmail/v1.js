@@ -828,7 +828,9 @@ function Gmail(options) {
        * @memberOf! gmail(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.format - The format to return the messages in.
        * @param  {string} params.id - The ID of the thread to retrieve.
+       * @param  {string=} params.metadataHeaders - When given and format is METADATA, only include headers specified.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

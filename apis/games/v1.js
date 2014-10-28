@@ -259,7 +259,7 @@ function Games(options) {
      * @memberOf! games(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application being requested.
+     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string=} params.platformType - Restrict application details returned to the specific platform.
      * @param  {callback} callback - The callback that handles the response.
