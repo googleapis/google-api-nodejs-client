@@ -1250,7 +1250,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object=} params - Parameters for request
-       * @param  {string=} params.acquireMethod - How the book was aquired
+       * @param  {string=} params.acquireMethod - How the book was acquired
        * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
        * @param  {integer=} params.maxResults - Maximum number of results to return.
        * @param  {string=} params.processingState - The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.

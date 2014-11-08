@@ -53,10 +53,10 @@ function Audit(options) {
      * @param  {string=} params.caller - Type of the caller.
      * @param  {string=} params.continuationToken - Next page URL.
      * @param  {string} params.customerId - Represents the customer who is the owner of target object on which action was performed.
-     * @param  {string=} params.endTime - Return events which occured at or before this time.
+     * @param  {string=} params.endTime - Return events which occurred at or before this time.
      * @param  {string=} params.eventName - Name of the event being queried.
      * @param  {integer=} params.maxResults - Number of activity records to be shown in each page.
-     * @param  {string=} params.startTime - Return events which occured at or after this time.
+     * @param  {string=} params.startTime - Return events which occurred at or after this time.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
