@@ -57,7 +57,7 @@ getAccessToken(oauth2Client, function() {
   // retrieve user profile
   plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, profile) {
     if (err) {
-      console.log('An error occured', err);
+      console.log('An error occurred', err);
       return;
     }
     console.log(profile.displayName, ':', profile.tagline);
