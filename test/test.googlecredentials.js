@@ -58,6 +58,12 @@ function callsBack(value) {
   }
 }
 
+// Blocks the GOOGLE_APPLICATION_CREDENTIALS by default. This is necessary in case it is actually
+// set on the host machine executing the test.
+function blockGoogleApplicationCredentialEnvironmentVariable(gc) {
+    return insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', null);
+}
+
 // Intercepts the specified environment variable, returning the specified value.
 function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmentVariableValue) {
   var originalGetEnvironmentVariableFunction = gc._getEnvironmentVariable;
@@ -400,6 +406,7 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
@@ -423,6 +430,7 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Linux');
@@ -447,6 +455,7 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', null);
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
@@ -470,6 +479,7 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'HOME', null);
       gc._pathJoin = pathJoin;
       gc._osType = returns('Linux');
@@ -493,6 +503,7 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
@@ -516,6 +527,7 @@ describe('googleCredentials', function() {
 
       // Set up mocks.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Linux');
@@ -540,6 +552,7 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
     gc._pathJoin = pathJoin;
     gc._osType = returns('Windows');
@@ -568,6 +581,7 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
     gc._pathJoin = pathJoin;
     gc._osType = returns('Linux');
@@ -596,6 +610,7 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
     gc._pathJoin = pathJoin;
     gc._osType = returns('Windows');
@@ -624,6 +639,7 @@ describe('googleCredentials', function() {
 
     // Set up mocks.
     var gc = new googleCredentials();
+    blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
     gc._pathJoin = pathJoin;
     gc._osType = returns('Linux');
@@ -755,6 +771,7 @@ describe('googleCredentials', function() {
       // * Well-known file is set up to point to private2.json
       // * Running on GCE is set to true.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
@@ -780,6 +797,7 @@ describe('googleCredentials', function() {
       // * Well-known file is not set.
       // * Running on GCE is set to true.
       var gc = new googleCredentials();
+      blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
@@ -900,7 +918,6 @@ describe('googleCredentials', function() {
 
         done();
       });
-
 
       it('Returns false on transport error', function (done) {
         var gc = new googleCredentials();
