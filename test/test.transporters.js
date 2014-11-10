@@ -18,6 +18,9 @@
 
 var assert = require('assert');
 var DefaultTransporter = require('../lib/transporters');
+var nock = require('nock');
+
+nock.disableNetConnect();
 
 describe('Transporters', function() {
 
@@ -66,5 +69,20 @@ describe('Transporters', function() {
     }, noop);
     assert.equal(req.headers['content-type'], null);
     assert.equal(req.body, null);
+  });
+
+  it('should return 5xx responses as errors', function(done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(500, 'There was an error!');
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert.deepEqual(err, { code: 500, message: 'There was an error!' });
+      assert.equal(result, null);
+      scope.done();
+      done();
+    });
   });
 });

@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Drive API
@@ -60,6 +59,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -120,6 +121,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -182,6 +185,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -213,6 +218,8 @@ function Drive(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -243,6 +250,8 @@ function Drive(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -642,6 +651,8 @@ function Drive(options) {
           method: 'DELETE'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -657,6 +668,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
@@ -710,6 +722,8 @@ function Drive(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -740,6 +754,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -925,6 +941,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.

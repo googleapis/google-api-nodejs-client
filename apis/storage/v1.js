@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Cloud Storage API
@@ -302,6 +301,7 @@ function Storage(options) {
         },
         params: params,
         requiredParams: ['project'],
+        pathParams: [],
         context: self
       };
 
@@ -332,6 +332,7 @@ function Storage(options) {
         },
         params: params,
         requiredParams: ['project'],
+        pathParams: [],
         context: self
       };
 
@@ -428,6 +429,8 @@ function Storage(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -923,7 +926,7 @@ function Storage(options) {
     /**
      * storage.objects.get
      *
-     * @desc Retrieves objects or their metadata.
+     * @desc Retrieves an object or its metadata.
      *
      * @alias storage.objects.get
      * @memberOf! storage(v1)

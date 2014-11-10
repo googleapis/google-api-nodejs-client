@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * YouTube Data API
@@ -60,6 +59,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -95,6 +95,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -130,6 +131,8 @@ function Youtube(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -161,6 +164,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -191,6 +195,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -222,6 +227,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -250,6 +256,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -290,6 +297,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -319,6 +327,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -353,6 +362,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -385,6 +395,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -417,6 +428,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -452,6 +464,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id', 'part'],
+        pathParams: [],
         context: self
       };
 
@@ -485,6 +498,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id', 'part'],
+        pathParams: [],
         context: self
       };
 
@@ -514,6 +528,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -544,6 +559,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -578,6 +594,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -609,6 +626,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['broadcastStatus', 'id', 'part'],
+        pathParams: [],
         context: self
       };
 
@@ -639,6 +657,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -672,6 +691,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -702,6 +722,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -735,6 +756,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -765,6 +787,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -796,6 +819,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -825,6 +849,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -858,6 +883,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -886,6 +912,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -918,6 +945,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -948,6 +976,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -982,6 +1011,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1011,6 +1041,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1070,6 +1101,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1101,6 +1133,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -1129,6 +1162,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1166,6 +1200,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1202,6 +1237,7 @@ function Youtube(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
         requiredParams: ['videoId'],
+        pathParams: [],
         context: self
       };
 
@@ -1236,6 +1272,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1268,6 +1305,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -1296,6 +1334,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id'],
+        pathParams: [],
         context: self
       };
 
@@ -1333,6 +1372,7 @@ function Youtube(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1369,6 +1409,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1398,6 +1439,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['id', 'rating'],
+        pathParams: [],
         context: self
       };
 
@@ -1427,6 +1469,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
         context: self
       };
 
@@ -1464,6 +1507,7 @@ function Youtube(options) {
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
         requiredParams: ['channelId'],
+        pathParams: [],
         context: self
       };
 
@@ -1492,6 +1536,7 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['channelId'],
+        pathParams: [],
         context: self
       };
 

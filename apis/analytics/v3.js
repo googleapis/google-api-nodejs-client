@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Analytics API
@@ -72,6 +71,7 @@ function Analytics(options) {
           },
           params: params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+          pathParams: [],
           context: self
         };
 
@@ -111,6 +111,7 @@ function Analytics(options) {
           },
           params: params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+          pathParams: [],
           context: self
         };
 
@@ -146,6 +147,7 @@ function Analytics(options) {
           },
           params: params,
           requiredParams: ['ids', 'metrics'],
+          pathParams: [],
           context: self
         };
 
@@ -167,7 +169,7 @@ function Analytics(options) {
        * @memberOf! analytics(v3)
        *
        * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.max-results - The maximum number of filters to include in this response.
+       * @param  {integer=} params.max-results - The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -179,6 +181,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -330,6 +334,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1541,6 +1547,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -2325,6 +2333,8 @@ function Analytics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

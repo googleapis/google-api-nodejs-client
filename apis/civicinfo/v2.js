@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Civic Information API
@@ -58,6 +57,8 @@ function Civicinfo(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -87,6 +88,8 @@ function Civicinfo(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -116,6 +119,7 @@ function Civicinfo(options) {
         },
         params: params,
         requiredParams: ['address'],
+        pathParams: [],
         context: self
       };
 
@@ -149,6 +153,8 @@ function Civicinfo(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

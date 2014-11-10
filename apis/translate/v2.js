@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Translate API
@@ -59,6 +58,7 @@ function Translate(options) {
         },
         params: params,
         requiredParams: ['q'],
+        pathParams: [],
         context: self
       };
 
@@ -89,6 +89,8 @@ function Translate(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -124,6 +126,7 @@ function Translate(options) {
         },
         params: params,
         requiredParams: ['q', 'target'],
+        pathParams: [],
         context: self
       };
 

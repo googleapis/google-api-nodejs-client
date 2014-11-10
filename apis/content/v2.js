@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Content API for Shopping
@@ -58,6 +57,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -265,6 +266,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -354,6 +357,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -456,7 +461,9 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId -
+     * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -559,6 +566,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -603,7 +612,9 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId -
+     * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {string=} params.pageToken - The token returned by the previous request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -646,6 +657,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -708,6 +721,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -857,6 +872,8 @@ function Content(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

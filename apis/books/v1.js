@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Books API
@@ -159,6 +158,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -186,6 +187,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['volumeId'],
+        pathParams: [],
         context: self
       };
 
@@ -212,6 +214,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -469,6 +473,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['volumeIds', 'cpksver'],
+        pathParams: [],
         context: self
       };
 
@@ -501,6 +506,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
+        pathParams: [],
         context: self
       };
 
@@ -534,6 +540,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['source', 'nonce', 'cpksver'],
+        pathParams: [],
         context: self
       };
 
@@ -626,6 +633,8 @@ function Books(options) {
             method: 'POST'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -662,6 +671,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -690,6 +701,7 @@ function Books(options) {
           },
           params: params,
           requiredParams: ['layerIds', 'volumeId'],
+          pathParams: [],
           context: self
         };
 
@@ -837,6 +849,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1040,6 +1054,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1072,6 +1088,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1103,6 +1121,8 @@ function Books(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1178,6 +1198,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['q'],
+        pathParams: [],
         context: self
       };
 
@@ -1245,6 +1266,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1275,6 +1298,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1305,6 +1330,7 @@ function Books(options) {
           },
           params: params,
           requiredParams: ['rating', 'volumeId'],
+          pathParams: [],
           context: self
         };
 
@@ -1339,6 +1365,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 

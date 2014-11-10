@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Genomics API
@@ -93,6 +92,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -204,6 +205,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -263,6 +266,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -336,7 +341,7 @@ function Genomics(options) {
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.maxResults - The maximum number of results returned by this request.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.projectId - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers.
+     * @param  {string=} params.projectId - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers. Returns all public projects if no project number is specified.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -347,6 +352,8 @@ function Genomics(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -465,6 +472,8 @@ function Genomics(options) {
             method: 'POST'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -551,6 +560,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -581,6 +592,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -639,6 +652,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -693,6 +708,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -748,6 +765,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -843,6 +862,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -897,6 +918,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -951,6 +974,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -977,6 +1002,8 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1102,6 +1129,35 @@ function Genomics(options) {
     },
 
     /**
+     * genomics.variantsets.patch
+     *
+     * @desc Updates a variant set's metadata. All other modifications are silently ignored. Returns the modified variant set. This method supports patch semantics.
+     *
+     * @alias genomics.variantsets.patch
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - The ID of the variant to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * genomics.variantsets.search
      *
      * @desc Returns a list of all variant sets matching search criteria.
@@ -1121,6 +1177,37 @@ function Genomics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.update
+     *
+     * @desc Updates a variant set's metadata. All other modifications are silently ignored. Returns the modified variant set.
+     *
+     * @alias genomics.variantsets.update
+     * @memberOf! genomics(v1beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - The ID of the variant to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
         context: self
       };
 

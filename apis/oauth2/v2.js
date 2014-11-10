@@ -18,8 +18,7 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google OAuth2 API
@@ -57,6 +56,8 @@ function Oauth2(options) {
         method: 'POST'
       },
       params: params,
+      requiredParams: [],
+      pathParams: [],
       context: self
     };
 
@@ -84,6 +85,8 @@ function Oauth2(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -113,6 +116,8 @@ function Oauth2(options) {
               method: 'GET'
             },
             params: params,
+            requiredParams: [],
+            pathParams: [],
             context: self
           };
 
