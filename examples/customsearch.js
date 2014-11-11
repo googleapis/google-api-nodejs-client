@@ -24,7 +24,7 @@ const SEARCH = 'INSERT A GOOGLE REQUEST HERE';
 
 customsearch.cse.list({ cx: CX, q: SEARCH, auth: API_KEY }, function(err, resp) {
   if (err) {
-    console.log('An error occured', err);
+    console.log('An error occurred', err);
     return;
   }
   // Got the response from custom search

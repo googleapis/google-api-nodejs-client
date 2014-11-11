@@ -30,6 +30,8 @@ var drive = google.drive('v2');
  * https://github.com/joyent/node/issues/4050#issuecomment-8816304)
  * so the private key must be extracted and converted to a passphrase-less
  * RSA key: openssl pkcs12 -in key.p12 -nodes -nocerts > key.pem
+ *
+ * See the default_auth.js sample for an alternate way of fetching credentials.
  */
 var authClient = new google.auth.JWT(
     'service-account-email@developer.gserviceaccount.com',
