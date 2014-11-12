@@ -27,11 +27,11 @@ nock.disableNetConnect();
 // Creates a standard JSON credentials object for testing.
 function createJSON() {
   return {
-    "private_key_id": "key123",
-    "private_key": "privatekey",
-    "client_email": "hello@youarecool.com",
-    "client_id": "client123",
-    "type": "service_account"
+    'private_key_id': 'key123',
+    'private_key': 'privatekey',
+    'client_email': 'hello@youarecool.com',
+    'client_id': 'client123',
+    'type': 'service_account'
   };
 }
 
@@ -49,13 +49,13 @@ function pathJoin(item1, item2) {
 function returns(value) {
   return function() {
     return value;
-  }
+  };
 }
 
 function callsBack(value) {
   return function(callback) {
     callback(value);
-  }
+  };
 }
 
 // Blocks the GOOGLE_APPLICATION_CREDENTIALS by default. This is necessary in case it is actually
@@ -69,12 +69,12 @@ function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmen
   var originalGetEnvironmentVariableFunction = gc._getEnvironmentVariable;
 
   gc._getEnvironmentVariable = function(name) {
-    if (name == environmentVariableName) {
+    if (name === environmentVariableName) {
       return environmentVariableValue;
     }
 
     return originalGetEnvironmentVariableFunction(name);
-  }
+  };
 }
 
 // Intercepts the specified file path and inserts the mock file path.
@@ -82,12 +82,12 @@ function insertWellKnownFilePathIntoGC(gc, filePath, mockFilePath) {
   var originalMockWellKnownFilePathFunction = gc._mockWellKnownFilePath;
 
   gc._mockWellKnownFilePath = function(path) {
-    if (path == filePath) {
+    if (path === filePath) {
       return mockFilePath;
     }
 
     return originalMockWellKnownFilePathFunction(filePath);
-  }
+  };
 }
 
 // Nothing.
@@ -100,7 +100,7 @@ function doneWhen(doneCallback, count) {
   return function() {
     ++i;
 
-    if (i == count) {
+    if (i === count) {
       doneCallback();
     } else if (i > count) {
       throw new Error('Called too many times. Test error?');
@@ -112,13 +112,13 @@ describe('googleCredentials', function() {
   describe('.fromJson', function () {
 
     it('should error on null json', function () {
-      googleapis.credentials.fromJSON(null, function (err, result) {
+      googleapis.credentials.fromJSON(null, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
 
     it('should error on empty json', function () {
-      googleapis.credentials.fromJSON({}, function (err, result) {
+      googleapis.credentials.fromJSON({}, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
@@ -127,7 +127,7 @@ describe('googleCredentials', function() {
       var json = createJSON();
       delete json.client_email;
 
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.credentials.fromJSON(json, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
@@ -136,7 +136,7 @@ describe('googleCredentials', function() {
       var json = createJSON();
       delete json.private_key;
 
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.credentials.fromJSON(json, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
@@ -185,7 +185,7 @@ describe('googleCredentials', function() {
   describe('.fromStream', function () {
 
     it('should error on null stream', function (done) {
-      googleapis.credentials.fromStream(null, function (err, result) {
+      googleapis.credentials.fromStream(null, function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
@@ -218,28 +218,30 @@ describe('googleCredentials', function() {
   describe('._getApplicationCredentialsFromFilePath', function () {
 
     it('should error on null file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath(null, function (err, result) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath(null, function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
     });
 
     it('should error on empty file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath('', function (err, result) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath('', function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
     });
 
     it('should error on non-string file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath(2, function (err, result) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath(2, function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
     });
 
     it('should error on invalid file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath('./nonexistantfile.json', function (err, result) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath('./nonexistantfile.json',
+        function (err) {
+
         assert.equal(true, err instanceof Error);
         done();
       });
@@ -251,7 +253,9 @@ describe('googleCredentials', function() {
       assert.equal(true, fs.lstatSync(directory).isDirectory());
 
       // Execute.
-      googleapis.credentials._getApplicationCredentialsFromFilePath(directory, function (err, result) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath(directory,
+        function (err) {
+
         assert.equal(true, err instanceof Error);
         done();
       });
@@ -260,12 +264,13 @@ describe('googleCredentials', function() {
     it('should handle errors thrown from createReadStream', function (done) {
       // Set up a mock to throw from the createReadStream method.
       var gc = new googleCredentials();
-      gc._createReadStream = function (filePath) {
+      gc._createReadStream = function () {
         throw new Error('Hans and Chewbacca');
-      }
+      };
 
       // Execute.
-      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
+
         assert.equal(true, stringEndsWith(err.message, 'Hans and Chewbacca'));
         done();
       });
@@ -274,12 +279,13 @@ describe('googleCredentials', function() {
     it('should handle errors thrown from fromStream', function (done) {
       // Set up a mock to throw from the fromStream method.
       var gc = new googleCredentials();
-      gc.fromStream = function (stream, callback) {
+      gc.fromStream = function () {
         throw new Error('Darth Maul');
-      }
+      };
 
       // Execute.
-      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
+
         assert.equal(true, stringEndsWith(err.message, 'Darth Maul'));
         done();
       });
@@ -290,10 +296,11 @@ describe('googleCredentials', function() {
       var gc = new googleCredentials();
       gc.fromStream = function (stream, callback) {
         callback(new Error('Princess Leia'));
-      }
+      };
 
       // Execute.
-      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
+
         assert.equal(true, stringEndsWith(err.message, 'Princess Leia'));
         done();
       });
@@ -305,7 +312,9 @@ describe('googleCredentials', function() {
       var json = JSON.parse(fileContents);
 
       // Now pass the same path to the credentials loader.
-      googleapis.credentials._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err, result) {
+      googleapis.credentials._getApplicationCredentialsFromFilePath('./test/fixtures/private.json',
+        function (err, result) {
+
         assert.equal(null, err);
         assert.equal(json.private_key, result.key);
         assert.equal(json.client_email, result.email);
@@ -328,7 +337,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function () {
         step(); // This should not get called.
       });
 
@@ -345,7 +354,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function () {
         step(); // This should not get called.
       });
 
@@ -356,13 +365,14 @@ describe('googleCredentials', function() {
     it('should handle invalid environment variable', function (done) {
       // Set up a mock to return a path to an invalid file.
       var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './nonexistantfile.json');
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS',
+        './nonexistantfile.json');
 
       // The test ends successfully after 2 steps have completed.
       var step = doneWhen(done, 2);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function (err) {
         assert.equal(true, err instanceof Error);
         step();
       });
@@ -374,7 +384,8 @@ describe('googleCredentials', function() {
     it('should handle valid environment variable', function (done) {
       // Set up a mock to return path to a valid credentials file.
       var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS',
+        './test/fixtures/private.json');
 
       // Read the contents of the file into a json object.
       var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
@@ -412,11 +423,11 @@ describe('googleCredentials', function() {
       gc._osType = returns('Windows');
       gc._fileExists = returns(true);
 
-      gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
-        if (filePath == 'foo:gcloud:application_default_credentials.json') {
+      gc._getApplicationCredentialsFromFilePath = function (filePath) {
+        if (filePath === 'foo:gcloud:application_default_credentials.json') {
           correctLocation = true;
         }
-      }
+      };
 
       // Execute.
       var handled = gc._tryGetApplicationCredentialsFromWellKnownFile();
@@ -437,11 +448,11 @@ describe('googleCredentials', function() {
       gc._fileExists = returns(true);
 
 
-      gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
-        if (filePath == 'foo:.config:gcloud:application_default_credentials.json') {
+      gc._getApplicationCredentialsFromFilePath = function (filePath) {
+        if (filePath === 'foo:.config:gcloud:application_default_credentials.json') {
           correctLocation = true;
         }
-      }
+      };
 
       // Execute.
       var handled = gc._tryGetApplicationCredentialsFromWellKnownFile();
@@ -451,8 +462,6 @@ describe('googleCredentials', function() {
     });
 
     it('should fail on Windows when APPDATA is not defined', function (done) {
-      var correctLocation = false;
-
       // Set up mocks.
       var gc = new googleCredentials();
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -466,7 +475,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -475,8 +484,6 @@ describe('googleCredentials', function() {
     });
 
     it('should fail on non-Windows when HOME is not defined', function (done) {
-      var correctLocation = false;
-
       // Set up mocks.
       var gc = new googleCredentials();
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -490,7 +497,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -499,8 +506,6 @@ describe('googleCredentials', function() {
     });
 
     it('should fail on Windows when file does not exist', function (done) {
-      var correctLocation = false;
-
       // Set up mocks.
       var gc = new googleCredentials();
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -514,7 +519,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -523,8 +528,6 @@ describe('googleCredentials', function() {
     });
 
     it('should fail on non-Windows when file does not exist', function (done) {
-      var correctLocation = false;
-
       // Set up mocks.
       var gc = new googleCredentials();
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -538,7 +541,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -548,8 +551,6 @@ describe('googleCredentials', function() {
   });
 
   it('should succeeds on Windows', function (done) {
-    var correctLocation = false;
-
     // Set up mocks.
     var gc = new googleCredentials();
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -577,8 +578,6 @@ describe('googleCredentials', function() {
   });
 
   it('should succeeds on non-Windows', function (done) {
-    var correctLocation = false;
-
     // Set up mocks.
     var gc = new googleCredentials();
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -606,8 +605,6 @@ describe('googleCredentials', function() {
   });
 
   it('should pass along a failure on Windows', function (done) {
-    var correctLocation = false;
-
     // Set up mocks.
     var gc = new googleCredentials();
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -635,8 +632,6 @@ describe('googleCredentials', function() {
   });
 
   it('should pass along a failure on non-Windows', function (done) {
-    var correctLocation = false;
-
     // Set up mocks.
     var gc = new googleCredentials();
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
@@ -665,14 +660,18 @@ describe('googleCredentials', function() {
 
   describe('.getApplicationDefault', function () {
 
-    it('should return a new credential the first time and a cached credential the second time', function (done) {
+    it('should return a new credential the first time and a cached credential the second time',
+      function (done) {
+
       // The test ends successfully after 3 steps have completed.
       var step = doneWhen(done, 3);
 
       // Create a function which will set up a GoogleCredentials instance to match on
       // an environment variable json file, but not on anything else.
       var setUpGCForEnvironmentVariable = function(creds) {
-        insertEnvironmentVariableIntoGC(creds, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+        insertEnvironmentVariableIntoGC(creds, 'GOOGLE_APPLICATION_CREDENTIALS',
+          './test/fixtures/private.json');
+
         creds._fileExists = returns(false);
         creds._checkIsGCE = callsBack(false);
       };
@@ -689,7 +688,8 @@ describe('googleCredentials', function() {
         // Capture the returned credential.
         var cachedCredential = result;
 
-        // Make sure our special test bit is not set yet, indicating that this is a new credentials instance.
+        // Make sure our special test bit is not set yet, indicating that this is a new
+        // credentials instance.
         assert.equal(null, cachedCredential.specialTestBit);
 
         // Now set the special test bit.
@@ -698,7 +698,8 @@ describe('googleCredentials', function() {
         // Step 1 has completed.
         step();
 
-        // Ask for credentials again, from the same gc instance. We expect a cached instance this time.
+        // Ask for credentials again, from the same gc instance. We expect a cached instance
+        // this time.
         gc.getApplicationDefault(function (err2, result2) {
           assert.equal(null, err2);
           assert.notEqual(null, result2);
@@ -741,13 +742,15 @@ describe('googleCredentials', function() {
       // * Well-known file is set up to point to private2.json
       // * Running on GCE is set to true.
       var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', './test/fixtures/private.json');
+      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS',
+        './test/fixtures/private.json');
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
       gc._osType = returns('Windows');
       gc._fileExists = returns(true);
       gc._checkIsGCE = callsBack(true);
-      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json', './test/fixtures/private2.json');
+      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json',
+        './test/fixtures/private2.json');
 
       // Execute.
       gc.getApplicationDefault(function (err, result) {
@@ -777,7 +780,8 @@ describe('googleCredentials', function() {
       gc._osType = returns('Windows');
       gc._fileExists = returns(true);
       gc._checkIsGCE = callsBack(true);
-      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json', './test/fixtures/private2.json');
+      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json',
+        './test/fixtures/private2.json');
 
       // Execute.
       gc.getApplicationDefault(function (err, result) {
@@ -815,7 +819,7 @@ describe('googleCredentials', function() {
     });
   });
 
-  describe('._checkIsGCE', function (done) {
+  describe('._checkIsGCE', function () {
 
     it('should set the _is_gce flag when running on GCE', function (done) {
       var gc = new googleCredentials();
@@ -883,7 +887,7 @@ describe('googleCredentials', function() {
           assert.equal(true, gc._checked_is_gce);
           assert.equal(true, gc._is_gce);
           assert.equal(1, gc.transporter.executionCount);
-        })
+        });
 
         done();
       });
@@ -914,7 +918,7 @@ describe('googleCredentials', function() {
           assert.equal(true, gc._checked_is_gce);
           assert.equal(false, gc._is_gce);
           assert.equal(1, gc.transporter.executionCount);
-        })
+        });
 
         done();
       });
@@ -922,7 +926,8 @@ describe('googleCredentials', function() {
       it('Returns false on transport error', function (done) {
         var gc = new googleCredentials();
 
-        // Mock the transport layer to indicate that we're not running on GCE, but also to throw an error.
+        // Mock the transport layer to indicate that we're not running on GCE, but also to
+        // throw an error.
         gc.transporter = new MockTransporter(true, true);
 
         // Assert on the initial values.
@@ -955,7 +960,7 @@ function MockTransporter(simulate_gce, throw_error) {
 }
 
 MockTransporter.prototype.request = function(options, callback) {
-  if (options.method == 'GET' && options.uri == 'http://metadata.google.internal') {
+  if (options.method === 'GET' && options.uri === 'http://metadata.google.internal') {
 
     this.executionCount += 1;
 
@@ -972,4 +977,4 @@ MockTransporter.prototype.request = function(options, callback) {
   } else {
     throw new Error('unexpected request');
   }
-}
+};

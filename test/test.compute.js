@@ -124,13 +124,14 @@ describe('Compute auth client', function() {
             {'domain': 'global', 'reason': 'something', 'message': 'Dinosaurus Rex'}
           ],
           'code': 403,
-          'message': 'Dinosaurus Rex' })
+          'message': 'Dinosaurus Rex' });
       };
 
-      compute.request({ }, function (err, result) {
+      compute.request({ }, function (err) {
         assert.equal(403, err.code);
-        assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
-          'have the correct permission scopes specified. Dinosaurus Rex', err.message);
+        assert.equal('A Forbidden error was returned. This may be because the Compute Engine ' +
+          'instance does not have the correct permission scopes specified. Dinosaurus Rex',
+          err.message);
         done();
       });
     });
@@ -152,13 +153,14 @@ describe('Compute auth client', function() {
             {'domain': 'global', 'reason': 'something', 'message': 'Dinosaurus Rex'}
           ],
           'code': 404,
-          'message': 'Dinosaurus Rex' })
+          'message': 'Dinosaurus Rex' });
       };
 
-      compute.request({ }, function (err, result) {
+      compute.request({ }, function (err) {
         assert.equal(404, err.code);
-        assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
-          'have any permission scopes specified. Dinosaurus Rex', err.message);
+        assert.equal('A Not Found error was returned. This may be because the Compute Engine ' +
+          'instance does not have any permission scopes specified. Dinosaurus Rex',
+          err.message);
         done();
       });
     });
@@ -177,13 +179,14 @@ describe('Compute auth client', function() {
       compute.refreshAccessToken = function (callback) {
         callback({
           'code': 403,
-          'message': 'Dinosaurus Rex' })
+          'message': 'Dinosaurus Rex' });
       };
 
-      compute.request({ }, function (err, result) {
+      compute.request({ }, function (err) {
         assert.equal(403, err.code);
-        assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
-          'have the correct permission scopes specified. Dinosaurus Rex', err.message);
+        assert.equal('A Forbidden error was returned. This may be because the Compute Engine ' +
+          'instance does not have the correct permission scopes specified. Dinosaurus Rex',
+          err.message);
         done();
       });
     });
@@ -202,13 +205,14 @@ describe('Compute auth client', function() {
       compute.refreshAccessToken = function (callback) {
         callback({
           'code': 404,
-          'message': 'Dinosaurus Rex' })
+          'message': 'Dinosaurus Rex' });
       };
 
-      compute.request({ }, function (err, result) {
+      compute.request({ }, function (err) {
         assert.equal(404, err.code);
-        assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
-          'have any permission scopes specified. Dinosaurus Rex', err.message);
+        assert.equal('A Not Found error was returned. This may be because the Compute Engine ' +
+          'instance does not have any permission scopes specified. Dinosaurus Rex',
+          err.message);
         done();
       });
     });
@@ -231,8 +235,9 @@ describe('Compute auth client', function() {
 
         compute.request({ }, function (err, result, response) {
           assert.equal(403, response.statusCode);
-          assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
-            'have the correct permission scopes specified.', err.message);
+          assert.equal('A Forbidden error was returned. This may be because the Compute Engine ' +
+            'instance does not have the correct permission scopes specified.',
+            err.message);
           done();
         });
       });
@@ -254,13 +259,16 @@ describe('Compute auth client', function() {
 
         compute.request({ }, function (err, result, response) {
           assert.equal(404, response.statusCode);
-          assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
-            'have any permission scopes specified.', err.message);
+          assert.equal('A Not Found error was returned. This may be because the Compute Engine ' +
+            'instance does not have any permission scopes specified.',
+            err.message);
           done();
         });
       });
 
-      it('should return a helpful message on token refresh response.statusCode 403', function (done) {
+      it('should return a helpful message on token refresh response.statusCode 403',
+        function (done) {
+
         var compute = new googleapis.auth.Compute();
 
         // Mock the credentials object with a null access token, to force a refresh.
@@ -277,13 +285,17 @@ describe('Compute auth client', function() {
 
         compute.request({ }, function (err, result, response) {
           assert.equal(403, response.statusCode);
-          assert.equal('A Forbidden error was returned. This may be because the Compute Engine instance does not ' +
-            'have the correct permission scopes specified. Could not refresh access token.', err.message);
+          assert.equal('A Forbidden error was returned. This may be because the Compute Engine ' +
+            'instance does not have the correct permission scopes specified. Could not refresh ' +
+            'access token.',
+            err.message);
           done();
         });
       });
 
-      it('should return a helpful message on token refresh response.statusCode 404', function (done) {
+      it('should return a helpful message on token refresh response.statusCode 404',
+        function (done) {
+
         var compute = new googleapis.auth.Compute();
 
         // Mock the credentials object with a null access token, to force a refresh.
@@ -300,8 +312,10 @@ describe('Compute auth client', function() {
 
         compute.request({ }, function (err, result, response) {
           assert.equal(404, response.statusCode);
-          assert.equal('A Not Found error was returned. This may be because the Compute Engine instance does not ' +
-            'have any permission scopes specified. Could not refresh access token.', err.message);
+          assert.equal('A Not Found error was returned. This may be because the Compute Engine ' +
+            'instance does not have any permission scopes specified. Could not refresh access ' +
+            'token.',
+            err.message);
           done();
         });
       });

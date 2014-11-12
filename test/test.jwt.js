@@ -357,7 +357,9 @@ describe('JWT auth client', function() {
       assert.equal(false, jwt.createScopedRequired());
     });
 
-    it('should return false when scopes is not an array or a string, but can be used as a string', function () {
+    it('should return false when scopes is not an array or a string, but can be used as a string',
+      function () {
+
       var jwt = new googleapis.auth.JWT(
         'foo@serviceaccount.com',
         '/path/to/key.pem',
