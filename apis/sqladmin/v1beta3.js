@@ -47,7 +47,7 @@ function Sqladmin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.backupConfiguration - Identifier for the backup configuration. This gets generated automatically when a backup configuration is created.
-     * @param  {string} params.dueTime - The time when this run is due to start in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
+     * @param  {string} params.dueTime - The start time of the four-hour backup window. The backup can occur any time in the window. The time is in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {callback} callback - The callback that handles the response.
@@ -468,7 +468,7 @@ function Sqladmin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.backupConfiguration - The identifier of the backup configuration. This gets generated automatically when a backup configuration is created.
-     * @param  {string} params.dueTime - The time when this run is due to start in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
+     * @param  {string} params.dueTime - The start time of the four-hour backup window. The backup can occur any time in the window. The time is in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {callback} callback - The callback that handles the response.

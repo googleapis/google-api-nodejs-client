@@ -318,6 +318,41 @@ function Autoscaler(options) {
     }
 
   };
+
+  this.zones = {
+
+    /**
+     * autoscaler.zones.list
+     *
+     *
+     *
+     * @alias autoscaler.zones.list
+     * @memberOf! autoscaler(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter -
+     * @param  {integer=} params.maxResults -
+     * @param  {string=} params.pageToken -
+     * @param  {string} params.project -
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**

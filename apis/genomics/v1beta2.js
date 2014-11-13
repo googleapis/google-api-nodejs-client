@@ -25,8 +25,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Provides access to Genomics data.
  * @namespace genomics
- * @version  v1beta
- * @variation v1beta
+ * @version  v1beta2
+ * @variation v1beta2
  * @this Genomics
  * @param {object=} options Options for Genomics
  */
@@ -43,7 +43,7 @@ function Genomics(options) {
      * @desc Creates a new call set.
      *
      * @alias genomics.callsets.create
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -53,7 +53,7 @@ function Genomics(options) {
     create: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets',
+          url: 'https://www.googleapis.com/genomics/v1beta2/callsets',
           method: 'POST'
         },
         params: params,
@@ -71,7 +71,7 @@ function Genomics(options) {
      * @desc Deletes a call set.
      *
      * @alias genomics.callsets.delete
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callSetId - The ID of the call set to be deleted.
@@ -81,7 +81,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'DELETE'
         },
         params: params,
@@ -99,7 +99,7 @@ function Genomics(options) {
      * @desc Gets a call set by ID.
      *
      * @alias genomics.callsets.get
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callSetId - The ID of the call set.
@@ -109,7 +109,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'GET'
         },
         params: params,
@@ -127,7 +127,7 @@ function Genomics(options) {
      * @desc Updates a call set. This method supports patch semantics.
      *
      * @alias genomics.callsets.patch
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callSetId - The ID of the call set to be updated.
@@ -138,7 +138,7 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'PATCH'
         },
         params: params,
@@ -156,7 +156,7 @@ function Genomics(options) {
      * @desc Gets a list of call sets matching the criteria.  Implements GlobalAllianceApi.searchCallSets.
      *
      * @alias genomics.callsets.search
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -166,7 +166,7 @@ function Genomics(options) {
     search: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/search',
+          url: 'https://www.googleapis.com/genomics/v1beta2/callsets/search',
           method: 'POST'
         },
         params: params,
@@ -184,7 +184,7 @@ function Genomics(options) {
      * @desc Updates a call set.
      *
      * @alias genomics.callsets.update
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callSetId - The ID of the call set to be updated.
@@ -195,7 +195,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/callsets/{callSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'PUT'
         },
         params: params,
@@ -217,7 +217,7 @@ function Genomics(options) {
      * @desc Creates a new dataset.
      *
      * @alias genomics.datasets.create
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -227,7 +227,7 @@ function Genomics(options) {
     create: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets',
           method: 'POST'
         },
         params: params,
@@ -245,7 +245,7 @@ function Genomics(options) {
      * @desc Deletes a dataset.
      *
      * @alias genomics.datasets.delete
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be deleted.
@@ -255,7 +255,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'DELETE'
         },
         params: params,
@@ -273,7 +273,7 @@ function Genomics(options) {
      * @desc Gets a dataset by ID.
      *
      * @alias genomics.datasets.get
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset.
@@ -283,7 +283,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'GET'
         },
         params: params,
@@ -301,19 +301,19 @@ function Genomics(options) {
      * @desc Lists all datasets.
      *
      * @alias genomics.datasets.list
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {string=} params.maxResults - The maximum number of results returned by this request.
+     * @param  {integer=} params.pageSize - The maximum number of results returned by this request.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.projectId - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers. Returns all public projects if no project number is specified.
+     * @param  {string=} params.projectNumber - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers. Returns all public projects if no project number is specified.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets',
           method: 'GET'
         },
         params: params,
@@ -331,7 +331,7 @@ function Genomics(options) {
      * @desc Updates a dataset. This method supports patch semantics.
      *
      * @alias genomics.datasets.patch
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be updated.
@@ -342,7 +342,7 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'PATCH'
         },
         params: params,
@@ -360,7 +360,7 @@ function Genomics(options) {
      * @desc Undeletes a dataset by restoring a dataset which was deleted via this API. This operation is only possible for a week after the deletion occurred.
      *
      * @alias genomics.datasets.undelete
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be undeleted.
@@ -370,7 +370,7 @@ function Genomics(options) {
     undelete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}/undelete',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}/undelete',
           method: 'POST'
         },
         params: params,
@@ -388,7 +388,7 @@ function Genomics(options) {
      * @desc Updates a dataset.
      *
      * @alias genomics.datasets.update
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be updated.
@@ -399,7 +399,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/datasets/{datasetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'PUT'
         },
         params: params,
@@ -423,7 +423,7 @@ function Genomics(options) {
        * @desc Creates and asynchronously runs an ad-hoc job. This is an experimental call and may be removed or changed at any time.
        *
        * @alias genomics.experimental.jobs.create
-       * @memberOf! genomics(v1beta)
+       * @memberOf! genomics(v1beta2)
        *
        * @param  {object} params - Parameters for request
        * @param  {object} params.resource - Request body data
@@ -433,7 +433,7 @@ function Genomics(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/genomics/v1beta/experimental/jobs/create',
+            url: 'https://www.googleapis.com/genomics/v1beta2/experimental/jobs/create',
             method: 'POST'
           },
           params: params,
@@ -455,7 +455,7 @@ function Genomics(options) {
      * @desc Cancels a job by ID. Note that it is possible for partial results to be generated and stored for cancelled jobs.
      *
      * @alias genomics.jobs.cancel
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.jobId - Required. The ID of the job.
@@ -465,7 +465,7 @@ function Genomics(options) {
     cancel: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/jobs/{jobId}/cancel',
+          url: 'https://www.googleapis.com/genomics/v1beta2/jobs/{jobId}/cancel',
           method: 'POST'
         },
         params: params,
@@ -483,7 +483,7 @@ function Genomics(options) {
      * @desc Gets a job by ID.
      *
      * @alias genomics.jobs.get
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.jobId - Required. The ID of the job.
@@ -493,7 +493,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/jobs/{jobId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/jobs/{jobId}',
           method: 'GET'
         },
         params: params,
@@ -511,7 +511,7 @@ function Genomics(options) {
      * @desc Gets a list of jobs matching the criteria.
      *
      * @alias genomics.jobs.search
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -521,7 +521,7 @@ function Genomics(options) {
     search: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/jobs/search',
+          url: 'https://www.googleapis.com/genomics/v1beta2/jobs/search',
           method: 'POST'
         },
         params: params,
@@ -535,62 +535,30 @@ function Genomics(options) {
 
   };
 
-  this.reads = {
+  this.readgroupsets = {
 
     /**
-     * genomics.reads.search
+     * genomics.readgroupsets.align
      *
-     * @desc Gets a list of reads for one or more readsets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested readsets are aligned. If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only readset IDs yields all reads in those readsets, including unmapped reads. All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order.
+     * @desc Aligns read data from existing read group sets or files from Google Cloud Storage. See the  alignment and variant calling documentation for more details.
      *
-     * @alias genomics.reads.search
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.align
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    align: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/reads/search',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/align',
           method: 'POST'
         },
         params: params,
         requiredParams: [],
         pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  this.readsets = {
-
-    /**
-     * genomics.readsets.delete
-     *
-     * @desc Deletes a readset.
-     *
-     * @alias genomics.readsets.delete
-     * @memberOf! genomics(v1beta)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.readsetId - The ID of the readset to be deleted. The caller must have WRITE permissions to the dataset associated with this readset.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
-          method: 'DELETE'
-        },
-        params: params,
-        requiredParams: ['readsetId'],
-        pathParams: ['readsetId'],
         context: self
       };
 
@@ -598,12 +566,68 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.readsets.export
+     * genomics.readgroupsets.call
      *
-     * @desc Exports readsets to a BAM file in Google Cloud Storage. Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. In particular, comments in the input file header will not be preserved, and some custom tags will be converted to strings.
+     * @desc Calls variants on read data from existing read group sets or files from Google Cloud Storage. See the  alignment and variant calling documentation for more details.
      *
-     * @alias genomics.readsets.export
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.call
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    call: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/call',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.readgroupsets.delete
+     *
+     * @desc Deletes a read group set.
+     *
+     * @alias genomics.readgroupsets.delete
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.readGroupSetId - The ID of the read group set to be deleted. The caller must have WRITE permissions to the dataset associated with this read group set.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['readGroupSetId'],
+        pathParams: ['readGroupSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.readgroupsets.export
+     *
+     * @desc Exports read group sets to a BAM file in Google Cloud Storage.  Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. In particular, comments in the input file header will not be preserved, and some custom tags will be converted to strings.
+     *
+     * @alias genomics.readgroupsets.export
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -613,7 +637,7 @@ function Genomics(options) {
     export: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/export',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/export',
           method: 'POST'
         },
         params: params,
@@ -626,27 +650,27 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.readsets.get
+     * genomics.readgroupsets.get
      *
-     * @desc Gets a readset by ID.
+     * @desc Gets a read group set by ID.
      *
-     * @alias genomics.readsets.get
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.get
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.readsetId - The ID of the readset.
+     * @param  {string} params.readGroupSetId - The ID of the read group set.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'GET'
         },
         params: params,
-        requiredParams: ['readsetId'],
-        pathParams: ['readsetId'],
+        requiredParams: ['readGroupSetId'],
+        pathParams: ['readGroupSetId'],
         context: self
       };
 
@@ -654,12 +678,12 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.readsets.import
+     * genomics.readgroupsets.import
      *
-     * @desc Creates readsets by asynchronously importing the provided information. Note that currently comments in the input file header are not imported and some custom tags will be converted to strings, rather than preserving tag types. The caller must have WRITE permissions to the dataset.
+     * @desc Creates read group sets by asynchronously importing the provided information.  Note that currently comments in the input file header are not imported and some custom tags will be converted to strings, rather than preserving tag types. The caller must have WRITE permissions to the dataset.
      *
-     * @alias genomics.readsets.import
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.import
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -669,7 +693,7 @@ function Genomics(options) {
     import: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/import',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/import',
           method: 'POST'
         },
         params: params,
@@ -682,15 +706,15 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.readsets.patch
+     * genomics.readgroupsets.patch
      *
-     * @desc Updates a readset. This method supports patch semantics.
+     * @desc Updates a read group set. This method supports patch semantics.
      *
-     * @alias genomics.readsets.patch
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.patch
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.readsetId - The ID of the readset to be updated. The caller must have WRITE permissions to the dataset associated with this readset.
+     * @param  {string} params.readGroupSetId - The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -698,12 +722,12 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'PATCH'
         },
         params: params,
-        requiredParams: ['readsetId'],
-        pathParams: ['readsetId'],
+        requiredParams: ['readGroupSetId'],
+        pathParams: ['readGroupSetId'],
         context: self
       };
 
@@ -711,12 +735,12 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.readsets.search
+     * genomics.readgroupsets.search
      *
-     * @desc Gets a list of readsets matching the criteria.
+     * @desc Searches for read group sets matching the criteria.  Implements GlobalAllianceApi.searchReadGroupSets.
      *
-     * @alias genomics.readsets.search
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.search
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -726,7 +750,7 @@ function Genomics(options) {
     search: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/search',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/search',
           method: 'POST'
         },
         params: params,
@@ -739,15 +763,15 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.readsets.update
+     * genomics.readgroupsets.update
      *
-     * @desc Updates a readset.
+     * @desc Updates a read group set.
      *
-     * @alias genomics.readsets.update
-     * @memberOf! genomics(v1beta)
+     * @alias genomics.readgroupsets.update
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.readsetId - The ID of the readset to be updated. The caller must have WRITE permissions to the dataset associated with this readset.
+     * @param  {string} params.readGroupSetId - The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -755,12 +779,12 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'PUT'
         },
         params: params,
-        requiredParams: ['readsetId'],
-        pathParams: ['readsetId'],
+        requiredParams: ['readGroupSetId'],
+        pathParams: ['readGroupSetId'],
         context: self
       };
 
@@ -770,20 +794,20 @@ function Genomics(options) {
     coveragebuckets: {
 
       /**
-       * genomics.readsets.coveragebuckets.list
+       * genomics.readgroupsets.coveragebuckets.list
        *
-       * @desc Lists fixed width coverage buckets for a readset, each of which correspond to a range of a reference sequence. Each bucket summarizes coverage information across its corresponding genomic range. Coverage is defined as the number of reads which are aligned to a given base in the reference sequence. Coverage buckets are available at various bucket widths, enabling various coverage "zoom levels". The caller must have READ permissions for the target readset.
+       * @desc Lists fixed width coverage buckets for a read group set, each of which correspond to a range of a reference sequence. Each bucket summarizes coverage information across its corresponding genomic range.  Coverage is defined as the number of reads which are aligned to a given base in the reference sequence. Coverage buckets are available at several precomputed bucket widths, enabling retrieval of various coverage 'zoom levels'. The caller must have READ permissions for the target read group set.
        *
-       * @alias genomics.readsets.coveragebuckets.list
-       * @memberOf! genomics(v1beta)
+       * @alias genomics.readgroupsets.coveragebuckets.list
+       * @memberOf! genomics(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string=} params.maxResults - The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
+       * @param  {integer=} params.pageSize - The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
        * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-       * @param  {string=} params.range.sequenceEnd - The end position of the range on the reference, 1-based exclusive. If specified, sequenceName must also be specified.
-       * @param  {string=} params.range.sequenceName - The reference sequence name, for example chr1, 1, or chrX.
-       * @param  {string=} params.range.sequenceStart - The start position of the range on the reference, 1-based inclusive. If specified, sequenceName must also be specified.
-       * @param  {string} params.readsetId - Required. The ID of the readset over which coverage is requested.
+       * @param  {string=} params.range.end - The end position of the range on the reference, 0-based exclusive. If specified, referenceName must also be specified.
+       * @param  {string=} params.range.referenceName - The reference sequence name, for example chr1, 1, or chrX.
+       * @param  {string=} params.range.start - The start position of the range on the reference, 0-based inclusive. If specified, referenceName must also be specified.
+       * @param  {string} params.readGroupSetId - Required. The ID of the read group set over which coverage is requested.
        * @param  {string=} params.targetBucketWidth - The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucketWidth in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucketWidth is currently 2048 base pairs; this is subject to change.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -791,18 +815,204 @@ function Genomics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/genomics/v1beta/readsets/{readsetId}/coveragebuckets',
+            url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}/coveragebuckets',
             method: 'GET'
           },
           params: params,
-          requiredParams: ['readsetId'],
-          pathParams: ['readsetId'],
+          requiredParams: ['readGroupSetId'],
+          pathParams: ['readGroupSetId'],
           context: self
         };
 
         return createAPIRequest(parameters, callback);
       }
     }
+  };
+
+  this.reads = {
+
+    /**
+     * genomics.reads.search
+     *
+     * @desc Gets a list of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned.  If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads.  All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order.  Implements GlobalAllianceApi.searchReads.
+     *
+     * @alias genomics.reads.search
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/reads/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.references = {
+
+    /**
+     * genomics.references.get
+     *
+     * @desc Gets a reference.  Implements GlobalAllianceApi.getReference.
+     *
+     * @alias genomics.references.get
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.referenceId - The ID of the reference.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/references/{referenceId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['referenceId'],
+        pathParams: ['referenceId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.references.search
+     *
+     * @desc Searches for references which match the given criteria.  Implements GlobalAllianceApi.searchReferences.
+     *
+     * @alias genomics.references.search
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/references/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    bases: {
+
+      /**
+       * genomics.references.bases.list
+       *
+       * @desc Lists the bases in a reference, optionally restricted to a range.  Implements GlobalAllianceApi.getReferenceBases.
+       *
+       * @alias genomics.references.bases.list
+       * @memberOf! genomics(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string=} params.end - The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
+       * @param  {integer=} params.pageSize - Specifies the maximum number of bases to return in a single page.
+       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param  {string} params.referenceId - The ID of the reference.
+       * @param  {string=} params.start - The start position (0-based) of this query. Defaults to 0.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/genomics/v1beta2/references/{referenceId}/bases',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['referenceId'],
+          pathParams: ['referenceId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
+  this.referencesets = {
+
+    /**
+     * genomics.referencesets.get
+     *
+     * @desc Gets a reference set.  Implements GlobalAllianceApi.getReferenceSet.
+     *
+     * @alias genomics.referencesets.get
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.referenceSetId - The ID of the reference set.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/{referenceSetId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['referenceSetId'],
+        pathParams: ['referenceSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.referencesets.search
+     *
+     * @desc Searches for reference sets which match the given criteria.  Implements GlobalAllianceApi.searchReferenceSets.
+     *
+     * @alias genomics.referencesets.search
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
   };
 
   this.variants = {
@@ -813,7 +1023,7 @@ function Genomics(options) {
      * @desc Creates a new variant.
      *
      * @alias genomics.variants.create
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -823,7 +1033,7 @@ function Genomics(options) {
     create: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variants',
           method: 'POST'
         },
         params: params,
@@ -841,7 +1051,7 @@ function Genomics(options) {
      * @desc Deletes a variant.
      *
      * @alias genomics.variants.delete
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant to be deleted.
@@ -851,7 +1061,7 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/{variantId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
           method: 'DELETE'
         },
         params: params,
@@ -864,40 +1074,12 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.variants.export
-     *
-     * @desc Exports variant data to an external destination.
-     *
-     * @alias genomics.variants.export
-     * @memberOf! genomics(v1beta)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    export: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/export',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * genomics.variants.get
      *
      * @desc Gets a variant by ID.
      *
      * @alias genomics.variants.get
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant.
@@ -907,7 +1089,7 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/{variantId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
           method: 'GET'
         },
         params: params,
@@ -920,40 +1102,12 @@ function Genomics(options) {
     },
 
     /**
-     * genomics.variants.import
-     *
-     * @desc Creates variant data by asynchronously importing the provided information. The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
-     *
-     * @alias genomics.variants.import
-     * @memberOf! genomics(v1beta)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    import: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/import',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * genomics.variants.search
      *
      * @desc Gets a list of variants matching the criteria.  Implements GlobalAllianceApi.searchVariants.
      *
      * @alias genomics.variants.search
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -963,7 +1117,7 @@ function Genomics(options) {
     search: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/search',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variants/search',
           method: 'POST'
         },
         params: params,
@@ -981,7 +1135,7 @@ function Genomics(options) {
      * @desc Updates a variant's names and info fields. All other modifications are silently ignored. Returns the modified variant without its calls.
      *
      * @alias genomics.variants.update
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant to be updated.
@@ -992,7 +1146,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variants/{variantId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
           method: 'PUT'
         },
         params: params,
@@ -1014,7 +1168,7 @@ function Genomics(options) {
      * @desc Deletes the contents of a variant set. The variant set object is not deleted.
      *
      * @alias genomics.variantsets.delete
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - The ID of the variant set to be deleted.
@@ -1024,8 +1178,37 @@ function Genomics(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.export
+     *
+     * @desc Exports variant set data to an external destination.
+     *
+     * @alias genomics.variantsets.export
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - Required. The ID of the variant set that contains variant data which should be exported. The caller must have READ access to this variant set.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    export: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/export',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['variantSetId'],
@@ -1042,7 +1225,7 @@ function Genomics(options) {
      * @desc Gets a variant set by ID.
      *
      * @alias genomics.variantsets.get
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - Required. The ID of the variant set.
@@ -1052,8 +1235,37 @@ function Genomics(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'GET'
+        },
+        params: params,
+        requiredParams: ['variantSetId'],
+        pathParams: ['variantSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variantsets.importVariants
+     *
+     * @desc Creates variant data by asynchronously importing the provided information.  The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
+     *
+     * @alias genomics.variantsets.importVariants
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.variantSetId - Required. The variant set to which variant data should be imported.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    importVariants: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/importVariants',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['variantSetId'],
@@ -1070,7 +1282,7 @@ function Genomics(options) {
      * @desc Merges the given variants with existing variants. Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded.
      *
      * @alias genomics.variantsets.mergeVariants
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - The destination variant set.
@@ -1081,7 +1293,7 @@ function Genomics(options) {
     mergeVariants: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}/mergeVariants',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/mergeVariants',
           method: 'POST'
         },
         params: params,
@@ -1099,7 +1311,7 @@ function Genomics(options) {
      * @desc Updates a variant set's metadata. All other modifications are silently ignored. This method supports patch semantics.
      *
      * @alias genomics.variantsets.patch
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - The ID of the variant to be updated.
@@ -1110,7 +1322,7 @@ function Genomics(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'PATCH'
         },
         params: params,
@@ -1128,7 +1340,7 @@ function Genomics(options) {
      * @desc Returns a list of all variant sets matching search criteria.  Implements GlobalAllianceApi.searchVariantSets.
      *
      * @alias genomics.variantsets.search
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {object} params.resource - Request body data
@@ -1138,7 +1350,7 @@ function Genomics(options) {
     search: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/search',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/search',
           method: 'POST'
         },
         params: params,
@@ -1156,7 +1368,7 @@ function Genomics(options) {
      * @desc Updates a variant set's metadata. All other modifications are silently ignored.
      *
      * @alias genomics.variantsets.update
-     * @memberOf! genomics(v1beta)
+     * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - The ID of the variant to be updated.
@@ -1167,7 +1379,7 @@ function Genomics(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/genomics/v1beta/variantsets/{variantSetId}',
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'PUT'
         },
         params: params,
