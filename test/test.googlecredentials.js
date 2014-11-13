@@ -821,7 +821,7 @@ describe('googleCredentials', function() {
 
   describe('._checkIsGCE', function () {
 
-    it('should set the _is_gce flag when running on GCE', function (done) {
+    it('should set the _isGCE flag when running on GCE', function (done) {
       var gc = new googleCredentials();
 
       // Mock the transport layer to return the correct header indicating that
@@ -829,34 +829,34 @@ describe('googleCredentials', function() {
       gc.transporter = new MockTransporter(true);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._is_gce);
-      assert.notEqual(true, gc._checked_is_gce);
+      assert.notEqual(true, gc._isGCE);
+      assert.notEqual(true, gc._checked_isGCE);
 
       // Execute.
       gc._checkIsGCE(function () {
         // Assert that the flags are set.
-        assert.equal(true, gc._is_gce);
-        assert.equal(true, gc._checked_is_gce);
+        assert.equal(true, gc._isGCE);
+        assert.equal(true, gc._checked_isGCE);
 
         done();
       });
     });
 
-    it('should not set the _is_gce flag when not running on GCE', function (done) {
+    it('should not set the _isGCE flag when not running on GCE', function (done) {
       var gc = new googleCredentials();
 
       // Mock the transport layer to indicate that we're not running on GCE.
       gc.transporter = new MockTransporter(false);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._is_gce);
-      assert.notEqual(true, gc._checked_is_gce);
+      assert.notEqual(true, gc._isGCE);
+      assert.notEqual(true, gc._checked_isGCE);
 
       // Execute.
       gc._checkIsGCE(function () {
         // Assert that the flags are set.
-        assert.equal(false, gc._is_gce);
-        assert.equal(true, gc._checked_is_gce);
+        assert.equal(false, gc._isGCE);
+        assert.equal(true, gc._checked_isGCE);
 
         done();
       });
@@ -869,23 +869,23 @@ describe('googleCredentials', function() {
       gc.transporter = new MockTransporter(true);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._checked_is_gce);
-      assert.notEqual(true, gc._is_gce);
+      assert.notEqual(true, gc._checked_isGCE);
+      assert.notEqual(true, gc._isGCE);
       assert.equal(0, gc.transporter.executionCount);
 
       // Execute.
       gc._checkIsGCE(function () {
         // Assert.
-        assert.equal(true, gc._checked_is_gce);
-        assert.equal(true, gc._is_gce);
+        assert.equal(true, gc._checked_isGCE);
+        assert.equal(true, gc._isGCE);
         assert.equal(1, gc.transporter.executionCount);
 
         // Execute a second time, check that we still get the correct values back,
         // but the execution count has not rev'd again, indicating that we
         // got the cached values this time.
         gc._checkIsGCE(function () {
-          assert.equal(true, gc._checked_is_gce);
-          assert.equal(true, gc._is_gce);
+          assert.equal(true, gc._checked_isGCE);
+          assert.equal(true, gc._isGCE);
           assert.equal(1, gc.transporter.executionCount);
         });
 
@@ -900,23 +900,23 @@ describe('googleCredentials', function() {
       gc.transporter = new MockTransporter(false);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._checked_is_gce);
-      assert.notEqual(true, gc._is_gce);
+      assert.notEqual(true, gc._checked_isGCE);
+      assert.notEqual(true, gc._isGCE);
       assert.equal(0, gc.transporter.executionCount);
 
       // Execute.
       gc._checkIsGCE(function () {
         // Assert.
-        assert.equal(true, gc._checked_is_gce);
-        assert.equal(false, gc._is_gce);
+        assert.equal(true, gc._checked_isGCE);
+        assert.equal(false, gc._isGCE);
         assert.equal(1, gc.transporter.executionCount);
 
         // Execute a second time, check that we still get the correct values back,
         // but the execution count has not rev'd again, indicating that we
         // got the cached values this time.
         gc._checkIsGCE(function () {
-          assert.equal(true, gc._checked_is_gce);
-          assert.equal(false, gc._is_gce);
+          assert.equal(true, gc._checked_isGCE);
+          assert.equal(false, gc._isGCE);
           assert.equal(1, gc.transporter.executionCount);
         });
 
@@ -931,14 +931,14 @@ describe('googleCredentials', function() {
         gc.transporter = new MockTransporter(true, true);
 
         // Assert on the initial values.
-        assert.notEqual(true, gc._checked_is_gce);
-        assert.notEqual(true, gc._is_gce);
+        assert.notEqual(true, gc._checked_isGCE);
+        assert.notEqual(true, gc._isGCE);
 
         // Execute.
         gc._checkIsGCE(function () {
-          // Assert that _is_gce is set to false due to the error.
-          assert.equal(true, gc._checked_is_gce);
-          assert.equal(false, gc._is_gce);
+          // Assert that _isGCE is set to false due to the error.
+          assert.equal(true, gc._checked_isGCE);
+          assert.equal(false, gc._isGCE);
 
           done();
         });
@@ -949,10 +949,10 @@ describe('googleCredentials', function() {
 
 // Mocks the transporter class to simulate GCE.
 function MockTransporter(simulate_gce, throw_error) {
-  this.is_gce = false;
+  this.isGCE = false;
 
   if (simulate_gce) {
-    this.is_gce = true;
+    this.isGCE = true;
   }
 
   this.throw_error = throw_error;
@@ -969,7 +969,7 @@ MockTransporter.prototype.request = function(options, callback) {
 
     if (this.throw_error) {
       err = new Error('blah');
-    } else if (this.is_gce) {
+    } else if (this.isGCE) {
       response.headers['metadata-flavor'] = 'Google';
     }
 

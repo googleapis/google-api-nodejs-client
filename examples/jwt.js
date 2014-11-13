@@ -31,7 +31,7 @@ var drive = google.drive('v2');
  * so the private key must be extracted and converted to a passphrase-less
  * RSA key: openssl pkcs12 -in key.p12 -nodes -nocerts > key.pem
  *
- * See the default_auth.js sample for an alternate way of fetching credentials.
+ * See the defaultauth.js sample for an alternate way of fetching credentials.
  */
 var authClient = new google.auth.JWT(
     'service-account-email@developer.gserviceaccount.com',

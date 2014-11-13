@@ -49,7 +49,6 @@ var drive = google.drive('v2');
             // Scopes can be specified either as an array or as a single, space-delimited string.
             authClient = authClient.createScoped(['https://www.googleapis.com/auth/drive.readonly']);
         }
-
         // Make an authorized request to list Drive files.
         drive.files.list({ auth: authClient }, function(err, resp) {
           // handle err and response

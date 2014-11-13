@@ -3,4 +3,3 @@ node_modules/*
 docs/
 npm-debug.log
 coverage
-*~
