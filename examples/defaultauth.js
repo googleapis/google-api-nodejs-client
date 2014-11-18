@@ -15,7 +15,7 @@
  */
 
 var google = require('../lib/googleapis.js');
-var drive = google.drive('v2');
+var compute = google.compute('v1');
 
 /**
  * The getApplicationDefault method creates the appropriate type of credential client for you, depending
@@ -38,20 +38,23 @@ var drive = google.drive('v2');
 
   // Get the appropriate type of credential client, depending upon the runtime environment.
   google.credentials.getApplicationDefault(function(err, authClient) {
-    if (err) {
-        res.send('Failed to get the default credentials: ' + String(err));
-    } else {
-        // The createScopedRequired method returns true when running on GAE or a local developer machine.
-        // In that case, the desired scopes must be passed in manually. When the code is running in GCE or a
-        // Managed VM, the scopes are pulled from the GCE metadata server.
-        // See https://cloud.google.com/compute/docs/authentication for more information.
-        if (authClient.createScopedRequired()) {
-            // Scopes can be specified either as an array or as a single, space-delimited string.
-            authClient = authClient.createScoped(['https://www.googleapis.com/auth/drive.readonly']);
-        }
-        // Make an authorized request to list Drive files.
-        drive.files.list({ auth: authClient }, function(err, resp) {
-          // handle err and response
-        });
+  if (err) {
+    res.send('Failed to get the default credentials: ' + String(err));
+  } else {
+    // The createScopedRequired method returns true when running on GAE or a local developer
+    // machine. In that case, the desired scopes must be passed in manually. When the code is
+    // running in GCE or a Managed VM, the scopes are pulled from the GCE metadata server.
+    // See https://cloud.google.com/compute/docs/authentication for more information.
+    if (authClient.createScopedRequired()) {
+      // Scopes can be specified either as an array or as a single, space-delimited string.
+      authClient = authClient.createScoped(['https://www.googleapis.com/auth/compute']);
     }
+
+    // Fetch the list of GCE zones within a project.
+    // NOTE: You must fill in your valid project ID before running this sample!
+    var projectId = 'fill in your project id here!';
+    compute.zones.list({ project: projectId, auth: authClient }, function(error, result) {
+      console.log(error, result);
+    });
+  }
 });
