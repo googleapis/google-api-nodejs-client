@@ -66,9 +66,9 @@ function blockGoogleApplicationCredentialEnvironmentVariable(gc) {
 
 // Intercepts the specified environment variable, returning the specified value.
 function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmentVariableValue) {
-  var originalGetEnvironmentVariableFunction = gc._getEnvironmentVariable;
+  var originalGetEnvironmentVariableFunction = gc._getEnv;
 
-  gc._getEnvironmentVariable = function(name) {
+  gc._getEnv = function(name) {
     if (name === environmentVariableName) {
       return environmentVariableValue;
     }
