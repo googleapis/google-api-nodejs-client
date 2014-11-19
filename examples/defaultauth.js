@@ -18,19 +18,19 @@ var google = require('../lib/googleapis.js');
 var compute = google.compute('v1');
 
 /**
- * The getApplicationDefault method creates the appropriate type of credential client for you, depending
- * upon whether the client is running in Google App Engine, Google Compute Engine, a Managed VM, or on
- * a local developer machine. This allows you to write one set of auth code that will work in all cases.
- * It most situations, it is advisable to use the getApplicationDefault method rather than creating your
- * own JWT or Compute client directly.
+ * The getApplicationDefault method creates the appropriate type of credential client for you,
+ * depending upon whether the client is running in Google App Engine, Google Compute Engine, a
+ * Managed VM, or on a local developer machine. This allows you to write one set of auth code that
+ * will work in all cases. It most situations, it is advisable to use the getApplicationDefault
+ * method rather than creating your own JWT or Compute client directly.
  *
- * Note: In order to run on a local developer machine, it is necessary to download a private key file to your machine,
- * and to set a local environment variable pointing to the location of the file.
- * Node.js currently does not support direct access to the keys stored within a PKCS12 file (see issue comment
- * https://github.com/joyent/node/issues/4050#issuecomment-8816304). For this reason, the private key must
- * be extracted and converted to a passphrase-less RSA key: openssl pkcs12 -in key.p12 -nodes -nocerts > key.pem
- * Once this is done, set the GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the
- * key.pem file.
+ * Note: In order to run on a local developer machine, it is necessary to download a private key
+ * file to your machine, and to set a local environment variable pointing to the location of the
+ * file. Node.js currently does not support direct access to the keys stored within a PKCS12 file
+ * (see issue comment https://github.com/joyent/node/issues/4050#issuecomment-8816304). For this
+ * reason, the private key must be extracted and converted to a passphrase-less RSA key: openssl
+ * pkcs12 -in key.p12 -nodes -nocerts > key.pem Once this is done, set the
+ * GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the key.pem file.
  *
  * For more information about how the getApplicationDefault method works, see
  * https://developers.google.com/accounts/docs/application-default-credentials
