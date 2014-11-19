@@ -420,7 +420,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Windows');
+      gc._osPlatform = returns('win32');
       gc._fileExists = returns(true);
 
       gc._getApplicationCredentialsFromFilePath = function (filePath) {
@@ -444,7 +444,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Linux');
+      gc._osPlatform = returns('linux');
       gc._fileExists = returns(true);
 
 
@@ -467,7 +467,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', null);
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Windows');
+      gc._osPlatform = returns('win32');
       gc._fileExists = returns(true);
       gc._getApplicationCredentialsFromFilePath = noop;
 
@@ -489,7 +489,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'HOME', null);
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Linux');
+      gc._osPlatform = returns('linux');
       gc._fileExists = returns(true);
       gc._getApplicationCredentialsFromFilePath = noop;
 
@@ -511,7 +511,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Windows');
+      gc._osPlatform = returns('win32');
       gc._fileExists = returns(false);
       gc._getApplicationCredentialsFromFilePath = noop;
 
@@ -533,7 +533,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Linux');
+      gc._osPlatform = returns('linux');
       gc._fileExists = returns(false);
       gc._getApplicationCredentialsFromFilePath = noop;
 
@@ -556,7 +556,7 @@ describe('googleCredentials', function() {
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
     gc._pathJoin = pathJoin;
-    gc._osType = returns('Windows');
+    gc._osPlatform = returns('win32');
     gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
@@ -583,7 +583,7 @@ describe('googleCredentials', function() {
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
     gc._pathJoin = pathJoin;
-    gc._osType = returns('Linux');
+    gc._osPlatform = returns('linux');
     gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
@@ -610,7 +610,7 @@ describe('googleCredentials', function() {
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
     gc._pathJoin = pathJoin;
-    gc._osType = returns('Windows');
+    gc._osPlatform = returns('win32');
     gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
@@ -637,7 +637,7 @@ describe('googleCredentials', function() {
     blockGoogleApplicationCredentialEnvironmentVariable(gc);
     insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
     gc._pathJoin = pathJoin;
-    gc._osType = returns('Linux');
+    gc._osPlatform = returns('linux');
     gc._fileExists = returns(true);
 
     gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
@@ -746,7 +746,7 @@ describe('googleCredentials', function() {
         './test/fixtures/private.json');
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Windows');
+      gc._osPlatform = returns('win32');
       gc._fileExists = returns(true);
       gc._checkIsGCE = callsBack(true);
       insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json',
@@ -777,7 +777,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Windows');
+      gc._osPlatform = returns('win32');
       gc._fileExists = returns(true);
       gc._checkIsGCE = callsBack(true);
       insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json',
@@ -804,7 +804,7 @@ describe('googleCredentials', function() {
       blockGoogleApplicationCredentialEnvironmentVariable(gc);
       insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
       gc._pathJoin = pathJoin;
-      gc._osType = returns('Windows');
+      gc._osPlatform = returns('win32');
       gc._fileExists = returns(false);
       gc._checkIsGCE = callsBack(true);
 
