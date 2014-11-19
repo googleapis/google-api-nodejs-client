@@ -124,8 +124,9 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function (err, result, response) {
         assert.equal(403, response.statusCode);
-        assert.equal('A Forbidden error was returned. This may be because the Compute Engine ' +
-          'instance does not have the correct permission scopes specified.',
+        assert.equal('A Forbidden error was returned while attempting to retrieve an access ' +
+          'token for the Compute Engine built-in service account. This may be because the ' +
+          'Compute Engine instance does not have the correct permission scopes specified.',
           err.message);
         done();
       });
@@ -148,8 +149,9 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function (err, result, response) {
         assert.equal(404, response.statusCode);
-        assert.equal('A Not Found error was returned. This may be because the Compute Engine ' +
-          'instance does not have any permission scopes specified.',
+        assert.equal('A Not Found error was returned while attempting to retrieve an access' +
+            'token for the Compute Engine built-in service account. This may be because the ' +
+            'Compute Engine instance does not have any permission scopes specified.',
           err.message);
         done();
       });
@@ -174,9 +176,10 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function (err, result, response) {
         assert.equal(403, response.statusCode);
-        assert.equal('A Forbidden error was returned. This may be because the Compute Engine ' +
-          'instance does not have the correct permission scopes specified. Could not refresh ' +
-          'access token.',
+        assert.equal('A Forbidden error was returned while attempting to retrieve an access ' +
+          'token for the Compute Engine built-in service account. This may be because the ' +
+          'Compute Engine instance does not have the correct permission scopes specified. Could ' +
+          'not refresh access token.',
           err.message);
         done();
       });
@@ -201,9 +204,10 @@ describe('Compute auth client', function() {
 
       compute.request({ }, function (err, result, response) {
         assert.equal(404, response.statusCode);
-        assert.equal('A Not Found error was returned. This may be because the Compute Engine ' +
-          'instance does not have any permission scopes specified. Could not refresh access ' +
-          'token.',
+        assert.equal('A Not Found error was returned while attempting to retrieve an access' +
+            'token for the Compute Engine built-in service account. This may be because the ' +
+            'Compute Engine instance does not have any permission scopes specified. Could not ' +
+            'refresh access token.',
           err.message);
         done();
       });
