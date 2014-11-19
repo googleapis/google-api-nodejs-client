@@ -19,8 +19,20 @@
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
+var fs = require('fs');
 
 nock.disableNetConnect();
+
+// Creates a standard JSON credentials object for testing.
+function createJSON() {
+  return {
+    'private_key_id': 'key123',
+    'private_key': 'privatekey',
+    'client_email': 'hello@youarecool.com',
+    'client_id': 'client123',
+    'type': 'service_account'
+  };
+}
 
 describe('Initial credentials', function() {
 
@@ -368,6 +380,123 @@ describe('JWT auth client', function() {
         'bar@subjectaccount.com');
 
       assert.equal(false, jwt.createScopedRequired());
+    });
+  });
+
+  describe('.fromJson', function () {
+
+    it('should error on null json', function () {
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(null, function (err) {
+        assert.equal(true, err instanceof Error);
+      });
+    });
+
+    it('should error on empty json', function () {
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON({}, function (err) {
+        assert.equal(true, err instanceof Error);
+      });
+    });
+
+    it('should error on missing client_email', function () {
+      var json = createJSON();
+      delete json.client_email;
+
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(true, err instanceof Error);
+      });
+    });
+
+    it('should error on missing private_key', function () {
+      var json = createJSON();
+      delete json.private_key;
+
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(true, err instanceof Error);
+      });
+    });
+
+    it('should create JWT with client_email', function () {
+      var json = createJSON();
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(null, err);
+        assert.equal(json.client_email, jwt.email);
+      });
+    });
+
+    it('should create JWT with private_key', function () {
+      var json = createJSON();
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(null, err);
+        assert.equal(json.private_key, jwt.key);
+      });
+    });
+
+    it('should create JWT with null scopes', function () {
+      var json = createJSON();
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(null, err);
+        assert.equal(null, jwt.scopes);
+      });
+    });
+
+    it('should create JWT with null subject', function () {
+      var json = createJSON();
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(null, err);
+        assert.equal(null, jwt.subject);
+      });
+    });
+
+    it('should create JWT with null keyFile', function () {
+      var json = createJSON();
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromJSON(json, function (err) {
+        assert.equal(null, err);
+        assert.equal(null, jwt.keyFile);
+      });
+    });
+  });
+
+  describe('.fromStream', function () {
+
+    it('should error on null stream', function (done) {
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromStream(null, function (err) {
+        assert.equal(true, err instanceof Error);
+        done();
+      });
+    });
+
+    it('should read the stream and create a jwt', function (done) {
+      // Read the contents of the file into a json object.
+      var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
+      var json = JSON.parse(fileContents);
+
+      // Now open a stream on the same file.
+      var stream = fs.createReadStream('./test/fixtures/private.json');
+
+      // And pass it into the fromStream method.
+      var jwt = new googleapis.auth.JWT();
+      jwt.fromStream(stream, function (err) {
+        assert.equal(null, err);
+
+        // Ensure that the correct bits were pulled from the stream.
+        assert.equal(json.private_key, jwt.key);
+        assert.equal(json.client_email, jwt.email);
+        assert.equal(null, jwt.keyFile);
+        assert.equal(null, jwt.subject);
+        assert.equal(null, jwt.scope);
+
+        done();
+      });
     });
   });
 });
