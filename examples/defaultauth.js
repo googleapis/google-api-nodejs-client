@@ -26,13 +26,11 @@ var compute = google.compute('v1');
  *
  * Note: In order to run on a local developer machine, it is necessary to download a private key
  * file to your machine, and to set a local environment variable pointing to the location of the
- * file. Node.js currently does not support direct access to the keys stored within a PKCS12 file
- * (see issue comment https://github.com/joyent/node/issues/4050#issuecomment-8816304). For this
- * reason, the private key must be extracted and converted to a passphrase-less RSA key: openssl
- * pkcs12 -in key.p12 -nodes -nocerts > key.pem Once this is done, set the
- * GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the key.pem file.
+ * file. Create a service account using the Google Developers Console using the section APIs & Auth.
+ * Select "Generate new JSON key" and download the resulting file. Once this is done, set the
+ * GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the .json file.
  *
- * For more information about how the getApplicationDefault method works, see
+ * See also:
  * https://developers.google.com/accounts/docs/application-default-credentials
  */
 
