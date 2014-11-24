@@ -18,13 +18,13 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
-var googleCredentials = require('../lib/auth/googlecredentials.js');
+var googleAuth = require('../lib/auth/googleauth.js');
 var nock = require('nock');
 var fs = require('fs');
 
 nock.disableNetConnect();
 
-// Creates a standard JSON credentials object for testing.
+// Creates a standard JSON auth object for testing.
 function createJSON() {
   return {
     'private_key_id': 'key123',
@@ -60,15 +60,15 @@ function callsBack(value) {
 
 // Blocks the GOOGLE_APPLICATION_CREDENTIALS by default. This is necessary in case it is actually
 // set on the host machine executing the test.
-function blockGoogleApplicationCredentialEnvironmentVariable(gc) {
-    return insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', null);
+function blockGoogleApplicationCredentialEnvironmentVariable(ga) {
+    return insertEnvironmentVariableIntoGA(ga, 'GOOGLE_APPLICATION_CREDENTIALS', null);
 }
 
 // Intercepts the specified environment variable, returning the specified value.
-function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmentVariableValue) {
-  var originalGetEnvironmentVariableFunction = gc._getEnv;
+function insertEnvironmentVariableIntoGA(ga, environmentVariableName, environmentVariableValue) {
+  var originalGetEnvironmentVariableFunction = ga._getEnv;
 
-  gc._getEnv = function(name) {
+  ga._getEnv = function(name) {
     if (name === environmentVariableName) {
       return environmentVariableValue;
     }
@@ -78,10 +78,10 @@ function insertEnvironmentVariableIntoGC(gc, environmentVariableName, environmen
 }
 
 // Intercepts the specified file path and inserts the mock file path.
-function insertWellKnownFilePathIntoGC(gc, filePath, mockFilePath) {
-  var originalMockWellKnownFilePathFunction = gc._mockWellKnownFilePath;
+function insertWellKnownFilePathIntoGA(ga, filePath, mockFilePath) {
+  var originalMockWellKnownFilePathFunction = ga._mockWellKnownFilePath;
 
-  gc._mockWellKnownFilePath = function(path) {
+  ga._mockWellKnownFilePath = function(path) {
     if (path === filePath) {
       return mockFilePath;
     }
@@ -108,17 +108,17 @@ function doneWhen(doneCallback, count) {
   };
 }
 
-describe('googleCredentials', function() {
+describe('googleAuth', function() {
   describe('.fromJson', function () {
 
     it('should error on null json', function () {
-      googleapis.credentials.fromJSON(null, function (err) {
+      googleapis.auth.fromJSON(null, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
 
     it('should error on empty json', function () {
-      googleapis.credentials.fromJSON({}, function (err) {
+      googleapis.auth.fromJSON({}, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
@@ -127,7 +127,7 @@ describe('googleCredentials', function() {
       var json = createJSON();
       delete json.client_email;
 
-      googleapis.credentials.fromJSON(json, function (err) {
+      googleapis.auth.fromJSON(json, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
@@ -136,14 +136,14 @@ describe('googleCredentials', function() {
       var json = createJSON();
       delete json.private_key;
 
-      googleapis.credentials.fromJSON(json, function (err) {
+      googleapis.auth.fromJSON(json, function (err) {
         assert.equal(true, err instanceof Error);
       });
     });
 
     it('should create JWT with client_email', function () {
       var json = createJSON();
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.auth.fromJSON(json, function (err, result) {
         assert.equal(null, err);
         assert.equal(json.client_email, result.email);
       });
@@ -151,7 +151,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with private_key', function () {
       var json = createJSON();
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.auth.fromJSON(json, function (err, result) {
         assert.equal(null, err);
         assert.equal(json.private_key, result.key);
       });
@@ -159,7 +159,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with null scopes', function () {
       var json = createJSON();
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.auth.fromJSON(json, function (err, result) {
         assert.equal(null, err);
         assert.equal(null, result.scopes);
       });
@@ -167,7 +167,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with null subject', function () {
       var json = createJSON();
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.auth.fromJSON(json, function (err, result) {
         assert.equal(null, err);
         assert.equal(null, result.subject);
       });
@@ -175,7 +175,7 @@ describe('googleCredentials', function() {
 
     it('should create JWT with null keyFile', function () {
       var json = createJSON();
-      googleapis.credentials.fromJSON(json, function (err, result) {
+      googleapis.auth.fromJSON(json, function (err, result) {
         assert.equal(null, err);
         assert.equal(null, result.keyFile);
       });
@@ -185,7 +185,7 @@ describe('googleCredentials', function() {
   describe('.fromStream', function () {
 
     it('should error on null stream', function (done) {
-      googleapis.credentials.fromStream(null, function (err) {
+      googleapis.auth.fromStream(null, function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
@@ -200,7 +200,7 @@ describe('googleCredentials', function() {
       var stream = fs.createReadStream('./test/fixtures/private.json');
 
       // And pass it into the fromStream method.
-      googleapis.credentials.fromStream(stream, function (err, result) {
+      googleapis.auth.fromStream(stream, function (err, result) {
         assert.equal(null, err);
 
         // Ensure that the correct bits were pulled from the stream.
@@ -218,28 +218,28 @@ describe('googleCredentials', function() {
   describe('._getApplicationCredentialsFromFilePath', function () {
 
     it('should error on null file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath(null, function (err) {
+      googleapis.auth._getApplicationCredentialsFromFilePath(null, function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
     });
 
     it('should error on empty file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath('', function (err) {
+      googleapis.auth._getApplicationCredentialsFromFilePath('', function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
     });
 
     it('should error on non-string file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath(2, function (err) {
+      googleapis.auth._getApplicationCredentialsFromFilePath(2, function (err) {
         assert.equal(true, err instanceof Error);
         done();
       });
     });
 
     it('should error on invalid file path', function (done) {
-      googleapis.credentials._getApplicationCredentialsFromFilePath('./nonexistantfile.json',
+      googleapis.auth._getApplicationCredentialsFromFilePath('./nonexistantfile.json',
         function (err) {
 
         assert.equal(true, err instanceof Error);
@@ -253,7 +253,7 @@ describe('googleCredentials', function() {
       assert.equal(true, fs.lstatSync(directory).isDirectory());
 
       // Execute.
-      googleapis.credentials._getApplicationCredentialsFromFilePath(directory,
+      googleapis.auth._getApplicationCredentialsFromFilePath(directory,
         function (err) {
 
         assert.equal(true, err instanceof Error);
@@ -263,13 +263,13 @@ describe('googleCredentials', function() {
 
     it('should handle errors thrown from createReadStream', function (done) {
       // Set up a mock to throw from the createReadStream method.
-      var gc = new googleCredentials();
-      gc._createReadStream = function () {
+      var ga = new googleAuth();
+      ga._createReadStream = function () {
         throw new Error('Hans and Chewbacca');
       };
 
       // Execute.
-      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
+      ga._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
 
         assert.equal(true, stringEndsWith(err.message, 'Hans and Chewbacca'));
         done();
@@ -278,13 +278,13 @@ describe('googleCredentials', function() {
 
     it('should handle errors thrown from fromStream', function (done) {
       // Set up a mock to throw from the fromStream method.
-      var gc = new googleCredentials();
-      gc.fromStream = function () {
+      var ga = new googleAuth();
+      ga.fromStream = function () {
         throw new Error('Darth Maul');
       };
 
       // Execute.
-      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
+      ga._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
 
         assert.equal(true, stringEndsWith(err.message, 'Darth Maul'));
         done();
@@ -293,13 +293,13 @@ describe('googleCredentials', function() {
 
     it('should handle errors passed from fromStream', function (done) {
       // Set up a mock to return an error from the fromStream method.
-      var gc = new googleCredentials();
-      gc.fromStream = function (stream, callback) {
+      var ga = new googleAuth();
+      ga.fromStream = function (stream, callback) {
         callback(new Error('Princess Leia'));
       };
 
       // Execute.
-      gc._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
+      ga._getApplicationCredentialsFromFilePath('./test/fixtures/private.json', function (err) {
 
         assert.equal(true, stringEndsWith(err.message, 'Princess Leia'));
         done();
@@ -311,8 +311,8 @@ describe('googleCredentials', function() {
       var fileContents = fs.readFileSync('./test/fixtures/private.json', 'utf-8');
       var json = JSON.parse(fileContents);
 
-      // Now pass the same path to the credentials loader.
-      googleapis.credentials._getApplicationCredentialsFromFilePath('./test/fixtures/private.json',
+      // Now pass the same path to the auth loader.
+      googleapis.auth._getApplicationCredentialsFromFilePath('./test/fixtures/private.json',
         function (err, result) {
 
         assert.equal(null, err);
@@ -330,14 +330,14 @@ describe('googleCredentials', function() {
 
     it('should return false when env var is not set', function (done) {
       // Set up a mock to return a null path string.
-      var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', null);
+      var ga = new googleAuth();
+      insertEnvironmentVariableIntoGA(ga, 'GOOGLE_APPLICATION_CREDENTIALS', null);
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function () {
+      var handled = ga._tryGetApplicationCredentialsFromEnvironmentVariable(function () {
         step(); // This should not get called.
       });
 
@@ -347,14 +347,14 @@ describe('googleCredentials', function() {
 
     it('should return false when env var is empty string', function (done) {
       // Set up a mock to return an empty path string.
-      var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS', '');
+      var ga = new googleAuth();
+      insertEnvironmentVariableIntoGA(ga, 'GOOGLE_APPLICATION_CREDENTIALS', '');
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function () {
+      var handled = ga._tryGetApplicationCredentialsFromEnvironmentVariable(function () {
         step(); // This should not get called.
       });
 
@@ -364,15 +364,15 @@ describe('googleCredentials', function() {
 
     it('should handle invalid environment variable', function (done) {
       // Set up a mock to return a path to an invalid file.
-      var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS',
+      var ga = new googleAuth();
+      insertEnvironmentVariableIntoGA(ga, 'GOOGLE_APPLICATION_CREDENTIALS',
         './nonexistantfile.json');
 
       // The test ends successfully after 2 steps have completed.
       var step = doneWhen(done, 2);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function (err) {
+      var handled = ga._tryGetApplicationCredentialsFromEnvironmentVariable(function (err) {
         assert.equal(true, err instanceof Error);
         step();
       });
@@ -383,8 +383,8 @@ describe('googleCredentials', function() {
 
     it('should handle valid environment variable', function (done) {
       // Set up a mock to return path to a valid credentials file.
-      var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS',
+      var ga = new googleAuth();
+      insertEnvironmentVariableIntoGA(ga, 'GOOGLE_APPLICATION_CREDENTIALS',
         './test/fixtures/private.json');
 
       // Read the contents of the file into a json object.
@@ -395,7 +395,7 @@ describe('googleCredentials', function() {
       var step = doneWhen(done, 2);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromEnvironmentVariable(function (err, result) {
+      var handled = ga._tryGetApplicationCredentialsFromEnvironmentVariable(function (err, result) {
         assert.equal(null, err);
         assert.equal(json.private_key, result.key);
         assert.equal(json.client_email, result.email);
@@ -416,21 +416,21 @@ describe('googleCredentials', function() {
       var correctLocation = false;
 
       // Set up mocks.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('win32');
-      gc._fileExists = returns(true);
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('win32');
+      ga._fileExists = returns(true);
 
-      gc._getApplicationCredentialsFromFilePath = function (filePath) {
+      ga._getApplicationCredentialsFromFilePath = function (filePath) {
         if (filePath === 'foo:gcloud:application_default_credentials.json') {
           correctLocation = true;
         }
       };
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile();
+      var handled = ga._tryGetApplicationCredentialsFromWellKnownFile();
 
       assert.equal(true, handled);
       assert.equal(true, correctLocation);
@@ -440,22 +440,22 @@ describe('googleCredentials', function() {
       var correctLocation = false;
 
       // Set up mocks.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('linux');
-      gc._fileExists = returns(true);
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'HOME', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('linux');
+      ga._fileExists = returns(true);
 
 
-      gc._getApplicationCredentialsFromFilePath = function (filePath) {
+      ga._getApplicationCredentialsFromFilePath = function (filePath) {
         if (filePath === 'foo:.config:gcloud:application_default_credentials.json') {
           correctLocation = true;
         }
       };
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile();
+      var handled = ga._tryGetApplicationCredentialsFromWellKnownFile();
 
       assert.equal(true, handled);
       assert.equal(true, correctLocation);
@@ -463,19 +463,19 @@ describe('googleCredentials', function() {
 
     it('should fail on Windows when APPDATA is not defined', function (done) {
       // Set up mocks.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'APPDATA', null);
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('win32');
-      gc._fileExists = returns(true);
-      gc._getApplicationCredentialsFromFilePath = noop;
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'APPDATA', null);
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('win32');
+      ga._fileExists = returns(true);
+      ga._getApplicationCredentialsFromFilePath = noop;
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
+      var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -485,19 +485,19 @@ describe('googleCredentials', function() {
 
     it('should fail on non-Windows when HOME is not defined', function (done) {
       // Set up mocks.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'HOME', null);
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('linux');
-      gc._fileExists = returns(true);
-      gc._getApplicationCredentialsFromFilePath = noop;
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'HOME', null);
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('linux');
+      ga._fileExists = returns(true);
+      ga._getApplicationCredentialsFromFilePath = noop;
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
+      var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -507,19 +507,19 @@ describe('googleCredentials', function() {
 
     it('should fail on Windows when file does not exist', function (done) {
       // Set up mocks.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('win32');
-      gc._fileExists = returns(false);
-      gc._getApplicationCredentialsFromFilePath = noop;
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('win32');
+      ga._fileExists = returns(false);
+      ga._getApplicationCredentialsFromFilePath = noop;
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
+      var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -529,19 +529,19 @@ describe('googleCredentials', function() {
 
     it('should fail on non-Windows when file does not exist', function (done) {
       // Set up mocks.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('linux');
-      gc._fileExists = returns(false);
-      gc._getApplicationCredentialsFromFilePath = noop;
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'HOME', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('linux');
+      ga._fileExists = returns(false);
+      ga._getApplicationCredentialsFromFilePath = noop;
 
       // The test ends successfully after 1 step has completed.
       var step = doneWhen(done, 1);
 
       // Execute.
-      var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function () {
+      var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function () {
         step(); // Should not get called.
       });
 
@@ -552,14 +552,14 @@ describe('googleCredentials', function() {
 
   it('should succeeds on Windows', function (done) {
     // Set up mocks.
-    var gc = new googleCredentials();
-    blockGoogleApplicationCredentialEnvironmentVariable(gc);
-    insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-    gc._pathJoin = pathJoin;
-    gc._osPlatform = returns('win32');
-    gc._fileExists = returns(true);
+    var ga = new googleAuth();
+    blockGoogleApplicationCredentialEnvironmentVariable(ga);
+    insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+    ga._pathJoin = pathJoin;
+    ga._osPlatform = returns('win32');
+    ga._fileExists = returns(true);
 
-    gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
+    ga._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(null, 'hello');
     };
 
@@ -567,7 +567,7 @@ describe('googleCredentials', function() {
     var step = doneWhen(done, 2);
 
     // Execute.
-    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+    var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
       assert.equal(null, err);
       assert.equal('hello', result);
       step();
@@ -579,14 +579,14 @@ describe('googleCredentials', function() {
 
   it('should succeeds on non-Windows', function (done) {
     // Set up mocks.
-    var gc = new googleCredentials();
-    blockGoogleApplicationCredentialEnvironmentVariable(gc);
-    insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
-    gc._pathJoin = pathJoin;
-    gc._osPlatform = returns('linux');
-    gc._fileExists = returns(true);
+    var ga = new googleAuth();
+    blockGoogleApplicationCredentialEnvironmentVariable(ga);
+    insertEnvironmentVariableIntoGA(ga, 'HOME', 'foo');
+    ga._pathJoin = pathJoin;
+    ga._osPlatform = returns('linux');
+    ga._fileExists = returns(true);
 
-    gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
+    ga._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(null, 'hello');
     };
 
@@ -594,7 +594,7 @@ describe('googleCredentials', function() {
     var step = doneWhen(done, 2);
 
     // Execute.
-    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+    var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
       assert.equal(null, err);
       assert.equal('hello', result);
       step();
@@ -606,14 +606,14 @@ describe('googleCredentials', function() {
 
   it('should pass along a failure on Windows', function (done) {
     // Set up mocks.
-    var gc = new googleCredentials();
-    blockGoogleApplicationCredentialEnvironmentVariable(gc);
-    insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-    gc._pathJoin = pathJoin;
-    gc._osPlatform = returns('win32');
-    gc._fileExists = returns(true);
+    var ga = new googleAuth();
+    blockGoogleApplicationCredentialEnvironmentVariable(ga);
+    insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+    ga._pathJoin = pathJoin;
+    ga._osPlatform = returns('win32');
+    ga._fileExists = returns(true);
 
-    gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
+    ga._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(new Error('hello'));
     };
 
@@ -621,7 +621,7 @@ describe('googleCredentials', function() {
     var step = doneWhen(done, 2);
 
     // Execute.
-    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+    var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
       assert.equal('hello', err.message);
       assert.equal(null, result);
       step();
@@ -633,14 +633,14 @@ describe('googleCredentials', function() {
 
   it('should pass along a failure on non-Windows', function (done) {
     // Set up mocks.
-    var gc = new googleCredentials();
-    blockGoogleApplicationCredentialEnvironmentVariable(gc);
-    insertEnvironmentVariableIntoGC(gc, 'HOME', 'foo');
-    gc._pathJoin = pathJoin;
-    gc._osPlatform = returns('linux');
-    gc._fileExists = returns(true);
+    var ga = new googleAuth();
+    blockGoogleApplicationCredentialEnvironmentVariable(ga);
+    insertEnvironmentVariableIntoGA(ga, 'HOME', 'foo');
+    ga._pathJoin = pathJoin;
+    ga._osPlatform = returns('linux');
+    ga._fileExists = returns(true);
 
-    gc._getApplicationCredentialsFromFilePath = function (filePath, callback) {
+    ga._getApplicationCredentialsFromFilePath = function (filePath, callback) {
       callback(new Error('hello'));
     };
 
@@ -648,7 +648,7 @@ describe('googleCredentials', function() {
     var step = doneWhen(done, 2);
 
     // Execute.
-    var handled = gc._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
+    var handled = ga._tryGetApplicationCredentialsFromWellKnownFile(function (err, result) {
       assert.equal('hello', err.message);
       assert.equal(null, result);
       step();
@@ -666,22 +666,22 @@ describe('googleCredentials', function() {
       // The test ends successfully after 3 steps have completed.
       var step = doneWhen(done, 3);
 
-      // Create a function which will set up a GoogleCredentials instance to match on
+      // Create a function which will set up a GoogleAuth instance to match on
       // an environment variable json file, but not on anything else.
-      var setUpGCForEnvironmentVariable = function(creds) {
-        insertEnvironmentVariableIntoGC(creds, 'GOOGLE_APPLICATION_CREDENTIALS',
+      var setUpGAForEnvironmentVariable = function(creds) {
+        insertEnvironmentVariableIntoGA(creds, 'GOOGLE_APPLICATION_CREDENTIALS',
           './test/fixtures/private.json');
 
         creds._fileExists = returns(false);
         creds._checkIsGCE = callsBack(false);
       };
 
-      // Set up a new GoogleCredentials and prepare it for local environment variable handling.
-      var gc = new googleCredentials();
-      setUpGCForEnvironmentVariable(gc);
+      // Set up a new GoogleAuth and prepare it for local environment variable handling.
+      var ga = new googleAuth();
+      setUpGAForEnvironmentVariable(ga);
 
       // Ask for credentials, the first time.
-      gc.getApplicationDefault(function (err, result) {
+      ga.getApplicationDefault(function (err, result) {
         assert.equal(null, err);
         assert.notEqual(null, result);
 
@@ -698,9 +698,9 @@ describe('googleCredentials', function() {
         // Step 1 has completed.
         step();
 
-        // Ask for credentials again, from the same gc instance. We expect a cached instance
+        // Ask for credentials again, from the same ga instance. We expect a cached instance
         // this time.
-        gc.getApplicationDefault(function (err2, result2) {
+        ga.getApplicationDefault(function (err2, result2) {
           assert.equal(null, err2);
           assert.notEqual(null, result2);
 
@@ -709,15 +709,15 @@ describe('googleCredentials', function() {
           assert.equal('monkey', result2.specialTestBit);
           assert.equal(cachedCredential, result2);
 
-          // Now create a second GoogleCredentials instance, and ask for credentials. We should
+          // Now create a second GoogleAuth instance, and ask for credentials. We should
           // get a new credentials instance this time.
-          var gc2 = new googleCredentials();
-          setUpGCForEnvironmentVariable(gc2);
+          var ga2 = new googleAuth();
+          setUpGAForEnvironmentVariable(ga2);
 
           // Step 2 has completed.
           step();
 
-          gc2.getApplicationDefault(function (err3, result3) {
+          ga2.getApplicationDefault(function (err3, result3) {
             assert.equal(null, err3);
             assert.notEqual(null, result3);
 
@@ -741,19 +741,19 @@ describe('googleCredentials', function() {
       // * Environment variable is set up to point to private.json
       // * Well-known file is set up to point to private2.json
       // * Running on GCE is set to true.
-      var gc = new googleCredentials();
-      insertEnvironmentVariableIntoGC(gc, 'GOOGLE_APPLICATION_CREDENTIALS',
+      var ga = new googleAuth();
+      insertEnvironmentVariableIntoGA(ga, 'GOOGLE_APPLICATION_CREDENTIALS',
         './test/fixtures/private.json');
-      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('win32');
-      gc._fileExists = returns(true);
-      gc._checkIsGCE = callsBack(true);
-      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json',
+      insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('win32');
+      ga._fileExists = returns(true);
+      ga._checkIsGCE = callsBack(true);
+      insertWellKnownFilePathIntoGA(ga, 'foo:gcloud:application_default_credentials.json',
         './test/fixtures/private2.json');
 
       // Execute.
-      gc.getApplicationDefault(function (err, result) {
+      ga.getApplicationDefault(function (err, result) {
         assert.equal(null, err);
         assert.equal(json.private_key, result.key);
         assert.equal(json.client_email, result.email);
@@ -773,18 +773,18 @@ describe('googleCredentials', function() {
       // * Environment variable is not set.
       // * Well-known file is set up to point to private2.json
       // * Running on GCE is set to true.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('win32');
-      gc._fileExists = returns(true);
-      gc._checkIsGCE = callsBack(true);
-      insertWellKnownFilePathIntoGC(gc, 'foo:gcloud:application_default_credentials.json',
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('win32');
+      ga._fileExists = returns(true);
+      ga._checkIsGCE = callsBack(true);
+      insertWellKnownFilePathIntoGA(ga, 'foo:gcloud:application_default_credentials.json',
         './test/fixtures/private2.json');
 
       // Execute.
-      gc.getApplicationDefault(function (err, result) {
+      ga.getApplicationDefault(function (err, result) {
         assert.equal(null, err);
         assert.equal(json.private_key, result.key);
         assert.equal(json.client_email, result.email);
@@ -800,16 +800,16 @@ describe('googleCredentials', function() {
       // * Environment variable is not set.
       // * Well-known file is not set.
       // * Running on GCE is set to true.
-      var gc = new googleCredentials();
-      blockGoogleApplicationCredentialEnvironmentVariable(gc);
-      insertEnvironmentVariableIntoGC(gc, 'APPDATA', 'foo');
-      gc._pathJoin = pathJoin;
-      gc._osPlatform = returns('win32');
-      gc._fileExists = returns(false);
-      gc._checkIsGCE = callsBack(true);
+      var ga = new googleAuth();
+      blockGoogleApplicationCredentialEnvironmentVariable(ga);
+      insertEnvironmentVariableIntoGA(ga, 'APPDATA', 'foo');
+      ga._pathJoin = pathJoin;
+      ga._osPlatform = returns('win32');
+      ga._fileExists = returns(false);
+      ga._checkIsGCE = callsBack(true);
 
       // Execute.
-      gc.getApplicationDefault(function (err, result) {
+      ga.getApplicationDefault(function (err, result) {
         assert.equal(null, err);
 
         // This indicates that we got a ComputeClient instance back, rather than a JWTClient.
@@ -822,71 +822,71 @@ describe('googleCredentials', function() {
   describe('._checkIsGCE', function () {
 
     it('should set the _isGCE flag when running on GCE', function (done) {
-      var gc = new googleCredentials();
+      var ga = new googleAuth();
 
       // Mock the transport layer to return the correct header indicating that
       // we're running on GCE.
-      gc.transporter = new MockTransporter(true);
+      ga.transporter = new MockTransporter(true);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._isGCE);
-      assert.notEqual(true, gc._checked_isGCE);
+      assert.notEqual(true, ga._isGCE);
+      assert.notEqual(true, ga._checked_isGCE);
 
       // Execute.
-      gc._checkIsGCE(function () {
+      ga._checkIsGCE(function () {
         // Assert that the flags are set.
-        assert.equal(true, gc._isGCE);
-        assert.equal(true, gc._checked_isGCE);
+        assert.equal(true, ga._isGCE);
+        assert.equal(true, ga._checked_isGCE);
 
         done();
       });
     });
 
     it('should not set the _isGCE flag when not running on GCE', function (done) {
-      var gc = new googleCredentials();
+      var ga = new googleAuth();
 
       // Mock the transport layer to indicate that we're not running on GCE.
-      gc.transporter = new MockTransporter(false);
+      ga.transporter = new MockTransporter(false);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._isGCE);
-      assert.notEqual(true, gc._checked_isGCE);
+      assert.notEqual(true, ga._isGCE);
+      assert.notEqual(true, ga._checked_isGCE);
 
       // Execute.
-      gc._checkIsGCE(function () {
+      ga._checkIsGCE(function () {
         // Assert that the flags are set.
-        assert.equal(false, gc._isGCE);
-        assert.equal(true, gc._checked_isGCE);
+        assert.equal(false, ga._isGCE);
+        assert.equal(true, ga._checked_isGCE);
 
         done();
       });
     });
 
     it('Does not execute the second time when running on GCE', function (done) {
-      var gc = new googleCredentials();
+      var ga = new googleAuth();
 
       // Mock the transport layer to indicate that we're not running on GCE.
-      gc.transporter = new MockTransporter(true);
+      ga.transporter = new MockTransporter(true);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._checked_isGCE);
-      assert.notEqual(true, gc._isGCE);
-      assert.equal(0, gc.transporter.executionCount);
+      assert.notEqual(true, ga._checked_isGCE);
+      assert.notEqual(true, ga._isGCE);
+      assert.equal(0, ga.transporter.executionCount);
 
       // Execute.
-      gc._checkIsGCE(function () {
+      ga._checkIsGCE(function () {
         // Assert.
-        assert.equal(true, gc._checked_isGCE);
-        assert.equal(true, gc._isGCE);
-        assert.equal(1, gc.transporter.executionCount);
+        assert.equal(true, ga._checked_isGCE);
+        assert.equal(true, ga._isGCE);
+        assert.equal(1, ga.transporter.executionCount);
 
         // Execute a second time, check that we still get the correct values back,
         // but the execution count has not rev'd again, indicating that we
         // got the cached values this time.
-        gc._checkIsGCE(function () {
-          assert.equal(true, gc._checked_isGCE);
-          assert.equal(true, gc._isGCE);
-          assert.equal(1, gc.transporter.executionCount);
+        ga._checkIsGCE(function () {
+          assert.equal(true, ga._checked_isGCE);
+          assert.equal(true, ga._isGCE);
+          assert.equal(1, ga.transporter.executionCount);
         });
 
         done();
@@ -894,51 +894,51 @@ describe('googleCredentials', function() {
     });
 
     it('Does not execute the second time when not running on GCE', function (done) {
-      var gc = new googleCredentials();
+      var ga = new googleAuth();
 
       // Mock the transport layer to indicate that we're not running on GCE.
-      gc.transporter = new MockTransporter(false);
+      ga.transporter = new MockTransporter(false);
 
       // Assert on the initial values.
-      assert.notEqual(true, gc._checked_isGCE);
-      assert.notEqual(true, gc._isGCE);
-      assert.equal(0, gc.transporter.executionCount);
+      assert.notEqual(true, ga._checked_isGCE);
+      assert.notEqual(true, ga._isGCE);
+      assert.equal(0, ga.transporter.executionCount);
 
       // Execute.
-      gc._checkIsGCE(function () {
+      ga._checkIsGCE(function () {
         // Assert.
-        assert.equal(true, gc._checked_isGCE);
-        assert.equal(false, gc._isGCE);
-        assert.equal(1, gc.transporter.executionCount);
+        assert.equal(true, ga._checked_isGCE);
+        assert.equal(false, ga._isGCE);
+        assert.equal(1, ga.transporter.executionCount);
 
         // Execute a second time, check that we still get the correct values back,
         // but the execution count has not rev'd again, indicating that we
         // got the cached values this time.
-        gc._checkIsGCE(function () {
-          assert.equal(true, gc._checked_isGCE);
-          assert.equal(false, gc._isGCE);
-          assert.equal(1, gc.transporter.executionCount);
+        ga._checkIsGCE(function () {
+          assert.equal(true, ga._checked_isGCE);
+          assert.equal(false, ga._isGCE);
+          assert.equal(1, ga.transporter.executionCount);
         });
 
         done();
       });
 
       it('Returns false on transport error', function (done) {
-        var gc = new googleCredentials();
+        var ga = new googleAuth();
 
         // Mock the transport layer to indicate that we're not running on GCE, but also to
         // throw an error.
-        gc.transporter = new MockTransporter(true, true);
+        ga.transporter = new MockTransporter(true, true);
 
         // Assert on the initial values.
-        assert.notEqual(true, gc._checked_isGCE);
-        assert.notEqual(true, gc._isGCE);
+        assert.notEqual(true, ga._checked_isGCE);
+        assert.notEqual(true, ga._isGCE);
 
         // Execute.
-        gc._checkIsGCE(function () {
+        ga._checkIsGCE(function () {
           // Assert that _isGCE is set to false due to the error.
-          assert.equal(true, gc._checked_isGCE);
-          assert.equal(false, gc._isGCE);
+          assert.equal(true, ga._checked_isGCE);
+          assert.equal(false, ga._isGCE);
 
           done();
         });
