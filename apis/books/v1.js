@@ -224,6 +224,38 @@ function Books(options) {
 
   };
 
+  this.dictionary = {
+
+    /**
+     * books.dictionary.listOfflineMetadata
+     *
+     * @desc Returns a list of offline dictionary meatadata available
+     *
+     * @alias books.dictionary.listOfflineMetadata
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.cpksver - The device/version ID from which to request the data.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listOfflineMetadata: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['cpksver'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.layers = {
 
     /**
@@ -620,6 +652,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
        * @param  {boolean=} params.showOnlySummaryInResponse - Requests that only the summary of the specified layer be provided in the response.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {object} params.resource - Request body data

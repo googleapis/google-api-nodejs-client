@@ -165,7 +165,7 @@ function Replicapoolupdater(options) {
     /**
      * replicapoolupdater.updates.pause
      *
-     * @desc Called on the particular Update endpoint. Pauses the update in state from { ROLLING_FORWARD, ROLLING_BACK, PAUSED }. No-op if invoked in state PAUSED.
+     * @desc Called on the particular Update endpoint. Pauses the update in state ROLLING_FORWARD or ROLLING_BACK. No-op if invoked in state PAUSED.
      *
      * @alias replicapoolupdater.updates.pause
      * @memberOf! replicapoolupdater(v1beta1)
@@ -196,7 +196,7 @@ function Replicapoolupdater(options) {
     /**
      * replicapoolupdater.updates.rollback
      *
-     * @desc Called on the particular Update endpoint. Rolls back the update in state from { ROLLING_FORWARD, ROLLING_BACK, PAUSED }. No-op if invoked in state ROLLED_BACK.
+     * @desc Called on the particular Update endpoint. Rolls back the update in state ROLLING_FORWARD or PAUSED. No-op if invoked in state ROLLED_BACK or ROLLING_BACK.
      *
      * @alias replicapoolupdater.updates.rollback
      * @memberOf! replicapoolupdater(v1beta1)
@@ -227,7 +227,7 @@ function Replicapoolupdater(options) {
     /**
      * replicapoolupdater.updates.rollforward
      *
-     * @desc Called on the particular Update endpoint. Rolls forward the update in state from { ROLLING_FORWARD, ROLLING_BACK, PAUSED }. No-op if invoked in state ROLLED_OUT.
+     * @desc Called on the particular Update endpoint. Rolls forward the update in state ROLLING_BACK or PAUSED. No-op if invoked in state ROLLED_OUT or ROLLING_FORWARD.
      *
      * @alias replicapoolupdater.updates.rollforward
      * @memberOf! replicapoolupdater(v1beta1)
