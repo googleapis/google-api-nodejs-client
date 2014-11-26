@@ -366,6 +366,7 @@ function Mapsengine(options) {
      * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -789,6 +790,7 @@ function Mapsengine(options) {
      * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

@@ -2429,7 +2429,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2458,7 +2458,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.machineType - Name of the machine type resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2490,7 +2490,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
