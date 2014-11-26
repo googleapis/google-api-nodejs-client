@@ -92,8 +92,8 @@ describe('Media', function() {
           req.uri.href,
           'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart'
         );
-        assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
-        var boundary = req.src.boundary;
+        assert.equal(req.headers['content-type'].indexOf('multipart/related;'), 0);
+        var boundary = req.boundary;
         expectedResp = expectedResp
             .replace(/\n/g, '\r\n')
             .replace(/\$boundary/g, boundary)
@@ -136,8 +136,8 @@ describe('Media', function() {
         req.uri.href,
         'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart'
       );
-      assert.equal(req.headers['Content-Type'].indexOf('multipart/related;'), 0);
-      var boundary = req.src.boundary;
+      assert.equal(req.headers['content-type'].indexOf('multipart/related;'), 0);
+      var boundary = req.boundary;
       expectedResp = expectedResp
           .replace(/\n/g, '\r\n')
           .replace(/\$boundary/g, boundary)
@@ -213,7 +213,7 @@ describe('Media', function() {
       resource: resource,
       media: media
     }, function(err, resp) {
-      var boundary = req.src.boundary;
+      var boundary = req.boundary;
       expectedBody = expectedBody
           .replace(/\n/g, '\r\n')
           .replace(/\$boundary/g, boundary)
