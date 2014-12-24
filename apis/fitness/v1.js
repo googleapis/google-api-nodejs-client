@@ -231,6 +231,7 @@ function Fitness(options) {
          * @param  {object} params - Parameters for request
          * @param  {string} params.dataSourceId - The data stream ID of the data source that created the dataset.
          * @param  {string} params.datasetId - Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+         * @param  {integer=} params.limit - If specified, no more than this many data points will be included in the dataset. If the there are more data points in the dataset, nextPageToken will be set in the dataset response.
          * @param  {string=} params.pageToken - The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
          * @param  {string} params.userId - Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
          * @param  {callback} callback - The callback that handles the response.

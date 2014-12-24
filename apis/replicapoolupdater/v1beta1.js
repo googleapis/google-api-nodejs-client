@@ -46,10 +46,10 @@ function Replicapoolupdater(options) {
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
-     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.update - Unique (in the context of a group) handle of an update.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -77,10 +77,10 @@ function Replicapoolupdater(options) {
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
-     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.update - Unique (in the context of a group) handle of an update.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -108,9 +108,9 @@ function Replicapoolupdater(options) {
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -139,11 +139,11 @@ function Replicapoolupdater(options) {
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 1 to 100, inclusive. (Default: 50)
      * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -163,18 +163,51 @@ function Replicapoolupdater(options) {
     },
 
     /**
+     * replicapoolupdater.updates.listInstanceUpdates
+     *
+     * @desc Called on the particular Update endpoint. Lists instance updates for a given update.
+     *
+     * @alias replicapoolupdater.updates.listInstanceUpdates
+     * @memberOf! replicapoolupdater(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 1 to 100, inclusive. (Default: 50)
+     * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param  {string} params.project - The Google Developers Console project name.
+     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listInstanceUpdates: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/updates/{update}/instanceUpdates',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager', 'update'],
+        pathParams: ['instanceGroupManager', 'project', 'update', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * replicapoolupdater.updates.pause
      *
-     * @desc Called on the particular Update endpoint. Pauses the update in state from { ROLLING_FORWARD, ROLLING_BACK, PAUSED }. No-op if invoked in state PAUSED.
+     * @desc Called on the particular Update endpoint. Pauses the update in state ROLLING_FORWARD or ROLLING_BACK. No-op if invoked in state PAUSED.
      *
      * @alias replicapoolupdater.updates.pause
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
-     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.update - Unique (in the context of a group) handle of an update.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -196,16 +229,16 @@ function Replicapoolupdater(options) {
     /**
      * replicapoolupdater.updates.rollback
      *
-     * @desc Called on the particular Update endpoint. Rolls back the update in state from { ROLLING_FORWARD, ROLLING_BACK, PAUSED }. No-op if invoked in state ROLLED_BACK.
+     * @desc Called on the particular Update endpoint. Rolls back the update in state ROLLING_FORWARD or PAUSED. No-op if invoked in state ROLLED_BACK or ROLLING_BACK.
      *
      * @alias replicapoolupdater.updates.rollback
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
-     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.update - Unique (in the context of a group) handle of an update.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -227,16 +260,16 @@ function Replicapoolupdater(options) {
     /**
      * replicapoolupdater.updates.rollforward
      *
-     * @desc Called on the particular Update endpoint. Rolls forward the update in state from { ROLLING_FORWARD, ROLLING_BACK, PAUSED }. No-op if invoked in state ROLLED_OUT.
+     * @desc Called on the particular Update endpoint. Rolls forward the update in state ROLLING_BACK or PAUSED. No-op if invoked in state ROLLED_OUT or ROLLING_FORWARD.
      *
      * @alias replicapoolupdater.updates.rollforward
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance group manager for this request.
-     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.update - Unique (in the context of a group) handle of an update.
-     * @param  {string} params.zone - Zone for the instance group manager.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

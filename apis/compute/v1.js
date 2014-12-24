@@ -2378,6 +2378,66 @@ function Compute(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.start
+     *
+     * @desc Starts an instance
+     *
+     * @alias compute.instances.start
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instance - Name of the instance resource to start.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    start: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/start',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.stop
+     *
+     * @desc Stops an instance
+     *
+     * @alias compute.instances.stop
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instance - Name of the instance resource to start.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    stop: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/stop',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -2429,7 +2489,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2458,7 +2518,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.machineType - Name of the machine type resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2490,7 +2550,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

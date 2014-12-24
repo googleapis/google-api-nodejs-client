@@ -287,6 +287,7 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this bucket.
+     * @param  {string=} params.predefinedDefaultObjectAcl - Apply a predefined set of default object access controls to this bucket.
      * @param  {string} params.project - A valid API project identifier.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      * @param  {object} params.resource - Request body data
@@ -352,6 +353,7 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this bucket.
+     * @param  {string=} params.predefinedDefaultObjectAcl - Apply a predefined set of default object access controls to this bucket.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -385,6 +387,7 @@ function Storage(options) {
      * @param  {string=} params.ifMetagenerationMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this bucket.
+     * @param  {string=} params.predefinedDefaultObjectAcl - Apply a predefined set of default object access controls to this bucket.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.

@@ -224,6 +224,38 @@ function Books(options) {
 
   };
 
+  this.dictionary = {
+
+    /**
+     * books.dictionary.listOfflineMetadata
+     *
+     * @desc Returns a list of offline dictionary meatadata available
+     *
+     * @alias books.dictionary.listOfflineMetadata
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.cpksver - The device/version ID from which to request the data.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listOfflineMetadata: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['cpksver'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.layers = {
 
     /**
@@ -450,6 +482,33 @@ function Books(options) {
   this.myconfig = {
 
     /**
+     * books.myconfig.getUserSettings
+     *
+     * @desc Gets the current settings for the user.
+     *
+     * @alias books.myconfig.getUserSettings
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getUserSettings: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/getUserSettings',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * books.myconfig.releaseDownloadAccess
      *
      * @desc Release downloaded content access restriction.
@@ -545,6 +604,34 @@ function Books(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * books.myconfig.updateUserSettings
+     *
+     * @desc Sets the settings for the user. Unspecified sub-objects will retain the existing value.
+     *
+     * @alias books.myconfig.updateUserSettings
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateUserSettings: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/updateUserSettings',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -620,6 +707,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
        * @param  {boolean=} params.showOnlySummaryInResponse - Requests that only the summary of the specified layer be provided in the response.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {object} params.resource - Request body data
@@ -750,6 +838,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.reason - The reason for which the book is added to the library.
        * @param  {string} params.shelf - ID of bookshelf to which to add a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to add.
@@ -1023,6 +1112,69 @@ function Books(options) {
         return createAPIRequest(parameters, callback);
       }
     }
+  };
+
+  this.onboarding = {
+
+    /**
+     * books.onboarding.listCategories
+     *
+     * @desc List categories for onboarding experience.
+     *
+     * @alias books.onboarding.listCategories
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listCategories: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/onboarding/listCategories',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * books.onboarding.listCategoryVolumes
+     *
+     * @desc List available volumes under categories for onboarding experience.
+     *
+     * @alias books.onboarding.listCategoryVolumes
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.categoryId - List of category ids requested.
+     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param  {integer=} params.pageSize - Number of maximum results per page to be included in the response.
+     * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listCategoryVolumes: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
   };
 
   this.promooffer = {

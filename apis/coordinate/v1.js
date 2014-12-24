@@ -109,7 +109,7 @@ function Coordinate(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Job address as newline (Unix) separated string
      * @param  {string=} params.assignee - Assignee email address, or empty string to unassign.
-     * @param  {string=} params.customField - Map from custom field id (from /team//custom_fields) to the field value. For example '123=Alice'
+     * @param  {string=} params.customField - Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
      * @param  {string=} params.customerName - Customer name
      * @param  {string=} params.customerPhoneNumber - Customer phone number
      * @param  {number} params.lat - The latitude coordinate of this job's location.
@@ -178,7 +178,7 @@ function Coordinate(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.address - Job address as newline (Unix) separated string
      * @param  {string=} params.assignee - Assignee email address, or empty string to unassign.
-     * @param  {string=} params.customField - Map from custom field id (from /team//custom_fields) to the field value. For example '123=Alice'
+     * @param  {string=} params.customField - Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
      * @param  {string=} params.customerName - Customer name
      * @param  {string=} params.customerPhoneNumber - Customer phone number
      * @param  {string} params.jobId - Job number
@@ -218,7 +218,7 @@ function Coordinate(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.address - Job address as newline (Unix) separated string
      * @param  {string=} params.assignee - Assignee email address, or empty string to unassign.
-     * @param  {string=} params.customField - Map from custom field id (from /team//custom_fields) to the field value. For example '123=Alice'
+     * @param  {string=} params.customField - Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
      * @param  {string=} params.customerName - Customer name
      * @param  {string=} params.customerPhoneNumber - Customer phone number
      * @param  {string} params.jobId - Job number
@@ -378,6 +378,40 @@ function Coordinate(options) {
         params: params,
         requiredParams: ['teamId', 'jobId'],
         pathParams: ['jobId', 'teamId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.team = {
+
+    /**
+     * coordinate.team.list
+     *
+     * @desc Retrieves a list of teams for a user.
+     *
+     * @alias coordinate.team.list
+     * @memberOf! coordinate(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {boolean=} params.admin - Whether to include teams for which the user has the Admin role.
+     * @param  {boolean=} params.dispatcher - Whether to include teams for which the user has the Dispatcher role.
+     * @param  {boolean=} params.worker - Whether to include teams for which the user has the Worker role.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/coordinate/v1/teams',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

@@ -211,6 +211,99 @@ function Adexchangebuyer(options) {
 
   };
 
+  this.budget = {
+
+    /**
+     * adexchangebuyer.budget.get
+     *
+     * @desc Returns the budget information for the adgroup specified by the accountId and billingId.
+     *
+     * @alias adexchangebuyer.budget.get
+     * @memberOf! adexchangebuyer(v1.3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The account id to get the budget information for.
+     * @param  {string} params.billingId - The billing id to get the budget information for.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['accountId', 'billingId'],
+        pathParams: ['accountId', 'billingId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.budget.patch
+     *
+     * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request. This method supports patch semantics.
+     *
+     * @alias adexchangebuyer.budget.patch
+     * @memberOf! adexchangebuyer(v1.3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The account id associated with the budget being updated.
+     * @param  {string} params.billingId - The billing id associated with the budget being updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['accountId', 'billingId'],
+        pathParams: ['accountId', 'billingId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.budget.update
+     *
+     * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request.
+     *
+     * @alias adexchangebuyer.budget.update
+     * @memberOf! adexchangebuyer(v1.3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The account id associated with the budget being updated.
+     * @param  {string} params.billingId - The billing id associated with the budget being updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['accountId', 'billingId'],
+        pathParams: ['accountId', 'billingId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.creatives = {
 
     /**
