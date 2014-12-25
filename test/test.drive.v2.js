@@ -98,6 +98,16 @@ describe('drive:v2', function() {
         var req = drive.files.get({ fileId: '123' }, noop);
         assert.equal(req.constructor.name, 'Request');
       });
+
+      it('should use logError callback if no callback specified', function() {
+        var drive = google.drive('v2');
+        nock('https://www.googleapis.com')
+        .get('/drive/v2/files?q=hello')
+        .reply(501, { error: 'not a real error' });
+        assert.doesNotThrow(function() {
+          drive.files.list({ q: 'hello' });
+        });
+      });
     });
   });
 

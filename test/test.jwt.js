@@ -19,10 +19,29 @@
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
+var LoginTicket = require('../lib/auth/loginticket.js');
 
 nock.disableNetConnect();
 
 describe('JWT auth client', function() {
+
+  it('should return null userId even if no payload', function() {
+    var ticket = new LoginTicket(null, null);
+    assert.equal(ticket.getUserId(), null);
+  });
+
+  it('should return envelope', function() {
+    var ticket = new LoginTicket('myenvelope');
+    assert.equal(ticket.getEnvelope(), 'myenvelope');
+  });
+
+  it('should return attributes from getAttributes', function() {
+    var ticket = new LoginTicket('myenvelope', 'mypayload');
+    assert.deepEqual(ticket.getAttributes(), {
+      envelope: 'myenvelope',
+      payload: 'mypayload'
+    });
+  });
 
   it('should get an initial access token', function(done) {
     var jwt = new googleapis.auth.JWT(
