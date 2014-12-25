@@ -23,6 +23,7 @@ var fs = require('fs');
 var googleapis = require('../lib/googleapis.js');
 var crypto = require('crypto');
 var nock = require('nock');
+var AuthClient = require('../lib/auth/authclient.js');
 
 nock.disableNetConnect();
 
@@ -56,6 +57,13 @@ describe('OAuth2 client', function() {
     assert.equal(query.client_id, CLIENT_ID);
     assert.equal(query.redirect_uri, REDIRECT_URI);
     done();
+  });
+
+  it('should throw if using AuthClient directly', function() {
+    var authClient = new AuthClient();
+    assert.throws(function() {
+      authClient.request();
+    }, 'Not implemented yet.');
   });
 
   it('should allow scopes to be specified as array', function(done) {
@@ -652,6 +660,58 @@ describe('OAuth2 client', function() {
         );
       },
       /Token used too early/
+    );
+
+    done();
+  });
+
+  it('should fail due to token being used to late', function(done) {
+    var publicKey = fs.readFileSync('./test/fixtures/public.pem',
+        'utf-8');
+    var privateKey = fs.readFileSync('./test/fixtures/private.pem',
+        'utf-8');
+
+    var maxLifetimeSecs = 86400;
+    var clockSkews = 300;
+    var now = (new Date().getTime() / 1000);
+    var expiry = now - (maxLifetimeSecs / 2);
+    var issueTime = now - (clockSkews * 2);
+    var idToken = '{' +
+        '"iss":"testissuer",' +
+        '"aud":"testaudience",' +
+        '"azp":"testauthorisedparty",' +
+        '"email_verified":"true",' +
+        '"id":"123456789",' +
+        '"sub":"123456789",' +
+        '"email":"test@test.com",' +
+        '"iat":' + issueTime + ',' +
+        '"exp":' + expiry +
+      '}';
+    var envelope = '{' +
+        '"kid":"keyid",' +
+        '"alg":"RS256"' +
+      '}';
+
+    var data = new Buffer(envelope).toString('base64') +
+      '.' + new Buffer(idToken).toString('base64');
+
+    var signer = crypto.createSign('sha256');
+    signer.update(data);
+    var signature = signer.sign(privateKey, 'base64');
+
+    data += '.' + signature;
+
+    var oauth2client =
+      new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    assert.throws(
+      function() {
+        oauth2client.verifySignedJwtWithCerts(
+          data,
+          {keyid: publicKey},
+          'testaudience'
+        );
+      },
+      /Token used too late/
     );
 
     done();
