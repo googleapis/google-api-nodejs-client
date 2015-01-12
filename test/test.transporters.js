@@ -71,6 +71,22 @@ describe('Transporters', function() {
     assert.equal(req.body, null);
   });
 
+it('should return errors within response body as instances of Error', function(done) {
+    var google = require('../lib/googleapis');
+    var drive = google.drive('v2');
+
+    var scope = nock('https://www.googleapis.com')
+      .get('/drive/v2/files?q=hello')
+      // Simulate an error returned via response body from Google's API endpoint
+      .reply(400, { error: { code: 400, message: 'Error!'} });
+
+    drive.files.list({ q: 'hello' }, function(err) {
+      assert(err instanceof Error);
+      scope.done();
+      done();
+    });
+  });
+
   it('should return 5xx responses as errors', function(done) {
     var google = require('../lib/googleapis');
     var scope = nock('https://www.googleapis.com')
@@ -79,7 +95,9 @@ describe('Transporters', function() {
     var urlshortener = google.urlshortener('v1');
     var obj = { longUrl: 'http://google.com/' };
     urlshortener.url.insert({ resource: obj }, function(err, result) {
-      assert.deepEqual(err, { code: 500, message: 'There was an error!' });
+      assert(err instanceof Error);
+      assert.equal(err.code, 500);
+      assert.equal(err.message, 'There was an error!');
       assert.equal(result, null);
       scope.done();
       done();
