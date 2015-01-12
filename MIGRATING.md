@@ -1,8 +1,8 @@
-# Migrating from version `0.x.x` to `1.0`
+# Migrating from version `0.x.x` to `1.x`
 
 Many changes and improvements have been made to the `google-api-nodejs-client`
-library to bring it to `1.0`. If you are starting a new project or haven't used
-this library before version `1.0`, see the [README][readme] to get started
+library to bring it to `1.x`. If you are starting a new project or haven't used
+this library before version `1.x`, see the [README][readme] to get started
 as you won't need to migrate anything.
 
 ## Discovery
