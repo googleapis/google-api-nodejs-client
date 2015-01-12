@@ -35,7 +35,7 @@
   "dependencies": {
     "async": "~0.9.0",
     "gapitoken": "~0.1.2",
-    "request": "~2.48.0",
+    "request": "~2.51.0",
     "string-template": "~0.2.0"
   },
   "devDependencies": {
