@@ -624,7 +624,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.export
      *
-     * @desc Exports read group sets to a BAM file in Google Cloud Storage.  Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. In particular, comments in the input file header will not be preserved, and some custom tags will be converted to strings.
+     * @desc Exports read group sets to a BAM file in Google Cloud Storage.  Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. In particular, comments in the input file header will not be preserved, some custom tags will be converted to strings, and original reference sequence order is not necessarily preserved.
      *
      * @alias genomics.readgroupsets.export
      * @memberOf! genomics(v1beta2)

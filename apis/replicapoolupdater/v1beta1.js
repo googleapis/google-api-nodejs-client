@@ -48,7 +48,7 @@ function Replicapoolupdater(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the instance group manager.
      * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.update - The id of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -79,7 +79,7 @@ function Replicapoolupdater(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the instance group manager.
      * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.update - The id of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -175,7 +175,7 @@ function Replicapoolupdater(options) {
      * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 1 to 100, inclusive. (Default: 50)
      * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
      * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.update - The id of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -206,7 +206,7 @@ function Replicapoolupdater(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the instance group manager.
      * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.update - The id of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -215,6 +215,37 @@ function Replicapoolupdater(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/updates/{update}/pause',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager', 'update'],
+        pathParams: ['instanceGroupManager', 'project', 'update', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * replicapoolupdater.updates.resume
+     *
+     * @desc Called on the particular Update endpoint. Resumes the update in state PAUSED. No-op if invoked in state ROLLING_FORWARD or ROLLING_BACK.
+     *
+     * @alias replicapoolupdater.updates.resume
+     * @memberOf! replicapoolupdater(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.project - The Google Developers Console project name.
+     * @param  {string} params.update - The id of the update.
+     * @param  {string} params.zone - The name of the zone in which the update's target resides.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    resume: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/updates/{update}/resume',
           method: 'POST'
         },
         params: params,
@@ -237,7 +268,7 @@ function Replicapoolupdater(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the instance group manager.
      * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.update - The id of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -260,7 +291,7 @@ function Replicapoolupdater(options) {
     /**
      * replicapoolupdater.updates.rollforward
      *
-     * @desc Called on the particular Update endpoint. Rolls forward the update in state ROLLING_BACK or PAUSED. No-op if invoked in state ROLLED_OUT or ROLLING_FORWARD.
+     * @desc Called on the particular Update endpoint. Rolls forward the update in state PAUSED before ordering it to roll back. No-op if invoked in state ROLLED_OUT or ROLLING_FORWARD.
      *
      * @alias replicapoolupdater.updates.rollforward
      * @memberOf! replicapoolupdater(v1beta1)
@@ -268,7 +299,7 @@ function Replicapoolupdater(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the instance group manager.
      * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.update - Unique (in the context of a group) handle of an update.
+     * @param  {string} params.update - The id of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

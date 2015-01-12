@@ -89,6 +89,7 @@ var APIs = {
   'freebase': requireAPI('freebase'),
   'fusiontables': requireAPI('fusiontables'),
   'games': requireAPI('games'),
+  'gamesConfiguration': requireAPI('gamesConfiguration'),
   'gamesManagement': requireAPI('gamesManagement'),
   'gan': requireAPI('gan'),
   'genomics': requireAPI('genomics'),
