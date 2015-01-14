@@ -1014,8 +1014,8 @@ describe('OAuth2 client', function() {
           .reply(200, { access_token: 'abc', refresh_token: '123', expires_in: 10 });
       var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       oauth2client.getToken('code here', function(err, tokens) {
-        assert(tokens.expiry_date > now + (10 * 1000));
-        assert(tokens.expiry_date < now + (15 * 1000));
+        assert(tokens.expiry_date >= now + (10 * 1000));
+        assert(tokens.expiry_date <= now + (15 * 1000));
         scope.done();
         done();
       });
