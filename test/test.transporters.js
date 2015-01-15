@@ -82,6 +82,27 @@ it('should return errors within response body as instances of Error', function(d
 
     drive.files.list({ q: 'hello' }, function(err) {
       assert(err instanceof Error);
+      assert.equal(err.message, 'Error!');
+      assert.equal(err.code, 400);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should return error message correctly when error is not an object', function(done) {
+    var google = require('../lib/googleapis');
+    var oauth2 = google.oauth2('v2');
+
+    var scope = nock('https://www.googleapis.com')
+      .post('/oauth2/v2/tokeninfo?access_token=hello')
+      // Simulate an error returned via response body from Google's tokeninfo endpoint
+      .reply(400, { error: 'invalid_grant', error_description: 'Code was already redeemed.' });
+
+    oauth2.tokeninfo({ access_token: 'hello' }, function(err) {
+      assert(err instanceof Error);
+      assert.equal(err.message, 'Code was already redeemed.');
+      assert.equal(err.type, 'invalid_grant');
+      assert.equal(err.code, 400);
       scope.done();
       done();
     });
