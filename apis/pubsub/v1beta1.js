@@ -210,7 +210,7 @@ function Pubsub(options) {
     /**
      * pubsub.subscriptions.modifyPushConfig
      *
-     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an end point by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
+     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
      *
      * @alias pubsub.subscriptions.modifyPushConfig
      * @memberOf! pubsub(v1beta1)
@@ -266,7 +266,7 @@ function Pubsub(options) {
     /**
      * pubsub.subscriptions.pullBatch
      *
-     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there too many pull requests outstanding for a given subscription.
+     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
      *
      * @alias pubsub.subscriptions.pullBatch
      * @memberOf! pubsub(v1beta1)

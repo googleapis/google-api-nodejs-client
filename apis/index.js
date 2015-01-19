@@ -96,6 +96,7 @@ var APIs = {
   'gmail': requireAPI('gmail'),
   'groupsmigration': requireAPI('groupsmigration'),
   'groupssettings': requireAPI('groupssettings'),
+  'cloudlatencytest': requireAPI('cloudlatencytest'),
   'identitytoolkit': requireAPI('identitytoolkit'),
   'licensing': requireAPI('licensing'),
   'manager': requireAPI('manager'),
