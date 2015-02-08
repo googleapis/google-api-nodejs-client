@@ -320,6 +320,7 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of buckets to return.
      * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
+     * @param  {string=} params.prefix - Filter results to buckets whose names begin with this prefix.
      * @param  {string} params.project - A valid API project identifier.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
      * @param  {callback} callback - The callback that handles the response.

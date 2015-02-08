@@ -25,8 +25,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Google Dataflow API.
  * @namespace dataflow
- * @version  v1beta3
- * @variation v1beta3
+ * @version  v1b4
+ * @variation v1b4
  * @this Dataflow
  * @param {object=} options Options for Dataflow
  */
@@ -47,7 +47,7 @@ function Dataflow(options) {
          * @desc Creates a dataflow job.
          *
          * @alias dataflow.v1b3.projects.jobs.create
-         * @memberOf! dataflow(v1beta3)
+         * @memberOf! dataflow(v1b4)
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.projectId -
@@ -59,7 +59,7 @@ function Dataflow(options) {
         create: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs',
+              url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs',
               method: 'POST'
             },
             params: params,
@@ -77,7 +77,7 @@ function Dataflow(options) {
          * @desc Gets the state of the specified dataflow job.
          *
          * @alias dataflow.v1b3.projects.jobs.get
-         * @memberOf! dataflow(v1beta3)
+         * @memberOf! dataflow(v1b4)
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.jobId -
@@ -89,7 +89,7 @@ function Dataflow(options) {
         get: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}',
+              url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
               method: 'GET'
             },
             params: params,
@@ -107,7 +107,7 @@ function Dataflow(options) {
          * @desc Request the job status.
          *
          * @alias dataflow.v1b3.projects.jobs.getMetrics
-         * @memberOf! dataflow(v1beta3)
+         * @memberOf! dataflow(v1b4)
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.jobId -
@@ -119,7 +119,7 @@ function Dataflow(options) {
         getMetrics: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}/metrics',
+              url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/metrics',
               method: 'GET'
             },
             params: params,
@@ -137,7 +137,7 @@ function Dataflow(options) {
          * @desc List the jobs of a project
          *
          * @alias dataflow.v1b3.projects.jobs.list
-         * @memberOf! dataflow(v1beta3)
+         * @memberOf! dataflow(v1b4)
          *
          * @param  {object} params - Parameters for request
          * @param  {integer=} params.pageSize -
@@ -150,7 +150,7 @@ function Dataflow(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs',
+              url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs',
               method: 'GET'
             },
             params: params,
@@ -168,7 +168,7 @@ function Dataflow(options) {
          * @desc Updates the state of an existing dataflow job. This method supports patch semantics.
          *
          * @alias dataflow.v1b3.projects.jobs.patch
-         * @memberOf! dataflow(v1beta3)
+         * @memberOf! dataflow(v1b4)
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.jobId -
@@ -180,7 +180,7 @@ function Dataflow(options) {
         patch: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}',
+              url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
               method: 'PATCH'
             },
             params: params,
@@ -198,7 +198,7 @@ function Dataflow(options) {
          * @desc Updates the state of an existing dataflow job.
          *
          * @alias dataflow.v1b3.projects.jobs.update
-         * @memberOf! dataflow(v1beta3)
+         * @memberOf! dataflow(v1b4)
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.jobId -
@@ -210,7 +210,7 @@ function Dataflow(options) {
         update: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}',
+              url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
               method: 'PUT'
             },
             params: params,
@@ -230,7 +230,7 @@ function Dataflow(options) {
            * @desc Request the job status.
            *
            * @alias dataflow.v1b3.projects.jobs.messages.list
-           * @memberOf! dataflow(v1beta3)
+           * @memberOf! dataflow(v1b4)
            *
            * @param  {object} params - Parameters for request
            * @param  {string=} params.endTime -
@@ -246,7 +246,7 @@ function Dataflow(options) {
           list: function(params, callback) {
             var parameters = {
               options: {
-                url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}/messages',
+                url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/messages',
                 method: 'GET'
               },
               params: params,
@@ -267,7 +267,7 @@ function Dataflow(options) {
            * @desc Leases a dataflow WorkItem to run.
            *
            * @alias dataflow.v1b3.projects.jobs.workItems.lease
-           * @memberOf! dataflow(v1beta3)
+           * @memberOf! dataflow(v1b4)
            *
            * @param  {object} params - Parameters for request
            * @param  {string} params.jobId -
@@ -279,7 +279,7 @@ function Dataflow(options) {
           lease: function(params, callback) {
             var parameters = {
               options: {
-                url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease',
+                url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease',
                 method: 'POST'
               },
               params: params,
@@ -297,7 +297,7 @@ function Dataflow(options) {
            * @desc Reports the status of dataflow WorkItems leased by a worker.
            *
            * @alias dataflow.v1b3.projects.jobs.workItems.reportStatus
-           * @memberOf! dataflow(v1beta3)
+           * @memberOf! dataflow(v1b4)
            *
            * @param  {object} params - Parameters for request
            * @param  {string} params.jobId -
@@ -309,7 +309,7 @@ function Dataflow(options) {
           reportStatus: function(params, callback) {
             var parameters = {
               options: {
-                url: 'https://www.googleapis.com/dataflow/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus',
+                url: 'https://www.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus',
                 method: 'POST'
               },
               params: params,

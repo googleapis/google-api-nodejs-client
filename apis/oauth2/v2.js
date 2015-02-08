@@ -36,6 +36,33 @@ function Oauth2(options) {
   this._options = options || {};
 
   /**
+   * oauth2.getCertForOpenIdConnect
+   *
+   *
+   *
+   * @alias oauth2.getCertForOpenIdConnect
+   * @memberOf! oauth2(v2)
+   *
+   * @param  {object=} params - Parameters for request
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.getCertForOpenIdConnect = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/oauth2/v2/certs',
+        method: 'GET'
+      },
+      params: params,
+      requiredParams: [],
+      pathParams: [],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
+  /**
    * oauth2.tokeninfo
    *
    *

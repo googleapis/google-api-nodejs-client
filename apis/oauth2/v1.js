@@ -36,6 +36,116 @@ function Oauth2(options) {
   this._options = options || {};
 
   /**
+   * oauth2.getCertForOpenIdConnect
+   *
+   *
+   *
+   * @alias oauth2.getCertForOpenIdConnect
+   * @memberOf! oauth2(v1)
+   *
+   * @param  {object=} params - Parameters for request
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.getCertForOpenIdConnect = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/oauth2/v1/certs',
+        method: 'GET'
+      },
+      params: params,
+      requiredParams: [],
+      pathParams: [],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
+  /**
+   * oauth2.getCertForOpenIdConnectRaw
+   *
+   *
+   *
+   * @alias oauth2.getCertForOpenIdConnectRaw
+   * @memberOf! oauth2(v1)
+   *
+   * @param  {object=} params - Parameters for request
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.getCertForOpenIdConnectRaw = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/oauth2/v1/raw_public_keys',
+        method: 'GET'
+      },
+      params: params,
+      requiredParams: [],
+      pathParams: [],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
+  /**
+   * oauth2.getRobotMetadataRaw
+   *
+   *
+   *
+   * @alias oauth2.getRobotMetadataRaw
+   * @memberOf! oauth2(v1)
+   *
+   * @param  {object} params - Parameters for request
+   * @param  {string} params.robotEmail - The email of robot account.
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.getRobotMetadataRaw = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/service_accounts/v1/metadata/raw/{robotEmail}',
+        method: 'GET'
+      },
+      params: params,
+      requiredParams: ['robotEmail'],
+      pathParams: ['robotEmail'],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
+  /**
+   * oauth2.getRobotMetadataX509
+   *
+   *
+   *
+   * @alias oauth2.getRobotMetadataX509
+   * @memberOf! oauth2(v1)
+   *
+   * @param  {object} params - Parameters for request
+   * @param  {string} params.robotEmail - The email of robot account.
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.getRobotMetadataX509 = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/service_accounts/v1/metadata/x509/{robotEmail}',
+        method: 'GET'
+      },
+      params: params,
+      requiredParams: ['robotEmail'],
+      pathParams: ['robotEmail'],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
+  /**
    * oauth2.tokeninfo
    *
    * @desc Get token info

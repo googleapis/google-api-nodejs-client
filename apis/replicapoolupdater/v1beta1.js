@@ -136,9 +136,10 @@ function Replicapoolupdater(options) {
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 1 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {string=} params.instanceGroupManager - The name of the instance group manager used for filtering.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
      * @param  {callback} callback - The callback that handles the response.
@@ -168,8 +169,9 @@ function Replicapoolupdater(options) {
      * @memberOf! replicapoolupdater(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 1 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The Google Developers Console project name.
      * @param  {string} params.rollingUpdate - The name of the update.
      * @param  {string} params.zone - The name of the zone in which the update's target resides.
@@ -275,6 +277,40 @@ function Replicapoolupdater(options) {
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.zoneOperations = {
+
+    /**
+     * replicapoolupdater.zoneOperations.get
+     *
+     * @desc Retrieves the specified zone-specific operation resource.
+     *
+     * @alias replicapoolupdater.zoneOperations.get
+     * @memberOf! replicapoolupdater(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.operation - Name of the operation resource to return.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/operations/{operation}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'operation'],
+        pathParams: ['operation', 'project', 'zone'],
         context: self
       };
 

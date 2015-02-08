@@ -244,6 +244,157 @@ function Content(options) {
 
   };
 
+  this.accountshipping = {
+
+    /**
+     * content.accountshipping.custombatch
+     *
+     * @desc Retrieves and updates the shipping settings of multiple accounts in a single request.
+     *
+     * @alias content.accountshipping.custombatch
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/accountshipping/batch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accountshipping.get
+     *
+     * @desc Retrieves the shipping settings of the account.
+     *
+     * @alias content.accountshipping.get
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accountshipping.list
+     *
+     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     *
+     * @alias content.accountshipping.list
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {integer=} params.maxResults - The maximum number of shipping settings to return in the response, used for paging.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {string=} params.pageToken - The token returned by the previous request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accountshipping.patch
+     *
+     * @desc Updates the shipping settings of the account. This method supports patch semantics.
+     *
+     * @alias content.accountshipping.patch
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accountshipping.update
+     *
+     * @desc Updates the shipping settings of the account.
+     *
+     * @alias content.accountshipping.update
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.accountstatuses = {
 
     /**
@@ -327,6 +478,157 @@ function Content(options) {
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.accounttax = {
+
+    /**
+     * content.accounttax.custombatch
+     *
+     * @desc Retrieves and updates tax settings of multiple accounts in a single request.
+     *
+     * @alias content.accounttax.custombatch
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/accounttax/batch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accounttax.get
+     *
+     * @desc Retrieves the tax settings of the account.
+     *
+     * @alias content.accounttax.get
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accounttax.list
+     *
+     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account.
+     *
+     * @alias content.accounttax.list
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {integer=} params.maxResults - The maximum number of tax settings to return in the response, used for paging.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {string=} params.pageToken - The token returned by the previous request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accounttax.patch
+     *
+     * @desc Updates the tax settings of the account. This method supports patch semantics.
+     *
+     * @alias content.accounttax.patch
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accounttax.update
+     *
+     * @desc Updates the tax settings of the account.
+     *
+     * @alias content.accounttax.update
+     * @memberOf! content(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
+     * @param  {string} params.merchantId - The ID of the managing account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
         context: self
       };
 

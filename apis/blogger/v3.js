@@ -308,6 +308,7 @@ function Blogger(options) {
      * @param  {integer=} params.maxResults - Maximum number of comments to include in the result.
      * @param  {string=} params.pageToken - Continuation token if request is paged.
      * @param  {string=} params.startDate - Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     * @param  {string=} params.status -
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

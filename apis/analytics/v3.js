@@ -377,6 +377,322 @@ function Analytics(options) {
       }
     },
 
+    customDimensions: {
+
+      /**
+       * analytics.management.customDimensions.get
+       *
+       * @desc Get a custom dimension to which the user has access.
+       *
+       * @alias analytics.management.customDimensions.get
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimension to retrieve.
+       * @param  {string} params.customDimensionId - The ID of the custom dimension to retrieve.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to retrieve.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customDimensions.insert
+       *
+       * @desc Create a new custom dimension.
+       *
+       * @alias analytics.management.customDimensions.insert
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimension to create.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to create.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customDimensions.list
+       *
+       * @desc Lists custom dimensions to which the user has access.
+       *
+       * @alias analytics.management.customDimensions.list
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimensions to retrieve.
+       * @param  {integer=} params.max-results - The maximum number of custom dimensions to include in this response.
+       * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimensions to retrieve.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customDimensions.patch
+       *
+       * @desc Updates an existing custom dimension. This method supports patch semantics.
+       *
+       * @alias analytics.management.customDimensions.patch
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimension to update.
+       * @param  {string} params.customDimensionId - Custom dimension ID for the custom dimension to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customDimensions.update
+       *
+       * @desc Updates an existing custom dimension.
+       *
+       * @alias analytics.management.customDimensions.update
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimension to update.
+       * @param  {string} params.customDimensionId - Custom dimension ID for the custom dimension to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    customMetrics: {
+
+      /**
+       * analytics.management.customMetrics.get
+       *
+       * @desc Get a custom metric to which the user has access.
+       *
+       * @alias analytics.management.customMetrics.get
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to retrieve.
+       * @param  {string} params.customMetricId - The ID of the custom metric to retrieve.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metric to retrieve.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.insert
+       *
+       * @desc Create a new custom metric.
+       *
+       * @alias analytics.management.customMetrics.insert
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to create.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to create.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.list
+       *
+       * @desc Lists custom metrics to which the user has access.
+       *
+       * @alias analytics.management.customMetrics.list
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metrics to retrieve.
+       * @param  {integer=} params.max-results - The maximum number of custom metrics to include in this response.
+       * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metrics to retrieve.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.patch
+       *
+       * @desc Updates an existing custom metric. This method supports patch semantics.
+       *
+       * @alias analytics.management.customMetrics.patch
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to update.
+       * @param  {string} params.customMetricId - Custom metric ID for the custom metric to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metric to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.update
+       *
+       * @desc Updates an existing custom metric.
+       *
+       * @alias analytics.management.customMetrics.update
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to update.
+       * @param  {string} params.customMetricId - Custom metric ID for the custom metric to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metric to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
     dailyUploads: {
 
       /**

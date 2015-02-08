@@ -35,6 +35,354 @@ function Genomics(options) {
   var self = this;
   this._options = options || {};
 
+  this.annotationSets = {
+
+    /**
+     * genomics.annotationSets.create
+     *
+     * @desc Creates a new annotation set. Caller must have WRITE permission for the associated dataset.
+     *
+     * @alias genomics.annotationSets.create
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationSets.delete
+     *
+     * @desc Deletes an annotation set. Caller must have WRITE permission for the associated annotation set.
+     *
+     * @alias genomics.annotationSets.delete
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be deleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationSets.get
+     *
+     * @desc Gets an annotation set. Caller must have READ permission for the associated dataset.
+     *
+     * @alias genomics.annotationSets.get
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be retrieved.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationSets.patch
+     *
+     * @desc Updates an annotation set. The update must respect all mutability restrictions and other invariants described on the annotation set resource. Caller must have WRITE permission for the associated dataset. This method supports patch semantics.
+     *
+     * @alias genomics.annotationSets.patch
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationSets.search
+     *
+     * @desc Searches for annotation sets which match the given criteria. Results are returned in a deterministic order. Caller must have READ permission for the queried datasets.
+     *
+     * @alias genomics.annotationSets.search
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationSets.update
+     *
+     * @desc Updates an annotation set. The update must respect all mutability restrictions and other invariants described on the annotation set resource. Caller must have WRITE permission for the associated dataset.
+     *
+     * @alias genomics.annotationSets.update
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.annotations = {
+
+    /**
+     * genomics.annotations.create
+     *
+     * @desc Creates a new annotation. Caller must have WRITE permission for the associated annotation set.
+     *
+     * @alias genomics.annotations.create
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotations',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.delete
+     *
+     * @desc Deletes an annotation. Caller must have WRITE permission for the associated annotation set.
+     *
+     * @alias genomics.annotations.delete
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation set to be deleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.get
+     *
+     * @desc Gets an annotation. Caller must have READ permission for the associated annotation set.
+     *
+     * @alias genomics.annotations.get
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation set to be retrieved.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.patch
+     *
+     * @desc Updates an annotation. The update must respect all mutability restrictions and other invariants described on the annotation resource. Caller must have WRITE permission for the associated dataset. This method supports patch semantics.
+     *
+     * @alias genomics.annotations.patch
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation set to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.search
+     *
+     * @desc Searches for annotations which match the given criteria. Results are returned ordered by start position. Annotations which have matching start positions are ordered deterministically. Caller must have READ permission for the queried annotation sets.
+     *
+     * @alias genomics.annotations.search
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotations/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.update
+     *
+     * @desc Updates an annotation. The update must respect all mutability restrictions and other invariants described on the annotation resource. Caller must have WRITE permission for the associated dataset.
+     *
+     * @alias genomics.annotations.update
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation set to be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.callsets = {
 
     /**

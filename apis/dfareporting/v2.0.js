@@ -233,10 +233,10 @@ function Dfareporting(options) {
      * @param  {boolean=} params.active - Select only active user profiles.
      * @param  {string=} params.ids - Select only user profiles with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2010" will return objects with names like "user profile June 2010", "user profile April 2010" or simply "user profile 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2010" or simply "user profile".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015" or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015" or simply "user profile".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {string=} params.subaccountId - Select only user profiles with the specified subaccount ID.
      * @param  {string=} params.userRoleId - Select only user profiles with the specified user role ID.
@@ -362,10 +362,10 @@ function Dfareporting(options) {
      * @param  {boolean=} params.active - Select only active accounts. Don't set this field to select both active and non-active accounts.
      * @param  {string=} params.ids - Select only accounts with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2010" will return objects with names like "account June 2010", "account April 2010" or simply "account 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2010" or simply "account".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015" or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015" or simply "account".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -520,25 +520,25 @@ function Dfareporting(options) {
      * @param  {boolean=} params.archived - Select only archived ads.
      * @param  {string=} params.audienceSegmentIds - Select only ads with these audience segment IDs.
      * @param  {string=} params.campaignIds - Select only ads with these campaign IDs.
-     * @param  {string=} params.compatibility - Applicable when type is AD_SERVING_DEFAULT_AD. Select default ads with the specified compatibility. WEB and WEB_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+     * @param  {string=} params.compatibility - Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. WEB and WEB_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
      * @param  {string=} params.creativeIds - Select only ads with these creative IDs assigned.
      * @param  {string=} params.creativeOptimizationConfigurationIds - Select only ads with these creative optimization configuration IDs.
-     * @param  {string=} params.creativeType - Select only ads with the specified CreativeType.
-     * @param  {boolean=} params.dynamicClickTracker - Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
+     * @param  {string=} params.creativeType - Select only ads with the specified creativeType.
+     * @param  {boolean=} params.dynamicClickTracker - Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
      * @param  {string=} params.ids - Select only ads with these IDs.
      * @param  {string=} params.landingPageIds - Select only ads with these landing page IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
      * @param  {string=} params.overriddenEventTagId - Select only ads with this event tag override ID.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string=} params.placementIds - Select only ads with these placement IDs assigned.
      * @param  {string} params.profileId - User profile ID associated with this request.
      * @param  {string=} params.remarketingListIds - Select only ads whose list targeting expression use these remarketing list IDs.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2010" will return objects with names like "ad June 2010", "ad April 2010" or simply "ad 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2010" or simply "ad".
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015" or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015" or simply "ad".
      * @param  {string=} params.sizeIds - Select only ads with these size IDs.
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
-     * @param  {boolean=} params.sslCompliant - Select only ads that are ssl compliant.
-     * @param  {boolean=} params.sslRequired - Select only ads that require ssl.
+     * @param  {boolean=} params.sslCompliant - Select only ads that are SSL-compliant.
+     * @param  {boolean=} params.sslRequired - Select only ads that require SSL.
      * @param  {string=} params.type - Select only ads with these types.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -717,12 +717,12 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.ids - Set of IDs of specified advertiser groups to retrieve.
+     * @param  {string=} params.ids - Select only advertiser groups with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2010" will return objects with names like "advertiser group June 2010", "advertiser group April 2010" or simply "advertiser group 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2010" or simply "advertisergroup".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015" or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015" or simply "advertisergroup".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -872,19 +872,19 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserGroupIds - Set of advertiser group IDs of advertisers to retrieve.
-     * @param  {string=} params.floodlightConfigurationIds - Set of floodlight configuration IDs of advertisers to retrieve.
-     * @param  {string=} params.ids - Set of IDs of specified advertisers to retrieve.
-     * @param  {boolean=} params.includeAdvertisersWithoutGroupsOnly - If true, will return only advertisers which do not belong to any advertiser group.
+     * @param  {string=} params.advertiserGroupIds - Select only advertisers with these advertiser group IDs.
+     * @param  {string=} params.floodlightConfigurationIds - Select only advertisers with these floodlight configuration IDs.
+     * @param  {string=} params.ids - Select only advertisers with these IDs.
+     * @param  {boolean=} params.includeAdvertisersWithoutGroupsOnly - Select only advertisers which do not belong to any advertiser group.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {boolean=} params.onlyParent - If true, will return only advertisers which use another advertiser's floodlight configuration.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {boolean=} params.onlyParent - Select only advertisers which use another advertiser's floodlight configuration.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2010" will return objects with names like "advertiser June 2010", "advertiser April 2010" or simply "advertiser 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2010" or simply "advertiser".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015" or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015" or simply "advertiser".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
-     * @param  {string=} params.status - Specifies the status of retrieved advertisers.
-     * @param  {string=} params.subaccountId - Subaccount ID of advertisers to retrieve.
+     * @param  {string=} params.status - Select only advertisers with the specified status.
+     * @param  {string=} params.subaccountId - Select only advertisers with these subaccount IDs.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1001,7 +1001,7 @@ function Dfareporting(options) {
     /**
      * dfareporting.campaignCreativeAssociations.insert
      *
-     * @desc Associates a creative with this campaign. This method creates a default ad with dimensions matching the creative in this campaign if such a default ad does not exist already.
+     * @desc Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
      *
      * @alias dfareporting.campaignCreativeAssociations.insert
      * @memberOf! dfareporting(v2.0)
@@ -1031,7 +1031,7 @@ function Dfareporting(options) {
     /**
      * dfareporting.campaignCreativeAssociations.list
      *
-     * @desc Retrieves the list of creative IDs associated with this campaign.
+     * @desc Retrieves the list of creative IDs associated with the specified campaign.
      *
      * @alias dfareporting.campaignCreativeAssociations.list
      * @memberOf! dfareporting(v2.0)
@@ -1039,7 +1039,7 @@ function Dfareporting(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Campaign ID in this association.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
@@ -1102,7 +1102,7 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.defaultLandingPageName - Default landing page name for this new campaign.
+     * @param  {string} params.defaultLandingPageName - Default landing page name for this new campaign. Must be less than 256 characters long.
      * @param  {string} params.defaultLandingPageUrl - Default landing page URL for this new campaign.
      * @param  {string} params.profileId - User profile ID associated with this request.
      * @param  {object} params.resource - Request body data
@@ -1141,10 +1141,10 @@ function Dfareporting(options) {
      * @param  {string=} params.ids - Select only campaigns with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
      * @param  {string=} params.overriddenEventTagId - Select only campaigns that have overridden this event tag ID.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2010" will return campaigns with names like "campaign June 2010", "campaign April 2010" or simply "campaign 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2010" or simply "campaign".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015" or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015" or simply "campaign".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {string=} params.subaccountId - Select only campaigns that belong to this subaccount.
      * @param  {callback} callback - The callback that handles the response.
@@ -1268,12 +1268,12 @@ function Dfareporting(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.action - Select only change logs with the specified action.
      * @param  {string=} params.ids - Select only change logs with these IDs.
-     * @param  {string=} params.maxChangeTime - Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2014, in the America/New York time zone, the format is "2014-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     * @param  {string=} params.maxChangeTime - Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.minChangeTime - Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2014, in the America/New York time zone, the format is "2014-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     * @param  {string=} params.minChangeTime - Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      * @param  {string=} params.objectIds - Select only change logs with these object IDs.
      * @param  {string=} params.objectType - Select only change logs with the specified object type.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
      * @param  {string=} params.searchString - Select only change logs whose object ID, user name, old or new values match the search string.
      * @param  {string=} params.userProfileIds - Select only change logs with these user profile IDs.
@@ -1308,11 +1308,11 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.countryDartIds - Select cities from these countries.
-     * @param  {string=} params.dartIds - Return cities with these IDs.
-     * @param  {string=} params.namePrefix - Select cities with names starting with this prefix.
+     * @param  {string=} params.countryDartIds - Select only cities from these countries.
+     * @param  {string=} params.dartIds - Select only cities with these DART IDs.
+     * @param  {string=} params.namePrefix - Select only cities with names starting with this prefix.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.regionDartIds - Select cities from these regions.
+     * @param  {string=} params.regionDartIds - Select only cities from these regions.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1463,12 +1463,12 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.ids - Set of IDs of specified content categories to retrieve.
+     * @param  {string=} params.ids - Select only content categories with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2010" will return objects with names like "contentcategory June 2010", "contentcategory April 2010" or simply "contentcategory 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2010" or simply "contentcategory".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015" or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015" or simply "contentcategory".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1752,10 +1752,10 @@ function Dfareporting(options) {
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
      * @param  {string=} params.ids - Select only creative field values with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
      * @param  {string=} params.searchString - Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1939,10 +1939,10 @@ function Dfareporting(options) {
      * @param  {string=} params.advertiserIds - Select only creative fields that belong to these advertisers.
      * @param  {string=} params.ids - Select only creative fields with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2010" will return creative fields with names like "creativefield June 2010", "creativefield April 2010" or simply "creativefield 2010". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2010" or simply "creativefield".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015" or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015" or simply "creativefield".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2096,10 +2096,10 @@ function Dfareporting(options) {
      * @param  {integer=} params.groupNumber - Select only creative groups that belong to this subgroup.
      * @param  {string=} params.ids - Select only creative groups with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2010" will return creative groups with names like "creativegroup June 2010", "creativegroup April 2010" or simply "creativegroup 2010". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2010" or simply "creativegroup".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015" or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015" or simply "creativegroup".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2250,22 +2250,22 @@ function Dfareporting(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active creatives. Leave blank to select active and inactive creatives.
-     * @param  {string=} params.advertiserId - Advertiser ID.
+     * @param  {string=} params.advertiserId - Select only creatives with this advertiser ID.
      * @param  {boolean=} params.archived - Select only archived creatives. Leave blank to select archived and unarchived creatives.
-     * @param  {string=} params.campaignId - Campaign ID of creatives to retrieve.
-     * @param  {string=} params.companionCreativeIds - Select only in-stream video creatives with specified companion IDs.
-     * @param  {string=} params.creativeFieldIds - Select only creatives with specified creative field IDs.
-     * @param  {string=} params.ids - List of creative IDs.
+     * @param  {string=} params.campaignId - Select only creatives with this campaign ID.
+     * @param  {string=} params.companionCreativeIds - Select only in-stream video creatives with these companion IDs.
+     * @param  {string=} params.creativeFieldIds - Select only creatives with these creative field IDs.
+     * @param  {string=} params.ids - Select only creatives with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.renderingIds - Select only creatives with specified rendering IDs.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2010" will return objects with names like "creative June 2010", "creative April 2010" or simply "creative 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2010" or simply "creative".
-     * @param  {string=} params.sizeIds - Select only creatives with specified size.
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.renderingIds - Select only creatives with these rendering IDs.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015" or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015" or simply "creative".
+     * @param  {string=} params.sizeIds - Select only creatives with these size IDs.
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
-     * @param  {string=} params.studioCreativeId - Studio creative ID associated with DCM creatives.
-     * @param  {string=} params.types - Select only creatives with specified type of creative.
+     * @param  {string=} params.studioCreativeId - Select only creatives corresponding to this Studio creative ID.
+     * @param  {string=} params.types - Select only creatives with these creative types.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2420,13 +2420,13 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.directorySiteIds - Retrieve contacts of directory sites with this set of IDs. This is a required field.
-     * @param  {string=} params.ids - Set of IDs of specified directory site contacts to retrieve.
+     * @param  {string=} params.directorySiteIds - Select only directory site contacts with these directory site IDs. This is a required field.
+     * @param  {string=} params.ids - Select only directory site contacts with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2010" will return objects with names like "directory site contact June 2010", "directory site contact April 2010" or simply "directory site contact 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2010" or simply "directory site contact".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015" or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015" or simply "directory site contact".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2488,19 +2488,19 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.acceptsInStreamVideoPlacements - Select only sites that accept in-stream video placements. This field can be left blank.
-     * @param  {boolean=} params.acceptsInterstitialPlacements - Select only sites that accept interstitial placements. This field be left blank.
+     * @param  {boolean=} params.acceptsInStreamVideoPlacements - This search filter is no longer supported and will have no effect on the results returned.
+     * @param  {boolean=} params.acceptsInterstitialPlacements - This search filter is no longer supported and will have no effect on the results returned.
      * @param  {boolean=} params.acceptsPublisherPaidPlacements - Select only directory sites that accept publisher paid placements. This field can be left blank.
-     * @param  {boolean=} params.active - Whether to retrieve active directory sites. Leave blank to retrieve both active and inactive directory sites.
-     * @param  {string=} params.countryId - Country ID of directory sites to retrieve.
-     * @param  {string=} params.dfp_network_code - DFP network code of directory sites to retrieve.
-     * @param  {string=} params.ids - Set of IDs of specified directory sites to retrieve.
+     * @param  {boolean=} params.active - Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
+     * @param  {string=} params.countryId - Select only directory sites with this country ID.
+     * @param  {string=} params.dfp_network_code - Select only directory sites with this DFP network code.
+     * @param  {string=} params.ids - Select only directory sites with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
-     * @param  {string=} params.parentId - Parent ID of directory sites to retrieve.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
+     * @param  {string=} params.parentId - Select only directory sites with this parent ID.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2010" will return objects with names like "directory site June 2010", "directory site April 2010" or simply "directory site 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2010" or simply "directory site".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015" or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply "directory site".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2626,10 +2626,10 @@ function Dfareporting(options) {
      * @param  {boolean=} params.definitionsOnly - Examine only the specified ad or campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign is examined as well. In addition, when set to false, the status field is examined as well along with the enabledByDefault field.
      * @param  {boolean=} params.enabled - Select only enabled event tags. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
      * @param  {string=} params.eventTagTypes - Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
-     * @param  {string=} params.ids - Set of IDs of specified event tags to retrieve.
+     * @param  {string=} params.ids - Select only event tags with these IDs.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2010" will return objects with names like "eventtag June 2010", "eventtag April 2010" or simply "eventtag 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2010" or simply "eventtag".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015" or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015" or simply "eventtag".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2903,20 +2903,20 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserId - Retrieve Floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param  {string=} params.floodlightActivityGroupIds - Retrieve Floodlight activities with the specified Floodlight activity group IDs.
-     * @param  {string=} params.floodlightActivityGroupName - Retrieve Floodlight activities with the specified Floodlight activity group name.
-     * @param  {string=} params.floodlightActivityGroupTagString - Retrieve Floodlight activities with the specified Floodlight activity group tag string.
-     * @param  {string=} params.floodlightActivityGroupType - Retrieve Floodlight activities with the specified Floodlight activity group type.
-     * @param  {string=} params.floodlightConfigurationId - Retrieve Floodlight activities for the specified Floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param  {string=} params.ids - Retrieve Floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param  {string=} params.advertiserId - Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param  {string=} params.floodlightActivityGroupIds - Select only floodlight activities with the specified floodlight activity group IDs.
+     * @param  {string=} params.floodlightActivityGroupName - Select only floodlight activities with the specified floodlight activity group name.
+     * @param  {string=} params.floodlightActivityGroupTagString - Select only floodlight activities with the specified floodlight activity group tag string.
+     * @param  {string=} params.floodlightActivityGroupType - Select only floodlight activities with the specified floodlight activity group type.
+     * @param  {string=} params.floodlightConfigurationId - Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param  {string=} params.ids - Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2010" will return objects with names like "floodlightactivity June 2010", "floodlightactivity April 2010" or simply "floodlightactivity 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2010" or simply "floodlightactivity".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015" or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015" or simply "floodlightactivity".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
-     * @param  {string=} params.tagString - Retrieve Floodlight activities with the specified tag string.
+     * @param  {string=} params.tagString - Select only floodlight activities with the specified tag string.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -3094,16 +3094,16 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserId - Retrieve Floodlight activity groups with the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param  {string=} params.floodlightConfigurationId - Retrieve Floodlight activity groups with the specified Floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param  {string=} params.ids - Retrieve Floodlight activity groups with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param  {string=} params.advertiserId - Select only floodlight activity groups with the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param  {string=} params.floodlightConfigurationId - Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param  {string=} params.ids - Select only floodlight activity groups with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2010" will return objects with names like "floodlightactivitygroup June 2010", "floodlightactivitygroup April 2010" or simply "floodlightactivitygroup 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2010" or simply "floodlightactivitygroup".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015" or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015" or simply "floodlightactivitygroup".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
-     * @param  {string=} params.type - Retrieve Floodlight activity groups with the specified Floodlight activity group type.
+     * @param  {string=} params.type - Select only floodlight activity groups with the specified floodlight activity group type.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -3369,7 +3369,7 @@ function Dfareporting(options) {
     /**
      * dfareporting.landingPages.insert
      *
-     * @desc Inserts a new landing page for this campaign.
+     * @desc Inserts a new landing page for the specified campaign.
      *
      * @alias dfareporting.landingPages.insert
      * @memberOf! dfareporting(v2.0)
@@ -3399,7 +3399,7 @@ function Dfareporting(options) {
     /**
      * dfareporting.landingPages.list
      *
-     * @desc Retrieves the list of landing pages for this campaign.
+     * @desc Retrieves the list of landing pages for the specified campaign.
      *
      * @alias dfareporting.landingPages.list
      * @memberOf! dfareporting(v2.0)
@@ -3692,14 +3692,14 @@ function Dfareporting(options) {
      * @param  {string=} params.directorySiteIds - Select only placement groups that are associated with these directory sites.
      * @param  {string=} params.ids - Select only placement groups with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string=} params.placementGroupType - Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
      * @param  {string=} params.placementStrategyIds - Select only placement groups that are associated with these placement strategies.
      * @param  {string=} params.pricingTypes - Select only placement groups with these pricing types.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2010" will return placement groups with names like "placement group June 2010", "placement group May 2010" or simply "placements 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2010" or simply "placementgroup".
+     * @param  {string=} params.searchString - Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015" or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015" or simply "placementgroup".
      * @param  {string=} params.siteIds - Select only placement groups that are associated with these sites.
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3878,12 +3878,12 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.ids - Set of IDs of specified placement strategies to retrieve.
+     * @param  {string=} params.ids - Select only placement strategies with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2010" will return objects with names like "placementstrategy June 2010", "placementstrategy April 2010" or simply "placementstrategy 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2010" or simply "placementstrategy".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015" or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015" or simply "placementstrategy".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4073,15 +4073,15 @@ function Dfareporting(options) {
      * @param  {string=} params.groupIds - Select only placements that belong to these placement groups.
      * @param  {string=} params.ids - Select only placements with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string=} params.paymentSource - Select only placements with this payment source.
      * @param  {string=} params.placementStrategyIds - Select only placements that are associated with these placement strategies.
      * @param  {string=} params.pricingTypes - Select only placements with these pricing types.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2010" will return placements with names like "placement June 2010", "placement May 2010" or simply "placements 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2010" or simply "placement".
+     * @param  {string=} params.searchString - Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015" or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015" or simply "placement".
      * @param  {string=} params.siteIds - Select only placements that are associated with these sites.
      * @param  {string=} params.sizeIds - Select only placements that are associated with these sizes.
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4638,21 +4638,21 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.acceptsInStreamVideoPlacements - Select only sites that accept in-stream video placements.
-     * @param  {boolean=} params.acceptsInterstitialPlacements - Select only sites that accept interstitial placements.
+     * @param  {boolean=} params.acceptsInStreamVideoPlacements - This search filter is no longer supported and will have no effect on the results returned.
+     * @param  {boolean=} params.acceptsInterstitialPlacements - This search filter is no longer supported and will have no effect on the results returned.
      * @param  {boolean=} params.acceptsPublisherPaidPlacements - Select only sites that accept publisher paid placements.
      * @param  {boolean=} params.adWordsSite - Select only AdWords sites.
      * @param  {boolean=} params.approved - Select only approved sites.
-     * @param  {string=} params.campaignIds - Campaign IDs of sites to retrieve.
-     * @param  {string=} params.directorySiteIds - Directory site IDs of sites to retrieve.
-     * @param  {string=} params.ids - Set of IDs of specified sites to retrieve.
+     * @param  {string=} params.campaignIds - Select only sites with these campaign IDs.
+     * @param  {string=} params.directorySiteIds - Select only sites with these directory site IDs.
+     * @param  {string=} params.ids - Select only sites with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2010" will return objects with names like "site June 2010", "site April 2010" or simply "site 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2010" or simply "site".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015" or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015" or simply "site".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
-     * @param  {string=} params.subaccountId - Subaccount ID of sites to retrieve.
+     * @param  {string=} params.subaccountId - Select only sites with this subaccount ID.
      * @param  {boolean=} params.unmappedSite - Select only sites that have not been mapped to a directory site.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4802,11 +4802,11 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.height - Height of sizes to retrieve.
-     * @param  {boolean=} params.iabStandard - Whether only IAB standard sizes should be retrieved.
-     * @param  {string=} params.ids - Set of IDs of specified sizes to retrieve.
+     * @param  {integer=} params.height - Select only sizes with this height.
+     * @param  {boolean=} params.iabStandard - Select only IAB standard sizes.
+     * @param  {string=} params.ids - Select only sizes with these IDs.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {integer=} params.width - Width of sizes to retrieve.
+     * @param  {integer=} params.width - Select only sizes with this width.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4896,12 +4896,12 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.ids - The set of IDs of the subaccounts to retrieve.
+     * @param  {string=} params.ids - Select only subaccounts with these IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2010" will return objects with names like "subaccount June 2010", "subaccount April 2010" or simply "subaccount 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2010" or simply "subaccount".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015" or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015" or simply "subaccount".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5142,7 +5142,7 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.ids - Set of IDs of specified user role permissions to retrieve.
+     * @param  {string=} params.ids - Select only user role permissions with these IDs.
      * @param  {string} params.profileId - User profile ID associated with this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5262,13 +5262,13 @@ function Dfareporting(options) {
      * @memberOf! dfareporting(v2.0)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.accountUserRoleOnly - If true, select only account level user roles not associated with any specific subaccount.
-     * @param  {string=} params.ids - Set of IDs of specified user roles to retrieve.
+     * @param  {boolean=} params.accountUserRoleOnly - Select only account level user roles not associated with any specific subaccount.
+     * @param  {string=} params.ids - Select only user roles with the specified IDs.
      * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextPageToken from the previous result page.
+     * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2010" will return objects with names like "userrole June 2010", "userrole April 2010" or simply "userrole 2010". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2010" or simply "userrole".
-     * @param  {string=} params.sortField - The field by which to sort the list.
+     * @param  {string=} params.searchString - Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015" or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015" or simply "userrole".
+     * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
      * @param  {string=} params.subaccountId - Select only user roles that belong to this subaccount.
      * @param  {callback} callback - The callback that handles the response.

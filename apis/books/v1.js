@@ -986,6 +986,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.reason - The reason for which the book is removed from the library.
        * @param  {string} params.shelf - ID of bookshelf from which to remove a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to remove.
