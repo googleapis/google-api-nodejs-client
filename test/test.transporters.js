@@ -124,4 +124,50 @@ it('should return errors within response body as instances of Error', function(d
       done();
     });
   });
+
+  it('should handle 5xx responses that include errors', function(done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(500, { error: {message: 'There was an error!'}});
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert(err instanceof Error);
+      assert.equal(err.code, 500);
+      assert.equal(err.message, 'There was an error!');
+      assert.equal(result, null);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should handle a Backend Error', function(done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(500, {
+        error: {
+         errors: [
+           {
+             domain: 'global',
+             reason: 'backendError',
+             message: 'Backend Error'
+           }
+         ],
+         code: 500,
+         message: 'Backend Error'
+       }
+      });
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert(err instanceof Error);
+      assert.equal(err.code, 500);
+      assert.equal(err.message, 'Backend Error');
+      assert.equal(result, null);
+      scope.done();
+      done();
+    });
+  });
 });
