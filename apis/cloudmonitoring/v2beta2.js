@@ -25,8 +25,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for accessing Google Cloud and API monitoring data.
  * @namespace cloudmonitoring
- * @version  v2beta1
- * @variation v2beta1
+ * @version  v2beta2
+ * @variation v2beta2
  * @this Cloudmonitoring
  * @param {object=} options Options for Cloudmonitoring
  */
@@ -38,12 +38,70 @@ function Cloudmonitoring(options) {
   this.metricDescriptors = {
 
     /**
+     * cloudmonitoring.metricDescriptors.create
+     *
+     * @desc Create a new metric.
+     *
+     * @alias cloudmonitoring.metricDescriptors.create
+     * @memberOf! cloudmonitoring(v2beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - The project id. The value can be the numeric project ID or string-based project name.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudmonitoring.metricDescriptors.delete
+     *
+     * @desc Delete an existing metric.
+     *
+     * @alias cloudmonitoring.metricDescriptors.delete
+     * @memberOf! cloudmonitoring(v2beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.metric - Name of the metric.
+     * @param  {string} params.project - The project ID to which the metric belongs.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors/{metric}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'metric'],
+        pathParams: ['metric', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * cloudmonitoring.metricDescriptors.list
      *
      * @desc List metric descriptors that match the query. If the query is not set, then all of the metric descriptors will be returned. Large responses will be paginated, use the nextPageToken returned in the response to request subsequent pages of results by setting the pageToken query parameter to the value of the nextPageToken.
      *
      * @alias cloudmonitoring.metricDescriptors.list
-     * @memberOf! cloudmonitoring(v2beta1)
+     * @memberOf! cloudmonitoring(v2beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.count - Maximum number of metric descriptors per page. Used for pagination. If not specified, count = 100.
@@ -57,7 +115,7 @@ function Cloudmonitoring(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/{project}/metricDescriptors',
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
           method: 'GET'
         },
         params: params,
@@ -79,7 +137,7 @@ function Cloudmonitoring(options) {
      * @desc List the data points of the time series that match the metric and labels values and that have data points in the interval. Large responses are paginated; use the nextPageToken returned in the response to request subsequent pages of results by setting the pageToken query parameter to the value of the nextPageToken.
      *
      * @alias cloudmonitoring.timeseries.list
-     * @memberOf! cloudmonitoring(v2beta1)
+     * @memberOf! cloudmonitoring(v2beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.aggregator - The aggregation function that will reduce the data points in each window to a single point. This parameter is only valid for non-cumulative metric types.
@@ -99,12 +157,41 @@ function Cloudmonitoring(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/{project}/timeseries/{metric}',
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries/{metric}',
           method: 'GET'
         },
         params: params,
         requiredParams: ['project', 'metric', 'youngest'],
         pathParams: ['metric', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudmonitoring.timeseries.write
+     *
+     * @desc Put data points to one or more time series for one or more metrics. If a time series does not exist, a new time series will be created. It is not allowed to write a time series point that is older than the existing youngest point of that time series. Points that are older than the existing youngest point of that time series will be discarded silently. Therefore, users should make sure that points of a time series are written sequentially in the order of their end time.
+     *
+     * @alias cloudmonitoring.timeseries.write
+     * @memberOf! cloudmonitoring(v2beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - The project ID. The value can be the numeric project ID or string-based project name.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    write: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries:write',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
         context: self
       };
 
@@ -121,7 +208,7 @@ function Cloudmonitoring(options) {
      * @desc List the descriptors of the time series that match the metric and labels values and that have data points in the interval. Large responses are paginated; use the nextPageToken returned in the response to request subsequent pages of results by setting the pageToken query parameter to the value of the nextPageToken.
      *
      * @alias cloudmonitoring.timeseriesDescriptors.list
-     * @memberOf! cloudmonitoring(v2beta1)
+     * @memberOf! cloudmonitoring(v2beta2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.aggregator - The aggregation function that will reduce the data points in each window to a single point. This parameter is only valid for non-cumulative metric types.
@@ -141,7 +228,7 @@ function Cloudmonitoring(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta1/projects/{project}/timeseriesDescriptors/{metric}',
+          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseriesDescriptors/{metric}',
           method: 'GET'
         },
         params: params,

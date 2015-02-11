@@ -374,6 +374,36 @@ function Androidpublisher(options) {
     apks: {
 
       /**
+       * androidpublisher.edits.apks.addexternallyhosted
+       *
+       * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Android for Work, for applications distributed within the enterprise Private Channel.
+       *
+       * @alias androidpublisher.edits.apks.addexternallyhosted
+       * @memberOf! androidpublisher(v2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.editId - Unique identifier for this edit.
+       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      addexternallyhosted: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['packageName', 'editId'],
+          pathParams: ['editId', 'packageName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * androidpublisher.edits.apks.list
        *
        *
@@ -1135,7 +1165,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.tracks.patch
        *
-       * @desc Updates the track configuration for the specified track type. This method supports patch semantics.
+       * @desc Updates the track configuration for the specified track type. When halted, the rollout track cannot be updated without adding new APKs, and adding new APKs will cause it to resume. This method supports patch semantics.
        *
        * @alias androidpublisher.edits.tracks.patch
        * @memberOf! androidpublisher(v2)
@@ -1166,7 +1196,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.tracks.update
        *
-       * @desc Updates the track configuration for the specified track type.
+       * @desc Updates the track configuration for the specified track type. When halted, the rollout track cannot be updated without adding new APKs, and adding new APKs will cause it to resume.
        *
        * @alias androidpublisher.edits.tracks.update
        * @memberOf! androidpublisher(v2)

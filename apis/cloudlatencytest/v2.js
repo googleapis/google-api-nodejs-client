@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- *
+ * Google Cloud Network Performance Monitoring API
  *
  * @classdesc A Test API to report latency data.
  * @namespace cloudlatencytest

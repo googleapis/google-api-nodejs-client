@@ -522,8 +522,10 @@ function Blogger(options) {
      * @memberOf! blogger(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog to fetch pages from.
+     * @param  {string} params.blogId - ID of the blog to fetch Pages from.
      * @param  {boolean=} params.fetchBodies - Whether to retrieve the Page bodies.
+     * @param  {integer=} params.maxResults - Maximum number of Pages to fetch.
+     * @param  {string=} params.pageToken - Continuation token if the request is paged.
      * @param  {string=} params.status -
      * @param  {string=} params.view - Access level with which to view the returned result. Note that some fields require elevated access.
      * @param  {callback} callback - The callback that handles the response.
