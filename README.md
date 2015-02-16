@@ -15,6 +15,10 @@ This library is in Alpha. We will make an effort to support the library, but we 
 If you've used this library before `1.x`, see our [Migration Guide][migrating]
 to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy :)
 
+### Supported APIs
+
+The full list of supported APIs can be found [here][supported-list]. The API endpoints are automatically generated, so if the API is not in the list, it is currently not supported by this API client library. 
+
 ### Questions/problems?
 
 * Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
@@ -25,8 +29,6 @@ to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy :)
 If you're working with [Google Cloud Platform][cloudplatform] APIs such as
 Datastore, Cloud Storage or Pub/Sub, consider using [`gcloud`][gcloud], a
 Node idiomatic client for Google Cloud services.
-
-
 
 ## Installation
 
@@ -395,6 +397,7 @@ available in [COPYING][copying].
 See [CONTRIBUTING][contributing].
 
 [travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
+[supported-list]: https://developers.google.com/apis-explorer/
 [bugs]: https://github.com/google/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [travis]: https://travis-ci.org/google/google-api-nodejs-client
