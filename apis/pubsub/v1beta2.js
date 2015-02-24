@@ -1,0 +1,460 @@
+/**
+ * Copyright 2014 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* jshint maxlen: false */
+
+'use strict';
+
+var createAPIRequest = require('../../lib/apirequest');
+
+/**
+ * Google Cloud Pub/Sub API
+ *
+ * @classdesc Provides reliable, many-to-many, asynchronous messaging between applications.
+ * @namespace pubsub
+ * @version  v1beta2
+ * @variation v1beta2
+ * @this Pubsub
+ * @param {object=} options Options for Pubsub
+ */
+function Pubsub(options) {
+
+  var self = this;
+  this._options = options || {};
+
+  this.projects = {
+
+    subscriptions: {
+
+      /**
+       * pubsub.projects.subscriptions.acknowledge
+       *
+       * @desc Acknowledges the messages associated with the ack tokens in the AcknowledgeRequest. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
+       *
+       * @alias pubsub.projects.subscriptions.acknowledge
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.subscription -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      acknowledge: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+subscription}:acknowledge',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.create
+       *
+       * @desc Creates a subscription to a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
+       *
+       * @alias pubsub.projects.subscriptions.create
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.name -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+name}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.delete
+       *
+       * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
+       *
+       * @alias pubsub.projects.subscriptions.delete
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.subscription -
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+subscription}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.get
+       *
+       * @desc Gets the configuration details of a subscription.
+       *
+       * @alias pubsub.projects.subscriptions.get
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.subscription -
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+subscription}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.list
+       *
+       * @desc Lists matching subscriptions.
+       *
+       * @alias pubsub.projects.subscriptions.list
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {integer=} params.pageSize -
+       * @param  {string=} params.pageToken -
+       * @param  {string} params.project -
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+project}/subscriptions',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['project'],
+          pathParams: ['project'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.modifyAckDeadline
+       *
+       * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted.
+       *
+       * @alias pubsub.projects.subscriptions.modifyAckDeadline
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.subscription -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      modifyAckDeadline: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+subscription}:modifyAckDeadline',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.modifyPushConfig
+       *
+       * @desc Modifies the PushConfig for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty PushConfig) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the PushConfig.
+       *
+       * @alias pubsub.projects.subscriptions.modifyPushConfig
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.subscription -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      modifyPushConfig: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+subscription}:modifyPushConfig',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.pull
+       *
+       * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return UNAVAILABLE if there are too many concurrent pull requests pending for the given subscription.
+       *
+       * @alias pubsub.projects.subscriptions.pull
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.subscription -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      pull: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+subscription}:pull',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    topics: {
+
+      /**
+       * pubsub.projects.topics.create
+       *
+       * @desc Creates the given topic with the given name.
+       *
+       * @alias pubsub.projects.topics.create
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.name -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+name}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.delete
+       *
+       * @desc Deletes the topic with the given name. All subscriptions to this topic are detached from the topic. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions.
+       *
+       * @alias pubsub.projects.topics.delete
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.topic -
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+topic}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.get
+       *
+       * @desc Gets the configuration of a topic.
+       *
+       * @alias pubsub.projects.topics.get
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.topic -
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+topic}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.list
+       *
+       * @desc Lists matching topics.
+       *
+       * @alias pubsub.projects.topics.list
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {integer=} params.pageSize -
+       * @param  {string=} params.pageToken -
+       * @param  {string} params.project -
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+project}/topics',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['project'],
+          pathParams: ['project'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.publish
+       *
+       * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
+       *
+       * @alias pubsub.projects.topics.publish
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.topic -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      publish: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/v1beta2/{+topic}:publish',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      subscriptions: {
+
+        /**
+         * pubsub.projects.topics.subscriptions.list
+         *
+         * @desc Lists the name of the subscriptions for this topic.
+         *
+         * @alias pubsub.projects.topics.subscriptions.list
+         * @memberOf! pubsub(v1beta2)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {integer=} params.pageSize -
+         * @param  {string=} params.pageToken -
+         * @param  {string} params.topic -
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/v1beta2/{+topic}/subscriptions',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['topic'],
+            pathParams: ['topic'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    }
+  };
+}
+
+/**
+ * Exports Pubsub object
+ * @type Pubsub
+ */
+module.exports = Pubsub;
