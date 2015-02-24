@@ -16,7 +16,6 @@
 
 'use strict';
 
-var url = require('url');
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');

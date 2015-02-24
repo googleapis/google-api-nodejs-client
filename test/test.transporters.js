@@ -17,7 +17,6 @@
 'use strict';
 
 var assert = require('assert');
-var DefaultTransporter = require('../lib/transporters');
 var nock = require('nock');
 
 nock.disableNetConnect();
@@ -25,9 +24,6 @@ nock.disableNetConnect();
 describe('Transporters', function() {
 
   function noop() {}
-
-  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+.\\d+.\\d+';
-  var transporter = new DefaultTransporter();
 
   it('should automatically add content-type for POST requests', function() {
     var google = require('../lib/googleapis');
