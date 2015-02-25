@@ -19,8 +19,61 @@
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
 var nock = require('nock');
+var JWT = require('../lib/auth/jwtclient.js');
+var Compute = require('../lib/auth/computeclient.js');
 
 nock.disableNetConnect();
+
+describe('JWT client', function() {
+
+  it('should create a jwt', function () {
+    var jwt = new JWT('someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
+    assert.equal(jwt.email, 'someone@somewhere.com');
+    assert.equal(jwt.keyFile, 'file1');
+    assert.equal(jwt.key, 'key1');
+    assert.equal(jwt.scopes, 'scope1');
+    assert.equal(jwt.subject, 'subject1');
+  });
+
+  it('should create a jwt through googleapis', function () {
+    var jwt = new googleapis.auth.JWT('someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
+    assert.equal(jwt.email, 'someone@somewhere.com');
+    assert.equal(jwt.keyFile, 'file1');
+    assert.equal(jwt.key, 'key1');
+    assert.equal(jwt.scopes, 'scope1');
+    assert.equal(jwt.subject, 'subject1');
+  });
+
+  it('should create scoped JWT', function () {
+    var jwt = new googleapis.auth.JWT('someone@somewhere.com', 'file1', 'key1', null, 'subject1');
+    assert.equal(jwt.scopes, null);
+    assert.equal(jwt.createScopedRequired(), true);
+
+    // Create a scoped version of the token now.
+    var jwt2 = jwt.createScoped('scope1');
+
+    // The original token should be unchanged.
+    assert.equal(jwt.scopes, null);
+    assert.equal(jwt.createScopedRequired(), true);
+
+    // The new token should have scopes.
+    assert.equal(jwt2.scopes, 'scope1');
+    assert.equal(jwt2.createScopedRequired(), false);
+  });
+});
+
+describe('Compute client', function() {
+
+  it('should create a computeclient', function () {
+    var compute = new Compute();
+    assert.equal(compute.createScopedRequired(), false);
+  });
+
+  it('should create a computeclient', function () {
+    var compute = new googleapis.auth.Compute();
+    assert.equal(compute.createScopedRequired(), false);
+  });
+});
 
 describe('OAuth2 client', function() {
 
