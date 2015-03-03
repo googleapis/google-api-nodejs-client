@@ -543,7 +543,7 @@ function Gmail(options) {
        * @param  {object} params - Parameters for request
        * @param  {boolean=} params.deleted - Mark the email as permanently deleted (not TRASH) and only visible in Google Apps Vault to a Vault administrator. Only used for Google Apps for Work accounts.
        * @param  {string=} params.internalDateSource - Source for Gmail's internal date of the message.
-       * @param  {boolean=} params.neverMarkSpam - Ignore the Gmail spam classifer decision and never mark this email as SPAM in the mailbox.
+       * @param  {boolean=} params.neverMarkSpam - Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
        * @param  {boolean=} params.processForCalendar - Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Media resource metadata
