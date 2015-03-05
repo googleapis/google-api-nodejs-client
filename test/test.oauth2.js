@@ -1020,5 +1020,31 @@ describe('OAuth2 client', function() {
         done();
       });
     });
+
+    it('should pass requestOpts to the transporter', function(done) {
+      var scope = nock('https://accounts.google.com')
+          .post('/o/oauth2/token')
+          .reply(200, { access_token: 'abc', refresh_token: '123', expires_in: 10 });
+      var opts = {
+        requestOpts: {
+          proxy: 'http://my_proxy',
+          timeout: 123
+        }
+      };
+      var oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, opts);
+      var realRequest = oauth2client.transporter.request;
+      var actualRequestOpts;
+      oauth2client.transporter.request = function(passedRequestOpts) {
+        actualRequestOpts = passedRequestOpts;
+        return realRequest.apply(this, [].slice.call(arguments));
+      };
+      oauth2client.getToken('code here', function(err) {
+        assert(!err);
+        assert.equal(actualRequestOpts.proxy, 'http://my_proxy');
+        assert.equal(actualRequestOpts.timeout, 123);
+        scope.done();
+        done();
+      });
+    });
   });
 });
