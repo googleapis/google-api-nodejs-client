@@ -232,7 +232,7 @@ openssl pkcs12 -in key.p12 -nocerts -passin pass:notasecret -nodes -out key.pem
 Construct a JWT client, and authenticate your requests.
 
 ``` js
-var jwtClient = new googleapis.auth.JWT(
+var jwtClient = new google.auth.JWT(
   'serviceaccount@email.com',
   '/path/to/key.pem',
   null,
