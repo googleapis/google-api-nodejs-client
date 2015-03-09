@@ -36,7 +36,8 @@ describe('JWT client', function() {
   });
 
   it('should create a jwt through googleapis', function () {
-    var jwt = new googleapis.auth.JWT('someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
+    var jwt = new googleapis.auth.JWT(
+      'someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
     assert.equal(jwt.email, 'someone@somewhere.com');
     assert.equal(jwt.keyFile, 'file1');
     assert.equal(jwt.key, 'key1');

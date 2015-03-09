@@ -1299,6 +1299,7 @@ function Books(options) {
      * @param  {string=} params.partner - Brand results for partner ID.
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.source - String to identify the originator of this request.
+     * @param  {boolean=} params.user_library_consistent_read -
      * @param  {string} params.volumeId - ID of volume to retrieve.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
