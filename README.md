@@ -302,14 +302,40 @@ drive.files.insert({
 For more examples of creation and modification requests with media attachments,
 take a look at the `examples/mediaupload.js` sample.
 
-## Exposing request object
+## Batch Requests -- Experimental
 
-Every request to the API returns a [`request`][request] object, allowing you to track
-the request's progress or general information about the request.
+Batch requests are available by passing an array of API requests that are called without including a callback.
 
+The array can then be passed into the batch function of the googleapi object as the reqs field of the object you pass.
+
+Requests are no longer executed if they do not contain a callback.
+
+Example: Create a batch request of different URL shortener requests.
 ``` js
-var req = drive.files.insert(/* ... */);
-console.log(req.uri.href); // print out the request's URL.
+var batch = [];
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
+var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var urlshortener = google.urlshortener('v1');
+
+
+var batch = [];
+batch.push(urlshortener.url.insert({resource: {longUrl: 'reddit.com'}}));
+batch.push(urlshortener.url.insert({resource: {longUrl: 'youtube.com'}}));
+batch.push(urlshortener.url.insert({resource: {longUrl: 'stackoverflow.com'}}));
+batch.push(urlshortener.url.get({shortUrl: 'http://goo.gl/fHRR1U'}));
+
+//pass in the batch requests as the reqs field, and optionally supply the auth field!
+google.batch({reqs: batch, auth: oauth2Client}, function(err, res) {
+  if (err) {
+    return console.error(err);
+  }
+  //res is an array which contains the response of each request!
+  res.forEach(function(api_response) {
+    console.log(api_response); //do something not-so-cool with this response!
+  });
+});
+
 ```
 
 ## Options

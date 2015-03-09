@@ -35,6 +35,10 @@
   "dependencies": {
     "async": "~0.9.0",
     "gapitoken": "~0.1.2",
+    "http-string-parser": "0.0.4",
+    "memorystream": "^0.3.1",
+    "multipart-stream": "^1.0.0",
+    "qs": "^2.3.3",
     "request": "~2.51.0",
     "string-template": "~0.2.0"
   },

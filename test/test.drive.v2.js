@@ -98,26 +98,6 @@ describe('drive:v2', function() {
         var req = drive.files.get({ fileId: '123' }, noop);
         assert.equal(req.constructor.name, 'Request');
       });
-
-      it('should use logError callback if no callback specified', function(done) {
-        var drive = google.drive('v2');
-        nock('https://www.googleapis.com')
-        .get('/drive/v2/files?q=hello')
-        .reply(501, { error: 'not a real error' });
-
-        // logError internally uses console.error - let's monkey-patch the function to intercept
-        // calls to it, then restore the original function once we are done testing
-        var origFn = console.error;
-        console.error = function(err) {
-          assert.equal(err.code, 501);
-          console.error = origFn;
-          done();
-        };
-
-        assert.doesNotThrow(function() {
-          drive.files.list({ q: 'hello' });
-        });
-      });
     });
   });
 
