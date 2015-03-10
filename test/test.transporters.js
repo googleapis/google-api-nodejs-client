@@ -17,7 +17,6 @@
 'use strict';
 
 var assert = require('assert');
-var DefaultTransporter = require('../lib/transporters');
 var nock = require('nock');
 
 nock.disableNetConnect();
@@ -25,24 +24,6 @@ nock.disableNetConnect();
 describe('Transporters', function() {
 
   function noop() {}
-
-  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+.\\d+.\\d+';
-  var transporter = new DefaultTransporter();
-
-  it('should set default client user agent if none is set', function() {
-    var opts = transporter.configure({});
-    var re = new RegExp(defaultUserAgentRE);
-    assert(re.test(opts.headers['User-Agent']));
-  });
-
-  it('should append default client user agent to the existing user agent', function() {
-    var applicationName = 'MyTestApplication-1.0';
-    var opts = transporter.configure({
-      headers: { 'User-Agent': applicationName }
-    });
-    var re = new RegExp(applicationName + ' ' + defaultUserAgentRE);
-    assert(re.test(opts.headers['User-Agent']));
-  });
 
   it('should automatically add content-type for POST requests', function() {
     var google = require('../lib/googleapis');
@@ -71,7 +52,7 @@ describe('Transporters', function() {
     assert.equal(req.body, null);
   });
 
-it('should return errors within response body as instances of Error', function(done) {
+  it('should return errors within response body as instances of Error', function(done) {
     var google = require('../lib/googleapis');
     var drive = google.drive('v2');
 
