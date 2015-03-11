@@ -10,10 +10,14 @@ Google APIs. It also supports authorization and authentication with OAuth 2.0.
 
 This library is in Alpha. We will make an effort to support the library, but we reserve the right to make incompatible changes when necessary.
 
-### Migrating to version `1.x` of this library
+### Migrating to version `2.x` of this library
 
 If you've used this library before `1.x`, see our [Migration Guide][migrating]
 to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy :)
+
+If your code already works with a `1.x` version of this library, no work is required
+to move to `2.x`. However, it is recommended that you update any direct links in your code,
+as explained in the [Migration Guide][migrating].
 
 ### Supported APIs
 
@@ -129,7 +133,7 @@ oauth2Client.getToken(code, function(err, tokens) {
 });
 ```
 
-#### Settings global or service-level auth
+#### Setting global or service-level auth
 
 You can set the `auth` as a global or service-level option so you don't need to
 specify it every request.
@@ -251,6 +255,43 @@ jwtClient.authorize(function(err, tokens) {
   });
 });
 ```
+
+#### Choosing the correct credential type automatically
+
+Rather than manually creating an OAuth2 client, JWT client, or Compute client, the auth
+library can create the correct credential type for you, depending upon the environment your
+code is running under.
+
+For example, a JWT auth client will be created when your code is running
+on your local developer machine, and a Compute client will be created when the same code
+is running on a configured instance of Google Compute Engine.
+
+The code below shows how to retrieve a default credential type, depending upon the runtime
+environment. The createScopedRequired must be called to determine when you need to pass
+in the scopes manually, and when they have been set for you automatically based on the 
+configured runtime environment.
+
+``` js
+google.auth.getApplicationDefault(function(err, authClient) {
+  if (err) {
+    res.send('Failed to get the default credentials: ' + String(err));
+    return;
+  }
+  // The createScopedRequired method returns true when running on GAE or a local developer
+  // machine. In that case, the desired scopes must be passed in manually. When the code is
+  // running in GCE or a Managed VM, the scopes are pulled from the GCE metadata server.
+  // See https://cloud.google.com/compute/docs/authentication for more information.
+  if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+    // Scopes can be specified either as an array or as a single, space-delimited string.
+    authClient = authClient.createScoped(['https://www.googleapis.com/auth/compute']);
+  }
+  // Fetch the list of GCE zones within a project.
+  // NOTE: You must fill in your valid project ID before running this sample!
+  var projectId = 'fill in your project id here!';
+  compute.zones.list({ project: projectId, auth: authClient }, function(error, result) {
+    console.log(error, result);
+  });
+  ```
 
 ### Media Uploads
 

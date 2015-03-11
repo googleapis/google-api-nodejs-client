@@ -1,3 +1,31 @@
+# Migrating from version `1.x` to `2.x`
+
+Code written against a `1.x` version of this library should continue to work with the `2.x` 
+version. However, you may need to update any direct links in your code to
+ensure better forward compatibility.
+
+In the 2.0 version of this library, the authentication and authorization code was moved
+to the new [google-nodejs-auth-library][googleauth], and a dependency was taken from 
+this library to the new auth module. The list of files which were moved from this library to the 
+new auth module are:
+
+```
+lib/auth/authclient.js
+lib/auth/computeclient.js
+lib/auth/jwtclient.js
+lib/auth/loginticket.js
+lib/auth/oauth2client/js
+lib/pemverifier.js
+lib/transporters.js
+lib/utils.js
+```
+
+In each case, a stub file has been left behind in this library, forwarding the link to the
+new version of the file in the [google-nodejs-auth-library][googleauth] module. If your code 
+directly requires any of these files, you should add a dependency on the 
+[google-nodejs-auth-library][googleauth]
+module, and update your requires statement to link to the version of the file within that library.
+
 # Migrating from version `0.x.x` to `1.x`
 
 Many changes and improvements have been made to the `google-api-nodejs-client`
@@ -172,3 +200,4 @@ requests in `1.0` due to their unpopularity and instability.
 [request]: https://github.com/mikeal/request
 [readme]: https://github.com/google/google-api-nodejs-client/tree/master/README.md
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
+[googleauth]: https://github.com/google/google-api-nodejs-client
