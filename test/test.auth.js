@@ -26,6 +26,15 @@ nock.disableNetConnect();
 
 describe('JWT client', function() {
 
+  it('should expose the default auth module', function () {
+    var defaultAuthExists = false;
+    if (googleapis.auth.getApplicationDefault) {
+      defaultAuthExists = true;
+    }
+
+    assert.equal(true, defaultAuthExists);
+  });
+
   it('should create a jwt', function () {
     var jwt = new JWT('someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
     assert.equal(jwt.email, 'someone@somewhere.com');
