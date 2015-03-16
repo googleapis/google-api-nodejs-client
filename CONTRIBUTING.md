@@ -43,12 +43,6 @@ You can pass in a custom Discovery URL:
 node scripts/generate --discovery-url "http://discoveryurl.example.com"
 ```
 
-Or a custom Base URL:
-
-``` sh
-node scripts/generate --base-url "http://baseurl.example.com"
-```
-
 ## Generating Documentation
 
 You can generate the documentation for the APIs by running:
