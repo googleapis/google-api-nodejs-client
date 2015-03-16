@@ -472,7 +472,7 @@ function Calendar(options) {
     /**
      * calendar.calendars.clear
      *
-     * @desc Clears a primary calendar. This operation deletes all data associated with the primary calendar of an account and cannot be undone.
+     * @desc Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
      *
      * @alias calendar.calendars.clear
      * @memberOf! calendar(v3)
@@ -500,7 +500,7 @@ function Calendar(options) {
     /**
      * calendar.calendars.delete
      *
-     * @desc Deletes a secondary calendar.
+     * @desc Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
      *
      * @alias calendar.calendars.delete
      * @memberOf! calendar(v3)

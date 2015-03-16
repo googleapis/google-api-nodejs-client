@@ -38,6 +38,33 @@ function Content(options) {
   this.accounts = {
 
     /**
+     * content.accounts.authinfo
+     *
+     * @desc Returns information about the authenticated user.
+     *
+     * @alias content.accounts.authinfo
+     * @memberOf! content(v2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    authinfo: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/accounts/authinfo',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * content.accounts.custombatch
      *
      * @desc Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.

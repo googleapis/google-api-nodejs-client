@@ -109,7 +109,7 @@ function Pubsub(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/{+subscription}',
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/{subscription}',
           method: 'DELETE'
         },
         params: params,
@@ -137,7 +137,7 @@ function Pubsub(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/{+subscription}',
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/{subscription}',
           method: 'GET'
         },
         params: params,
@@ -339,7 +339,7 @@ function Pubsub(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/{+topic}',
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/{topic}',
           method: 'DELETE'
         },
         params: params,
@@ -367,7 +367,7 @@ function Pubsub(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/{+topic}',
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/{topic}',
           method: 'GET'
         },
         params: params,

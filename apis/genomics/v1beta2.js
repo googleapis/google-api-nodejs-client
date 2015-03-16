@@ -682,7 +682,7 @@ function Genomics(options) {
      * @param  {object=} params - Parameters for request
      * @param  {integer=} params.pageSize - The maximum number of results returned by this request.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.projectNumber - Only return datasets which belong to this Google Developers Console project. Only accepts project numbers. Returns all public projects if no project number is specified.
+     * @param  {string=} params.projectNumber - The project to list datasets for.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

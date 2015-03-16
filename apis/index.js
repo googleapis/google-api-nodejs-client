@@ -60,6 +60,7 @@ var APIs = {
   'adsense': requireAPI('adsense'),
   'adsensehost': requireAPI('adsensehost'),
   'analytics': requireAPI('analytics'),
+  'androidenterprise': requireAPI('androidenterprise'),
   'androidpublisher': requireAPI('androidpublisher'),
   'appsactivity': requireAPI('appsactivity'),
   'appstate': requireAPI('appstate'),

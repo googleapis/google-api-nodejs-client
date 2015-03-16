@@ -607,7 +607,7 @@ function Drive(options) {
     /**
      * drive.files.delete
      *
-     * @desc Permanently deletes a file by ID. Skips the trash.
+     * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file.
      *
      * @alias drive.files.delete
      * @memberOf! drive(v2)
@@ -1243,7 +1243,7 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.fileId - The ID for the file.
      * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' should also downgrade the current owners to writers.
+     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1274,7 +1274,7 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.fileId - The ID for the file.
      * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' should also downgrade the current owners to writers.
+     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

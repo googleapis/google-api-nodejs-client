@@ -53,7 +53,7 @@ function Cloudlatencytest(options) {
     updateaggregatedstats: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/v2/statscollection/updateaggregatedstats',
+          url: 'https://cloudlatencytest-pa.googleapis.com/v2/statscollection/updateaggregatedstats',
           method: 'POST'
         },
         params: params,
@@ -81,7 +81,7 @@ function Cloudlatencytest(options) {
     updatestats: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/v2/statscollection/updatestats',
+          url: 'https://cloudlatencytest-pa.googleapis.com/v2/statscollection/updatestats',
           method: 'POST'
         },
         params: params,

@@ -143,7 +143,7 @@ function Admin(options) {
     stop: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1//admin/directory_v1/channels/stop',
+          url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
           method: 'POST'
         },
         params: params,

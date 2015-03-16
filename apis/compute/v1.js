@@ -49,7 +49,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -78,8 +78,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Name of the address resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.region - Name of the region scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -108,8 +108,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Name of the address resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.region - Name of the region scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -137,8 +137,8 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.region - Name of the region scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -170,8 +170,8 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.region - Name of the region scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -418,7 +418,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -447,8 +447,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.diskType - Name of the disk type resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -479,8 +479,8 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -515,7 +515,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -543,9 +543,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - Name of the persistent disk resource to snapshot.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.disk - Name of the persistent disk to snapshot.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -568,15 +568,15 @@ function Compute(options) {
     /**
      * compute.disks.delete
      *
-     * @desc Deletes the specified persistent disk resource.
+     * @desc Deletes the specified persistent disk.
      *
      * @alias compute.disks.delete
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - Name of the persistent disk resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.disk - Name of the persistent disk to delete.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -598,15 +598,15 @@ function Compute(options) {
     /**
      * compute.disks.get
      *
-     * @desc Returns the specified persistent disk resource.
+     * @desc Returns a specified persistent disk.
      *
      * @alias compute.disks.get
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - Name of the persistent disk resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.disk - Name of the persistent disk to return.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -628,15 +628,15 @@ function Compute(options) {
     /**
      * compute.disks.insert
      *
-     * @desc Creates a persistent disk resource in the specified project using the data included in the request.
+     * @desc Creates a persistent disk in the specified project using the data included in the request.
      *
      * @alias compute.disks.insert
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string=} params.sourceImage - Optional. Source image to restore onto a disk.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -659,7 +659,7 @@ function Compute(options) {
     /**
      * compute.disks.list
      *
-     * @desc Retrieves the list of persistent disk resources contained within the specified zone.
+     * @desc Retrieves the list of persistent disks contained within the specified zone.
      *
      * @alias compute.disks.list
      * @memberOf! compute(v1)
@@ -668,8 +668,8 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -702,7 +702,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.firewall - Name of the firewall resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -731,7 +731,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.firewall - Name of the firewall resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -759,7 +759,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -791,7 +791,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -820,7 +820,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.firewall - Name of the firewall resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -850,7 +850,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.firewall - Name of the firewall resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1072,7 +1072,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Name of the address resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1101,7 +1101,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.address - Name of the address resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1129,7 +1129,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1161,7 +1161,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1348,7 +1348,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1377,7 +1377,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1406,7 +1406,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1437,7 +1437,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1652,7 +1652,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.image - Name of the image resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1674,14 +1674,14 @@ function Compute(options) {
     /**
      * compute.images.deprecate
      *
-     * @desc Sets the deprecation status of an image. If no message body is given, clears the deprecation status instead.
+     * @desc Sets the deprecation status of an image.  If an empty request body is given, clears the deprecation status instead.
      *
      * @alias compute.images.deprecate
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.image - Image name.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1711,7 +1711,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.image - Name of the image resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1739,7 +1739,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1771,7 +1771,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1925,10 +1925,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Instance name.
-     * @param  {string} params.networkInterface - Network interface name.
-     * @param  {string} params.project - Project name.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.instance - The instance name for this request.
+     * @param  {string} params.networkInterface - The name of the network interface to add to this instance.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1960,7 +1960,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1982,15 +1982,15 @@ function Compute(options) {
     /**
      * compute.instances.attachDisk
      *
-     * @desc Attaches a disk resource to an instance.
+     * @desc Attaches a Disk resource to an instance.
      *
      * @alias compute.instances.attachDisk
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Instance name.
-     * @param  {string} params.project - Project name.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2013,15 +2013,15 @@ function Compute(options) {
     /**
      * compute.instances.delete
      *
-     * @desc Deletes the specified instance resource.
+     * @desc Deletes the specified Instance resource. For more information, see Shutting down an instance.
      *
      * @alias compute.instances.delete
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2049,11 +2049,11 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.accessConfig - Access config name.
-     * @param  {string} params.instance - Instance name.
-     * @param  {string} params.networkInterface - Network interface name.
-     * @param  {string} params.project - Project name.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.accessConfig - The name of the access config to delete.
+     * @param  {string} params.instance - The instance name for this request.
+     * @param  {string} params.networkInterface - The name of the network interface.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2083,8 +2083,8 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.deviceName - Disk device name to detach.
      * @param  {string} params.instance - Instance name.
-     * @param  {string} params.project - Project name.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2113,8 +2113,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the The name of the zone for this request..
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2143,8 +2143,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2172,8 +2172,8 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2205,8 +2205,8 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2235,8 +2235,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2258,17 +2258,17 @@ function Compute(options) {
     /**
      * compute.instances.setDiskAutoDelete
      *
-     * @desc Sets the auto-delete flag for a disk attached to an instance
+     * @desc Sets the auto-delete flag for a disk attached to an instance.
      *
      * @alias compute.instances.setDiskAutoDelete
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean} params.autoDelete - Whether to auto-delete the disk when the instance is deleted.
-     * @param  {string} params.deviceName - Disk device name to modify.
-     * @param  {string} params.instance - Instance name.
-     * @param  {string} params.project - Project name.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.deviceName - The device name of the disk to modify.
+     * @param  {string} params.instance - The instance name.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2297,8 +2297,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2328,8 +2328,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Instance name.
-     * @param  {string} params.project - Project name.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2359,8 +2359,8 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2383,15 +2383,15 @@ function Compute(options) {
     /**
      * compute.instances.start
      *
-     * @desc Starts an instance
+     * @desc This method starts an instance that was stopped using the using the instances().stop method. For more information, see Restart an instance.
      *
      * @alias compute.instances.start
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance resource to start.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2413,15 +2413,15 @@ function Compute(options) {
     /**
      * compute.instances.stop
      *
-     * @desc Stops an instance
+     * @desc This method stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur per-minute, virtual machine usage charges while they are stopped, but any resources that the virtual machine is using, such as persistent disks and static IP addresses,will continue to be charged until they are deleted. For more information, see Stopping an instance.
      *
      * @alias compute.instances.stop
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance resource to start.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2454,7 +2454,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.license - Name of the license resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2519,7 +2519,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.machineType - Name of the machine type resource to return.
      * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2551,7 +2551,7 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2584,7 +2584,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.network - Name of the network resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2613,7 +2613,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.network - Name of the network resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2641,7 +2641,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2673,7 +2673,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2705,7 +2705,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project resource to retrieve.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2725,6 +2725,64 @@ function Compute(options) {
     },
 
     /**
+     * compute.projects.moveDisk
+     *
+     * @desc Moves a persistent disk from one zone to another.
+     *
+     * @alias compute.projects.moveDisk
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    moveDisk: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/moveDisk',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.projects.moveInstance
+     *
+     * @desc Moves an instance and its attached persistent disks from one zone to another.
+     *
+     * @alias compute.projects.moveInstance
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    moveInstance: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/moveInstance',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.projects.setCommonInstanceMetadata
      *
      * @desc Sets metadata common to all instances within the specified project using the data included in the request.
@@ -2733,7 +2791,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2756,13 +2814,13 @@ function Compute(options) {
     /**
      * compute.projects.setUsageExportBucket
      *
-     * @desc Sets usage export location
+     * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
      *
      * @alias compute.projects.setUsageExportBucket
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2796,7 +2854,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2826,7 +2884,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2858,7 +2916,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2891,7 +2949,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2923,7 +2981,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4036,7 +4094,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4066,7 +4124,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the operation resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4098,7 +4156,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4131,7 +4189,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4163,7 +4221,7 @@ function Compute(options) {
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
