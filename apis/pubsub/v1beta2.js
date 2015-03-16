@@ -113,7 +113,7 @@ function Pubsub(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+subscription}',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['subscription'],
             method: 'DELETE'
           },
           params: params,
@@ -141,7 +141,7 @@ function Pubsub(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+subscription}',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['subscription'],
             method: 'GET'
           },
           params: params,
@@ -171,7 +171,7 @@ function Pubsub(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+project}/subscriptions',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['project'] + '/subscriptions',
             method: 'GET'
           },
           params: params,
@@ -200,7 +200,7 @@ function Pubsub(options) {
       modifyAckDeadline: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+subscription}:modifyAckDeadline',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['subscription'] + ':modifyAckDeadline',
             method: 'POST'
           },
           params: params,
@@ -229,7 +229,7 @@ function Pubsub(options) {
       modifyPushConfig: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+subscription}:modifyPushConfig',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['subscription'] + ':modifyPushConfig',
             method: 'POST'
           },
           params: params,
@@ -318,7 +318,7 @@ function Pubsub(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+topic}',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['topic'],
             method: 'DELETE'
           },
           params: params,
@@ -346,7 +346,7 @@ function Pubsub(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+topic}',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['topic'],
             method: 'GET'
           },
           params: params,
@@ -376,7 +376,7 @@ function Pubsub(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/v1beta2/{+project}/topics',
+            url: 'https://pubsub.googleapis.com/v1beta2/' + params['project'] +'/topics',
             method: 'GET'
           },
           params: params,
@@ -437,7 +437,7 @@ function Pubsub(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/v1beta2/{+topic}/subscriptions',
+              url: 'https://pubsub.googleapis.com/v1beta2/' + params['topic'] + '/subscriptions',
               method: 'GET'
             },
             params: params,
