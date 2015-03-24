@@ -200,4 +200,4 @@ requests in `1.0` due to their unpopularity and instability.
 [request]: https://github.com/mikeal/request
 [readme]: https://github.com/google/google-api-nodejs-client/tree/master/README.md
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
-[googleauth]: https://github.com/google/google-api-nodejs-client
+[googleauth]: https://github.com/google/google-auth-library-nodejs
