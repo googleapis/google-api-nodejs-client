@@ -40,21 +40,21 @@
     "async": "~0.9.0",
     "gapitoken": "~0.1.2",
     "google-auth-library": "~0.9.3",
-    "request": "~2.51.0",
+    "request": "~2.54.0",
     "string-template": "~0.2.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.1",
-    "istanbul": "~0.3.2",
+    "istanbul": "^0.3.2",
     "js-beautify": "^1.5.1",
     "jshint": "^2.5.5",
-    "jsdoc": "~3.3.0-alpha9",
-    "mkdirp": "~0.5.0",
-    "mocha": "^1.8.1",
-    "nock": "~0.46.0",
+    "jsdoc": "^3.3.0-beta3",
+    "mkdirp": "^0.5.0",
+    "mocha": "^2.2.1",
+    "nock": "^1.2.1",
     "rimraf": "^2.2.8",
     "swig": "^1.4.2",
-    "url": "~0.10.1",
+    "url": "^0.10.1",
     "minimist": "^1.1.0"
   },
   "scripts": {
