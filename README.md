@@ -291,7 +291,8 @@ google.auth.getApplicationDefault(function(err, authClient) {
   compute.zones.list({ project: projectId, auth: authClient }, function(error, result) {
     console.log(error, result);
   });
-  ```
+});
+```
 
 ### Media Uploads
 
