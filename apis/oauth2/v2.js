@@ -38,7 +38,7 @@ function Oauth2(options) {
   /**
    * oauth2.getCertForOpenIdConnect
    *
-   *
+   * 
    *
    * @alias oauth2.getCertForOpenIdConnect
    * @memberOf! oauth2(v2)
@@ -65,14 +65,15 @@ function Oauth2(options) {
   /**
    * oauth2.tokeninfo
    *
-   *
+   * 
    *
    * @alias oauth2.tokeninfo
    * @memberOf! oauth2(v2)
    *
    * @param  {object=} params - Parameters for request
-   * @param  {string=} params.access_token -
-   * @param  {string=} params.id_token -
+   * @param  {string=} params.access_token - 
+   * @param  {string=} params.id_token - 
+   * @param  {string=} params.token_handle - 
    * @param  {callback} callback - The callback that handles the response.
    * @return {object} Request object
    */
@@ -96,7 +97,7 @@ function Oauth2(options) {
     /**
      * oauth2.userinfo.get
      *
-     *
+     * 
      *
      * @alias oauth2.userinfo.get
      * @memberOf! oauth2(v2)
@@ -127,7 +128,7 @@ function Oauth2(options) {
         /**
          * oauth2.userinfo.v2.me.get
          *
-         *
+         * 
          *
          * @alias oauth2.userinfo.v2.me.get
          * @memberOf! oauth2(v2)

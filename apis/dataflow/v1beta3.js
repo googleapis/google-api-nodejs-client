@@ -50,8 +50,8 @@ function Dataflow(options) {
          * @memberOf! dataflow(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId -
-         * @param  {string=} params.view -
+         * @param  {string} params.projectId - 
+         * @param  {string=} params.view - 
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -80,9 +80,9 @@ function Dataflow(options) {
          * @memberOf! dataflow(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.jobId -
-         * @param  {string} params.projectId -
-         * @param  {string=} params.view -
+         * @param  {string} params.jobId - 
+         * @param  {string} params.projectId - 
+         * @param  {string=} params.view - 
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -110,9 +110,9 @@ function Dataflow(options) {
          * @memberOf! dataflow(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.jobId -
-         * @param  {string} params.projectId -
-         * @param  {string=} params.startTime -
+         * @param  {string} params.jobId - 
+         * @param  {string} params.projectId - 
+         * @param  {string=} params.startTime - 
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -140,10 +140,10 @@ function Dataflow(options) {
          * @memberOf! dataflow(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {integer=} params.pageSize -
-         * @param  {string=} params.pageToken -
-         * @param  {string} params.projectId -
-         * @param  {string=} params.view -
+         * @param  {integer=} params.pageSize - 
+         * @param  {string=} params.pageToken - 
+         * @param  {string} params.projectId - 
+         * @param  {string=} params.view - 
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -171,8 +171,8 @@ function Dataflow(options) {
          * @memberOf! dataflow(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.jobId -
-         * @param  {string} params.projectId -
+         * @param  {string} params.jobId - 
+         * @param  {string} params.projectId - 
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -201,8 +201,8 @@ function Dataflow(options) {
          * @memberOf! dataflow(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.jobId -
-         * @param  {string} params.projectId -
+         * @param  {string} params.jobId - 
+         * @param  {string} params.projectId - 
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -233,13 +233,13 @@ function Dataflow(options) {
            * @memberOf! dataflow(v1beta3)
            *
            * @param  {object} params - Parameters for request
-           * @param  {string=} params.endTime -
-           * @param  {string} params.jobId -
-           * @param  {string=} params.minimumImportance -
-           * @param  {integer=} params.pageSize -
-           * @param  {string=} params.pageToken -
-           * @param  {string} params.projectId -
-           * @param  {string=} params.startTime -
+           * @param  {string=} params.endTime - 
+           * @param  {string} params.jobId - 
+           * @param  {string=} params.minimumImportance - 
+           * @param  {integer=} params.pageSize - 
+           * @param  {string=} params.pageToken - 
+           * @param  {string} params.projectId - 
+           * @param  {string=} params.startTime - 
            * @param  {callback} callback - The callback that handles the response.
            * @return {object} Request object
            */
@@ -270,8 +270,8 @@ function Dataflow(options) {
            * @memberOf! dataflow(v1beta3)
            *
            * @param  {object} params - Parameters for request
-           * @param  {string} params.jobId -
-           * @param  {string} params.projectId -
+           * @param  {string} params.jobId - 
+           * @param  {string} params.projectId - 
            * @param  {object} params.resource - Request body data
            * @param  {callback} callback - The callback that handles the response.
            * @return {object} Request object
@@ -300,8 +300,8 @@ function Dataflow(options) {
            * @memberOf! dataflow(v1beta3)
            *
            * @param  {object} params - Parameters for request
-           * @param  {string} params.jobId -
-           * @param  {string} params.projectId -
+           * @param  {string} params.jobId - 
+           * @param  {string} params.projectId - 
            * @param  {object} params.resource - Request body data
            * @param  {callback} callback - The callback that handles the response.
            * @return {object} Request object

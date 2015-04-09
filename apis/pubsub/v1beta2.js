@@ -48,7 +48,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription -
+       * @param  {string} params.subscription - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -77,7 +77,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name -
+       * @param  {string} params.name - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -106,7 +106,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription -
+       * @param  {string} params.subscription - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -134,7 +134,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription -
+       * @param  {string} params.subscription - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -162,9 +162,9 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {integer=} params.pageSize -
-       * @param  {string=} params.pageToken -
-       * @param  {string} params.project -
+       * @param  {integer=} params.pageSize - 
+       * @param  {string=} params.pageToken - 
+       * @param  {string} params.project - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -192,7 +192,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription -
+       * @param  {string} params.subscription - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -221,7 +221,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription -
+       * @param  {string} params.subscription - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -250,7 +250,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription -
+       * @param  {string} params.subscription - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -282,7 +282,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name -
+       * @param  {string} params.name - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -305,13 +305,13 @@ function Pubsub(options) {
       /**
        * pubsub.projects.topics.delete
        *
-       * @desc Deletes the topic with the given name. All subscriptions to this topic are detached from the topic. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions.
+       * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted.
        *
        * @alias pubsub.projects.topics.delete
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.topic -
+       * @param  {string} params.topic - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -339,7 +339,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.topic -
+       * @param  {string} params.topic - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -367,9 +367,9 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {integer=} params.pageSize -
-       * @param  {string=} params.pageToken -
-       * @param  {string} params.project -
+       * @param  {integer=} params.pageSize - 
+       * @param  {string=} params.pageToken - 
+       * @param  {string} params.project - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -397,7 +397,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.topic -
+       * @param  {string} params.topic - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -428,9 +428,9 @@ function Pubsub(options) {
          * @memberOf! pubsub(v1beta2)
          *
          * @param  {object} params - Parameters for request
-         * @param  {integer=} params.pageSize -
-         * @param  {string=} params.pageToken -
-         * @param  {string} params.topic -
+         * @param  {integer=} params.pageSize - 
+         * @param  {string=} params.pageToken - 
+         * @param  {string} params.topic - 
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */

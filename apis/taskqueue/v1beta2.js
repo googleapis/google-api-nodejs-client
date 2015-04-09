@@ -234,8 +234,8 @@ function Taskqueue(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.newLeaseSeconds - The new lease in seconds.
      * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.task -
-     * @param  {string} params.taskqueue -
+     * @param  {string} params.task - 
+     * @param  {string} params.taskqueue - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -266,8 +266,8 @@ function Taskqueue(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer} params.newLeaseSeconds - The new lease in seconds.
      * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.task -
-     * @param  {string} params.taskqueue -
+     * @param  {string} params.task - 
+     * @param  {string} params.taskqueue - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

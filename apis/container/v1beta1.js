@@ -283,6 +283,40 @@ function Container(options) {
 
           return createAPIRequest(parameters, callback);
         }
+      },
+
+      tokens: {
+
+        /**
+         * container.projects.zones.tokens.get
+         *
+         * @desc Gets a compute-rw scoped OAuth2 access token for . Authentication is performed to ensure that the caller is a member of  and that the request is coming from the expected master VM for the specified cluster. See go/gke-cross-project-auth for more details.
+         *
+         * @alias container.projects.zones.tokens.get
+         * @memberOf! container(v1beta1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.clusterName - The name of the specified cluster.
+         * @param  {string} params.masterProjectId - The hosted master project from which this request is coming.
+         * @param  {string} params.projectNumber - The project number for which the access token is being requested.
+         * @param  {string} params.zoneId - The zone of the specified cluster.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/container/v1beta1/projects/{masterProjectId}/zones/{zoneId}/tokens/{projectNumber}/{clusterName}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['masterProjectId', 'zoneId', 'projectNumber', 'clusterName'],
+            pathParams: ['clusterName', 'masterProjectId', 'projectNumber', 'zoneId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
       }
     }
   };

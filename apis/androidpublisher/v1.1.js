@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Play Android Developer API
+ * Google Play Developer API
  *
  * @classdesc Lets Android application developers access their Google Play accounts.
  * @namespace androidpublisher

@@ -102,7 +102,7 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.subscription -
+     * @param  {string} params.subscription - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -130,7 +130,7 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.subscription -
+     * @param  {string} params.subscription - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -158,9 +158,9 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults -
-     * @param  {string=} params.pageToken -
-     * @param  {string=} params.query -
+     * @param  {integer=} params.maxResults - 
+     * @param  {string=} params.pageToken - 
+     * @param  {string=} params.query - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -326,13 +326,13 @@ function Pubsub(options) {
     /**
      * pubsub.topics.delete
      *
-     * @desc Deletes the topic with the given name. All subscriptions to this topic are also deleted. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
+     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
      *
      * @alias pubsub.topics.delete
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.topic -
+     * @param  {string} params.topic - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -360,7 +360,7 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.topic -
+     * @param  {string} params.topic - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -388,9 +388,9 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults -
-     * @param  {string=} params.pageToken -
-     * @param  {string=} params.query -
+     * @param  {integer=} params.maxResults - 
+     * @param  {string=} params.pageToken - 
+     * @param  {string=} params.query - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

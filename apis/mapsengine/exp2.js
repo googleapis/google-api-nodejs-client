@@ -331,7 +331,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.processingStatus -
+     * @param  {string=} params.processingStatus - 
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
@@ -754,7 +754,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.processingStatus -
+     * @param  {string=} params.processingStatus - 
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
@@ -1241,7 +1241,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.processingStatus -
+     * @param  {string=} params.processingStatus - 
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
@@ -1619,7 +1619,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.processingStatus -
+     * @param  {string=} params.processingStatus - 
      * @param  {string} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
@@ -1954,7 +1954,7 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the table.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1990,7 +1990,7 @@ function Mapsengine(options) {
      * @param  {string=} params.modifiedAfter - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or after this time.
      * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.processingStatus -
+     * @param  {string=} params.processingStatus - 
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
      * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.

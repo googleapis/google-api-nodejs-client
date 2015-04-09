@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Resource Views API
+ * Google Compute Engine Instance Groups API
  *
  * @classdesc The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
  * @namespace resourceviews
