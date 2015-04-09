@@ -37,7 +37,7 @@ var compute = google.compute('v1');
 // Get the appropriate type of credential client, depending upon the runtime environment.
 google.auth.getApplicationDefault(function(err, authClient) {
   if (err) {
-    res.send('Failed to get the default credentials: ' + String(err));
+    console.log('Failed to get the default credentials: ' + String(err));
     return;
   }
   // The createScopedRequired method returns true when running on GAE or a local developer
