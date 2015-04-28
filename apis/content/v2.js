@@ -427,7 +427,7 @@ function Content(options) {
     /**
      * content.accountstatuses.custombatch
      *
-     *
+     * 
      *
      * @alias content.accountstatuses.custombatch
      * @memberOf! content(v2)
@@ -669,7 +669,7 @@ function Content(options) {
     /**
      * content.datafeeds.custombatch
      *
-     *
+     * 
      *
      * @alias content.datafeeds.custombatch
      * @memberOf! content(v2)
@@ -703,8 +703,8 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId -
-     * @param  {string} params.merchantId -
+     * @param  {string} params.datafeedId - 
+     * @param  {string} params.merchantId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -732,8 +732,8 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId -
-     * @param  {string} params.merchantId -
+     * @param  {string} params.datafeedId - 
+     * @param  {string} params.merchantId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -761,7 +761,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId -
+     * @param  {string} params.merchantId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -820,8 +820,8 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId -
-     * @param  {string} params.merchantId -
+     * @param  {string} params.datafeedId - 
+     * @param  {string} params.merchantId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -850,8 +850,8 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId -
-     * @param  {string} params.merchantId -
+     * @param  {string} params.datafeedId - 
+     * @param  {string} params.merchantId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -878,7 +878,7 @@ function Content(options) {
     /**
      * content.datafeedstatuses.custombatch
      *
-     *
+     * 
      *
      * @alias content.datafeedstatuses.custombatch
      * @memberOf! content(v2)
@@ -912,8 +912,8 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId -
-     * @param  {string} params.merchantId -
+     * @param  {string} params.datafeedId - 
+     * @param  {string} params.merchantId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

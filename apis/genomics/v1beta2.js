@@ -153,7 +153,7 @@ function Genomics(options) {
     /**
      * genomics.annotationSets.search
      *
-     * @desc Searches for annotation sets which match the given criteria. Results are returned in a deterministic order. Caller must have READ permission for the queried datasets.
+     * @desc Searches for annotation sets that match the given criteria. Results are returned in a deterministic order. Caller must have READ permission for the queried datasets.
      *
      * @alias genomics.annotationSets.search
      * @memberOf! genomics(v1beta2)
@@ -355,7 +355,7 @@ function Genomics(options) {
     /**
      * genomics.annotations.search
      *
-     * @desc Searches for annotations which match the given criteria. Results are returned ordered by start position. Annotations which have matching start positions are ordered deterministically. Caller must have READ permission for the queried annotation sets.
+     * @desc Searches for annotations that match the given criteria. Results are returned ordered by start position. Annotations that have matching start positions are ordered deterministically. Caller must have READ permission for the queried annotation sets.
      *
      * @alias genomics.annotations.search
      * @memberOf! genomics(v1beta2)
@@ -674,13 +674,13 @@ function Genomics(options) {
     /**
      * genomics.datasets.list
      *
-     * @desc Lists all datasets.
+     * @desc Lists datasets within a project.
      *
      * @alias genomics.datasets.list
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.pageSize - The maximum number of results returned by this request.
+     * @param  {integer=} params.pageSize - The maximum number of results returned by this request. If unspecified, defaults to 50.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectNumber - The project to list datasets for.
      * @param  {callback} callback - The callback that handles the response.
@@ -1378,6 +1378,38 @@ function Genomics(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.streamingVariantStore = {
+
+    /**
+     * genomics.streamingVariantStore.streamvariants
+     *
+     * @desc Returns a stream of all the variants matching the search request, ordered by reference name, position, and ID.
+     *
+     * @alias genomics.streamingVariantStore.streamvariants
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    streamvariants: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/streamingVariantStore/streamvariants',
           method: 'POST'
         },
         params: params,

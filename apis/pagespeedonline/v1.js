@@ -40,7 +40,7 @@ function Pagespeedonline(options) {
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
      *
-     * @desc Runs Page Speed analysis on the page at the specified URL, and returns a Page Speed score, a list of suggestions to make that page faster, and other information.
+     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns a PageSpeed score, a list of suggestions to make that page faster, and other information.
      *
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! pagespeedonline(v1)
@@ -48,7 +48,7 @@ function Pagespeedonline(options) {
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.filter_third_party_resources - Indicates if third party resources should be filtered out before PageSpeed analysis.
      * @param  {string=} params.locale - The locale used to localize formatted results
-     * @param  {string=} params.rule - A Page Speed rule to run; if none are given, all rules are run
+     * @param  {string=} params.rule - A PageSpeed rule to run; if none are given, all rules are run
      * @param  {boolean=} params.screenshot - Indicates if binary data containing a screenshot should be included
      * @param  {string=} params.strategy - The analysis strategy to use
      * @param  {string} params.url - The URL to fetch and analyze

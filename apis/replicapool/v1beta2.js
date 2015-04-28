@@ -101,7 +101,7 @@ function Replicapool(options) {
     /**
      * replicapool.instanceGroupManagers.deleteInstances
      *
-     * @desc Deletes the specified instances. The instances are removed from the instance group and any target pools of which they are a member, then deleted. The targetSize of the instance group manager is reduced by the number of instances deleted.
+     * @desc Deletes the specified instances. The instances are deleted, then removed from the instance group and any target pools of which they were a member. The targetSize of the instance group manager is reduced by the number of instances deleted.
      *
      * @alias replicapool.instanceGroupManagers.deleteInstances
      * @memberOf! replicapool(v1beta2)

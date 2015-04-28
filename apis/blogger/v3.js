@@ -273,7 +273,7 @@ function Blogger(options) {
      * @param  {string=} params.pageToken - Continuation token if request is paged.
      * @param  {string} params.postId - ID of the post to fetch posts from.
      * @param  {string=} params.startDate - Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-     * @param  {string=} params.status -
+     * @param  {string=} params.status - 
      * @param  {string=} params.view - Access level with which to view the returned result. Note that some fields require elevated access.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -308,7 +308,7 @@ function Blogger(options) {
      * @param  {integer=} params.maxResults - Maximum number of comments to include in the result.
      * @param  {string=} params.pageToken - Continuation token if request is paged.
      * @param  {string=} params.startDate - Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-     * @param  {string=} params.status -
+     * @param  {string=} params.status - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -401,7 +401,7 @@ function Blogger(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.blogId - The ID of the blog to get.
-     * @param  {string=} params.range -
+     * @param  {string=} params.range - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -464,7 +464,7 @@ function Blogger(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.blogId - ID of the blog containing the page.
      * @param  {string} params.pageId - The ID of the page to get.
-     * @param  {string=} params.view -
+     * @param  {string=} params.view - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -526,7 +526,7 @@ function Blogger(options) {
      * @param  {boolean=} params.fetchBodies - Whether to retrieve the Page bodies.
      * @param  {integer=} params.maxResults - Maximum number of Pages to fetch.
      * @param  {string=} params.pageToken - Continuation token if the request is paged.
-     * @param  {string=} params.status -
+     * @param  {string=} params.status - 
      * @param  {string=} params.view - Access level with which to view the returned result. Note that some fields require elevated access.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -720,7 +720,7 @@ function Blogger(options) {
      * @param  {string=} params.orderBy - Sort order applied to search results. Default is published.
      * @param  {string=} params.pageToken - Continuation token if the request is paged.
      * @param  {string=} params.startDate - Earliest post date to fetch, a date-time with RFC 3339 formatting.
-     * @param  {string=} params.status -
+     * @param  {string=} params.status - 
      * @param  {string} params.userId - ID of the user for the per-user information to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
      * @param  {string=} params.view - Access level with which to view the returned result. Note that some fields require elevated access.
      * @param  {callback} callback - The callback that handles the response.

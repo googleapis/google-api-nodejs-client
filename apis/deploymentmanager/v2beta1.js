@@ -40,14 +40,14 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.deployments.delete
      *
-     * @desc Deletes a deployment and all of the resources in the deployment.
+     * @desc ! Deletes a deployment and all of the resources in the deployment.
      *
      * @alias deploymentmanager.deployments.delete
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.deployment - ! The name of the deployment for this request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -69,14 +69,14 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.deployments.get
      *
-     * @desc Gets information about a specific deployment.
+     * @desc ! Gets information about a specific deployment.
      *
      * @alias deploymentmanager.deployments.get
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.deployment - ! The name of the deployment for this request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -98,13 +98,13 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.deployments.insert
      *
-     * @desc Creates a deployment and all of the resources described by the deployment manifest.
+     * @desc ! Creates a deployment and all of the resources described by the ! deployment manifest.
      *
      * @alias deploymentmanager.deployments.insert
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -127,15 +127,15 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.deployments.list
      *
-     * @desc Lists all deployments for a given project.
+     * @desc ! Lists all deployments for a given project.
      *
      * @alias deploymentmanager.deployments.list
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {integer=} params.maxResults - ! Maximum count of results to be returned. ! Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param  {string=} params.pageToken - ! Specifies a nextPageToken returned by a previous list request. This ! token can be used to request the next page of results from a previous ! list request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -161,15 +161,15 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.manifests.get
      *
-     * @desc Gets information about a specific manifest.
+     * @desc ! Gets information about a specific manifest.
      *
      * @alias deploymentmanager.manifests.get
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string} params.manifest - The name of the manifest for this request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.deployment - ! The name of the deployment for this request.
+     * @param  {string} params.manifest - ! The name of the manifest for this request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -191,16 +191,16 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.manifests.list
      *
-     * @desc Lists all manifests for a given deployment.
+     * @desc ! Lists all manifests for a given deployment.
      *
      * @alias deploymentmanager.manifests.list
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.deployment - ! The name of the deployment for this request.
+     * @param  {integer=} params.maxResults - ! Maximum count of results to be returned. ! Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param  {string=} params.pageToken - ! Specifies a nextPageToken returned by a previous list request. This ! token can be used to request the next page of results from a previous ! list request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -226,14 +226,14 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.operations.get
      *
-     * @desc Gets information about a specific Operation.
+     * @desc ! Gets information about a specific Operation.
      *
      * @alias deploymentmanager.operations.get
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - The name of the operation for this request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.operation - ! The name of the operation for this request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -255,15 +255,15 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.operations.list
      *
-     * @desc Lists all Operations for a project.
+     * @desc ! Lists all Operations for a project.
      *
      * @alias deploymentmanager.operations.list
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {integer=} params.maxResults - ! Maximum count of results to be returned. ! Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param  {string=} params.pageToken - ! Specifies a nextPageToken returned by a previous list request. This ! token can be used to request the next page of results from a previous ! list request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -289,15 +289,15 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.resources.get
      *
-     * @desc Gets information about a single resource.
+     * @desc ! Gets information about a single resource.
      *
      * @alias deploymentmanager.resources.get
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.resource - The name of the resource for this request.
+     * @param  {string} params.deployment - ! The name of the deployment for this request.
+     * @param  {string} params.project - ! The project ID for this request.
+     * @param  {string} params.resource - ! The name of the resource for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -319,16 +319,16 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.resources.list
      *
-     * @desc Lists all resources in a given deployment.
+     * @desc ! Lists all resources in a given deployment.
      *
      * @alias deploymentmanager.resources.list
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.deployment - ! The name of the deployment for this request.
+     * @param  {integer=} params.maxResults - ! Maximum count of results to be returned. ! Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param  {string=} params.pageToken - ! Specifies a nextPageToken returned by a previous list request. This ! token can be used to request the next page of results from a previous ! list request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -354,15 +354,15 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.types.list
      *
-     * @desc Lists all Types for Deployment Manager.
+     * @desc ! Lists all Types for Deployment Manager.
      *
      * @alias deploymentmanager.types.list
      * @memberOf! deploymentmanager(v2beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {integer=} params.maxResults - ! Maximum count of results to be returned. ! Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param  {string=} params.pageToken - ! Specifies a nextPageToken returned by a previous list request. This ! token can be used to request the next page of results from a previous ! list request.
+     * @param  {string} params.project - ! The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

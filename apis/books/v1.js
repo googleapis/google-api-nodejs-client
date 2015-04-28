@@ -138,7 +138,7 @@ function Books(options) {
     /**
      * books.cloudloading.addBook
      *
-     *
+     * 
      *
      * @alias books.cloudloading.addBook
      * @memberOf! books(v1)
@@ -147,7 +147,7 @@ function Books(options) {
      * @param  {string=} params.drive_document_id - A drive document id. The upload_client_token must not be set.
      * @param  {string=} params.mime_type - The document MIME type. It can be set only if the drive_document_id is set.
      * @param  {string=} params.name - The document name. It can be set only if the drive_document_id is set.
-     * @param  {string=} params.upload_client_token -
+     * @param  {string=} params.upload_client_token - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -197,7 +197,7 @@ function Books(options) {
     /**
      * books.cloudloading.updateBook
      *
-     *
+     * 
      *
      * @alias books.cloudloading.updateBook
      * @memberOf! books(v1)
@@ -670,35 +670,6 @@ function Books(options) {
       },
 
       /**
-       * books.mylibrary.annotations.get
-       *
-       * @desc Gets an annotation by its ID.
-       *
-       * @alias books.mylibrary.annotations.get
-       * @memberOf! books(v1)
-       *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.annotationId - The ID for the annotation to retrieve.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function(params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * books.mylibrary.annotations.insert
        *
        * @desc Inserts a new annotation.
@@ -742,7 +713,6 @@ function Books(options) {
        * @param  {string=} params.layerId - The layer ID to limit annotation by.
        * @param  {string=} params.layerIds - The layer ID(s) to limit annotation by.
        * @param  {integer=} params.maxResults - Maximum number of results to return
-       * @param  {string=} params.pageIds - The page ID(s) for the volume that is being queried.
        * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
        * @param  {boolean=} params.showDeleted - Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
        * @param  {string=} params.source - String to identify the originator of this request.
@@ -1183,7 +1153,7 @@ function Books(options) {
     /**
      * books.promooffer.accept
      *
-     *
+     * 
      *
      * @alias books.promooffer.accept
      * @memberOf! books(v1)
@@ -1193,7 +1163,7 @@ function Books(options) {
      * @param  {string=} params.device - device device
      * @param  {string=} params.manufacturer - device manufacturer
      * @param  {string=} params.model - device model
-     * @param  {string=} params.offerId -
+     * @param  {string=} params.offerId - 
      * @param  {string=} params.product - device product
      * @param  {string=} params.serial - device serial
      * @param  {string=} params.volumeId - Volume id to exercise the offer
@@ -1218,7 +1188,7 @@ function Books(options) {
     /**
      * books.promooffer.dismiss
      *
-     *
+     * 
      *
      * @alias books.promooffer.dismiss
      * @memberOf! books(v1)
@@ -1299,7 +1269,7 @@ function Books(options) {
      * @param  {string=} params.partner - Brand results for partner ID.
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {boolean=} params.user_library_consistent_read -
+     * @param  {boolean=} params.user_library_consistent_read - 
      * @param  {string} params.volumeId - ID of volume to retrieve.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

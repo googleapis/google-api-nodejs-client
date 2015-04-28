@@ -829,6 +829,9 @@ function Storage(options) {
      * @param  {string} params.destinationBucket - Name of the bucket in which to store the new object.
      * @param  {string} params.destinationObject - Name of the new object.
      * @param  {string=} params.destinationPredefinedAcl - Apply a predefined set of access controls to the destination object.
+     * @param  {string=} params.encryptionAlgorithm - Specifies the encryption algorithm that was used to encrypt the object, if any. Only 'AES256' is supported currently. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKey - Provides a base64-encoded 256-bit key that was used to encrypt the object, if any. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKeyHash - Provides the digest of the key for error-checking transmission. A digest is in the format of '='. Algorithm, key, and key hash must be supplied together.
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's current generation matches the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {object} params.resource - Request body data
@@ -862,6 +865,9 @@ function Storage(options) {
      * @param  {string} params.destinationBucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      * @param  {string} params.destinationObject - Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      * @param  {string=} params.destinationPredefinedAcl - Apply a predefined set of access controls to the destination object.
+     * @param  {string=} params.encryptionAlgorithm - Specifies the encryption algorithm that was used to encrypt the object, if any. Only 'AES256' is supported currently. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKey - Provides a base64-encoded 256-bit key that was used to encrypt the object, if any. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKeyHash - Provides the digest of the key for error-checking transmission. A digest is in the format of '='. Algorithm, key, and key hash must be supplied together.
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the destination object's current generation matches the given value.
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the destination object's current generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the destination object's current metageneration matches the given value.
@@ -937,6 +943,9 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of the bucket in which the object resides.
+     * @param  {string=} params.encryptionAlgorithm - Specifies the encryption algorithm that would be used to decrypt the object. Only 'AES256' is supported currently. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKey - Provides a base64-encoded 256-bit key to decrypt the object. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKeyHash - Provides the digest of the key for error-checking transmission. A digest is in the format of '='. Algorithm, key, and key hash must be supplied together.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's generation matches the given value.
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's generation does not match the given value.
@@ -973,6 +982,9 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      * @param  {string=} params.contentEncoding - If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
+     * @param  {string=} params.encryptionAlgorithm - Specifies the encryption algorithm that would be used to encrypt the object. Only 'AES256' is supported currently. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKey - Provides a base64-encoded 256-bit key to encrypt the object. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKeyHash - Provides the digest of the key for error-checking transmission. A digest is in the format of '='. Algorithm, key, and key hash must be supplied together.
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's current generation matches the given value.
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
@@ -1047,6 +1059,9 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of the bucket in which the object resides.
+     * @param  {string=} params.encryptionAlgorithm - For downloading encrypted objects, specifies the encryption algorithm that would be used to decrypt the object. Only 'AES256' is supported currently. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKey - For downloading encrypted objects, provides a base64-encoded 256-bit key to decrypt the object. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKeyHash - For downloading encrypted objects, provides the digest of the key for error-checking transmission. A digest is in the format of '='. Algorithm, key, and key hash must be supplied together.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's current generation matches the given value.
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.
@@ -1084,6 +1099,9 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of the bucket in which the object resides.
+     * @param  {string=} params.encryptionAlgorithm - For downloading encrypted objects, specifies the encryption algorithm that would be used to decrypt the object. Only 'AES256' is supported currently. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKey - For downloading encrypted objects, provides a base64-encoded 256-bit key to decrypt the object. Algorithm, key, and key hash must be supplied together.
+     * @param  {string=} params.encryptionKeyHash - For downloading encrypted objects, provides the digest of the key for error-checking transmission. A digest is in the format of '='. Algorithm, key, and key hash must be supplied together.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's current generation matches the given value.
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.

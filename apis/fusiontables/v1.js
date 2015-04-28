@@ -750,7 +750,7 @@ function Fusiontables(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table from which the task is being deleted.
-     * @param  {string} params.taskId -
+     * @param  {string} params.taskId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -779,7 +779,7 @@ function Fusiontables(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table to which the task belongs.
-     * @param  {string} params.taskId -
+     * @param  {string} params.taskId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -808,8 +808,8 @@ function Fusiontables(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of columns to return. Optional. Default is 5.
-     * @param  {string=} params.pageToken -
-     * @param  {integer=} params.startIndex -
+     * @param  {string=} params.pageToken - 
+     * @param  {integer=} params.startIndex - 
      * @param  {string} params.tableId - Table whose tasks are being listed.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
