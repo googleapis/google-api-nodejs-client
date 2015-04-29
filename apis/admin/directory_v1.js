@@ -1027,7 +1027,7 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit
+     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1056,7 +1056,7 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit
+     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1114,7 +1114,7 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string=} params.orgUnitPath - the URL-encoded organization unit
+     * @param  {string=} params.orgUnitPath - the URL-encoded organization unit's path or its Id
      * @param  {string=} params.type - Whether to return all sub-organizations or just immediate children
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1144,7 +1144,7 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit
+     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1174,7 +1174,7 @@ function Admin(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit
+     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

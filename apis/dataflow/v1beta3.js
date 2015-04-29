@@ -51,6 +51,7 @@ function Dataflow(options) {
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.projectId -
+         * @param  {string=} params.replaceJobId -
          * @param  {string=} params.view -
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.

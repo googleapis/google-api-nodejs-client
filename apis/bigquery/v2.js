@@ -128,7 +128,7 @@ function Bigquery(options) {
     /**
      * bigquery.datasets.list
      *
-     * @desc Lists all the datasets in the specified project to which the caller has read access; however, a project owner can list (but not necessarily get) all datasets in his project.
+     * @desc Lists all datasets in the specified project to which you have been granted the READER dataset role.
      *
      * @alias bigquery.datasets.list
      * @memberOf! bigquery(v2)
@@ -223,7 +223,7 @@ function Bigquery(options) {
     /**
      * bigquery.jobs.get
      *
-     * @desc Retrieves the specified job by ID.
+     * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
      *
      * @alias bigquery.jobs.get
      * @memberOf! bigquery(v2)
@@ -285,7 +285,7 @@ function Bigquery(options) {
     /**
      * bigquery.jobs.insert
      *
-     * @desc Starts a new asynchronous job.
+     * @desc Starts a new asynchronous job. Requires the Can View project role.
      *
      * @alias bigquery.jobs.insert
      * @memberOf! bigquery(v2)
@@ -318,7 +318,7 @@ function Bigquery(options) {
     /**
      * bigquery.jobs.list
      *
-     * @desc Lists all the Jobs in the specified project that were started by the user. The job list returns in reverse chronological order of when the jobs were created, starting with the most recent job created.
+     * @desc Lists all jobs that you started in the specified project. The job list returns in reverse chronological order of when the jobs were created, starting with the most recent job created. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
      *
      * @alias bigquery.jobs.list
      * @memberOf! bigquery(v2)
@@ -384,7 +384,7 @@ function Bigquery(options) {
     /**
      * bigquery.projects.list
      *
-     * @desc Lists the projects to which you have at least read access.
+     * @desc Lists all projects to which you have been granted any project role.
      *
      * @alias bigquery.projects.list
      * @memberOf! bigquery(v2)
@@ -417,7 +417,7 @@ function Bigquery(options) {
     /**
      * bigquery.tabledata.insertAll
      *
-     * @desc Streams data into BigQuery one record at a time without needing to run a load job.
+     * @desc Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
      *
      * @alias bigquery.tabledata.insertAll
      * @memberOf! bigquery(v2)
@@ -448,7 +448,7 @@ function Bigquery(options) {
     /**
      * bigquery.tabledata.list
      *
-     * @desc Retrieves table data from a specified set of rows.
+     * @desc Retrieves table data from a specified set of rows. Requires the READER dataset role.
      *
      * @alias bigquery.tabledata.list
      * @memberOf! bigquery(v2)
@@ -575,7 +575,7 @@ function Bigquery(options) {
     /**
      * bigquery.tables.list
      *
-     * @desc Lists all tables in the specified dataset.
+     * @desc Lists all tables in the specified dataset. Requires the READER dataset role.
      *
      * @alias bigquery.tables.list
      * @memberOf! bigquery(v2)

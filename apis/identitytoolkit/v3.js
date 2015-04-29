@@ -205,6 +205,33 @@ function Identitytoolkit(options) {
     },
 
     /**
+     * identitytoolkit.relyingparty.getRecaptchaParam
+     *
+     * @desc Get recaptcha secure param.
+     *
+     * @alias identitytoolkit.relyingparty.getRecaptchaParam
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getRecaptchaParam: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getRecaptchaParam',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * identitytoolkit.relyingparty.resetPassword
      *
      * @desc Reset password for a user.

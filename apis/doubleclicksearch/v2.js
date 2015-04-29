@@ -257,7 +257,7 @@ function Doubleclicksearch(options) {
     /**
      * doubleclicksearch.reports.getFile
      *
-     * @desc Downloads a report file.
+     * @desc Downloads a report file encoded in UTF-8.
      *
      * @alias doubleclicksearch.reports.getFile
      * @memberOf! doubleclicksearch(v2)

@@ -609,7 +609,7 @@ function Books(options) {
     /**
      * books.myconfig.updateUserSettings
      *
-     * @desc Sets the settings for the user. Unspecified sub-objects will retain the existing value.
+     * @desc Sets the settings for the user. If a sub-object is specified, it will overwrite the existing sub-object stored in the server. Unspecified sub-objects will retain the existing value.
      *
      * @alias books.myconfig.updateUserSettings
      * @memberOf! books(v1)
@@ -670,35 +670,6 @@ function Books(options) {
       },
 
       /**
-       * books.mylibrary.annotations.get
-       *
-       * @desc Gets an annotation by its ID.
-       *
-       * @alias books.mylibrary.annotations.get
-       * @memberOf! books(v1)
-       *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.annotationId - The ID for the annotation to retrieve.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function(params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * books.mylibrary.annotations.insert
        *
        * @desc Inserts a new annotation.
@@ -742,7 +713,6 @@ function Books(options) {
        * @param  {string=} params.layerId - The layer ID to limit annotation by.
        * @param  {string=} params.layerIds - The layer ID(s) to limit annotation by.
        * @param  {integer=} params.maxResults - Maximum number of results to return
-       * @param  {string=} params.pageIds - The page ID(s) for the volume that is being queried.
        * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
        * @param  {boolean=} params.showDeleted - Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
        * @param  {string=} params.source - String to identify the originator of this request.
@@ -1156,6 +1126,7 @@ function Books(options) {
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.categoryId - List of category ids requested.
      * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
      * @param  {integer=} params.pageSize - Number of maximum results per page to be included in the response.
      * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
      * @param  {callback} callback - The callback that handles the response.
@@ -1372,6 +1343,7 @@ function Books(options) {
        * @param  {object} params - Parameters for request
        * @param  {string=} params.association - Association type.
        * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of the source volume.
        * @param  {callback} callback - The callback that handles the response.
@@ -1441,6 +1413,7 @@ function Books(options) {
        *
        * @param  {object=} params - Parameters for request
        * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

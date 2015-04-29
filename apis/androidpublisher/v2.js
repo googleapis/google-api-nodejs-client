@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Play Android Developer API
+ * Google Play Developer API
  *
  * @classdesc Lets Android application developers access their Google Play accounts.
  * @namespace androidpublisher
@@ -376,7 +376,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.apks.addexternallyhosted
        *
-       * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Google Play for work whose application is configured to restrict distribution to the enterprise domain.
+       * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Google Play for Work whose application is configured to restrict distribution to the enterprise domain.
        *
        * @alias androidpublisher.edits.apks.addexternallyhosted
        * @memberOf! androidpublisher(v2)

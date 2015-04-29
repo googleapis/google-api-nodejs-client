@@ -40,7 +40,7 @@ function Fusiontables(options) {
     /**
      * fusiontables.column.delete
      *
-     * @desc Deletes the column.
+     * @desc Deletes the specified column.
      *
      * @alias fusiontables.column.delete
      * @memberOf! fusiontables(v2)
@@ -69,7 +69,7 @@ function Fusiontables(options) {
     /**
      * fusiontables.column.get
      *
-     * @desc Retrieves a specific column by its id.
+     * @desc Retrieves a specific column by its ID.
      *
      * @alias fusiontables.column.get
      * @memberOf! fusiontables(v2)
@@ -221,15 +221,15 @@ function Fusiontables(options) {
     /**
      * fusiontables.query.sql
      *
-     * @desc Executes an SQL SELECT/INSERT/UPDATE/DELETE/SHOW/DESCRIBE/CREATE statement.
+     * @desc Executes a Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE statement.
      *
      * @alias fusiontables.query.sql
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.hdrs - Should column names be included (in the first row)?. Default is true.
-     * @param  {string} params.sql - An SQL SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
-     * @param  {boolean=} params.typed - Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
+     * @param  {boolean=} params.hdrs - Whether column names are included in the first row. Default is true.
+     * @param  {string} params.sql - A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE
+     * @param  {boolean=} params.typed - Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -251,15 +251,15 @@ function Fusiontables(options) {
     /**
      * fusiontables.query.sqlGet
      *
-     * @desc Executes an SQL SELECT/SHOW/DESCRIBE statement.
+     * @desc Executes a SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
      *
      * @alias fusiontables.query.sqlGet
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.hdrs - Should column names be included (in the first row)?. Default is true.
-     * @param  {string} params.sql - An SQL SELECT/SHOW/DESCRIBE statement.
-     * @param  {boolean=} params.typed - Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
+     * @param  {boolean=} params.hdrs - Whether column names are included (in the first row). Default is true.
+     * @param  {string} params.sql - A SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
+     * @param  {boolean=} params.typed - Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -501,7 +501,7 @@ function Fusiontables(options) {
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - ID of the table that is being deleted.
+     * @param  {string} params.tableId - ID of the table to be deleted.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -523,13 +523,13 @@ function Fusiontables(options) {
     /**
      * fusiontables.table.get
      *
-     * @desc Retrieves a specific table by its id.
+     * @desc Retrieves a specific table by its ID.
      *
      * @alias fusiontables.table.get
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Identifier(ID) for the table being requested.
+     * @param  {string} params.tableId - Identifier for the table being requested.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -551,16 +551,16 @@ function Fusiontables(options) {
     /**
      * fusiontables.table.importRows
      *
-     * @desc Import more rows into a table.
+     * @desc Imports more rows into a table.
      *
      * @alias fusiontables.table.importRows
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ','.
-     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
-     * @param  {integer=} params.endLine - The index of the last line from which to start importing, exclusive. Thus, the number of imported lines is endLine - startLine. If this parameter is not provided, the file will be imported until the last line of the file. If endLine is negative, then the imported content will exclude the last endLine lines. That is, if endline is negative, no line will be imported whose index is greater than N + endLine where N is the number of lines in the file, and the number of imported lines will be N + endLine - startLine.
-     * @param  {boolean=} params.isStrict - Whether the CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
+     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
+     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
+     * @param  {integer=} params.endLine - The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
+     * @param  {boolean=} params.isStrict - Whether the imported CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
      * @param  {integer=} params.startLine - The index of the first line from which to start importing, inclusive. Default is 0.
      * @param  {string} params.tableId - The table into which new rows are being imported.
      * @param  {object} params.media - Media object
@@ -588,14 +588,14 @@ function Fusiontables(options) {
     /**
      * fusiontables.table.importTable
      *
-     * @desc Import a new table.
+     * @desc Imports a new table.
      *
      * @alias fusiontables.table.importTable
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ','.
-     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
+     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
+     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
      * @param  {string} params.name - The name to be assigned to the new table.
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
@@ -656,8 +656,8 @@ function Fusiontables(options) {
      * @memberOf! fusiontables(v2)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of styles to return. Optional. Default is 5.
-     * @param  {string=} params.pageToken - Continuation token specifying which result page to return. Optional.
+     * @param  {integer=} params.maxResults - Maximum number of tables to return. Default is 5.
+     * @param  {string=} params.pageToken - Continuation token specifying which result page to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -685,7 +685,7 @@ function Fusiontables(options) {
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.replaceViewDefinition - Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
+     * @param  {boolean=} params.replaceViewDefinition - Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param  {string} params.tableId - ID of the table that is being updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -715,10 +715,10 @@ function Fusiontables(options) {
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ','.
+     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
-     * @param  {integer=} params.endLine - The index of the last line to import, exclusive. 'endLine - startLine' rows will be imported. Default is to import through the end of the file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
-     * @param  {boolean=} params.isStrict - Whether the CSV must have the same number of column values for each row. If true, throws an exception if the CSV does not not have the same number of columns. If false, rows with fewer column values will be padded with empty values. Default is true.
+     * @param  {integer=} params.endLine - The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
+     * @param  {boolean=} params.isStrict - Whether the imported CSV must have the same number of column values for each row. If true, throws an exception if the CSV does not have the same number of columns. If false, rows with fewer column values will be padded with empty values. Default is true.
      * @param  {integer=} params.startLine - The index of the first line from which to start importing, inclusive. Default is 0.
      * @param  {string} params.tableId - Table whose rows will be replaced.
      * @param  {object} params.media - Media object
@@ -752,7 +752,7 @@ function Fusiontables(options) {
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.replaceViewDefinition - Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
+     * @param  {boolean=} params.replaceViewDefinition - Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param  {string} params.tableId - ID of the table that is being updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -780,14 +780,14 @@ function Fusiontables(options) {
     /**
      * fusiontables.task.delete
      *
-     * @desc Deletes the task, unless already started.
+     * @desc Deletes a specific task by its ID, unless that task has already started running.
      *
      * @alias fusiontables.task.delete
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table from which the task is being deleted.
-     * @param  {string} params.taskId -
+     * @param  {string} params.taskId - The identifier of the task to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -809,14 +809,14 @@ function Fusiontables(options) {
     /**
      * fusiontables.task.get
      *
-     * @desc Retrieves a specific task by its id.
+     * @desc Retrieves a specific task by its ID.
      *
      * @alias fusiontables.task.get
      * @memberOf! fusiontables(v2)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.tableId - Table to which the task belongs.
-     * @param  {string} params.taskId -
+     * @param  {string} params.taskId - The identifier of the task to get.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

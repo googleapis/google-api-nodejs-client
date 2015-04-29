@@ -73,6 +73,7 @@ function Oauth2(options) {
    * @param  {object=} params - Parameters for request
    * @param  {string=} params.access_token -
    * @param  {string=} params.id_token -
+   * @param  {string=} params.token_handle -
    * @param  {callback} callback - The callback that handles the response.
    * @return {object} Request object
    */

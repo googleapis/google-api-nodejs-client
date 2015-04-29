@@ -326,7 +326,7 @@ function Pubsub(options) {
     /**
      * pubsub.topics.delete
      *
-     * @desc Deletes the topic with the given name. All subscriptions to this topic are also deleted. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
+     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
      *
      * @alias pubsub.topics.delete
      * @memberOf! pubsub(v1beta1)

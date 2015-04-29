@@ -140,7 +140,7 @@ function Cloudmonitoring(options) {
      * @memberOf! cloudmonitoring(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.aggregator - The aggregation function that will reduce the data points in each window to a single point. This parameter is only valid for non-cumulative metric types.
+     * @param  {string=} params.aggregator - The aggregation function that will reduce the data points in each window to a single point. This parameter is only valid for non-cumulative metrics with a value type of INT64 or DOUBLE.
      * @param  {integer=} params.count - Maximum number of data points per page, which is used for pagination of results.
      * @param  {string=} params.labels - A collection of labels for the matching time series, which are represented as:   - key==value: key equals the value  - key=~value: key regex matches the value  - key!=value: key does not equal the value  - key!~value: key regex does not match the value  For example, to list all of the time series descriptors for the region us-central1, you could specify: label=cloud.googleapis.com%2Flocation=~us-central1.*
      * @param  {string} params.metric - Metric names are protocol-free URLs as listed in the Supported Metrics page. For example, compute.googleapis.com/instance/disk/read_ops_count.
@@ -211,7 +211,7 @@ function Cloudmonitoring(options) {
      * @memberOf! cloudmonitoring(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.aggregator - The aggregation function that will reduce the data points in each window to a single point. This parameter is only valid for non-cumulative metric types.
+     * @param  {string=} params.aggregator - The aggregation function that will reduce the data points in each window to a single point. This parameter is only valid for non-cumulative metrics with a value type of INT64 or DOUBLE.
      * @param  {integer=} params.count - Maximum number of time series descriptors per page. Used for pagination. If not specified, count = 100.
      * @param  {string=} params.labels - A collection of labels for the matching time series, which are represented as:   - key==value: key equals the value  - key=~value: key regex matches the value  - key!=value: key does not equal the value  - key!~value: key regex does not match the value  For example, to list all of the time series descriptors for the region us-central1, you could specify: label=cloud.googleapis.com%2Flocation=~us-central1.*
      * @param  {string} params.metric - Metric names are protocol-free URLs as listed in the Supported Metrics page. For example, compute.googleapis.com/instance/disk/read_ops_count.

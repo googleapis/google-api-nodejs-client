@@ -348,7 +348,7 @@ function Calendar(options) {
      *
      * @param  {object=} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.minAccessRole - The minimum access role for the user in the returned entires. Optional. The default is no restriction.
+     * @param  {string=} params.minAccessRole - The minimum access role for the user in the returned entries. Optional. The default is no restriction.
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {boolean=} params.showDeleted - Whether to include deleted calendar list entries in the result. Optional. The default is False.
      * @param  {boolean=} params.showHidden - Whether to show hidden entries. Optional. The default is False.
@@ -441,7 +441,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.minAccessRole - The minimum access role for the user in the returned entires. Optional. The default is no restriction.
+     * @param  {string=} params.minAccessRole - The minimum access role for the user in the returned entries. Optional. The default is no restriction.
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {boolean=} params.showDeleted - Whether to include deleted calendar list entries in the result. Optional. The default is False.
      * @param  {boolean=} params.showHidden - Whether to show hidden entries. Optional. The default is False.

@@ -578,6 +578,7 @@ function Gmail(options) {
        * @memberOf! gmail(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {boolean=} params.deleted - Mark the email as permanently deleted (not TRASH) and only visible in Google Apps Vault to a Vault administrator. Only used for Google Apps for Work accounts.
        * @param  {string=} params.internalDateSource - Source for Gmail's internal date of the message.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource - Media resource metadata

@@ -69,6 +69,35 @@ function Fitness(options) {
       },
 
       /**
+       * fitness.users.dataSources.delete
+       *
+       * @desc Delete the data source if there are no datapoints associated with it
+       *
+       * @alias fitness.users.dataSources.delete
+       * @memberOf! fitness(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.dataSourceId - The data stream ID of the data source to delete.
+       * @param  {string} params.userId - Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['userId', 'dataSourceId'],
+          pathParams: ['dataSourceId', 'userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * fitness.users.dataSources.get
        *
        * @desc Returns a data source identified by a data stream ID.

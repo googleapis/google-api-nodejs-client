@@ -73,6 +73,7 @@ var APIs = {
   'civicinfo': requireAPI('civicinfo'),
   'cloudmonitoring': requireAPI('cloudmonitoring'),
   'compute': requireAPI('compute'),
+  'computeaccounts': requireAPI('computeaccounts'),
   'container': requireAPI('container'),
   'content': requireAPI('content'),
   'coordinate': requireAPI('coordinate'),
@@ -97,8 +98,6 @@ var APIs = {
   'gmail': requireAPI('gmail'),
   'groupsmigration': requireAPI('groupsmigration'),
   'groupssettings': requireAPI('groupssettings'),
-  'cloudlatencytest': requireAPI('cloudlatencytest'),
-  'pubsub': requireAPI('pubsub'),
   'identitytoolkit': requireAPI('identitytoolkit'),
   'licensing': requireAPI('licensing'),
   'manager': requireAPI('manager'),
@@ -109,6 +108,7 @@ var APIs = {
   'plus': requireAPI('plus'),
   'plusDomains': requireAPI('plusDomains'),
   'prediction': requireAPI('prediction'),
+  'pubsub': requireAPI('pubsub'),
   'qpxExpress': requireAPI('qpxExpress'),
   'replicapool': requireAPI('replicapool'),
   'replicapoolupdater': requireAPI('replicapoolupdater'),
@@ -126,7 +126,10 @@ var APIs = {
   'webfonts': requireAPI('webfonts'),
   'webmasters': requireAPI('webmasters'),
   'youtube': requireAPI('youtube'),
-  'youtubeAnalytics': requireAPI('youtubeAnalytics')
+  'youtubeAnalytics': requireAPI('youtubeAnalytics'),
+  'cloudlatencytest': requireAPI('cloudlatencytest'),
+  'cloudsearch': requireAPI('cloudsearch'),
+  'logging': requireAPI('logging')
 };
 
 /**

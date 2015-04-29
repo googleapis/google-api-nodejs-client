@@ -323,6 +323,7 @@ function Youtubeanalytics(options) {
      * @memberOf! youtubeAnalytics(v1beta1)
      *
      * @param  {object} params - Parameters for request
+     * @param  {string=} params.currency - The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.
      * @param  {string=} params.dimensions - A comma-separated list of YouTube Analytics dimensions, such as views or ageGroup,gender. See the Available Reports document for a list of the reports that you can retrieve and the dimensions used for those reports. Also see the Dimensions document for definitions of those dimensions.
      * @param  {string} params.end-date - The end date for fetching YouTube Analytics data. The value should be in YYYY-MM-DD format.
      * @param  {string=} params.filters - A list of filters that should be applied when retrieving YouTube Analytics data. The Available Reports document identifies the dimensions that can be used to filter each report, and the Dimensions document defines those dimensions. If a request uses multiple filters, join them together with a semicolon (;), and the returned result table will satisfy both filters. For example, a filters parameter value of video==dMH0bHeiRNg;country==IT restricts the result set to include data for the given video in Italy.

@@ -537,7 +537,7 @@ function Compute(options) {
     /**
      * compute.disks.createSnapshot
      *
-     *
+     * @desc Creates a snapshot of this disk.
      *
      * @alias compute.disks.createSnapshot
      * @memberOf! compute(v1)
@@ -2143,6 +2143,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance scoping this request.
+     * @param  {integer=} params.port - Which COM port to retrieve data from.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -3870,6 +3871,163 @@ function Compute(options) {
 
   };
 
+  this.targetVpnGateways = {
+
+    /**
+     * compute.targetVpnGateways.aggregatedList
+     *
+     * @desc Retrieves the list of target VPN gateways grouped by scope.
+     *
+     * @alias compute.targetVpnGateways.aggregatedList
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetVpnGateways',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetVpnGateways.delete
+     *
+     * @desc Deletes the specified TargetVpnGateway resource.
+     *
+     * @alias compute.targetVpnGateways.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {string} params.targetVpnGateway - Name of the TargetVpnGateway resource to delete.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetVpnGateway'],
+        pathParams: ['project', 'region', 'targetVpnGateway'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetVpnGateways.get
+     *
+     * @desc Returns the specified TargetVpnGateway resource.
+     *
+     * @alias compute.targetVpnGateways.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {string} params.targetVpnGateway - Name of the TargetVpnGateway resource to return.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'targetVpnGateway'],
+        pathParams: ['project', 'region', 'targetVpnGateway'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetVpnGateways.insert
+     *
+     * @desc Creates a TargetVpnGateway resource in the specified project and region using the data included in the request.
+     *
+     * @alias compute.targetVpnGateways.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetVpnGateways.list
+     *
+     * @desc Retrieves the list of TargetVpnGateway resources available to the specified project and region.
+     *
+     * @alias compute.targetVpnGateways.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.urlMaps = {
 
     /**
@@ -4074,6 +4232,163 @@ function Compute(options) {
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.vpnTunnels = {
+
+    /**
+     * compute.vpnTunnels.aggregatedList
+     *
+     * @desc Retrieves the list of VPN tunnels grouped by scope.
+     *
+     * @alias compute.vpnTunnels.aggregatedList
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/vpnTunnels',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.vpnTunnels.delete
+     *
+     * @desc Deletes the specified VpnTunnel resource.
+     *
+     * @alias compute.vpnTunnels.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {string} params.vpnTunnel - Name of the VpnTunnel resource to delete.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'vpnTunnel'],
+        pathParams: ['project', 'region', 'vpnTunnel'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.vpnTunnels.get
+     *
+     * @desc Returns the specified VpnTunnel resource.
+     *
+     * @alias compute.vpnTunnels.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {string} params.vpnTunnel - Name of the VpnTunnel resource to return.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'vpnTunnel'],
+        pathParams: ['project', 'region', 'vpnTunnel'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.vpnTunnels.insert
+     *
+     * @desc Creates a VpnTunnel resource in the specified project and region using the data included in the request.
+     *
+     * @alias compute.vpnTunnels.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.vpnTunnels.list
+     *
+     * @desc Retrieves the list of VpnTunnel resources contained in the specified project and region.
+     *
+     * @alias compute.vpnTunnels.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.region - The name of the region for this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
         context: self
       };
 

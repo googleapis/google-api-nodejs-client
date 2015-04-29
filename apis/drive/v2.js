@@ -671,6 +671,7 @@ function Drive(options) {
      * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
+     * @param  {string=} params.revisionId - Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -944,6 +945,7 @@ function Drive(options) {
      * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
+     * @param  {string=} params.revisionId - Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
