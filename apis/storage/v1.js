@@ -853,7 +853,7 @@ function Storage(options) {
     /**
      * storage.objects.copy
      *
-     * @desc Copies an object to a specified location. Optionally overrides metadata.
+     * @desc Copies a source object to a destination object. Optionally overrides metadata.
      *
      * @alias storage.objects.copy
      * @memberOf! storage(v1)
@@ -1094,9 +1094,9 @@ function Storage(options) {
      * @param  {string=} params.ifSourceGenerationNotMatch - Makes the operation conditional on whether the source object's generation does not match the given value.
      * @param  {string=} params.ifSourceMetagenerationMatch - Makes the operation conditional on whether the source object's current metageneration matches the given value.
      * @param  {string=} params.ifSourceMetagenerationNotMatch - Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     * @param  {string=} params.maxBytesRewrittenPerCall - The maximum number of bytes that will be rewritten per Rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across Rewrite calls else you'll get an error that the rewrite token is invalid.
+     * @param  {string=} params.maxBytesRewrittenPerCall - The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param  {string=} params.rewriteToken - Include this field (from the previous Rewrite response) on each Rewrite request after the first one, until the Rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
+     * @param  {string=} params.rewriteToken - Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
      * @param  {string} params.sourceBucket - Name of the bucket in which to find the source object.
      * @param  {string=} params.sourceGeneration - If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param  {string} params.sourceObject - Name of the source object.

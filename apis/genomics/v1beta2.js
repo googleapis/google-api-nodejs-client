@@ -1391,38 +1391,6 @@ function Genomics(options) {
 
   };
 
-  this.streamingReadstore = {
-
-    /**
-     * genomics.streamingReadstore.streamreads
-     *
-     * @desc Gets a stream of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned.  If a target positional range is specified, all reads whose alignment to the reference genome overlap the range are returned.  All reads returned are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order.
-     *
-     * @alias genomics.streamingReadstore.streamreads
-     * @memberOf! genomics(v1beta2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    streamreads: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta2/streamingReadstore/streamreads',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   this.variants = {
 
     /**

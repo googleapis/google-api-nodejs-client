@@ -331,7 +331,7 @@ function Logging(options) {
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `serviceName`. A log service resource of the form `/projects/project/logServices/*`. The service indexes of the log service are returned. Example: `"/projects/myProj/logServices/appengine.googleapis.com"`.
+         * @param  {string} params.projectsId - Part of `serviceName`. A log service resource of the form `/projects/x/logServices/x`. The service indexes of the log service are returned. Example: `"/projects/myProj/logServices/appengine.googleapis.com"`.
          * @param  {string} params.logServicesId - Part of `serviceName`. See documentation of `projectsId`.
          * @param  {string=} params.indexPrefix - Restricts the indexes returned to be those with a specified prefix. The prefix has the form `"/label_value/label_value/..."`, in order corresponding to the [`LogService indexKeys`][google.logging.v1.LogService.index_keys]. Non-empty prefixes must begin with `/` . Example prefixes: + `"/myModule/"` retrieves App Engine versions associated with `myModule`. The trailing slash terminates the value. + `"/myModule"` retrieves App Engine modules with names beginning with `myModule`. + `""` retrieves all indexes.
          * @param  {integer=} params.depth - A limit to the number of levels of the index hierarchy that are expanded. If `depth` is 0, it defaults to the level specified by the prefix field (the number of slash separators). The default empty prefix implies a `depth` of 1. It is an error for `depth` to be any non-zero value less than the number of components in `indexPrefix`.

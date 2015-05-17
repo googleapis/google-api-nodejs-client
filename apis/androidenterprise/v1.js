@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Play MDM API
+ * Google Play EMM API
  *
  * @classdesc Allows MDMs/EMMs and enterprises to manage the deployment of apps to Android for Work users.
  * @namespace androidenterprise

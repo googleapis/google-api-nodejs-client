@@ -210,7 +210,7 @@ function Pubsub(options) {
     /**
      * pubsub.subscriptions.modifyPushConfig
      *
-     * @desc Modifies the 74code76PushConfig74/code76 for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the 74code76PushConfig74/code76 field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
+     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
      *
      * @alias pubsub.subscriptions.modifyPushConfig
      * @memberOf! pubsub(v1beta1a)

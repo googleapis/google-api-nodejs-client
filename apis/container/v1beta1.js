@@ -106,7 +106,7 @@ function Container(options) {
         /**
          * container.projects.zones.clusters.create
          *
-         * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances, plus a Kubernetes master instance.  The cluster is created in the project's default network.  A firewall is added that allows traffic into port 443 on the master, which enables HTTPS. A firewall and a route is added for each node to allow the containers on that node to communicate with all other instances in the cluster.  Finally, a route named k8s-iproute-10-xx-0-0 is created to track that the cluster's 10.xx.0.0/16 CIDR has been assigned.
+         * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances, plus a Kubernetes master instance.  The cluster is created in the project's default network.  A firewall is added that allows traffic into port 443 on the master, which enables HTTPS. A firewall and a route is added for each node to allow the containers on that node to communicate with all other instances in the cluster.  Finally, an entry is added to the project's global metadata indicating which CIDR range is being used by the cluster.
          *
          * @alias container.projects.zones.clusters.create
          * @memberOf! container(v1beta1)
@@ -278,40 +278,6 @@ function Container(options) {
             params: params,
             requiredParams: ['projectId', 'zoneId'],
             pathParams: ['projectId', 'zoneId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      },
-
-      tokens: {
-
-        /**
-         * container.projects.zones.tokens.get
-         *
-         * @desc Gets a compute-rw scoped OAuth2 access token for . Authentication is performed to ensure that the caller is a member of  and that the request is coming from the expected master VM for the specified cluster. See go/gke-cross-project-auth for more details.
-         *
-         * @alias container.projects.zones.tokens.get
-         * @memberOf! container(v1beta1)
-         *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.clusterName - The name of the specified cluster.
-         * @param  {string} params.masterProjectId - The hosted master project from which this request is coming.
-         * @param  {string} params.projectNumber - The project number for which the access token is being requested.
-         * @param  {string} params.zoneId - The zone of the specified cluster.
-         * @param  {callback} callback - The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function(params, callback) {
-          var parameters = {
-            options: {
-              url: 'https://www.googleapis.com/container/v1beta1/projects/{masterProjectId}/zones/{zoneId}/tokens/{projectNumber}/{clusterName}',
-              method: 'GET'
-            },
-            params: params,
-            requiredParams: ['masterProjectId', 'zoneId', 'projectNumber', 'clusterName'],
-            pathParams: ['clusterName', 'masterProjectId', 'projectNumber', 'zoneId'],
             context: self
           };
 

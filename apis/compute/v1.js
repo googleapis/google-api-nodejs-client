@@ -46,9 +46,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -167,9 +167,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -320,9 +320,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -415,9 +415,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -476,9 +476,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -512,9 +512,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -665,9 +665,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -788,9 +788,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -883,9 +883,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1004,9 +1004,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -1158,9 +1158,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1280,9 +1280,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1345,9 +1345,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1434,9 +1434,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1556,9 +1556,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1768,9 +1768,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1797,14 +1797,14 @@ function Compute(options) {
     /**
      * compute.instanceTemplates.delete
      *
-     * @desc Deletes the specified instance template resource.
+     * @desc Deletes the specified instance template.
      *
      * @alias compute.instanceTemplates.delete
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceTemplate - Name of the instance template resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.instanceTemplate - The name of the instance template to delete.
+     * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1832,8 +1832,8 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceTemplate - Name of the instance template resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.instanceTemplate - The name of the instance template.
+     * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1855,13 +1855,13 @@ function Compute(options) {
     /**
      * compute.instanceTemplates.insert
      *
-     * @desc Creates an instance template resource in the specified project using the data included in the request.
+     * @desc Creates an instance template in the specified project using the data that is included in the request.
      *
      * @alias compute.instanceTemplates.insert
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - The project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1884,16 +1884,16 @@ function Compute(options) {
     /**
      * compute.instanceTemplates.list
      *
-     * @desc Retrieves the list of instance template resources contained within the specified project.
+     * @desc Retrieves a list of instance templates that are contained within the specified project and zone.
      *
      * @alias compute.instanceTemplates.list
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1957,9 +1957,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2203,9 +2203,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -2487,9 +2487,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2548,9 +2548,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -2671,9 +2671,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2914,9 +2914,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -2979,9 +2979,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3101,9 +3101,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3194,9 +3194,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3316,9 +3316,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3381,9 +3381,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3502,9 +3502,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -3600,9 +3600,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3752,9 +3752,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -3882,9 +3882,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4003,9 +4003,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -4126,9 +4126,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4251,9 +4251,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4372,9 +4372,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -4468,9 +4468,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -4533,9 +4533,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

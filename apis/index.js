@@ -71,6 +71,7 @@ var APIs = {
   'books': requireAPI('books'),
   'calendar': requireAPI('calendar'),
   'civicinfo': requireAPI('civicinfo'),
+  'cloudlatencytest': requireAPI('cloudlatencytest'),
   'cloudmonitoring': requireAPI('cloudmonitoring'),
   'compute': requireAPI('compute'),
   'computeaccounts': requireAPI('computeaccounts'),
@@ -98,6 +99,7 @@ var APIs = {
   'gmail': requireAPI('gmail'),
   'groupsmigration': requireAPI('groupsmigration'),
   'groupssettings': requireAPI('groupssettings'),
+  'logging': requireAPI('logging'),
   'identitytoolkit': requireAPI('identitytoolkit'),
   'licensing': requireAPI('licensing'),
   'manager': requireAPI('manager'),
@@ -126,10 +128,7 @@ var APIs = {
   'webfonts': requireAPI('webfonts'),
   'webmasters': requireAPI('webmasters'),
   'youtube': requireAPI('youtube'),
-  'youtubeAnalytics': requireAPI('youtubeAnalytics'),
-  'cloudlatencytest': requireAPI('cloudlatencytest'),
-  'cloudsearch': requireAPI('cloudsearch'),
-  'logging': requireAPI('logging')
+  'youtubeAnalytics': requireAPI('youtubeAnalytics')
 };
 
 /**
