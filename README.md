@@ -466,6 +466,6 @@ See [CONTRIBUTING][contributing].
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/examples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
 [gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
-[cloudplatform]: https://developers.google.com/cloud/
+[cloudplatform]: https://cloud.google.com/docs/
 [coveralls]: https://coveralls.io/r/google/google-api-nodejs-client?branch=master
 [coverallsimg]: https://img.shields.io/coveralls/google/google-api-nodejs-client.svg
