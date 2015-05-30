@@ -298,6 +298,10 @@ google.auth.getApplicationDefault(function(err, authClient) {
 });
 ```
 
+### Specifying Request Body
+
+The body of the request is specified in the `resource` parameter object of the request. The resource/body is specified as a JavaScript object with key/value pairs. See the example in the next section below for an example on how it is specified.
+
 ### Media Uploads
 
 This client supports multipart media uploads. The resource parameters are
