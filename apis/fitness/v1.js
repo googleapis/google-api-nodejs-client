@@ -315,6 +315,38 @@ function Fitness(options) {
       }
     },
 
+    dataset: {
+
+      /**
+       * fitness.users.dataset.aggregate
+       *
+       *
+       *
+       * @alias fitness.users.dataset.aggregate
+       * @memberOf! fitness(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userId -
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      aggregate: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataset:aggregate',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
     sessions: {
 
       /**

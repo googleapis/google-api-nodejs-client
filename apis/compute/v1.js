@@ -2420,7 +2420,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance resource to start.
+     * @param  {string} params.instance - Name of the instance resource to stop.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.

@@ -174,6 +174,7 @@ function Drive(options) {
      * @param  {boolean=} params.includeSubscribed - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
      * @param  {integer=} params.maxResults - Maximum number of changes to return.
      * @param  {string=} params.pageToken - Page token for changes.
+     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
      * @param  {string=} params.startChangeId - Change ID to start listing changes from.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -206,6 +207,7 @@ function Drive(options) {
      * @param  {boolean=} params.includeSubscribed - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
      * @param  {integer=} params.maxResults - Maximum number of changes to return.
      * @param  {string=} params.pageToken - Page token for changes.
+     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
      * @param  {string=} params.startChangeId - Change ID to start listing changes from.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -580,7 +582,7 @@ function Drive(options) {
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {string} params.fileId - The ID of the file to copy.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param  {boolean=} params.pinned - Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.timedTextLanguage - The language of the timed text.
      * @param  {string=} params.timedTextTrackName - The timed text track name.
@@ -702,7 +704,7 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param  {boolean=} params.pinned - Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.timedTextLanguage - The language of the timed text.
      * @param  {string=} params.timedTextTrackName - The timed text track name.
@@ -745,6 +747,7 @@ function Drive(options) {
      * @param  {string=} params.pageToken - Page token for files.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {string=} params.q - Query string for searching files.
+     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -777,7 +780,7 @@ function Drive(options) {
      * @param  {string} params.fileId - The ID of the file to update.
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.removeParents - Comma-separated list of parent IDs to remove.
      * @param  {boolean=} params.setModifiedDate - Whether to set the modified date with the supplied modified date.
@@ -902,7 +905,7 @@ function Drive(options) {
      * @param  {string} params.fileId - The ID of the file to update.
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
+     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param  {string=} params.removeParents - Comma-separated list of parent IDs to remove.
      * @param  {boolean=} params.setModifiedDate - Whether to set the modified date with the supplied modified date.

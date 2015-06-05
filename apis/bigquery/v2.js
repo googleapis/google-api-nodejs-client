@@ -221,6 +221,35 @@ function Bigquery(options) {
   this.jobs = {
 
     /**
+     * bigquery.jobs.cancel
+     *
+     * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully.
+     *
+     * @alias bigquery.jobs.cancel
+     * @memberOf! bigquery(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.jobId - Job ID of the job to cancel
+     * @param  {string} params.projectId - Project ID of the job to cancel
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/bigquery/v2/project/{projectId}/jobs/{jobId}/cancel',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * bigquery.jobs.get
      *
      * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.

@@ -1690,7 +1690,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The ID of the variant to be updated.
+     * @param  {string} params.variantSetId - The ID of the variant to be updated (must already exist).
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1747,7 +1747,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The ID of the variant to be updated.
+     * @param  {string} params.variantSetId - The ID of the variant to be updated (must already exist).
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
