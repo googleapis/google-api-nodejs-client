@@ -40,15 +40,15 @@ function Manager(options) {
     /**
      * manager.deployments.delete
      *
-     *
+     * 
      *
      * @alias manager.deployments.delete
      * @memberOf! manager(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deploymentName -
-     * @param  {string} params.projectId -
-     * @param  {string} params.region -
+     * @param  {string} params.deploymentName - 
+     * @param  {string} params.projectId - 
+     * @param  {string} params.region - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -70,15 +70,15 @@ function Manager(options) {
     /**
      * manager.deployments.get
      *
-     *
+     * 
      *
      * @alias manager.deployments.get
      * @memberOf! manager(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.deploymentName -
-     * @param  {string} params.projectId -
-     * @param  {string} params.region -
+     * @param  {string} params.deploymentName - 
+     * @param  {string} params.projectId - 
+     * @param  {string} params.region - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -100,14 +100,14 @@ function Manager(options) {
     /**
      * manager.deployments.insert
      *
-     *
+     * 
      *
      * @alias manager.deployments.insert
      * @memberOf! manager(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId -
-     * @param  {string} params.region -
+     * @param  {string} params.projectId - 
+     * @param  {string} params.region - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -130,7 +130,7 @@ function Manager(options) {
     /**
      * manager.deployments.list
      *
-     *
+     * 
      *
      * @alias manager.deployments.list
      * @memberOf! manager(v1beta2)
@@ -138,8 +138,8 @@ function Manager(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectId -
-     * @param  {string} params.region -
+     * @param  {string} params.projectId - 
+     * @param  {string} params.region - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -165,14 +165,14 @@ function Manager(options) {
     /**
      * manager.templates.delete
      *
-     *
+     * 
      *
      * @alias manager.templates.delete
      * @memberOf! manager(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId -
-     * @param  {string} params.templateName -
+     * @param  {string} params.projectId - 
+     * @param  {string} params.templateName - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -194,14 +194,14 @@ function Manager(options) {
     /**
      * manager.templates.get
      *
-     *
+     * 
      *
      * @alias manager.templates.get
      * @memberOf! manager(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId -
-     * @param  {string} params.templateName -
+     * @param  {string} params.projectId - 
+     * @param  {string} params.templateName - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -223,13 +223,13 @@ function Manager(options) {
     /**
      * manager.templates.insert
      *
-     *
+     * 
      *
      * @alias manager.templates.insert
      * @memberOf! manager(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId -
+     * @param  {string} params.projectId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -252,7 +252,7 @@ function Manager(options) {
     /**
      * manager.templates.list
      *
-     *
+     * 
      *
      * @alias manager.templates.list
      * @memberOf! manager(v1beta2)
@@ -260,7 +260,7 @@ function Manager(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
      * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectId -
+     * @param  {string} params.projectId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

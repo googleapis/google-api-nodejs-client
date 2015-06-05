@@ -65,6 +65,63 @@ function Gmail(options) {
       return createAPIRequest(parameters, callback);
     },
 
+    /**
+     * gmail.users.stop
+     *
+     * @desc Stop receiving push notifications for the given user mailbox.
+     *
+     * @alias gmail.users.stop
+     * @memberOf! gmail(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    stop: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gmail/v1/users/{userId}/stop',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * gmail.users.watch
+     *
+     * @desc Set up or update a push notification watch on the given user mailbox.
+     *
+     * @alias gmail.users.watch
+     * @memberOf! gmail(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    watch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/gmail/v1/users/{userId}/watch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
     drafts: {
 
       /**

@@ -133,9 +133,9 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -164,11 +164,11 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.createPolicy -
-     * @param  {string=} params.deletePolicy -
+     * @param  {string=} params.createPolicy - Sets the policy to use for creating new resources.
+     * @param  {string=} params.deletePolicy - Sets the policy to use for deleting resources.
      * @param  {string} params.deployment - The name of the deployment for this request.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string=} params.updatePolicy -
+     * @param  {string=} params.updatePolicy - Sets the policy to use for updating resources.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -197,11 +197,11 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.createPolicy -
-     * @param  {string=} params.deletePolicy -
+     * @param  {string=} params.createPolicy - Sets the policy to use for creating new resources.
+     * @param  {string=} params.deletePolicy - Sets the policy to use for deleting resources.
      * @param  {string} params.deployment - The name of the deployment for this request.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string=} params.updatePolicy -
+     * @param  {string=} params.updatePolicy - Sets the policy to use for updating resources.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -265,9 +265,9 @@ function Deploymentmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -294,7 +294,7 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.operations.get
      *
-     * @desc Gets information about a specific Operation.
+     * @desc Gets information about a specific operation.
      *
      * @alias deploymentmanager.operations.get
      * @memberOf! deploymentmanager(v2beta2)
@@ -323,15 +323,15 @@ function Deploymentmanager(options) {
     /**
      * deploymentmanager.operations.list
      *
-     * @desc Lists all Operations for a project.
+     * @desc Lists all operations for a project.
      *
      * @alias deploymentmanager.operations.list
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -395,9 +395,9 @@ function Deploymentmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -430,9 +430,9 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
