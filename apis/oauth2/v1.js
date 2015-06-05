@@ -38,7 +38,7 @@ function Oauth2(options) {
   /**
    * oauth2.getCertForOpenIdConnect
    *
-   *
+   * 
    *
    * @alias oauth2.getCertForOpenIdConnect
    * @memberOf! oauth2(v1)
@@ -65,7 +65,7 @@ function Oauth2(options) {
   /**
    * oauth2.getCertForOpenIdConnectRaw
    *
-   *
+   * 
    *
    * @alias oauth2.getCertForOpenIdConnectRaw
    * @memberOf! oauth2(v1)
@@ -92,7 +92,7 @@ function Oauth2(options) {
   /**
    * oauth2.getRobotMetadataRaw
    *
-   *
+   * 
    *
    * @alias oauth2.getRobotMetadataRaw
    * @memberOf! oauth2(v1)
@@ -120,7 +120,7 @@ function Oauth2(options) {
   /**
    * oauth2.getRobotMetadataX509
    *
-   *
+   * 
    *
    * @alias oauth2.getRobotMetadataX509
    * @memberOf! oauth2(v1)

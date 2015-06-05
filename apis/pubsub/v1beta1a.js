@@ -35,14 +35,14 @@ function Pubsub(options) {
   var self = this;
   this._options = options || {};
 
-  this.subscriptions = {
+  this.topics = {
 
     /**
-     * pubsub.subscriptions.acknowledge
+     * pubsub.topics.create
      *
-     * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
+     * @desc Creates the given topic with the given name.
      *
-     * @alias pubsub.subscriptions.acknowledge
+     * @alias pubsub.topics.create
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
@@ -50,10 +50,10 @@ function Pubsub(options) {
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function(params, callback) {
+    create: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/acknowledge',
+          url: 'https://pubsub.googleapis.com/v1beta1a/topics',
           method: 'POST'
         },
         params: params,
@@ -64,6 +64,152 @@ function Pubsub(options) {
 
       return createAPIRequest(parameters, callback);
     },
+
+    /**
+     * pubsub.topics.publish
+     *
+     * @desc Adds a message to the topic. Returns NOT_FOUND if the topic does not exist.
+     *
+     * @alias pubsub.topics.publish
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    publish: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://pubsub.googleapis.com/v1beta1a/topics/publish',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.publishBatch
+     *
+     * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
+     *
+     * @alias pubsub.topics.publishBatch
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    publishBatch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://pubsub.googleapis.com/v1beta1a/topics/publishBatch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.get
+     *
+     * @desc Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
+     *
+     * @alias pubsub.topics.get
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.topic - The name of the topic to get.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.list
+     *
+     * @desc Lists matching topics.
+     *
+     * @alias pubsub.topics.list
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.query - A valid label query expression.
+     * @param  {integer=} params.maxResults - Maximum number of topics to return.
+     * @param  {string=} params.pageToken - The value obtained in the last ListTopicsResponse for continuation.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://pubsub.googleapis.com/v1beta1a/topics',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.delete
+     *
+     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
+     *
+     * @alias pubsub.topics.delete
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.topic - Name of the topic to delete.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.subscriptions = {
 
     /**
      * pubsub.subscriptions.create
@@ -94,34 +240,6 @@ function Pubsub(options) {
     },
 
     /**
-     * pubsub.subscriptions.delete
-     *
-     * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND.
-     *
-     * @alias pubsub.subscriptions.delete
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.subscription -
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
-          method: 'DELETE'
-        },
-        params: params,
-        requiredParams: ['subscription'],
-        pathParams: ['subscription'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * pubsub.subscriptions.get
      *
      * @desc Gets the configuration details of a subscription.
@@ -130,7 +248,7 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.subscription -
+     * @param  {string} params.subscription - The name of the subscription to get.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -158,9 +276,9 @@ function Pubsub(options) {
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults -
-     * @param  {string=} params.pageToken -
-     * @param  {string=} params.query -
+     * @param  {string=} params.query - A valid label query expression.
+     * @param  {integer=} params.maxResults - Maximum number of subscriptions to return.
+     * @param  {string=} params.pageToken - The value obtained in the last ListSubscriptionsResponse for continuation.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -180,27 +298,27 @@ function Pubsub(options) {
     },
 
     /**
-     * pubsub.subscriptions.modifyAckDeadline
+     * pubsub.subscriptions.delete
      *
-     * @desc Modifies the Ack deadline for a message received from a pull request.
+     * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND.
      *
-     * @alias pubsub.subscriptions.modifyAckDeadline
+     * @alias pubsub.subscriptions.delete
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
+     * @param  {string} params.subscription - The subscription to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
-    modifyAckDeadline: function(params, callback) {
+    delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyAckDeadline',
-          method: 'POST'
+          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
+          method: 'DELETE'
         },
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
         context: self
       };
 
@@ -289,18 +407,14 @@ function Pubsub(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  this.topics = {
+    },
 
     /**
-     * pubsub.topics.create
+     * pubsub.subscriptions.modifyAckDeadline
      *
-     * @desc Creates the given topic with the given name.
+     * @desc Modifies the Ack deadline for a message received from a pull request.
      *
-     * @alias pubsub.topics.create
+     * @alias pubsub.subscriptions.modifyAckDeadline
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
@@ -308,10 +422,10 @@ function Pubsub(options) {
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    modifyAckDeadline: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics',
+          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyAckDeadline',
           method: 'POST'
         },
         params: params,
@@ -324,97 +438,11 @@ function Pubsub(options) {
     },
 
     /**
-     * pubsub.topics.delete
+     * pubsub.subscriptions.acknowledge
      *
-     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
+     * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
      *
-     * @alias pubsub.topics.delete
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.topic -
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
-          method: 'DELETE'
-        },
-        params: params,
-        requiredParams: ['topic'],
-        pathParams: ['topic'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.topics.get
-     *
-     * @desc Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
-     *
-     * @alias pubsub.topics.get
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.topic -
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['topic'],
-        pathParams: ['topic'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.topics.list
-     *
-     * @desc Lists matching topics.
-     *
-     * @alias pubsub.topics.list
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults -
-     * @param  {string=} params.pageToken -
-     * @param  {string=} params.query -
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.topics.publish
-     *
-     * @desc Adds a message to the topic. Returns NOT_FOUND if the topic does not exist.
-     *
-     * @alias pubsub.topics.publish
+     * @alias pubsub.subscriptions.acknowledge
      * @memberOf! pubsub(v1beta1a)
      *
      * @param  {object} params - Parameters for request
@@ -422,38 +450,10 @@ function Pubsub(options) {
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
-    publish: function(params, callback) {
+    acknowledge: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/publish',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.topics.publishBatch
-     *
-     * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
-     *
-     * @alias pubsub.topics.publishBatch
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    publishBatch: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/publishBatch',
+          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/acknowledge',
           method: 'POST'
         },
         params: params,
