@@ -244,8 +244,7 @@ var jwtClient = new google.auth.JWT(
   'serviceaccount@email.com',
   '/path/to/key.pem',
   null,
-  [scope1, scope2],
-  'bar@subjectaccount.com');
+  [scope1, scope2]);
 
 jwtClient.authorize(function(err, tokens) {
   if (err) {
