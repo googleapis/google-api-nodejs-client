@@ -35,6 +35,39 @@ function Webmasters(options) {
   var self = this;
   this._options = options || {};
 
+  this.searchanalytics = {
+
+    /**
+     * webmasters.searchanalytics.query
+     *
+     * @desc [LIMITED ACCESS]  Query your data with filters and parameters that you define. Returns zero or more rows grouped by the row keys that you define. You must define a date range of one or more days.  When date is one of the group by values, any days without data are omitted from the result list. If you need to know which days have data, issue a broad date range query grouped by date for any metric, and see which day rows are returned.
+     *
+     * @alias webmasters.searchanalytics.query
+     * @memberOf! webmasters(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    query: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['siteUrl'],
+        pathParams: ['siteUrl'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.sitemaps = {
 
     /**
@@ -46,8 +79,8 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.feedpath - The URL of the actual sitemap (for example http://www.example.com/sitemap.xml).
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.feedpath - The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -75,8 +108,8 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.feedpath - The URL of the actual sitemap (for example http://www.example.com/sitemap.xml).
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.feedpath - The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -98,14 +131,14 @@ function Webmasters(options) {
     /**
      * webmasters.sitemaps.list
      *
-     * @desc Lists sitemaps uploaded to the site.
+     * @desc Lists the sitemaps-entries submitted for this site, or included in the sitemap index file (if sitemapIndex is specified in the request).
      *
      * @alias webmasters.sitemaps.list
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
-     * @param  {string=} params.sitemapIndex - A URL of a site's sitemap index.
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
+     * @param  {string=} params.sitemapIndex - A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -133,8 +166,8 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.feedpath - The URL of the sitemap to add.
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.feedpath - The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -194,7 +227,7 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.siteUrl - The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -222,7 +255,7 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.siteUrl - The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -244,7 +277,7 @@ function Webmasters(options) {
     /**
      * webmasters.sites.list
      *
-     * @desc Lists your Webmaster Tools sites.
+     * @desc Lists the user's Webmaster Tools sites.
      *
      * @alias webmasters.sites.list
      * @memberOf! webmasters(v3)
@@ -281,10 +314,10 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.category - The crawl error category, for example 'serverError'. If not specified, we return results for all categories.
+     * @param  {string=} params.category - The crawl error category. For example: serverError. If not specified, returns results for all categories.
      * @param  {boolean=} params.latestCountsOnly - If true, returns only the latest crawl error counts.
-     * @param  {string=} params.platform - The user agent type (platform) that made the request, for example 'web'. If not specified, we return results for all platforms.
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string=} params.platform - The user agent type (platform) that made the request. For example: web. If not specified, returns results for all platforms.
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -316,10 +349,10 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.category - The crawl error category, for example 'authPermissions'
-     * @param  {string} params.platform - The user agent type (platform) that made the request, for example 'web'
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
-     * @param  {string} params.url - The relative path (without the site) of the sample URL; must be one of the URLs returned by list
+     * @param  {string} params.category - The crawl error category. For example: authPermissions
+     * @param  {string} params.platform - The user agent type (platform) that made the request. For example: web
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
+     * @param  {string} params.url - The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -347,9 +380,9 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.category - The crawl error category, for example 'authPermissions'
-     * @param  {string} params.platform - The user agent type (platform) that made the request, for example 'web'
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
+     * @param  {string} params.category - The crawl error category. For example: authPermissions
+     * @param  {string} params.platform - The user agent type (platform) that made the request. For example: web
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -377,10 +410,10 @@ function Webmasters(options) {
      * @memberOf! webmasters(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.category - The crawl error category, for example 'authPermissions'
-     * @param  {string} params.platform - The user agent type (platform) that made the request, for example 'web'
-     * @param  {string} params.siteUrl - The site's URL, including protocol, for example 'http://www.example.com/'
-     * @param  {string} params.url - The relative path (without the site) of the sample URL; must be one of the URLs returned by list
+     * @param  {string} params.category - The crawl error category. For example: authPermissions
+     * @param  {string} params.platform - The user agent type (platform) that made the request. For example: web
+     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
+     * @param  {string} params.url - The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

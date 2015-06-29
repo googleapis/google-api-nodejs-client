@@ -46,7 +46,7 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -80,7 +80,7 @@ function Youtube(options) {
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param  {boolean=} params.mine - Set this parameter's value to true to retrieve a feed of the authenticated user's activities.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
      * @param  {string=} params.publishedAfter - The publishedAfter parameter specifies the earliest date and time that an activity could have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be included in the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      * @param  {string=} params.publishedBefore - The publishedBefore parameter specifies the date and time before which an activity must have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be excluded from the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code. YouTube uses this value when the authorized user's previous activity on YouTube does not provide enough information to generate the activity feed.
@@ -458,13 +458,13 @@ function Youtube(options) {
      * @param  {string=} params.forUsername - The forUsername parameter specifies a YouTube username, thereby requesting the channel associated with that username.
      * @param  {string=} params.hl - The hl parameter should be used for filter out the properties that are not in the given language. Used for the brandingSettings part.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of the YouTube channel ID(s) for the resource(s) that are being retrieved. In a channel resource, the id property specifies the channel's YouTube channel ID.
-     * @param  {boolean=} params.managedByMe - Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
+     * @param  {boolean=} params.managedByMe - Note: This parameter is intended exclusively for YouTube content partners.  Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param  {boolean=} params.mine - Set this parameter's value to true to instruct the API to only return channels owned by the authenticated user.
-     * @param  {boolean=} params.mySubscribers - Set this parameter's value to true to retrieve a list of channels that subscribed to the authenticated user's channel.
-     * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * @param  {boolean=} params.mySubscribers - Use the subscriptions.list method and its mySubscribers parameter to retrieve a list of subscribers to the authenticated user's channel.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, statistics, topicDetails, and invideoPromotion.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -486,14 +486,14 @@ function Youtube(options) {
     /**
      * youtube.channels.update
      *
-     * @desc Updates a channel's metadata.
+     * @desc Updates a channel's metadata. Note that this method currently only supports updates to the channel resource's brandingSettings and invideoPromotion objects and their child properties.
      *
      * @alias youtube.channels.update
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are id and invideoPromotion.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.)  Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -520,14 +520,14 @@ function Youtube(options) {
     /**
      * youtube.commentThreads.insert
      *
-     * @desc Creates a new comment thread and top level comment.
+     * @desc Creates a new top-level comment. To add a reply to an existing comment, use the comments.insert method instead.
      *
      * @alias youtube.commentThreads.insert
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are id and snippet. However only snippet contains properties that can be set.
-     * @param  {boolean=} params.shareOnGooglePlus - The shareOnGooglePlus determines whether this thread should also be posted on Google+.
+     * @param  {string} params.part - The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
+     * @param  {boolean=} params.shareOnGooglePlus - The shareOnGooglePlus parameter indicates whether the top-level comment and any replies that are made to that comment should also be posted to the author's Google+ profile.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -556,17 +556,17 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.allThreadsRelatedToChannelId - The allThreadsRelatedToChannelId parameter instructs the API to return the comment threads of all videos of the channel and the channel comments as well.
-     * @param  {string=} params.channelId - The channelId parameter instructs the API to return the comment threads for all the channel comments (not including comments left on videos).
+     * @param  {string=} params.allThreadsRelatedToChannelId - The allThreadsRelatedToChannelId parameter instructs the API to return all comment threads associated with the specified channel. The response can include comments about the channel or about the channel's videos.
+     * @param  {string=} params.channelId - The channelId parameter instructs the API to return comment threads containing comments about the specified channel. (The response will not include comments left on videos that the channel uploaded.)
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of comment thread IDs for the resources that should be retrieved.
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
      * @param  {string=} params.moderationStatus - Set this parameter to limit the returned comment threads to a particular moderation state.  Note: This parameter is not supported for use in conjunction with the id parameter.
      * @param  {string=} params.order - The order parameter specifies the order in which the API response should list comment threads. Valid values are:  - time - Comment threads are ordered by time. This is the default behavior. - relevance - Comment threads are ordered by relevance.Note: This parameter is not supported for use in conjunction with the id parameter.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
-     * @param  {string} params.part - The part parameter specifies the commentThread resource parts that the API response will include. Supported values are id, snippet and replies.
-     * @param  {string=} params.searchTerms - The searchTerms parameter instructs the API to limit the returned comments to those which contain the specified search terms.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
+     * @param  {string=} params.searchTerms - The searchTerms parameter instructs the API to limit the API response to only contain comments that contain the specified search terms.  Note: This parameter is not supported for use in conjunction with the id parameter.
      * @param  {string=} params.textFormat - Set this parameter's value to html or plainText to instruct the API to return the comments left by users in html formatted or in plain text.
-     * @param  {string=} params.videoId - The videoId parameter instructs the API to return the comment threads for the video specified by the video id.
+     * @param  {string=} params.videoId - The videoId parameter instructs the API to return comment threads associated with the specified video ID.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -588,13 +588,13 @@ function Youtube(options) {
     /**
      * youtube.commentThreads.update
      *
-     * @desc Modifies an existing comment.
+     * @desc Modifies the top-level comment in a comment thread.
      *
      * @alias youtube.commentThreads.update
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are id, snippet and replies. However only snippet contains properties that can be updated.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -627,7 +627,7 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id parameter specifies the comment ID for the resource that should be deleted.
+     * @param  {string} params.id - The id parameter specifies the comment ID for the resource that is being deleted.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -649,13 +649,13 @@ function Youtube(options) {
     /**
      * youtube.comments.insert
      *
-     * @desc Creates a new comment.  Note: to create a top level comment it is also necessary to create a comment thread. Both are accomplished through the commentThreads resource.
+     * @desc Creates a reply to an existing comment. Note: To create a top-level comment, use the commentThreads.insert method.
      *
      * @alias youtube.comments.insert
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are id and snippet. However only snippet contains properties that can be set.
+     * @param  {string} params.part - The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -684,12 +684,12 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.id - The id parameter specifies a comma-separated list of comment IDs for the resources that should be retrieved.
+     * @param  {string=} params.id - The id parameter specifies a comma-separated list of comment IDs for the resources that are being retrieved. In a comment resource, the id property specifies the comment's ID.
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
-     * @param  {string=} params.parentId - The parentId parameter specifies the ID of the comment for which replies should be retrieved.  Note: Currently YouTube features only one level of replies (ie replies to top level comments). However replies to replies may be supported in the future.
-     * @param  {string} params.part - The part parameter specifies the comment resource parts that the API response will include. Supported values are id and snippet.
-     * @param  {string=} params.textFormat - Set this parameter's value to html or plainText to instruct the API to return the comments left by users formatted as HTML or as plain text.
+     * @param  {string=} params.parentId - The parentId parameter specifies the ID of the comment for which replies should be retrieved.  Note: YouTube currently supports replies only for top-level comments. However, replies to replies may be supported in the future.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
+     * @param  {string=} params.textFormat - This parameter indicates whether the API should return comments formatted as HTML or as plain text.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -711,13 +711,13 @@ function Youtube(options) {
     /**
      * youtube.comments.markAsSpam
      *
-     * @desc Expresses the caller's opinion that a comment is spam.
+     * @desc Expresses the caller's opinion that one or more comments should be flagged as spam.
      *
      * @alias youtube.comments.markAsSpam
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id parameter specifies a comma-separated list of IDs of comments which should get flagged as spam.
+     * @param  {string} params.id - The id parameter specifies a comma-separated list of IDs of comments that the caller believes should be classified as spam.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -739,15 +739,15 @@ function Youtube(options) {
     /**
      * youtube.comments.setModerationStatus
      *
-     * @desc Sets the moderation status of one or more comments.
+     * @desc Sets the moderation status of one or more comments. The API request must be authorized by the owner of the channel or video associated with the comments.
      *
      * @alias youtube.comments.setModerationStatus
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.banAuthor - The banAuthor paramter, if set to true, adds the author of the comment to the ban list. This means all future comments of the author will autmomatically be rejected.  Note: This parameter is only valid in combination with moderationStatus 'rejected'.
-     * @param  {string} params.id - The id parameter specifies a comma-separated list of IDs of comments whose moderation status should be updated.
-     * @param  {string} params.moderationStatus - Determines the new moderation status of the specified comments.
+     * @param  {boolean=} params.banAuthor - The banAuthor parameter lets you indicate that you want to automatically reject any additional comments written by the comment's author. Set the parameter value to true to ban the author.  Note: This parameter is only valid if the moderationStatus parameter is also set to rejected.
+     * @param  {string} params.id - The id parameter specifies a comma-separated list of IDs that identify the comments for which you are updating the moderation status.
+     * @param  {string} params.moderationStatus - Identifies the new moderation status of the specified comments.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -769,13 +769,13 @@ function Youtube(options) {
     /**
      * youtube.comments.update
      *
-     * @desc Modifies an existing comment.
+     * @desc Modifies a comment.
      *
      * @alias youtube.comments.update
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are id and snippet. However only snippet contains properties that can be updated.
+     * @param  {string} params.part - The part parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -810,7 +810,7 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.hl - The hl parameter specifies the language that will be used for text values in the API response.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of the YouTube channel category ID(s) for the resource(s) that are being retrieved. In a guideCategory resource, the id property specifies the YouTube channel category ID.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more guideCategory resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a guideCategory resource, the snippet property contains other properties, such as the category's title. If you set part=snippet, the API response will also contain all of those nested properties.
+     * @param  {string} params.part - The part parameter specifies the guideCategory resource properties that the API response will include. Set the parameter value to snippet.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -837,14 +837,14 @@ function Youtube(options) {
     /**
      * youtube.i18nLanguages.list
      *
-     * @desc Returns a list of supported languages.
+     * @desc Returns a list of application languages that the YouTube website supports.
      *
      * @alias youtube.i18nLanguages.list
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.hl - The hl parameter specifies the language that should be used for text values in the API response.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more i18nLanguage resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.
+     * @param  {string} params.part - The part parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -870,14 +870,14 @@ function Youtube(options) {
     /**
      * youtube.i18nRegions.list
      *
-     * @desc Returns a list of supported regions.
+     * @desc Returns a list of content regions that the YouTube website supports.
      *
      * @alias youtube.i18nRegions.list
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.hl - The hl parameter specifies the language that should be used for text values in the API response.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more i18nRegion resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.
+     * @param  {string} params.part - The part parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -903,7 +903,7 @@ function Youtube(options) {
     /**
      * youtube.liveBroadcasts.bind
      *
-     * @desc Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast can only be bound to one video stream.
+     * @desc Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast can only be bound to one video stream, though a video stream may be bound to more than one broadcast.
      *
      * @alias youtube.liveBroadcasts.bind
      * @memberOf! youtube(v3)
@@ -1200,7 +1200,7 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of YouTube stream IDs that identify the streams being retrieved. In a liveStream resource, the id property specifies the stream's ID.
-     * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 5.
+     * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param  {boolean=} params.mine - The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
@@ -1297,7 +1297,7 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, and status.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1330,7 +1330,7 @@ function Youtube(options) {
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      * @param  {string=} params.playlistId - The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
      * @param  {string=} params.videoId - The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
      * @param  {callback} callback - The callback that handles the response.
@@ -1360,7 +1360,7 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1424,7 +1424,7 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and status.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1461,7 +1461,7 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, status, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1490,7 +1490,7 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist's privacy setting is contained in the status part. As such, if your request is updating a private playlist, and the request's part parameter value includes the status part, the playlist's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the playlist will revert to the default privacy setting.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1525,35 +1525,35 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.channelId - The channelId parameter indicates that the API response should only contain resources created by the channel
      * @param  {string=} params.channelType - The channelType parameter lets you restrict a search to a particular type of channel.
-     * @param  {string=} params.eventType - The eventType parameter restricts a search to broadcast events.
+     * @param  {string=} params.eventType - The eventType parameter restricts a search to broadcast events. If you specify a value for this parameter, you must also set the type parameter's value to video.
      * @param  {boolean=} params.forContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated using a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      * @param  {boolean=} params.forDeveloper - The forDeveloper parameter restricts the search to only retrieve videos uploaded via the developer's application or website. The API server uses the request's authorization credentials to identify the developer. Therefore, a developer can restrict results to videos uploaded through the developer's own app or website but not to videos uploaded through other apps or sites.
      * @param  {boolean=} params.forMine - The forMine parameter restricts the search to only retrieve videos owned by the authenticated user. If you set this parameter to true, then the type parameter's value must also be set to video.
-     * @param  {string=} params.location - The location parameter restricts a search to videos that have a geographical location specified in their metadata. The value is a string that specifies geographic latitude/longitude coordinates e.g. (37.42307,-122.08427)
-     * @param  {string=} params.locationRadius - The locationRadius, in conjunction with the location parameter, defines a geographic area. If the geographic coordinates associated with a video fall within that area, then the video may be included in search results. This parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.
+     * @param  {string=} params.location - The location parameter, in conjunction with the locationRadius parameter, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).   - The location parameter value identifies the point at the center of the area. - The locationRadius parameter specifies the maximum distance that the location associated with a video can be from that point for the video to still be included in the search results.The API returns an error if your request specifies a value for the location parameter but does not also specify a value for the locationRadius parameter.
+     * @param  {string=} params.locationRadius - The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area.  The parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.  Note: See the definition of the location parameter for more information.
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.order - The order parameter specifies the method that will be used to order resources in the API response.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. The part names that you can include in the parameter value are id and snippet.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a search result, the snippet property contains other properties that identify the result's title, description, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
      * @param  {string=} params.publishedAfter - The publishedAfter parameter indicates that the API response should only contain resources created after the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      * @param  {string=} params.publishedBefore - The publishedBefore parameter indicates that the API response should only contain resources created before the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
-     * @param  {string=} params.q - The q parameter specifies the query term to search for.
+     * @param  {string=} params.q - The q parameter specifies the query term to search for.  Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing. Note that the pipe character must be URL-escaped when it is sent in your API request. The URL-escaped value for the pipe character is %7C.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return search results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param  {string=} params.relatedToVideoId - The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies. The parameter value must be set to a YouTube video ID and, if you are using this parameter, the type parameter must be set to video.
      * @param  {string=} params.relevanceLanguage - The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language. The parameter value is typically an ISO 639-1 two-letter language code. However, you should use the values zh-Hans for simplified Chinese and zh-Hant for traditional Chinese. Please note that results in other languages will still be returned if they are highly relevant to the search query term.
      * @param  {string=} params.safeSearch - The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.
      * @param  {string=} params.topicId - The topicId parameter indicates that the API response should only contain resources associated with the specified topic. The value identifies a Freebase topic ID.
      * @param  {string=} params.type - The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types.
-     * @param  {string=} params.videoCaption - The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions.
-     * @param  {string=} params.videoCategoryId - The videoCategoryId parameter filters video search results based on their category.
-     * @param  {string=} params.videoDefinition - The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos. HD videos are available for playback in at least 720p, though higher resolutions, like 1080p, might also be available.
-     * @param  {string=} params.videoDimension - The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos.
-     * @param  {string=} params.videoDuration - The videoDuration parameter filters video search results based on their duration.
-     * @param  {string=} params.videoEmbeddable - The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage.
-     * @param  {string=} params.videoLicense - The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos.
-     * @param  {string=} params.videoSyndicated - The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com.
-     * @param  {string=} params.videoType - The videoType parameter lets you restrict a search to a particular type of videos.
+     * @param  {string=} params.videoCaption - The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoCategoryId - The videoCategoryId parameter filters video search results based on their category. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoDefinition - The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos. HD videos are available for playback in at least 720p, though higher resolutions, like 1080p, might also be available. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoDimension - The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoDuration - The videoDuration parameter filters video search results based on their duration. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoEmbeddable - The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoLicense - The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoSyndicated - The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param  {string=} params.videoType - The videoType parameter lets you restrict a search to a particular type of videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1613,7 +1613,7 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1652,7 +1652,7 @@ function Youtube(options) {
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param  {string=} params.order - The order parameter specifies the method that will be used to sort resources in the API response.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1684,7 +1684,7 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.videoId - The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
@@ -1756,7 +1756,7 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.hl - The hl parameter specifies the language that should be used for text values in the API response.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of video category IDs for the resources that you are retrieving.
-     * @param  {string} params.part - The part parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
+     * @param  {string} params.part - The part parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1848,10 +1848,10 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.autoLevels - The autoLevels parameter indicates whether YouTube should automatically enhance the video's lighting and color.
-     * @param  {boolean=} params.notifySubscribers - The notifySubscribers parameter indicates whether YouTube should send notification to subscribers about the inserted video.
+     * @param  {boolean=} params.notifySubscribers - The notifySubscribers parameter indicates whether YouTube should send a notification about the new video to users who subscribe to the video's channel. A parameter value of True indicates that subscribers will be notified of newly uploaded videos. However, a channel owner who is uploading many videos might prefer to set the value to False to avoid sending a notification about each new video to the channel's subscribers.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.onBehalfOfContentOwnerChannel - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, fileDetails, liveStreamingDetails, localizations, player, processingDetails, recordingDetails, statistics, status, suggestions, and topicDetails. However, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      * @param  {boolean=} params.stabilize - The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
@@ -1887,14 +1887,14 @@ function Youtube(options) {
      * @param  {object} params - Parameters for request
      * @param  {string=} params.chart - The chart parameter identifies the chart that you want to retrieve.
      * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
-     * @param  {string=} params.hl - The hl parameter instructs the API to return a localized version of the video details. If localized text is nor available for the requested language, the localizations object in the API response will contain the requested information in the default language instead. The parameter value is a BCP-47 language code. Your application can determine whether the requested localization was returned by checking the value of the snippet.localized.language property in the API response.
+     * @param  {string=} params.hl - The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
      * @param  {string=} params.locale - DEPRECATED
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is supported for use in conjunction with the myRating parameter, but it is not supported for use in conjunction with the id parameter.
      * @param  {string=} params.myRating - Set this parameter's value to like or dislike to instruct the API to only return videos liked or disliked by the authenticated user.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.  Note: This parameter is supported for use in conjunction with the myRating parameter, but it is not supported for use in conjunction with the id parameter.
-     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, fileDetails, liveStreamingDetails, localizations, player, processingDetails, recordingDetails, statistics, status, suggestions, and topicDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
+     * @param  {string} params.part - The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      * @param  {string=} params.regionCode - The regionCode parameter instructs the API to select a video chart available in the specified region. This parameter can only be used in conjunction with the chart parameter. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param  {string=} params.videoCategoryId - The videoCategoryId parameter identifies the video category for which the chart should be retrieved. This parameter can only be used in conjunction with the chart parameter. By default, charts are not restricted to a particular category.
      * @param  {callback} callback - The callback that handles the response.
@@ -1925,7 +1925,6 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id parameter specifies the YouTube video ID of the video that is being rated or having its rating removed.
-     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.rating - Specifies the rating to record.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1984,7 +1983,7 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet, contentDetails, fileDetails, liveStreamingDetails, localizations, player, processingDetails, recordingDetails, statistics, status, suggestions, and topicDetails.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.  In addition, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.  In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2017,8 +2016,8 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.channelId - The channelId parameter specifies a YouTube channel ID for which the watermark is being provided.
-     * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * @param  {string} params.channelId - The channelId parameter specifies the YouTube channel ID for which the watermark is being provided.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {object} params.resource - Media resource metadata
      * @param  {object} params.media - Media object
      * @param  {string} params.media.mimeType - Media mime-type
@@ -2045,14 +2044,14 @@ function Youtube(options) {
     /**
      * youtube.watermarks.unset
      *
-     * @desc Deletes a watermark.
+     * @desc Deletes a channel's watermark image.
      *
      * @alias youtube.watermarks.unset
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.channelId - The channelId parameter specifies a YouTube channel ID for which the watermark is being unset.
-     * @param  {string=} params.onBehalfOfContentOwner - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * @param  {string} params.channelId - The channelId parameter specifies the YouTube channel ID for which the watermark is being unset.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

@@ -320,13 +320,13 @@ function Fitness(options) {
       /**
        * fitness.users.dataset.aggregate
        *
-       *
+       * 
        *
        * @alias fitness.users.dataset.aggregate
        * @memberOf! fitness(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.userId -
+       * @param  {string} params.userId - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

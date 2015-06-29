@@ -682,7 +682,7 @@ function Genomics(options) {
      * @param  {object=} params - Parameters for request
      * @param  {integer=} params.pageSize - The maximum number of results returned by this request. If unspecified, defaults to 50.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.projectNumber - The project to list datasets for.
+     * @param  {string=} params.projectNumber - Required. The project to list datasets for.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

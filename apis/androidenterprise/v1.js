@@ -1143,6 +1143,66 @@ function Androidenterprise(options) {
   this.products = {
 
     /**
+     * androidenterprise.products.approve
+     *
+     * @desc Approves the specified product (and the relevant app permissions, if any).
+     *
+     * @alias androidenterprise.products.approve
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.productId - The ID of the product.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    approve: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'productId'],
+        pathParams: ['enterpriseId', 'productId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.products.generateApprovalUrl
+     *
+     * @desc Generates a URL that can be used to display an iframe to view the product's permissions (if any) and approve the product. This URL can be used to approve the product for a limited time (currently 1 hour) using the Products.approve call.
+     *
+     * @alias androidenterprise.products.generateApprovalUrl
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string=} params.languageCode - The language code that will be used for permission names and descriptions in the returned iframe.
+     * @param  {string} params.productId - The ID of the product.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    generateApprovalUrl: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'productId'],
+        pathParams: ['enterpriseId', 'productId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.products.get
      *
      * @desc Retrieves details of a product for display to an enterprise admin.

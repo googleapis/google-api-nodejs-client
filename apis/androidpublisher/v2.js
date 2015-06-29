@@ -406,7 +406,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.apks.list
        *
-       *
+       * 
        *
        * @alias androidpublisher.edits.apks.list
        * @memberOf! androidpublisher(v2)
@@ -435,7 +435,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.apks.upload
        *
-       *
+       * 
        *
        * @alias androidpublisher.edits.apks.upload
        * @memberOf! androidpublisher(v2)
@@ -571,7 +571,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType -
+       * @param  {string} params.expansionFileType - 
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -602,7 +602,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType -
+       * @param  {string} params.expansionFileType - 
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
@@ -634,7 +634,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType -
+       * @param  {string} params.expansionFileType - 
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
@@ -666,7 +666,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType -
+       * @param  {string} params.expansionFileType - 
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {object} params.media - Media object
        * @param  {string} params.media.mimeType - Media mime-type
@@ -704,7 +704,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
        * @param  {string} params.imageId - Unique identifier an image within the set of images attached to this edit.
-       * @param  {string} params.imageType -
+       * @param  {string} params.imageType - 
        * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {callback} callback - The callback that handles the response.
@@ -735,7 +735,7 @@ function Androidpublisher(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageType -
+       * @param  {string} params.imageType - 
        * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {callback} callback - The callback that handles the response.
@@ -766,7 +766,7 @@ function Androidpublisher(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageType -
+       * @param  {string} params.imageType - 
        * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {callback} callback - The callback that handles the response.
@@ -797,7 +797,7 @@ function Androidpublisher(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageType -
+       * @param  {string} params.imageType - 
        * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param  {object} params.media - Media object
@@ -1011,7 +1011,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.testers.get
        *
-       *
+       * 
        *
        * @alias androidpublisher.edits.testers.get
        * @memberOf! androidpublisher(v2)
@@ -1019,7 +1019,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track -
+       * @param  {string} params.track - 
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -1041,7 +1041,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.testers.patch
        *
-       *
+       * 
        *
        * @alias androidpublisher.edits.testers.patch
        * @memberOf! androidpublisher(v2)
@@ -1049,7 +1049,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track -
+       * @param  {string} params.track - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -1072,7 +1072,7 @@ function Androidpublisher(options) {
       /**
        * androidpublisher.edits.testers.update
        *
-       *
+       * 
        *
        * @alias androidpublisher.edits.testers.update
        * @memberOf! androidpublisher(v2)
@@ -1080,7 +1080,7 @@ function Androidpublisher(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.editId - Unique identifier for this edit.
        * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track -
+       * @param  {string} params.track - 
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -1237,11 +1237,11 @@ function Androidpublisher(options) {
      * @memberOf! androidpublisher(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults -
+     * @param  {integer=} params.maxResults - 
      * @param  {string} params.packageName - The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      * @param  {string=} params.productId - The product id of the inapp product (for example, 'sku1'). This can be used to restrict the result set.
-     * @param  {integer=} params.startIndex -
-     * @param  {string=} params.token -
+     * @param  {integer=} params.startIndex - 
+     * @param  {string=} params.token - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1267,7 +1267,7 @@ function Androidpublisher(options) {
     /**
      * androidpublisher.inappproducts.batch
      *
-     *
+     * 
      *
      * @alias androidpublisher.inappproducts.batch
      * @memberOf! androidpublisher(v2)
@@ -1330,7 +1330,7 @@ function Androidpublisher(options) {
      * @memberOf! androidpublisher(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.packageName -
+     * @param  {string} params.packageName - 
      * @param  {string} params.sku - Unique identifier for the in-app product.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1389,10 +1389,10 @@ function Androidpublisher(options) {
      * @memberOf! androidpublisher(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults -
+     * @param  {integer=} params.maxResults - 
      * @param  {string} params.packageName - Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
-     * @param  {integer=} params.startIndex -
-     * @param  {string=} params.token -
+     * @param  {integer=} params.startIndex - 
+     * @param  {string=} params.token - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

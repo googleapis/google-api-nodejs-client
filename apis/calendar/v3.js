@@ -778,6 +778,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -809,6 +810,7 @@ function Calendar(options) {
      * @param  {string} params.calendarId - Calendar identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the new event. Optional. The default is False.
+     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -956,6 +958,7 @@ function Calendar(options) {
      * @param  {string} params.eventId - Event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1019,6 +1022,7 @@ function Calendar(options) {
      * @param  {string} params.eventId - Event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

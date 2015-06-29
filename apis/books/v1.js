@@ -138,7 +138,7 @@ function Books(options) {
     /**
      * books.cloudloading.addBook
      *
-     *
+     * 
      *
      * @alias books.cloudloading.addBook
      * @memberOf! books(v1)
@@ -147,7 +147,7 @@ function Books(options) {
      * @param  {string=} params.drive_document_id - A drive document id. The upload_client_token must not be set.
      * @param  {string=} params.mime_type - The document MIME type. It can be set only if the drive_document_id is set.
      * @param  {string=} params.name - The document name. It can be set only if the drive_document_id is set.
-     * @param  {string=} params.upload_client_token -
+     * @param  {string=} params.upload_client_token - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -197,7 +197,7 @@ function Books(options) {
     /**
      * books.cloudloading.updateBook
      *
-     *
+     * 
      *
      * @alias books.cloudloading.updateBook
      * @memberOf! books(v1)
@@ -1154,7 +1154,7 @@ function Books(options) {
     /**
      * books.promooffer.accept
      *
-     *
+     * 
      *
      * @alias books.promooffer.accept
      * @memberOf! books(v1)
@@ -1164,7 +1164,7 @@ function Books(options) {
      * @param  {string=} params.device - device device
      * @param  {string=} params.manufacturer - device manufacturer
      * @param  {string=} params.model - device model
-     * @param  {string=} params.offerId -
+     * @param  {string=} params.offerId - 
      * @param  {string=} params.product - device product
      * @param  {string=} params.serial - device serial
      * @param  {string=} params.volumeId - Volume id to exercise the offer
@@ -1189,7 +1189,7 @@ function Books(options) {
     /**
      * books.promooffer.dismiss
      *
-     *
+     * 
      *
      * @alias books.promooffer.dismiss
      * @memberOf! books(v1)
@@ -1270,7 +1270,7 @@ function Books(options) {
      * @param  {string=} params.partner - Brand results for partner ID.
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {boolean=} params.user_library_consistent_read -
+     * @param  {boolean=} params.user_library_consistent_read - 
      * @param  {string} params.volumeId - ID of volume to retrieve.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

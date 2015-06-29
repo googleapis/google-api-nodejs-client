@@ -25,8 +25,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Provides reliable, many-to-many, asynchronous messaging between applications.
  * @namespace pubsub
- * @version  v1beta2
- * @variation v1beta2
+ * @version  v1
+ * @variation v1
  * @this Pubsub
  * @param {object=} options Options for Pubsub
  */
@@ -45,7 +45,7 @@ function Pubsub(options) {
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
        *
        * @alias pubsub.projects.topics.setIamPolicy
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.resource - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
@@ -56,7 +56,7 @@ function Pubsub(options) {
       setIamPolicy: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
+            url: 'https://pubsub.googleapis.com/v1/{resource}:setIamPolicy',
             method: 'POST'
           },
           params: params,
@@ -74,7 +74,7 @@ function Pubsub(options) {
        * @desc Gets the access control policy for a resource. Is empty if the policy or the resource does not exist.
        *
        * @alias pubsub.projects.topics.getIamPolicy
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.resource - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
@@ -84,7 +84,7 @@ function Pubsub(options) {
       getIamPolicy: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
+            url: 'https://pubsub.googleapis.com/v1/{resource}:getIamPolicy',
             method: 'GET'
           },
           params: params,
@@ -102,7 +102,7 @@ function Pubsub(options) {
        * @desc Returns permissions that a caller has on the specified resource.
        *
        * @alias pubsub.projects.topics.testIamPermissions
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.resource - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
@@ -113,7 +113,7 @@ function Pubsub(options) {
       testIamPermissions: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:testIamPermissions',
+            url: 'https://pubsub.googleapis.com/v1/{resource}:testIamPermissions',
             method: 'POST'
           },
           params: params,
@@ -131,7 +131,7 @@ function Pubsub(options) {
        * @desc Creates the given topic with the given name.
        *
        * @alias pubsub.projects.topics.create
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.name - The name of the topic. It must have the format "projects/{project}/topics/{topic}" for Google Cloud Pub/Sub API v1 and v1beta2. {topic} must start with a letter, and contain only letters ([A-Za-z]), numbers ([0-9], dashes (-), underscores (_), periods (.), tildes (~), plus (+) or percent signs (%). It must be between 3 and 255 characters in length, and it must not start with "goog".
@@ -142,7 +142,7 @@ function Pubsub(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{name}',
+            url: 'https://pubsub.googleapis.com/v1/{name}',
             method: 'PUT'
           },
           params: params,
@@ -160,7 +160,7 @@ function Pubsub(options) {
        * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
        *
        * @alias pubsub.projects.topics.publish
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.topic - The messages in the request will be published on this topic.
@@ -171,7 +171,7 @@ function Pubsub(options) {
       publish: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}:publish',
+            url: 'https://pubsub.googleapis.com/v1/{topic}:publish',
             method: 'POST'
           },
           params: params,
@@ -189,7 +189,7 @@ function Pubsub(options) {
        * @desc Gets the configuration of a topic.
        *
        * @alias pubsub.projects.topics.get
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.topic - The name of the topic to get.
@@ -199,7 +199,7 @@ function Pubsub(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
+            url: 'https://pubsub.googleapis.com/v1/{topic}',
             method: 'GET'
           },
           params: params,
@@ -217,7 +217,7 @@ function Pubsub(options) {
        * @desc Lists matching topics.
        *
        * @alias pubsub.projects.topics.list
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.project - The name of the cloud project that topics belong to.
@@ -229,7 +229,7 @@ function Pubsub(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
+            url: 'https://pubsub.googleapis.com/v1/{project}/topics',
             method: 'GET'
           },
           params: params,
@@ -247,7 +247,7 @@ function Pubsub(options) {
        * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
        *
        * @alias pubsub.projects.topics.delete
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.topic - Name of the topic to delete.
@@ -257,7 +257,7 @@ function Pubsub(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
+            url: 'https://pubsub.googleapis.com/v1/{topic}',
             method: 'DELETE'
           },
           params: params,
@@ -277,7 +277,7 @@ function Pubsub(options) {
          * @desc Lists the name of the subscriptions for this topic.
          *
          * @alias pubsub.projects.topics.subscriptions.list
-         * @memberOf! pubsub(v1beta2)
+         * @memberOf! pubsub(v1)
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.topic - The name of the topic that subscriptions are attached to.
@@ -289,7 +289,7 @@ function Pubsub(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://pubsub.googleapis.com/v1beta2/{topic}/subscriptions',
+              url: 'https://pubsub.googleapis.com/v1/{topic}/subscriptions',
               method: 'GET'
             },
             params: params,
@@ -311,7 +311,7 @@ function Pubsub(options) {
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
        *
        * @alias pubsub.projects.subscriptions.setIamPolicy
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.resource - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
@@ -322,7 +322,7 @@ function Pubsub(options) {
       setIamPolicy: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
+            url: 'https://pubsub.googleapis.com/v1/{resource}:setIamPolicy',
             method: 'POST'
           },
           params: params,
@@ -340,7 +340,7 @@ function Pubsub(options) {
        * @desc Gets the access control policy for a resource. Is empty if the policy or the resource does not exist.
        *
        * @alias pubsub.projects.subscriptions.getIamPolicy
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.resource - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
@@ -350,7 +350,7 @@ function Pubsub(options) {
       getIamPolicy: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
+            url: 'https://pubsub.googleapis.com/v1/{resource}:getIamPolicy',
             method: 'GET'
           },
           params: params,
@@ -368,7 +368,7 @@ function Pubsub(options) {
        * @desc Returns permissions that a caller has on the specified resource.
        *
        * @alias pubsub.projects.subscriptions.testIamPermissions
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.resource - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
@@ -379,7 +379,7 @@ function Pubsub(options) {
       testIamPermissions: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:testIamPermissions',
+            url: 'https://pubsub.googleapis.com/v1/{resource}:testIamPermissions',
             method: 'POST'
           },
           params: params,
@@ -397,7 +397,7 @@ function Pubsub(options) {
        * @desc Creates a subscription to a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
        *
        * @alias pubsub.projects.subscriptions.create
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.name - The name of the subscription. It must have the format "projects/{project}/subscriptions/{subscription}" for Google Cloud Pub/Sub API v1 and v1beta2. {subscription} must start with a letter, and contain only letters ([A-Za-z]), numbers ([0-9], dashes (-), underscores (_), periods (.), tildes (~), plus (+) or percent signs (%). It must be between 3 and 255 characters in length, and it must not start with "goog".
@@ -408,7 +408,7 @@ function Pubsub(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{name}',
+            url: 'https://pubsub.googleapis.com/v1/{name}',
             method: 'PUT'
           },
           params: params,
@@ -426,7 +426,7 @@ function Pubsub(options) {
        * @desc Gets the configuration details of a subscription.
        *
        * @alias pubsub.projects.subscriptions.get
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.subscription - The name of the subscription to get.
@@ -436,7 +436,7 @@ function Pubsub(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
+            url: 'https://pubsub.googleapis.com/v1/{subscription}',
             method: 'GET'
           },
           params: params,
@@ -454,7 +454,7 @@ function Pubsub(options) {
        * @desc Lists matching subscriptions.
        *
        * @alias pubsub.projects.subscriptions.list
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.project - The name of the cloud project that subscriptions belong to.
@@ -466,7 +466,7 @@ function Pubsub(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{project}/subscriptions',
+            url: 'https://pubsub.googleapis.com/v1/{project}/subscriptions',
             method: 'GET'
           },
           params: params,
@@ -484,7 +484,7 @@ function Pubsub(options) {
        * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
        *
        * @alias pubsub.projects.subscriptions.delete
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.subscription - The subscription to delete.
@@ -494,7 +494,7 @@ function Pubsub(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
+            url: 'https://pubsub.googleapis.com/v1/{subscription}',
             method: 'DELETE'
           },
           params: params,
@@ -512,7 +512,7 @@ function Pubsub(options) {
        * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted.
        *
        * @alias pubsub.projects.subscriptions.modifyAckDeadline
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.subscription - The name of the subscription.
@@ -523,7 +523,7 @@ function Pubsub(options) {
       modifyAckDeadline: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyAckDeadline',
+            url: 'https://pubsub.googleapis.com/v1/{subscription}:modifyAckDeadline',
             method: 'POST'
           },
           params: params,
@@ -541,7 +541,7 @@ function Pubsub(options) {
        * @desc Acknowledges the messages associated with the ack tokens in the AcknowledgeRequest. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
        *
        * @alias pubsub.projects.subscriptions.acknowledge
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.subscription - The subscription whose message is being acknowledged.
@@ -552,7 +552,7 @@ function Pubsub(options) {
       acknowledge: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:acknowledge',
+            url: 'https://pubsub.googleapis.com/v1/{subscription}:acknowledge',
             method: 'POST'
           },
           params: params,
@@ -570,7 +570,7 @@ function Pubsub(options) {
        * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return UNAVAILABLE if there are too many concurrent pull requests pending for the given subscription.
        *
        * @alias pubsub.projects.subscriptions.pull
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.subscription - The subscription from which messages should be pulled.
@@ -581,7 +581,7 @@ function Pubsub(options) {
       pull: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:pull',
+            url: 'https://pubsub.googleapis.com/v1/{subscription}:pull',
             method: 'POST'
           },
           params: params,
@@ -599,7 +599,7 @@ function Pubsub(options) {
        * @desc Modifies the PushConfig for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty PushConfig) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the PushConfig.
        *
        * @alias pubsub.projects.subscriptions.modifyPushConfig
-       * @memberOf! pubsub(v1beta2)
+       * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.subscription - The name of the subscription.
@@ -610,7 +610,7 @@ function Pubsub(options) {
       modifyPushConfig: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyPushConfig',
+            url: 'https://pubsub.googleapis.com/v1/{subscription}:modifyPushConfig',
             method: 'POST'
           },
           params: params,

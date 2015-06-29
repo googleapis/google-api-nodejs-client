@@ -21,16 +21,16 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Compute Accounts API
+ * Cloud User Accounts API
  *
- * @classdesc API for the Google Compute Accounts service.
- * @namespace computeaccounts
+ * @classdesc API for the Google Cloud User Accounts service.
+ * @namespace clouduseraccounts
  * @version  alpha
  * @variation alpha
- * @this Computeaccounts
- * @param {object=} options Options for Computeaccounts
+ * @this Clouduseraccounts
+ * @param {object=} options Options for Clouduseraccounts
  */
-function Computeaccounts(options) {
+function Clouduseraccounts(options) {
 
   var self = this;
   this._options = options || {};
@@ -38,12 +38,12 @@ function Computeaccounts(options) {
   this.globalAccountsOperations = {
 
     /**
-     * computeaccounts.globalAccountsOperations.delete
+     * clouduseraccounts.globalAccountsOperations.delete
      *
      * @desc Deletes the specified operation resource.
      *
-     * @alias computeaccounts.globalAccountsOperations.delete
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.globalAccountsOperations.delete
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the Operations resource to delete.
@@ -54,7 +54,7 @@ function Computeaccounts(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/operations/{operation}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -67,12 +67,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.globalAccountsOperations.get
+     * clouduseraccounts.globalAccountsOperations.get
      *
      * @desc Retrieves the specified operation resource.
      *
-     * @alias computeaccounts.globalAccountsOperations.get
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.globalAccountsOperations.get
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the Operations resource to return.
@@ -83,7 +83,7 @@ function Computeaccounts(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/operations/{operation}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -96,12 +96,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.globalAccountsOperations.list
+     * clouduseraccounts.globalAccountsOperations.list
      *
      * @desc Retrieves the list of operation resources contained within the specified project.
      *
-     * @alias computeaccounts.globalAccountsOperations.list
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.globalAccountsOperations.list
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
@@ -115,7 +115,7 @@ function Computeaccounts(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/operations',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations',
           method: 'GET'
         },
         params: params,
@@ -132,12 +132,12 @@ function Computeaccounts(options) {
   this.groups = {
 
     /**
-     * computeaccounts.groups.addMember
+     * clouduseraccounts.groups.addMember
      *
      * @desc Adds users to the specified group.
      *
-     * @alias computeaccounts.groups.addMember
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.groups.addMember
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the group for this request.
@@ -149,7 +149,7 @@ function Computeaccounts(options) {
     addMember: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/groups/{groupName}/addMember',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}/addMember',
           method: 'POST'
         },
         params: params,
@@ -162,12 +162,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.groups.delete
+     * clouduseraccounts.groups.delete
      *
      * @desc Deletes the specified Group resource.
      *
-     * @alias computeaccounts.groups.delete
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.groups.delete
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the Group resource to delete.
@@ -178,7 +178,7 @@ function Computeaccounts(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/groups/{groupName}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}',
           method: 'DELETE'
         },
         params: params,
@@ -191,12 +191,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.groups.get
+     * clouduseraccounts.groups.get
      *
      * @desc Returns the specified Group resource.
      *
-     * @alias computeaccounts.groups.get
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.groups.get
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the Group resource to return.
@@ -207,7 +207,7 @@ function Computeaccounts(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/groups/{groupName}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}',
           method: 'GET'
         },
         params: params,
@@ -220,12 +220,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.groups.insert
+     * clouduseraccounts.groups.insert
      *
      * @desc Creates a Group resource in the specified project using the data included in the request.
      *
-     * @alias computeaccounts.groups.insert
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.groups.insert
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -236,7 +236,7 @@ function Computeaccounts(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/groups',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups',
           method: 'POST'
         },
         params: params,
@@ -249,12 +249,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.groups.list
+     * clouduseraccounts.groups.list
      *
      * @desc Retrieves the list of groups contained within the specified project.
      *
-     * @alias computeaccounts.groups.list
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.groups.list
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
@@ -268,7 +268,7 @@ function Computeaccounts(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/groups',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups',
           method: 'GET'
         },
         params: params,
@@ -281,12 +281,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.groups.removeMember
+     * clouduseraccounts.groups.removeMember
      *
      * @desc Removes users from the specified group.
      *
-     * @alias computeaccounts.groups.removeMember
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.groups.removeMember
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the group for this request.
@@ -298,7 +298,7 @@ function Computeaccounts(options) {
     removeMember: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/groups/{groupName}/removeMember',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}/removeMember',
           method: 'POST'
         },
         params: params,
@@ -315,12 +315,12 @@ function Computeaccounts(options) {
   this.linux = {
 
     /**
-     * computeaccounts.linux.getAuthorizedKeysView
+     * clouduseraccounts.linux.getAuthorizedKeysView
      *
      * @desc Returns a list of authorized public keys for a specific user account.
      *
-     * @alias computeaccounts.linux.getAuthorizedKeysView
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.linux.getAuthorizedKeysView
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - The fully-qualified URL of the virtual machine requesting the view.
@@ -333,7 +333,7 @@ function Computeaccounts(options) {
     getAuthorizedKeysView: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
           method: 'POST'
         },
         params: params,
@@ -346,12 +346,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.linux.getLinuxAccountViews
+     * clouduseraccounts.linux.getLinuxAccountViews
      *
      * @desc Retrieves a list of user accounts for an instance within a specific project.
      *
-     * @alias computeaccounts.linux.getLinuxAccountViews
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.linux.getLinuxAccountViews
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
@@ -368,7 +368,7 @@ function Computeaccounts(options) {
     getLinuxAccountViews: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/zones/{zone}/linuxAccountViews',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/zones/{zone}/linuxAccountViews',
           method: 'POST'
         },
         params: params,
@@ -385,12 +385,12 @@ function Computeaccounts(options) {
   this.users = {
 
     /**
-     * computeaccounts.users.addPublicKey
+     * clouduseraccounts.users.addPublicKey
      *
      * @desc Adds a public key to the specified User resource with the data included in the request.
      *
-     * @alias computeaccounts.users.addPublicKey
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.users.addPublicKey
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -402,7 +402,7 @@ function Computeaccounts(options) {
     addPublicKey: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/users/{user}/addPublicKey',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}/addPublicKey',
           method: 'POST'
         },
         params: params,
@@ -415,12 +415,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.users.delete
+     * clouduseraccounts.users.delete
      *
      * @desc Deletes the specified User resource.
      *
-     * @alias computeaccounts.users.delete
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.users.delete
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -431,7 +431,7 @@ function Computeaccounts(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/users/{user}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}',
           method: 'DELETE'
         },
         params: params,
@@ -444,12 +444,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.users.get
+     * clouduseraccounts.users.get
      *
      * @desc Returns the specified User resource.
      *
-     * @alias computeaccounts.users.get
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.users.get
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -460,7 +460,7 @@ function Computeaccounts(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/users/{user}',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}',
           method: 'GET'
         },
         params: params,
@@ -473,12 +473,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.users.insert
+     * clouduseraccounts.users.insert
      *
      * @desc Creates a User resource in the specified project using the data included in the request.
      *
-     * @alias computeaccounts.users.insert
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.users.insert
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -489,7 +489,7 @@ function Computeaccounts(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/users',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users',
           method: 'POST'
         },
         params: params,
@@ -502,12 +502,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.users.list
+     * clouduseraccounts.users.list
      *
      * @desc Retrieves a list of users contained within the specified project.
      *
-     * @alias computeaccounts.users.list
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.users.list
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
@@ -521,7 +521,7 @@ function Computeaccounts(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/users',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users',
           method: 'GET'
         },
         params: params,
@@ -534,12 +534,12 @@ function Computeaccounts(options) {
     },
 
     /**
-     * computeaccounts.users.removePublicKey
+     * clouduseraccounts.users.removePublicKey
      *
      * @desc Removes the specified public key from the user.
      *
-     * @alias computeaccounts.users.removePublicKey
-     * @memberOf! computeaccounts(alpha)
+     * @alias clouduseraccounts.users.removePublicKey
+     * @memberOf! clouduseraccounts(alpha)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.fingerprint - The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
@@ -551,7 +551,7 @@ function Computeaccounts(options) {
     removePublicKey: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/computeaccounts/alpha/projects/{project}/global/users/{user}/removePublicKey',
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}/removePublicKey',
           method: 'POST'
         },
         params: params,
@@ -567,7 +567,7 @@ function Computeaccounts(options) {
 }
 
 /**
- * Exports Computeaccounts object
- * @type Computeaccounts
+ * Exports Clouduseraccounts object
+ * @type Clouduseraccounts
  */
-module.exports = Computeaccounts;
+module.exports = Clouduseraccounts;
