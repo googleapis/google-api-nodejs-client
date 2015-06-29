@@ -81,8 +81,7 @@ describe('Transporters', function() {
 
     oauth2.tokeninfo({ access_token: 'hello' }, function(err) {
       assert(err instanceof Error);
-      assert.equal(err.message, 'Code was already redeemed.');
-      assert.equal(err.type, 'invalid_grant');
+      assert.equal(err.message, 'invalid_grant');
       assert.equal(err.code, 400);
       scope.done();
       done();

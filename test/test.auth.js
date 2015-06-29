@@ -145,7 +145,6 @@ describe('OAuth2 client', function() {
       assert(expiry_date < now + 5000);
       assert.equal(oauth2client.credentials.refresh_token, 'abc');
       assert.equal(oauth2client.credentials.access_token, 'abc123');
-      assert.equal(oauth2client.credentials.token_type, 'Bearer');
       scope.done();
       done();
     });
@@ -197,7 +196,6 @@ describe('OAuth2 client', function() {
       assert(expiry_date < now + 4000);
       assert.equal(oauth2client.credentials.refresh_token, 'abc');
       assert.equal(oauth2client.credentials.access_token, 'abc123');
-      assert.equal(oauth2client.credentials.token_type, 'Bearer');
       scope.done();
       done();
     });
