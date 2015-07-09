@@ -58,6 +58,11 @@ describe('Query params', function() {
     assert.equal(req.uri.query, 'madeThisUp=hello');
   });
 
+  it('should be set if params passed are aliased names', function() {
+    var req = drive.files.get({ fileId: '123', resource_: 'hello' }, noop);
+    assert.equal(req.uri.query, 'resource=hello');
+  });
+  
   it('should chain together with & in order', function() {
     var req = drive.files.get({
       fileId: '123',

@@ -11,7 +11,7 @@
  *
  * @param  {object{% if !m.parameterOrder && !m.request %}={% endif %}} params - Parameters for request
  {% for pname, p in m.parameters -%}
- * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname }} - {{ p.description|oneLine|cleanComments|safe }}
+ * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname|getSafeParamName }} - {{ p.description|oneLine|cleanComments|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
 {% if m.request -%}
