@@ -133,9 +133,9 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -265,9 +265,9 @@ function Deploymentmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -329,9 +329,9 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -366,7 +366,7 @@ function Deploymentmanager(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.deployment - The name of the deployment for this request.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.resource - The name of the resource for this request.
+     * @param  {string} params.resource_ - The name of the resource for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -395,9 +395,9 @@ function Deploymentmanager(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.deployment - The name of the deployment for this request.
-     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -430,9 +430,9 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Filter expression for filtering listed resources.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Tag returned by a previous list request when that list was truncated to maxResults. Used to continue a previous list request.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

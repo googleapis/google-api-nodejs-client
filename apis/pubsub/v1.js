@@ -48,7 +48,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -77,7 +77,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -105,7 +105,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -314,7 +314,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -343,7 +343,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -371,7 +371,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

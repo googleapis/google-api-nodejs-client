@@ -297,7 +297,7 @@ function Deploymentmanager(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.deployment - ! The name of the deployment for this request.
      * @param  {string} params.project - ! The project ID for this request.
-     * @param  {string} params.resource - ! The name of the resource for this request.
+     * @param  {string} params.resource_ - ! The name of the resource for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
