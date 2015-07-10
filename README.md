@@ -231,21 +231,11 @@ To learn more about API keys, please see the [documentation][usingkeys].
 
 #### Using JWT (Service Tokens)
 
-Configure a JWT auth client with your service account email and the pem file that contains your private key. Google Developers Console only provide `.p12` files, but you can convert a `.p12` to `.pem` with the following command:
-
-``` sh
-openssl pkcs12 -in key.p12 -nocerts -passin pass:notasecret -nodes -out key.pem
-```
-
-Construct a JWT client, and authenticate your requests.
+The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests.
 
 ``` js
-var jwtClient = new google.auth.JWT(
-  'serviceaccount@email.com',
-  '/path/to/key.pem',
-  null,
-  [scope1, scope2],
-  'bar@subjectaccount.com');
+var key = require('path/to/key.json');
+var jwtClient = new google.auth.JWT(key.client_email, null, key.private_key, [scope1, scope2], null);
 
 jwtClient.authorize(function(err, tokens) {
   if (err) {
@@ -259,6 +249,8 @@ jwtClient.authorize(function(err, tokens) {
   });
 });
 ```
+
+The parameters for the JWT auth client including how to use it with a `.pem` file are explained in [examples/jwt.js](examples/jwt.js)
 
 #### Choosing the correct credential type automatically
 
