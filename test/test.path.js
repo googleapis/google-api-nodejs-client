@@ -88,9 +88,9 @@ describe('Path params', function() {
     assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
   });
 
-  it('should be urlencoded', function () {
+  it('should not be urlencoded', function () {
     var req = drive.files.get({ fileId: 'p@ram' }, noop);
-    assert.equal(req.uri.path.split('/').pop(), 'p%40ram');
+    assert.equal(req.uri.path.split('/').pop(), 'p@ram');
   });
 
   it('should keep query params null if only path params', function() {
