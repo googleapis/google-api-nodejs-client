@@ -16,7 +16,7 @@ If you've used this library before `1.x`, see our [Migration Guide][migrating]
 to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy :)
 
 If your code already works with a `1.x` version of this library, no work is required
-to move to `2.x`. However, it is recommended that you update any direct links in your code,
+to move to `2.x`. However, note that return data of getToken has become an array. Furthermore, it is recommended that you update any direct links in your code,
 as explained in the [Migration Guide][migrating].
 
 ### Supported APIs
