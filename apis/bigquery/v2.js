@@ -292,7 +292,7 @@ function Bigquery(options) {
      * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
      * @param  {string} params.projectId - Project ID of the query job
      * @param  {string=} params.startIndex - Zero-based index of the starting row
-     * @param  {integer=} params.timeoutMs - How long to wait for the query to complete, in milliseconds, before returning. Default is to return immediately. If the timeout passes before the job completes, the request will fail with a TIMEOUT error
+     * @param  {integer=} params.timeoutMs - How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

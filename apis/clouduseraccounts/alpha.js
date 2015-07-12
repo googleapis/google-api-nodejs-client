@@ -360,7 +360,6 @@ function Clouduseraccounts(options) {
      * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
-     * @param  {string=} params.user - If provided, the user requesting the views. If left blank, the system is requesting the views, instead of a particular user.
      * @param  {string} params.zone - Name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
