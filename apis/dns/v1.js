@@ -230,6 +230,7 @@ function Dns(options) {
      * @memberOf! dns(v1)
      *
      * @param  {object} params - Parameters for request
+     * @param  {string=} params.dnsName - Restricts the list to return only zones with this domain name.
      * @param  {integer=} params.maxResults - Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      * @param  {string=} params.pageToken - Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      * @param  {string} params.project - Identifies the project addressed by this request.
