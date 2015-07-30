@@ -217,7 +217,7 @@ function Genomics(options) {
     /**
      * genomics.operations.get
      *
-     * @desc Gets the latest state of a long-running operation. Clients may use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
      * @alias genomics.operations.get
      * @memberOf! genomics(v1)
@@ -254,7 +254,7 @@ function Genomics(options) {
      * @param  {string} params.name - The name of the operation collection.
      * @param  {string=} params.filter - A string for filtering [Operations][google.longrunning.Operation]. The following filter fields are supported: * projectId: Required. Corresponds to [OperationMetadata.projectId][google.genomics.v1.OperationMetadata.project_id]. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
      * @param  {integer=} params.pageSize - The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
-     * @param  {string=} params.pageToken - The standard List page token.
+     * @param  {string=} params.pageToken - The standard list page token.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -394,7 +394,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.search
      *
-     * @desc Searches for read group sets matching the criteria. Implements [GlobalAllianceApi.searchReadGroupSets](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchReadGroupSets).
+     * @desc Searches for read group sets matching the criteria. Implements [GlobalAllianceApi.searchReadGroupSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L135).
      *
      * @alias genomics.readgroupsets.search
      * @memberOf! genomics(v1)
@@ -548,7 +548,7 @@ function Genomics(options) {
     /**
      * genomics.reads.search
      *
-     * @desc Gets a list of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned. If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads. All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order. Implements [GlobalAllianceApi.searchReads](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchReads).
+     * @desc Gets a list of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned. If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads. All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order. Implements [GlobalAllianceApi.searchReads](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L85).
      *
      * @alias genomics.reads.search
      * @memberOf! genomics(v1)
@@ -580,7 +580,7 @@ function Genomics(options) {
     /**
      * genomics.referencesets.search
      *
-     * @desc Searches for reference sets which match the given criteria. Implements [GlobalAllianceApi.searchReferenceSets](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchReferenceSets)
+     * @desc Searches for reference sets which match the given criteria. Implements [GlobalAllianceApi.searchReferenceSets](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchReferenceSets).
      *
      * @alias genomics.referencesets.search
      * @memberOf! genomics(v1)
@@ -608,7 +608,7 @@ function Genomics(options) {
     /**
      * genomics.referencesets.get
      *
-     * @desc Gets a reference set. Implements [GlobalAllianceApi.getReferenceSet](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.getReferenceSet").
+     * @desc Gets a reference set. Implements [GlobalAllianceApi.getReferenceSet](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L83).
      *
      * @alias genomics.referencesets.get
      * @memberOf! genomics(v1)
@@ -640,7 +640,7 @@ function Genomics(options) {
     /**
      * genomics.references.search
      *
-     * @desc Searches for references which match the given criteria. Implements [GlobalAllianceApi.searchReferences](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchReferences).
+     * @desc Searches for references which match the given criteria. Implements [GlobalAllianceApi.searchReferences](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L146).
      *
      * @alias genomics.references.search
      * @memberOf! genomics(v1)
@@ -668,7 +668,7 @@ function Genomics(options) {
     /**
      * genomics.references.get
      *
-     * @desc Gets a reference. Implements [GlobalAllianceApi.getReference](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.getReference).
+     * @desc Gets a reference. Implements [GlobalAllianceApi.getReference](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L158).
      *
      * @alias genomics.references.get
      * @memberOf! genomics(v1)
@@ -698,7 +698,7 @@ function Genomics(options) {
       /**
        * genomics.references.bases.list
        *
-       * @desc Lists the bases in a reference, optionally restricted to a range. Implements [GlobalAllianceApi.getReferenceBases](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.getReferenceBases).
+       * @desc Lists the bases in a reference, optionally restricted to a range. Implements [GlobalAllianceApi.getReferenceBases](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L221).
        *
        * @alias genomics.references.bases.list
        * @memberOf! genomics(v1)
@@ -762,7 +762,7 @@ function Genomics(options) {
     /**
      * genomics.variants.search
      *
-     * @desc Gets a list of variants matching the criteria. Implements [GlobalAllianceApi.searchVariants](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchVariants).
+     * @desc Gets a list of variants matching the criteria. Implements [GlobalAllianceApi.searchVariants](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L126).
      *
      * @alias genomics.variants.search
      * @memberOf! genomics(v1)
@@ -1021,7 +1021,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.search
      *
-     * @desc Returns a list of all variant sets matching search criteria. Implements [GlobalAllianceApi.searchVariantSets](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchVariantSets).
+     * @desc Returns a list of all variant sets matching search criteria. Implements [GlobalAllianceApi.searchVariantSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L49).
      *
      * @alias genomics.variantsets.search
      * @memberOf! genomics(v1)
@@ -1111,7 +1111,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.search
      *
-     * @desc Gets a list of call sets matching the criteria. Implements [GlobalAllianceApi.searchCallSets](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchCallSets).
+     * @desc Gets a list of call sets matching the criteria. Implements [GlobalAllianceApi.searchCallSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L178).
      *
      * @alias genomics.callsets.search
      * @memberOf! genomics(v1)

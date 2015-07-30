@@ -134,7 +134,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The name of the topic. It must have the format "projects/{project}/topics/{topic}" for Google Cloud Pub/Sub API v1 and v1beta2. {topic} must start with a letter, and contain only letters ([A-Za-z]), numbers ([0-9], dashes (-), underscores (_), periods (.), tildes (~), plus (+) or percent signs (%). It must be between 3 and 255 characters in length, and it must not start with "goog".
+       * @param  {string} params.name - The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -157,7 +157,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.topics.publish
        *
-       * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
+       * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist. The message payload must not be empty; it must contain either a non-empty data field, or at least one attribute.
        *
        * @alias pubsub.projects.topics.publish
        * @memberOf! pubsub(v1beta2)
@@ -400,7 +400,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The name of the subscription. It must have the format "projects/{project}/subscriptions/{subscription}" for Google Cloud Pub/Sub API v1 and v1beta2. {subscription} must start with a letter, and contain only letters ([A-Za-z]), numbers ([0-9], dashes (-), underscores (_), periods (.), tildes (~), plus (+) or percent signs (%). It must be between 3 and 255 characters in length, and it must not start with "goog".
+       * @param  {string} params.name - The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

@@ -1539,6 +1539,34 @@ function Genomics(options) {
   this.variantsets = {
 
     /**
+     * genomics.variantsets.create
+     *
+     * @desc Creates a new variant set (only necessary in v1).
+     *
+     * @alias genomics.variantsets.create
+     * @memberOf! genomics(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/genomics/v1beta2/variantsets',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * genomics.variantsets.delete
      *
      * @desc Deletes the contents of a variant set. The variant set object is not deleted.

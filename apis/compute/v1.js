@@ -46,7 +46,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -167,7 +167,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -184,6 +184,225 @@ function Compute(options) {
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.autoscalers = {
+
+    /**
+     * compute.autoscalers.aggregatedList
+     *
+     * @desc Retrieves the list of autoscalers grouped by scope.
+     *
+     * @alias compute.autoscalers.aggregatedList
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/autoscalers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.autoscalers.delete
+     *
+     * @desc Deletes the specified autoscaler resource.
+     *
+     * @alias compute.autoscalers.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.autoscaler - Name of the persistent autoscaler resource to delete.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.autoscalers.get
+     *
+     * @desc Returns the specified autoscaler resource.
+     *
+     * @alias compute.autoscalers.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.autoscaler - Name of the persistent autoscaler resource to return.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.autoscalers.insert
+     *
+     * @desc Creates an autoscaler resource in the specified project using the data included in the request.
+     *
+     * @alias compute.autoscalers.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.autoscalers.list
+     *
+     * @desc Retrieves the list of autoscaler resources contained within the specified zone.
+     *
+     * @alias compute.autoscalers.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.autoscalers.patch
+     *
+     * @desc Updates an autoscaler resource in the specified project using the data included in the request. This method supports patch semantics.
+     *
+     * @alias compute.autoscalers.patch
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.autoscaler - Name of the autoscaler resource to update.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'autoscaler'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.autoscalers.update
+     *
+     * @desc Updates an autoscaler resource in the specified project using the data included in the request.
+     *
+     * @alias compute.autoscalers.update
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.autoscaler - Name of the autoscaler resource to update.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
         context: self
       };
 
@@ -320,7 +539,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -415,7 +634,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -476,7 +695,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -512,7 +731,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -568,7 +787,7 @@ function Compute(options) {
     /**
      * compute.disks.delete
      *
-     * @desc Deletes the specified persistent disk.
+     * @desc Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      *
      * @alias compute.disks.delete
      * @memberOf! compute(v1)
@@ -665,7 +884,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -788,7 +1007,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -883,7 +1102,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -1004,7 +1223,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -1158,7 +1377,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -1280,7 +1499,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -1345,7 +1564,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -1434,7 +1653,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -1556,7 +1775,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -1768,7 +1987,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -1834,7 +2053,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
@@ -1986,7 +2205,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
@@ -2207,7 +2426,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
@@ -2328,7 +2547,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
@@ -2360,7 +2579,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {string} params.instanceGroup - The name of the instance group from which you want to generate a list of included instances.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
@@ -2547,7 +2766,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
@@ -2614,7 +2833,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -2771,7 +2990,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - Name of the instance resource to return.
      * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the The name of the zone for this request..
+     * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2860,7 +3079,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -3144,7 +3363,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -3205,7 +3424,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -3328,7 +3547,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -3571,7 +3790,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -3636,7 +3855,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -3758,7 +3977,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -3787,14 +4006,14 @@ function Compute(options) {
     /**
      * compute.snapshots.delete
      *
-     * @desc Deletes the specified persistent disk snapshot resource.
+     * @desc Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot.  For more information, see Deleting snaphots.
      *
      * @alias compute.snapshots.delete
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.snapshot - Name of the persistent disk snapshot resource to delete.
+     * @param  {string} params.snapshot - Name of the Snapshot resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -3816,14 +4035,14 @@ function Compute(options) {
     /**
      * compute.snapshots.get
      *
-     * @desc Returns the specified persistent disk snapshot resource.
+     * @desc Returns the specified Snapshot resource.
      *
      * @alias compute.snapshots.get
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.snapshot - Name of the persistent disk snapshot resource to return.
+     * @param  {string} params.snapshot - Name of the Snapshot resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -3845,13 +4064,13 @@ function Compute(options) {
     /**
      * compute.snapshots.list
      *
-     * @desc Retrieves the list of persistent disk snapshot resources contained within the specified project.
+     * @desc Retrieves the list of Snapshot resources contained within the specified project.
      *
      * @alias compute.snapshots.list
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -3973,7 +4192,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -4038,7 +4257,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -4159,7 +4378,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -4257,7 +4476,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -4409,7 +4628,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -4539,7 +4758,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -4660,7 +4879,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -4783,7 +5002,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Name of the project scoping this request.
@@ -4908,7 +5127,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -5029,7 +5248,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -5125,7 +5344,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.
@@ -5190,7 +5409,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must contain the following: FIELD_NAME COMPARISON_STRING LITERAL_STRING   - FIELD_NAME: The name of the field you want to compare. The field name must be valid for the type of resource being filtered. Only atomic field types are supported (string, number, boolean). Array and object fields are not currently supported.  - COMPARISON_STRING: The comparison string, either eq (equals) or ne (not equals).  - LITERAL_STRING: The literal string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, you can filter by the name of a resource: filter=name ne example-instance The above filter returns only results whose name field does not equal example-instance. You can also enclose your literal string in single, double, or no quotes.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - Project ID for this request.

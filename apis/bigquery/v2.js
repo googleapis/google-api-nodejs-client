@@ -347,7 +347,7 @@ function Bigquery(options) {
     /**
      * bigquery.jobs.list
      *
-     * @desc Lists all jobs that you started in the specified project. The job list returns in reverse chronological order of when the jobs were created, starting with the most recent job created. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
+     * @desc Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
      *
      * @alias bigquery.jobs.list
      * @memberOf! bigquery(v2)

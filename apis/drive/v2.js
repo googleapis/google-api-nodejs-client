@@ -174,7 +174,7 @@ function Drive(options) {
      * @param  {boolean=} params.includeSubscribed - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
      * @param  {integer=} params.maxResults - Maximum number of changes to return.
      * @param  {string=} params.pageToken - Page token for changes.
-     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
+     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param  {string=} params.startChangeId - Change ID to start listing changes from.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -207,7 +207,7 @@ function Drive(options) {
      * @param  {boolean=} params.includeSubscribed - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
      * @param  {integer=} params.maxResults - Maximum number of changes to return.
      * @param  {string=} params.pageToken - Page token for changes.
-     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
+     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param  {string=} params.startChangeId - Change ID to start listing changes from.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -747,7 +747,7 @@ function Drive(options) {
      * @param  {string=} params.pageToken - Page token for files.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {string=} params.q - Query string for searching files.
-     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
+     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -778,6 +778,7 @@ function Drive(options) {
      * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {string} params.fileId - The ID of the file to update.
+     * @param  {string=} params.modifiedDateBehavior - How the modifiedDate field should be updated. This overrides setModifiedDate.
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
@@ -838,7 +839,7 @@ function Drive(options) {
     /**
      * drive.files.trash
      *
-     * @desc Moves a file to the trash.
+     * @desc Moves a file to the trash. The currently authenticated user must own the file.
      *
      * @alias drive.files.trash
      * @memberOf! drive(v2)
@@ -903,6 +904,7 @@ function Drive(options) {
      * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {string} params.fileId - The ID of the file to update.
+     * @param  {string=} params.modifiedDateBehavior - How the modifiedDate field should be updated. This overrides setModifiedDate.
      * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.

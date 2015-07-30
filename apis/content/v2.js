@@ -73,6 +73,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -102,6 +103,7 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The ID of the account.
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -159,6 +161,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -219,6 +222,7 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The ID of the account.
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -249,6 +253,7 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.accountId - The ID of the account.
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -681,6 +686,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -710,6 +716,7 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datafeedId - 
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - 
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -767,6 +774,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -827,6 +835,7 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datafeedId - 
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -857,6 +866,7 @@ function Content(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datafeedId - 
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - 
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -975,12 +985,13 @@ function Content(options) {
     /**
      * content.inventory.custombatch
      *
-     * @desc Updates price and availability for multiple products or stores in a single request.
+     * @desc Updates price and availability for multiple products or stores in a single request. This operation does not update the expiration date of the products.
      *
      * @alias content.inventory.custombatch
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1003,12 +1014,13 @@ function Content(options) {
     /**
      * content.inventory.set
      *
-     * @desc Updates price and availability of a product in your Merchant Center account.
+     * @desc Updates price and availability of a product in your Merchant Center account. This operation does not update the expiration date of the product.
      *
      * @alias content.inventory.set
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string} params.productId - The ID of the product for which to update price and availability.
      * @param  {string} params.storeCode - The code of the store for which to update price and availability. Use online to update price and availability of an online product.

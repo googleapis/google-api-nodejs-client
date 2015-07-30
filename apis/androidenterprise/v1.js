@@ -1175,14 +1175,14 @@ function Androidenterprise(options) {
     /**
      * androidenterprise.products.generateApprovalUrl
      *
-     * @desc Generates a URL that can be used to display an iframe to view the product's permissions (if any) and approve the product. This URL can be used to approve the product for a limited time (currently 1 hour) using the Products.approve call.
+     * @desc Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product.  Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day.
      *
      * @alias androidenterprise.products.generateApprovalUrl
      * @memberOf! androidenterprise(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string=} params.languageCode - The language code that will be used for permission names and descriptions in the returned iframe.
+     * @param  {string=} params.languageCode - The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
      * @param  {string} params.productId - The ID of the product.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

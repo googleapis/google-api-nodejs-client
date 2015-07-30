@@ -90,6 +90,34 @@ function Oauth2(options) {
   };
 
   /**
+   * oauth2.getRobotJwk
+   *
+   * 
+   *
+   * @alias oauth2.getRobotJwk
+   * @memberOf! oauth2(v1)
+   *
+   * @param  {object} params - Parameters for request
+   * @param  {string} params.robotEmail - The email of robot account.
+   * @param  {callback} callback - The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.getRobotJwk = function(params, callback) {
+    var parameters = {
+      options: {
+        url: 'https://www.googleapis.com/service_accounts/v1/jwk/{robotEmail}',
+        method: 'GET'
+      },
+      params: params,
+      requiredParams: ['robotEmail'],
+      pathParams: ['robotEmail'],
+      context: self
+    };
+
+    return createAPIRequest(parameters, callback);
+  };
+
+  /**
    * oauth2.getRobotMetadataRaw
    *
    * 

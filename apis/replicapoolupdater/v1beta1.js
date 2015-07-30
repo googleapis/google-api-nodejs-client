@@ -137,7 +137,6 @@ function Replicapoolupdater(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {string=} params.instanceGroupManager - The name of the instance group manager. Use this parameter to return only updates to instances that are part of a specific instance group.
      * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
      * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param  {string} params.project - The Google Developers Console project name.
