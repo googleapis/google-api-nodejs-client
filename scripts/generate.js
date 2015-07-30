@@ -20,8 +20,24 @@ var Generator = require('../lib/generator');
 var rimraf = require('rimraf');
 var path = require('path');
 var debug = false;
+
+var args = process.argv.slice(2);
+
 // constructors
 var gen = new Generator({ debug: debug, includePrivate: false });
+
+if (args.length) {
+  args.forEach(function(url) {
+    gen.generateAPI(url, function(err) {
+      if (err) {
+        throw err;
+      }
+      console.log('Finished generating the API!');
+    });
+  });
+
+  return;
+}
 
 console.log('Removing old APIs...');
 rimraf(path.join(__dirname, '..', 'apis'), function(err) {
