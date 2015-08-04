@@ -24,7 +24,7 @@ var debug = false;
 var argv = require('minimist')(process.argv.slice(2));
 
 // constructors
-var gen = new Generator({ debug: debug, includePrivate: true });
+var gen = new Generator({ debug: debug, includePrivate: false });
 
 var args = argv._;
 
