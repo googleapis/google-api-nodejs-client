@@ -21,10 +21,12 @@ var rimraf = require('rimraf');
 var path = require('path');
 var debug = false;
 
-var args = process.argv.slice(2);
+var argv = require('minimist')(process.argv.slice(2));
 
 // constructors
-var gen = new Generator({ debug: debug, includePrivate: false });
+var gen = new Generator({ debug: debug, includePrivate: true });
+
+var args = argv._;
 
 if (args.length) {
   args.forEach(function(url) {
@@ -32,11 +34,9 @@ if (args.length) {
       if (err) {
         throw err;
       }
-      console.log('Finished generating the API!');
+      console.log('Generated API for ' + url);
     });
   });
-
-  return;
 }
 
 console.log('Removing old APIs...');
