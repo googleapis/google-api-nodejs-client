@@ -270,6 +270,193 @@ function Tagmanager(options) {
         return createAPIRequest(parameters, callback);
       },
 
+      folders: {
+
+        /**
+         * tagmanager.accounts.containers.folders.create
+         *
+         * @desc Creates a GTM Folder.
+         *
+         * @alias tagmanager.accounts.containers.folders.create
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId'],
+            pathParams: ['accountId', 'containerId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.folders.delete
+         *
+         * @desc Deletes a GTM Folder.
+         *
+         * @alias tagmanager.accounts.containers.folders.delete
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.folderId - The GTM Folder ID.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
+              method: 'DELETE'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'folderId'],
+            pathParams: ['accountId', 'containerId', 'folderId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.folders.get
+         *
+         * @desc Gets a GTM Folder.
+         *
+         * @alias tagmanager.accounts.containers.folders.get
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.folderId - The GTM Folder ID.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'folderId'],
+            pathParams: ['accountId', 'containerId', 'folderId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.folders.list
+         *
+         * @desc Lists all GTM Folders of a Container.
+         *
+         * @alias tagmanager.accounts.containers.folders.list
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId'],
+            pathParams: ['accountId', 'containerId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.folders.update
+         *
+         * @desc Updates a GTM Folder.
+         *
+         * @alias tagmanager.accounts.containers.folders.update
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the folder in storage.
+         * @param  {string} params.folderId - The GTM Folder ID.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
+              method: 'PUT'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'folderId'],
+            pathParams: ['accountId', 'containerId', 'folderId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        entities: {
+
+          /**
+           * tagmanager.accounts.containers.folders.entities.list
+           *
+           * @desc List all entities in a GTM Folder.
+           *
+           * @alias tagmanager.accounts.containers.folders.entities.list
+           * @memberOf! tagmanager(v1)
+           *
+           * @param  {object} params - Parameters for request
+           * @param  {string} params.accountId - The GTM Account ID.
+           * @param  {string} params.containerId - The GTM Container ID.
+           * @param  {string} params.folderId - The GTM Folder ID.
+           * @param  {callback} callback - The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function(params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities',
+                method: 'GET'
+              },
+              params: params,
+              requiredParams: ['accountId', 'containerId', 'folderId'],
+              pathParams: ['accountId', 'containerId', 'folderId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        }
+      },
+
       macros: {
 
         /**
@@ -417,6 +604,42 @@ function Tagmanager(options) {
             params: params,
             requiredParams: ['accountId', 'containerId', 'macroId'],
             pathParams: ['accountId', 'containerId', 'macroId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
+      move_folders: {
+
+        /**
+         * tagmanager.accounts.containers.move_folders.update
+         *
+         * @desc Moves entities to a GTM Folder.
+         *
+         * @alias tagmanager.accounts.containers.move_folders.update
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.folderId - The GTM Folder ID.
+         * @param  {string=} params.tagId - The tags to be moved to the folder.
+         * @param  {string=} params.triggerId - The triggers to be moved to the folder.
+         * @param  {string=} params.variableId - The variables to be moved to the folder.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}',
+              method: 'PUT'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'folderId'],
+            pathParams: ['accountId', 'containerId', 'folderId'],
             context: self
           };
 

@@ -42,15 +42,15 @@ function Logging(options) {
       /**
        * logging.projects.logs.list
        *
-       * @desc Lists log resources belonging to the specified project.
+       * @desc Lists the logs in the project. Only logs that have entries are listed.
        *
        * @alias logging.projects.logs.list
        * @memberOf! logging(v1beta3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectsId - Part of `projectName`. The project name for which to list the log resources.
-       * @param  {string=} params.serviceName - A service name for which to list logs. Only logs containing entries whose metadata includes this service name are returned. If `serviceName` and `serviceIndexPrefix` are both empty, then all log names are returned. To list all log names, regardless of service, leave both the `serviceName` and `serviceIndexPrefix` empty. To list log names containing entries with a particular service name (or explicitly empty service name) set `serviceName` to the desired value and `serviceIndexPrefix` to `"/"`.
-       * @param  {string=} params.serviceIndexPrefix - A log service index prefix for which to list logs. Only logs containing entries whose metadata that includes these label values (associated with index keys) are returned. The prefix is a slash separated list of values, and need not specify all index labels. An empty index (or a single slash) matches all log service indexes.
+       * @param  {string} params.projectsId - Part of `projectName`. The resource name of the project whose logs are requested. If both `serviceName` and `serviceIndexPrefix` are empty, then all logs with entries in this project are listed.
+       * @param  {string=} params.serviceName - If not empty, this field must be a log service name such as `"compute.googleapis.com"`. Only logs associated with that that log service are listed.
+       * @param  {string=} params.serviceIndexPrefix - The purpose of this field is to restrict the listed logs to those with entries of a certain kind. If `serviceName` is the name of a log service, then this field may contain values for the log service's indexes. Only logs that have entries whose indexes include the values are listed. The format for this field is `"/val1/val2.../valN"`, where `val1` is a value for the first index, `val2` for the second index, etc. An empty value (a single slash) for an index matches all values, and you can omit values for later indexes entirely.
        * @param  {integer=} params.pageSize - The maximum number of results to return.
        * @param  {string=} params.pageToken - An opaque token, returned as `nextPageToken` by a prior `ListLogs` operation. If `pageToken` is supplied, then the other fields of this request are ignored, and instead the previous `ListLogs` operation is continued.
        * @param  {callback} callback - The callback that handles the response.
@@ -74,13 +74,13 @@ function Logging(options) {
       /**
        * logging.projects.logs.delete
        *
-       * @desc Deletes the specified log resource and all log entries contained in it.
+       * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
        *
        * @alias logging.projects.logs.delete
        * @memberOf! logging(v1beta3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectsId - Part of `logName`. The log resource to delete.
+       * @param  {string} params.projectsId - Part of `logName`. The resource name of the log to be deleted.
        * @param  {string} params.logsId - Part of `logName`. See documentation of `projectsId`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -105,13 +105,13 @@ function Logging(options) {
         /**
          * logging.projects.logs.entries.write
          *
-         * @desc Creates one or more log entries in a log. You must supply a list of `LogEntry` objects, named `entries`. Each `LogEntry` object must contain a payload object and a `LogEntryMetadata` object that describes the entry. You must fill in all the fields of the entry, metadata, and payload. You can also supply a map, `commonLabels`, that supplies default (key, value) data for the `entries[].metadata.labels` maps, saving you the trouble of creating identical copies for each entry.
+         * @desc Writes log entries to Cloud Logging. Each entry consists of a `LogEntry` object. You must fill in all the fields of the object, including one of the payload fields. You may supply a map, `commonLabels`, that holds default (key, value) data for the `entries[].metadata.labels` map in each entry, saving you the trouble of creating identical copies for each entry.
          *
          * @alias logging.projects.logs.entries.write
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `logName`. The name of the log resource into which to insert the log entries.
+         * @param  {string} params.projectsId - Part of `logName`. The resource name of the log that will receive the log entries.
          * @param  {string} params.logsId - Part of `logName`. See documentation of `projectsId`.
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
@@ -138,13 +138,13 @@ function Logging(options) {
         /**
          * logging.projects.logs.sinks.list
          *
-         * @desc Lists log sinks associated with the specified log.
+         * @desc Lists log sinks associated with a log.
          *
          * @alias logging.projects.logs.sinks.list
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `logName`. The log for which to list sinks.
+         * @param  {string} params.projectsId - Part of `logName`. The log whose sinks are wanted. For example, `"compute.google.com/syslog"`.
          * @param  {string} params.logsId - Part of `logName`. See documentation of `projectsId`.
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -167,13 +167,13 @@ function Logging(options) {
         /**
          * logging.projects.logs.sinks.get
          *
-         * @desc Gets the specified log sink resource.
+         * @desc Gets a log sink.
          *
          * @alias logging.projects.logs.sinks.get
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `sinkName`. The name of the sink resource to return.
+         * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the log sink to return.
          * @param  {string} params.logsId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {callback} callback - The callback that handles the response.
@@ -197,13 +197,13 @@ function Logging(options) {
         /**
          * logging.projects.logs.sinks.create
          *
-         * @desc Creates the specified log sink resource.
+         * @desc Creates a log sink. All log entries for a specified log are written to the destination.
          *
          * @alias logging.projects.logs.sinks.create
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `logName`. The log in which to create a sink resource.
+         * @param  {string} params.projectsId - Part of `logName`. The resource name of the log to which to the sink is bound.
          * @param  {string} params.logsId - Part of `logName`. See documentation of `projectsId`.
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
@@ -227,13 +227,13 @@ function Logging(options) {
         /**
          * logging.projects.logs.sinks.update
          *
-         * @desc Creates or updates the specified log sink resource.
+         * @desc Updates a log sink. If the sink does not exist, it is created.
          *
          * @alias logging.projects.logs.sinks.update
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `sinkName`. The name of the sink to update.
+         * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the sink to update.
          * @param  {string} params.logsId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {object} params.resource - Request body data
@@ -258,13 +258,13 @@ function Logging(options) {
         /**
          * logging.projects.logs.sinks.delete
          *
-         * @desc Deletes the specified log sink resource.
+         * @desc Deletes a log sink. After deletion, no new log entries are written to the destination.
          *
          * @alias logging.projects.logs.sinks.delete
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `sinkName`. The name of the sink to delete.
+         * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the log sink to delete.
          * @param  {string} params.logsId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {callback} callback - The callback that handles the response.
@@ -292,14 +292,14 @@ function Logging(options) {
       /**
        * logging.projects.logServices.list
        *
-       * @desc Lists log services associated with log entries ingested for a project.
+       * @desc Lists the log services that have log entries in this project.
        *
        * @alias logging.projects.logServices.list
        * @memberOf! logging(v1beta3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectsId - Part of `projectName`. The project resource whose services are to be listed.
-       * @param  {string=} params.log - The name of the log resource whose services are to be listed. log for which to list services. When empty, all services are listed.
+       * @param  {string} params.projectsId - Part of `projectName`. The resource name of the project whose services are to be listed.
+       * @param  {string=} params.log - If empty, all log services contributing log entries to the project are listed. Otherwise, this field must be the resource name of a log, such as `"projects/my-project/appengine.googleapis.com%2Frequest_log"`, and then the only services listed are those associated with entries in the log. A service is associated with an entry if its name is in the entry's `LogEntryMetadata.serviceName` field.
        * @param  {integer=} params.pageSize - The maximum number of `LogService` objects to return in one operation.
        * @param  {string=} params.pageToken - An opaque token, returned as `nextPageToken` by a prior `ListLogServices` operation. If `pageToken` is supplied, then the other fields of this request are ignored, and instead the previous `ListLogServices` operation is continued.
        * @param  {callback} callback - The callback that handles the response.
@@ -325,17 +325,17 @@ function Logging(options) {
         /**
          * logging.projects.logServices.indexes.list
          *
-         * @desc Lists log service indexes associated with a log service.
+         * @desc Lists the current index values for a log service.
          *
          * @alias logging.projects.logServices.indexes.list
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `serviceName`. A log service resource of the form `/projects/x/logServices/x`. The service indexes of the log service are returned. Example: `"/projects/myProj/logServices/appengine.googleapis.com"`.
+         * @param  {string} params.projectsId - Part of `serviceName`. The resource name of a log service whose service indexes are requested. Example: `"projects/my-project-id/logServices/appengine.googleapis.com"`.
          * @param  {string} params.logServicesId - Part of `serviceName`. See documentation of `projectsId`.
-         * @param  {string=} params.indexPrefix - Restricts the indexes returned to be those with a specified prefix. The prefix has the form `"/label_value/label_value/..."`, in order corresponding to the [`LogService indexKeys`][google.logging.v1.LogService.index_keys]. Non-empty prefixes must begin with `/` . Example prefixes: + `"/myModule/"` retrieves App Engine versions associated with `myModule`. The trailing slash terminates the value. + `"/myModule"` retrieves App Engine modules with names beginning with `myModule`. + `""` retrieves all indexes.
-         * @param  {integer=} params.depth - A limit to the number of levels of the index hierarchy that are expanded. If `depth` is 0, it defaults to the level specified by the prefix field (the number of slash separators). The default empty prefix implies a `depth` of 1. It is an error for `depth` to be any non-zero value less than the number of components in `indexPrefix`.
-         * @param  {string=} params.log - A log resource like `/projects/project_id/logs/log_name`, identifying the log for which to list service indexes.
+         * @param  {string=} params.indexPrefix - Restricts the index values returned to be those with a specified prefix for each index key. This field has the form `"/prefix1/prefix2/..."`, in order corresponding to the [`LogService indexKeys`][google.logging.v1.LogService.index_keys]. Non-empty prefixes must begin with `/`. For example, App Engine's two keys are the module ID and the version ID. Following is the effect of using various values for `indexPrefix`: + `"/Mod/"` retrieves `/Mod/10` and `/Mod/11` but not `/ModA/10`. + `"/Mod` retrieves `/Mod/10`, `/Mod/11` and `/ModA/10` but not `/XXX/33`. + `"/Mod/1"` retrieves `/Mod/10` and `/Mod/11` but not `/ModA/10`. + `"/Mod/10/"` retrieves `/Mod/10` only. + An empty prefix or `"/"` retrieves all values.
+         * @param  {integer=} params.depth - A non-negative integer that limits the number of levels of the index hierarchy that are returned. If `depth` is 1 (default), only the first index key value is returned. If `depth` is 2, both primary and secondary key values are returned. If `depth` is 0, the depth is the number of slash-separators in the `indexPrefix` field, not counting a slash appearing as the last character of the prefix. If the `indexPrefix` field is empty, the default depth is 1. It is an error for `depth` to be any positive value less than the number of components in `indexPrefix`.
+         * @param  {string=} params.log - _Optional_. The resource name of a log, such as `"projects/project_id/logs/log_name"`. If present, indexes are returned for any service associated with entries in the log.
          * @param  {integer=} params.pageSize - The maximum number of log service index resources to return in one operation.
          * @param  {string=} params.pageToken - An opaque token, returned as `nextPageToken` by a prior `ListLogServiceIndexes` operation. If `pageToken` is supplied, then the other fields of this request are ignored, and instead the previous `ListLogServiceIndexes` operation is continued.
          * @param  {callback} callback - The callback that handles the response.
@@ -362,13 +362,13 @@ function Logging(options) {
         /**
          * logging.projects.logServices.sinks.list
          *
-         * @desc Lists log service sinks associated with the specified service.
+         * @desc Lists log service sinks associated with a log service.
          *
          * @alias logging.projects.logServices.sinks.list
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `serviceName`. The name of the service for which to list sinks.
+         * @param  {string} params.projectsId - Part of `serviceName`. The log service whose sinks are wanted.
          * @param  {string} params.logServicesId - Part of `serviceName`. See documentation of `projectsId`.
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -391,13 +391,13 @@ function Logging(options) {
         /**
          * logging.projects.logServices.sinks.get
          *
-         * @desc Gets the specified log service sink resource.
+         * @desc Gets a log service sink.
          *
          * @alias logging.projects.logServices.sinks.get
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `sinkName`. The name of the sink to return.
+         * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the log service sink to return.
          * @param  {string} params.logServicesId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {callback} callback - The callback that handles the response.
@@ -421,13 +421,13 @@ function Logging(options) {
         /**
          * logging.projects.logServices.sinks.create
          *
-         * @desc Creates the specified log service sink resource.
+         * @desc Creates a log service sink. All log entries from a specified log service are written to the destination.
          *
          * @alias logging.projects.logServices.sinks.create
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `serviceName`. The name of the service in which to create a sink.
+         * @param  {string} params.projectsId - Part of `serviceName`. The resource name of the log service to which the sink is bound.
          * @param  {string} params.logServicesId - Part of `serviceName`. See documentation of `projectsId`.
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
@@ -451,13 +451,13 @@ function Logging(options) {
         /**
          * logging.projects.logServices.sinks.update
          *
-         * @desc Creates or update the specified log service sink resource.
+         * @desc Updates a log service sink. If the sink does not exist, it is created.
          *
          * @alias logging.projects.logServices.sinks.update
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `sinkName`. The name of the sink to update.
+         * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the log service sink to update.
          * @param  {string} params.logServicesId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {object} params.resource - Request body data
@@ -482,13 +482,13 @@ function Logging(options) {
         /**
          * logging.projects.logServices.sinks.delete
          *
-         * @desc Deletes the specified log service sink.
+         * @desc Deletes a log service sink. After deletion, no new log entries are written to the destination.
          *
          * @alias logging.projects.logServices.sinks.delete
          * @memberOf! logging(v1beta3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectsId - Part of `sinkName`. The name of the sink to delete.
+         * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the log service sink to delete.
          * @param  {string} params.logServicesId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
          * @param  {callback} callback - The callback that handles the response.
@@ -508,6 +508,154 @@ function Logging(options) {
 
           return createAPIRequest(parameters, callback);
         }
+      }
+    },
+
+    sinks: {
+
+      /**
+       * logging.projects.sinks.list
+       *
+       * @desc Lists project sinks associated with a project.
+       *
+       * @alias logging.projects.sinks.list
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `projectName`. The project whose sinks are wanted.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/sinks',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectsId'],
+          pathParams: ['projectsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.sinks.get
+       *
+       * @desc Gets a project sink.
+       *
+       * @alias logging.projects.sinks.get
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the project sink to return.
+       * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/sinks/{sinksId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectsId', 'sinksId'],
+          pathParams: ['projectsId', 'sinksId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.sinks.create
+       *
+       * @desc Creates a project sink. A logs filter determines which log entries are written to the destination.
+       *
+       * @alias logging.projects.sinks.create
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `projectName`. The resource name of the project to which the sink is bound.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/sinks',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['projectsId'],
+          pathParams: ['projectsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.sinks.update
+       *
+       * @desc Updates a project sink. If the sink does not exist, it is created. The destination, filter, or both may be updated.
+       *
+       * @alias logging.projects.sinks.update
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the project sink to update.
+       * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/sinks/{sinksId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['projectsId', 'sinksId'],
+          pathParams: ['projectsId', 'sinksId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.sinks.delete
+       *
+       * @desc Deletes a project sink. After deletion, no new log entries are written to the destination.
+       *
+       * @alias logging.projects.sinks.delete
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `sinkName`. The resource name of the project sink to delete.
+       * @param  {string} params.sinksId - Part of `sinkName`. See documentation of `projectsId`.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/sinks/{sinksId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['projectsId', 'sinksId'],
+          pathParams: ['projectsId', 'sinksId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };

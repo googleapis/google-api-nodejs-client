@@ -38,6 +38,36 @@ function Sqladmin(options) {
   this.backupRuns = {
 
     /**
+     * sql.backupRuns.delete
+     *
+     * @desc Deletes the backup taken by a backup run.
+     *
+     * @alias sql.backupRuns.delete
+     * @memberOf! sqladmin(v1beta4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the Backup Run to delete.
+     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
+     * @param  {string} params.project - Project ID of the project that contains the instance.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'instance', 'id'],
+        pathParams: ['id', 'instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * sql.backupRuns.get
      *
      * @desc Retrieves a resource containing information about a backup run.
@@ -827,6 +857,36 @@ function Sqladmin(options) {
   };
 
   this.sslCerts = {
+
+    /**
+     * sql.sslCerts.createEphemeral
+     *
+     * @desc Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
+     *
+     * @alias sql.sslCerts.createEphemeral
+     * @memberOf! sqladmin(v1beta4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
+     * @param  {string} params.project - Project ID of the Cloud SQL project.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    createEphemeral: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * sql.sslCerts.delete

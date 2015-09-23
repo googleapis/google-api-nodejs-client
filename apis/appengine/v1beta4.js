@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google App Engine Admin API
  *
- * @classdesc The App Engine Admin API enables developers to provision and manage their App Engine applications.
+ * @classdesc The Google App Engine Admin API enables developers to provision and manage their App Engine applications.
  * @namespace appengine
  * @version  v1beta4
  * @variation v1beta4
@@ -106,7 +106,7 @@ function Appengine(options) {
        * @memberOf! appengine(v1beta4)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "/apps/myapp/modules/default".
+       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default".
        * @param  {string} params.modulesId - Part of `name`. See documentation of `appsId`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -135,7 +135,7 @@ function Appengine(options) {
        * @memberOf! appengine(v1beta4)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "/apps/myapp".
+       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp".
        * @param  {integer=} params.pageSize - Maximum results to return per page.
        * @param  {string=} params.pageToken - Continuation token for fetching the next page of results.
        * @param  {callback} callback - The callback that handles the response.
@@ -356,9 +356,9 @@ function Appengine(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.appsId - Part of `name`. The name of the operation collection.
-       * @param  {string=} params.filter - The standard List filter.
-       * @param  {integer=} params.pageSize - The standard List page size.
-       * @param  {string=} params.pageToken - The standard List page token.
+       * @param  {string=} params.filter - The standard list filter.
+       * @param  {integer=} params.pageSize - The standard list page size.
+       * @param  {string=} params.pageToken - The standard list page token.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */

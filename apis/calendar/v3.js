@@ -46,7 +46,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.ruleId - ACL rule identifier.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -75,7 +75,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.ruleId - ACL rule identifier.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -104,7 +104,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -133,7 +133,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {boolean=} params.showDeleted - Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
@@ -165,7 +165,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.ruleId - ACL rule identifier.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -195,7 +195,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.ruleId - ACL rule identifier.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -225,7 +225,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
      * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
      * @param  {boolean=} params.showDeleted - Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
@@ -262,7 +262,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -290,7 +290,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -380,7 +380,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -410,7 +410,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -478,7 +478,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -506,7 +506,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -534,7 +534,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -590,7 +590,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -619,7 +619,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -715,7 +715,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.eventId - Event identifier.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the deletion of the event. Optional. The default is False.
      * @param  {callback} callback - The callback that handles the response.
@@ -746,7 +746,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.eventId - Event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
@@ -777,7 +777,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -807,7 +807,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the new event. Optional. The default is False.
      * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
@@ -840,7 +840,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.eventId - Recurring event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {integer=} params.maxResults - Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
@@ -878,7 +878,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string=} params.iCalUID - Specifies event ID in the iCalendar format to be included in the response. Optional.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {integer=} params.maxResults - Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
@@ -894,7 +894,7 @@ function Calendar(options) {
      * @param  {string=} params.timeMax - Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
      * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -954,7 +954,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.eventId - Event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
@@ -987,7 +987,7 @@ function Calendar(options) {
      * @memberOf! calendar(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the event. Optional. The default is False.
      * @param  {string} params.text - The text describing the event to be created.
      * @param  {callback} callback - The callback that handles the response.
@@ -1018,7 +1018,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string} params.eventId - Event identifier.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
@@ -1052,7 +1052,7 @@ function Calendar(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier.
+     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param  {string=} params.iCalUID - Specifies event ID in the iCalendar format to be included in the response. Optional.
      * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param  {integer=} params.maxResults - Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
@@ -1068,7 +1068,7 @@ function Calendar(options) {
      * @param  {string=} params.timeMax - Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
      * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
      * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

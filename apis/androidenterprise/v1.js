@@ -638,6 +638,34 @@ function Androidenterprise(options) {
     },
 
     /**
+     * androidenterprise.enterprises.sendTestPushNotification
+     *
+     * @desc Sends a test push notification to validate the MDM integration with the Google Cloud Pub/Sub service for this enterprise.
+     *
+     * @alias androidenterprise.enterprises.sendTestPushNotification
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    sendTestPushNotification: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.enterprises.setAccount
      *
      * @desc Set the account that will be used to authenticate to the API as the enterprise.
@@ -1384,6 +1412,35 @@ function Androidenterprise(options) {
     },
 
     /**
+     * androidenterprise.users.getAvailableProductSet
+     *
+     * @desc Retrieves the set of products a user is entitled to access.
+     *
+     * @alias androidenterprise.users.getAvailableProductSet
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.userId - The ID of the user.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAvailableProductSet: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.users.list
      *
      * @desc Looks up a user by email address.
@@ -1431,6 +1488,36 @@ function Androidenterprise(options) {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
           method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.users.setAvailableProductSet
+     *
+     * @desc Modifies the set of products a user is entitled to access.
+     *
+     * @alias androidenterprise.users.setAvailableProductSet
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.userId - The ID of the user.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setAvailableProductSet: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
+          method: 'PUT'
         },
         params: params,
         requiredParams: ['enterpriseId', 'userId'],

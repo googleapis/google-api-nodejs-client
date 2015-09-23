@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Cloud Deployment Manager API V2
+ * Google Cloud Deployment Manager API
  *
  * @classdesc The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
  * @namespace deploymentmanager

@@ -362,6 +362,7 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.folderId - The ID of the folder.
      * @param  {integer=} params.maxResults - Maximum number of children to return.
+     * @param  {string=} params.orderBy - A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param  {string=} params.pageToken - Page token for children.
      * @param  {string=} params.q - Query string for searching children.
      * @param  {callback} callback - The callback that handles the response.
@@ -662,6 +663,35 @@ function Drive(options) {
     },
 
     /**
+     * drive.files.generateIds
+     *
+     * @desc Generates a set of file IDs which can be provided in insert requests.
+     *
+     * @alias drive.files.generateIds
+     * @memberOf! drive(v2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {integer=} params.maxResults - Maximum number of IDs to return.
+     * @param  {string=} params.space - The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    generateIds: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/drive/v2/files/generateIds',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * drive.files.get
      *
      * @desc Gets a file's metadata by ID.
@@ -674,7 +704,7 @@ function Drive(options) {
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {string=} params.revisionId - Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
+     * @param  {boolean=} params.updateViewedDate - Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -744,6 +774,7 @@ function Drive(options) {
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.corpus - The body of items (files/documents) to which the query applies.
      * @param  {integer=} params.maxResults - Maximum number of files to return.
+     * @param  {string=} params.orderBy - A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param  {string=} params.pageToken - Page token for files.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {string=} params.q - Query string for searching files.
@@ -776,10 +807,10 @@ function Drive(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
-     * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
+     * @param  {boolean=} params.convert - This parameter is deprecated and has no function.
      * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {string=} params.modifiedDateBehavior - How the modifiedDate field should be updated. This overrides setModifiedDate.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
+     * @param  {string=} params.modifiedDateBehavior - Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
@@ -902,10 +933,10 @@ function Drive(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
-     * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
+     * @param  {boolean=} params.convert - This parameter is deprecated and has no function.
      * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {string=} params.modifiedDateBehavior - How the modifiedDate field should be updated. This overrides setModifiedDate.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
+     * @param  {string=} params.modifiedDateBehavior - Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
@@ -951,7 +982,7 @@ function Drive(options) {
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {string=} params.revisionId - Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
+     * @param  {boolean=} params.updateViewedDate - Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1242,7 +1273,7 @@ function Drive(options) {
     /**
      * drive.permissions.patch
      *
-     * @desc Updates a permission. This method supports patch semantics.
+     * @desc Updates a permission using patch semantics.
      *
      * @alias drive.permissions.patch
      * @memberOf! drive(v2)

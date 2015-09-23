@@ -133,7 +133,7 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.datasetId - The ID of the dataset to be updated.
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is [name][google.genomics.v1.Dataset.name]. The only acceptable value is "name". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is name. The only acceptable value is "name". If unspecified, all mutable fields will be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -208,6 +208,93 @@ function Genomics(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.datasets.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified dataset. Replaces any existing policy. See Setting a Policy for more information.
+     *
+     * @alias genomics.datasets.setIamPolicy
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Format is `datasets/`.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/{resource}:setIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.datasets.getIamPolicy
+     *
+     * @desc Gets the access control policy for the dataset. Is empty if the policy or the resource does not exist. See Getting a Policy for more information.
+     *
+     * @alias genomics.datasets.getIamPolicy
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Format is `datasets/`.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/{resource}:getIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.datasets.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource. See Testing Permissions for more information.
+     *
+     * @alias genomics.datasets.testIamPermissions
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Format is `datasets/`.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/{resource}:testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -252,7 +339,7 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.name - The name of the operation collection.
-     * @param  {string=} params.filter - A string for filtering [Operations][google.longrunning.Operation]. The following filter fields are supported: * projectId: Required. Corresponds to [OperationMetadata.projectId][google.genomics.v1.OperationMetadata.project_id]. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
+     * @param  {string=} params.filter - A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
      * @param  {integer=} params.pageSize - The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
      * @param  {string=} params.pageToken - The standard list page token.
      * @param  {callback} callback - The callback that handles the response.
@@ -276,7 +363,7 @@ function Genomics(options) {
     /**
      * genomics.operations.cancel
      *
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use [Operations.GetOperation][google.longrunning.Operations.GetOperation] or [Operations.ListOperations][google.longrunning.Operations.ListOperations] to check whether the cancellation succeeded or the operation completed despite cancellation.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation.
      *
      * @alias genomics.operations.cancel
      * @memberOf! genomics(v1)
@@ -305,7 +392,7 @@ function Genomics(options) {
     /**
      * genomics.operations.delete
      *
-     * @desc This method is not implemented. To cancel an operation, please use [Operations.CancelOperation][google.longrunning.Operations.CancelOperation].
+     * @desc This method is not implemented. To cancel an operation, please use Operations.CancelOperation.
      *
      * @alias genomics.operations.delete
      * @memberOf! genomics(v1)
@@ -337,7 +424,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.import
      *
-     * @desc Creates read group sets by asynchronously importing the provided information. Note that currently comments in the input file header are **not** imported and some custom tags will be converted to strings, rather than preserving tag types. The caller must have WRITE permissions to the dataset.
+     * @desc Creates read group sets by asynchronously importing the provided information. The caller must have WRITE permissions to the dataset. ## Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import - Tags will be converted to strings - tag types are not preserved - Comments (`@CO`) in the input file header will not be preserved - Original header order of references (`@SQ`) will not be preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (and "BQ" tag, if any) will be reversed - Unmapped reads will be stripped of positional information (reference name and position)
      *
      * @alias genomics.readgroupsets.import
      * @memberOf! genomics(v1)
@@ -365,7 +452,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.export
      *
-     * @desc Exports a read group set to a BAM file in Google Cloud Storage. Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. In particular, comments in the input file header will not be preserved, some custom tags will be converted to strings, and original reference sequence order is not necessarily preserved.
+     * @desc Exports a read group set to a BAM file in Google Cloud Storage. Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. See [ImportReadGroupSets](google.genomics.v1.ReadServiceV1.ImportReadGroupSets) for caveats.
      *
      * @alias genomics.readgroupsets.export
      * @memberOf! genomics(v1)
@@ -429,7 +516,7 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.readGroupSetId - The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, mutable fields are [referenceSetId][google.genomics.v1.ReadGroupSet.reference_set_id] and [name][google.genomics.v1.ReadGroupSet.name]. Acceptable values are "referenceSetId" and "name". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, mutable fields are referenceSetId and name. Acceptable values are "referenceSetId" and "name". If unspecified, all mutable fields will be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -734,7 +821,7 @@ function Genomics(options) {
     /**
      * genomics.variants.import
      *
-     * @desc Creates variant data by asynchronously importing the provided information. The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
+     * @desc Creates variant data by asynchronously importing the provided information. The variants for import will be merged with any existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
      *
      * @alias genomics.variants.import
      * @memberOf! genomics(v1)
@@ -825,7 +912,7 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantId - The ID of the variant to be updated.
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, mutable fields are [names][google.genomics.v1.Variant.names] and [info][google.genomics.v1.Variant.info]. Acceptable values are "names" and "info". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, mutable fields are names and info. Acceptable values are "names" and "info". If unspecified, all mutable fields will be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -899,34 +986,6 @@ function Genomics(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * genomics.variants.merge
-     *
-     * @desc Merges the given variants with existing variants. Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded.
-     *
-     * @alias genomics.variants.merge
-     * @memberOf! genomics(v1)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    merge: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://genomics.googleapis.com/v1/variants:merge',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -936,7 +995,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.create
      *
-     * @desc Creates a new variant set.
+     * @desc Creates a new variant set. The provided variant set must have a valid `datasetId` set - all other fields are optional. Note that the `id` field will be ignored, as this is assigned by the server.
      *
      * @alias genomics.variantsets.create
      * @memberOf! genomics(v1)
@@ -1084,7 +1143,7 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - The ID of the variant to be updated (must already exist).
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is [metadata][google.genomics.v1.VariantSet.metadata]. The only acceptable value is "metadata". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is metadata. The only acceptable value is "metadata". If unspecified, all mutable fields will be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1174,7 +1233,7 @@ function Genomics(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.callSetId - The ID of the call set to be updated.
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is [name][google.genomics.v1.CallSet.name]. The only acceptable value is "name". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is name. The only acceptable value is "name". If unspecified, all mutable fields will be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

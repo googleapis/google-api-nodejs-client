@@ -314,6 +314,38 @@ function Replicapoolupdater(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * replicapoolupdater.zoneOperations.list
+     *
+     * @desc Retrieves the list of Operation resources contained within the specified zone.
+     *
+     * @alias replicapoolupdater.zoneOperations.list
+     * @memberOf! replicapoolupdater(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
+     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.zone - Name of the zone scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/operations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
