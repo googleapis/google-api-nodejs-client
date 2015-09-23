@@ -257,34 +257,6 @@ function Plus(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * plus.moments.remove
-     *
-     * @desc Delete a moment.
-     *
-     * @alias plus.moments.remove
-     * @memberOf! plus(v1)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the moment to delete.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    remove: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/plus/v1/moments/{id}',
-          method: 'DELETE'
-        },
-        params: params,
-        requiredParams: ['id'],
-        pathParams: ['id'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };

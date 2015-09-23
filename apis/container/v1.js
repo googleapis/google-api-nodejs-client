@@ -39,6 +39,35 @@ function Container(options) {
 
     zones: {
 
+      /**
+       * container.projects.zones.getServerconfig
+       *
+       * @desc Returns configuration info about the Container Engine service.
+       *
+       * @alias container.projects.zones.getServerconfig
+       * @memberOf! container(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
+       * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or "-" for all zones.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      getServerconfig: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/serverconfig',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectId', 'zone'],
+          pathParams: ['projectId', 'zone'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
       clusters: {
 
         /**
@@ -50,7 +79,7 @@ function Container(options) {
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones.
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -79,7 +108,7 @@ function Container(options) {
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console A [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param  {string} params.clusterId - The name of the cluster to retrieve.
          * @param  {callback} callback - The callback that handles the response.
@@ -103,13 +132,13 @@ function Container(options) {
         /**
          * container.projects.zones.clusters.create
          *
-         * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances, plus a Kubernetes master endpoint. By default, the cluster is created in the project's [default network]('/compute/docs/networking#networks_1'). One firewall is added for the cluster. After cluster creation, the cluster creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range is being used by the cluster.
+         * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances, plus a Kubernetes master endpoint. By default, the cluster is created in the project's [default network](/compute/docs/networking#networks_1). One firewall is added for the cluster. After cluster creation, the cluster creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range is being used by the cluster.
          *
          * @alias container.projects.zones.clusters.create
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
@@ -139,7 +168,7 @@ function Container(options) {
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param  {string} params.clusterId - The name of the cluster to upgrade.
          * @param  {object} params.resource - Request body data
@@ -170,7 +199,7 @@ function Container(options) {
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param  {string} params.clusterId - The name of the cluster to delete.
          * @param  {callback} callback - The callback that handles the response.
@@ -203,7 +232,7 @@ function Container(options) {
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or "-" for all zones.
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -232,7 +261,7 @@ function Container(options) {
          * @memberOf! container(v1)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID](https://console.developers.google.com/project) or [project number](https://developers.google.com/console/help/project-number)
+         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
          * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param  {string} params.operationId - The server-assigned `name` of the operation.
          * @param  {callback} callback - The callback that handles the response.

@@ -223,7 +223,7 @@ function Bigquery(options) {
     /**
      * bigquery.jobs.cancel
      *
-     * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully.
+     * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
      *
      * @alias bigquery.jobs.cancel
      * @memberOf! bigquery(v2)

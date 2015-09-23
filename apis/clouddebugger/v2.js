@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Debugger API
  *
- * @classdesc 
+ * @classdesc Lets you examine the stack and variables of your running application without stopping or slowing it down.
  * @namespace clouddebugger
  * @version  v2
  * @variation v2

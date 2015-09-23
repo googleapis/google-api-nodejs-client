@@ -304,6 +304,186 @@ function Adexchangebuyer(options) {
 
   };
 
+  this.clientaccess = {
+
+    /**
+     * adexchangebuyer.clientaccess.delete
+     *
+     * 
+     *
+     * @alias adexchangebuyer.clientaccess.delete
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clientAccountId - 
+     * @param  {integer} params.sponsorAccountId - 
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/clientAccess/{clientAccountId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['clientAccountId', 'sponsorAccountId'],
+        pathParams: ['clientAccountId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.clientaccess.get
+     *
+     * 
+     *
+     * @alias adexchangebuyer.clientaccess.get
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clientAccountId - 
+     * @param  {integer} params.sponsorAccountId - 
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/clientAccess/{clientAccountId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['clientAccountId', 'sponsorAccountId'],
+        pathParams: ['clientAccountId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.clientaccess.insert
+     *
+     * 
+     *
+     * @alias adexchangebuyer.clientaccess.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.clientAccountId - 
+     * @param  {integer=} params.sponsorAccountId - 
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/clientAccess',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.clientaccess.list
+     *
+     * 
+     *
+     * @alias adexchangebuyer.clientaccess.list
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/clientAccess',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.clientaccess.patch
+     *
+     * 
+     *
+     * @alias adexchangebuyer.clientaccess.patch
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clientAccountId - 
+     * @param  {integer} params.sponsorAccountId - 
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/clientAccess/{clientAccountId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['clientAccountId', 'sponsorAccountId'],
+        pathParams: ['clientAccountId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.clientaccess.update
+     *
+     * 
+     *
+     * @alias adexchangebuyer.clientaccess.update
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clientAccountId - 
+     * @param  {integer} params.sponsorAccountId - 
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/clientAccess/{clientAccountId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['clientAccountId', 'sponsorAccountId'],
+        pathParams: ['clientAccountId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.creatives = {
 
     /**
@@ -385,6 +565,639 @@ function Adexchangebuyer(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.deals = {
+
+    /**
+     * adexchangebuyer.deals.get
+     *
+     * @desc Gets the requested deal.
+     *
+     * @alias adexchangebuyer.deals.get
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.dealId - 
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/deals/{dealId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['dealId'],
+        pathParams: ['dealId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.marketplacedeals = {
+
+    /**
+     * adexchangebuyer.marketplacedeals.delete
+     *
+     * @desc Delete the specified deals from the order
+     *
+     * @alias adexchangebuyer.marketplacedeals.delete
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The orderId to delete deals from.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/deals/delete',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplacedeals.insert
+     *
+     * @desc Add new deals for the specified order
+     *
+     * @alias adexchangebuyer.marketplacedeals.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - OrderId for which deals need to be added.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/deals/insert',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplacedeals.list
+     *
+     * @desc List all the deals for a given order
+     *
+     * @alias adexchangebuyer.marketplacedeals.list
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The orderId to get deals for.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/deals',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplacedeals.update
+     *
+     * @desc Replaces all the deals in the order with the passed in deals
+     *
+     * @alias adexchangebuyer.marketplacedeals.update
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The orderId to edit deals on.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/deals/update',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.marketplacenotes = {
+
+    /**
+     * adexchangebuyer.marketplacenotes.insert
+     *
+     * @desc Add notes to the order
+     *
+     * @alias adexchangebuyer.marketplacenotes.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The orderId to add notes for.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/notes/insert',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplacenotes.list
+     *
+     * @desc Get all the notes associated with an order
+     *
+     * @alias adexchangebuyer.marketplacenotes.list
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The orderId to get notes for.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/notes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.marketplaceoffers = {
+
+    /**
+     * adexchangebuyer.marketplaceoffers.get
+     *
+     * @desc Gets the requested negotiation.
+     *
+     * @alias adexchangebuyer.marketplaceoffers.get
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.offerId - The offerId for the offer to get the head revision for.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOffers/{offerId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['offerId'],
+        pathParams: ['offerId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplaceoffers.search
+     *
+     * @desc Gets the requested negotiation.
+     *
+     * @alias adexchangebuyer.marketplaceoffers.search
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.pqlQuery - The pql query used to query for offers.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOffers/search',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.marketplaceorders = {
+
+    /**
+     * adexchangebuyer.marketplaceorders.get
+     *
+     * @desc Get an order given its id
+     *
+     * @alias adexchangebuyer.marketplaceorders.get
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - Id of the order to retrieve.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['orderId'],
+        pathParams: ['orderId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplaceorders.insert
+     *
+     * @desc Create the given list of orders
+     *
+     * @alias adexchangebuyer.marketplaceorders.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/insert',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplaceorders.patch
+     *
+     * @desc Update the given order. This method supports patch semantics.
+     *
+     * @alias adexchangebuyer.marketplaceorders.patch
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The order id to update.
+     * @param  {string} params.revisionNumber - The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the lastest order at head revision and retry the update at that revision.
+     * @param  {string} params.updateAction - The proposed action to take on the order.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/{revisionNumber}/{updateAction}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['orderId', 'revisionNumber', 'updateAction'],
+        pathParams: ['orderId', 'revisionNumber', 'updateAction'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplaceorders.search
+     *
+     * @desc Search for orders using pql query
+     *
+     * @alias adexchangebuyer.marketplaceorders.search
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.pqlQuery - Query string to retrieve specific orders.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/search',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.marketplaceorders.update
+     *
+     * @desc Update the given order
+     *
+     * @alias adexchangebuyer.marketplaceorders.update
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.orderId - The order id to update.
+     * @param  {string} params.revisionNumber - The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the lastest order at head revision and retry the update at that revision.
+     * @param  {string} params.updateAction - The proposed action to take on the order.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/marketplaceOrders/{orderId}/{revisionNumber}/{updateAction}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['orderId', 'revisionNumber', 'updateAction'],
+        pathParams: ['orderId', 'revisionNumber', 'updateAction'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.negotiationrounds = {
+
+    /**
+     * adexchangebuyer.negotiationrounds.insert
+     *
+     * @desc Adds the requested negotiationRound to the requested negotiation.
+     *
+     * @alias adexchangebuyer.negotiationrounds.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.negotiationId - 
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/negotiations/{negotiationId}/negotiationrounds',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['negotiationId'],
+        pathParams: ['negotiationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.negotiations = {
+
+    /**
+     * adexchangebuyer.negotiations.get
+     *
+     * @desc Gets the requested negotiation.
+     *
+     * @alias adexchangebuyer.negotiations.get
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.negotiationId - 
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/negotiations/{negotiationId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['negotiationId'],
+        pathParams: ['negotiationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.negotiations.insert
+     *
+     * @desc Creates or updates the requested negotiation.
+     *
+     * @alias adexchangebuyer.negotiations.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/negotiations',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.negotiations.list
+     *
+     * @desc Lists all negotiations the authenticated user has access to.
+     *
+     * @alias adexchangebuyer.negotiations.list
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/negotiations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.offers = {
+
+    /**
+     * adexchangebuyer.offers.get
+     *
+     * @desc Gets the requested offer.
+     *
+     * @alias adexchangebuyer.offers.get
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.offerId - 
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/offers/{offerId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['offerId'],
+        pathParams: ['offerId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.offers.insert
+     *
+     * @desc Creates or updates the requested offer.
+     *
+     * @alias adexchangebuyer.offers.insert
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/offers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * adexchangebuyer.offers.list
+     *
+     * @desc Lists all offers the authenticated user has access to.
+     *
+     * @alias adexchangebuyer.offers.list
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/offers',
           method: 'GET'
         },
         params: params,

@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Cloud Storage API
+ * Cloud Storage JSON API
  *
  * @classdesc Lets you store and retrieve potentially-large, immutable data objects.
  * @namespace storage
@@ -638,7 +638,7 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -669,7 +669,7 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -699,7 +699,7 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -730,7 +730,7 @@ function Storage(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -761,7 +761,7 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -793,7 +793,7 @@ function Storage(options) {
      * @param  {string} params.bucket - Name of a bucket.
      * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param  {string=} params.generation - If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -827,7 +827,7 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.destinationBucket - Name of the bucket in which to store the new object.
-     * @param  {string} params.destinationObject - Name of the new object.
+     * @param  {string} params.destinationObject - Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string=} params.destinationPredefinedAcl - Apply a predefined set of access controls to the destination object.
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the object's current generation matches the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
@@ -859,7 +859,7 @@ function Storage(options) {
      * @memberOf! storage(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.destinationBucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     * @param  {string} params.destinationBucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string} params.destinationObject - Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      * @param  {string=} params.destinationPredefinedAcl - Apply a predefined set of access controls to the destination object.
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the destination object's current generation matches the given value.
@@ -873,7 +873,7 @@ function Storage(options) {
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      * @param  {string} params.sourceBucket - Name of the bucket in which to find the source object.
      * @param  {string=} params.sourceGeneration - If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     * @param  {string} params.sourceObject - Name of the source object.
+     * @param  {string} params.sourceObject - Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -908,7 +908,7 @@ function Storage(options) {
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -942,7 +942,7 @@ function Storage(options) {
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -977,7 +977,7 @@ function Storage(options) {
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param  {string=} params.name - Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     * @param  {string=} params.name - Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      * @param  {object} params.resource - Media resource metadata
@@ -1052,7 +1052,7 @@ function Storage(options) {
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data
@@ -1084,7 +1084,7 @@ function Storage(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.destinationBucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param  {string} params.destinationObject - Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     * @param  {string} params.destinationObject - Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string=} params.destinationPredefinedAcl - Apply a predefined set of access controls to the destination object.
      * @param  {string=} params.ifGenerationMatch - Makes the operation conditional on whether the destination object's current generation matches the given value.
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the destination object's current generation does not match the given value.
@@ -1099,7 +1099,7 @@ function Storage(options) {
      * @param  {string=} params.rewriteToken - Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
      * @param  {string} params.sourceBucket - Name of the bucket in which to find the source object.
      * @param  {string=} params.sourceGeneration - If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     * @param  {string} params.sourceObject - Name of the source object.
+     * @param  {string} params.sourceObject - Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1134,7 +1134,7 @@ function Storage(options) {
      * @param  {string=} params.ifGenerationNotMatch - Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param  {string=} params.ifMetagenerationMatch - Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param  {string=} params.ifMetagenerationNotMatch - Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param  {string} params.object - Name of the object.
+     * @param  {string} params.object - Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param  {string=} params.predefinedAcl - Apply a predefined set of access controls to this object.
      * @param  {string=} params.projection - Set of properties to return. Defaults to full.
      * @param  {object} params.resource - Request body data

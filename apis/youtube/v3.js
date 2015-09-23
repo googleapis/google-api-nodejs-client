@@ -115,7 +115,6 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
      * @param  {string} params.id - The id parameter identifies the caption track that is being deleted. The value is a caption track ID as identified by the id property in a caption resource.
      * @param  {string=} params.onBehalfOf - ID of the Google+ Page for the channel that the request is be on behalf of
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
@@ -146,7 +145,6 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
      * @param  {string} params.id - The id parameter identifies the caption track that is being retrieved. The value is a caption track ID as identified by the id property in a caption resource.
      * @param  {string=} params.onBehalfOf - ID of the Google+ Page for the channel that the request is be on behalf of
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
@@ -179,7 +177,6 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID.
      * @param  {string=} params.onBehalfOf - ID of the Google+ Page for the channel that the request is be on behalf of
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
@@ -216,7 +213,6 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of IDs that identify the caption resources that should be retrieved. Each ID must identify a caption track associated with the specified video.
      * @param  {string=} params.onBehalfOf - ID of the Google+ Page for the channel that the request is on behalf of.
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
@@ -249,7 +245,6 @@ function Youtube(options) {
      * @memberOf! youtube(v3)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID.
      * @param  {string=} params.onBehalfOf - ID of the Google+ Page for the channel that the request is be on behalf of
      * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the property value to snippet if you are updating the track's draft status. Otherwise, set the property value to id.
@@ -527,7 +522,6 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.part - The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
-     * @param  {boolean=} params.shareOnGooglePlus - The shareOnGooglePlus parameter indicates whether the top-level comment and any replies that are made to that comment should also be posted to the author's Google+ profile.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1918,7 +1912,6 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.chart - The chart parameter identifies the chart that you want to retrieve.
-     * @param  {string=} params.debugProjectIdOverride - The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
      * @param  {string=} params.hl - The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
      * @param  {string=} params.locale - DEPRECATED

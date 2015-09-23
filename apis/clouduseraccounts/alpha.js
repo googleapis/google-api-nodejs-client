@@ -220,6 +220,35 @@ function Clouduseraccounts(options) {
     },
 
     /**
+     * clouduseraccounts.groups.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias clouduseraccounts.groups.getIamPolicy
+     * @memberOf! clouduseraccounts(alpha)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.resource_ - Name of the resource for this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/getIamPolicy',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * clouduseraccounts.groups.insert
      *
      * @desc Creates a Group resource in the specified project using the data included in the request.
@@ -308,6 +337,66 @@ function Clouduseraccounts(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * clouduseraccounts.groups.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias clouduseraccounts.groups.setIamPolicy
+     * @memberOf! clouduseraccounts(alpha)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.resource_ - Name of the resource for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/setIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * clouduseraccounts.groups.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias clouduseraccounts.groups.testIamPermissions
+     * @memberOf! clouduseraccounts(alpha)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.resource_ - Name of the resource for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -324,6 +413,7 @@ function Clouduseraccounts(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - The fully-qualified URL of the virtual machine requesting the view.
+     * @param  {boolean=} params.login - Whether the view was requested as part of a user-initiated login.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.user - The user account for which you want to get a list of authorized public keys.
      * @param  {string} params.zone - Name of the zone for this request.
@@ -472,6 +562,35 @@ function Clouduseraccounts(options) {
     },
 
     /**
+     * clouduseraccounts.users.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias clouduseraccounts.users.getIamPolicy
+     * @memberOf! clouduseraccounts(alpha)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.resource_ - Name of the resource for this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/getIamPolicy',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * clouduseraccounts.users.insert
      *
      * @desc Creates a User resource in the specified project using the data included in the request.
@@ -556,6 +675,66 @@ function Clouduseraccounts(options) {
         params: params,
         requiredParams: ['project', 'user', 'fingerprint'],
         pathParams: ['project', 'user'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * clouduseraccounts.users.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias clouduseraccounts.users.setIamPolicy
+     * @memberOf! clouduseraccounts(alpha)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.resource_ - Name of the resource for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/setIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * clouduseraccounts.users.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias clouduseraccounts.users.testIamPermissions
+     * @memberOf! clouduseraccounts(alpha)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.resource_ - Name of the resource for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
         context: self
       };
 

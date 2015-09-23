@@ -217,7 +217,7 @@ function Cloudresourcemanager(options) {
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, `projects/{project}`.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -246,7 +246,7 @@ function Cloudresourcemanager(options) {
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -275,7 +275,7 @@ function Cloudresourcemanager(options) {
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}`.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -284,6 +284,184 @@ function Cloudresourcemanager(options) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1beta1/projects/{resource}:testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.organizations = {
+
+    /**
+     * cloudresourcemanager.organizations.list
+     *
+     * @desc Query Organization resources.
+     *
+     * @alias cloudresourcemanager.organizations.list
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {integer=} params.pageSize - The maximum number of Organizations to return in the response. This field is optional.
+     * @param  {string=} params.pageToken - A pagination token returned from a previous call to ListOrganizations that indicates from where listing should continue. This field is optional.
+     * @param  {string=} params.filter - An optional query string used to filter the Organizations to be return in the response. Filter rules are case-insensitive. Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a Google for Work domain, for example: |Filter|Description| |------|-----------| |owner.directorycustomerid:123456789|Organizations with `owner.directory_customer_id` equal to `123456789`.| |domain:google.com|Organizations corresponding to the domain `google.com`.| This field is optional.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/organizations',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.organizations.get
+     *
+     * @desc Fetches an Organization resource by id.
+     *
+     * @alias cloudresourcemanager.organizations.get
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.organizationId - The id of the Organization resource to fetch.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/organizations/{organizationId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['organizationId'],
+        pathParams: ['organizationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.organizations.update
+     *
+     * @desc Updates an Organization resource.
+     *
+     * @alias cloudresourcemanager.organizations.update
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.organizationId - An immutable id for the Organization that is assigned on creation. This should be omitted when creating a new Organization. This field is read-only.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/organizations/{organizationId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['organizationId'],
+        pathParams: ['organizationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.organizations.setIamPolicy
+     *
+     * @desc Sets the access control policy on a Organization resource. Replaces any existing policy.
+     *
+     * @alias cloudresourcemanager.organizations.setIamPolicy
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/organizations/{resource}:setIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.organizations.getIamPolicy
+     *
+     * @desc Gets the access control policy for a Organization resource. May be empty if no such policy or resource exists.
+     *
+     * @alias cloudresourcemanager.organizations.getIamPolicy
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, `projects/{project}`.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/organizations/{resource}:getIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.organizations.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified Organization.
+     *
+     * @alias cloudresourcemanager.organizations.testIamPermissions
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}`.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/organizations/{resource}:testIamPermissions',
           method: 'POST'
         },
         params: params,

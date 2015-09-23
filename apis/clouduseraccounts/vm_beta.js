@@ -25,8 +25,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for the Google Cloud User Accounts service.
  * @namespace clouduseraccounts
- * @version  vm_alpha
- * @variation vm_alpha
+ * @version  vm_beta
+ * @variation vm_beta
  * @this Clouduseraccounts
  * @param {object=} options Options for Clouduseraccounts
  */
@@ -43,7 +43,7 @@ function Clouduseraccounts(options) {
      * @desc Deletes the specified operation resource.
      *
      * @alias clouduseraccounts.globalAccountsOperations.delete
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the Operations resource to delete.
@@ -54,7 +54,7 @@ function Clouduseraccounts(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/operations/{operation}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -72,7 +72,7 @@ function Clouduseraccounts(options) {
      * @desc Retrieves the specified operation resource.
      *
      * @alias clouduseraccounts.globalAccountsOperations.get
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.operation - Name of the Operations resource to return.
@@ -83,7 +83,7 @@ function Clouduseraccounts(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/operations/{operation}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -101,7 +101,7 @@ function Clouduseraccounts(options) {
      * @desc Retrieves the list of operation resources contained within the specified project.
      *
      * @alias clouduseraccounts.globalAccountsOperations.list
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
@@ -115,7 +115,7 @@ function Clouduseraccounts(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/operations',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/operations',
           method: 'GET'
         },
         params: params,
@@ -137,7 +137,7 @@ function Clouduseraccounts(options) {
      * @desc Adds users to the specified group.
      *
      * @alias clouduseraccounts.groups.addMember
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the group for this request.
@@ -149,7 +149,7 @@ function Clouduseraccounts(options) {
     addMember: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}/addMember',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}/addMember',
           method: 'POST'
         },
         params: params,
@@ -167,7 +167,7 @@ function Clouduseraccounts(options) {
      * @desc Deletes the specified Group resource.
      *
      * @alias clouduseraccounts.groups.delete
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the Group resource to delete.
@@ -178,7 +178,7 @@ function Clouduseraccounts(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}',
           method: 'DELETE'
         },
         params: params,
@@ -196,7 +196,7 @@ function Clouduseraccounts(options) {
      * @desc Returns the specified Group resource.
      *
      * @alias clouduseraccounts.groups.get
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the Group resource to return.
@@ -207,7 +207,7 @@ function Clouduseraccounts(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}',
           method: 'GET'
         },
         params: params,
@@ -220,41 +220,12 @@ function Clouduseraccounts(options) {
     },
 
     /**
-     * clouduseraccounts.groups.getIamPolicy
-     *
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
-     *
-     * @alias clouduseraccounts.groups.getIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/getIamPolicy',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * clouduseraccounts.groups.insert
      *
      * @desc Creates a Group resource in the specified project using the data included in the request.
      *
      * @alias clouduseraccounts.groups.insert
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -265,7 +236,7 @@ function Clouduseraccounts(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups',
           method: 'POST'
         },
         params: params,
@@ -283,7 +254,7 @@ function Clouduseraccounts(options) {
      * @desc Retrieves the list of groups contained within the specified project.
      *
      * @alias clouduseraccounts.groups.list
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
@@ -297,7 +268,7 @@ function Clouduseraccounts(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups',
           method: 'GET'
         },
         params: params,
@@ -315,7 +286,7 @@ function Clouduseraccounts(options) {
      * @desc Removes users from the specified group.
      *
      * @alias clouduseraccounts.groups.removeMember
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.groupName - Name of the group for this request.
@@ -327,72 +298,12 @@ function Clouduseraccounts(options) {
     removeMember: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}/removeMember',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}/removeMember',
           method: 'POST'
         },
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.setIamPolicy
-     *
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-     *
-     * @alias clouduseraccounts.groups.setIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/setIamPolicy',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified resource.
-     *
-     * @alias clouduseraccounts.groups.testIamPermissions
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/testIamPermissions',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
         context: self
       };
 
@@ -409,7 +320,7 @@ function Clouduseraccounts(options) {
      * @desc Returns a list of authorized public keys for a specific user account.
      *
      * @alias clouduseraccounts.linux.getAuthorizedKeysView
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instance - The fully-qualified URL of the virtual machine requesting the view.
@@ -423,7 +334,7 @@ function Clouduseraccounts(options) {
     getAuthorizedKeysView: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
           method: 'POST'
         },
         params: params,
@@ -441,7 +352,7 @@ function Clouduseraccounts(options) {
      * @desc Retrieves a list of user accounts for an instance within a specific project.
      *
      * @alias clouduseraccounts.linux.getLinuxAccountViews
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
@@ -457,7 +368,7 @@ function Clouduseraccounts(options) {
     getLinuxAccountViews: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/zones/{zone}/linuxAccountViews',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/zones/{zone}/linuxAccountViews',
           method: 'POST'
         },
         params: params,
@@ -479,7 +390,7 @@ function Clouduseraccounts(options) {
      * @desc Adds a public key to the specified User resource with the data included in the request.
      *
      * @alias clouduseraccounts.users.addPublicKey
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -491,7 +402,7 @@ function Clouduseraccounts(options) {
     addPublicKey: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}/addPublicKey',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}/addPublicKey',
           method: 'POST'
         },
         params: params,
@@ -509,7 +420,7 @@ function Clouduseraccounts(options) {
      * @desc Deletes the specified User resource.
      *
      * @alias clouduseraccounts.users.delete
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -520,7 +431,7 @@ function Clouduseraccounts(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}',
           method: 'DELETE'
         },
         params: params,
@@ -538,7 +449,7 @@ function Clouduseraccounts(options) {
      * @desc Returns the specified User resource.
      *
      * @alias clouduseraccounts.users.get
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -549,7 +460,7 @@ function Clouduseraccounts(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}',
           method: 'GET'
         },
         params: params,
@@ -562,41 +473,12 @@ function Clouduseraccounts(options) {
     },
 
     /**
-     * clouduseraccounts.users.getIamPolicy
-     *
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
-     *
-     * @alias clouduseraccounts.users.getIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/getIamPolicy',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * clouduseraccounts.users.insert
      *
      * @desc Creates a User resource in the specified project using the data included in the request.
      *
      * @alias clouduseraccounts.users.insert
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - Project ID for this request.
@@ -607,7 +489,7 @@ function Clouduseraccounts(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users',
           method: 'POST'
         },
         params: params,
@@ -625,7 +507,7 @@ function Clouduseraccounts(options) {
      * @desc Retrieves a list of users contained within the specified project.
      *
      * @alias clouduseraccounts.users.list
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
@@ -639,7 +521,7 @@ function Clouduseraccounts(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users',
           method: 'GET'
         },
         params: params,
@@ -657,7 +539,7 @@ function Clouduseraccounts(options) {
      * @desc Removes the specified public key from the user.
      *
      * @alias clouduseraccounts.users.removePublicKey
-     * @memberOf! clouduseraccounts(vm_alpha)
+     * @memberOf! clouduseraccounts(vm_beta)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.fingerprint - The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
@@ -669,72 +551,12 @@ function Clouduseraccounts(options) {
     removePublicKey: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}/removePublicKey',
+          url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}/removePublicKey',
           method: 'POST'
         },
         params: params,
         requiredParams: ['project', 'user', 'fingerprint'],
         pathParams: ['project', 'user'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.users.setIamPolicy
-     *
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-     *
-     * @alias clouduseraccounts.users.setIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/setIamPolicy',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.users.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified resource.
-     *
-     * @alias clouduseraccounts.users.testIamPermissions
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/testIamPermissions',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
         context: self
       };
 
