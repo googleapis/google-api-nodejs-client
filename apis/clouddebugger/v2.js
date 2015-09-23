@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Debugger API
  *
- * @classdesc 
+ * @classdesc Lets you examine the stack and variables of your running application without stopping or slowing it down.
  * @namespace clouddebugger
  * @version  v2
  * @variation v2

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -147,6 +147,7 @@ function Coordinate(options) {
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of results to return in one page.
      * @param  {string=} params.minModifiedTimestampMs - Minimum time a job was modified in milliseconds since epoch.
+     * @param  {boolean=} params.omitJobChanges - Whether to omit detail job history information.
      * @param  {string=} params.pageToken - Continuation token
      * @param  {string} params.teamId - Team ID
      * @param  {callback} callback - The callback that handles the response.
