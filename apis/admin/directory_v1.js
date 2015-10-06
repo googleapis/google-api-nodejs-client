@@ -287,6 +287,126 @@ function Admin(options) {
 
   };
 
+
+  this.domains = {
+
+    /**
+     * directory.domains.delete
+     *
+     * @desc Delete domain
+     *
+     * @alias directory.domain.delete
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account
+     * @param  {string} params.domainName - Name or immutable Id of the domain
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customer', 'domainName'],
+        pathParams: ['customer', 'domainName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domains.get
+     *
+     * @desc Retrieve domain
+     *
+     * @alias directory.domains.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account
+     * @param  {string} params.domainName - Name or immutable Id of the domain
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer', 'domainName'],
+        pathParams: ['customer', 'domainName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domains.insert
+     *
+     * @desc Create domain.
+     *
+     * @alias directory.domains.insert
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domains.list
+     *
+     * @desc Retrieve all domains for a customer
+     *
+     * @alias directory.domains.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+  };
+
   this.groups = {
 
     /**
