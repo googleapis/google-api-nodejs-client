@@ -299,7 +299,6 @@ function Logging(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.projectsId - Part of `projectName`. The resource name of the project whose services are to be listed.
-       * @param  {string=} params.log - If empty, all log services contributing log entries to the project are listed. Otherwise, this field must be the resource name of a log, such as `"projects/my-project/appengine.googleapis.com%2Frequest_log"`, and then the only services listed are those associated with entries in the log. A service is associated with an entry if its name is in the entry's `LogEntryMetadata.serviceName` field.
        * @param  {integer=} params.pageSize - The maximum number of `LogService` objects to return in one operation.
        * @param  {string=} params.pageToken - An opaque token, returned as `nextPageToken` by a prior `ListLogServices` operation. If `pageToken` is supplied, then the other fields of this request are ignored, and instead the previous `ListLogServices` operation is continued.
        * @param  {callback} callback - The callback that handles the response.
@@ -333,9 +332,8 @@ function Logging(options) {
          * @param  {object} params - Parameters for request
          * @param  {string} params.projectsId - Part of `serviceName`. The resource name of a log service whose service indexes are requested. Example: `"projects/my-project-id/logServices/appengine.googleapis.com"`.
          * @param  {string} params.logServicesId - Part of `serviceName`. See documentation of `projectsId`.
-         * @param  {string=} params.indexPrefix - Restricts the index values returned to be those with a specified prefix for each index key. This field has the form `"/prefix1/prefix2/..."`, in order corresponding to the [`LogService indexKeys`][google.logging.v1.LogService.index_keys]. Non-empty prefixes must begin with `/`. For example, App Engine's two keys are the module ID and the version ID. Following is the effect of using various values for `indexPrefix`: + `"/Mod/"` retrieves `/Mod/10` and `/Mod/11` but not `/ModA/10`. + `"/Mod` retrieves `/Mod/10`, `/Mod/11` and `/ModA/10` but not `/XXX/33`. + `"/Mod/1"` retrieves `/Mod/10` and `/Mod/11` but not `/ModA/10`. + `"/Mod/10/"` retrieves `/Mod/10` only. + An empty prefix or `"/"` retrieves all values.
+         * @param  {string=} params.indexPrefix - Restricts the index values returned to be those with a specified prefix for each index key. This field has the form `"/prefix1/prefix2/..."`, in order corresponding to the `LogService indexKeys`. Non-empty prefixes must begin with `/`. For example, App Engine's two keys are the module ID and the version ID. Following is the effect of using various values for `indexPrefix`: + `"/Mod/"` retrieves `/Mod/10` and `/Mod/11` but not `/ModA/10`. + `"/Mod` retrieves `/Mod/10`, `/Mod/11` and `/ModA/10` but not `/XXX/33`. + `"/Mod/1"` retrieves `/Mod/10` and `/Mod/11` but not `/ModA/10`. + `"/Mod/10/"` retrieves `/Mod/10` only. + An empty prefix or `"/"` retrieves all values.
          * @param  {integer=} params.depth - A non-negative integer that limits the number of levels of the index hierarchy that are returned. If `depth` is 1 (default), only the first index key value is returned. If `depth` is 2, both primary and secondary key values are returned. If `depth` is 0, the depth is the number of slash-separators in the `indexPrefix` field, not counting a slash appearing as the last character of the prefix. If the `indexPrefix` field is empty, the default depth is 1. It is an error for `depth` to be any positive value less than the number of components in `indexPrefix`.
-         * @param  {string=} params.log - _Optional_. The resource name of a log, such as `"projects/project_id/logs/log_name"`. If present, indexes are returned for any service associated with entries in the log.
          * @param  {integer=} params.pageSize - The maximum number of log service index resources to return in one operation.
          * @param  {string=} params.pageToken - An opaque token, returned as `nextPageToken` by a prior `ListLogServiceIndexes` operation. If `pageToken` is supplied, then the other fields of this request are ignored, and instead the previous `ListLogServiceIndexes` operation is continued.
          * @param  {callback} callback - The callback that handles the response.
@@ -652,6 +650,156 @@ function Logging(options) {
           params: params,
           requiredParams: ['projectsId', 'sinksId'],
           pathParams: ['projectsId', 'sinksId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    metrics: {
+
+      /**
+       * logging.projects.metrics.list
+       *
+       * @desc List log metrics associated with the specified project.
+       *
+       * @alias logging.projects.metrics.list
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `projectName`. The resource name for the project whose metrics are wanted.
+       * @param  {string=} params.pageToken - An opaque token, returned as `nextPageToken` by a prior `ListLogMetrics` operation. If `pageToken` is supplied, then the other fields of this request are ignored, and instead the previous `ListLogMetrics` operation is continued.
+       * @param  {integer=} params.pageSize - The maximum number of `LogMetric` objects to return in one operation.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/metrics',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectsId'],
+          pathParams: ['projectsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.metrics.get
+       *
+       * @desc Get the specified log metric resource.
+       *
+       * @alias logging.projects.metrics.get
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `metricName`. The resource name of the desired metric.
+       * @param  {string} params.metricsId - Part of `metricName`. See documentation of `projectsId`.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/metrics/{metricsId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectsId', 'metricsId'],
+          pathParams: ['projectsId', 'metricsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.metrics.create
+       *
+       * @desc Create the specified log metric resource.
+       *
+       * @alias logging.projects.metrics.create
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `projectName`. The resource name of the project in which to create the metric.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/metrics',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['projectsId'],
+          pathParams: ['projectsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.metrics.update
+       *
+       * @desc Create or update the specified log metric resource.
+       *
+       * @alias logging.projects.metrics.update
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `metricName`. The resource name of the metric to update.
+       * @param  {string} params.metricsId - Part of `metricName`. See documentation of `projectsId`.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/metrics/{metricsId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['projectsId', 'metricsId'],
+          pathParams: ['projectsId', 'metricsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.metrics.delete
+       *
+       * @desc Deletes the specified log metric.
+       *
+       * @alias logging.projects.metrics.delete
+       * @memberOf! logging(v1beta3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.projectsId - Part of `metricName`. The resource name of the metric to delete.
+       * @param  {string} params.metricsId - Part of `metricName`. See documentation of `projectsId`.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://logging.googleapis.com/v1beta3/projects/{projectsId}/metrics/{metricsId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['projectsId', 'metricsId'],
+          pathParams: ['projectsId', 'metricsId'],
           context: self
         };
 

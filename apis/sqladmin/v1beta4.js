@@ -46,7 +46,7 @@ function Sqladmin(options) {
      * @memberOf! sqladmin(v1beta4)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the Backup Run to delete.
+     * @param  {string} params.id - The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
      * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
      * @param  {string} params.project - Project ID of the project that contains the instance.
      * @param  {callback} callback - The callback that handles the response.
@@ -426,6 +426,36 @@ function Sqladmin(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/export',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * sql.instances.failover
+     *
+     * @desc Failover the instance to its failover replica instance.
+     *
+     * @alias sql.instances.failover
+     * @memberOf! sqladmin(v1beta4)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
+     * @param  {string} params.project - ID of the project that contains the read replica.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    failover: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/failover',
           method: 'POST'
         },
         params: params,

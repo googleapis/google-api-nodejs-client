@@ -229,7 +229,7 @@ function Books(options) {
     /**
      * books.dictionary.listOfflineMetadata
      *
-     * @desc Returns a list of offline dictionary meatadata available
+     * @desc Returns a list of offline dictionary metadata available
      *
      * @alias books.dictionary.listOfflineMetadata
      * @memberOf! books(v1)
@@ -1085,6 +1085,40 @@ function Books(options) {
     }
   };
 
+  this.notification = {
+
+    /**
+     * books.notification.get
+     *
+     * @desc Returns notification details for a given notification id.
+     *
+     * @alias books.notification.get
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
+     * @param  {string} params.notification_id - String to identify the notification.
+     * @param  {string=} params.source - String to identify the originator of this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/notification/get',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['notification_id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.onboarding = {
 
     /**
@@ -1136,6 +1170,40 @@ function Books(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.personalizedstream = {
+
+    /**
+     * books.personalizedstream.get
+     *
+     * @desc Returns a stream of personalized book clusters
+     *
+     * @alias books.personalizedstream.get
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+     * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+     * @param  {string=} params.source - String to identify the originator of this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/personalizedstream/get',
           method: 'GET'
         },
         params: params,

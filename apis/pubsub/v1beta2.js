@@ -48,7 +48,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -71,13 +71,13 @@ function Pubsub(options) {
       /**
        * pubsub.projects.topics.getIamPolicy
        *
-       * @desc Gets the access control policy for a resource. Is empty if the policy or the resource does not exist.
+       * @desc Gets the access control policy for a `resource`. Is empty if the policy or the resource does not exist.
        *
        * @alias pubsub.projects.topics.getIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, `projects/{project}`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -105,7 +105,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -157,7 +157,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.topics.publish
        *
-       * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist. The message payload must not be empty; it must contain either a non-empty data field, or at least one attribute.
+       * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist. The message payload must not be empty; it must contain either a non-empty data field, or at least one attribute.
        *
        * @alias pubsub.projects.topics.publish
        * @memberOf! pubsub(v1beta2)
@@ -222,7 +222,7 @@ function Pubsub(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.project - The name of the cloud project that topics belong to.
        * @param  {integer=} params.pageSize - Maximum number of topics to return.
-       * @param  {string=} params.pageToken - The value returned by the last ListTopicsResponse; indicates that this is a continuation of a prior ListTopics call, and that the system should return the next page of data.
+       * @param  {string=} params.pageToken - The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -244,7 +244,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.topics.delete
        *
-       * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
+       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
        *
        * @alias pubsub.projects.topics.delete
        * @memberOf! pubsub(v1beta2)
@@ -282,7 +282,7 @@ function Pubsub(options) {
          * @param  {object} params - Parameters for request
          * @param  {string} params.topic - The name of the topic that subscriptions are attached to.
          * @param  {integer=} params.pageSize - Maximum number of subscription names to return.
-         * @param  {string=} params.pageToken - The value returned by the last ListTopicSubscriptionsResponse; indicates that this is a continuation of a prior ListTopicSubscriptions call, and that the system should return the next page of data.
+         * @param  {string=} params.pageToken - The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -314,7 +314,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. Resource is usually specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -337,13 +337,13 @@ function Pubsub(options) {
       /**
        * pubsub.projects.subscriptions.getIamPolicy
        *
-       * @desc Gets the access control policy for a resource. Is empty if the policy or the resource does not exist.
+       * @desc Gets the access control policy for a `resource`. Is empty if the policy or the resource does not exist.
        *
        * @alias pubsub.projects.subscriptions.getIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, `projects/{project}`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -371,7 +371,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. Resource is usually specified as a path, such as, projects/{project}.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -394,7 +394,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.subscriptions.create
        *
-       * @desc Creates a subscription to a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
+       * @desc Creates a subscription to a given topic for a given subscriber. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
        *
        * @alias pubsub.projects.subscriptions.create
        * @memberOf! pubsub(v1beta2)
@@ -459,7 +459,7 @@ function Pubsub(options) {
        * @param  {object} params - Parameters for request
        * @param  {string} params.project - The name of the cloud project that subscriptions belong to.
        * @param  {integer=} params.pageSize - Maximum number of subscriptions to return.
-       * @param  {string=} params.pageToken - The value returned by the last ListSubscriptionsResponse; indicates that this is a continuation of a prior ListSubscriptions call, and that the system should return the next page of data.
+       * @param  {string=} params.pageToken - The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -481,7 +481,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.subscriptions.delete
        *
-       * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
+       * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
        *
        * @alias pubsub.projects.subscriptions.delete
        * @memberOf! pubsub(v1beta2)
@@ -538,7 +538,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.subscriptions.acknowledge
        *
-       * @desc Acknowledges the messages associated with the ack tokens in the AcknowledgeRequest. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
+       * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
        *
        * @alias pubsub.projects.subscriptions.acknowledge
        * @memberOf! pubsub(v1beta2)
@@ -567,7 +567,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.subscriptions.pull
        *
-       * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return UNAVAILABLE if there are too many concurrent pull requests pending for the given subscription.
+       * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
        *
        * @alias pubsub.projects.subscriptions.pull
        * @memberOf! pubsub(v1beta2)
@@ -596,7 +596,7 @@ function Pubsub(options) {
       /**
        * pubsub.projects.subscriptions.modifyPushConfig
        *
-       * @desc Modifies the PushConfig for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty PushConfig) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the PushConfig.
+       * @desc Modifies the `PushConfig` for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
        *
        * @alias pubsub.projects.subscriptions.modifyPushConfig
        * @memberOf! pubsub(v1beta2)

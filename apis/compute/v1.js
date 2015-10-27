@@ -1859,6 +1859,188 @@ function Compute(options) {
 
   };
 
+  this.httpsHealthChecks = {
+
+    /**
+     * compute.httpsHealthChecks.delete
+     *
+     * @desc Deletes the specified HttpsHealthCheck resource.
+     *
+     * @alias compute.httpsHealthChecks.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to delete.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'httpsHealthCheck'],
+        pathParams: ['httpsHealthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.httpsHealthChecks.get
+     *
+     * @desc Returns the specified HttpsHealthCheck resource.
+     *
+     * @alias compute.httpsHealthChecks.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to return.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'httpsHealthCheck'],
+        pathParams: ['httpsHealthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.httpsHealthChecks.insert
+     *
+     * @desc Creates a HttpsHealthCheck resource in the specified project using the data included in the request.
+     *
+     * @alias compute.httpsHealthChecks.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.httpsHealthChecks.list
+     *
+     * @desc Retrieves the list of HttpsHealthCheck resources available to the specified project.
+     *
+     * @alias compute.httpsHealthChecks.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.httpsHealthChecks.patch
+     *
+     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. This method supports patch semantics.
+     *
+     * @alias compute.httpsHealthChecks.patch
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to update.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'httpsHealthCheck'],
+        pathParams: ['httpsHealthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.httpsHealthChecks.update
+     *
+     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request.
+     *
+     * @alias compute.httpsHealthChecks.update
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to update.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'httpsHealthCheck'],
+        pathParams: ['httpsHealthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.images = {
 
     /**
@@ -1981,7 +2163,7 @@ function Compute(options) {
     /**
      * compute.images.list
      *
-     * @desc Retrieves the list of image resources available to the specified project.
+     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 7. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.  See Accessing images for more information.
      *
      * @alias compute.images.list
      * @memberOf! compute(v1)
@@ -2016,15 +2198,15 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.abandonInstances
      *
-     * @desc Removes the specified instances from the managed instance group, and from any target pools where they are a member. The instances are not deleted. The managed instance group automatically reduces its targetSize value by the number of instances that you abandon from the group.
+     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.abandonInstances
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2047,7 +2229,7 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.aggregatedList
      *
-     * @desc Retrieves the list of managed instance groups, and groups them by project and zone.
+     * @desc Retrieves the list of managed instance groups and groups them by zone.
      *
      * @alias compute.instanceGroupManagers.aggregatedList
      * @memberOf! compute(v1)
@@ -2078,15 +2260,15 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.delete
      *
-     * @desc Deletes the specified managed instance group resource.
+     * @desc Deletes the specified managed instance group and all of the instances in that group.
      *
      * @alias compute.instanceGroupManagers.delete
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager to delete.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group to delete.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2108,15 +2290,15 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.deleteInstances
      *
-     * @desc Deletes the specified instances. The instances are deleted and removed from the instance group and any target pools where they are a member. The managed instance group automatically reduces its targetSize value by the number of instances that you delete.
+     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.deleteInstances
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2139,15 +2321,15 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.get
      *
-     * @desc Returns the specified managed instance group resource.
+     * @desc Returns all of the details about the specified managed instance group.
      *
      * @alias compute.instanceGroupManagers.get
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager resource.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2169,14 +2351,14 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.insert
      *
-     * @desc Creates a managed instance group resource in the specified project using the data that is included in the request.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.insert
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where you want to create the managed instance group.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2209,7 +2391,7 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2231,7 +2413,7 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.listManagedInstances
      *
-     * @desc Lists managed instances.
+     * @desc Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action.
      *
      * @alias compute.instanceGroupManagers.listManagedInstances
      * @memberOf! compute(v1)
@@ -2239,7 +2421,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2261,15 +2443,15 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.recreateInstances
      *
-     * @desc Recreates the specified instances. The instances are deleted, then recreated using the managed instance group's current instance template.
+     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.recreateInstances
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2292,16 +2474,16 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.resize
      *
-     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group removes instances in the order that is outlined in Resizing a managed instance group.
+     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.resize
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
      * @param  {integer} params.size - The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2329,9 +2511,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2354,15 +2536,15 @@ function Compute(options) {
     /**
      * compute.instanceGroupManagers.setTargetPools
      *
-     * @desc Modifies the target pools to which all new instances in this group are assigned. The target pools for existing instances in the group do not change unless you recreate them.
+     * @desc Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group.
      *
      * @alias compute.instanceGroupManagers.setTargetPools
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the managed instance group is located.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2389,7 +2571,7 @@ function Compute(options) {
     /**
      * compute.instanceGroups.addInstances
      *
-     * @desc Adds a list of instances to an instance group. All of the instances in the instance group must be in the same network.
+     * @desc Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork.
      *
      * @alias compute.instanceGroups.addInstances
      * @memberOf! compute(v1)
@@ -2397,7 +2579,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group where you are adding instances.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2420,7 +2602,7 @@ function Compute(options) {
     /**
      * compute.instanceGroups.aggregatedList
      *
-     * @desc Retrieves the list of instance groups, and sorts them by zone.
+     * @desc Retrieves the list of instance groups and sorts them by zone.
      *
      * @alias compute.instanceGroups.aggregatedList
      * @memberOf! compute(v1)
@@ -2451,7 +2633,7 @@ function Compute(options) {
     /**
      * compute.instanceGroups.delete
      *
-     * @desc Deletes the specified instance group.
+     * @desc Deletes the specified instance group. The instances in the group are not deleted.
      *
      * @alias compute.instanceGroups.delete
      * @memberOf! compute(v1)
@@ -2459,7 +2641,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group to delete.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2489,7 +2671,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2518,7 +2700,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where you want to create the instance group.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2551,7 +2733,7 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2573,7 +2755,7 @@ function Compute(options) {
     /**
      * compute.instanceGroups.listInstances
      *
-     * @desc Lists instances in an instance group. The parameters for this method specify whether the list filters instances by state and named ports information.
+     * @desc Lists the instances in the specified instance group.
      *
      * @alias compute.instanceGroups.listInstances
      * @memberOf! compute(v1)
@@ -2584,7 +2766,7 @@ function Compute(options) {
      * @param  {integer=} params.maxResults - Maximum count of results to be returned.
      * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2607,7 +2789,7 @@ function Compute(options) {
     /**
      * compute.instanceGroups.removeInstances
      *
-     * @desc Removes a list of instances from an instance group.
+     * @desc Removes one or more instances from the specified instance group, but does not delete those instances.
      *
      * @alias compute.instanceGroups.removeInstances
      * @memberOf! compute(v1)
@@ -2615,7 +2797,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group where the specified instances will be removed.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2638,7 +2820,7 @@ function Compute(options) {
     /**
      * compute.instanceGroups.setNamedPorts
      *
-     * @desc Sets the named ports in an instance group.
+     * @desc Sets the named ports for the specified instance group.
      *
      * @alias compute.instanceGroups.setNamedPorts
      * @memberOf! compute(v1)
@@ -2646,7 +2828,7 @@ function Compute(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group where the named ports are updated.
      * @param  {string} params.project - The project ID for this request.
-     * @param  {string} params.zone - The URL of the zone where the instance group is located.
+     * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2827,7 +3009,7 @@ function Compute(options) {
     /**
      * compute.instances.aggregatedList
      *
-     * 
+     * @desc Retrieves aggregated list of instance resources.
      *
      * @alias compute.instances.aggregatedList
      * @memberOf! compute(v1)
@@ -4094,6 +4276,128 @@ function Compute(options) {
 
   };
 
+  this.sslCertificates = {
+
+    /**
+     * compute.sslCertificates.delete
+     *
+     * @desc Deletes the specified SslCertificate resource.
+     *
+     * @alias compute.sslCertificates.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.sslCertificate - Name of the SslCertificate resource to delete.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'sslCertificate'],
+        pathParams: ['project', 'sslCertificate'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslCertificates.get
+     *
+     * @desc Returns the specified SslCertificate resource.
+     *
+     * @alias compute.sslCertificates.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.sslCertificate - Name of the SslCertificate resource to return.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'sslCertificate'],
+        pathParams: ['project', 'sslCertificate'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslCertificates.insert
+     *
+     * @desc Creates a SslCertificate resource in the specified project using the data included in the request.
+     *
+     * @alias compute.sslCertificates.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslCertificates.list
+     *
+     * @desc Retrieves the list of SslCertificate resources available to the specified project.
+     *
+     * @alias compute.sslCertificates.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.targetHttpProxies = {
 
     /**
@@ -4238,6 +4542,188 @@ function Compute(options) {
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.targetHttpsProxies = {
+
+    /**
+     * compute.targetHttpsProxies.delete
+     *
+     * @desc Deletes the specified TargetHttpsProxy resource.
+     *
+     * @alias compute.targetHttpsProxies.delete
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to delete.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetHttpsProxies.get
+     *
+     * @desc Returns the specified TargetHttpsProxy resource.
+     *
+     * @alias compute.targetHttpsProxies.get
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to return.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetHttpsProxies.insert
+     *
+     * @desc Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
+     *
+     * @alias compute.targetHttpsProxies.insert
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetHttpsProxies.list
+     *
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project.
+     *
+     * @alias compute.targetHttpsProxies.list
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
+     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetHttpsProxies.setSslCertificates
+     *
+     * @desc Replaces SslCertificates for TargetHttpsProxy.
+     *
+     * @alias compute.targetHttpsProxies.setSslCertificates
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource whose URL map is to be set.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslCertificates: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetHttpsProxies.setUrlMap
+     *
+     * @desc Changes the URL map for TargetHttpsProxy.
+     *
+     * @alias compute.targetHttpsProxies.setUrlMap
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource whose URL map is to be set.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setUrlMap: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
 

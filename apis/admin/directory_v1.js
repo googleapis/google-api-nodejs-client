@@ -287,6 +287,335 @@ function Admin(options) {
 
   };
 
+  this.customers = {
+
+    /**
+     * directory.customers.get
+     *
+     * @desc Retrives a customer.
+     *
+     * @alias directory.customers.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerKey - Id of the customer to be retrieved
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerKey'],
+        pathParams: ['customerKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.customers.patch
+     *
+     * @desc Updates a customer. This method supports patch semantics.
+     *
+     * @alias directory.customers.patch
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerKey - Id of the customer to be updated
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customerKey'],
+        pathParams: ['customerKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.customers.update
+     *
+     * @desc Updates a customer.
+     *
+     * @alias directory.customers.update
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerKey - Id of the customer to be updated
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customerKey'],
+        pathParams: ['customerKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.domainAliases = {
+
+    /**
+     * directory.domainAliases.delete
+     *
+     * @desc Deletes a Domain Alias of the customer.
+     *
+     * @alias directory.domainAliases.delete
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {string} params.domainAliasName - Name of domain alias to be retrieved.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customer', 'domainAliasName'],
+        pathParams: ['customer', 'domainAliasName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domainAliases.get
+     *
+     * @desc Retrieves a domain alias of the customer.
+     *
+     * @alias directory.domainAliases.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {string} params.domainAliasName - Name of domain alias to be retrieved.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer', 'domainAliasName'],
+        pathParams: ['customer', 'domainAliasName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domainAliases.insert
+     *
+     * @desc Inserts a Domain alias of the customer.
+     *
+     * @alias directory.domainAliases.insert
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domainAliases.list
+     *
+     * @desc Lists the domain aliases of the customer.
+     *
+     * @alias directory.domainAliases.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {string=} params.parentDomainName - Name of the parent domain for which domain aliases are to be fetched.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.domains = {
+
+    /**
+     * directory.domains.delete
+     *
+     * @desc Deletes a domain of the customer.
+     *
+     * @alias directory.domains.delete
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {string} params.domainName - Name of domain to be deleted
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customer', 'domainName'],
+        pathParams: ['customer', 'domainName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domains.get
+     *
+     * @desc Retrives a domain of the customer.
+     *
+     * @alias directory.domains.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {string} params.domainName - Name of domain to be retrieved
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer', 'domainName'],
+        pathParams: ['customer', 'domainName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domains.insert
+     *
+     * @desc Inserts a domain of the customer.
+     *
+     * @alias directory.domains.insert
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.domains.list
+     *
+     * @desc Lists the domains of the customer.
+     *
+     * @alias directory.domains.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.groups = {
 
     /**
@@ -1188,6 +1517,342 @@ function Admin(options) {
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.privileges = {
+
+    /**
+     * directory.privileges.list
+     *
+     * @desc Retrieves a paginated list of all privileges for a customer.
+     *
+     * @alias directory.privileges.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/ALL/privileges',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.roleAssignments = {
+
+    /**
+     * directory.roleAssignments.delete
+     *
+     * @desc Deletes a role assignment.
+     *
+     * @alias directory.roleAssignments.delete
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {string} params.roleAssignmentId - Immutable ID of the role assignment.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customer', 'roleAssignmentId'],
+        pathParams: ['customer', 'roleAssignmentId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roleAssignments.get
+     *
+     * @desc Retrieve a role assignment.
+     *
+     * @alias directory.roleAssignments.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {string} params.roleAssignmentId - Immutable ID of the role assignment.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer', 'roleAssignmentId'],
+        pathParams: ['customer', 'roleAssignmentId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roleAssignments.insert
+     *
+     * @desc Creates a role assignment.
+     *
+     * @alias directory.roleAssignments.insert
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roleAssignments.list
+     *
+     * @desc Retrieves a paginated list of all roleAssignments.
+     *
+     * @alias directory.roleAssignments.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {integer=} params.maxResults - Maximum number of results to return.
+     * @param  {string=} params.pageToken - Token to specify the next page in the list.
+     * @param  {string=} params.roleId - Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
+     * @param  {string=} params.userKey - The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.roles = {
+
+    /**
+     * directory.roles.delete
+     *
+     * @desc Deletes a role.
+     *
+     * @alias directory.roles.delete
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {string} params.roleId - Immutable ID of the role.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roles.get
+     *
+     * @desc Retrieves a role.
+     *
+     * @alias directory.roles.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {string} params.roleId - Immutable ID of the role.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roles.insert
+     *
+     * @desc Creates a role.
+     *
+     * @alias directory.roles.insert
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roles.list
+     *
+     * @desc Retrieves a paginated list of all the roles in a domain.
+     *
+     * @alias directory.roles.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable id of the Google Apps account.
+     * @param  {integer=} params.maxResults - Maximum number of results to return.
+     * @param  {string=} params.pageToken - Token to specify the next page in the list.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roles.patch
+     *
+     * @desc Updates a role. This method supports patch semantics.
+     *
+     * @alias directory.roles.patch
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {string} params.roleId - Immutable ID of the role.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.roles.update
+     *
+     * @desc Updates a role.
+     *
+     * @alias directory.roles.update
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customer - Immutable ID of the Google Apps account.
+     * @param  {string} params.roleId - Immutable ID of the role.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
         context: self
       };
 
