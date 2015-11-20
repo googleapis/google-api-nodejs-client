@@ -442,7 +442,7 @@ See [CONTRIBUTING][contributing].
 [travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
 [supported-list]: https://developers.google.com/apis-explorer//
 [bugs]: https://github.com/google/google-api-nodejs-client/issues
-[node]: https://nodejs.org/en/
+[node]: https://nodejs.org/
 [travis]: https://travis-ci.org/google/google-api-nodejs-client
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
