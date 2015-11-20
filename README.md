@@ -452,7 +452,7 @@ See [CONTRIBUTING][contributing].
 [copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
 [request]: https://github.com/request/request
-[requestopts]: https://github.com/request/request
+[requestopts]: https://github.com/request/request#requestoptions-callback
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
 [stability]: http://nodejs.org/api/stream.html#stream_stream
