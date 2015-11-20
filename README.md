@@ -440,9 +440,9 @@ available in [COPYING][copying].
 See [CONTRIBUTING][contributing].
 
 [travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
-[supported-list]: https://developers.google.com/apis-explorer/
+[supported-list]: https://developers.google.com/apis-explorer//
 [bugs]: https://github.com/google/google-api-nodejs-client/issues
-[node]: http://nodejs.org/
+[node]: https://nodejs.org/en/
 [travis]: https://travis-ci.org/google/google-api-nodejs-client
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
@@ -450,15 +450,15 @@ See [CONTRIBUTING][contributing].
 [usingkeys]: https://developers.google.com/console/help/#UsingKeys
 [contributing]: https://github.com/google/google-api-nodejs-client/tree/master/CONTRIBUTING.md
 [copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
-[authdocs]: https://developers.google.com/accounts/docs/OAuth2Login
-[request]: https://github.com/mikeal/request
-[requestopts]: https://github.com/mikeal/request#requestoptions-callback
+[authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
+[request]: https://github.com/request/request
+[requestopts]: https://github.com/request/request
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
 [stability]: http://nodejs.org/api/stream.html#stream_stream
 [overflowimg]: https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png
 [devconsole]: https://console.developer.google.com
-[oauth]: https://developers.google.com/accounts/docs/OAuth2
+[oauth]: https://developers.google.com/identity/protocols/OAuth2
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/examples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
 [gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
