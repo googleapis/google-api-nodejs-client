@@ -24,6 +24,8 @@ var google, drive;
 
 nock.disableNetConnect();
 
+var boundaryPrefix = 'multipart/related; boundary=';
+
 describe('Media', function() {
 
   function noop() {}
@@ -93,7 +95,7 @@ describe('Media', function() {
           'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart'
         );
         assert.equal(req.headers['content-type'].indexOf('multipart/related;'), 0);
-        var boundary = req.boundary;
+        var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
         expectedResp = expectedResp
             .replace(/\n/g, '\r\n')
             .replace(/\$boundary/g, boundary)
@@ -137,7 +139,7 @@ describe('Media', function() {
         'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart'
       );
       assert.equal(req.headers['content-type'].indexOf('multipart/related;'), 0);
-      var boundary = req.boundary;
+      var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
       expectedResp = expectedResp
           .replace(/\n/g, '\r\n')
           .replace(/\$boundary/g, boundary)
@@ -213,7 +215,7 @@ describe('Media', function() {
       resource: resource,
       media: media
     }, function(err, resp) {
-      var boundary = req.boundary;
+      var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
       expectedBody = expectedBody
           .replace(/\n/g, '\r\n')
           .replace(/\$boundary/g, boundary)
