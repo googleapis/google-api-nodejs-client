@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1323,6 +1323,70 @@ function Books(options) {
 
   };
 
+  this.series = {
+
+    /**
+     * books.series.get
+     *
+     * @desc Returns Series metadata for the given series ids.
+     *
+     * @alias books.series.get
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.series_id - String that identifies the series
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/series/get',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['series_id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    membership: {
+
+      /**
+       * books.series.membership.get
+       *
+       * @desc Returns Series membership data given the series id.
+       *
+       * @alias books.series.membership.get
+       * @memberOf! books(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {integer=} params.page_size - Number of maximum results per page to be included in the response.
+       * @param  {string=} params.page_token - The value of the nextToken from the previous page.
+       * @param  {string} params.series_id - String that identifies the series
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/books/v1/series/membership/get',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['series_id'],
+          pathParams: [],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
   this.volumes = {
 
     /**
@@ -1483,6 +1547,7 @@ function Books(options) {
        * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
        * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
        * @param  {string=} params.source - String to identify the originator of this request.
+       * @param  {string=} params.targetIds - List of target ids used for experiments or user segments
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */

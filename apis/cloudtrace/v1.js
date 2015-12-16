@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Trace API
  *
- * @classdesc The Google Cloud Trace API provides services for reading and writing runtime trace data for Cloud applications.
+ * @classdesc The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
  * @namespace cloudtrace
  * @version  v1
  * @variation v1
@@ -40,13 +40,13 @@ function Cloudtrace(options) {
     /**
      * cloudtrace.projects.patchTraces
      *
-     * @desc Updates the existing traces specified by PatchTracesRequest and inserts the new traces. Any existing trace or span fields included in an update are overwritten by the update, and any additional fields in an update are merged with the existing trace data.
+     * @desc Sends new traces to Cloud Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
      *
      * @alias cloudtrace.projects.patchTraces
      * @memberOf! cloudtrace(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The project id of the trace to patch.
+     * @param  {string} params.projectId - ID of the Cloud project where the trace data is stored.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -71,20 +71,20 @@ function Cloudtrace(options) {
       /**
        * cloudtrace.projects.traces.list
        *
-       * @desc List traces matching the filter expression.
+       * @desc Returns of a list of traces that match the specified filter conditions.
        *
        * @alias cloudtrace.projects.traces.list
        * @memberOf! cloudtrace(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The stringified-version of the project id.
-       * @param  {string=} params.view - ViewType specifies the projection of the result.
-       * @param  {integer=} params.pageSize - Maximum number of topics to return. If not specified or <= 0, the implementation will select a reasonable value. The implemenation may always return fewer than the requested page_size.
-       * @param  {string=} params.pageToken - The token identifying the page of results to return from the ListTraces method. If present, this value is should be taken from the next_page_token field of a previous ListTracesResponse.
-       * @param  {string=} params.startTime - End of the time interval (inclusive).
-       * @param  {string=} params.endTime - Start of the time interval (exclusive).
+       * @param  {string} params.projectId - ID of the Cloud project where the trace data is stored.
+       * @param  {string=} params.view - Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
+       * @param  {integer=} params.pageSize - Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size. Optional.
+       * @param  {string=} params.pageToken - Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
+       * @param  {string=} params.startTime - End of the time interval (inclusive) during which the trace data was collected from the application.
+       * @param  {string=} params.endTime - Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param  {string=} params.filter - An optional filter for the request.
-       * @param  {string=} params.orderBy - The trace field used to establish the order of traces returned by the ListTraces method. Possible options are: trace_id name (name field of root span) duration (different between end_time and start_time fields of root span) start (start_time field of root span) Descending order can be specified by appending "desc" to the sort field: name desc Only one sort field is permitted, though this may change in the future.
+       * @param  {string=} params.orderBy - Field used to sort the returned traces. Optional. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -106,14 +106,14 @@ function Cloudtrace(options) {
       /**
        * cloudtrace.projects.traces.get
        *
-       * @desc Gets one trace by id.
+       * @desc Gets a single trace by its ID.
        *
        * @alias cloudtrace.projects.traces.get
        * @memberOf! cloudtrace(v1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The project id of the trace to return.
-       * @param  {string} params.traceId - The trace id of the trace to return.
+       * @param  {string} params.projectId - ID of the Cloud project where the trace data is stored.
+       * @param  {string} params.traceId - ID of the trace to return.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -132,41 +132,6 @@ function Cloudtrace(options) {
         return createAPIRequest(parameters, callback);
       }
     }
-  };
-
-  this.v1 = {
-
-    /**
-     * cloudtrace.getDiscovery
-     *
-     * @desc Returns a discovery document in the specified `format`. The typeurl in the returned google.protobuf.Any value depends on the requested format.
-     *
-     * @alias cloudtrace.getDiscovery
-     * @memberOf! cloudtrace(v1)
-     *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.format - The format requested for discovery.
-     * @param  {string=} params.labels - A list of labels (like visibility) influencing the scope of the requested doc.
-     * @param  {string=} params.version - The API version of the requested discovery doc.
-     * @param  {string=} params.args - Any additional arguments.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    getDiscovery: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://cloudtrace.googleapis.com/v1/discovery',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
   };
 }
 

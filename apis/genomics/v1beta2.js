@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ function Genomics(options) {
     /**
      * genomics.annotationSets.create
      *
-     * @desc Creates a new annotation set. Caller must have WRITE permission for the associated dataset.
+     * @desc Creates a new annotation set. Caller must have WRITE permission for the associated dataset.  The following fields must be provided when creating an annotation set:   - datasetId  - referenceSetId   All other fields may be optionally specified, unless documented as being server-generated (for example, the id field).
      *
      * @alias genomics.annotationSets.create
      * @memberOf! genomics(v1beta2)
@@ -153,7 +153,7 @@ function Genomics(options) {
     /**
      * genomics.annotationSets.search
      *
-     * @desc Searches for annotation sets that match the given criteria. Results are returned in a deterministic order. Caller must have READ permission for the queried datasets.
+     * @desc Searches for annotation sets that match the given criteria. Annotation sets are returned in an unspecified order. This order is consistent, such that two queries for the same content (regardless of page size) yield annotation sets in the same order across their respective streams of paginated responses. Caller must have READ permission for the queried datasets.
      *
      * @alias genomics.annotationSets.search
      * @memberOf! genomics(v1beta2)
@@ -214,7 +214,7 @@ function Genomics(options) {
     /**
      * genomics.annotations.batchCreate
      *
-     * @desc Creates one or more new annotations atomically. All annotations must belong to the same annotation set. Caller must have WRITE permission for this annotation set. For optimal performance, batch positionally adjacent annotations together.   If the request has a systemic issue, such as an attempt to write to an inaccessible annotation set, the entire RPC will fail accordingly. For lesser data issues, when possible an error will be isolated to the corresponding batch entry in the response; the remaining well formed annotations will be created normally.
+     * @desc Creates one or more new annotations atomically. All annotations must belong to the same annotation set. Caller must have WRITE permission for this annotation set. For optimal performance, batch positionally adjacent annotations together.   If the request has a systemic issue, such as an attempt to write to an inaccessible annotation set, the entire RPC will fail accordingly. For lesser data issues, when possible an error will be isolated to the corresponding batch entry in the response; the remaining well formed annotations will be created normally.   For details on the requirements for each individual annotation resource, see annotations.create.
      *
      * @alias genomics.annotations.batchCreate
      * @memberOf! genomics(v1beta2)
@@ -242,7 +242,7 @@ function Genomics(options) {
     /**
      * genomics.annotations.create
      *
-     * @desc Creates a new annotation. Caller must have WRITE permission for the associated annotation set.
+     * @desc Creates a new annotation. Caller must have WRITE permission for the associated annotation set.   The following fields must be provided when creating an annotation:   - annotationSetId  - position.referenceName or  position.referenceId  Transcripts  For annotations of type TRANSCRIPT, the following fields of annotation.transcript must be provided:   - exons.start  - exons.end   All other fields may be optionally specified, unless documented as being server-generated (for example, the id field). The annotated range must be no longer than 100Mbp (mega base pairs). See the annotation resource for additional restrictions on each field.
      *
      * @alias genomics.annotations.create
      * @memberOf! genomics(v1beta2)
@@ -276,7 +276,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation set to be deleted.
+     * @param  {string} params.annotationId - The ID of the annotation to be deleted.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -304,7 +304,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation set to be retrieved.
+     * @param  {string} params.annotationId - The ID of the annotation to be retrieved.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -332,7 +332,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation set to be updated.
+     * @param  {string} params.annotationId - The ID of the annotation to be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -355,7 +355,7 @@ function Genomics(options) {
     /**
      * genomics.annotations.search
      *
-     * @desc Searches for annotations that match the given criteria. Results are returned ordered by start position. Annotations that have matching start positions are ordered deterministically. Caller must have READ permission for the queried annotation sets.
+     * @desc Searches for annotations that match the given criteria. Results are ordered by genomic coordinate (by reference sequence, then position). Annotations with equivalent genomic coordinates are returned in an unspecified order. This order is consistent, such that two queries for the same content (regardless of page size) yield annotations in the same order across their respective streams of paginated responses. Caller must have READ permission for the queried annotation sets.
      *
      * @alias genomics.annotations.search
      * @memberOf! genomics(v1beta2)
@@ -389,7 +389,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation set to be updated.
+     * @param  {string} params.annotationId - The ID of the annotation to be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -680,7 +680,7 @@ function Genomics(options) {
      * @memberOf! genomics(v1beta2)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.pageSize - The maximum number of results returned by this request. If unspecified, defaults to 50.
+     * @param  {integer=} params.pageSize - The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectNumber - Required. The project to list datasets for.
      * @param  {callback} callback - The callback that handles the response.
@@ -912,62 +912,6 @@ function Genomics(options) {
   };
 
   this.readgroupsets = {
-
-    /**
-     * genomics.readgroupsets.align
-     *
-     * @desc Aligns read data from existing read group sets or files from Google Cloud Storage. See the  alignment and variant calling documentation for more details.
-     *
-     * @alias genomics.readgroupsets.align
-     * @memberOf! genomics(v1beta2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    align: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/align',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * genomics.readgroupsets.call
-     *
-     * @desc Calls variants on read data from existing read group sets or files from Google Cloud Storage. See the  alignment and variant calling documentation for more details.
-     *
-     * @alias genomics.readgroupsets.call
-     * @memberOf! genomics(v1beta2)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    call: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/call',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * genomics.readgroupsets.delete
@@ -1210,7 +1154,7 @@ function Genomics(options) {
     /**
      * genomics.reads.search
      *
-     * @desc Gets a list of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned.  If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads.  All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order.  Implements GlobalAllianceApi.searchReads.
+     * @desc Gets a list of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned.  If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads.  All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (by reference sequence, then position). Reads with equivalent genomic coordinates are returned in an unspecified order. This order is consistent, such that two queries for the same content (regardless of page size) yield reads in the same order across their respective streams of paginated responses.  Implements GlobalAllianceApi.searchReads.
      *
      * @alias genomics.reads.search
      * @memberOf! genomics(v1beta2)
@@ -1307,7 +1251,7 @@ function Genomics(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string=} params.end - The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
-       * @param  {integer=} params.pageSize - Specifies the maximum number of bases to return in a single page.
+       * @param  {integer=} params.pageSize - The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
        * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string} params.referenceId - The ID of the reference.
        * @param  {string=} params.start - The start position (0-based) of this query. Defaults to 0.

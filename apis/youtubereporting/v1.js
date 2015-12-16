@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -235,6 +235,7 @@ function Youtubereporting(options) {
        * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
        * @param  {integer=} params.pageSize - Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
        * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
+       * @param  {string=} params.createdAfter - If set, only reports created after the specified date/time are returned.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */

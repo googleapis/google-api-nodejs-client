@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,9 +46,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -167,9 +167,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -203,10 +203,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -235,7 +235,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.autoscaler - Name of the persistent autoscaler resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -265,7 +265,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.autoscaler - Name of the persistent autoscaler resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -294,7 +294,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -324,10 +324,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -357,7 +357,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.autoscaler - Name of the autoscaler resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -388,7 +388,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.autoscaler - Name of the autoscaler resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -423,7 +423,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.backendService - Name of the BackendService resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -452,7 +452,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.backendService - Name of the BackendService resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -510,7 +510,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -539,10 +539,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -571,7 +571,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.backendService - Name of the BackendService resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -601,7 +601,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.backendService - Name of the BackendService resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -634,9 +634,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -695,9 +695,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -725,15 +725,15 @@ function Compute(options) {
     /**
      * compute.disks.aggregatedList
      *
-     * @desc Retrieves the list of disks grouped by scope.
+     * @desc Retrieves the list of persistent disks grouped by scope.
      *
      * @alias compute.disks.aggregatedList
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -756,7 +756,7 @@ function Compute(options) {
     /**
      * compute.disks.createSnapshot
      *
-     * @desc Creates a snapshot of this disk.
+     * @desc Creates a snapshot of a specified persistent disk.
      *
      * @alias compute.disks.createSnapshot
      * @memberOf! compute(v1)
@@ -884,9 +884,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -1007,9 +1007,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1102,10 +1102,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1134,7 +1134,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1164,7 +1164,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1193,7 +1193,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -1223,10 +1223,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1249,14 +1249,14 @@ function Compute(options) {
     /**
      * compute.forwardingRules.setTarget
      *
-     * @desc Changes target url for forwarding rule.
+     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
      * @alias compute.forwardingRules.setTarget
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource in which target is to be set.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -1377,9 +1377,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1413,7 +1413,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1442,7 +1442,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1470,7 +1470,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1499,10 +1499,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1524,14 +1524,14 @@ function Compute(options) {
     /**
      * compute.globalForwardingRules.setTarget
      *
-     * @desc Changes target url for forwarding rule.
+     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
      * @alias compute.globalForwardingRules.setTarget
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.forwardingRule - Name of the ForwardingRule resource in which target is to be set.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1564,9 +1564,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1653,9 +1653,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1689,7 +1689,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1718,7 +1718,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1746,7 +1746,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1775,10 +1775,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1807,7 +1807,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1837,7 +1837,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1871,7 +1871,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to delete.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1900,7 +1900,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1928,7 +1928,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1957,10 +1957,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1989,7 +1989,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2019,7 +2019,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to update.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2169,9 +2169,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2205,7 +2205,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2235,10 +2235,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2267,7 +2267,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group to delete.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2297,7 +2297,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2328,7 +2328,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2357,7 +2357,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where you want to create the managed instance group.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2387,10 +2387,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2420,7 +2420,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2450,7 +2450,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2481,7 +2481,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {integer} params.size - The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {callback} callback - The callback that handles the response.
@@ -2512,7 +2512,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2543,7 +2543,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the managed instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2578,7 +2578,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group where you are adding instances.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2608,10 +2608,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2640,7 +2640,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group to delete.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2670,7 +2670,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2699,7 +2699,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where you want to create the instance group.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2729,10 +2729,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2761,11 +2761,11 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
      * @param  {string} params.instanceGroup - The name of the instance group from which you want to generate a list of included instances.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2796,7 +2796,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group where the specified instances will be removed.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2827,7 +2827,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceGroup - The name of the instance group where the named ports are updated.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone where the instance group is located.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -2862,7 +2862,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceTemplate - The name of the instance template to delete.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2891,7 +2891,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.instanceTemplate - The name of the instance template.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -2919,7 +2919,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -2948,10 +2948,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - The project ID for this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -3015,9 +3015,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3071,7 +3071,7 @@ function Compute(options) {
     /**
      * compute.instances.delete
      *
-     * @desc Deletes the specified Instance resource. For more information, see Shutting down an instance.
+     * @desc Deletes the specified Instance resource. For more information, see Stopping or Deleting an Instance.
      *
      * @alias compute.instances.delete
      * @memberOf! compute(v1)
@@ -3261,9 +3261,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -3545,9 +3545,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3606,9 +3606,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - The name of the zone for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -3729,9 +3729,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -3972,9 +3972,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -4037,9 +4037,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4072,7 +4072,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.route - Name of the route resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4101,7 +4101,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.route - Name of the route resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4130,7 +4130,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4159,10 +4159,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4194,7 +4194,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.snapshot - Name of the Snapshot resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4223,7 +4223,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.snapshot - Name of the Snapshot resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4252,10 +4252,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4287,7 +4287,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.sslCertificate - Name of the SslCertificate resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4316,7 +4316,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.sslCertificate - Name of the SslCertificate resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4345,7 +4345,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4374,10 +4374,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4409,7 +4409,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4438,7 +4438,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4467,7 +4467,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4496,10 +4496,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4527,7 +4527,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource whose URL map is to be set.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -4561,7 +4561,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4590,7 +4590,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4619,7 +4619,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4648,10 +4648,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4679,8 +4679,8 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource whose URL map is to be set.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource whose SSLCertificate is to be set.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4709,7 +4709,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource whose URL map is to be set.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -4743,10 +4743,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4774,7 +4774,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetInstance - Name of the TargetInstance resource to delete.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -4804,7 +4804,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.targetInstance - Name of the TargetInstance resource to return.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -4834,7 +4834,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -4864,10 +4864,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -4925,7 +4925,7 @@ function Compute(options) {
     /**
      * compute.targetPools.addInstance
      *
-     * @desc Adds instance url to targetPool.
+     * @desc Adds instance URL to targetPool.
      *
      * @alias compute.targetPools.addInstance
      * @memberOf! compute(v1)
@@ -4962,10 +4962,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -4993,7 +4993,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to delete.
      * @param  {callback} callback - The callback that handles the response.
@@ -5023,7 +5023,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource to return.
      * @param  {callback} callback - The callback that handles the response.
@@ -5084,7 +5084,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -5114,10 +5114,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5209,7 +5209,7 @@ function Compute(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {number=} params.failoverRatio - New failoverRatio value for the containing target pool.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - Name of the region scoping this request.
      * @param  {string} params.targetPool - Name of the TargetPool resource for which the backup is to be set.
      * @param  {object} params.resource - Request body data
@@ -5244,9 +5244,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5365,9 +5365,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -5401,7 +5401,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to delete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5430,7 +5430,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to return.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5459,7 +5459,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5488,10 +5488,10 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -5519,7 +5519,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to update.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -5549,7 +5549,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to update.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -5579,7 +5579,7 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Name of the project scoping this request.
+     * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.urlMap - Name of the UrlMap resource to be validated as.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
@@ -5613,9 +5613,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -5734,9 +5734,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.region - The name of the region for this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -5830,9 +5830,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {string} params.zone - Name of the zone scoping this request.
      * @param  {callback} callback - The callback that handles the response.
@@ -5895,9 +5895,9 @@ function Compute(options) {
      * @memberOf! compute(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: FIELD_NAME COMPARISON_STRING LITERAL_STRING.  The FIELD_NAME is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The COMPARISON_STRING must be either eq (equals) or ne (not equals). The LITERAL_STRING is the string value to filter to. The literal value must be valid for the type of field (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Use this parameter if you want to list the next page of results. Set pageToken to the nextPageToken returned by a previous list request.
+     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions meaning that resources must match all expressions to pass the filters.
+     * @param  {integer=} params.maxResults - The maximum number of results per page that Compute Engine should return. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param  {string} params.project - Project ID for this request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

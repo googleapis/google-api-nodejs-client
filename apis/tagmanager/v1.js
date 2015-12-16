@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1059,6 +1059,7 @@ function Tagmanager(options) {
          * @param  {string} params.accountId - The GTM Account ID.
          * @param  {string} params.containerId - The GTM Container ID.
          * @param  {boolean=} params.headers - Retrieve headers only when true.
+         * @param  {boolean=} params.includeDeleted - Also retrieve deleted (archived) versions when true.
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */

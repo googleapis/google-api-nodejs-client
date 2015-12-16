@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -193,7 +193,7 @@ function Webmasters(options) {
     /**
      * webmasters.sites.add
      *
-     * @desc Adds a site to the set of the user's sites in Webmaster Tools.
+     * @desc Adds a site to the set of the user's sites in Search Console.
      *
      * @alias webmasters.sites.add
      * @memberOf! webmasters(v3)
@@ -221,7 +221,7 @@ function Webmasters(options) {
     /**
      * webmasters.sites.delete
      *
-     * @desc Removes a site from the set of the user's Webmaster Tools sites.
+     * @desc Removes a site from the set of the user's Search Console sites.
      *
      * @alias webmasters.sites.delete
      * @memberOf! webmasters(v3)
@@ -277,7 +277,7 @@ function Webmasters(options) {
     /**
      * webmasters.sites.list
      *
-     * @desc Lists the user's Webmaster Tools sites.
+     * @desc Lists the user's Search Console sites.
      *
      * @alias webmasters.sites.list
      * @memberOf! webmasters(v3)

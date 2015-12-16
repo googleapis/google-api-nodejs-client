@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -301,6 +301,34 @@ function Games(options) {
         params: params,
         requiredParams: [],
         pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * games.applications.verify
+     *
+     * @desc Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.
+     *
+     * @alias games.applications.verify
+     * @memberOf! games(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    verify: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/games/v1/applications/{applicationId}/verify',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['applicationId'],
+        pathParams: ['applicationId'],
         context: self
       };
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1555,6 +1555,189 @@ function Admin(options) {
       return createAPIRequest(parameters, callback);
     }
 
+  };
+
+  this.resources = {
+
+    calendars: {
+
+      /**
+       * directory.resources.calendars.delete
+       *
+       * @desc Deletes a calendar resource.
+       *
+       * @alias directory.resources.calendars.delete
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to delete.
+       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.resources.calendars.get
+       *
+       * @desc Retrieves a calendar resource.
+       *
+       * @alias directory.resources.calendars.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to retrieve.
+       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.resources.calendars.insert
+       *
+       * @desc Inserts a calendar resource.
+       *
+       * @alias directory.resources.calendars.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['customer'],
+          pathParams: ['customer'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.resources.calendars.list
+       *
+       * @desc Retrieves a list of calendar resources for an account.
+       *
+       * @alias directory.resources.calendars.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param  {integer=} params.maxResults - Maximum number of results to return.
+       * @param  {string=} params.pageToken - Token to specify the next page in the list.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['customer'],
+          pathParams: ['customer'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.resources.calendars.patch
+       *
+       * @desc Updates a calendar resource. This method supports patch semantics.
+       *
+       * @alias directory.resources.calendars.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to update.
+       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * directory.resources.calendars.update
+       *
+       * @desc Updates a calendar resource.
+       *
+       * @alias directory.resources.calendars.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to update.
+       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
   };
 
   this.roleAssignments = {

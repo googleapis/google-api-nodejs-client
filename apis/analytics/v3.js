@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,6 +52,7 @@ function Analytics(options) {
        * @param  {string} params.end-date - End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
        * @param  {string=} params.filters - A comma-separated list of dimension or metric filters to be applied to Analytics data.
        * @param  {string} params.ids - Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+       * @param  {boolean=} params.include-empty-rows - The response will include empty rows if this parameter is set to true, the default is true
        * @param  {integer=} params.max-results - The maximum number of entries to include in this feed.
        * @param  {string} params.metrics - A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified.
        * @param  {string=} params.output - The selected format for the response. Default format is JSON.

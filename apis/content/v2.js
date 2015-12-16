@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1626,6 +1626,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.includeInvalidInsertedItems - Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
      * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string=} params.pageToken - The token returned by the previous request.
@@ -1717,6 +1718,7 @@ function Content(options) {
      * @memberOf! content(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.includeInvalidInsertedItems - Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
      * @param  {integer=} params.maxResults - The maximum number of product statuses to return in the response, used for paging.
      * @param  {string} params.merchantId - The ID of the managing account.
      * @param  {string=} params.pageToken - The token returned by the previous request.

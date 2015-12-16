@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,35 @@ function Dataflow(options) {
   this._options = options || {};
 
   this.projects = {
+
+    /**
+     * dataflow.projects.workerMessages
+     *
+     * @desc Send a worker_message to the service.
+     *
+     * @alias dataflow.projects.workerMessages
+     * @memberOf! dataflow(v1b3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.projectId - The project to send the WorkerMessages to.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    workerMessages: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/WorkerMessages',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     jobs: {
 

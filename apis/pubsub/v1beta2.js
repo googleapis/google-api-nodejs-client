@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`. The format for the path specified in this value is resource specific and is specified in the documentation for the respective SetIamPolicy rpc.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -77,7 +77,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, `projects/{project}`.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`. The format for the path specified in this value is resource specific and is specified in the documentation for the respective GetIamPolicy rpc.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -105,7 +105,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}`.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`. The format for the path specified in this value is resource specific and is specified in the documentation for the respective TestIamPermissions rpc.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -314,7 +314,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being specified. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`. The format for the path specified in this value is resource specific and is specified in the documentation for the respective SetIamPolicy rpc.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -343,7 +343,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. Resource is usually specified as a path, such as, `projects/{project}`.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy is being requested. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`. The format for the path specified in this value is resource specific and is specified in the documentation for the respective GetIamPolicy rpc.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -371,7 +371,7 @@ function Pubsub(options) {
        * @memberOf! pubsub(v1beta2)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}`.
+       * @param  {string} params.resource_ - REQUIRED: The resource for which policy detail is being requested. `resource` is usually specified as a path, such as, `projects/{project}/zones/{zone}/disks/{disk}`. The format for the path specified in this value is resource specific and is specified in the documentation for the respective TestIamPermissions rpc.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

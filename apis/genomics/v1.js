@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Genomics API
  *
- * @classdesc An API to store, process, explore, and share DNA sequence reads, reference-based alignments, and variant calls.
+ * @classdesc An API to store, process, explore, and share genomic data. It supports reference-based alignements, genetic variants, and reference genomes. This API provides an implementation of the Global Alliance for Genomics and Health (GA4GH) v0.5.1 API as well as several extensions.
  * @namespace genomics
  * @version  v1
  * @variation v1
@@ -40,14 +40,14 @@ function Genomics(options) {
     /**
      * genomics.datasets.list
      *
-     * @desc Lists datasets within a project.
+     * @desc Lists datasets within a project. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.datasets.list
      * @memberOf! genomics(v1)
      *
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.projectId - Required. The project to list datasets for.
-     * @param  {integer=} params.pageSize - The maximum number of results returned by this request. If unspecified, defaults to 50. The maximum value is 1024.
+     * @param  {integer=} params.pageSize - The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
      * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -70,7 +70,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.create
      *
-     * @desc Creates a new dataset.
+     * @desc Creates a new dataset. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.datasets.create
      * @memberOf! genomics(v1)
@@ -98,7 +98,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.get
      *
-     * @desc Gets a dataset by ID.
+     * @desc Gets a dataset by ID. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.datasets.get
      * @memberOf! genomics(v1)
@@ -126,7 +126,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.patch
      *
-     * @desc Updates a dataset. This method supports patch semantics.
+     * @desc Updates a dataset. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) This method supports patch semantics.
      *
      * @alias genomics.datasets.patch
      * @memberOf! genomics(v1)
@@ -156,7 +156,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.delete
      *
-     * @desc Deletes a dataset.
+     * @desc Deletes a dataset. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.datasets.delete
      * @memberOf! genomics(v1)
@@ -184,7 +184,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.undelete
      *
-     * @desc Undeletes a dataset by restoring a dataset which was deleted via this API. This operation is only possible for a week after the deletion occurred.
+     * @desc Undeletes a dataset by restoring a dataset which was deleted via this API. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) This operation is only possible for a week after the deletion occurred.
      *
      * @alias genomics.datasets.undelete
      * @memberOf! genomics(v1)
@@ -213,7 +213,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.setIamPolicy
      *
-     * @desc Sets the access control policy on the specified dataset. Replaces any existing policy. See Setting a Policy for more information.
+     * @desc Sets the access control policy on the specified dataset. Replaces any existing policy. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) See Setting a Policy for more information.
      *
      * @alias genomics.datasets.setIamPolicy
      * @memberOf! genomics(v1)
@@ -242,7 +242,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.getIamPolicy
      *
-     * @desc Gets the access control policy for the dataset. Is empty if the policy or the resource does not exist. See Getting a Policy for more information.
+     * @desc Gets the access control policy for the dataset. This is empty if the policy or resource does not exist. See Getting a Policy for more information. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.datasets.getIamPolicy
      * @memberOf! genomics(v1)
@@ -271,7 +271,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.testIamPermissions
      *
-     * @desc Returns permissions that a caller has on the specified resource. See Testing Permissions for more information.
+     * @desc Returns permissions that a caller has on the specified resource. See Testing Permissions for more information. For the definitions of datasets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.datasets.testIamPermissions
      * @memberOf! genomics(v1)
@@ -424,7 +424,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.import
      *
-     * @desc Creates read group sets by asynchronously importing the provided information. The caller must have WRITE permissions to the dataset. ## Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import - Tags will be converted to strings - tag types are not preserved - Comments (`@CO`) in the input file header will not be preserved - Original header order of references (`@SQ`) will not be preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (and "BQ" tag, if any) will be reversed - Unmapped reads will be stripped of positional information (reference name and position)
+     * @desc Creates read group sets by asynchronously importing the provided information. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The caller must have WRITE permissions to the dataset. ## Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import - Tags will be converted to strings - tag types are not preserved - Comments (`@CO`) in the input file header will not be preserved - Original header order of references (`@SQ`) will not be preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (and "BQ" tag, if any) will be reversed - Unmapped reads will be stripped of positional information (reference name and position)
      *
      * @alias genomics.readgroupsets.import
      * @memberOf! genomics(v1)
@@ -452,13 +452,13 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.export
      *
-     * @desc Exports a read group set to a BAM file in Google Cloud Storage. Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. See [ImportReadGroupSets](google.genomics.v1.ReadServiceV1.ImportReadGroupSets) for caveats.
+     * @desc Exports a read group set to a BAM file in Google Cloud Storage. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Note that currently there may be some differences between exported BAM files and the original BAM file at the time of import. See [ImportReadGroupSets](google.genomics.v1.ReadServiceV1.ImportReadGroupSets) for caveats.
      *
      * @alias genomics.readgroupsets.export
      * @memberOf! genomics(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.readGroupSetId - Required. The ID of the read group set to export.
+     * @param  {string} params.readGroupSetId - Required. The ID of the read group set to export. The caller must have READ access to this read group set.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -481,7 +481,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.search
      *
-     * @desc Searches for read group sets matching the criteria. Implements [GlobalAllianceApi.searchReadGroupSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L135).
+     * @desc Searches for read group sets matching the criteria. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.searchReadGroupSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L135).
      *
      * @alias genomics.readgroupsets.search
      * @memberOf! genomics(v1)
@@ -509,14 +509,14 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.patch
      *
-     * @desc Updates a read group set. This method supports patch semantics.
+     * @desc Updates a read group set. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) This method supports patch semantics.
      *
      * @alias genomics.readgroupsets.patch
      * @memberOf! genomics(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.readGroupSetId - The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, mutable fields are referenceSetId and name. Acceptable values are "referenceSetId" and "name". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. Supported fields: * name. * referenceSetId. Leaving `updateMask` unset is equivalent to specifying all mutable fields.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -539,7 +539,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.delete
      *
-     * @desc Deletes a read group set.
+     * @desc Deletes a read group set. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.readgroupsets.delete
      * @memberOf! genomics(v1)
@@ -567,7 +567,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.get
      *
-     * @desc Gets a read group set by ID.
+     * @desc Gets a read group set by ID. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.readgroupsets.get
      * @memberOf! genomics(v1)
@@ -597,7 +597,7 @@ function Genomics(options) {
       /**
        * genomics.readgroupsets.coveragebuckets.list
        *
-       * @desc Lists fixed width coverage buckets for a read group set, each of which correspond to a range of a reference sequence. Each bucket summarizes coverage information across its corresponding genomic range. Coverage is defined as the number of reads which are aligned to a given base in the reference sequence. Coverage buckets are available at several precomputed bucket widths, enabling retrieval of various coverage 'zoom levels'. The caller must have READ permissions for the target read group set.
+       * @desc Lists fixed width coverage buckets for a read group set, each of which correspond to a range of a reference sequence. Each bucket summarizes coverage information across its corresponding genomic range. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Coverage is defined as the number of reads which are aligned to a given base in the reference sequence. Coverage buckets are available at several precomputed bucket widths, enabling retrieval of various coverage 'zoom levels'. The caller must have READ permissions for the target read group set.
        *
        * @alias genomics.readgroupsets.coveragebuckets.list
        * @memberOf! genomics(v1)
@@ -635,7 +635,7 @@ function Genomics(options) {
     /**
      * genomics.reads.search
      *
-     * @desc Gets a list of reads for one or more read group sets. Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned. If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads. All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (reference sequence & position). Reads with equivalent genomic coordinates are returned in a deterministic order. Implements [GlobalAllianceApi.searchReads](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L85).
+     * @desc Gets a list of reads for one or more read group sets. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Reads search operates over a genomic coordinate space of reference sequence & position defined over the reference sequences to which the requested read group sets are aligned. If a target positional range is specified, search returns all reads whose alignment to the reference genome overlap the range. A query which specifies only read group set IDs yields all reads in those read group sets, including unmapped reads. All reads returned (including reads on subsequent pages) are ordered by genomic coordinate (by reference sequence, then position). Reads with equivalent genomic coordinates are returned in an unspecified order. This order is consistent, such that two queries for the same content (regardless of page size) yield reads in the same order across their respective streams of paginated responses. Implements [GlobalAllianceApi.searchReads](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L85).
      *
      * @alias genomics.reads.search
      * @memberOf! genomics(v1)
@@ -658,6 +658,34 @@ function Genomics(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.reads.stream
+     *
+     * @desc Returns a stream of all the reads matching the search request, ordered by reference name, position, and ID.
+     *
+     * @alias genomics.reads.stream
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    stream: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/reads:stream',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -667,7 +695,7 @@ function Genomics(options) {
     /**
      * genomics.referencesets.search
      *
-     * @desc Searches for reference sets which match the given criteria. Implements [GlobalAllianceApi.searchReferenceSets](http://ga4gh.org/documentation/api/v0.5.1/ga4gh_api.html#/schema/org.ga4gh.searchReferenceSets).
+     * @desc Searches for reference sets which match the given criteria. For the definitions of references and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.searchReferenceSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L71)
      *
      * @alias genomics.referencesets.search
      * @memberOf! genomics(v1)
@@ -695,7 +723,7 @@ function Genomics(options) {
     /**
      * genomics.referencesets.get
      *
-     * @desc Gets a reference set. Implements [GlobalAllianceApi.getReferenceSet](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L83).
+     * @desc Gets a reference set. For the definitions of references and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.getReferenceSet](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L83).
      *
      * @alias genomics.referencesets.get
      * @memberOf! genomics(v1)
@@ -727,7 +755,7 @@ function Genomics(options) {
     /**
      * genomics.references.search
      *
-     * @desc Searches for references which match the given criteria. Implements [GlobalAllianceApi.searchReferences](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L146).
+     * @desc Searches for references which match the given criteria. For the definitions of references and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.searchReferences](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L146).
      *
      * @alias genomics.references.search
      * @memberOf! genomics(v1)
@@ -755,7 +783,7 @@ function Genomics(options) {
     /**
      * genomics.references.get
      *
-     * @desc Gets a reference. Implements [GlobalAllianceApi.getReference](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L158).
+     * @desc Gets a reference. For the definitions of references and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.getReference](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L158).
      *
      * @alias genomics.references.get
      * @memberOf! genomics(v1)
@@ -785,7 +813,7 @@ function Genomics(options) {
       /**
        * genomics.references.bases.list
        *
-       * @desc Lists the bases in a reference, optionally restricted to a range. Implements [GlobalAllianceApi.getReferenceBases](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L221).
+       * @desc Lists the bases in a reference, optionally restricted to a range. For the definitions of references and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.getReferenceBases](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L221).
        *
        * @alias genomics.references.bases.list
        * @memberOf! genomics(v1)
@@ -795,7 +823,7 @@ function Genomics(options) {
        * @param  {string=} params.start - The start position (0-based) of this query. Defaults to 0.
        * @param  {string=} params.end - The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
        * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-       * @param  {integer=} params.pageSize - Specifies the maximum number of bases to return in a single page.
+       * @param  {integer=} params.pageSize - The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -821,7 +849,7 @@ function Genomics(options) {
     /**
      * genomics.variants.import
      *
-     * @desc Creates variant data by asynchronously importing the provided information. The variants for import will be merged with any existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
+     * @desc Creates variant data by asynchronously importing the provided information. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The variants for import will be merged with any existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
      *
      * @alias genomics.variants.import
      * @memberOf! genomics(v1)
@@ -849,7 +877,7 @@ function Genomics(options) {
     /**
      * genomics.variants.search
      *
-     * @desc Gets a list of variants matching the criteria. Implements [GlobalAllianceApi.searchVariants](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L126).
+     * @desc Gets a list of variants matching the criteria. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.searchVariants](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L126).
      *
      * @alias genomics.variants.search
      * @memberOf! genomics(v1)
@@ -877,7 +905,7 @@ function Genomics(options) {
     /**
      * genomics.variants.create
      *
-     * @desc Creates a new variant.
+     * @desc Creates a new variant. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variants.create
      * @memberOf! genomics(v1)
@@ -905,7 +933,7 @@ function Genomics(options) {
     /**
      * genomics.variants.patch
      *
-     * @desc Updates a variant. This method supports patch semantics. Returns the modified variant without its calls.
+     * @desc Updates a variant. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) This method supports patch semantics. Returns the modified variant without its calls.
      *
      * @alias genomics.variants.patch
      * @memberOf! genomics(v1)
@@ -935,7 +963,7 @@ function Genomics(options) {
     /**
      * genomics.variants.delete
      *
-     * @desc Deletes a variant.
+     * @desc Deletes a variant. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variants.delete
      * @memberOf! genomics(v1)
@@ -963,7 +991,7 @@ function Genomics(options) {
     /**
      * genomics.variants.get
      *
-     * @desc Gets a variant by ID.
+     * @desc Gets a variant by ID. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variants.get
      * @memberOf! genomics(v1)
@@ -986,6 +1014,34 @@ function Genomics(options) {
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.variants.stream
+     *
+     * @desc Returns a stream of all the variants matching the search request, ordered by reference name, position, and ID.
+     *
+     * @alias genomics.variants.stream
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    stream: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/variants:stream',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -995,7 +1051,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.create
      *
-     * @desc Creates a new variant set. The provided variant set must have a valid `datasetId` set - all other fields are optional. Note that the `id` field will be ignored, as this is assigned by the server.
+     * @desc Creates a new variant set. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The provided variant set must have a valid `datasetId` set - all other fields are optional. Note that the `id` field will be ignored, as this is assigned by the server.
      *
      * @alias genomics.variantsets.create
      * @memberOf! genomics(v1)
@@ -1023,7 +1079,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.export
      *
-     * @desc Exports variant set data to an external destination.
+     * @desc Exports variant set data to an external destination. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variantsets.export
      * @memberOf! genomics(v1)
@@ -1052,7 +1108,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.get
      *
-     * @desc Gets a variant set by ID.
+     * @desc Gets a variant set by ID. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variantsets.get
      * @memberOf! genomics(v1)
@@ -1080,7 +1136,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.search
      *
-     * @desc Returns a list of all variant sets matching search criteria. Implements [GlobalAllianceApi.searchVariantSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L49).
+     * @desc Returns a list of all variant sets matching search criteria. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.searchVariantSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L49).
      *
      * @alias genomics.variantsets.search
      * @memberOf! genomics(v1)
@@ -1108,7 +1164,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.delete
      *
-     * @desc Deletes the contents of a variant set. The variant set object is not deleted.
+     * @desc Deletes the contents of a variant set. The variant set object is not deleted. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variantsets.delete
      * @memberOf! genomics(v1)
@@ -1136,14 +1192,14 @@ function Genomics(options) {
     /**
      * genomics.variantsets.patch
      *
-     * @desc Updates a variant set. This method supports patch semantics.
+     * @desc Updates a variant set using patch semantics. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variantsets.patch
      * @memberOf! genomics(v1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.variantSetId - The ID of the variant to be updated (must already exist).
-     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. At this time, the only mutable field is metadata. The only acceptable value is "metadata". If unspecified, all mutable fields will be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. Supported fields: * metadata. Leaving `updateMask` unset is equivalent to specifying all mutable fields.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1170,7 +1226,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.search
      *
-     * @desc Gets a list of call sets matching the criteria. Implements [GlobalAllianceApi.searchCallSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L178).
+     * @desc Gets a list of call sets matching the criteria. For the definitions of call sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Implements [GlobalAllianceApi.searchCallSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L178).
      *
      * @alias genomics.callsets.search
      * @memberOf! genomics(v1)
@@ -1198,7 +1254,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.create
      *
-     * @desc Creates a new call set.
+     * @desc Creates a new call set. For the definitions of call sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.callsets.create
      * @memberOf! genomics(v1)
@@ -1226,7 +1282,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.patch
      *
-     * @desc Updates a call set. This method supports patch semantics.
+     * @desc Updates a call set. For the definitions of call sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) This method supports patch semantics.
      *
      * @alias genomics.callsets.patch
      * @memberOf! genomics(v1)
@@ -1256,7 +1312,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.delete
      *
-     * @desc Deletes a call set.
+     * @desc Deletes a call set. For the definitions of call sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.callsets.delete
      * @memberOf! genomics(v1)
@@ -1284,7 +1340,7 @@ function Genomics(options) {
     /**
      * genomics.callsets.get
      *
-     * @desc Gets a call set by ID.
+     * @desc Gets a call set by ID. For the definitions of call sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.callsets.get
      * @memberOf! genomics(v1)

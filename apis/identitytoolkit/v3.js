@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
+ * Copyright 2015 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -303,34 +303,6 @@ function Identitytoolkit(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.setProjectConfig
-     *
-     * @desc Set project configuration.
-     *
-     * @alias identitytoolkit.relyingparty.setProjectConfig
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    setProjectConfig: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
           method: 'POST'
         },
         params: params,
