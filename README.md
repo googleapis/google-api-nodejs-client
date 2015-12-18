@@ -389,7 +389,7 @@ var google = require('googleapis');
 google.options({ params: { quotaUser: 'user123@example.com' } });
 
 // All requests from all services will contain the above query parameter
-// unless overriden either in a service client or in individual API calls.
+// unless overridden either in a service client or in individual API calls.
 ```
 
 ### Service-client options
@@ -419,7 +419,7 @@ var urlshortener = google.urlshortener({
   params: { quotaUser: 'user123@example.com' }
 });
 // All requests made with this service client will contain the
-// quotaUser query parameter unless overriden in individual API calls.
+// quotaUser query parameter unless overridden in individual API calls.
 
 // Calls with this drive client will NOT contain the quotaUser query parameter.
 var drive = google.drive('v2');
