@@ -18,7 +18,7 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
-var google, drive;
+var google, drive, webmasters;
 
 describe('Path params', function() {
 
@@ -27,6 +27,7 @@ describe('Path params', function() {
   beforeEach(function() {
     google = new googleapis.GoogleApis();
     drive = google.drive('v2');
+    webmasters = google.webmasters('v3');
   });
 
   it('should not throw error if not included and required', function(done) {
@@ -91,6 +92,12 @@ describe('Path params', function() {
   it('should not be urlencoded', function () {
     var req = drive.files.get({ fileId: 'p@ram' }, noop);
     assert.equal(req.uri.path.split('/').pop(), 'p@ram');
+  });
+
+  it('should be urlencoded', function () {
+    var req = webmasters.searchanalytics.query({ siteUrl: 'http://www.google.com' }, noop);
+    var p = req.uri.path.split('/');
+    assert.equal(p[4], 'http:%2F%2Fwww.google.com');
   });
 
   it('should keep query params null if only path params', function() {
