@@ -2,25 +2,8 @@
   "name": "googleapis",
   "version": "2.1.7",
   "author": "Google Inc.",
+  "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
-  "contributors": [
-    {
-      "name": "Burcu Dogan",
-      "email": "jbd@google.com"
-    },
-    {
-      "name": "Ryan Seys",
-      "email": "ryanseys@google.com"
-    },
-    {
-      "name": "Tim Emiola",
-      "email": "tbetbetbe@google.com"
-    },
-    {
-      "name": "Jason Allor",
-      "email": "jasonall@google.com"
-    }
-  ],
   "engines": {
     "node": ">=0.10"
   },
@@ -29,6 +12,28 @@
     "type": "git",
     "url": "https://github.com/google/google-api-nodejs-client.git"
   },
+  "contributors": [
+    {
+      "name": "Burcu Dogan",
+      "email": "jbd@google.com"
+    },
+    {
+      "name": "Jason Allor",
+      "email": "jasonall@google.com"
+    },
+    {
+      "name": "Jason Dobry",
+      "email": "jason.dobry@gmail.com"
+    },
+    {
+      "name": "Ryan Seys",
+      "email": "ryanseys@google.com"
+    },
+    {
+      "name": "Tim Emiola",
+      "email": "tbetbetbe@google.com"
+    }
+  ],
   "keywords": [
     "google",
     "api",
@@ -37,34 +42,33 @@
     "client library"
   ],
   "dependencies": {
-    "async": "~1.5.0",
-    "gapitoken": "~0.1.2",
-    "google-auth-library": "~0.9.3",
-    "request": "~2.65.0",
-    "string-template": "~0.2.0"
+    "async": "~1.5.2",
+    "gapitoken": "~0.1.5",
+    "google-auth-library": "~0.9.7",
+    "request": "~2.69.0",
+    "string-template": "~1.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.1",
-    "istanbul": "^0.3.2",
-    "js-beautify": "^1.5.1",
-    "jshint": "^2.5.5",
-    "jsdoc": "^3.3.0-beta3",
-    "mkdirp": "^0.5.0",
-    "mocha": "^2.2.1",
-    "nock": "^1.2.1",
-    "rimraf": "^2.2.8",
+    "coveralls": "^2.11.8",
+    "istanbul": "^0.4.2",
+    "js-beautify": "^1.6.2",
+    "jshint": "^2.9.1",
+    "jsdoc": "^3.4.0",
+    "mkdirp": "^0.5.1",
+    "mocha": "^2.4.5",
+    "nock": "^7.2.2",
+    "rimraf": "^2.5.2",
     "swig": "^1.4.2",
-    "url": "^0.10.1",
-    "minimist": "^1.1.0"
+    "url": "^0.11.0",
+    "minimist": "^1.2.0"
   },
   "scripts": {
     "lint": "jshint lib test scripts apis",
     "test": "mocha --reporter spec --timeout 4000",
     "generate-apis": "node scripts/generate",
-    "generate-docs": "jsdoc -c jsdoc-conf.json ./README.md",
+    "generate-docs": "jsdoc -c jsdoc-conf.json",
     "prepare": "npm run generate-apis && npm test && npm run lint && npm version patch",
     "coverage": "istanbul cover -x 'apis/**' _mocha -- --reporter spec --timeout 4000",
     "coveralls": "istanbul cover -x 'apis/**' _mocha --report lcovonly -- --reporter spec --timeout 4000 && cat coverage/lcov.info | coveralls"
-  },
-  "license": "Apache-2.0"
+  }
 }
