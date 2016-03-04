@@ -138,7 +138,7 @@ In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and
 For more information about OAuth2 and how it works, [see here][oauth].
 
 A complete sample application that authorizes and authenticates with the OAuth2
-client is available at [`examples/oauth2.js`][oauthexample].
+client is available at [`samples/oauth2.js`][oauthexample].
 
 ##### Generating an authentication URL
 
@@ -296,7 +296,7 @@ jwtClient.authorize(function(err, tokens) {
 });
 ```
 
-The parameters for the JWT auth client including how to use it with a `.pem` file are explained in [examples/jwt.js](examples/jwt.js)
+The parameters for the JWT auth client including how to use it with a `.pem` file are explained in [samples/jwt.js](samples/jwt.js)
 
 #### Choosing the correct credential type automatically
 
@@ -391,7 +391,7 @@ drive.files.insert({
 ```
 
 For more examples of creation and modification requests with media attachments,
-take a look at the `examples/mediaupload.js` sample.
+take a look at the `samples/mediaupload.js` sample.
 
 ### Exposing request object
 
@@ -508,7 +508,7 @@ See [CONTRIBUTING][contributing].
 [overflowimg]: https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png
 [devconsole]: https://console.developer.google.com
 [oauth]: https://developers.google.com/accounts/docs/OAuth2
-[oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/examples/oauth2.js
+[oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/samples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
 [gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
 [gcloudapis]: https://googlecloudplatform.github.io/gcloud-node/#/docs/gcloud

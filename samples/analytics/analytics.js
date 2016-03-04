@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var google = require('../lib/googleapis.js');
+var google = require('../../lib/googleapis.js');
 var analytics = google.analytics('v3');
 var OAuth2Client = google.auth.OAuth2;
 

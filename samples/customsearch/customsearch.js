@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var google = require('../lib/googleapis.js');
+var google = require('../../lib/googleapis.js');
 var customsearch = google.customsearch('v1');
 
 // You can get a custom search engine id at

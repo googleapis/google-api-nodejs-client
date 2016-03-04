@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var google = require('../lib/googleapis.js');
+var google = require('../../lib/googleapis.js');
 var urlshortener = google.urlshortener('v1');
 
 var printResult = function(err, result) {

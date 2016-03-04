@@ -15,7 +15,7 @@
  */
 
 var request = require('request');
-var google = require('../lib/googleapis.js');
+var google = require('../../lib/googleapis.js');
 var compute = google.compute('v1');
 var uri = 'http://metadata/computeMetadata/v1/project/project-id';
 var headers = { 'Metadata-Flavor': 'Google' };
