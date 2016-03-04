@@ -497,7 +497,7 @@ See [CONTRIBUTING][contributing].
 [apiexplorer]: https://developers.google.com/apis-explorer
 [urlshort]: https://developers.google.com/url-shortener/
 [usingkeys]: https://developers.google.com/console/help/#UsingKeys
-[contributing]: https://github.com/google/google-api-nodejs-client/tree/master/CONTRIBUTING.md
+[contributing]: https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
 [copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
 [authdocs]: https://developers.google.com/accounts/docs/OAuth2Login
 [request]: https://github.com/mikeal/request
