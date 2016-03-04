@@ -16,6 +16,20 @@ Documentation for the Google Analytics API in
   </tr>
 </table>
 
+## ![](http://www.google.com/images/icons/product/blogger-32.png) Blogger API
+
+View and manage Blogger data.
+
+Documentation for the Blogger API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/2.1.7/blogger.html).
+
+<table>
+  <tr>
+    <td><a href="blogger">samples/blogger</a></td>
+    <td>Command-line samples for reading data with the Blogger API</td>
+  </tr>
+</table>
+
 ## ![](https://www.google.com/images/icons/product/compute_engine-32.png) Google Compute Engine Metadata API
 
 Lets you set key/value pairs using the GCE metadata service. 
