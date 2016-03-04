@@ -17,6 +17,7 @@
     "encoding": "utf8",
     "destination": "./docs/",
     "recurse": true,
-    "tutorials": "examples/"
+    "readme": "./README.md",
+    "package": "./package.json"
   }
 }
