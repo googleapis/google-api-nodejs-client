@@ -58,6 +58,21 @@ Documentation for the CustomSearch API in
   </tr>
 </table>
 
+
+## ![](http://www.google.com/images/icons/product/search-32.png) Glass Mirror API
+
+The Google Mirror API allows you to build web-based services that interact with Google Glass. It provides this functionality over a cloud-based API and does not require running code on Glass.
+
+Documentation for the Glass Mirror API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/2.1.7/mirror.html).
+
+<table>
+  <tr>
+    <td><a href="mirror">samples/mirror</a></td>
+    <td>Obtains a list of locations from glass data</td>
+  </tr>
+</table>
+
 ## ![](http://www.google.com/images/icons/product/shortlinks-32.png) URL Shortener API
 
 Lets you create, inspect, and manage `goo.gl` short URLs.
