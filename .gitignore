@@ -3,3 +3,4 @@ node_modules/*
 docs/
 npm-debug.log
 coverage
+.secrets.json
