@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Analytics API
  *
- * @classdesc View and manage your Google Analytics data
+ * @classdesc Views and manages your Google Analytics data.
  * @namespace analytics
  * @version  v2.4
  * @variation v2.4

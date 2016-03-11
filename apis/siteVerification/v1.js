@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Site Verification API
  *
- * @classdesc Lets you programatically verify ownership of websites or domains with Google.
+ * @classdesc Verifies ownership of websites or domains with Google.
  * @namespace siteVerification
  * @version  v1
  * @variation v1

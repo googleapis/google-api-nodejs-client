@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * QPX Express API
  *
- * @classdesc Lets you find the least expensive flights between an origin and a destination.
+ * @classdesc Finds the least expensive flights between an origin and a destination.
  * @namespace qpxExpress
  * @version  v1
  * @variation v1

@@ -1000,7 +1000,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.import
      *
-     * @desc Creates read group sets by asynchronously importing the provided information. The caller must have WRITE permissions to the dataset.  Notes on BAM import:   - Tags will be converted to strings - tag types are not preserved - Comments (@CO) in the input file header are not imported - Original order of reference headers is not preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (and "BQ" tag, if any) will be reversed - Unmapped reads will be stripped of positional information (referenceName and position)
+     * @desc Creates read group sets by asynchronously importing the provided information. The caller must have WRITE permissions to the dataset.  Notes on BAM import:   - Tags will be converted to strings - tag types are not preserved - Comments (@CO) in the input file header are not imported - Original order of reference headers is not preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (also the "BQ" and "OQ" tags, if any) will be reversed - Unmapped reads will be stripped of positional information (referenceName and position)
      *
      * @alias genomics.readgroupsets.import
      * @memberOf! genomics(v1beta2)
@@ -1513,7 +1513,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.delete
      *
-     * @desc Deletes the contents of a variant set. The variant set object is not deleted.
+     * @desc Deletes a variant set including all variants, call sets, and calls within. This is not reversible.
      *
      * @alias genomics.variantsets.delete
      * @memberOf! genomics(v1beta2)
@@ -1598,7 +1598,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.importVariants
      *
-     * @desc Creates variant data by asynchronously importing the provided information.  The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting INFO fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
+     * @desc Creates variant data by asynchronously importing the provided information.  The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting info fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
      *
      * @alias genomics.variantsets.importVariants
      * @memberOf! genomics(v1beta2)

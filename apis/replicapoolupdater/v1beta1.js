@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Compute Engine Instance Group Updater API
  *
- * @classdesc The Google Compute Engine Instance Group Updater API provides services for updating groups of Compute Engine Instances.
+ * @classdesc Updates groups of Compute Engine instances.
  * @namespace replicapoolupdater
  * @version  v1beta1
  * @variation v1beta1

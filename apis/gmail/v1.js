@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Gmail API
  *
- * @classdesc The Gmail REST API.
+ * @classdesc Access Gmail mailboxes including sending user email.
  * @namespace gmail
  * @version  v1
  * @variation v1
@@ -225,6 +225,7 @@ function Gmail(options) {
        * @memberOf! gmail(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {boolean=} params.includeSpamTrash - Include drafts from SPAM and TRASH in the results.
        * @param  {integer=} params.maxResults - Maximum number of drafts to return.
        * @param  {string=} params.pageToken - Page token to retrieve a specific page of results in the list.
        * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
@@ -528,6 +529,35 @@ function Gmail(options) {
     },
 
     messages: {
+
+      /**
+       * gmail.users.messages.batchDelete
+       *
+       * @desc Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
+       *
+       * @alias gmail.users.messages.batchDelete
+       * @memberOf! gmail(v1)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.userId - The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * gmail.users.messages.delete

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * AdSense Management API
  *
- * @classdesc Gives AdSense publishers access to their inventory and the ability to generate reports
+ * @classdesc Accesses AdSense publishers&#39; inventory and generates performance reports.
  * @namespace adsense
  * @version  v1.3
  * @variation v1.3

@@ -46,7 +46,7 @@ function Kgsearch(options) {
      * @memberOf! kgsearch(v1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {string=} params.query - The literal query string for search
+     * @param  {string=} params.query - The literal query string for search.
      * @param  {string=} params.ids - The list of entity id to be used for search instead of query string.
      * @param  {string=} params.languages - The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
      * @param  {string=} params.types - Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person).
