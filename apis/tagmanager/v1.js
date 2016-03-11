@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Tag Manager API
  *
- * @classdesc API for accessing Tag Manager accounts and containers.
+ * @classdesc Accesses Tag Manager accounts and containers.
  * @namespace tagmanager
  * @version  v1
  * @variation v1
@@ -270,6 +270,192 @@ function Tagmanager(options) {
         return createAPIRequest(parameters, callback);
       },
 
+      environments: {
+
+        /**
+         * tagmanager.accounts.containers.environments.create
+         *
+         * @desc Creates a GTM Environment.
+         *
+         * @alias tagmanager.accounts.containers.environments.create
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId'],
+            pathParams: ['accountId', 'containerId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.environments.delete
+         *
+         * @desc Deletes a GTM Environment.
+         *
+         * @alias tagmanager.accounts.containers.environments.delete
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.environmentId - The GTM Environment ID.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              method: 'DELETE'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'environmentId'],
+            pathParams: ['accountId', 'containerId', 'environmentId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.environments.get
+         *
+         * @desc Gets a GTM Environment.
+         *
+         * @alias tagmanager.accounts.containers.environments.get
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.environmentId - The GTM Environment ID.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'environmentId'],
+            pathParams: ['accountId', 'containerId', 'environmentId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.environments.list
+         *
+         * @desc Lists all GTM Environments of a GTM Container.
+         *
+         * @alias tagmanager.accounts.containers.environments.list
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId'],
+            pathParams: ['accountId', 'containerId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.environments.patch
+         *
+         * @desc Updates a GTM Environment. This method supports patch semantics.
+         *
+         * @alias tagmanager.accounts.containers.environments.patch
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.environmentId - The GTM Environment ID.
+         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the environment in storage.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        patch: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              method: 'PATCH'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'environmentId'],
+            pathParams: ['accountId', 'containerId', 'environmentId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * tagmanager.accounts.containers.environments.update
+         *
+         * @desc Updates a GTM Environment.
+         *
+         * @alias tagmanager.accounts.containers.environments.update
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.environmentId - The GTM Environment ID.
+         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the environment in storage.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              method: 'PUT'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'environmentId'],
+            pathParams: ['accountId', 'containerId', 'environmentId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
       folders: {
 
         /**
@@ -474,6 +660,7 @@ function Tagmanager(options) {
          * @param  {string=} params.tagId - The tags to be moved to the folder.
          * @param  {string=} params.triggerId - The triggers to be moved to the folder.
          * @param  {string=} params.variableId - The variables to be moved to the folder.
+         * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -486,6 +673,40 @@ function Tagmanager(options) {
             params: params,
             requiredParams: ['accountId', 'containerId', 'folderId'],
             pathParams: ['accountId', 'containerId', 'folderId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
+      reauthorize_environments: {
+
+        /**
+         * tagmanager.accounts.containers.reauthorize_environments.update
+         *
+         * @desc Re-generates the authorization code for a GTM Environment.
+         *
+         * @alias tagmanager.accounts.containers.reauthorize_environments.update
+         * @memberOf! tagmanager(v1)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.accountId - The GTM Account ID.
+         * @param  {string} params.containerId - The GTM Container ID.
+         * @param  {string} params.environmentId - The GTM Environment ID.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}',
+              method: 'PUT'
+            },
+            params: params,
+            requiredParams: ['accountId', 'containerId', 'environmentId'],
+            pathParams: ['accountId', 'containerId', 'environmentId'],
             context: self
           };
 

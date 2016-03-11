@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Genomics API
  *
- * @classdesc An API to store, process, explore, and share genomic data. It supports reference-based alignements, genetic variants, and reference genomes. This API provides an implementation of the Global Alliance for Genomics and Health (GA4GH) v0.5.1 API as well as several extensions.
+ * @classdesc Stores, processes, explores and shares genomic data. This API implements the Global Alliance for Genomics and Health (GA4GH) v0.5.1 API as well as several extensions.
  * @namespace genomics
  * @version  v1
  * @variation v1
@@ -387,34 +387,6 @@ function Genomics(options) {
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * genomics.operations.delete
-     *
-     * @desc This method is not implemented. To cancel an operation, please use Operations.CancelOperation.
-     *
-     * @alias genomics.operations.delete
-     * @memberOf! genomics(v1)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://genomics.googleapis.com/v1/{name}',
-          method: 'DELETE'
-        },
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -424,7 +396,7 @@ function Genomics(options) {
     /**
      * genomics.readgroupsets.import
      *
-     * @desc Creates read group sets by asynchronously importing the provided information. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The caller must have WRITE permissions to the dataset. ## Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import - Tags will be converted to strings - tag types are not preserved - Comments (`@CO`) in the input file header will not be preserved - Original header order of references (`@SQ`) will not be preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (and "BQ" tag, if any) will be reversed - Unmapped reads will be stripped of positional information (reference name and position)
+     * @desc Creates read group sets by asynchronously importing the provided information. For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The caller must have WRITE permissions to the dataset. ## Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import - Tags will be converted to strings - tag types are not preserved - Comments (`@CO`) in the input file header will not be preserved - Original header order of references (`@SQ`) will not be preserved - Any reverse stranded unmapped reads will be reverse complemented, and their qualities (also the "BQ" and "OQ" tags, if any) will be reversed - Unmapped reads will be stripped of positional information (reference name and position)
      *
      * @alias genomics.readgroupsets.import
      * @memberOf! genomics(v1)
@@ -1017,6 +989,34 @@ function Genomics(options) {
     },
 
     /**
+     * genomics.variants.merge
+     *
+     * @desc Merges the given variants with existing variants. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded.
+     *
+     * @alias genomics.variants.merge
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    merge: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/variants:merge',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * genomics.variants.stream
      *
      * @desc Returns a stream of all the variants matching the search request, ordered by reference name, position, and ID.
@@ -1164,7 +1164,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.delete
      *
-     * @desc Deletes the contents of a variant set. The variant set object is not deleted. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+     * @desc Deletes a variant set including all variants, call sets, and calls within. This is not reversible. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
      *
      * @alias genomics.variantsets.delete
      * @memberOf! genomics(v1)

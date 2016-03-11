@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Admin Data Transfer API
  *
- * @classdesc Admin Data Transfer API lets you transfer user data from one user to another.
+ * @classdesc Transfers user data from one user to another.
  * @namespace admin
  * @version  datatransfer_v1
  * @variation datatransfer_v1

@@ -476,7 +476,7 @@ function Drive(options) {
     /**
      * drive.files.export
      *
-     * @desc Exports a Google Doc to the requested MIME type.
+     * @desc Exports a Google Doc to the requested MIME type and returns the exported content.
      *
      * @alias drive.files.export
      * @memberOf! drive(v3)

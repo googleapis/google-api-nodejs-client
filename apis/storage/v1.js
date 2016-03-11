@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud Storage JSON API
  *
- * @classdesc Lets you store and retrieve potentially-large, immutable data objects.
+ * @classdesc Stores and retrieves potentially large, immutable data objects.
  * @namespace storage
  * @version  v1
  * @variation v1

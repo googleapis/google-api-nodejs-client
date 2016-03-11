@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Content API for Shopping
  *
- * @classdesc Manage product items, inventory, and Merchant Center accounts for Google Shopping.
+ * @classdesc Manages product items, inventory, and Merchant Center accounts for Google Shopping.
  * @namespace content
  * @version  v2
  * @variation v2
