@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Analytics API
  *
- * @classdesc Retrieve your YouTube Analytics reports.
+ * @classdesc Retrieves your YouTube Analytics reports.
  * @namespace youtubeAnalytics
  * @version  v1beta1
  * @variation v1beta1

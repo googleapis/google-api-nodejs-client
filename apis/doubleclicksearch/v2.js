@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * DoubleClick Search API
  *
- * @classdesc Report and modify your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
+ * @classdesc Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
  * @namespace doubleclicksearch
  * @version  v2
  * @variation v2

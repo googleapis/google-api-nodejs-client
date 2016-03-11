@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Enterprise Apps Reseller API
  *
- * @classdesc Lets you create and manage your customers and their subscriptions.
+ * @classdesc Creates and manages your customers and their subscriptions.
  * @namespace reseller
  * @version  v1sandbox
  * @variation v1sandbox
@@ -74,7 +74,7 @@ function Reseller(options) {
      * @memberOf! reseller(v1sandbox)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string=} params.customerAuthToken - An auth token needed for inserting a customer for which domain already exists. Can be generated at https://www.google.com/a/cpanel//TransferToken. Optional.
+     * @param  {string=} params.customerAuthToken - An auth token needed for inserting a customer for which domain already exists. Can be generated at https://admin.google.com/TransferToken. Optional.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

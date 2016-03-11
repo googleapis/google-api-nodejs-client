@@ -791,6 +791,41 @@ function Youtube(options) {
 
   };
 
+  this.fanFundingEvents = {
+
+    /**
+     * youtube.fanFundingEvents.list
+     *
+     * @desc Lists fan funding events for a channel.
+     *
+     * @alias youtube.fanFundingEvents.list
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.hl - The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
+     * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param  {string} params.part - The part parameter specifies the fanFundingEvent resource parts that the API response will include. Supported values are id and snippet.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/fanFundingEvents',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.guideCategories = {
 
     /**
@@ -1031,6 +1066,7 @@ function Youtube(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.broadcastStatus - The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
+     * @param  {string=} params.broadcastType - The broadcastType parameter filters the API response to only include broadcasts with the specified type. This is only compatible with the mine filter for now.
      * @param  {string=} params.id - The id parameter specifies a comma-separated list of YouTube broadcast IDs that identify the broadcasts being retrieved. In a liveBroadcast resource, the id property specifies the broadcast's ID.
      * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param  {boolean=} params.mine - The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
@@ -1112,6 +1148,253 @@ function Youtube(options) {
         },
         params: params,
         requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.liveChatBans = {
+
+    /**
+     * youtube.liveChatBans.delete
+     *
+     * @desc Removes a chat ban.
+     *
+     * @alias youtube.liveChatBans.delete
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The id parameter identifies the chat ban to remove. The value uniquely identifies both the ban and the chat.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/bans',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtube.liveChatBans.insert
+     *
+     * @desc Adds a new ban to the chat.
+     *
+     * @alias youtube.liveChatBans.insert
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/bans',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.liveChatMessages = {
+
+    /**
+     * youtube.liveChatMessages.delete
+     *
+     * @desc Deletes a chat message.
+     *
+     * @alias youtube.liveChatMessages.delete
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The id parameter specifies the YouTube chat message ID of the resource that is being deleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtube.liveChatMessages.insert
+     *
+     * @desc Adds a message to a live chat.
+     *
+     * @alias youtube.liveChatMessages.insert
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.part - The part parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtube.liveChatMessages.list
+     *
+     * @desc Lists live chat messages for a specific chat.
+     *
+     * @alias youtube.liveChatMessages.list
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.hl - The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
+     * @param  {string} params.liveChatId - The liveChatId parameter specifies the ID of the chat whose messages will be returned.
+     * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of messages that should be returned in the result set.
+     * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     * @param  {string} params.part - The part parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
+     * @param  {integer=} params.profileImageSize - The profileImageSize parameter specifies the size of the user profile pictures that should be returned in the result set. Default: 88.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['liveChatId', 'part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.liveChatModerators = {
+
+    /**
+     * youtube.liveChatModerators.delete
+     *
+     * @desc Removes a chat moderator.
+     *
+     * @alias youtube.liveChatModerators.delete
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The id parameter identifies the chat moderator to remove. The value uniquely identifies both the moderator and the chat.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtube.liveChatModerators.insert
+     *
+     * @desc Adds a new moderator for the chat.
+     *
+     * @alias youtube.liveChatModerators.insert
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.part - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtube.liveChatModerators.list
+     *
+     * @desc Lists moderators for a live chat.
+     *
+     * @alias youtube.liveChatModerators.list
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.liveChatId - The liveChatId parameter specifies the YouTube live chat for which the API should return moderators.
+     * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param  {string} params.part - The part parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['liveChatId', 'part'],
         pathParams: [],
         context: self
       };
@@ -1555,6 +1838,41 @@ function Youtube(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/youtube/v3/search',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.sponsors = {
+
+    /**
+     * youtube.sponsors.list
+     *
+     * @desc Lists sponsors for a channel.
+     *
+     * @alias youtube.sponsors.list
+     * @memberOf! youtube(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter - The filter parameter specifies which channel sponsors to return.
+     * @param  {integer=} params.maxResults - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param  {string=} params.pageToken - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param  {string} params.part - The part parameter specifies the sponsor resource parts that the API response will include. Supported values are id and snippet.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/v3/sponsors',
           method: 'GET'
         },
         params: params,

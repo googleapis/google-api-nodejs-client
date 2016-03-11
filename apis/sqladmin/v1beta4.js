@@ -135,7 +135,7 @@ function Sqladmin(options) {
     /**
      * sql.databases.delete
      *
-     * @desc Deletes a resource containing information about a database inside a Cloud SQL instance.
+     * @desc Deletes a database from a Cloud SQL instance.
      *
      * @alias sql.databases.delete
      * @memberOf! sqladmin(v1beta4)
@@ -351,7 +351,7 @@ function Sqladmin(options) {
     /**
      * sql.instances.clone
      *
-     * @desc Creates a Cloud SQL instance as a clone of the source instance.
+     * @desc Creates a Cloud SQL instance as a clone of the source instance. The API is not ready for Second Generation instances yet.
      *
      * @alias sql.instances.clone
      * @memberOf! sqladmin(v1beta4)

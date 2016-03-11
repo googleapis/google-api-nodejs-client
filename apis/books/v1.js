@@ -583,6 +583,7 @@ function Books(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.cpksver - The device/version ID from which to release the restriction.
      * @param  {string=} params.features - List of features supported by the client, i.e., 'RENTALS'
+     * @param  {boolean=} params.includeNonComicsSeries - Set to true to include non-comics series. Defaults to false.
      * @param  {string=} params.locale - ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param  {string} params.nonce - The client nonce value.
      * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
@@ -1399,6 +1400,7 @@ function Books(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
+     * @param  {boolean=} params.includeNonComicsSeries - Set to true to include non-comics series. Defaults to false.
      * @param  {string=} params.partner - Brand results for partner ID.
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.source - String to identify the originator of this request.
@@ -1509,6 +1511,7 @@ function Books(options) {
        *
        * @param  {object=} params - Parameters for request
        * @param  {string=} params.acquireMethod - How the book was aquired
+       * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
        * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
        * @param  {integer=} params.maxResults - Maximum number of results to return.
        * @param  {string=} params.processingState - The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
@@ -1547,7 +1550,6 @@ function Books(options) {
        * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
        * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
        * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string=} params.targetIds - List of target ids used for experiments or user segments
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */

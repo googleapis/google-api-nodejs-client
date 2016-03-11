@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Debugger API
  *
- * @classdesc Lets you examine the stack and variables of your running application without stopping or slowing it down.
+ * @classdesc Examines the call stack and variables of a running application without stopping or slowing it down.
  * @namespace clouddebugger
  * @version  v2
  * @variation v2
@@ -147,6 +147,7 @@ function Clouddebugger(options) {
        * @param  {object=} params - Parameters for request
        * @param  {string=} params.project - Project number of a Google Cloud project whose debuggees to list.
        * @param  {boolean=} params.includeInactive - When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
+       * @param  {string=} params.clientVersion - The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -177,6 +178,7 @@ function Clouddebugger(options) {
          *
          * @param  {object} params - Parameters for request
          * @param  {string} params.debuggeeId - ID of the debuggee where the breakpoint is to be set.
+         * @param  {string=} params.clientVersion - The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param  {object} params.resource - Request body data
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
@@ -207,6 +209,7 @@ function Clouddebugger(options) {
          * @param  {object} params - Parameters for request
          * @param  {string} params.debuggeeId - ID of the debuggee whose breakpoint to get.
          * @param  {string} params.breakpointId - ID of the breakpoint to get.
+         * @param  {string=} params.clientVersion - The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -236,6 +239,7 @@ function Clouddebugger(options) {
          * @param  {object} params - Parameters for request
          * @param  {string} params.debuggeeId - ID of the debuggee whose breakpoint to delete.
          * @param  {string} params.breakpointId - ID of the breakpoint to delete.
+         * @param  {string=} params.clientVersion - The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */
@@ -269,6 +273,7 @@ function Clouddebugger(options) {
          * @param  {string=} params.action.value - Only breakpoints with the specified action will pass the filter.
          * @param  {boolean=} params.stripResults - When set to `true`, the response breakpoints are stripped of the results fields: `stack_frames`, `evaluated_expressions` and `variable_table`.
          * @param  {string=} params.waitToken - A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired. The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
+         * @param  {string=} params.clientVersion - The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param  {callback} callback - The callback that handles the response.
          * @return {object} Request object
          */

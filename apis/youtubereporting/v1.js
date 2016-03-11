@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Reporting API
  *
- * @classdesc An API to schedule reporting jobs and download the resulting bulk data reports about YouTube channels, videos etc. in the form of CSV files.
+ * @classdesc Schedules reporting jobs and downloads the resulting bulk data reports about YouTube channels, videos, etc. in the form of CSV files.
  * @namespace youtubereporting
  * @version  v1
  * @variation v1
@@ -46,7 +46,7 @@ function Youtubereporting(options) {
      * @memberOf! youtubereporting(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceName - Name of the media that is being downloaded. See [][ByteStream.ReadRequest.resource_name].
+     * @param  {string} params.resourceName - Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

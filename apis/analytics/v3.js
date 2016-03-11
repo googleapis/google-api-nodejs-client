@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Analytics API
  *
- * @classdesc View and manage your Google Analytics data
+ * @classdesc Views and manages your Google Analytics data.
  * @namespace analytics
  * @version  v3
  * @variation v3
@@ -1165,7 +1165,7 @@ function Analytics(options) {
       /**
        * analytics.management.goals.patch
        *
-       * @desc Updates an existing view (profile). This method supports patch semantics.
+       * @desc Updates an existing goal. This method supports patch semantics.
        *
        * @alias analytics.management.goals.patch
        * @memberOf! analytics(v3)
@@ -1197,7 +1197,7 @@ function Analytics(options) {
       /**
        * analytics.management.goals.update
        *
-       * @desc Updates an existing view (profile).
+       * @desc Updates an existing goal.
        *
        * @alias analytics.management.goals.update
        * @memberOf! analytics(v3)
@@ -1589,9 +1589,9 @@ function Analytics(options) {
        * @memberOf! analytics(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account ID to retrieve the goal for.
-       * @param  {string} params.profileId - View (Profile) ID to retrieve the goal for.
-       * @param  {string} params.webPropertyId - Web property ID to retrieve the goal for.
+       * @param  {string} params.accountId - Account ID to retrieve the view (profile) for.
+       * @param  {string} params.profileId - View (Profile) ID to retrieve the view (profile) for.
+       * @param  {string} params.webPropertyId - Web property ID to retrieve the view (profile) for.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -1767,6 +1767,37 @@ function Analytics(options) {
     },
 
     unsampledReports: {
+
+      /**
+       * analytics.management.unsampledReports.delete
+       *
+       * @desc Deletes an unsampled report.
+       *
+       * @alias analytics.management.unsampledReports.delete
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID to delete the unsampled report for.
+       * @param  {string} params.profileId - View (Profile) ID to delete the unsampled report for.
+       * @param  {string} params.unsampledReportId - ID of the unsampled report to be deleted.
+       * @param  {string} params.webPropertyId - Web property ID to delete the unsampled reports for.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
+          pathParams: ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * analytics.management.unsampledReports.get

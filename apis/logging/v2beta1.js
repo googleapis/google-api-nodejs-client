@@ -79,9 +79,9 @@ function Logging(options) {
        * @memberOf! logging(v2beta1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectName - Required. The resource name of the project owning the sinks. Example: `"projects/my-logging-project"`, `"projects/01234567890"`.
+       * @param  {string} params.projectName - Required. The resource name of the project containing the sinks. Example: `"projects/my-logging-project"`, `"projects/01234567890"`.
        * @param  {string=} params.pageToken - Optional. If the `pageToken` request parameter is supplied, then the next page of results in the set are retrieved. The `pageToken` parameter must be set with the value of the `nextPageToken` result parameter from the previous request. The value of `projectName` must be the same as in the previous request.
-       * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. Fewer results might be returned. You must check for the 'nextPageToken` result to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value in the `pageToken` parameter to the next request.
+       * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. Fewer results might be returned. You must check for the `nextPageToken` result to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value in the `pageToken` parameter to the next request.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -226,9 +226,9 @@ function Logging(options) {
        * @memberOf! logging(v2beta1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.projectName - Required. The resource name for the project whose metrics are wanted. Example: `"projects/my-project-id"`.
+       * @param  {string} params.projectName - Required. The resource name of the project containing the metrics. Example: `"projects/my-project-id"`.
        * @param  {string=} params.pageToken - Optional. If the `pageToken` request parameter is supplied, then the next page of results in the set are retrieved. The `pageToken` parameter must be set with the value of the `nextPageToken` result parameter from the previous request. The value of `projectName` must be the same as in the previous request.
-       * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. Fewer results might be returned. You must check for the 'nextPageToken` result to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value in the `pageToken` parameter to the next request.
+       * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. Fewer results might be returned. You must check for the `nextPageToken` result to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value in the `pageToken` parameter to the next request.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -396,7 +396,7 @@ function Logging(options) {
     /**
      * logging.entries.list
      *
-     * @desc Lists log entries. Use this method to examine log entries from Cloud Logging. See [Exporting Logs](/logging/docs/export) for other ways to copy log entries out of Cloud Logging.
+     * @desc Lists log entries. Use this method to retrieve log entries from Cloud Logging. For ways to export log entries, see [Exporting Logs](/logging/docs/export).
      *
      * @alias logging.entries.list
      * @memberOf! logging(v2beta1)
@@ -434,7 +434,7 @@ function Logging(options) {
      * @memberOf! logging(v2beta1)
      *
      * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. Fewer results might be returned. You must check for the 'nextPageToken` result to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value in the `pageToken` parameter to the next request.
+     * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. Fewer results might be returned. You must check for the `nextPageToken` result to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value in the `pageToken` parameter to the next request.
      * @param  {string=} params.pageToken - Optional. If the `pageToken` request parameter is supplied, then the next page of results in the set are retrieved. The `pageToken` parameter must be set with the value of the `nextPageToken` result parameter from the previous request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object

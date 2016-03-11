@@ -47,7 +47,7 @@ function Appengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.appsId - Part of `name`. Name of the application to get. For example: "apps/myapp".
-     * @param  {boolean=} params.ensureResourcesExist - Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources cloud not be created, the request will fail with an error code.
+     * @param  {boolean=} params.ensureResourcesExist - Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -307,6 +307,38 @@ function Appengine(options) {
             params: params,
             requiredParams: ['appsId', 'modulesId'],
             pathParams: ['appsId', 'modulesId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.modules.versions.patch
+         *
+         * @desc Updates an existing version. Note: UNIMPLEMENTED.
+         *
+         * @alias appengine.apps.modules.versions.patch
+         * @memberOf! appengine(v1beta4)
+         *
+         * @param  {object} params - Parameters for request
+         * @param  {string} params.appsId - Part of `name`. Name of the resource to update. For example: "apps/myapp/modules/default/versions/1".
+         * @param  {string} params.modulesId - Part of `name`. See documentation of `appsId`.
+         * @param  {string} params.versionsId - Part of `name`. See documentation of `appsId`.
+         * @param  {string=} params.mask - Standard field mask for the set of fields to be updated.
+         * @param  {object} params.resource - Request body data
+         * @param  {callback} callback - The callback that handles the response.
+         * @return {object} Request object
+         */
+        patch: function(params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}',
+              method: 'PATCH'
+            },
+            params: params,
+            requiredParams: ['appsId', 'modulesId', 'versionsId'],
+            pathParams: ['appsId', 'modulesId', 'versionsId'],
             context: self
           };
 

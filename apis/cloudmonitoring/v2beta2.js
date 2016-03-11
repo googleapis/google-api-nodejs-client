@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud Monitoring API
  *
- * @classdesc API for accessing Google Cloud and API monitoring data.
+ * @classdesc Accesses Google Cloud Monitoring data.
  * @namespace cloudmonitoring
  * @version  v2beta2
  * @variation v2beta2

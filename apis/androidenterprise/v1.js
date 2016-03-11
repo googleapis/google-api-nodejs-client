@@ -498,7 +498,7 @@ function Androidenterprise(options) {
     /**
      * androidenterprise.enterprises.delete
      *
-     * @desc Deletes the binding between the MDM and enterprise. This is now deprecated; use this to unenroll customers that were previously enrolled with the 'insert' call, then enroll them again with the 'enroll' call.
+     * @desc Deletes the binding between the EMM and enterprise. This is now deprecated; use this to unenroll customers that were previously enrolled with the 'insert' call, then enroll them again with the 'enroll' call.
      *
      * @alias androidenterprise.enterprises.delete
      * @memberOf! androidenterprise(v1)
@@ -526,13 +526,13 @@ function Androidenterprise(options) {
     /**
      * androidenterprise.enterprises.enroll
      *
-     * @desc Enrolls an enterprise with the calling MDM.
+     * @desc Enrolls an enterprise with the calling EMM.
      *
      * @alias androidenterprise.enterprises.enroll
      * @memberOf! androidenterprise(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.token - The token provided by the enterprise to register the MDM.
+     * @param  {string} params.token - The token provided by the enterprise to register the EMM.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -581,15 +581,43 @@ function Androidenterprise(options) {
     },
 
     /**
+     * androidenterprise.enterprises.getStoreLayout
+     *
+     * @desc Returns the store layout resource.
+     *
+     * @alias androidenterprise.enterprises.getStoreLayout
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getStoreLayout: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.enterprises.insert
      *
-     * @desc Establishes the binding between the MDM and an enterprise. This is now deprecated; use enroll instead.
+     * @desc Establishes the binding between the EMM and an enterprise. This is now deprecated; use enroll instead.
      *
      * @alias androidenterprise.enterprises.insert
      * @memberOf! androidenterprise(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.token - The token provided by the enterprise to register the MDM.
+     * @param  {string} params.token - The token provided by the enterprise to register the EMM.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -640,7 +668,7 @@ function Androidenterprise(options) {
     /**
      * androidenterprise.enterprises.sendTestPushNotification
      *
-     * @desc Sends a test push notification to validate the MDM integration with the Google Cloud Pub/Sub service for this enterprise.
+     * @desc Sends a test push notification to validate the EMM integration with the Google Cloud Pub/Sub service for this enterprise.
      *
      * @alias androidenterprise.enterprises.sendTestPushNotification
      * @memberOf! androidenterprise(v1)
@@ -695,9 +723,38 @@ function Androidenterprise(options) {
     },
 
     /**
+     * androidenterprise.enterprises.setStoreLayout
+     *
+     * @desc Sets the store layout resource.
+     *
+     * @alias androidenterprise.enterprises.setStoreLayout
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setStoreLayout: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.enterprises.unenroll
      *
-     * @desc Unenrolls an enterprise from the calling MDM.
+     * @desc Unenrolls an enterprise from the calling EMM.
      *
      * @alias androidenterprise.enterprises.unenroll
      * @memberOf! androidenterprise(v1)
@@ -1322,7 +1379,7 @@ function Androidenterprise(options) {
     /**
      * androidenterprise.products.updatePermissions
      *
-     * @desc Updates the set of Android app permissions for this app that have been accepted by the enterprise.
+     * @desc This method has been deprecated. To programmatically approve applications, you must use the iframe mechanism via the  generateApprovalUrl and  approve methods of the Products resource. For more information, see the  Play EMM API usage requirements.  The updatePermissions method (deprecated) updates the set of Android app permissions for this app that have been accepted by the enterprise.
      *
      * @alias androidenterprise.products.updatePermissions
      * @memberOf! androidenterprise(v1)
@@ -1351,12 +1408,376 @@ function Androidenterprise(options) {
 
   };
 
+  this.storelayoutclusters = {
+
+    /**
+     * androidenterprise.storelayoutclusters.delete
+     *
+     * @desc Deletes a cluster.
+     *
+     * @alias androidenterprise.storelayoutclusters.delete
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clusterId - The ID of the cluster.
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutclusters.get
+     *
+     * @desc Retrieves details of a cluster.
+     *
+     * @alias androidenterprise.storelayoutclusters.get
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clusterId - The ID of the cluster.
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutclusters.insert
+     *
+     * @desc Inserts a new cluster in a page.
+     *
+     * @alias androidenterprise.storelayoutclusters.insert
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutclusters.list
+     *
+     * @desc Retrieves the details of all clusters on the specified page.
+     *
+     * @alias androidenterprise.storelayoutclusters.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutclusters.patch
+     *
+     * @desc Updates a cluster. This method supports patch semantics.
+     *
+     * @alias androidenterprise.storelayoutclusters.patch
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clusterId - The ID of the cluster.
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutclusters.update
+     *
+     * @desc Updates a cluster.
+     *
+     * @alias androidenterprise.storelayoutclusters.update
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.clusterId - The ID of the cluster.
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.storelayoutpages = {
+
+    /**
+     * androidenterprise.storelayoutpages.delete
+     *
+     * @desc Deletes a store page.
+     *
+     * @alias androidenterprise.storelayoutpages.delete
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutpages.get
+     *
+     * @desc Retrieves details of a store page.
+     *
+     * @alias androidenterprise.storelayoutpages.get
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutpages.insert
+     *
+     * @desc Inserts a new store page.
+     *
+     * @alias androidenterprise.storelayoutpages.insert
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutpages.list
+     *
+     * @desc Retrieves the details of all pages in the store.
+     *
+     * @alias androidenterprise.storelayoutpages.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutpages.patch
+     *
+     * @desc Updates the content of a store page. This method supports patch semantics.
+     *
+     * @alias androidenterprise.storelayoutpages.patch
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.storelayoutpages.update
+     *
+     * @desc Updates the content of a store page.
+     *
+     * @alias androidenterprise.storelayoutpages.update
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.enterpriseId - The ID of the enterprise.
+     * @param  {string} params.pageId - The ID of the page.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.users = {
 
     /**
      * androidenterprise.users.generateToken
      *
-     * @desc Generates a token (activation code) to allow this user to configure their work account in the Android Setup Wizard. Revokes any previously generated token.
+     * @desc Generates a token (activation code) to allow this user to configure their work account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
      *
      * @alias androidenterprise.users.generateToken
      * @memberOf! androidenterprise(v1)
@@ -1443,7 +1864,7 @@ function Androidenterprise(options) {
     /**
      * androidenterprise.users.list
      *
-     * @desc Looks up a user by email address.
+     * @desc Looks up a user by their primary email address.
      *
      * @alias androidenterprise.users.list
      * @memberOf! androidenterprise(v1)

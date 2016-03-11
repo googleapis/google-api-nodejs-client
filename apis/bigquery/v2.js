@@ -229,8 +229,8 @@ function Bigquery(options) {
      * @memberOf! bigquery(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Job ID of the job to cancel
-     * @param  {string} params.projectId - Project ID of the job to cancel
+     * @param  {string} params.jobId - [Required] Job ID of the job to cancel
+     * @param  {string} params.projectId - [Required] Project ID of the job to cancel
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -258,8 +258,8 @@ function Bigquery(options) {
      * @memberOf! bigquery(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Job ID of the requested job
-     * @param  {string} params.projectId - Project ID of the requested job
+     * @param  {string} params.jobId - [Required] Job ID of the requested job
+     * @param  {string} params.projectId - [Required] Project ID of the requested job
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -287,10 +287,10 @@ function Bigquery(options) {
      * @memberOf! bigquery(v2)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Job ID of the query job
+     * @param  {string} params.jobId - [Required] Job ID of the query job
      * @param  {integer=} params.maxResults - Maximum number of results to read
      * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {string} params.projectId - Project ID of the query job
+     * @param  {string} params.projectId - [Required] Project ID of the query job
      * @param  {string=} params.startIndex - Zero-based index of the starting row
      * @param  {integer=} params.timeoutMs - How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
      * @param  {callback} callback - The callback that handles the response.
