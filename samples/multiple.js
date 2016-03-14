@@ -20,7 +20,7 @@ var plus = google.plus('v1');
 
 // PUT your API key here or this example will return errors
 // To learn more about API keys, please see:
-// https://developers.google.com/console/help/#UsingKeys
+// https://github.com/google/google-api-nodejs-client#using-api-keys
 var API_KEY = 'AIzaSyBzQOyq8uKZKMTRfEPP-Qbrmy98CopcZRY';
 
 urlshortener.url.get({ shortUrl: 'http://goo.gl/xKbRu3', auth: API_KEY });
