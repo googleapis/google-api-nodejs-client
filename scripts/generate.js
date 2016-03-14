@@ -37,6 +37,7 @@ if (args.length) {
       console.log('Generated API for ' + url);
     });
   });
+  return;
 }
 
 console.log('Removing old APIs...');

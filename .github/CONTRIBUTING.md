@@ -37,11 +37,14 @@ the following command:
 npm run generate-apis
 ```
 
-You can pass in a custom Discovery URL:
+You can pass in custom Discovery URLs or paths to discovery docs:
 
 ``` sh
-node scripts/generate --discovery-url "http://discoveryurl.example.com"
+node scripts/generate http://discoveryurl.example.com /path/to/discoverydoc.json
 ```
+
+Currently, you may need to manually update `apis/index.js` to make sure it loads
+all APIs.
 
 ## Generating Documentation
 
