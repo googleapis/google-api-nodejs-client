@@ -25,6 +25,18 @@ describe('Transporters', function() {
 
   function noop() {}
 
+  it('should add headers to the request from params', function() {
+    var google = require('../lib/googleapis');
+    var drive = google.drive('v2');
+    var req = drive.comments.insert({
+        fileId: 'a',
+        headers: {
+          'If-None-Match': '12345'
+        }
+    }, noop);
+    assert.equal(req.headers['If-None-Match'], '12345');
+  });
+
   it('should automatically add content-type for POST requests', function() {
     var google = require('../lib/googleapis');
     var drive = google.drive('v2');

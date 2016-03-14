@@ -86,3 +86,18 @@ Documentation for the URL Shortener API in
     <td>Shortens a URL with the URL Shortener API</td>
   </tr>
 </table>
+
+
+## ![](http://www.google.com/images/icons/product/youtube-32.png) YouTube API
+
+With the YouTube Data API, you can add a variety of YouTube features to your application. Use the API to upload videos, manage playlists and subscriptions, update channel settings, and more.
+
+Documentation for the YouTube Data API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/2.1.7/youtube.html).
+
+<table>
+  <tr>
+    <td><a href="youtube">samples/youtube</a></td>
+    <td>Samples for working with playlists and search.</td>
+  </tr>
+</table>
