@@ -1,5 +1,7 @@
 test
-examples
+samples
 docs
 node_modules
 coverage
+jsdoc-conf.json
+.travis.yml
