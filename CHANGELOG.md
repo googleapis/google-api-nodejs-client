@@ -1,0 +1,30 @@
+##### 3.0.0 - 14 March 2016
+
+###### Breaking API changes
+- Removed `admin` `email_migration_v2` API
+- Removed `mapsengine` `exp2` API
+- Removed `mapsengine` `v1` API
+
+###### Backwards compatible API changes
+- Added `adexchangebuyer2` `v3beta1` API
+- Added `appengine` `v1beta5` API
+- Added `cloudbuild` `v1` API
+- Added `cloudresourcemanager` `v1` API
+- Added `compute` `beta` API
+- Added `dfareporting` `v2`.4 API
+- Added `genomics` `v1alpha2` API
+- Added `iam` `v1` API
+- Added `iam` `v1alpha1` API
+- Added `people` `v1` API
+- Added `serviceregister` `alpha` API
+- Added `toolresults` `v1beta3` API
+- Added `vision` `v1` API
+- #488 - Added support for generating an API from a discovery doc file
+- #533 - Add etag support with samples and test
+- `node scripts/generate` can now accept a variable list of discovery urls and/or paths to discovery doc files
+
+###### Backwards compatible bug fixes
+- #463 - `--discovery-url` option works again.
+
+###### Other
+- #527 - Added glass mirror api sample

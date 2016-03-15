@@ -21,49 +21,44 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Email Migration API v2
+ * Cloud Vision API
  *
- * @classdesc Email Migration API lets you migrate emails of users to Google backends.
- * @namespace admin
- * @version  email_migration_v2
- * @variation email_migration_v2
- * @this Admin
- * @param {object=} options Options for Admin
+ * @classdesc The Google Cloud Vision API allows developers to easily integrate Google vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
+ * @namespace vision
+ * @version  v1
+ * @variation v1
+ * @this Vision
+ * @param {object=} options Options for Vision
  */
-function Admin(options) {
+function Vision(options) {
 
   var self = this;
   this._options = options || {};
 
-  this.mail = {
+  this.images = {
 
     /**
-     * emailMigration.mail.insert
+     * vision.images.annotate
      *
-     * @desc Insert Mail into Google's Gmail backends
+     * @desc Run image detection and annotation for a batch of images.
      *
-     * @alias emailMigration.mail.insert
-     * @memberOf! admin(email_migration_v2)
+     * @alias vision.images.annotate
+     * @memberOf! vision(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - The email or immutable id of the user
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
+     * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    annotate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/email/v2/users/{userKey}/mail',
+          url: 'https://vision.googleapis.com/v1/images:annotate',
           method: 'POST'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/email/v2/users/{userKey}/mail',
-        requiredParams: ['userKey'],
-        pathParams: ['userKey'],
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -74,7 +69,7 @@ function Admin(options) {
 }
 
 /**
- * Exports Admin object
- * @type Admin
+ * Exports Vision object
+ * @type Vision
  */
-module.exports = Admin;
+module.exports = Vision;

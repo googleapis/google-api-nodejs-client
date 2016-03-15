@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * PageSpeed Insights API
  *
- * @classdesc Lets you analyze the performance of a web page and get tailored suggestions to make that page faster.
+ * @classdesc Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
  * @namespace pagespeedonline
  * @version  v2
  * @variation v2

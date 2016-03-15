@@ -663,6 +663,35 @@ function Drive(options) {
     },
 
     /**
+     * drive.files.export
+     *
+     * @desc Exports a Google Doc to the requested MIME type and returns the exported content.
+     *
+     * @alias drive.files.export
+     * @memberOf! drive(v2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.fileId - The ID of the file.
+     * @param  {string} params.mimeType - The MIME type of the format requested for this export.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    export: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/export',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['fileId', 'mimeType'],
+        pathParams: ['fileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * drive.files.generateIds
      *
      * @desc Generates a set of file IDs which can be provided in insert requests.
@@ -1399,7 +1428,7 @@ function Drive(options) {
     /**
      * drive.properties.insert
      *
-     * @desc Adds a property to a file.
+     * @desc Adds a property to a file, or updates it if it already exists.
      *
      * @alias drive.properties.insert
      * @memberOf! drive(v2)
@@ -1456,7 +1485,7 @@ function Drive(options) {
     /**
      * drive.properties.patch
      *
-     * @desc Updates a property. This method supports patch semantics.
+     * @desc Updates a property, or adds it if it doesn't exist. This method supports patch semantics.
      *
      * @alias drive.properties.patch
      * @memberOf! drive(v2)
@@ -1487,7 +1516,7 @@ function Drive(options) {
     /**
      * drive.properties.update
      *
-     * @desc Updates a property.
+     * @desc Updates a property, or adds it if it doesn't exist.
      *
      * @alias drive.properties.update
      * @memberOf! drive(v2)

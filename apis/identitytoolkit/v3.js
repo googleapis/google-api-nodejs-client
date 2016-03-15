@@ -186,6 +186,8 @@ function Identitytoolkit(options) {
      * @memberOf! identitytoolkit(v3)
      *
      * @param  {object=} params - Parameters for request
+     * @param  {string=} params.delegatedProjectNumber - Delegated GCP project number of the request.
+     * @param  {string=} params.projectNumber - GCP project number of the request.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -315,6 +317,90 @@ function Identitytoolkit(options) {
     },
 
     /**
+     * identitytoolkit.relyingparty.setProjectConfig
+     *
+     * @desc Set project configuration.
+     *
+     * @alias identitytoolkit.relyingparty.setProjectConfig
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    setProjectConfig: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * identitytoolkit.relyingparty.signOutUser
+     *
+     * @desc Sign out user.
+     *
+     * @alias identitytoolkit.relyingparty.signOutUser
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    signOutUser: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signOutUser',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * identitytoolkit.relyingparty.signupNewUser
+     *
+     * @desc Signup new user.
+     *
+     * @alias identitytoolkit.relyingparty.signupNewUser
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    signupNewUser: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * identitytoolkit.relyingparty.uploadAccount
      *
      * @desc Batch upload existing user accounts.
@@ -359,6 +445,34 @@ function Identitytoolkit(options) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * identitytoolkit.relyingparty.verifyCustomToken
+     *
+     * @desc Verifies the developer asserted ID token.
+     *
+     * @alias identitytoolkit.relyingparty.verifyCustomToken
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    verifyCustomToken: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken',
           method: 'POST'
         },
         params: params,

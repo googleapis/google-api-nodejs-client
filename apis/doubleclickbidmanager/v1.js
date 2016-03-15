@@ -270,6 +270,38 @@ function Doubleclickbidmanager(options) {
     }
 
   };
+
+  this.rubicon = {
+
+    /**
+     * doubleclickbidmanager.rubicon.notifyproposalchange
+     *
+     * @desc Update proposal upon actions of Rubicon publisher.
+     *
+     * @alias doubleclickbidmanager.rubicon.notifyproposalchange
+     * @memberOf! doubleclickbidmanager(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    notifyproposalchange: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/rubicon/notifyproposalchange',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * AdSense Host API
  *
- * @classdesc Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.
+ * @classdesc Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
  * @namespace adsensehost
  * @version  v4.1
  * @variation v4.1
