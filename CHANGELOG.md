@@ -1,3 +1,12 @@
+##### 3.1.0 - 16 March 2016
+
+###### Backwards compatible API changes
+- Added `monitoring` `v3` API
+
+###### Other
+- #536 - Update README URLs based on HTTP redirects (by @ReadmeCritic)
+- #537 - [github template] minor edits to pull request template (by @ReadmeCritic)
+
 ##### 3.0.0 - 14 March 2016
 
 ###### Breaking API changes

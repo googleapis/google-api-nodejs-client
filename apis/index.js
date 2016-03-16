@@ -110,6 +110,7 @@ var APIs = {
   'iam': requireAPI('iam'),
   'kgsearch': requireAPI('kgsearch'),
   'logging': requireAPI('logging'),
+  'monitoring': requireAPI('monitoring'),
   'partners': requireAPI('partners'),
   'people': requireAPI('people'),
   'playmoviespartner': requireAPI('playmoviespartner'),
