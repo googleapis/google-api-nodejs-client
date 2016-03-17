@@ -1,3 +1,9 @@
+# Migrating from version `2.x` to `3.x`
+
+The only breaking changes from `2.x` to `3.x` are listed in the [changelog](https://github.com/google/google-api-nodejs-client/blob/master/CHANGELOG.md#300---14-march-2016).
+
+Everything else should continue to work.
+
 # Migrating from version `1.x` to `2.x`
 
 Code written against a `1.x` version of this library should continue to work with the `2.x` 
