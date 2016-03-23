@@ -72,6 +72,7 @@ var APIs = {
   'calendar': requireAPI('calendar'),
   'civicinfo': requireAPI('civicinfo'),
   'cloudbuild': requireAPI('cloudbuild'),
+  'clouderrorreporting': requireAPI('clouderrorreporting'),
   'cloudlatencytest': requireAPI('cloudlatencytest'),
   'cloudmonitoring': requireAPI('cloudmonitoring'),
   'clouduseraccounts': requireAPI('clouduseraccounts'),

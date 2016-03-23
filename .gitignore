@@ -4,3 +4,5 @@ docs/
 npm-debug.log
 coverage
 .secrets.json
+# Empty API
+apis/iam/v1alpha1.js

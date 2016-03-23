@@ -649,6 +649,7 @@ function Adexchangebuyer(options) {
      * @memberOf! adexchangebuyer(v1.4)
      *
      * @param  {object} params - Parameters for request
+     * @param  {string} params.privateAuctionId - The private auction id to be updated.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -656,12 +657,12 @@ function Adexchangebuyer(options) {
     updateproposal: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/privateauction/{private_auction_id}/updateproposal',
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/privateauction/{privateAuctionId}/updateproposal',
           method: 'POST'
         },
         params: params,
-        requiredParams: ['private_auction_id'],
-        pathParams: [],
+        requiredParams: ['privateAuctionId'],
+        pathParams: ['privateAuctionId'],
         context: self
       };
 

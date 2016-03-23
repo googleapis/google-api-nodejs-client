@@ -1,3 +1,12 @@
+##### 4.0.0 - 23 March 2016
+
+###### Breaking API changes
+- `adexchangebuyer` `v1.4`: Renamed required param `private_auction_id` to `privateAuctionId`
+
+###### Backwards compatible API changes
+- Added `clouderrorreporting` `v1beta1` API
+- `compute` `v1`: Added `resize` method
+
 ##### 3.1.0 - 16 March 2016
 
 ###### Backwards compatible API changes

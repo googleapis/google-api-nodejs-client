@@ -5,3 +5,5 @@ node_modules
 coverage
 jsdoc-conf.json
 .travis.yml
+# Empty API
+apis/iam/v1alpha1.js

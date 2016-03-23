@@ -80,10 +80,10 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project whose groups are to be listed. The format is `"projects/ "`.
-       * @param  {string=} params.childrenOfGroup - A group name: `"projects/ /groups/"`. Returns groups whose `parentName` field contains the group name. If no groups have this parent, the results are empty.
-       * @param  {string=} params.ancestorsOfGroup - A group name: `"projects/ /groups/<group_id"`. Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
-       * @param  {string=} params.descendantsOfGroup - A group name: `"projects/ /groups/"`. Returns the descendants of the specified group. This is a superset of the results returned by the `childrenOfGroup` filter, and includes children-of-children, and so forth.
+       * @param  {string} params.name - The project whose groups are to be listed. The format is `"projects/{project_id_or_number}"`.
+       * @param  {string=} params.childrenOfGroup - A group name: `"projects/{project_id_or_number}/groups/{group_id}"`. Returns groups whose `parentName` field contains the group name. If no groups have this parent, the results are empty.
+       * @param  {string=} params.ancestorsOfGroup - A group name: `"projects/{project_id_or_number}/groups/{group_id}"`. Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
+       * @param  {string=} params.descendantsOfGroup - A group name: `"projects/{project_id_or_number}/groups/{group_id}"`. Returns the descendants of the specified group. This is a superset of the results returned by the `childrenOfGroup` filter, and includes children-of-children, and so forth.
        * @param  {integer=} params.pageSize - A positive number that is the maximum number of results to return.
        * @param  {string=} params.pageToken - If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
        * @param  {callback} callback - The callback that handles the response.
@@ -113,7 +113,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The group to retrieve. The format is `"projects/ /groups/"`.
+       * @param  {string} params.name - The group to retrieve. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -141,7 +141,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project in which to create the group. The format is `"projects/ "`.
+       * @param  {string} params.name - The project in which to create the group. The format is `"projects/{project_id_or_number}"`.
        * @param  {boolean=} params.validateOnly - If true, validate this request but do not create the group.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
@@ -171,7 +171,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The name of this group. The format is `"projects/ /groups/"`. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to `CreateGroup` and a unique `` that is generated automatically. @OutputOnly
+       * @param  {string} params.name - The name of this group. The format is `"projects/{project_id_or_number}/groups/{group_id}"`. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to `CreateGroup` and a unique `{group_id}` that is generated automatically. @OutputOnly
        * @param  {boolean=} params.validateOnly - If true, validate this request but do not update the existing group.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
@@ -201,7 +201,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The group to delete. The format is `"projects/ /groups/"`.
+       * @param  {string} params.name - The group to delete. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -231,7 +231,7 @@ function Monitoring(options) {
          * @memberOf! monitoring(v3)
          *
          * @param  {object} params - Parameters for request
-         * @param  {string} params.name - The group whose members are listed. The format is `"projects/ /groups/"`.
+         * @param  {string} params.name - The group whose members are listed. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
          * @param  {integer=} params.pageSize - A positive number that is the maximum number of results to return.
          * @param  {string=} params.pageToken - If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
          * @param  {string=} params.filter - An optional [list filter](/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: resource.type = "gce_instance"
@@ -268,7 +268,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/ "`.
+       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
        * @param  {string=} params.filter - An optional [filter](/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an `id` label: resource.type = starts_with("gce_") AND resource.label:id
        * @param  {integer=} params.pageSize - A positive number that is the maximum number of results to return.
        * @param  {string=} params.pageToken - If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
@@ -299,7 +299,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The monitored resource descriptor to get. The format is `"projects/ /monitoredResourceDescriptors/"`. The `` is a predefined type, such as `cloudsql_database`.
+       * @param  {string} params.name - The monitored resource descriptor to get. The format is `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`. The `{resource_type}` is a predefined type, such as `cloudsql_database`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -330,7 +330,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/ "`.
+       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
        * @param  {string=} params.filter - If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the [filter](/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all [custom metrics](/monitoring/custom-metrics): metric.type = starts_with("custom.googleapis.com/")
        * @param  {integer=} params.pageSize - A positive number that is the maximum number of results to return.
        * @param  {string=} params.pageToken - If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
@@ -361,7 +361,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The metric descriptor on which to execute the request. The format is `"projects/ /metricDescriptors/"`. An example value of `` is `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+       * @param  {string} params.name - The metric descriptor on which to execute the request. The format is `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`. An example value of `{metric_id}` is `"compute.googleapis.com/instance/disk/read_bytes_count"`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -389,7 +389,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/ "`.
+       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -418,7 +418,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The metric descriptor on which to execute the request. The format is `"projects/ /metricDescriptors/"`. An example of `` is: `"custom.googleapis.com/my_test_metric"`.
+       * @param  {string} params.name - The metric descriptor on which to execute the request. The format is `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`. An example of `{metric_id}` is: `"custom.googleapis.com/my_test_metric"`.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
@@ -449,7 +449,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project on which to execute the request. The format is "projects/ ".
+       * @param  {string} params.name - The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param  {string=} params.filter - A [monitoring filter](/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.label.instance_name = "my-instance-name"
        * @param  {string=} params.interval.endTime - (required) The end of the interval. The interval includes this time.
        * @param  {string=} params.interval.startTime - (optional) If omitted, the interval is a point in time, `endTime`. If `startTime` is present, it must be earlier than (less than) `endTime`. The interval begins after `startTime`—it does not include `startTime`.
@@ -457,7 +457,7 @@ function Monitoring(options) {
        * @param  {string=} params.aggregation.perSeriesAligner - The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series. Time series data must be aligned in order to perform cross-time series reduction. If `crossSeriesReducer` is specified, then `perSeriesAligner` must be specified and not equal `ALIGN_NONE` and `alignmentPeriod` must be specified; otherwise, an error is returned.
        * @param  {string=} params.aggregation.crossSeriesReducer - The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series. Time series data must be aligned in order to perform cross-time series reduction. If `crossSeriesReducer` is specified, then `perSeriesAligner` must be specified and not equal `ALIGN_NONE` and `alignmentPeriod` must be specified; otherwise, an error is returned.
        * @param  {string=} params.aggregation.groupByFields - The set of fields to preserve when `crossSeriesReducer` is specified. The `groupByFields` determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The `crossSeriesReducer` is applied to each subset of time series. Fields not specified in `groupByFields` are aggregated away. If `groupByFields` is not specified, the time series are aggregated into a single output time series. If `crossSeriesReducer` is not defined, this field is ignored.
-       * @param  {string=} params.orderBy - By default, results are ordered by time, from earliest to latest. Currently, this field must be left blank.
+       * @param  {string=} params.orderBy - Specifies the order in which the points of the time series should be returned. By default, results are not ordered. Currently, this field must be left blank.
        * @param  {string=} params.view - Specifies which information is returned about the time series.
        * @param  {integer=} params.pageSize - A positive number that is the maximum number of results to return. When `view` field sets to `FULL`, it limits the number of `Points` server will return; if `view` field is `HEADERS`, it limits the number of `TimeSeries` server will return.
        * @param  {string=} params.pageToken - If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
@@ -488,7 +488,7 @@ function Monitoring(options) {
        * @memberOf! monitoring(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/ "`.
+       * @param  {string} params.name - The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object

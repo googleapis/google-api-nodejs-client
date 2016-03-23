@@ -847,7 +847,7 @@ function Compute(options) {
     /**
      * compute.disks.insert
      *
-     * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 200 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
+     * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
      *
      * @alias compute.disks.insert
      * @memberOf! compute(v1)
@@ -901,6 +901,37 @@ function Compute(options) {
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.disks.resize
+     *
+     * @desc Resizes the specified persistent disk.
+     *
+     * @alias compute.disks.resize
+     * @memberOf! compute(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.disk - The name of the persistent disk.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone for this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    resize: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/resize',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
         context: self
       };
 

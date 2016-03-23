@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Dataflow API
  *
- * @classdesc Google Dataflow API.
+ * @classdesc Google Cloud Dataflow is a simple, flexible, and powerful system you can use to perform data processing tasks.
  * @namespace dataflow
  * @version  v1b3
  * @variation v1b3

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Datastore API
  *
- * @classdesc API for accessing Google Cloud Datastore.
+ * @classdesc Stores and queries data in Google Cloud Datastore.
  * @namespace datastore
  * @version  v1beta1
  * @variation v1beta1

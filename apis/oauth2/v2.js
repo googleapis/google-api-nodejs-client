@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google OAuth2 API
  *
- * @classdesc Lets you access OAuth2 protocol related APIs.
+ * @classdesc Obtains end-user authorization grants for use with other Google APIs.
  * @namespace oauth2
  * @version  v2
  * @variation v2

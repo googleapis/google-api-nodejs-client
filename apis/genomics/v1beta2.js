@@ -618,7 +618,7 @@ function Genomics(options) {
     /**
      * genomics.datasets.delete
      *
-     * @desc Deletes a dataset.
+     * @desc Deletes a dataset and all of its contents (all read group sets, reference sets, variant sets, call sets, annotation sets, etc.) This is reversible (up to one week after the deletion) via the UndeleteDataset operation.
      *
      * @alias genomics.datasets.delete
      * @memberOf! genomics(v1beta2)
@@ -1598,7 +1598,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.importVariants
      *
-     * @desc Creates variant data by asynchronously importing the provided information.  The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting info fields, some data will be arbitrarily discarded. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
+     * @desc Creates variant data by asynchronously importing the provided information.  The variants for import will be merged with any existing data and each other according to the behavior of mergeVariants. In particular, this means for merged VCF variants that have conflicting info fields, some data will be arbitrarily discarded unless otherwise specified in the InfoMergeConfig field of ImportVariantsRequest. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
      *
      * @alias genomics.variantsets.importVariants
      * @memberOf! genomics(v1beta2)
@@ -1627,7 +1627,7 @@ function Genomics(options) {
     /**
      * genomics.variantsets.mergeVariants
      *
-     * @desc Merges the given variants with existing variants. Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant, and other fields (such as key/value pairs) are discarded.
+     * @desc Merges the given variants with existing variants. Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant. Variant info fields are merged as specified in the InfoMergeConfig field of the MergeVariantsRequest.
      *
      * @alias genomics.variantsets.mergeVariants
      * @memberOf! genomics(v1beta2)

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Calendar API
  *
- * @classdesc Lets you manipulate events and other calendar data.
+ * @classdesc Manipulates events and other calendar data.
  * @namespace calendar
  * @version  v3
  * @variation v3

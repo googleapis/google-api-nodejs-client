@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Search Console API
  *
- * @classdesc Lets you view Google Search Console data for your verified sites.
+ * @classdesc View Google Search Console data for your verified sites.
  * @namespace webmasters
  * @version  v3
  * @variation v3

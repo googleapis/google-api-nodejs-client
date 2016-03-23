@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play EMM API
  *
- * @classdesc Allows MDMs/EMMs and enterprises to manage the deployment of apps to Android for Work users.
+ * @classdesc Manages the deployment of apps to Android for Work users.
  * @namespace androidenterprise
  * @version  v1
  * @variation v1
@@ -793,7 +793,7 @@ function Androidenterprise(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement, e.g. "app:com.google.android.gm".
+     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param  {string} params.userId - The ID of the user.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -823,7 +823,7 @@ function Androidenterprise(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement, e.g. "app:com.google.android.gm".
+     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param  {string} params.userId - The ID of the user.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -882,7 +882,7 @@ function Androidenterprise(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement, e.g. "app:com.google.android.gm".
+     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param  {boolean=} params.install - Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
      * @param  {string} params.userId - The ID of the user.
      * @param  {object} params.resource - Request body data
@@ -914,7 +914,7 @@ function Androidenterprise(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement, e.g. "app:com.google.android.gm".
+     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param  {boolean=} params.install - Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
      * @param  {string} params.userId - The ID of the user.
      * @param  {object} params.resource - Request body data
