@@ -24,7 +24,7 @@ JWT (Service Tokens) is included.
   * [Create a service client](#create-a-service-client)
   * [Authorizing and authenticating](#authorizing-and-authenticating)
     * [OAuth2 client](#oauth2-client)
-      * [Generating an authentication URL](#generating an authentication URL)
+      * [Generating an authentication URL](#generating-an-authentication-url)
       * [Retrieve authorization code](#retrieve-authorization-code)
       * [Retrieve access token](#retrieve-access-token)
       * [Setting global or service-level auth](#setting-global-or-service-level-auth)
