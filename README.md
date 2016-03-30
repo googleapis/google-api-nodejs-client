@@ -358,9 +358,9 @@ contents "Hello World".
 ``` js
 var drive = google.drive({ version: 'v2', auth: oauth2Client });
 
-drive.files.insert({
+drive.files.create({
   resource: {
-    title: 'Test',
+    name: 'Test',
     mimeType: 'text/plain'
   },
   media: {
@@ -381,9 +381,9 @@ Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 var fs = require('fs');
 var drive = google.drive({ version: 'v2', auth: oauth2Client });
 
-drive.files.insert({
+drive.files.create({
   resource: {
-    title: 'testimage.png',
+    name: 'testimage.png',
     mimeType: 'image/png'
   },
   media: {
@@ -402,7 +402,7 @@ Every request to the API returns a [`request`][request] object, allowing you to 
 the request's progress or general information about the request.
 
 ```js
-var req = drive.files.insert(/* ... */);
+var req = drive.files.create(/* ... */);
 console.log(req.uri.href); // print out the request's URL.
 ```
 
