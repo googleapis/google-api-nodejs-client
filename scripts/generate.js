@@ -50,11 +50,6 @@ rimraf(path.join(__dirname, '..', 'apis'), function(err) {
     if (err) {
       throw err;
     }
-    gen.generateIndex(function(err) {
-      if (err) {
-        throw err;
-      }
-      console.log('Finished generating APIs!');
-    });
+    console.log('Finished generating APIs!');
   });
 });
