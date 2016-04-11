@@ -43,9 +43,6 @@ You can pass in custom Discovery URLs or paths to discovery docs:
 node scripts/generate http://discoveryurl.example.com /path/to/discoverydoc.json
 ```
 
-Currently, you may need to manually update `apis/index.js` to make sure it loads
-all APIs.
-
 ## Generating Documentation
 
 You can generate the documentation for the APIs by running:
