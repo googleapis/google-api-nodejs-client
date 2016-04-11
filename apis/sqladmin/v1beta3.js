@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud SQL Administration API
  *
- * @classdesc API for Cloud SQL database instance management.
+ * @classdesc Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
  * @namespace sqladmin
  * @version  v1beta3
  * @variation v1beta3

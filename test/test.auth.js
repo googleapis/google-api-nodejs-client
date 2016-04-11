@@ -17,7 +17,7 @@
 'use strict';
 
 var assert = require('assert');
-var googleapis = require('../lib/googleapis.js');
+var googleapis = require('../');
 var nock = require('nock');
 var JWT = require('../lib/auth/jwtclient.js');
 var Compute = require('../lib/auth/computeclient.js');

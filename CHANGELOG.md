@@ -1,15 +1,28 @@
+##### 5.0.0 - 11 April 2016
+
+###### Breaking changes
+- Removed `deploymentmanager` `v2beta1` API
+- Removed `deploymentmanager` `v2beta2` API
+
+###### Backwards compatible changes
+- Added `analyticsreporting` `v4` API
+- Added `consumersurveys` `v2` API
+- Added `datastore` `v1beta3` API
+- Added `dfareporting` `v2.5beta1` API
+- Removed `apis/index.js`, now the apis are loaded dynamically by `lib/googleapis.js`
+
 ##### 4.0.0 - 23 March 2016
 
-###### Breaking API changes
+###### Breaking changes
 - `adexchangebuyer` `v1.4`: Renamed required param `private_auction_id` to `privateAuctionId`
 
-###### Backwards compatible API changes
+###### Backwards compatible changes
 - Added `clouderrorreporting` `v1beta1` API
 - `compute` `v1`: Added `resize` method
 
 ##### 3.1.0 - 16 March 2016
 
-###### Backwards compatible API changes
+###### Backwards compatible changes
 - Added `monitoring` `v3` API
 
 ###### Other
@@ -18,12 +31,12 @@
 
 ##### 3.0.0 - 14 March 2016
 
-###### Breaking API changes
+###### Breaking changes
 - Removed `admin` `email_migration_v2` API
 - Removed `mapsengine` `exp2` API
 - Removed `mapsengine` `v1` API
 
-###### Backwards compatible API changes
+###### Backwards compatible changes
 - Added `adexchangebuyer2` `v3beta1` API
 - Added `appengine` `v1beta5` API
 - Added `cloudbuild` `v1` API

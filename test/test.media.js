@@ -18,7 +18,7 @@
 
 var assert = require('assert');
 var fs = require('fs');
-var googleapis = require('../lib/googleapis.js');
+var googleapis = require('../');
 var nock = require('nock');
 var google, drive;
 

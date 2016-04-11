@@ -35,6 +35,326 @@ function Genomics(options) {
   var self = this;
   this._options = options || {};
 
+  this.annotationsets = {
+
+    /**
+     * genomics.annotationsets.create
+     *
+     * @desc Creates a new annotation set. Caller must have WRITE permission for the associated dataset. The following fields are required: * datasetId * referenceSetId All other fields may be optionally specified, unless documented as being server-generated (for example, the `id` field).
+     *
+     * @alias genomics.annotationsets.create
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotationsets',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationsets.get
+     *
+     * @desc Gets an annotation set. Caller must have READ permission for the associated dataset.
+     *
+     * @alias genomics.annotationsets.get
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be retrieved.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotationsets/{annotationSetId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationsets.update
+     *
+     * @desc Updates an annotation set. The update must respect all mutability restrictions and other invariants described on the annotation set resource. Caller must have WRITE permission for the associated dataset.
+     *
+     * @alias genomics.annotationsets.update
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. Mutable fields are name, source_uri, and info. If unspecified, all mutable fields will be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotationsets/{annotationSetId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationsets.delete
+     *
+     * @desc Deletes an annotation set. Caller must have WRITE permission for the associated annotation set.
+     *
+     * @alias genomics.annotationsets.delete
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationSetId - The ID of the annotation set to be deleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotationsets/{annotationSetId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['annotationSetId'],
+        pathParams: ['annotationSetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotationsets.search
+     *
+     * @desc Searches for annotation sets that match the given criteria. Annotation sets are returned in an unspecified order. This order is consistent, such that two queries for the same content (regardless of page size) yield annotation sets in the same order across their respective streams of paginated responses. Caller must have READ permission for the queried datasets.
+     *
+     * @alias genomics.annotationsets.search
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotationsets/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.annotations = {
+
+    /**
+     * genomics.annotations.create
+     *
+     * @desc Creates a new annotation. Caller must have WRITE permission for the associated annotation set. The following fields are required: * annotationSetId * referenceName or referenceId ### Transcripts For annotations of type TRANSCRIPT, the following fields of transcript must be provided: * `exons.start` * `exons.end` All other fields may be optionally specified, unless documented as being server-generated (for example, the `id` field). The annotated range must be no longer than 100Mbp (mega base pairs). See the Annotation resource for additional restrictions on each field.
+     *
+     * @alias genomics.annotations.create
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotations',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.batchCreate
+     *
+     * @desc Creates one or more new annotations atomically. All annotations must belong to the same annotation set. Caller must have WRITE permission for this annotation set. For optimal performance, batch positionally adjacent annotations together. If the request has a systemic issue, such as an attempt to write to an inaccessible annotation set, the entire RPC will fail accordingly. For lesser data issues, when possible an error will be isolated to the corresponding batch entry in the response; the remaining well formed annotations will be created normally. For details on the requirements for each individual annotation resource, see CreateAnnotation.
+     *
+     * @alias genomics.annotations.batchCreate
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchCreate: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotations:batchCreate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.get
+     *
+     * @desc Gets an annotation. Caller must have READ permission for the associated annotation set.
+     *
+     * @alias genomics.annotations.get
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation to be retrieved.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotations/{annotationId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.update
+     *
+     * @desc Updates an annotation. Caller must have WRITE permission for the associated dataset.
+     *
+     * @alias genomics.annotations.update
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation to be updated.
+     * @param  {string=} params.updateMask - An optional mask specifying which fields to update. Mutable fields are name, variant, transcript, and info. If unspecified, all mutable fields will be updated.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotations/{annotationId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.delete
+     *
+     * @desc Deletes an annotation. Caller must have WRITE permission for the associated annotation set.
+     *
+     * @alias genomics.annotations.delete
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.annotationId - The ID of the annotation to be deleted.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotations/{annotationId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['annotationId'],
+        pathParams: ['annotationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.annotations.search
+     *
+     * @desc Searches for annotations that match the given criteria. Results are ordered by genomic coordinate (by reference sequence, then position). Annotations with equivalent genomic coordinates are returned in an unspecified order. This order is consistent, such that two queries for the same content (regardless of page size) yield annotations in the same order across their respective streams of paginated responses. Caller must have READ permission for the queried annotation sets.
+     *
+     * @alias genomics.annotations.search
+     * @memberOf! genomics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    search: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://genomics.googleapis.com/v1/annotations/search',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   this.datasets = {
 
     /**
@@ -821,7 +1141,7 @@ function Genomics(options) {
     /**
      * genomics.variants.import
      *
-     * @desc Creates variant data by asynchronously importing the provided information. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The variants for import will be merged with any existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and Variant info fields are merged as specified in InfoMergeConfig. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
+     * @desc Creates variant data by asynchronously importing the provided information. For the definitions of variant sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) The variants for import will be merged with any existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant, and Variant info fields are merged as specified in infoMergeConfig. As a special case, for single-sample VCF files, QUAL and FILTER fields will be moved to the call level; these are sometimes interpreted in a call-specific context. Imported VCF headers are appended to the metadata already in a variant set.
      *
      * @alias genomics.variants.import
      * @memberOf! genomics(v1)
@@ -991,7 +1311,7 @@ function Genomics(options) {
     /**
      * genomics.variants.merge
      *
-     * @desc Merges the given variants with existing variants. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant. Variant info fields are merged as specified in the InfoMergeConfig field of the MergeVariantsRequest.
+     * @desc Merges the given variants with existing variants. For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics) Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created. When variants are merged, the call information from the new variant is added to the existing variant. Variant info fields are merged as specified in the infoMergeConfig field of the MergeVariantsRequest. Please exercise caution when using this method! It is easy to introduce mistakes in existing variants and difficult to back out of them. For example, suppose you were trying to merge a new variant with an existing one and both variants contain calls that belong to callsets with the same callset ID. // Existing variant - irrelevant fields trimmed for clarity { "variantSetId": "10473108253681171589", "referenceName": "1", "start": "10582", "referenceBases": "G", "alternateBases": [ "A" ], "calls": [ { "callSetId": "10473108253681171589-0", "callSetName": "CALLSET0", "genotype": [ 0, 1 ], } ] } // New variant with conflicting call information { "variantSetId": "10473108253681171589", "referenceName": "1", "start": "10582", "referenceBases": "G", "alternateBases": [ "A" ], "calls": [ { "callSetId": "10473108253681171589-0", "callSetName": "CALLSET0", "genotype": [ 1, 1 ], } ] } The resulting merged variant would overwrite the existing calls with those from the new variant: { "variantSetId": "10473108253681171589", "referenceName": "1", "start": "10582", "referenceBases": "G", "alternateBases": [ "A" ], "calls": [ { "callSetId": "10473108253681171589-0", "callSetName": "CALLSET0", "genotype": [ 1, 1 ], } ] } This may be the desired outcome, but it is up to the user to determine if if that is indeed the case.
      *
      * @alias genomics.variants.merge
      * @memberOf! genomics(v1)

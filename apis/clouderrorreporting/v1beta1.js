@@ -79,7 +79,6 @@ function Clouderrorreporting(options) {
        * @param  {object} params - Parameters for request
        * @param  {string=} params.timeRange.period - Restricts the query to the specified time range.
        * @param  {string} params.projectName - The resource name of the Google Cloud Platform project. Required. Example: projects/my-project
-       * @param  {string=} params.serviceFilter.environment - The exact value to match against [`ServiceContext.environment`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.environment).
        * @param  {string=} params.serviceFilter.service - The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
        * @param  {string=} params.groupId - The group for which events shall be returned. Required.
        * @param  {integer=} params.pageSize - The maximum number of results to return per response.
@@ -117,8 +116,7 @@ function Clouderrorreporting(options) {
        * @param  {object} params - Parameters for request
        * @param  {string=} params.alignment - The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
        * @param  {string=} params.timeRange.period - Restricts the query to the specified time range.
-       * @param  {string} params.projectName - The [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Required. Example: `my-project-123`.
-       * @param  {string=} params.serviceFilter.environment - The exact value to match against [`ServiceContext.environment`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.environment).
+       * @param  {string} params.projectName - The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Required. Example: `projects/my-project-123`.
        * @param  {string=} params.order - The sort order in which the results are returned. Default is `COUNT_DESC`.
        * @param  {string=} params.serviceFilter.service - The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
        * @param  {string=} params.groupId - List all `ErrorGroupStats` with these IDs. If not specified, all error group stats with a non-zero error count for the given selection criteria are returned.
@@ -157,7 +155,7 @@ function Clouderrorreporting(options) {
        * @memberOf! clouderrorreporting(v1beta1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.name - Group resource name. Example: projects/my-projectid/groups/my-groupid
+       * @param  {string} params.name - Group resource name. Example: `projects/my-project-123/groups/my-groupid`
        * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -186,7 +184,7 @@ function Clouderrorreporting(options) {
        * @memberOf! clouderrorreporting(v1beta1)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.groupName - Group resource name. Required. Example: projects/my-project/groups/my-group
+       * @param  {string} params.groupName - Group resource name. Required. Example: `projects/my-project-123/groups/my-group`
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
