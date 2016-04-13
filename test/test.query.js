@@ -17,7 +17,7 @@
 'use strict';
 
 var assert = require('assert');
-var googleapis = require('../lib/googleapis.js');
+var googleapis = require('../');
 var google, drive, authClient, OAuth2, gmail;
 
 describe('Query params', function() {
@@ -62,7 +62,7 @@ describe('Query params', function() {
     var req = drive.files.get({ fileId: '123', resource_: 'hello' }, noop);
     assert.equal(req.uri.query, 'resource=hello');
   });
-  
+
   it('should chain together with & in order', function() {
     var req = drive.files.get({
       fileId: '123',

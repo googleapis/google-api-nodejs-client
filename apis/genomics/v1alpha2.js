@@ -223,9 +223,9 @@ function Genomics(options) {
      *
      * @param  {object=} params - Parameters for request
      * @param  {string=} params.projectId - Required. The name of the project to search for pipelines. Caller must have READ access to this project.
-     * @param  {string=} params.namePrefix - Optional. Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
-     * @param  {integer=} params.pageSize - Optional. Number of pipelines to return at once. Defaults to 256, and max is 2048.
-     * @param  {string=} params.pageToken - Optional. Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
+     * @param  {string=} params.namePrefix - Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
+     * @param  {integer=} params.pageSize - Number of pipelines to return at once. Defaults to 256, and max is 2048.
+     * @param  {string=} params.pageToken - Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */

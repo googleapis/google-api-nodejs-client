@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * DCM/DFA Reporting And Trafficking API
  *
- * @classdesc Manage your DoubleClick Campaign Manager ad campaigns and reports.
+ * @classdesc Manages your DoubleClick Campaign Manager ad campaigns and reports.
  * @namespace dfareporting
  * @version  v2.4
  * @variation v2.4
@@ -4430,7 +4430,7 @@ function Dfareporting(options) {
      * @param  {string=} params.advertiserIds - Select only placements that belong to these advertisers.
      * @param  {boolean=} params.archived - Select only archived placements. Don't set this field to select both archived and non-archived placements.
      * @param  {string=} params.campaignIds - Select only placements that belong to these campaigns.
-     * @param  {string=} params.compatibilities - Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps.IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+     * @param  {string=} params.compatibilities - Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
      * @param  {string=} params.contentCategoryIds - Select only placements that are associated with these content categories.
      * @param  {string=} params.directorySiteIds - Select only placements that are associated with these directory sites.
      * @param  {string=} params.groupIds - Select only placements that belong to these placement groups.

@@ -17,7 +17,7 @@
 'use strict';
 
 var assert = require('assert');
-var google = require('../lib/googleapis.js');
+var google = require('../');
 var nock = require('nock');
 
 nock.disableNetConnect();

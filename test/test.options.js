@@ -17,7 +17,7 @@
 'use strict';
 
 var assert = require('assert');
-var googleapis = require('../lib/googleapis.js');
+var googleapis = require('../');
 var OAuth2 = googleapis.auth.OAuth2;
 var google, drive, authClient;
 

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Dataflow API
  *
- * @classdesc Google Cloud Dataflow is a simple, flexible, and powerful system you can use to perform data processing tasks.
+ * @classdesc Develops and executes data processing patterns like ETL, batch computation, and continuous computation.
  * @namespace dataflow
  * @version  v1b3
  * @variation v1b3
@@ -169,6 +169,7 @@ function Dataflow(options) {
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.projectId - The project which owns the jobs.
+       * @param  {string=} params.filter - The kind of filter to use.
        * @param  {string=} params.view - Level of information requested in response. Default is SUMMARY.
        * @param  {integer=} params.pageSize - If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
        * @param  {string=} params.pageToken - Set this to the 'next_page_token' field of a previous response to request additional results in a long list.

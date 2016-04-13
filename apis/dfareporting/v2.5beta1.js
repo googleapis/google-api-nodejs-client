@@ -25,8 +25,8 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Manages your DoubleClick Campaign Manager ad campaigns and reports.
  * @namespace dfareporting
- * @version  v2.1
- * @variation v2.1
+ * @version  v2.5beta1
+ * @variation v2.5beta1
  * @this Dfareporting
  * @param {object=} options Options for Dfareporting
  */
@@ -43,7 +43,7 @@ function Dfareporting(options) {
      * @desc Gets the account's active ad summary by account ID.
      *
      * @alias dfareporting.accountActiveAdSummaries.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -54,7 +54,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}',
           method: 'GET'
         },
         params: params,
@@ -76,7 +76,7 @@ function Dfareporting(options) {
      * @desc Gets one account permission group by ID.
      *
      * @alias dfareporting.accountPermissionGroups.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Account permission group ID.
@@ -87,7 +87,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountPermissionGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountPermissionGroups/{id}',
           method: 'GET'
         },
         params: params,
@@ -105,7 +105,7 @@ function Dfareporting(options) {
      * @desc Retrieves the list of account permission groups.
      *
      * @alias dfareporting.accountPermissionGroups.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -115,7 +115,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountPermissionGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountPermissionGroups',
           method: 'GET'
         },
         params: params,
@@ -137,7 +137,7 @@ function Dfareporting(options) {
      * @desc Gets one account permission by ID.
      *
      * @alias dfareporting.accountPermissions.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Account permission ID.
@@ -148,7 +148,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountPermissions/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountPermissions/{id}',
           method: 'GET'
         },
         params: params,
@@ -166,7 +166,7 @@ function Dfareporting(options) {
      * @desc Retrieves the list of account permissions.
      *
      * @alias dfareporting.accountPermissions.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -176,7 +176,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountPermissions',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountPermissions',
           method: 'GET'
         },
         params: params,
@@ -198,7 +198,7 @@ function Dfareporting(options) {
      * @desc Gets one account user profile by ID.
      *
      * @alias dfareporting.accountUserProfiles.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User profile ID.
@@ -209,7 +209,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountUserProfiles/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountUserProfiles/{id}',
           method: 'GET'
         },
         params: params,
@@ -227,7 +227,7 @@ function Dfareporting(options) {
      * @desc Inserts a new account user profile.
      *
      * @alias dfareporting.accountUserProfiles.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -238,7 +238,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountUserProfiles',
           method: 'POST'
         },
         params: params,
@@ -256,7 +256,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of account user profiles, possibly filtered.
      *
      * @alias dfareporting.accountUserProfiles.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active user profiles.
@@ -275,7 +275,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountUserProfiles',
           method: 'GET'
         },
         params: params,
@@ -293,7 +293,7 @@ function Dfareporting(options) {
      * @desc Updates an existing account user profile. This method supports patch semantics.
      *
      * @alias dfareporting.accountUserProfiles.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User profile ID.
@@ -305,7 +305,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountUserProfiles',
           method: 'PATCH'
         },
         params: params,
@@ -323,7 +323,7 @@ function Dfareporting(options) {
      * @desc Updates an existing account user profile.
      *
      * @alias dfareporting.accountUserProfiles.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -334,7 +334,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accountUserProfiles',
           method: 'PUT'
         },
         params: params,
@@ -356,7 +356,7 @@ function Dfareporting(options) {
      * @desc Gets one account by ID.
      *
      * @alias dfareporting.accounts.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Account ID.
@@ -367,7 +367,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accounts/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accounts/{id}',
           method: 'GET'
         },
         params: params,
@@ -385,7 +385,7 @@ function Dfareporting(options) {
      * @desc Retrieves the list of accounts, possibly filtered.
      *
      * @alias dfareporting.accounts.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active accounts. Don't set this field to select both active and non-active accounts.
@@ -402,7 +402,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accounts',
           method: 'GET'
         },
         params: params,
@@ -420,7 +420,7 @@ function Dfareporting(options) {
      * @desc Updates an existing account. This method supports patch semantics.
      *
      * @alias dfareporting.accounts.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Account ID.
@@ -432,7 +432,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accounts',
           method: 'PATCH'
         },
         params: params,
@@ -450,7 +450,7 @@ function Dfareporting(options) {
      * @desc Updates an existing account.
      *
      * @alias dfareporting.accounts.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -461,7 +461,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/accounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/accounts',
           method: 'PUT'
         },
         params: params,
@@ -483,7 +483,7 @@ function Dfareporting(options) {
      * @desc Gets one ad by ID.
      *
      * @alias dfareporting.ads.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Ad ID.
@@ -494,7 +494,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/ads/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/ads/{id}',
           method: 'GET'
         },
         params: params,
@@ -512,7 +512,7 @@ function Dfareporting(options) {
      * @desc Inserts a new ad.
      *
      * @alias dfareporting.ads.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -523,7 +523,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/ads',
           method: 'POST'
         },
         params: params,
@@ -541,7 +541,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of ads, possibly filtered.
      *
      * @alias dfareporting.ads.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active ads.
@@ -549,7 +549,7 @@ function Dfareporting(options) {
      * @param  {boolean=} params.archived - Select only archived ads.
      * @param  {string=} params.audienceSegmentIds - Select only ads with these audience segment IDs.
      * @param  {string=} params.campaignIds - Select only ads with these campaign IDs.
-     * @param  {string=} params.compatibility - Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. WEB and WEB_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
+     * @param  {string=} params.compatibility - Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
      * @param  {string=} params.creativeIds - Select only ads with these creative IDs assigned.
      * @param  {string=} params.creativeOptimizationConfigurationIds - Select only ads with these creative optimization configuration IDs.
      * @param  {string=} params.creativeType - Select only ads with the specified creativeType.
@@ -575,7 +575,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/ads',
           method: 'GET'
         },
         params: params,
@@ -593,7 +593,7 @@ function Dfareporting(options) {
      * @desc Updates an existing ad. This method supports patch semantics.
      *
      * @alias dfareporting.ads.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Ad ID.
@@ -605,7 +605,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/ads',
           method: 'PATCH'
         },
         params: params,
@@ -623,7 +623,7 @@ function Dfareporting(options) {
      * @desc Updates an existing ad.
      *
      * @alias dfareporting.ads.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -634,7 +634,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/ads',
           method: 'PUT'
         },
         params: params,
@@ -656,7 +656,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing advertiser group.
      *
      * @alias dfareporting.advertiserGroups.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Advertiser group ID.
@@ -667,7 +667,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertiserGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -685,7 +685,7 @@ function Dfareporting(options) {
      * @desc Gets one advertiser group by ID.
      *
      * @alias dfareporting.advertiserGroups.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Advertiser group ID.
@@ -696,7 +696,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertiserGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'GET'
         },
         params: params,
@@ -714,7 +714,7 @@ function Dfareporting(options) {
      * @desc Inserts a new advertiser group.
      *
      * @alias dfareporting.advertiserGroups.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -725,7 +725,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertiserGroups',
           method: 'POST'
         },
         params: params,
@@ -743,7 +743,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of advertiser groups, possibly filtered.
      *
      * @alias dfareporting.advertiserGroups.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only advertiser groups with these IDs.
@@ -759,7 +759,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertiserGroups',
           method: 'GET'
         },
         params: params,
@@ -777,7 +777,7 @@ function Dfareporting(options) {
      * @desc Updates an existing advertiser group. This method supports patch semantics.
      *
      * @alias dfareporting.advertiserGroups.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Advertiser group ID.
@@ -789,7 +789,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertiserGroups',
           method: 'PATCH'
         },
         params: params,
@@ -807,7 +807,7 @@ function Dfareporting(options) {
      * @desc Updates an existing advertiser group.
      *
      * @alias dfareporting.advertiserGroups.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -818,7 +818,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertiserGroups',
           method: 'PUT'
         },
         params: params,
@@ -840,7 +840,7 @@ function Dfareporting(options) {
      * @desc Gets one advertiser by ID.
      *
      * @alias dfareporting.advertisers.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Advertiser ID.
@@ -851,7 +851,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertisers/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertisers/{id}',
           method: 'GET'
         },
         params: params,
@@ -869,7 +869,7 @@ function Dfareporting(options) {
      * @desc Inserts a new advertiser.
      *
      * @alias dfareporting.advertisers.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -880,7 +880,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertisers',
           method: 'POST'
         },
         params: params,
@@ -898,7 +898,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of advertisers, possibly filtered.
      *
      * @alias dfareporting.advertisers.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserGroupIds - Select only advertisers with these advertiser group IDs.
@@ -920,7 +920,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertisers',
           method: 'GET'
         },
         params: params,
@@ -938,7 +938,7 @@ function Dfareporting(options) {
      * @desc Updates an existing advertiser. This method supports patch semantics.
      *
      * @alias dfareporting.advertisers.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Advertiser ID.
@@ -950,7 +950,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertisers',
           method: 'PATCH'
         },
         params: params,
@@ -968,7 +968,7 @@ function Dfareporting(options) {
      * @desc Updates an existing advertiser.
      *
      * @alias dfareporting.advertisers.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -979,7 +979,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/advertisers',
           method: 'PUT'
         },
         params: params,
@@ -1001,7 +1001,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of browsers.
      *
      * @alias dfareporting.browsers.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1011,7 +1011,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/browsers',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/browsers',
           method: 'GET'
         },
         params: params,
@@ -1033,7 +1033,7 @@ function Dfareporting(options) {
      * @desc Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
      *
      * @alias dfareporting.campaignCreativeAssociations.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Campaign ID in this association.
@@ -1045,7 +1045,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'POST'
         },
         params: params,
@@ -1063,7 +1063,7 @@ function Dfareporting(options) {
      * @desc Retrieves the list of creative IDs associated with the specified campaign.
      *
      * @alias dfareporting.campaignCreativeAssociations.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Campaign ID in this association.
@@ -1077,7 +1077,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'GET'
         },
         params: params,
@@ -1099,7 +1099,7 @@ function Dfareporting(options) {
      * @desc Gets one campaign by ID.
      *
      * @alias dfareporting.campaigns.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Campaign ID.
@@ -1110,7 +1110,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{id}',
           method: 'GET'
         },
         params: params,
@@ -1128,7 +1128,7 @@ function Dfareporting(options) {
      * @desc Inserts a new campaign.
      *
      * @alias dfareporting.campaigns.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.defaultLandingPageName - Default landing page name for this new campaign. Must be less than 256 characters long.
@@ -1141,7 +1141,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns',
           method: 'POST'
         },
         params: params,
@@ -1159,7 +1159,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of campaigns, possibly filtered.
      *
      * @alias dfareporting.campaigns.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserGroupIds - Select only campaigns whose advertisers belong to these advertiser groups.
@@ -1182,7 +1182,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns',
           method: 'GET'
         },
         params: params,
@@ -1200,7 +1200,7 @@ function Dfareporting(options) {
      * @desc Updates an existing campaign. This method supports patch semantics.
      *
      * @alias dfareporting.campaigns.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Campaign ID.
@@ -1212,7 +1212,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns',
           method: 'PATCH'
         },
         params: params,
@@ -1230,7 +1230,7 @@ function Dfareporting(options) {
      * @desc Updates an existing campaign.
      *
      * @alias dfareporting.campaigns.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1241,7 +1241,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns',
           method: 'PUT'
         },
         params: params,
@@ -1263,7 +1263,7 @@ function Dfareporting(options) {
      * @desc Gets one change log by ID.
      *
      * @alias dfareporting.changeLogs.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Change log ID.
@@ -1274,7 +1274,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/changeLogs/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/changeLogs/{id}',
           method: 'GET'
         },
         params: params,
@@ -1292,7 +1292,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of change logs.
      *
      * @alias dfareporting.changeLogs.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.action - Select only change logs with the specified action.
@@ -1312,7 +1312,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/changeLogs',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/changeLogs',
           method: 'GET'
         },
         params: params,
@@ -1334,7 +1334,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of cities, possibly filtered.
      *
      * @alias dfareporting.cities.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.countryDartIds - Select only cities from these countries.
@@ -1348,7 +1348,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/cities',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/cities',
           method: 'GET'
         },
         params: params,
@@ -1370,7 +1370,7 @@ function Dfareporting(options) {
      * @desc Gets one connection type by ID.
      *
      * @alias dfareporting.connectionTypes.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Connection type ID.
@@ -1381,7 +1381,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/connectionTypes/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/connectionTypes/{id}',
           method: 'GET'
         },
         params: params,
@@ -1399,7 +1399,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of connection types.
      *
      * @alias dfareporting.connectionTypes.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1409,7 +1409,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/connectionTypes',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/connectionTypes',
           method: 'GET'
         },
         params: params,
@@ -1431,7 +1431,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing content category.
      *
      * @alias dfareporting.contentCategories.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Content category ID.
@@ -1442,7 +1442,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/contentCategories/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/contentCategories/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1460,7 +1460,7 @@ function Dfareporting(options) {
      * @desc Gets one content category by ID.
      *
      * @alias dfareporting.contentCategories.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Content category ID.
@@ -1471,7 +1471,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/contentCategories/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/contentCategories/{id}',
           method: 'GET'
         },
         params: params,
@@ -1489,7 +1489,7 @@ function Dfareporting(options) {
      * @desc Inserts a new content category.
      *
      * @alias dfareporting.contentCategories.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1500,7 +1500,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/contentCategories',
           method: 'POST'
         },
         params: params,
@@ -1518,7 +1518,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of content categories, possibly filtered.
      *
      * @alias dfareporting.contentCategories.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only content categories with these IDs.
@@ -1534,7 +1534,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/contentCategories',
           method: 'GET'
         },
         params: params,
@@ -1552,7 +1552,7 @@ function Dfareporting(options) {
      * @desc Updates an existing content category. This method supports patch semantics.
      *
      * @alias dfareporting.contentCategories.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Content category ID.
@@ -1564,7 +1564,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/contentCategories',
           method: 'PATCH'
         },
         params: params,
@@ -1582,7 +1582,7 @@ function Dfareporting(options) {
      * @desc Updates an existing content category.
      *
      * @alias dfareporting.contentCategories.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1593,8 +1593,41 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/contentCategories',
           method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.conversions = {
+
+    /**
+     * dfareporting.conversions.batchinsert
+     *
+     * @desc Inserts conversions.
+     *
+     * @alias dfareporting.conversions.batchinsert
+     * @memberOf! dfareporting(v2.5beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.profileId - User profile ID associated with this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchinsert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/conversions/batchinsert',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['profileId'],
@@ -1615,7 +1648,7 @@ function Dfareporting(options) {
      * @desc Gets one country by ID.
      *
      * @alias dfareporting.countries.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.dartId - Country DART ID.
@@ -1626,7 +1659,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/countries/{dartId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/countries/{dartId}',
           method: 'GET'
         },
         params: params,
@@ -1644,7 +1677,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of countries.
      *
      * @alias dfareporting.countries.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1654,7 +1687,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/countries',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/countries',
           method: 'GET'
         },
         params: params,
@@ -1676,7 +1709,7 @@ function Dfareporting(options) {
      * @desc Inserts a new creative asset.
      *
      * @alias dfareporting.creativeAssets.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.advertiserId - Advertiser ID of this creative. This is a required field.
@@ -1691,11 +1724,11 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
           method: 'POST'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/dfareporting/v2.1/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
+        mediaUrl: 'https://www.googleapis.com/upload/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
         context: self
@@ -1714,7 +1747,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing creative field value.
      *
      * @alias dfareporting.creativeFieldValues.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
@@ -1726,7 +1759,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1744,7 +1777,7 @@ function Dfareporting(options) {
      * @desc Gets one creative field value by ID.
      *
      * @alias dfareporting.creativeFieldValues.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
@@ -1756,7 +1789,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'GET'
         },
         params: params,
@@ -1774,7 +1807,7 @@ function Dfareporting(options) {
      * @desc Inserts a new creative field value.
      *
      * @alias dfareporting.creativeFieldValues.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
@@ -1786,7 +1819,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'POST'
         },
         params: params,
@@ -1804,7 +1837,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of creative field values, possibly filtered.
      *
      * @alias dfareporting.creativeFieldValues.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
@@ -1821,7 +1854,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'GET'
         },
         params: params,
@@ -1839,7 +1872,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative field value. This method supports patch semantics.
      *
      * @alias dfareporting.creativeFieldValues.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
@@ -1852,7 +1885,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PATCH'
         },
         params: params,
@@ -1870,7 +1903,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative field value.
      *
      * @alias dfareporting.creativeFieldValues.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.creativeFieldId - Creative field ID for this creative field value.
@@ -1882,7 +1915,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PUT'
         },
         params: params,
@@ -1904,7 +1937,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing creative field.
      *
      * @alias dfareporting.creativeFields.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative Field ID
@@ -1915,7 +1948,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1933,7 +1966,7 @@ function Dfareporting(options) {
      * @desc Gets one creative field by ID.
      *
      * @alias dfareporting.creativeFields.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative Field ID
@@ -1944,7 +1977,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields/{id}',
           method: 'GET'
         },
         params: params,
@@ -1962,7 +1995,7 @@ function Dfareporting(options) {
      * @desc Inserts a new creative field.
      *
      * @alias dfareporting.creativeFields.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -1973,7 +2006,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields',
           method: 'POST'
         },
         params: params,
@@ -1991,7 +2024,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of creative fields, possibly filtered.
      *
      * @alias dfareporting.creativeFields.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserIds - Select only creative fields that belong to these advertisers.
@@ -2008,7 +2041,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields',
           method: 'GET'
         },
         params: params,
@@ -2026,7 +2059,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative field. This method supports patch semantics.
      *
      * @alias dfareporting.creativeFields.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative Field ID
@@ -2038,7 +2071,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields',
           method: 'PATCH'
         },
         params: params,
@@ -2056,7 +2089,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative field.
      *
      * @alias dfareporting.creativeFields.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2067,7 +2100,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeFields',
           method: 'PUT'
         },
         params: params,
@@ -2089,7 +2122,7 @@ function Dfareporting(options) {
      * @desc Gets one creative group by ID.
      *
      * @alias dfareporting.creativeGroups.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative group ID.
@@ -2100,7 +2133,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeGroups/{id}',
           method: 'GET'
         },
         params: params,
@@ -2118,7 +2151,7 @@ function Dfareporting(options) {
      * @desc Inserts a new creative group.
      *
      * @alias dfareporting.creativeGroups.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2129,7 +2162,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeGroups',
           method: 'POST'
         },
         params: params,
@@ -2147,7 +2180,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of creative groups, possibly filtered.
      *
      * @alias dfareporting.creativeGroups.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserIds - Select only creative groups that belong to these advertisers.
@@ -2165,7 +2198,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeGroups',
           method: 'GET'
         },
         params: params,
@@ -2183,7 +2216,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative group. This method supports patch semantics.
      *
      * @alias dfareporting.creativeGroups.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative group ID.
@@ -2195,7 +2228,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeGroups',
           method: 'PATCH'
         },
         params: params,
@@ -2213,7 +2246,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative group.
      *
      * @alias dfareporting.creativeGroups.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2224,7 +2257,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creativeGroups',
           method: 'PUT'
         },
         params: params,
@@ -2246,7 +2279,7 @@ function Dfareporting(options) {
      * @desc Gets one creative by ID.
      *
      * @alias dfareporting.creatives.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative ID.
@@ -2257,7 +2290,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creatives/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creatives/{id}',
           method: 'GET'
         },
         params: params,
@@ -2275,7 +2308,7 @@ function Dfareporting(options) {
      * @desc Inserts a new creative.
      *
      * @alias dfareporting.creatives.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2286,7 +2319,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creatives',
           method: 'POST'
         },
         params: params,
@@ -2304,7 +2337,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of creatives, possibly filtered.
      *
      * @alias dfareporting.creatives.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active creatives. Leave blank to select active and inactive creatives.
@@ -2330,7 +2363,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creatives',
           method: 'GET'
         },
         params: params,
@@ -2348,7 +2381,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative. This method supports patch semantics.
      *
      * @alias dfareporting.creatives.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Creative ID.
@@ -2360,7 +2393,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creatives',
           method: 'PATCH'
         },
         params: params,
@@ -2378,7 +2411,7 @@ function Dfareporting(options) {
      * @desc Updates an existing creative.
      *
      * @alias dfareporting.creatives.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2389,7 +2422,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/creatives',
           method: 'PUT'
         },
         params: params,
@@ -2411,7 +2444,7 @@ function Dfareporting(options) {
      * @desc Retrieves list of report dimension values for a list of filters.
      *
      * @alias dfareporting.dimensionValues.query
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of results to return.
@@ -2424,7 +2457,7 @@ function Dfareporting(options) {
     query: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/dimensionvalues/query',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/dimensionvalues/query',
           method: 'POST'
         },
         params: params,
@@ -2446,7 +2479,7 @@ function Dfareporting(options) {
      * @desc Gets one directory site contact by ID.
      *
      * @alias dfareporting.directorySiteContacts.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Directory site contact ID.
@@ -2457,7 +2490,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/directorySiteContacts/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/directorySiteContacts/{id}',
           method: 'GET'
         },
         params: params,
@@ -2475,7 +2508,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of directory site contacts, possibly filtered.
      *
      * @alias dfareporting.directorySiteContacts.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.directorySiteIds - Select only directory site contacts with these directory site IDs. This is a required field.
@@ -2492,7 +2525,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/directorySiteContacts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/directorySiteContacts',
           method: 'GET'
         },
         params: params,
@@ -2514,7 +2547,7 @@ function Dfareporting(options) {
      * @desc Gets one directory site by ID.
      *
      * @alias dfareporting.directorySites.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Directory site ID.
@@ -2525,7 +2558,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/directorySites/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/directorySites/{id}',
           method: 'GET'
         },
         params: params,
@@ -2543,7 +2576,7 @@ function Dfareporting(options) {
      * @desc Inserts a new directory site.
      *
      * @alias dfareporting.directorySites.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2554,7 +2587,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/directorySites',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/directorySites',
           method: 'POST'
         },
         params: params,
@@ -2572,7 +2605,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of directory sites, possibly filtered.
      *
      * @alias dfareporting.directorySites.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.acceptsInStreamVideoPlacements - This search filter is no longer supported and will have no effect on the results returned.
@@ -2595,7 +2628,103 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/directorySites',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/directorySites',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.dynamicTargetingKeys = {
+
+    /**
+     * dfareporting.dynamicTargetingKeys.delete
+     *
+     * @desc Deletes an existing dynamic targeting key.
+     *
+     * @alias dfareporting.dynamicTargetingKeys.delete
+     * @memberOf! dfareporting(v2.5beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.name - Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     * @param  {string} params.objectId - ID of the object of this dynamic targeting key. This is a required field.
+     * @param  {string} params.objectType - Type of the object of this dynamic targeting key. This is a required field.
+     * @param  {string} params.profileId - User profile ID associated with this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
+        pathParams: ['objectId', 'profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.dynamicTargetingKeys.insert
+     *
+     * @desc Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative or placement.
+     *
+     * @alias dfareporting.dynamicTargetingKeys.insert
+     * @memberOf! dfareporting(v2.5beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.profileId - User profile ID associated with this request.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/dynamicTargetingKeys',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.dynamicTargetingKeys.list
+     *
+     * @desc Retrieves a list of dynamic targeting keys.
+     *
+     * @alias dfareporting.dynamicTargetingKeys.list
+     * @memberOf! dfareporting(v2.5beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.advertiserId - Select only dynamic targeting keys whose object has this advertiser ID.
+     * @param  {string=} params.names - Select only dynamic targeting keys exactly matching these names.
+     * @param  {string=} params.objectId - Select only dynamic targeting keys with this object ID.
+     * @param  {string=} params.objectType - Select only dynamic targeting keys with this object type.
+     * @param  {string} params.profileId - User profile ID associated with this request.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/dynamicTargetingKeys',
           method: 'GET'
         },
         params: params,
@@ -2617,7 +2746,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing event tag.
      *
      * @alias dfareporting.eventTags.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Event tag ID.
@@ -2628,7 +2757,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/eventTags/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/eventTags/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -2646,7 +2775,7 @@ function Dfareporting(options) {
      * @desc Gets one event tag by ID.
      *
      * @alias dfareporting.eventTags.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Event tag ID.
@@ -2657,7 +2786,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/eventTags/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/eventTags/{id}',
           method: 'GET'
         },
         params: params,
@@ -2675,7 +2804,7 @@ function Dfareporting(options) {
      * @desc Inserts a new event tag.
      *
      * @alias dfareporting.eventTags.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2686,7 +2815,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/eventTags',
           method: 'POST'
         },
         params: params,
@@ -2704,7 +2833,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of event tags, possibly filtered.
      *
      * @alias dfareporting.eventTags.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.adId - Select only event tags that belong to this ad.
@@ -2724,7 +2853,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/eventTags',
           method: 'GET'
         },
         params: params,
@@ -2742,7 +2871,7 @@ function Dfareporting(options) {
      * @desc Updates an existing event tag. This method supports patch semantics.
      *
      * @alias dfareporting.eventTags.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Event tag ID.
@@ -2754,7 +2883,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/eventTags',
           method: 'PATCH'
         },
         params: params,
@@ -2772,7 +2901,7 @@ function Dfareporting(options) {
      * @desc Updates an existing event tag.
      *
      * @alias dfareporting.eventTags.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2783,7 +2912,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/eventTags',
           method: 'PUT'
         },
         params: params,
@@ -2805,7 +2934,7 @@ function Dfareporting(options) {
      * @desc Retrieves a report file by its report ID and file ID.
      *
      * @alias dfareporting.files.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.fileId - The ID of the report file.
@@ -2816,7 +2945,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/reports/{reportId}/files/{fileId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/reports/{reportId}/files/{fileId}',
           method: 'GET'
         },
         params: params,
@@ -2834,7 +2963,7 @@ function Dfareporting(options) {
      * @desc Lists files for a user profile.
      *
      * @alias dfareporting.files.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of results to return.
@@ -2849,7 +2978,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/files',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/files',
           method: 'GET'
         },
         params: params,
@@ -2871,7 +3000,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight activity ID.
@@ -2882,7 +3011,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -2900,7 +3029,7 @@ function Dfareporting(options) {
      * @desc Generates a tag for a floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.generatetag
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.floodlightActivityId - Floodlight activity ID for which we want to generate a tag.
@@ -2911,7 +3040,7 @@ function Dfareporting(options) {
     generatetag: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities/generatetag',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities/generatetag',
           method: 'POST'
         },
         params: params,
@@ -2929,7 +3058,7 @@ function Dfareporting(options) {
      * @desc Gets one floodlight activity by ID.
      *
      * @alias dfareporting.floodlightActivities.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight activity ID.
@@ -2940,7 +3069,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'GET'
         },
         params: params,
@@ -2958,7 +3087,7 @@ function Dfareporting(options) {
      * @desc Inserts a new floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -2969,7 +3098,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities',
           method: 'POST'
         },
         params: params,
@@ -2987,7 +3116,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of floodlight activities, possibly filtered.
      *
      * @alias dfareporting.floodlightActivities.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserId - Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
@@ -3010,7 +3139,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities',
           method: 'GET'
         },
         params: params,
@@ -3028,7 +3157,7 @@ function Dfareporting(options) {
      * @desc Updates an existing floodlight activity. This method supports patch semantics.
      *
      * @alias dfareporting.floodlightActivities.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight activity ID.
@@ -3040,7 +3169,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities',
           method: 'PATCH'
         },
         params: params,
@@ -3058,7 +3187,7 @@ function Dfareporting(options) {
      * @desc Updates an existing floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3069,7 +3198,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivities',
           method: 'PUT'
         },
         params: params,
@@ -3086,41 +3215,12 @@ function Dfareporting(options) {
   this.floodlightActivityGroups = {
 
     /**
-     * dfareporting.floodlightActivityGroups.delete
-     *
-     * @desc Deletes an existing floodlight activity group.
-     *
-     * @alias dfareporting.floodlightActivityGroups.delete
-     * @memberOf! dfareporting(v2.1)
-     *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Floodlight activity Group ID.
-     * @param  {string} params.profileId - User profile ID associated with this request.
-     * @param  {callback} callback - The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function(params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivityGroups/{id}',
-          method: 'DELETE'
-        },
-        params: params,
-        requiredParams: ['profileId', 'id'],
-        pathParams: ['id', 'profileId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * dfareporting.floodlightActivityGroups.get
      *
      * @desc Gets one floodlight activity group by ID.
      *
      * @alias dfareporting.floodlightActivityGroups.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight activity Group ID.
@@ -3131,7 +3231,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivityGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivityGroups/{id}',
           method: 'GET'
         },
         params: params,
@@ -3149,7 +3249,7 @@ function Dfareporting(options) {
      * @desc Inserts a new floodlight activity group.
      *
      * @alias dfareporting.floodlightActivityGroups.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3160,7 +3260,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'POST'
         },
         params: params,
@@ -3178,7 +3278,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of floodlight activity groups, possibly filtered.
      *
      * @alias dfareporting.floodlightActivityGroups.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserId - Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
@@ -3197,7 +3297,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'GET'
         },
         params: params,
@@ -3215,7 +3315,7 @@ function Dfareporting(options) {
      * @desc Updates an existing floodlight activity group. This method supports patch semantics.
      *
      * @alias dfareporting.floodlightActivityGroups.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight activity Group ID.
@@ -3227,7 +3327,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PATCH'
         },
         params: params,
@@ -3245,7 +3345,7 @@ function Dfareporting(options) {
      * @desc Updates an existing floodlight activity group.
      *
      * @alias dfareporting.floodlightActivityGroups.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3256,7 +3356,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PUT'
         },
         params: params,
@@ -3278,7 +3378,7 @@ function Dfareporting(options) {
      * @desc Gets one floodlight configuration by ID.
      *
      * @alias dfareporting.floodlightConfigurations.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight configuration ID.
@@ -3289,7 +3389,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightConfigurations/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightConfigurations/{id}',
           method: 'GET'
         },
         params: params,
@@ -3307,7 +3407,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of floodlight configurations, possibly filtered.
      *
      * @alias dfareporting.floodlightConfigurations.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
@@ -3318,7 +3418,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightConfigurations',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightConfigurations',
           method: 'GET'
         },
         params: params,
@@ -3336,7 +3436,7 @@ function Dfareporting(options) {
      * @desc Updates an existing floodlight configuration. This method supports patch semantics.
      *
      * @alias dfareporting.floodlightConfigurations.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Floodlight configuration ID.
@@ -3348,7 +3448,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightConfigurations',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PATCH'
         },
         params: params,
@@ -3366,7 +3466,7 @@ function Dfareporting(options) {
      * @desc Updates an existing floodlight configuration.
      *
      * @alias dfareporting.floodlightConfigurations.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3377,7 +3477,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/floodlightConfigurations',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PUT'
         },
         params: params,
@@ -3399,7 +3499,7 @@ function Dfareporting(options) {
      * @desc Gets one inventory item by ID.
      *
      * @alias dfareporting.inventoryItems.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Inventory item ID.
@@ -3411,7 +3511,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}',
           method: 'GET'
         },
         params: params,
@@ -3429,7 +3529,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of inventory items, possibly filtered.
      *
      * @alias dfareporting.inventoryItems.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only inventory items with these IDs.
@@ -3442,13 +3542,14 @@ function Dfareporting(options) {
      * @param  {string=} params.siteId - Select only inventory items that are associated with these sites.
      * @param  {string=} params.sortField - Field by which to sort the list.
      * @param  {string=} params.sortOrder - Order of sorted results, default is ASCENDING.
+     * @param  {string=} params.type - Select only inventory items with this type.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{projectId}/inventoryItems',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{projectId}/inventoryItems',
           method: 'GET'
         },
         params: params,
@@ -3470,7 +3571,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing campaign landing page.
      *
      * @alias dfareporting.landingPages.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Landing page campaign ID.
@@ -3482,7 +3583,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -3500,7 +3601,7 @@ function Dfareporting(options) {
      * @desc Gets one campaign landing page by ID.
      *
      * @alias dfareporting.landingPages.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Landing page campaign ID.
@@ -3512,7 +3613,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'GET'
         },
         params: params,
@@ -3530,7 +3631,7 @@ function Dfareporting(options) {
      * @desc Inserts a new landing page for the specified campaign.
      *
      * @alias dfareporting.landingPages.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Landing page campaign ID.
@@ -3542,7 +3643,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'POST'
         },
         params: params,
@@ -3560,7 +3661,7 @@ function Dfareporting(options) {
      * @desc Retrieves the list of landing pages for the specified campaign.
      *
      * @alias dfareporting.landingPages.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Landing page campaign ID.
@@ -3571,7 +3672,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'GET'
         },
         params: params,
@@ -3589,7 +3690,7 @@ function Dfareporting(options) {
      * @desc Updates an existing campaign landing page. This method supports patch semantics.
      *
      * @alias dfareporting.landingPages.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Landing page campaign ID.
@@ -3602,7 +3703,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PATCH'
         },
         params: params,
@@ -3620,7 +3721,7 @@ function Dfareporting(options) {
      * @desc Updates an existing campaign landing page.
      *
      * @alias dfareporting.landingPages.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.campaignId - Landing page campaign ID.
@@ -3632,7 +3733,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PUT'
         },
         params: params,
@@ -3654,7 +3755,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of metros.
      *
      * @alias dfareporting.metros.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3664,7 +3765,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/metros',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/metros',
           method: 'GET'
         },
         params: params,
@@ -3686,7 +3787,7 @@ function Dfareporting(options) {
      * @desc Gets one mobile carrier by ID.
      *
      * @alias dfareporting.mobileCarriers.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Mobile carrier ID.
@@ -3697,7 +3798,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/mobileCarriers/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/mobileCarriers/{id}',
           method: 'GET'
         },
         params: params,
@@ -3715,7 +3816,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of mobile carriers.
      *
      * @alias dfareporting.mobileCarriers.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3725,7 +3826,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/mobileCarriers',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/mobileCarriers',
           method: 'GET'
         },
         params: params,
@@ -3747,7 +3848,7 @@ function Dfareporting(options) {
      * @desc Gets one operating system version by ID.
      *
      * @alias dfareporting.operatingSystemVersions.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Operating system version ID.
@@ -3758,7 +3859,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/operatingSystemVersions/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/operatingSystemVersions/{id}',
           method: 'GET'
         },
         params: params,
@@ -3776,7 +3877,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of operating system versions.
      *
      * @alias dfareporting.operatingSystemVersions.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3786,7 +3887,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/operatingSystemVersions',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/operatingSystemVersions',
           method: 'GET'
         },
         params: params,
@@ -3808,7 +3909,7 @@ function Dfareporting(options) {
      * @desc Gets one operating system by DART ID.
      *
      * @alias dfareporting.operatingSystems.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.dartId - Operating system DART ID.
@@ -3819,7 +3920,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/operatingSystems/{dartId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/operatingSystems/{dartId}',
           method: 'GET'
         },
         params: params,
@@ -3837,7 +3938,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of operating systems.
      *
      * @alias dfareporting.operatingSystems.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -3847,7 +3948,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/operatingSystems',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/operatingSystems',
           method: 'GET'
         },
         params: params,
@@ -3869,7 +3970,7 @@ function Dfareporting(options) {
      * @desc Gets one order document by ID.
      *
      * @alias dfareporting.orderDocuments.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Order document ID.
@@ -3881,7 +3982,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}',
           method: 'GET'
         },
         params: params,
@@ -3899,7 +4000,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of order documents, possibly filtered.
      *
      * @alias dfareporting.orderDocuments.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.approved - Select only order documents that have been approved by at least one user.
@@ -3919,7 +4020,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{projectId}/orderDocuments',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{projectId}/orderDocuments',
           method: 'GET'
         },
         params: params,
@@ -3941,7 +4042,7 @@ function Dfareporting(options) {
      * @desc Gets one order by ID.
      *
      * @alias dfareporting.orders.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Order ID.
@@ -3953,7 +4054,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{projectId}/orders/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{projectId}/orders/{id}',
           method: 'GET'
         },
         params: params,
@@ -3971,7 +4072,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of orders, possibly filtered.
      *
      * @alias dfareporting.orders.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only orders with these IDs.
@@ -3989,7 +4090,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{projectId}/orders',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{projectId}/orders',
           method: 'GET'
         },
         params: params,
@@ -4011,7 +4112,7 @@ function Dfareporting(options) {
      * @desc Gets one placement group by ID.
      *
      * @alias dfareporting.placementGroups.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement group ID.
@@ -4022,7 +4123,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementGroups/{id}',
           method: 'GET'
         },
         params: params,
@@ -4040,7 +4141,7 @@ function Dfareporting(options) {
      * @desc Inserts a new placement group.
      *
      * @alias dfareporting.placementGroups.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4051,7 +4152,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementGroups',
           method: 'POST'
         },
         params: params,
@@ -4069,7 +4170,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of placement groups, possibly filtered.
      *
      * @alias dfareporting.placementGroups.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserIds - Select only placement groups that belong to these advertisers.
@@ -4078,7 +4179,11 @@ function Dfareporting(options) {
      * @param  {string=} params.contentCategoryIds - Select only placement groups that are associated with these content categories.
      * @param  {string=} params.directorySiteIds - Select only placement groups that are associated with these directory sites.
      * @param  {string=} params.ids - Select only placement groups with these IDs.
+     * @param  {string=} params.maxEndDate - Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
      * @param  {integer=} params.maxResults - Maximum number of results to return.
+     * @param  {string=} params.maxStartDate - Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     * @param  {string=} params.minEndDate - Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     * @param  {string=} params.minStartDate - Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
      * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string=} params.placementGroupType - Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
      * @param  {string=} params.placementStrategyIds - Select only placement groups that are associated with these placement strategies.
@@ -4094,7 +4199,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementGroups',
           method: 'GET'
         },
         params: params,
@@ -4112,7 +4217,7 @@ function Dfareporting(options) {
      * @desc Updates an existing placement group. This method supports patch semantics.
      *
      * @alias dfareporting.placementGroups.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement group ID.
@@ -4124,7 +4229,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementGroups',
           method: 'PATCH'
         },
         params: params,
@@ -4142,7 +4247,7 @@ function Dfareporting(options) {
      * @desc Updates an existing placement group.
      *
      * @alias dfareporting.placementGroups.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4153,7 +4258,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementGroups',
           method: 'PUT'
         },
         params: params,
@@ -4175,7 +4280,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing placement strategy.
      *
      * @alias dfareporting.placementStrategies.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement strategy ID.
@@ -4186,7 +4291,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementStrategies/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -4204,7 +4309,7 @@ function Dfareporting(options) {
      * @desc Gets one placement strategy by ID.
      *
      * @alias dfareporting.placementStrategies.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement strategy ID.
@@ -4215,7 +4320,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementStrategies/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'GET'
         },
         params: params,
@@ -4233,7 +4338,7 @@ function Dfareporting(options) {
      * @desc Inserts a new placement strategy.
      *
      * @alias dfareporting.placementStrategies.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4244,7 +4349,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementStrategies',
           method: 'POST'
         },
         params: params,
@@ -4262,7 +4367,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of placement strategies, possibly filtered.
      *
      * @alias dfareporting.placementStrategies.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only placement strategies with these IDs.
@@ -4278,7 +4383,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementStrategies',
           method: 'GET'
         },
         params: params,
@@ -4296,7 +4401,7 @@ function Dfareporting(options) {
      * @desc Updates an existing placement strategy. This method supports patch semantics.
      *
      * @alias dfareporting.placementStrategies.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement strategy ID.
@@ -4308,7 +4413,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementStrategies',
           method: 'PATCH'
         },
         params: params,
@@ -4326,7 +4431,7 @@ function Dfareporting(options) {
      * @desc Updates an existing placement strategy.
      *
      * @alias dfareporting.placementStrategies.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4337,7 +4442,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placementStrategies',
           method: 'PUT'
         },
         params: params,
@@ -4359,7 +4464,7 @@ function Dfareporting(options) {
      * @desc Generates tags for a placement.
      *
      * @alias dfareporting.placements.generatetags
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.campaignId - Generate placements belonging to this campaign. This is a required field.
@@ -4372,7 +4477,7 @@ function Dfareporting(options) {
     generatetags: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placements/generatetags',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placements/generatetags',
           method: 'POST'
         },
         params: params,
@@ -4390,7 +4495,7 @@ function Dfareporting(options) {
      * @desc Gets one placement by ID.
      *
      * @alias dfareporting.placements.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement ID.
@@ -4401,7 +4506,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placements/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placements/{id}',
           method: 'GET'
         },
         params: params,
@@ -4419,7 +4524,7 @@ function Dfareporting(options) {
      * @desc Inserts a new placement.
      *
      * @alias dfareporting.placements.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4430,7 +4535,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placements',
           method: 'POST'
         },
         params: params,
@@ -4448,18 +4553,22 @@ function Dfareporting(options) {
      * @desc Retrieves a list of placements, possibly filtered.
      *
      * @alias dfareporting.placements.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserIds - Select only placements that belong to these advertisers.
      * @param  {boolean=} params.archived - Select only archived placements. Don't set this field to select both archived and non-archived placements.
      * @param  {string=} params.campaignIds - Select only placements that belong to these campaigns.
-     * @param  {string=} params.compatibilities - Select only placements that are associated with these compatibilities. WEB and WEB_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+     * @param  {string=} params.compatibilities - Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
      * @param  {string=} params.contentCategoryIds - Select only placements that are associated with these content categories.
      * @param  {string=} params.directorySiteIds - Select only placements that are associated with these directory sites.
      * @param  {string=} params.groupIds - Select only placements that belong to these placement groups.
      * @param  {string=} params.ids - Select only placements with these IDs.
+     * @param  {string=} params.maxEndDate - Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
      * @param  {integer=} params.maxResults - Maximum number of results to return.
+     * @param  {string=} params.maxStartDate - Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     * @param  {string=} params.minEndDate - Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     * @param  {string=} params.minStartDate - Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
      * @param  {string=} params.pageToken - Value of the nextPageToken from the previous result page.
      * @param  {string=} params.paymentSource - Select only placements with this payment source.
      * @param  {string=} params.placementStrategyIds - Select only placements that are associated with these placement strategies.
@@ -4476,7 +4585,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placements',
           method: 'GET'
         },
         params: params,
@@ -4494,7 +4603,7 @@ function Dfareporting(options) {
      * @desc Updates an existing placement. This method supports patch semantics.
      *
      * @alias dfareporting.placements.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Placement ID.
@@ -4506,7 +4615,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placements',
           method: 'PATCH'
         },
         params: params,
@@ -4524,7 +4633,7 @@ function Dfareporting(options) {
      * @desc Updates an existing placement.
      *
      * @alias dfareporting.placements.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4535,7 +4644,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/placements',
           method: 'PUT'
         },
         params: params,
@@ -4557,7 +4666,7 @@ function Dfareporting(options) {
      * @desc Gets one platform type by ID.
      *
      * @alias dfareporting.platformTypes.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Platform type ID.
@@ -4568,7 +4677,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/platformTypes/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/platformTypes/{id}',
           method: 'GET'
         },
         params: params,
@@ -4586,7 +4695,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of platform types.
      *
      * @alias dfareporting.platformTypes.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4596,7 +4705,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/platformTypes',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/platformTypes',
           method: 'GET'
         },
         params: params,
@@ -4618,7 +4727,7 @@ function Dfareporting(options) {
      * @desc Gets one postal code by ID.
      *
      * @alias dfareporting.postalCodes.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.code - Postal code ID.
@@ -4629,7 +4738,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/postalCodes/{code}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/postalCodes/{code}',
           method: 'GET'
         },
         params: params,
@@ -4647,7 +4756,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of postal codes.
      *
      * @alias dfareporting.postalCodes.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4657,7 +4766,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/postalCodes',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/postalCodes',
           method: 'GET'
         },
         params: params,
@@ -4679,7 +4788,7 @@ function Dfareporting(options) {
      * @desc Gets one project by ID.
      *
      * @alias dfareporting.projects.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Project ID.
@@ -4690,7 +4799,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects/{id}',
           method: 'GET'
         },
         params: params,
@@ -4708,7 +4817,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of projects, possibly filtered.
      *
      * @alias dfareporting.projects.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.advertiserIds - Select only projects with these advertiser IDs.
@@ -4725,7 +4834,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/projects',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/projects',
           method: 'GET'
         },
         params: params,
@@ -4747,7 +4856,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of regions.
      *
      * @alias dfareporting.regions.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4757,7 +4866,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/regions',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/regions',
           method: 'GET'
         },
         params: params,
@@ -4779,7 +4888,7 @@ function Dfareporting(options) {
      * @desc Gets one remarketing list share by remarketing list ID.
      *
      * @alias dfareporting.remarketingListShares.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4790,7 +4899,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingListShares/{remarketingListId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingListShares/{remarketingListId}',
           method: 'GET'
         },
         params: params,
@@ -4808,7 +4917,7 @@ function Dfareporting(options) {
      * @desc Updates an existing remarketing list share. This method supports patch semantics.
      *
      * @alias dfareporting.remarketingListShares.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4820,7 +4929,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingListShares',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingListShares',
           method: 'PATCH'
         },
         params: params,
@@ -4838,7 +4947,7 @@ function Dfareporting(options) {
      * @desc Updates an existing remarketing list share.
      *
      * @alias dfareporting.remarketingListShares.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4849,7 +4958,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingListShares',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingListShares',
           method: 'PUT'
         },
         params: params,
@@ -4871,7 +4980,7 @@ function Dfareporting(options) {
      * @desc Gets one remarketing list by ID.
      *
      * @alias dfareporting.remarketingLists.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Remarketing list ID.
@@ -4882,7 +4991,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingLists/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingLists/{id}',
           method: 'GET'
         },
         params: params,
@@ -4900,7 +5009,7 @@ function Dfareporting(options) {
      * @desc Inserts a new remarketing list.
      *
      * @alias dfareporting.remarketingLists.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -4911,7 +5020,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingLists',
           method: 'POST'
         },
         params: params,
@@ -4929,7 +5038,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of remarketing lists, possibly filtered.
      *
      * @alias dfareporting.remarketingLists.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active or only inactive remarketing lists.
@@ -4947,7 +5056,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingLists',
           method: 'GET'
         },
         params: params,
@@ -4965,7 +5074,7 @@ function Dfareporting(options) {
      * @desc Updates an existing remarketing list. This method supports patch semantics.
      *
      * @alias dfareporting.remarketingLists.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Remarketing list ID.
@@ -4977,7 +5086,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingLists',
           method: 'PATCH'
         },
         params: params,
@@ -4995,7 +5104,7 @@ function Dfareporting(options) {
      * @desc Updates an existing remarketing list.
      *
      * @alias dfareporting.remarketingLists.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5006,7 +5115,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/remarketingLists',
           method: 'PUT'
         },
         params: params,
@@ -5028,7 +5137,7 @@ function Dfareporting(options) {
      * @desc Deletes a report by its ID.
      *
      * @alias dfareporting.reports.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
@@ -5039,7 +5148,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}',
           method: 'DELETE'
         },
         params: params,
@@ -5057,7 +5166,7 @@ function Dfareporting(options) {
      * @desc Retrieves a report by its ID.
      *
      * @alias dfareporting.reports.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
@@ -5068,7 +5177,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}',
           method: 'GET'
         },
         params: params,
@@ -5086,7 +5195,7 @@ function Dfareporting(options) {
      * @desc Creates a report.
      *
      * @alias dfareporting.reports.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
@@ -5097,7 +5206,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports',
           method: 'POST'
         },
         params: params,
@@ -5115,7 +5224,7 @@ function Dfareporting(options) {
      * @desc Retrieves list of reports.
      *
      * @alias dfareporting.reports.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.maxResults - Maximum number of results to return.
@@ -5130,7 +5239,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports',
           method: 'GET'
         },
         params: params,
@@ -5148,7 +5257,7 @@ function Dfareporting(options) {
      * @desc Updates a report. This method supports patch semantics.
      *
      * @alias dfareporting.reports.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
@@ -5160,7 +5269,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}',
           method: 'PATCH'
         },
         params: params,
@@ -5178,7 +5287,7 @@ function Dfareporting(options) {
      * @desc Runs a report.
      *
      * @alias dfareporting.reports.run
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA profile ID.
@@ -5190,7 +5299,7 @@ function Dfareporting(options) {
     run: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}/run',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}/run',
           method: 'POST'
         },
         params: params,
@@ -5208,7 +5317,7 @@ function Dfareporting(options) {
      * @desc Updates a report.
      *
      * @alias dfareporting.reports.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The DFA user profile ID.
@@ -5220,7 +5329,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}',
           method: 'PUT'
         },
         params: params,
@@ -5240,7 +5349,7 @@ function Dfareporting(options) {
        * @desc Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
        *
        * @alias dfareporting.reports.compatibleFields.query
-       * @memberOf! dfareporting(v2.1)
+       * @memberOf! dfareporting(v2.5beta1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.profileId - The DFA user profile ID.
@@ -5251,7 +5360,7 @@ function Dfareporting(options) {
       query: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/compatiblefields/query',
+            url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/compatiblefields/query',
             method: 'POST'
           },
           params: params,
@@ -5272,7 +5381,7 @@ function Dfareporting(options) {
        * @desc Retrieves a report file.
        *
        * @alias dfareporting.reports.files.get
-       * @memberOf! dfareporting(v2.1)
+       * @memberOf! dfareporting(v2.5beta1)
        *
        * @param  {object} params - Parameters for request
        * @param  {string} params.fileId - The ID of the report file.
@@ -5284,7 +5393,7 @@ function Dfareporting(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
+            url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
             method: 'GET'
           },
           params: params,
@@ -5302,7 +5411,7 @@ function Dfareporting(options) {
        * @desc Lists files for a report.
        *
        * @alias dfareporting.reports.files.list
-       * @memberOf! dfareporting(v2.1)
+       * @memberOf! dfareporting(v2.5beta1)
        *
        * @param  {object} params - Parameters for request
        * @param  {integer=} params.maxResults - Maximum number of results to return.
@@ -5317,7 +5426,7 @@ function Dfareporting(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/reports/{reportId}/files',
+            url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/reports/{reportId}/files',
             method: 'GET'
           },
           params: params,
@@ -5339,7 +5448,7 @@ function Dfareporting(options) {
      * @desc Gets one site by ID.
      *
      * @alias dfareporting.sites.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Site ID.
@@ -5350,7 +5459,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sites/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sites/{id}',
           method: 'GET'
         },
         params: params,
@@ -5368,7 +5477,7 @@ function Dfareporting(options) {
      * @desc Inserts a new site.
      *
      * @alias dfareporting.sites.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5379,7 +5488,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sites',
           method: 'POST'
         },
         params: params,
@@ -5397,7 +5506,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of sites, possibly filtered.
      *
      * @alias dfareporting.sites.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.acceptsInStreamVideoPlacements - This search filter is no longer supported and will have no effect on the results returned.
@@ -5422,7 +5531,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sites',
           method: 'GET'
         },
         params: params,
@@ -5440,7 +5549,7 @@ function Dfareporting(options) {
      * @desc Updates an existing site. This method supports patch semantics.
      *
      * @alias dfareporting.sites.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Site ID.
@@ -5452,7 +5561,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sites',
           method: 'PATCH'
         },
         params: params,
@@ -5470,7 +5579,7 @@ function Dfareporting(options) {
      * @desc Updates an existing site.
      *
      * @alias dfareporting.sites.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5481,7 +5590,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sites',
           method: 'PUT'
         },
         params: params,
@@ -5503,7 +5612,7 @@ function Dfareporting(options) {
      * @desc Gets one size by ID.
      *
      * @alias dfareporting.sizes.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Size ID.
@@ -5514,7 +5623,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sizes/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sizes/{id}',
           method: 'GET'
         },
         params: params,
@@ -5532,7 +5641,7 @@ function Dfareporting(options) {
      * @desc Inserts a new size.
      *
      * @alias dfareporting.sizes.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5543,7 +5652,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sizes',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sizes',
           method: 'POST'
         },
         params: params,
@@ -5561,7 +5670,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of sizes, possibly filtered.
      *
      * @alias dfareporting.sizes.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {integer=} params.height - Select only sizes with this height.
@@ -5575,7 +5684,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/sizes',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/sizes',
           method: 'GET'
         },
         params: params,
@@ -5597,7 +5706,7 @@ function Dfareporting(options) {
      * @desc Gets one subaccount by ID.
      *
      * @alias dfareporting.subaccounts.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Subaccount ID.
@@ -5608,7 +5717,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/subaccounts/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/subaccounts/{id}',
           method: 'GET'
         },
         params: params,
@@ -5626,7 +5735,7 @@ function Dfareporting(options) {
      * @desc Inserts a new subaccount.
      *
      * @alias dfareporting.subaccounts.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5637,7 +5746,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/subaccounts',
           method: 'POST'
         },
         params: params,
@@ -5655,7 +5764,7 @@ function Dfareporting(options) {
      * @desc Gets a list of subaccounts, possibly filtered.
      *
      * @alias dfareporting.subaccounts.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only subaccounts with these IDs.
@@ -5671,7 +5780,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/subaccounts',
           method: 'GET'
         },
         params: params,
@@ -5689,7 +5798,7 @@ function Dfareporting(options) {
      * @desc Updates an existing subaccount. This method supports patch semantics.
      *
      * @alias dfareporting.subaccounts.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Subaccount ID.
@@ -5701,7 +5810,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/subaccounts',
           method: 'PATCH'
         },
         params: params,
@@ -5719,7 +5828,7 @@ function Dfareporting(options) {
      * @desc Updates an existing subaccount.
      *
      * @alias dfareporting.subaccounts.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5730,7 +5839,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/subaccounts',
           method: 'PUT'
         },
         params: params,
@@ -5752,7 +5861,7 @@ function Dfareporting(options) {
      * @desc Gets one remarketing list by ID.
      *
      * @alias dfareporting.targetableRemarketingLists.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - Remarketing list ID.
@@ -5763,7 +5872,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/targetableRemarketingLists/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/targetableRemarketingLists/{id}',
           method: 'GET'
         },
         params: params,
@@ -5781,7 +5890,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of targetable remarketing lists, possibly filtered.
      *
      * @alias dfareporting.targetableRemarketingLists.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.active - Select only active or only inactive targetable remarketing lists.
@@ -5798,7 +5907,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/targetableRemarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/targetableRemarketingLists',
           method: 'GET'
         },
         params: params,
@@ -5820,7 +5929,7 @@ function Dfareporting(options) {
      * @desc Gets one user profile by ID.
      *
      * @alias dfareporting.userProfiles.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - The user profile ID.
@@ -5830,7 +5939,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}',
           method: 'GET'
         },
         params: params,
@@ -5848,7 +5957,7 @@ function Dfareporting(options) {
      * @desc Retrieves list of user profiles for a user.
      *
      * @alias dfareporting.userProfiles.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object=} params - Parameters for request
      * @param  {callback} callback - The callback that handles the response.
@@ -5857,7 +5966,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles',
           method: 'GET'
         },
         params: params,
@@ -5879,7 +5988,7 @@ function Dfareporting(options) {
      * @desc Gets one user role permission group by ID.
      *
      * @alias dfareporting.userRolePermissionGroups.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User role permission group ID.
@@ -5890,7 +5999,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRolePermissionGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRolePermissionGroups/{id}',
           method: 'GET'
         },
         params: params,
@@ -5908,7 +6017,7 @@ function Dfareporting(options) {
      * @desc Gets a list of all supported user role permission groups.
      *
      * @alias dfareporting.userRolePermissionGroups.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -5918,7 +6027,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRolePermissionGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRolePermissionGroups',
           method: 'GET'
         },
         params: params,
@@ -5940,7 +6049,7 @@ function Dfareporting(options) {
      * @desc Gets one user role permission by ID.
      *
      * @alias dfareporting.userRolePermissions.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User role permission ID.
@@ -5951,7 +6060,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRolePermissions/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRolePermissions/{id}',
           method: 'GET'
         },
         params: params,
@@ -5969,7 +6078,7 @@ function Dfareporting(options) {
      * @desc Gets a list of user role permissions, possibly filtered.
      *
      * @alias dfareporting.userRolePermissions.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string=} params.ids - Select only user role permissions with these IDs.
@@ -5980,7 +6089,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRolePermissions',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRolePermissions',
           method: 'GET'
         },
         params: params,
@@ -6002,7 +6111,7 @@ function Dfareporting(options) {
      * @desc Deletes an existing user role.
      *
      * @alias dfareporting.userRoles.delete
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User role ID.
@@ -6013,7 +6122,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRoles/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRoles/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -6031,7 +6140,7 @@ function Dfareporting(options) {
      * @desc Gets one user role by ID.
      *
      * @alias dfareporting.userRoles.get
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User role ID.
@@ -6042,7 +6151,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRoles/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRoles/{id}',
           method: 'GET'
         },
         params: params,
@@ -6060,7 +6169,7 @@ function Dfareporting(options) {
      * @desc Inserts a new user role.
      *
      * @alias dfareporting.userRoles.insert
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -6071,7 +6180,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRoles',
           method: 'POST'
         },
         params: params,
@@ -6089,7 +6198,7 @@ function Dfareporting(options) {
      * @desc Retrieves a list of user roles, possibly filtered.
      *
      * @alias dfareporting.userRoles.list
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {boolean=} params.accountUserRoleOnly - Select only account level user roles not associated with any specific subaccount.
@@ -6107,7 +6216,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRoles',
           method: 'GET'
         },
         params: params,
@@ -6125,7 +6234,7 @@ function Dfareporting(options) {
      * @desc Updates an existing user role. This method supports patch semantics.
      *
      * @alias dfareporting.userRoles.patch
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - User role ID.
@@ -6137,7 +6246,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRoles',
           method: 'PATCH'
         },
         params: params,
@@ -6155,7 +6264,7 @@ function Dfareporting(options) {
      * @desc Updates an existing user role.
      *
      * @alias dfareporting.userRoles.update
-     * @memberOf! dfareporting(v2.1)
+     * @memberOf! dfareporting(v2.5beta1)
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.profileId - User profile ID associated with this request.
@@ -6166,7 +6275,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v2.1/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.5beta1/userprofiles/{profileId}/userRoles',
           method: 'PUT'
         },
         params: params,
