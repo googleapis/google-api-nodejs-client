@@ -9,4 +9,4 @@ script:
   - npm test
   - npm run lint
 after_success:
-  - npm run coveralls
+  - npm run codecov

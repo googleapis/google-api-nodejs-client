@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Cloud Vision API
+ * Google Cloud Vision API
  *
  * @classdesc The Google Cloud Vision API allows developers to easily integrate Google vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
  * @namespace vision

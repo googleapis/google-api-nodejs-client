@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud DNS API
  *
- * @classdesc The Google Cloud DNS API provides services for configuring and serving authoritative DNS records.
+ * @classdesc Configures and serves authoritative DNS records.
  * @namespace dns
  * @version  v1
  * @variation v1
