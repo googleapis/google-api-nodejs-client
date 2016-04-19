@@ -2979,6 +2979,37 @@ function Compute(options) {
     },
 
     /**
+     * compute.instanceGroupManagers.resizeAdvanced
+     *
+     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. This method is an extended version of Resize and it supports more advanced options.
+     *
+     * @alias compute.instanceGroupManagers.resizeAdvanced
+     * @memberOf! compute(beta)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
+     * @param  {string} params.project - Project ID for this request.
+     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    resizeAdvanced: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instanceGroupManagers.setAutoHealingPolicies
      *
      * @desc Modifies the autohealing policies.

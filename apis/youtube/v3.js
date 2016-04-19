@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Data API
  *
- * @classdesc Programmatic access to YouTube features.
+ * @classdesc Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
  * @namespace youtube
  * @version  v3
  * @variation v3

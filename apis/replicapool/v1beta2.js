@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Compute Engine Instance Group Manager API
  *
- * @classdesc The Google Compute Engine Instance Group Manager API provides groups of homogenous Compute Engine Instances.
+ * @classdesc [Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.
  * @namespace replicapool
  * @version  v1beta2
  * @variation v1beta2

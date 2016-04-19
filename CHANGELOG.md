@@ -1,3 +1,13 @@
+##### 5.1.0 - 19 April 2016
+
+###### Backwards compatible changes
+- Added `instances.list` to `appengine` `v1beta4` API
+- Added `instances.list` to `appengine` `v1beta5` API
+- Added `instanceGroupManagers.resizeAdvanced` to `compute` `beta` API
+
+###### Other
+- Switched from coveralls to codecov
+
 ##### 5.0.0 - 11 April 2016
 
 ###### Breaking changes

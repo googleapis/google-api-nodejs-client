@@ -406,6 +406,41 @@ function Appengine(options) {
           };
 
           return createAPIRequest(parameters, callback);
+        },
+
+        instances: {
+
+          /**
+           * appengine.apps.services.versions.instances.list
+           *
+           * @desc Lists the instances of a version.
+           *
+           * @alias appengine.apps.services.versions.instances.list
+           * @memberOf! appengine(v1beta5)
+           *
+           * @param  {object} params - Parameters for request
+           * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
+           * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
+           * @param  {string} params.versionsId - Part of `name`. See documentation of `appsId`.
+           * @param  {integer=} params.pageSize - Maximum results to return per page.
+           * @param  {string=} params.pageToken - Continuation token for fetching the next page of results.
+           * @param  {callback} callback - The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function(params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances',
+                method: 'GET'
+              },
+              params: params,
+              requiredParams: ['appsId', 'servicesId', 'versionsId'],
+              pathParams: ['appsId', 'servicesId', 'versionsId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
         }
       }
     }

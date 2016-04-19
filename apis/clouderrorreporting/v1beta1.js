@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Error Reporting API
  *
- * @classdesc Collects errors from Cloud Logging data or sent directly from client applications. Groups and counts similar errors to provide an overview on the health of the application and to enable further analysis.
+ * @classdesc Google Stackdriver Error Reporting groups and counts similar errors from cloud services. The Google Stackdriver Error Reporting API provides read access to error groups and their associated errors.
 
  * @namespace clouderrorreporting
  * @version  v1beta1

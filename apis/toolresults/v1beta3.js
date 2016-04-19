@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud Tool Results API
  *
- * @classdesc Read and publish results from Cloud Test Lab.
+ * @classdesc Reads and publishes results from Cloud Test Lab.
  * @namespace toolresults
  * @version  v1beta3
  * @variation v1beta3
