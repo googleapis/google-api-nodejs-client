@@ -4,7 +4,7 @@
 
 [![npm version][npmimg]][npm]
 [![Build Status][travisimg]][travis]
-[![Code Coverage][coverallsimg]][codecov]
+[![Code Coverage][codecovimg]][codecov]
 
 Google's officially supported [Node.js][node] client library for using Google
 APIs. Support for authorization and authentication with OAuth 2.0, API Keys and
@@ -518,5 +518,5 @@ See [CONTRIBUTING][contributing].
 [gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
 [gcloudapis]: https://googlecloudplatform.github.io/gcloud-node/#/docs/gcloud
 [cloudplatform]: https://cloud.google.com/docs/
-[coverallsimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
-[coveralls]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
+[codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
+[codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
