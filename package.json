@@ -68,11 +68,11 @@
   },
   "scripts": {
     "lint": "jshint lib test scripts apis",
-    "test": "mocha --reporter spec --timeout 4000",
+    "test": "mocha --reporter spec --timeout 10000",
     "generate-apis": "node scripts/generate",
     "generate-docs": "jsdoc -c jsdoc-conf.json",
     "prepare": "npm run generate-apis && npm test && npm run lint",
-    "coverage": "istanbul cover -x 'apis/**' _mocha -- --reporter spec --timeout 4000",
-    "codecov": "istanbul cover -x 'apis/**' _mocha --report lcovonly -- --reporter spec --timeout 4000 && cat coverage/lcov.info | codecov"
+    "coverage": "istanbul cover -x 'apis/**' _mocha -- --reporter spec --timeout 10000",
+    "codecov": "istanbul cover -x 'apis/**' _mocha --report lcovonly -- --reporter spec --timeout 10000 && cat coverage/lcov.info | codecov"
   }
 }

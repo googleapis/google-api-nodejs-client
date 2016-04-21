@@ -19,50 +19,95 @@
 var assert = require('assert');
 var googleapis = require('../');
 var nock = require('nock');
+var utils = require('./utils');
 
-nock.disableNetConnect();
+function testSingleRequest (urlshortener) {
+  var obj = { longUrl: 'http://someurl...' };
+  var req = urlshortener.url.insert(obj, utils.noop);
+  assert.equal(
+    req.uri.href,
+    'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
+  );
+  assert.equal(req.method, 'POST');
+}
 
-describe('Urlshortener', function() {
+function testParams (urlshortener) {
+  var params = { shortUrl: 'a' };
+  var req = urlshortener.url.get(params, utils.noop);
+  assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
+  assert.equal(req.method, 'GET');
+}
 
-  function noop() {}
-
-  it('should generate a valid payload for single requests', function() {
-    var google = new googleapis.GoogleApis();
-    var urlshortener = google.urlshortener('v1');
-    var obj = { longUrl: 'http://someurl...' };
-
-    var req = urlshortener.url.insert(obj, noop);
-    assert.equal(
-      req.uri.href,
-      'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
-    );
-    assert.equal(req.method, 'POST');
+function testInsert (urlshortener, cb) {
+  var obj = { longUrl: 'http://google.com/' };
+  urlshortener.url.insert({ resource: obj }, function (err, result) {
+    assert.equal(err, null);
+    assert.notEqual(result, null);
+    assert.notEqual(result.kind, null);
+    assert.notEqual(result.id, null);
+    assert.equal(result.longUrl, 'http://google.com/');
+    cb(err);
   });
+}
 
-  it('should generate valid payload if any params are given', function() {
-    var google = new googleapis.GoogleApis();
-    var urlshortener = google.urlshortener('v1');
-    var params = { shortUrl: 'a' };
-    var req = urlshortener.url.get(params, noop);
-    assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
-    assert.equal(req.method, 'GET');
-  });
+describe('Urlshortener', function () {
+  var localUrlshortener, remoteUrlshortener;
 
-  it('should return a single response object for single requests', function(done) {
+  before(function (done) {
+    nock.cleanAll();
     var google = new googleapis.GoogleApis();
-    var scope = nock('https://www.googleapis.com')
-        .post('/urlshortener/v1/url')
-        .replyWithFile(200, __dirname + '/fixtures/urlshort-insert-res.json');
-    var urlshortener = google.urlshortener('v1');
-    var obj = { longUrl: 'http://google.com/' };
-    urlshortener.url.insert({ resource: obj }, function(err, result) {
-      assert.equal(err, null);
-      assert.notEqual(result, null);
-      assert.notEqual(result.kind, null);
-      assert.notEqual(result.id, null);
-      assert.equal(result.longUrl, 'http://google.com/');
-      scope.done();
-      done(err);
+    nock.enableNetConnect();
+    utils.loadApi(google, 'urlshortener', 'v1', function (err, urlshortener) {
+      nock.disableNetConnect();
+      if (err) {
+        return done(err);
+      }
+      remoteUrlshortener = urlshortener;
+      done();
     });
+  });
+
+  beforeEach(function () {
+    nock.cleanAll();
+    nock.disableNetConnect();
+    var google = new googleapis.GoogleApis();
+    localUrlshortener = google.urlshortener('v1');
+  });
+
+  it('should generate a valid payload for single requests', function () {
+    testSingleRequest(localUrlshortener);
+    testSingleRequest(remoteUrlshortener);
+  });
+
+  it('should generate valid payload if any params are given', function () {
+    testParams(localUrlshortener);
+    testParams(remoteUrlshortener);
+  });
+
+  it('should return a single response object for single requests', function (done) {
+    var scope = nock('https://www.googleapis.com', {
+        allowUnmocked: true
+      })
+      .post('/urlshortener/v1/url')
+      .times(2)
+      .replyWithFile(200, __dirname + '/fixtures/urlshort-insert-res.json');
+
+    testInsert(localUrlshortener, function (err) {
+      if (err) {
+        return done(err);
+      }
+      testInsert(remoteUrlshortener, function (err) {
+        if (err) {
+          return done(err);
+        }
+        scope.done();
+        done();
+      });
+    });
+  });
+
+  after(function () {
+    nock.cleanAll();
+    nock.enableNetConnect();
   });
 });

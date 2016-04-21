@@ -18,88 +18,133 @@
 
 var assert = require('assert');
 var googleapis = require('../');
-var google, drive;
+var nock = require('nock');
+var utils = require('./utils');
 
-describe('Path params', function() {
+describe('Path params', function () {
+  var localDrive, remoteDrive;
 
-  function noop() {}
-
-  beforeEach(function() {
-    google = new googleapis.GoogleApis();
-    drive = google.drive('v2');
-  });
-
-  it('should not throw error if not included and required', function(done) {
-    assert.doesNotThrow(function() {
-      drive.files.get({}, noop);
+  before(function (done) {
+    nock.cleanAll();
+    var google = new googleapis.GoogleApis();
+    nock.enableNetConnect();
+    utils.loadApi(google, 'drive', 'v2', function (err, drive) {
+      nock.disableNetConnect();
+      if (err) {
+        return done(err);
+      }
+      remoteDrive = drive;
       done();
     });
   });
 
-  it('should return an err object if not included and required', function(done) {
-    drive.files.get({}, function(err) {
-      assert.notEqual(err, null);
+  beforeEach(function () {
+    nock.cleanAll();
+    nock.disableNetConnect();
+    var google = new googleapis.GoogleApis();
+    localDrive = google.drive('v2');
+  });
+
+  it('should not throw error if not included and required', function (done) {
+    assert.doesNotThrow(function () {
+      localDrive.files.get({}, utils.noop);
+      remoteDrive.files.get({}, utils.noop);
       done();
+    });
+  });
+
+  it('should return an err object if not included and required', function (done) {
+    localDrive.files.get({}, function (err) {
+      assert.notEqual(err, null);
+      remoteDrive.files.get({}, function (err) {
+        assert.notEqual(err, null);
+        done();
+      });
     });
   });
 
   it('should be mentioned in err.message when missing', function (done) {
-    drive.files.get({}, function(err) {
+    localDrive.files.get({}, function (err) {
       assert.notEqual(err.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
-      done();
-    });
-  });
-
-  it('should return null response object if not included and required', function(done) {
-    drive.files.get({}, function(err, resp) {
-      assert.equal(resp, null);
-      done();
-    });
-  });
-
-  it('should return null request object if not included and required', function() {
-    var req = drive.files.get({}, noop);
-    assert.equal(req, null);
-  });
-
-  it('should return null request object if not included and required and no callback', function() {
-    var req = drive.files.get({}, noop);
-    assert.equal(req, null);
-  });
-
-  it('should not be modifiable directly', function() {
-    var drive = google.drive('v2');
-    var options = { fileId: '123' };
-    assert.doesNotThrow(
-      function() {
-        // should not modify options object
-        drive.files.get(options, noop);
-        drive.files.get(options, noop);
+      remoteDrive.files.get({}, function (err) {
+        assert.notEqual(err.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
+        done();
       });
+    });
   });
 
-  it('should be put in URL of path', function() {
-    var req = drive.files.get({ fileId: 'abc123' }, noop);
+  it('should return null response object if not included and required', function (done) {
+    localDrive.files.get({}, function (err, resp) {
+      assert.equal(resp, null);
+      remoteDrive.files.get({}, function (err, resp) {
+        assert.equal(resp, null);
+        done();
+      });
+    });
+  });
+
+  it('should return null request object if not included and required', function () {
+    var req = localDrive.files.get({}, utils.noop);
+    assert.equal(req, null);
+    req = remoteDrive.files.get({}, utils.noop);
+    assert.equal(req, null);
+  });
+
+  it('should return null request object if not included and required and no callback', function () {
+    var req = localDrive.files.get({}, utils.noop);
+    assert.equal(req, null);
+    req = remoteDrive.files.get({}, utils.noop);
+    assert.equal(req, null);
+  });
+
+  it('should not be modifiable directly', function () {
+    var options = { fileId: '123' };
+    assert.doesNotThrow(function () {
+      // should not modify options object
+      localDrive.files.get(options, utils.noop);
+      localDrive.files.get(options, utils.noop);
+      remoteDrive.files.get(options, utils.noop);
+      remoteDrive.files.get(options, utils.noop);
+    });
+  });
+
+  it('should be put in URL of path', function () {
+    var req = localDrive.files.get({ fileId: 'abc123' }, utils.noop);
+    assert.equal(req.uri.path, '/drive/v2/files/abc123');
+    req = remoteDrive.files.get({ fileId: 'abc123' }, utils.noop);
     assert.equal(req.uri.path, '/drive/v2/files/abc123');
   });
 
-  it('should be put in URL of pathname', function() {
-    var req = drive.files.get({ fileId: '123abc' }, noop);
+  it('should be put in URL of pathname', function () {
+    var req = localDrive.files.get({ fileId: '123abc' }, utils.noop);
+    assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
+    req = remoteDrive.files.get({ fileId: '123abc' }, utils.noop);
     assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
   });
 
   it('should not be urlencoded', function () {
-    var req = drive.files.get({ fileId: 'p@ram' }, noop);
+    var req = localDrive.files.get({ fileId: 'p@ram' }, utils.noop);
+    assert.equal(req.uri.path.split('/').pop(), 'p@ram');
+    req = remoteDrive.files.get({ fileId: 'p@ram' }, utils.noop);
     assert.equal(req.uri.path.split('/').pop(), 'p@ram');
   });
 
-  it('should keep query params null if only path params', function() {
-    var req = drive.files.get({ fileId: '123abc' }, noop);
+  it('should keep query params null if only path params', function () {
+    var req = localDrive.files.get({ fileId: '123abc' }, utils.noop);
+    assert.equal(req.uri.query, null);
+    req = remoteDrive.files.get({ fileId: '123abc' }, utils.noop);
     assert.equal(req.uri.query, null);
   });
 
-  it('should keep query params as is', function() {
-    var req = drive.files.get({ fileId: '123abc', hello: 'world' }, noop);
+  it('should keep query params as is', function () {
+    var req = localDrive.files.get({ fileId: '123abc', hello: 'world' }, utils.noop);
     assert.equal(req.uri.query, 'hello=world');
+    req = remoteDrive.files.get({ fileId: '123abc', hello: 'world' }, utils.noop);
+    assert.equal(req.uri.query, 'hello=world');
+  });
+
+  after(function () {
+    nock.cleanAll();
+    nock.enableNetConnect();
   });
 });
