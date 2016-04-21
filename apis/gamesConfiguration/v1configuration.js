@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Publishing API for Google Play Game Services.
  * @namespace gamesConfiguration
- * @version  v1configuration
+ * @version v1configuration
  * @variation v1configuration
  * @this Gamesconfiguration
  * @param {object=} options Options for Gamesconfiguration
  */
-function Gamesconfiguration(options) {
-
+function Gamesconfiguration(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.achievementConfigurations = {
+  self.achievementConfigurations = {
 
     /**
      * gamesConfiguration.achievementConfigurations.delete
@@ -45,12 +44,12 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.achievementConfigurations.delete
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
@@ -73,12 +72,12 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.achievementConfigurations.get
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
@@ -101,13 +100,13 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.achievementConfigurations.insert
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/achievements',
@@ -130,14 +129,14 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.achievementConfigurations.list
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {integer=} params.maxResults - The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/achievements',
@@ -160,13 +159,13 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.achievementConfigurations.patch
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
@@ -189,13 +188,13 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.achievementConfigurations.update
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
@@ -212,7 +211,7 @@ function Gamesconfiguration(options) {
 
   };
 
-  this.imageConfigurations = {
+  self.imageConfigurations = {
 
     /**
      * gamesConfiguration.imageConfigurations.upload
@@ -222,16 +221,16 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.imageConfigurations.upload
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.imageType - Selects which image in a resource for this method.
-     * @param  {string} params.resourceId - The ID of the resource used by this method.
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.imageType Selects which image in a resource for this method.
+     * @param {string} params.resourceId The ID of the resource used by this method.
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload: function(params, callback) {
+    upload: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/images/{resourceId}/imageType/{imageType}',
@@ -249,7 +248,7 @@ function Gamesconfiguration(options) {
 
   };
 
-  this.leaderboardConfigurations = {
+  self.leaderboardConfigurations = {
 
     /**
      * gamesConfiguration.leaderboardConfigurations.delete
@@ -259,12 +258,12 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.leaderboardConfigurations.delete
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
@@ -287,12 +286,12 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.leaderboardConfigurations.get
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
@@ -315,13 +314,13 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.leaderboardConfigurations.insert
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/leaderboards',
@@ -344,14 +343,14 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.leaderboardConfigurations.list
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {integer=} params.maxResults - The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/leaderboards',
@@ -374,13 +373,13 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.leaderboardConfigurations.patch
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
@@ -403,13 +402,13 @@ function Gamesconfiguration(options) {
      * @alias gamesConfiguration.leaderboardConfigurations.update
      * @memberOf! gamesConfiguration(v1configuration)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',

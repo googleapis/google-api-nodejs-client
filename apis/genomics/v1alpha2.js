@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Stores, processes, explores and shares genomic data. This API implements the Global Alliance for Genomics and Health (GA4GH) v0.5.1 API as well as several extensions.
  * @namespace genomics
- * @version  v1alpha2
+ * @version v1alpha2
  * @variation v1alpha2
  * @this Genomics
  * @param {object=} options Options for Genomics
  */
-function Genomics(options) {
-
+function Genomics(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.operations = {
+  self.operations = {
 
     /**
      * genomics.operations.get
@@ -45,12 +44,12 @@ function Genomics(options) {
      * @alias genomics.operations.get
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/{name}',
@@ -73,15 +72,15 @@ function Genomics(options) {
      * @alias genomics.operations.list
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation collection.
-     * @param  {string=} params.filter - A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
-     * @param  {integer=} params.pageSize - The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
-     * @param  {string=} params.pageToken - The standard list page token.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
+     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/{name}',
@@ -104,13 +103,13 @@ function Genomics(options) {
      * @alias genomics.operations.cancel
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource to be cancelled.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/{name}:cancel',
@@ -127,7 +126,7 @@ function Genomics(options) {
 
   };
 
-  this.pipelines = {
+  self.pipelines = {
 
     /**
      * genomics.pipelines.create
@@ -137,12 +136,12 @@ function Genomics(options) {
      * @alias genomics.pipelines.create
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines',
@@ -165,12 +164,12 @@ function Genomics(options) {
      * @alias genomics.pipelines.run
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run: function(params, callback) {
+    run: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines:run',
@@ -193,12 +192,12 @@ function Genomics(options) {
      * @alias genomics.pipelines.get
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.pipelineId - Caller must have READ access to the project in which this pipeline is defined.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.pipelineId Caller must have READ access to the project in which this pipeline is defined.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines/{pipelineId}',
@@ -221,15 +220,15 @@ function Genomics(options) {
      * @alias genomics.pipelines.list
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.projectId - Required. The name of the project to search for pipelines. Caller must have READ access to this project.
-     * @param  {string=} params.namePrefix - Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
-     * @param  {integer=} params.pageSize - Number of pipelines to return at once. Defaults to 256, and max is 2048.
-     * @param  {string=} params.pageToken - Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.projectId Required. The name of the project to search for pipelines. Caller must have READ access to this project.
+     * @param {string=} params.namePrefix Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
+     * @param {integer=} params.pageSize Number of pipelines to return at once. Defaults to 256, and max is 2048.
+     * @param {string=} params.pageToken Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines',
@@ -252,12 +251,12 @@ function Genomics(options) {
      * @alias genomics.pipelines.delete
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.pipelineId - Caller must have WRITE access to the project in which this pipeline is defined.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.pipelineId Caller must have WRITE access to the project in which this pipeline is defined.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines/{pipelineId}',
@@ -280,13 +279,13 @@ function Genomics(options) {
      * @alias genomics.pipelines.getControllerConfig
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.operationId - The operation to retrieve controller configuration for.
-     * @param  {string=} params.validationToken - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.operationId The operation to retrieve controller configuration for.
+     * @param {string=} params.validationToken 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getControllerConfig: function(params, callback) {
+    getControllerConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines:getControllerConfig',
@@ -309,12 +308,12 @@ function Genomics(options) {
      * @alias genomics.pipelines.setOperationStatus
      * @memberOf! genomics(v1alpha2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setOperationStatus: function(params, callback) {
+    setOperationStatus: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines:setOperationStatus',

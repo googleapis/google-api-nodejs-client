@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you store and retrieve potentially-large, immutable data objects.
  * @namespace storage
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Storage
  * @param {object=} options Options for Storage
  */
-function Storage(options) {
-
+function Storage(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.bucketAccessControls = {
+  self.bucketAccessControls = {
 
     /**
      * storage.bucketAccessControls.delete
@@ -45,13 +44,13 @@ function Storage(options) {
      * @alias storage.bucketAccessControls.delete
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
@@ -74,13 +73,13 @@ function Storage(options) {
      * @alias storage.bucketAccessControls.get
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
@@ -103,13 +102,13 @@ function Storage(options) {
      * @alias storage.bucketAccessControls.insert
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
@@ -132,12 +131,12 @@ function Storage(options) {
      * @alias storage.bucketAccessControls.list
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
@@ -160,14 +159,14 @@ function Storage(options) {
      * @alias storage.bucketAccessControls.patch
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
@@ -190,14 +189,14 @@ function Storage(options) {
      * @alias storage.bucketAccessControls.update
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
@@ -214,7 +213,7 @@ function Storage(options) {
 
   };
 
-  this.buckets = {
+  self.buckets = {
 
     /**
      * storage.buckets.delete
@@ -224,12 +223,12 @@ function Storage(options) {
      * @alias storage.buckets.delete
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
@@ -252,13 +251,13 @@ function Storage(options) {
      * @alias storage.buckets.get
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
@@ -281,13 +280,13 @@ function Storage(options) {
      * @alias storage.buckets.insert
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b',
@@ -310,15 +309,15 @@ function Storage(options) {
      * @alias storage.buckets.list
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.max-results - Maximum number of buckets to return.
-     * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
-     * @param  {string} params.projectId - A valid API project identifier.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.max-results Maximum number of buckets to return.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.projectId A valid API project identifier.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b',
@@ -341,14 +340,14 @@ function Storage(options) {
      * @alias storage.buckets.patch
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to full.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
@@ -371,14 +370,14 @@ function Storage(options) {
      * @alias storage.buckets.update
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to full.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
@@ -395,7 +394,7 @@ function Storage(options) {
 
   };
 
-  this.objectAccessControls = {
+  self.objectAccessControls = {
 
     /**
      * storage.objectAccessControls.delete
@@ -405,14 +404,14 @@ function Storage(options) {
      * @alias storage.objectAccessControls.delete
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {string} params.object - Name of the object.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.object Name of the object.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
@@ -435,14 +434,14 @@ function Storage(options) {
      * @alias storage.objectAccessControls.get
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {string} params.object - Name of the object.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.object Name of the object.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
@@ -465,14 +464,14 @@ function Storage(options) {
      * @alias storage.objectAccessControls.insert
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.object - Name of the object.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.object Name of the object.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
@@ -495,13 +494,13 @@ function Storage(options) {
      * @alias storage.objectAccessControls.list
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.object - Name of the object.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.object Name of the object.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
@@ -524,15 +523,15 @@ function Storage(options) {
      * @alias storage.objectAccessControls.patch
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {string} params.object - Name of the object.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.object Name of the object.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
@@ -555,15 +554,15 @@ function Storage(options) {
      * @alias storage.objectAccessControls.update
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of a bucket.
-     * @param  {string} params.entity - The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param  {string} params.object - Name of the object.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.object Name of the object.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
@@ -580,7 +579,7 @@ function Storage(options) {
 
   };
 
-  this.objects = {
+  self.objects = {
 
     /**
      * storage.objects.delete
@@ -590,13 +589,13 @@ function Storage(options) {
      * @alias storage.objects.delete
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of the bucket in which the object resides.
-     * @param  {string} params.object - Name of the object.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string} params.object Name of the object.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
@@ -619,14 +618,14 @@ function Storage(options) {
      * @alias storage.objects.get
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of the bucket in which the object resides.
-     * @param  {string} params.object - Name of the object.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string} params.object Name of the object.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
@@ -649,18 +648,18 @@ function Storage(options) {
      * @alias storage.objects.insert
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param  {string=} params.name - Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl, unless the object resource specifies the acl property, when it defaults to full.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
@@ -684,17 +683,17 @@ function Storage(options) {
      * @alias storage.objects.list
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of the bucket in which to look for objects.
-     * @param  {string=} params.delimiter - Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param  {integer=} params.max-results - Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
-     * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
-     * @param  {string=} params.prefix - Filter results to objects whose names begin with this prefix.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to no_acl.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which to look for objects.
+     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {integer=} params.max-results Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
@@ -717,15 +716,15 @@ function Storage(options) {
      * @alias storage.objects.patch
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of the bucket in which the object resides.
-     * @param  {string} params.object - Name of the object.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to full.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string} params.object Name of the object.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
@@ -748,15 +747,15 @@ function Storage(options) {
      * @alias storage.objects.update
      * @memberOf! storage(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.bucket - Name of the bucket in which the object resides.
-     * @param  {string} params.object - Name of the object.
-     * @param  {string=} params.projection - Set of properties to return. Defaults to full.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string} params.object Name of the object.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',

@@ -9,24 +9,24 @@
  * @alias {{ m.id }}
  * @memberOf! {{ name }}({{ version }})
  *
- * @param  {object{% if !m.parameterOrder && !m.request %}={% endif %}} params - Parameters for request
+ * @param {object{% if !m.parameterOrder && !m.request %}={% endif %}} params Parameters for request
  {% for pname, p in m.parameters -%}
- * @param  {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname|getSafeParamName }} - {{ p.description|oneLine|cleanComments|safe }}
+ * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname|getSafeParamName }} {{ p.description|oneLine|cleanComments|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}
 {% if m.request -%}
- * @param  {object} params.resource - Media resource metadata
+ * @param  {object} params.resource Media resource metadata
 {% endif -%}
- * @param  {object} params.media - Media object
- * @param  {string} params.media.mimeType - Media mime-type
- * @param  {string|object} params.media.body - Media body contents
+ * @param {object} params.media Media object
+ * @param {string} params.media.mimeType Media mime-type
+ * @param {string|object} params.media.body Media body contents
 {% elif m.request -%}
- * @param  {object} params.resource - Request body data
+ * @param {object} params.resource Request body data
 {% endif -%}
- * @param  {callback} callback - The callback that handles the response.
+ * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function(params, callback) {
+{% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function (params, callback) {
   var parameters = {
     options: {
       url: {{ (rootUrl + servicePath + m.path)|buildurl }},

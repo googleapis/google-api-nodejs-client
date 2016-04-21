@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Configures and serves authoritative DNS records.
  * @namespace dns
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Dns
  * @param {object=} options Options for Dns
  */
-function Dns(options) {
-
+function Dns(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.changes = {
+  self.changes = {
 
     /**
      * dns.changes.create
@@ -45,14 +44,14 @@ function Dns(options) {
      * @alias dns.changes.create
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/changes',
@@ -75,14 +74,14 @@ function Dns(options) {
      * @alias dns.changes.get
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.changeId - The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
-     * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/changes/{changeId}',
@@ -105,17 +104,17 @@ function Dns(options) {
      * @alias dns.changes.list
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param  {integer=} params.maxResults - Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param  {string=} params.pageToken - Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {string=} params.sortBy - Sorting criterion. The only supported value is change sequence.
-     * @param  {string=} params.sortOrder - Sorting order direction: 'ascending' or 'descending'.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
+     * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/changes',
@@ -132,7 +131,7 @@ function Dns(options) {
 
   };
 
-  this.managedZones = {
+  self.managedZones = {
 
     /**
      * dns.managedZones.create
@@ -142,13 +141,13 @@ function Dns(options) {
      * @alias dns.managedZones.create
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones',
@@ -171,13 +170,13 @@ function Dns(options) {
      * @alias dns.managedZones.delete
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}',
@@ -200,13 +199,13 @@ function Dns(options) {
      * @alias dns.managedZones.get
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}',
@@ -229,15 +228,15 @@ function Dns(options) {
      * @alias dns.managedZones.list
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.dnsName - Restricts the list to return only zones with this domain name.
-     * @param  {integer=} params.maxResults - Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param  {string=} params.pageToken - Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones',
@@ -254,7 +253,7 @@ function Dns(options) {
 
   };
 
-  this.projects = {
+  self.projects = {
 
     /**
      * dns.projects.get
@@ -264,12 +263,12 @@ function Dns(options) {
      * @alias dns.projects.get
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}',
@@ -286,7 +285,7 @@ function Dns(options) {
 
   };
 
-  this.resourceRecordSets = {
+  self.resourceRecordSets = {
 
     /**
      * dns.resourceRecordSets.list
@@ -296,17 +295,17 @@ function Dns(options) {
      * @alias dns.resourceRecordSets.list
      * @memberOf! dns(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.managedZone - Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param  {integer=} params.maxResults - Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param  {string=} params.name - Restricts the list to return only records with this fully qualified domain name.
-     * @param  {string=} params.pageToken - Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param  {string} params.project - Identifies the project addressed by this request.
-     * @param  {string=} params.type - Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.name Restricts the list to return only records with this fully qualified domain name.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.type Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/rrsets',

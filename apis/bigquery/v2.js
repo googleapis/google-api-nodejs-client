@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc A data platform for customers to create, manage, share and query data.
  * @namespace bigquery
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Bigquery
  * @param {object=} options Options for Bigquery
  */
-function Bigquery(options) {
-
+function Bigquery(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.datasets = {
+  self.datasets = {
 
     /**
      * bigquery.datasets.delete
@@ -45,14 +44,14 @@ function Bigquery(options) {
      * @alias bigquery.datasets.delete
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of dataset being deleted
-     * @param  {boolean=} params.deleteContents - If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
-     * @param  {string} params.projectId - Project ID of the dataset being deleted
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of dataset being deleted
+     * @param {boolean=} params.deleteContents If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
+     * @param {string} params.projectId Project ID of the dataset being deleted
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
@@ -75,13 +74,13 @@ function Bigquery(options) {
      * @alias bigquery.datasets.get
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the requested dataset
-     * @param  {string} params.projectId - Project ID of the requested dataset
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the requested dataset
+     * @param {string} params.projectId Project ID of the requested dataset
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
@@ -104,13 +103,13 @@ function Bigquery(options) {
      * @alias bigquery.datasets.insert
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - Project ID of the new dataset
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID of the new dataset
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
@@ -133,15 +132,15 @@ function Bigquery(options) {
      * @alias bigquery.datasets.list
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.all - Whether to list all datasets, including hidden ones
-     * @param  {integer=} params.maxResults - The maximum number of results to return
-     * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {string} params.projectId - Project ID of the datasets to be listed
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.all Whether to list all datasets, including hidden ones
+     * @param {integer=} params.maxResults The maximum number of results to return
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string} params.projectId Project ID of the datasets to be listed
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
@@ -164,14 +163,14 @@ function Bigquery(options) {
      * @alias bigquery.datasets.patch
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the dataset being updated
-     * @param  {string} params.projectId - Project ID of the dataset being updated
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the dataset being updated
+     * @param {string} params.projectId Project ID of the dataset being updated
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
@@ -194,14 +193,14 @@ function Bigquery(options) {
      * @alias bigquery.datasets.update
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the dataset being updated
-     * @param  {string} params.projectId - Project ID of the dataset being updated
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the dataset being updated
+     * @param {string} params.projectId Project ID of the dataset being updated
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
@@ -218,7 +217,7 @@ function Bigquery(options) {
 
   };
 
-  this.jobs = {
+  self.jobs = {
 
     /**
      * bigquery.jobs.cancel
@@ -228,13 +227,13 @@ function Bigquery(options) {
      * @alias bigquery.jobs.cancel
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - [Required] Job ID of the job to cancel
-     * @param  {string} params.projectId - [Required] Project ID of the job to cancel
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId [Required] Job ID of the job to cancel
+     * @param {string} params.projectId [Required] Project ID of the job to cancel
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/project/{projectId}/jobs/{jobId}/cancel',
@@ -257,13 +256,13 @@ function Bigquery(options) {
      * @alias bigquery.jobs.get
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - [Required] Job ID of the requested job
-     * @param  {string} params.projectId - [Required] Project ID of the requested job
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId [Required] Job ID of the requested job
+     * @param {string} params.projectId [Required] Project ID of the requested job
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}',
@@ -286,17 +285,17 @@ function Bigquery(options) {
      * @alias bigquery.jobs.getQueryResults
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - [Required] Job ID of the query job
-     * @param  {integer=} params.maxResults - Maximum number of results to read
-     * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {string} params.projectId - [Required] Project ID of the query job
-     * @param  {string=} params.startIndex - Zero-based index of the starting row
-     * @param  {integer=} params.timeoutMs - How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId [Required] Job ID of the query job
+     * @param {integer=} params.maxResults Maximum number of results to read
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string} params.projectId [Required] Project ID of the query job
+     * @param {string=} params.startIndex Zero-based index of the starting row
+     * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getQueryResults: function(params, callback) {
+    getQueryResults: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries/{jobId}',
@@ -319,16 +318,16 @@ function Bigquery(options) {
      * @alias bigquery.jobs.insert
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - Project ID of the project that will be billed for the job
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID of the project that will be billed for the job
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
@@ -352,17 +351,17 @@ function Bigquery(options) {
      * @alias bigquery.jobs.list
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.allUsers - Whether to display jobs owned by all users in the project. Default false
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {string} params.projectId - Project ID of the jobs to list
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields
-     * @param  {string=} params.stateFilter - Filter for job state
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string} params.projectId Project ID of the jobs to list
+     * @param {string=} params.projection Restrict information returned to a set of selected fields
+     * @param {string=} params.stateFilter Filter for job state
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
@@ -385,13 +384,13 @@ function Bigquery(options) {
      * @alias bigquery.jobs.query
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - Project ID of the project billed for the query
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID of the project billed for the query
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, callback) {
+    query: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries',
@@ -408,7 +407,7 @@ function Bigquery(options) {
 
   };
 
-  this.projects = {
+  self.projects = {
 
     /**
      * bigquery.projects.list
@@ -418,13 +417,13 @@ function Bigquery(options) {
      * @alias bigquery.projects.list
      * @memberOf! bigquery(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects',
@@ -441,7 +440,7 @@ function Bigquery(options) {
 
   };
 
-  this.tabledata = {
+  self.tabledata = {
 
     /**
      * bigquery.tabledata.insertAll
@@ -451,15 +450,15 @@ function Bigquery(options) {
      * @alias bigquery.tabledata.insertAll
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the destination table.
-     * @param  {string} params.projectId - Project ID of the destination table.
-     * @param  {string} params.tableId - Table ID of the destination table.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the destination table.
+     * @param {string} params.projectId Project ID of the destination table.
+     * @param {string} params.tableId Table ID of the destination table.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insertAll: function(params, callback) {
+    insertAll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll',
@@ -482,17 +481,17 @@ function Bigquery(options) {
      * @alias bigquery.tabledata.list
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the table to read
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - Page token, returned by a previous call, identifying the result set
-     * @param  {string} params.projectId - Project ID of the table to read
-     * @param  {string=} params.startIndex - Zero-based index of the starting row to read
-     * @param  {string} params.tableId - Table ID of the table to read
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the table to read
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
+     * @param {string} params.projectId Project ID of the table to read
+     * @param {string=} params.startIndex Zero-based index of the starting row to read
+     * @param {string} params.tableId Table ID of the table to read
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data',
@@ -509,7 +508,7 @@ function Bigquery(options) {
 
   };
 
-  this.tables = {
+  self.tables = {
 
     /**
      * bigquery.tables.delete
@@ -519,14 +518,14 @@ function Bigquery(options) {
      * @alias bigquery.tables.delete
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the table to delete
-     * @param  {string} params.projectId - Project ID of the table to delete
-     * @param  {string} params.tableId - Table ID of the table to delete
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the table to delete
+     * @param {string} params.projectId Project ID of the table to delete
+     * @param {string} params.tableId Table ID of the table to delete
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
@@ -549,14 +548,14 @@ function Bigquery(options) {
      * @alias bigquery.tables.get
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the requested table
-     * @param  {string} params.projectId - Project ID of the requested table
-     * @param  {string} params.tableId - Table ID of the requested table
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the requested table
+     * @param {string} params.projectId Project ID of the requested table
+     * @param {string} params.tableId Table ID of the requested table
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
@@ -579,14 +578,14 @@ function Bigquery(options) {
      * @alias bigquery.tables.insert
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the new table
-     * @param  {string} params.projectId - Project ID of the new table
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the new table
+     * @param {string} params.projectId Project ID of the new table
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
@@ -609,15 +608,15 @@ function Bigquery(options) {
      * @alias bigquery.tables.list
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the tables to list
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - Page token, returned by a previous call, to request the next page of results
-     * @param  {string} params.projectId - Project ID of the tables to list
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the tables to list
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string} params.projectId Project ID of the tables to list
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
@@ -640,15 +639,15 @@ function Bigquery(options) {
      * @alias bigquery.tables.patch
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the table to update
-     * @param  {string} params.projectId - Project ID of the table to update
-     * @param  {string} params.tableId - Table ID of the table to update
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the table to update
+     * @param {string} params.projectId Project ID of the table to update
+     * @param {string} params.tableId Table ID of the table to update
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
@@ -671,15 +670,15 @@ function Bigquery(options) {
      * @alias bigquery.tables.update
      * @memberOf! bigquery(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Dataset ID of the table to update
-     * @param  {string} params.projectId - Project ID of the table to update
-     * @param  {string} params.tableId - Table ID of the table to update
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the table to update
+     * @param {string} params.projectId Project ID of the table to update
+     * @param {string} params.tableId Table ID of the table to update
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',

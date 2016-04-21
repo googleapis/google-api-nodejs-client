@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Gives Ad Exchange seller users access to their inventory and the ability to generate reports
  * @namespace adexchangeseller
- * @version  v1.1
+ * @version v1.1
  * @variation v1.1
  * @this Adexchangeseller
  * @param {object=} options Options for Adexchangeseller
  */
-function Adexchangeseller(options) {
-
+function Adexchangeseller(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     /**
      * adexchangeseller.accounts.get
@@ -45,12 +44,12 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.accounts.get
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - Account to get information about. Tip: 'myaccount' is a valid ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Account to get information about. Tip: 'myaccount' is a valid ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/accounts/{accountId}',
@@ -67,7 +66,7 @@ function Adexchangeseller(options) {
 
   };
 
-  this.adclients = {
+  self.adclients = {
 
     /**
      * adexchangeseller.adclients.list
@@ -77,13 +76,13 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.adclients.list
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of ad clients to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients',
@@ -100,7 +99,7 @@ function Adexchangeseller(options) {
 
   };
 
-  this.adunits = {
+  self.adunits = {
 
     /**
      * adexchangeseller.adunits.get
@@ -110,13 +109,13 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.adunits.get
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to get the ad unit.
-     * @param  {string} params.adUnitId - Ad unit to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to get the ad unit.
+     * @param {string} params.adUnitId Ad unit to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}',
@@ -139,15 +138,15 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.adunits.list
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to list ad units.
-     * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
-     * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to list ad units.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits',
@@ -172,15 +171,15 @@ function Adexchangeseller(options) {
        * @alias adexchangeseller.adunits.customchannels.list
        * @memberOf! adexchangeseller(v1.1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.adClientId - Ad client which contains the ad unit.
-       * @param  {string} params.adUnitId - Ad unit for which to list custom channels.
-       * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.adClientId Ad client which contains the ad unit.
+       * @param {string} params.adUnitId Ad unit for which to list custom channels.
+       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
@@ -197,7 +196,7 @@ function Adexchangeseller(options) {
     }
   };
 
-  this.alerts = {
+  self.alerts = {
 
     /**
      * adexchangeseller.alerts.list
@@ -207,12 +206,12 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.alerts.list
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.locale - The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/alerts',
@@ -229,7 +228,7 @@ function Adexchangeseller(options) {
 
   };
 
-  this.customchannels = {
+  self.customchannels = {
 
     /**
      * adexchangeseller.customchannels.get
@@ -239,13 +238,13 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.customchannels.get
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client which contains the custom channel.
-     * @param  {string} params.customChannelId - Custom channel to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client which contains the custom channel.
+     * @param {string} params.customChannelId Custom channel to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}',
@@ -268,14 +267,14 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.customchannels.list
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to list custom channels.
-     * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels',
@@ -300,16 +299,16 @@ function Adexchangeseller(options) {
        * @alias adexchangeseller.customchannels.adunits.list
        * @memberOf! adexchangeseller(v1.1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.adClientId - Ad client which contains the custom channel.
-       * @param  {string} params.customChannelId - Custom channel for which to list ad units.
-       * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
-       * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.adClientId Ad client which contains the custom channel.
+       * @param {string} params.customChannelId Custom channel for which to list ad units.
+       * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+       * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
@@ -326,7 +325,7 @@ function Adexchangeseller(options) {
     }
   };
 
-  this.metadata = {
+  self.metadata = {
 
     dimensions: {
 
@@ -338,11 +337,11 @@ function Adexchangeseller(options) {
        * @alias adexchangeseller.metadata.dimensions.list
        * @memberOf! adexchangeseller(v1.1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/metadata/dimensions',
@@ -368,11 +367,11 @@ function Adexchangeseller(options) {
        * @alias adexchangeseller.metadata.metrics.list
        * @memberOf! adexchangeseller(v1.1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/metadata/metrics',
@@ -389,7 +388,7 @@ function Adexchangeseller(options) {
     }
   };
 
-  this.preferreddeals = {
+  self.preferreddeals = {
 
     /**
      * adexchangeseller.preferreddeals.get
@@ -399,12 +398,12 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.preferreddeals.get
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.dealId - Preferred deal to get information about.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.dealId Preferred deal to get information about.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/preferreddeals/{dealId}',
@@ -427,11 +426,11 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.preferreddeals.list
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/preferreddeals',
@@ -448,7 +447,7 @@ function Adexchangeseller(options) {
 
   };
 
-  this.reports = {
+  self.reports = {
 
     /**
      * adexchangeseller.reports.generate
@@ -458,20 +457,20 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.reports.generate
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.dimension - Dimensions to base the report on.
-     * @param  {string} params.endDate - End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param  {string=} params.filter - Filters to be run on the report.
-     * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
-     * @param  {string=} params.metric - Numeric columns to include in the report.
-     * @param  {string=} params.sort - The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     * @param  {string} params.startDate - Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param  {integer=} params.startIndex - Index of the first row of report data to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.dimension Dimensions to base the report on.
+     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {string=} params.filter Filters to be run on the report.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
+     * @param {string=} params.metric Numeric columns to include in the report.
+     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, callback) {
+    generate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports',
@@ -496,15 +495,15 @@ function Adexchangeseller(options) {
        * @alias adexchangeseller.reports.saved.generate
        * @memberOf! adexchangeseller(v1.1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-       * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
-       * @param  {string} params.savedReportId - The saved report to retrieve.
-       * @param  {integer=} params.startIndex - Index of the first row of report data to return.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+       * @param {integer=} params.maxResults The maximum number of rows of report data to return.
+       * @param {string} params.savedReportId The saved report to retrieve.
+       * @param {integer=} params.startIndex Index of the first row of report data to return.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function(params, callback) {
+      generate: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports/{savedReportId}',
@@ -527,13 +526,13 @@ function Adexchangeseller(options) {
        * @alias adexchangeseller.reports.saved.list
        * @memberOf! adexchangeseller(v1.1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.maxResults - The maximum number of saved reports to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports/saved',
@@ -550,7 +549,7 @@ function Adexchangeseller(options) {
     }
   };
 
-  this.urlchannels = {
+  self.urlchannels = {
 
     /**
      * adexchangeseller.urlchannels.list
@@ -560,14 +559,14 @@ function Adexchangeseller(options) {
      * @alias adexchangeseller.urlchannels.list
      * @memberOf! adexchangeseller(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to list URL channels.
-     * @param  {integer=} params.maxResults - The maximum number of URL channels to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to list URL channels.
+     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/urlchannels',

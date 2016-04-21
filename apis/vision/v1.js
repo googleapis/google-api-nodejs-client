@@ -23,19 +23,18 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Vision API
  *
- * @classdesc The Google Cloud Vision API allows developers to easily integrate Google vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
+ * @classdesc Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
  * @namespace vision
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Vision
  * @param {object=} options Options for Vision
  */
-function Vision(options) {
-
+function Vision(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.images = {
+  self.images = {
 
     /**
      * vision.images.annotate
@@ -45,12 +44,12 @@ function Vision(options) {
      * @alias vision.images.annotate
      * @memberOf! vision(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate: function(params, callback) {
+    annotate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://vision.googleapis.com/v1/images:annotate',

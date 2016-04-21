@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
  * @namespace cloudtrace
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Cloudtrace
  * @param {object=} options Options for Cloudtrace
  */
-function Cloudtrace(options) {
-
+function Cloudtrace(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     /**
      * cloudtrace.projects.patchTraces
@@ -45,13 +44,13 @@ function Cloudtrace(options) {
      * @alias cloudtrace.projects.patchTraces
      * @memberOf! cloudtrace(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - ID of the Cloud project where the trace data is stored.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patchTraces: function(params, callback) {
+    patchTraces: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
@@ -76,19 +75,19 @@ function Cloudtrace(options) {
        * @alias cloudtrace.projects.traces.list
        * @memberOf! cloudtrace(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - ID of the Cloud project where the trace data is stored.
-       * @param  {string=} params.view - Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
-       * @param  {integer=} params.pageSize - Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size. Optional.
-       * @param  {string=} params.pageToken - Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
-       * @param  {string=} params.startTime - End of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param  {string=} params.endTime - Start of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param  {string=} params.filter - An optional filter for the request.
-       * @param  {string=} params.orderBy - Field used to sort the returned traces. Optional. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
+       * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
+       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size. Optional.
+       * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
+       * @param {string=} params.startTime End of the time interval (inclusive) during which the trace data was collected from the application.
+       * @param {string=} params.endTime Start of the time interval (inclusive) during which the trace data was collected from the application.
+       * @param {string=} params.filter An optional filter for the request.
+       * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
@@ -111,13 +110,13 @@ function Cloudtrace(options) {
        * @alias cloudtrace.projects.traces.get
        * @memberOf! cloudtrace(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - ID of the Cloud project where the trace data is stored.
-       * @param  {string} params.traceId - ID of the trace to return.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
+       * @param {string} params.traceId ID of the trace to return.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces/{traceId}',

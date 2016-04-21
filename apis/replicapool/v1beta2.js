@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc [Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.
  * @namespace replicapool
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Replicapool
  * @param {object=} options Options for Replicapool
  */
-function Replicapool(options) {
-
+function Replicapool(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.instanceGroupManagers = {
+  self.instanceGroupManagers = {
 
     /**
      * replicapool.instanceGroupManagers.abandonInstances
@@ -45,15 +44,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.abandonInstances
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances: function(params, callback) {
+    abandonInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
@@ -76,14 +75,14 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.delete
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the Instance Group Manager resource to delete.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the Instance Group Manager resource to delete.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
@@ -106,15 +105,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.deleteInstances
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances: function(params, callback) {
+    deleteInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
@@ -137,14 +136,14 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.get
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - Name of the instance resource to return.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the instance resource to return.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
@@ -167,15 +166,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.insert
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {integer} params.size - Number of instances that should exist.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {integer} params.size Number of instances that should exist.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers',
@@ -198,16 +197,16 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.list
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers',
@@ -230,15 +229,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.recreateInstances
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances: function(params, callback) {
+    recreateInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
@@ -261,15 +260,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.resize
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {integer} params.size - Number of instances that should exist in this Instance Group Manager.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {integer} params.size Number of instances that should exist in this Instance Group Manager.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function(params, callback) {
+    resize: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
@@ -292,15 +291,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.setInstanceTemplate
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate: function(params, callback) {
+    setInstanceTemplate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
@@ -323,15 +322,15 @@ function Replicapool(options) {
      * @alias replicapool.instanceGroupManagers.setTargetPools
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the instance group manager resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools: function(params, callback) {
+    setTargetPools: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
@@ -348,7 +347,7 @@ function Replicapool(options) {
 
   };
 
-  this.zoneOperations = {
+  self.zoneOperations = {
 
     /**
      * replicapool.zoneOperations.get
@@ -358,14 +357,14 @@ function Replicapool(options) {
      * @alias replicapool.zoneOperations.get
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the operation resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the operation resource to return.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
@@ -388,16 +387,16 @@ function Replicapool(options) {
      * @alias replicapool.zoneOperations.list
      * @memberOf! replicapool(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/operations',

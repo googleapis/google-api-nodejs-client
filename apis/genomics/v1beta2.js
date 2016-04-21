@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Provides access to Genomics data.
  * @namespace genomics
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Genomics
  * @param {object=} options Options for Genomics
  */
-function Genomics(options) {
-
+function Genomics(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.annotationSets = {
+  self.annotationSets = {
 
     /**
      * genomics.annotationSets.create
@@ -45,12 +44,12 @@ function Genomics(options) {
      * @alias genomics.annotationSets.create
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets',
@@ -73,12 +72,12 @@ function Genomics(options) {
      * @alias genomics.annotationSets.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationSetId - The ID of the annotation set to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationSetId The ID of the annotation set to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
@@ -101,12 +100,12 @@ function Genomics(options) {
      * @alias genomics.annotationSets.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationSetId - The ID of the annotation set to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationSetId The ID of the annotation set to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
@@ -129,13 +128,13 @@ function Genomics(options) {
      * @alias genomics.annotationSets.patch
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationSetId - The ID of the annotation set to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationSetId The ID of the annotation set to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
@@ -158,12 +157,12 @@ function Genomics(options) {
      * @alias genomics.annotationSets.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/search',
@@ -186,13 +185,13 @@ function Genomics(options) {
      * @alias genomics.annotationSets.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationSetId - The ID of the annotation set to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationSetId The ID of the annotation set to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
@@ -209,7 +208,7 @@ function Genomics(options) {
 
   };
 
-  this.annotations = {
+  self.annotations = {
 
     /**
      * genomics.annotations.batchCreate
@@ -219,12 +218,12 @@ function Genomics(options) {
      * @alias genomics.annotations.batchCreate
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchCreate: function(params, callback) {
+    batchCreate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations:batchCreate',
@@ -247,12 +246,12 @@ function Genomics(options) {
      * @alias genomics.annotations.create
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations',
@@ -275,12 +274,12 @@ function Genomics(options) {
      * @alias genomics.annotations.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationId The ID of the annotation to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
@@ -303,12 +302,12 @@ function Genomics(options) {
      * @alias genomics.annotations.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationId The ID of the annotation to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
@@ -331,13 +330,13 @@ function Genomics(options) {
      * @alias genomics.annotations.patch
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationId The ID of the annotation to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
@@ -360,12 +359,12 @@ function Genomics(options) {
      * @alias genomics.annotations.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/search',
@@ -388,13 +387,13 @@ function Genomics(options) {
      * @alias genomics.annotations.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.annotationId - The ID of the annotation to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationId The ID of the annotation to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
@@ -411,7 +410,7 @@ function Genomics(options) {
 
   };
 
-  this.callsets = {
+  self.callsets = {
 
     /**
      * genomics.callsets.create
@@ -421,12 +420,12 @@ function Genomics(options) {
      * @alias genomics.callsets.create
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets',
@@ -449,12 +448,12 @@ function Genomics(options) {
      * @alias genomics.callsets.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.callSetId - The ID of the call set to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.callSetId The ID of the call set to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
@@ -477,12 +476,12 @@ function Genomics(options) {
      * @alias genomics.callsets.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.callSetId - The ID of the call set.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.callSetId The ID of the call set.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
@@ -505,13 +504,13 @@ function Genomics(options) {
      * @alias genomics.callsets.patch
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.callSetId - The ID of the call set to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.callSetId The ID of the call set to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
@@ -534,12 +533,12 @@ function Genomics(options) {
      * @alias genomics.callsets.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/search',
@@ -562,13 +561,13 @@ function Genomics(options) {
      * @alias genomics.callsets.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.callSetId - The ID of the call set to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.callSetId The ID of the call set to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
@@ -585,7 +584,7 @@ function Genomics(options) {
 
   };
 
-  this.datasets = {
+  self.datasets = {
 
     /**
      * genomics.datasets.create
@@ -595,12 +594,12 @@ function Genomics(options) {
      * @alias genomics.datasets.create
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets',
@@ -623,12 +622,12 @@ function Genomics(options) {
      * @alias genomics.datasets.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - The ID of the dataset to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId The ID of the dataset to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
@@ -651,12 +650,12 @@ function Genomics(options) {
      * @alias genomics.datasets.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - The ID of the dataset.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId The ID of the dataset.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
@@ -679,14 +678,14 @@ function Genomics(options) {
      * @alias genomics.datasets.list
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.pageSize - The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param  {string=} params.projectNumber - Required. The project to list datasets for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param {string=} params.projectNumber Required. The project to list datasets for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets',
@@ -709,13 +708,13 @@ function Genomics(options) {
      * @alias genomics.datasets.patch
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - The ID of the dataset to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId The ID of the dataset to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
@@ -738,12 +737,12 @@ function Genomics(options) {
      * @alias genomics.datasets.undelete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - The ID of the dataset to be undeleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId The ID of the dataset to be undeleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete: function(params, callback) {
+    undelete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}/undelete',
@@ -766,13 +765,13 @@ function Genomics(options) {
      * @alias genomics.datasets.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - The ID of the dataset to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId The ID of the dataset to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
@@ -789,7 +788,7 @@ function Genomics(options) {
 
   };
 
-  this.experimental = {
+  self.experimental = {
 
     jobs: {
 
@@ -801,12 +800,12 @@ function Genomics(options) {
        * @alias genomics.experimental.jobs.create
        * @memberOf! genomics(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/genomics/v1beta2/experimental/jobs/create',
@@ -823,7 +822,7 @@ function Genomics(options) {
     }
   };
 
-  this.jobs = {
+  self.jobs = {
 
     /**
      * genomics.jobs.cancel
@@ -833,12 +832,12 @@ function Genomics(options) {
      * @alias genomics.jobs.cancel
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Required. The ID of the job.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId Required. The ID of the job.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/jobs/{jobId}/cancel',
@@ -861,12 +860,12 @@ function Genomics(options) {
      * @alias genomics.jobs.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Required. The ID of the job.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId Required. The ID of the job.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/jobs/{jobId}',
@@ -889,12 +888,12 @@ function Genomics(options) {
      * @alias genomics.jobs.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/jobs/search',
@@ -911,7 +910,7 @@ function Genomics(options) {
 
   };
 
-  this.readgroupsets = {
+  self.readgroupsets = {
 
     /**
      * genomics.readgroupsets.delete
@@ -921,12 +920,12 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.readGroupSetId - The ID of the read group set to be deleted. The caller must have WRITE permissions to the dataset associated with this read group set.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.readGroupSetId The ID of the read group set to be deleted. The caller must have WRITE permissions to the dataset associated with this read group set.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
@@ -949,12 +948,12 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.export
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function(params, callback) {
+    export: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/export',
@@ -977,12 +976,12 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.readGroupSetId - The ID of the read group set.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.readGroupSetId The ID of the read group set.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
@@ -1005,12 +1004,12 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.import
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    import: function(params, callback) {
+    import: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/import',
@@ -1033,13 +1032,13 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.patch
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.readGroupSetId - The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
@@ -1062,12 +1061,12 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/search',
@@ -1090,13 +1089,13 @@ function Genomics(options) {
      * @alias genomics.readgroupsets.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.readGroupSetId - The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
@@ -1121,18 +1120,18 @@ function Genomics(options) {
        * @alias genomics.readgroupsets.coveragebuckets.list
        * @memberOf! genomics(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer=} params.pageSize - The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
-       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-       * @param  {string=} params.range.end - The end position of the range on the reference, 0-based exclusive. If specified, referenceName must also be specified.
-       * @param  {string=} params.range.referenceName - The reference sequence name, for example chr1, 1, or chrX.
-       * @param  {string=} params.range.start - The start position of the range on the reference, 0-based inclusive. If specified, referenceName must also be specified.
-       * @param  {string} params.readGroupSetId - Required. The ID of the read group set over which coverage is requested.
-       * @param  {string=} params.targetBucketWidth - The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucketWidth in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucketWidth is currently 2048 base pairs; this is subject to change.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
+       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param {string=} params.range.end The end position of the range on the reference, 0-based exclusive. If specified, referenceName must also be specified.
+       * @param {string=} params.range.referenceName The reference sequence name, for example chr1, 1, or chrX.
+       * @param {string=} params.range.start The start position of the range on the reference, 0-based inclusive. If specified, referenceName must also be specified.
+       * @param {string} params.readGroupSetId Required. The ID of the read group set over which coverage is requested.
+       * @param {string=} params.targetBucketWidth The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucketWidth in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucketWidth is currently 2048 base pairs; this is subject to change.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}/coveragebuckets',
@@ -1149,7 +1148,7 @@ function Genomics(options) {
     }
   };
 
-  this.reads = {
+  self.reads = {
 
     /**
      * genomics.reads.search
@@ -1159,12 +1158,12 @@ function Genomics(options) {
      * @alias genomics.reads.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/reads/search',
@@ -1181,7 +1180,7 @@ function Genomics(options) {
 
   };
 
-  this.references = {
+  self.references = {
 
     /**
      * genomics.references.get
@@ -1191,12 +1190,12 @@ function Genomics(options) {
      * @alias genomics.references.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.referenceId - The ID of the reference.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.referenceId The ID of the reference.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/references/{referenceId}',
@@ -1219,12 +1218,12 @@ function Genomics(options) {
      * @alias genomics.references.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/references/search',
@@ -1249,16 +1248,16 @@ function Genomics(options) {
        * @alias genomics.references.bases.list
        * @memberOf! genomics(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.end - The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
-       * @param  {integer=} params.pageSize - The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
-       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-       * @param  {string} params.referenceId - The ID of the reference.
-       * @param  {string=} params.start - The start position (0-based) of this query. Defaults to 0.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.end The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
+       * @param {integer=} params.pageSize The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
+       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param {string} params.referenceId The ID of the reference.
+       * @param {string=} params.start The start position (0-based) of this query. Defaults to 0.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/genomics/v1beta2/references/{referenceId}/bases',
@@ -1275,7 +1274,7 @@ function Genomics(options) {
     }
   };
 
-  this.referencesets = {
+  self.referencesets = {
 
     /**
      * genomics.referencesets.get
@@ -1285,12 +1284,12 @@ function Genomics(options) {
      * @alias genomics.referencesets.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.referenceSetId - The ID of the reference set.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.referenceSetId The ID of the reference set.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/{referenceSetId}',
@@ -1313,12 +1312,12 @@ function Genomics(options) {
      * @alias genomics.referencesets.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/search',
@@ -1335,7 +1334,7 @@ function Genomics(options) {
 
   };
 
-  this.variants = {
+  self.variants = {
 
     /**
      * genomics.variants.create
@@ -1345,12 +1344,12 @@ function Genomics(options) {
      * @alias genomics.variants.create
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variants',
@@ -1373,12 +1372,12 @@ function Genomics(options) {
      * @alias genomics.variants.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantId - The ID of the variant to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantId The ID of the variant to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
@@ -1401,12 +1400,12 @@ function Genomics(options) {
      * @alias genomics.variants.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantId - The ID of the variant.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantId The ID of the variant.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
@@ -1429,12 +1428,12 @@ function Genomics(options) {
      * @alias genomics.variants.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/search',
@@ -1457,13 +1456,13 @@ function Genomics(options) {
      * @alias genomics.variants.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantId - The ID of the variant to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantId The ID of the variant to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
@@ -1480,7 +1479,7 @@ function Genomics(options) {
 
   };
 
-  this.variantsets = {
+  self.variantsets = {
 
     /**
      * genomics.variantsets.create
@@ -1490,12 +1489,12 @@ function Genomics(options) {
      * @alias genomics.variantsets.create
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets',
@@ -1518,12 +1517,12 @@ function Genomics(options) {
      * @alias genomics.variantsets.delete
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The ID of the variant set to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId The ID of the variant set to be deleted. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
@@ -1546,13 +1545,13 @@ function Genomics(options) {
      * @alias genomics.variantsets.export
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - Required. The ID of the variant set that contains variant data which should be exported. The caller must have READ access to this variant set.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId The ID of the variant set that contains variant data which should be exported. Required. The caller must have READ access to this variant set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function(params, callback) {
+    export: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/export',
@@ -1575,12 +1574,12 @@ function Genomics(options) {
      * @alias genomics.variantsets.get
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The ID of the variant set.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId The ID of the variant set. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
@@ -1603,13 +1602,13 @@ function Genomics(options) {
      * @alias genomics.variantsets.importVariants
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - Required. The variant set to which variant data should be imported.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId Required. The variant set to which variant data should be imported.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importVariants: function(params, callback) {
+    importVariants: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/importVariants',
@@ -1632,13 +1631,13 @@ function Genomics(options) {
      * @alias genomics.variantsets.mergeVariants
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The destination variant set.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId The destination variant set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    mergeVariants: function(params, callback) {
+    mergeVariants: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/mergeVariants',
@@ -1661,13 +1660,13 @@ function Genomics(options) {
      * @alias genomics.variantsets.patch
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The ID of the variant set to be updated (must already exist).
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId The ID of the variant set to be updated (must already exist).
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
@@ -1690,12 +1689,12 @@ function Genomics(options) {
      * @alias genomics.variantsets.search
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/search',
@@ -1718,13 +1717,13 @@ function Genomics(options) {
      * @alias genomics.variantsets.update
      * @memberOf! genomics(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.variantSetId - The ID of the variant set to be updated (must already exist).
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.variantSetId The ID of the variant set to be updated (must already exist).
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',

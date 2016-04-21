@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Provisions and manages App Engine applications.
  * @namespace appengine
- * @version  v1beta5
+ * @version v1beta5
  * @variation v1beta5
  * @this Appengine
  * @param {object=} options Options for Appengine
  */
-function Appengine(options) {
-
+function Appengine(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.apps = {
+  self.apps = {
 
     /**
      * appengine.apps.get
@@ -45,13 +44,13 @@ function Appengine(options) {
      * @alias appengine.apps.get
      * @memberOf! appengine(v1beta5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.appsId - Part of `name`. Name of the application to get. For example: "apps/myapp".
-     * @param  {boolean=} params.ensureResourcesExist - Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete. Note: This parameter will be deprecated in a future version of the API.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.appsId Part of `name`. Name of the application to get. For example: "apps/myapp".
+     * @param {boolean=} params.ensureResourcesExist Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete. Note: This parameter will be deprecated in a future version of the API.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}',
@@ -76,13 +75,13 @@ function Appengine(options) {
        * @alias appengine.apps.operations.get
        * @memberOf! appengine(v1beta5)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. The name of the operation resource.
-       * @param  {string} params.operationsId - Part of `name`. See documentation of `appsId`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. The name of the operation resource.
+       * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/operations/{operationsId}',
@@ -105,15 +104,15 @@ function Appengine(options) {
        * @alias appengine.apps.operations.list
        * @memberOf! appengine(v1beta5)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. The name of the operation collection.
-       * @param  {string=} params.filter - The standard list filter.
-       * @param  {integer=} params.pageSize - The standard list page size.
-       * @param  {string=} params.pageToken - The standard list page token.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. The name of the operation collection.
+       * @param {string=} params.filter The standard list filter.
+       * @param {integer=} params.pageSize The standard list page size.
+       * @param {string=} params.pageToken The standard list page token.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/operations',
@@ -139,13 +138,13 @@ function Appengine(options) {
        * @alias appengine.apps.services.delete
        * @memberOf! appengine(v1beta5)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default".
-       * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default".
+       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}',
@@ -168,13 +167,13 @@ function Appengine(options) {
        * @alias appengine.apps.services.get
        * @memberOf! appengine(v1beta5)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default".
-       * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default".
+       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}',
@@ -197,14 +196,14 @@ function Appengine(options) {
        * @alias appengine.apps.services.list
        * @memberOf! appengine(v1beta5)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp".
-       * @param  {integer=} params.pageSize - Maximum results to return per page.
-       * @param  {string=} params.pageToken - Continuation token for fetching the next page of results.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp".
+       * @param {integer=} params.pageSize Maximum results to return per page.
+       * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services',
@@ -227,16 +226,16 @@ function Appengine(options) {
        * @alias appengine.apps.services.patch
        * @memberOf! appengine(v1beta5)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.appsId - Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
-       * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-       * @param  {string=} params.mask - Standard field mask for the set of fields to be updated.
-       * @param  {boolean=} params.migrateTraffic - Whether to use Traffic Migration to shift traffic gradually. Traffic can only be migrated from a single version to another single version.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
+       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+       * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+       * @param {boolean=} params.migrateTraffic Whether to use Traffic Migration to shift traffic gradually. Traffic can only be migrated from a single version to another single version.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}',
@@ -261,14 +260,14 @@ function Appengine(options) {
          * @alias appengine.apps.services.versions.create
          * @memberOf! appengine(v1beta5)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.appsId - Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
-         * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
+         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions',
@@ -291,14 +290,14 @@ function Appengine(options) {
          * @alias appengine.apps.services.versions.delete
          * @memberOf! appengine(v1beta5)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
-         * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-         * @param  {string} params.versionsId - Part of `name`. See documentation of `appsId`.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
+         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+         * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
@@ -321,15 +320,15 @@ function Appengine(options) {
          * @alias appengine.apps.services.versions.get
          * @memberOf! appengine(v1beta5)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
-         * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-         * @param  {string} params.versionsId - Part of `name`. See documentation of `appsId`.
-         * @param  {string=} params.view - Controls the set of fields returned in the `Get` response.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
+         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+         * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+         * @param {string=} params.view Controls the set of fields returned in the `Get` response.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
@@ -352,16 +351,16 @@ function Appengine(options) {
          * @alias appengine.apps.services.versions.list
          * @memberOf! appengine(v1beta5)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default".
-         * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-         * @param  {string=} params.view - Controls the set of fields returned in the `List` response.
-         * @param  {integer=} params.pageSize - Maximum results to return per page.
-         * @param  {string=} params.pageToken - Continuation token for fetching the next page of results.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default".
+         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+         * @param {string=} params.view Controls the set of fields returned in the `List` response.
+         * @param {integer=} params.pageSize Maximum results to return per page.
+         * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions',
@@ -384,16 +383,16 @@ function Appengine(options) {
          * @alias appengine.apps.services.versions.patch
          * @memberOf! appengine(v1beta5)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.appsId - Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default/versions/1".
-         * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-         * @param  {string} params.versionsId - Part of `name`. See documentation of `appsId`.
-         * @param  {string=} params.mask - Standard field mask for the set of fields to be updated.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default/versions/1".
+         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+         * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+         * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function(params, callback) {
+        patch: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
@@ -418,16 +417,16 @@ function Appengine(options) {
            * @alias appengine.apps.services.versions.instances.list
            * @memberOf! appengine(v1beta5)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.appsId - Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
-           * @param  {string} params.servicesId - Part of `name`. See documentation of `appsId`.
-           * @param  {string} params.versionsId - Part of `name`. See documentation of `appsId`.
-           * @param  {integer=} params.pageSize - Maximum results to return per page.
-           * @param  {string=} params.pageToken - Continuation token for fetching the next page of results.
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1".
+           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {integer=} params.pageSize Maximum results to return per page.
+           * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function(params, callback) {
+          list: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances',

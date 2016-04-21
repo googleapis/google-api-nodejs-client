@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
  * @namespace dataproc
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Dataproc
  * @param {object=} options Options for Dataproc
  */
-function Dataproc(options) {
-
+function Dataproc(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.media = {
+  self.media = {
 
     /**
      * dataproc.media.upload
@@ -45,16 +44,16 @@ function Dataproc(options) {
      * @alias dataproc.media.upload
      * @memberOf! dataproc(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceName - Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload: function(params, callback) {
+    upload: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataproc.googleapis.com/v1/media/{resourceName}',
@@ -78,12 +77,12 @@ function Dataproc(options) {
      * @alias dataproc.media.download
      * @memberOf! dataproc(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceName - Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download: function(params, callback) {
+    download: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataproc.googleapis.com/v1/media/{resourceName}',
@@ -100,7 +99,7 @@ function Dataproc(options) {
 
   };
 
-  this.projects = {
+  self.projects = {
 
     regions: {
 
@@ -114,14 +113,14 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.clusters.create
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/clusters',
@@ -144,16 +143,16 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.clusters.patch
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project the cluster belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.clusterName - [Required] The cluster name.
-         * @param  {string=} params.updateMask - [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the `PATCH` request body would specify the new value, as follows: { "config":{ "workerConfig":{ "numInstances":"5" } } } Note: Currently, config.worker_config.num_instances is the only field that can be updated.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project the cluster belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.clusterName [Required] The cluster name.
+         * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the `PATCH` request body would specify the new value, as follows: { "config":{ "workerConfig":{ "numInstances":"5" } } } Note: Currently, config.worker_config.num_instances is the only field that can be updated.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function(params, callback) {
+        patch: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}',
@@ -176,14 +175,14 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.clusters.delete
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.clusterName - [Required] The cluster name.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.clusterName [Required] The cluster name.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}',
@@ -206,14 +205,14 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.clusters.get
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.clusterName - [Required] The cluster name.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.clusterName [Required] The cluster name.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}',
@@ -236,15 +235,15 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.clusters.list
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {integer=} params.pageSize - The standard List page size.
-         * @param  {string=} params.pageToken - The standard List page token.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {integer=} params.pageSize The standard List page size.
+         * @param {string=} params.pageToken The standard List page token.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/clusters',
@@ -267,15 +266,15 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.clusters.diagnose
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.clusterName - [Required] The cluster name.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.clusterName [Required] The cluster name.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        diagnose: function(params, callback) {
+        diagnose: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose',
@@ -301,14 +300,14 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.jobs.submit
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        submit: function(params, callback) {
+        submit: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/jobs:submit',
@@ -331,14 +330,14 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.jobs.get
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.jobId - [Required] The job ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.jobId [Required] The job ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/jobs/{jobId}',
@@ -361,17 +360,17 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.jobs.list
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {integer=} params.pageSize - [Optional] The number of results to return in each response.
-         * @param  {string=} params.pageToken - [Optional] The page token, returned by a previous call, to request the next page of results.
-         * @param  {string=} params.clusterName - [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
-         * @param  {string=} params.jobStateMatcher - [Optional] Specifies enumerated categories of jobs to list.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {integer=} params.pageSize [Optional] The number of results to return in each response.
+         * @param {string=} params.pageToken [Optional] The page token, returned by a previous call, to request the next page of results.
+         * @param {string=} params.clusterName [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
+         * @param {string=} params.jobStateMatcher [Optional] Specifies enumerated categories of jobs to list.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/jobs',
@@ -394,15 +393,15 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.jobs.cancel
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.jobId - [Required] The job ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.jobId [Required] The job ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel: function(params, callback) {
+        cancel: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/jobs/{jobId}:cancel',
@@ -425,14 +424,14 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.jobs.delete
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-         * @param  {string} params.region - [Required] The Cloud Dataproc region in which to handle the request.
-         * @param  {string} params.jobId - [Required] The job ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+         * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
+         * @param {string} params.jobId [Required] The job ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/projects/{projectId}/regions/{region}/jobs/{jobId}',
@@ -458,12 +457,12 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.operations.get
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.name - The name of the operation resource.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the operation resource.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/{name}',
@@ -486,15 +485,15 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.operations.list
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.name - The name of the operation collection.
-         * @param  {string=} params.filter - The standard list filter.
-         * @param  {integer=} params.pageSize - The standard list page size.
-         * @param  {string=} params.pageToken - The standard list page token.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the operation collection.
+         * @param {string=} params.filter The standard list filter.
+         * @param {integer=} params.pageSize The standard list page size.
+         * @param {string=} params.pageToken The standard list page token.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/{name}',
@@ -517,12 +516,12 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.operations.cancel
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.name - The name of the operation resource to be cancelled.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the operation resource to be cancelled.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel: function(params, callback) {
+        cancel: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/{name}:cancel',
@@ -545,12 +544,12 @@ function Dataproc(options) {
          * @alias dataproc.projects.regions.operations.delete
          * @memberOf! dataproc(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.name - The name of the operation resource to be deleted.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the operation resource to be deleted.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataproc.googleapis.com/v1/{name}',

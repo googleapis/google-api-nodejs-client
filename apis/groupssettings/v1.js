@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you manage permission levels and related settings of a group.
  * @namespace groupssettings
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Groupssettings
  * @param {object=} options Options for Groupssettings
  */
-function Groupssettings(options) {
-
+function Groupssettings(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.groups = {
+  self.groups = {
 
     /**
      * groupsSettings.groups.get
@@ -45,12 +44,12 @@ function Groupssettings(options) {
      * @alias groupsSettings.groups.get
      * @memberOf! groupssettings(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupUniqueId - The resource ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupUniqueId The resource ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
@@ -73,13 +72,13 @@ function Groupssettings(options) {
      * @alias groupsSettings.groups.patch
      * @memberOf! groupssettings(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupUniqueId - The resource ID
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupUniqueId The resource ID
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
@@ -102,13 +101,13 @@ function Groupssettings(options) {
      * @alias groupsSettings.groups.update
      * @memberOf! groupssettings(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupUniqueId - The resource ID
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupUniqueId The resource ID
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',

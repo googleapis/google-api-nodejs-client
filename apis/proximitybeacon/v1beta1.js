@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc This API provides services to register, manage, index, and search beacons.
  * @namespace proximitybeacon
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Proximitybeacon
  * @param {object=} options Options for Proximitybeacon
  */
-function Proximitybeacon(options) {
-
+function Proximitybeacon(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.beacons = {
+  self.beacons = {
 
     /**
      * proximitybeacon.beacons.register
@@ -45,12 +44,12 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.register
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    register: function(params, callback) {
+    register: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/beacons:register',
@@ -73,12 +72,12 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.decommission
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.beaconName - Beacon that should be decommissioned. Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName Beacon that should be decommissioned. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decommission: function(params, callback) {
+    decommission: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:decommission',
@@ -101,12 +100,12 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.get
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.beaconName - Beacon that is requested.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName Beacon that is requested.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}',
@@ -129,14 +128,14 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.list
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.q - Filter query string that supports the following field filters: * `description:""` For example: `description:"Room 3"` Returns beacons whose description matches tokens in the string "Room 3" (not necessarily that exact string). The string must be double-quoted. * `status:` For example: `status:active` Returns beacons whose status matches the given value. Values must be one of the Beacon.Status enum values (case insensitive). Accepts multiple filters which will be combined with OR logic. * `stability:` For example: `stability:mobile` Returns beacons whose expected stability matches the given value. Values must be one of the Beacon.Stability enum values (case insensitive). Accepts multiple filters which will be combined with OR logic. * `place_id:""` For example: `place_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="` Returns beacons explicitly registered at the given place, expressed as a Place ID obtained from [Google Places API](/places/place-id). Does not match places inside the given place. Does not consider the beacon's actual location (which may be different from its registered place). Accepts multiple filters that will be combined with OR logic. The place ID must be double-quoted. * `registration_time[|=]` For example: `registration_time>=1433116800` Returns beacons whose registration time matches the given filter. Supports the operators: , =. Timestamp must be expressed as an integer number of seconds since midnight January 1, 1970 UTC. Accepts at most two filters that will be combined with AND logic, to support "between" semantics. If more than two are supplied, the latter ones are ignored. * `lat: lng: radius:` For example: `lat:51.1232343 lng:-1.093852 radius:1000` Returns beacons whose registered location is within the given circle. When any of these fields are given, all are required. Latitude and longitude must be decimal degrees between -90.0 and 90.0 and between -180.0 and 180.0 respectively. Radius must be an integer number of meters less than 1,000,000 (1000 km). * `property:"="` For example: `property:"battery-type=CR2032"` Returns beacons which have a property of the given name and value. Supports multiple filters which will be combined with OR logic. The entire name=value string must be double-quoted as one string. * `attachment_type:""` For example: `attachment_type:"my-namespace/my-type"` Returns beacons having at least one attachment of the given namespaced type. Supports "any within this namespace" via the partial wildcard syntax: "my-namespace/x". Supports multiple filters which will be combined with OR logic. The string must be double-quoted. Multiple filters on the same field are combined with OR logic (except registration_time which is combined with AND logic). Multiple filters on different fields are combined with AND logic. Filters should be separated by spaces. As with any HTTP query string parameter, the whole filter expression must be URL-encoded. Example REST request: `GET /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
-     * @param  {string=} params.pageToken - A pagination token obtained from a previous request to list beacons.
-     * @param  {integer=} params.pageSize - The maximum number of records to return for this request, up to a server-defined upper limit.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.q Filter query string that supports the following field filters: * `description:""` For example: `description:"Room 3"` Returns beacons whose description matches tokens in the string "Room 3" (not necessarily that exact string). The string must be double-quoted. * `status:` For example: `status:active` Returns beacons whose status matches the given value. Values must be one of the Beacon.Status enum values (case insensitive). Accepts multiple filters which will be combined with OR logic. * `stability:` For example: `stability:mobile` Returns beacons whose expected stability matches the given value. Values must be one of the Beacon.Stability enum values (case insensitive). Accepts multiple filters which will be combined with OR logic. * `place_id:""` For example: `place_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="` Returns beacons explicitly registered at the given place, expressed as a Place ID obtained from [Google Places API](/places/place-id). Does not match places inside the given place. Does not consider the beacon's actual location (which may be different from its registered place). Accepts multiple filters that will be combined with OR logic. The place ID must be double-quoted. * `registration_time[|=]` For example: `registration_time>=1433116800` Returns beacons whose registration time matches the given filter. Supports the operators: , =. Timestamp must be expressed as an integer number of seconds since midnight January 1, 1970 UTC. Accepts at most two filters that will be combined with AND logic, to support "between" semantics. If more than two are supplied, the latter ones are ignored. * `lat: lng: radius:` For example: `lat:51.1232343 lng:-1.093852 radius:1000` Returns beacons whose registered location is within the given circle. When any of these fields are given, all are required. Latitude and longitude must be decimal degrees between -90.0 and 90.0 and between -180.0 and 180.0 respectively. Radius must be an integer number of meters less than 1,000,000 (1000 km). * `property:"="` For example: `property:"battery-type=CR2032"` Returns beacons which have a property of the given name and value. Supports multiple filters which will be combined with OR logic. The entire name=value string must be double-quoted as one string. * `attachment_type:""` For example: `attachment_type:"my-namespace/my-type"` Returns beacons having at least one attachment of the given namespaced type. Supports "any within this namespace" via the partial wildcard syntax: "my-namespace/x". Supports multiple filters which will be combined with OR logic. The string must be double-quoted. Multiple filters on the same field are combined with OR logic (except registration_time which is combined with AND logic). Multiple filters on different fields are combined with AND logic. Filters should be separated by spaces. As with any HTTP query string parameter, the whole filter expression must be URL-encoded. Example REST request: `GET /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
+     * @param {string=} params.pageToken A pagination token obtained from a previous request to list beacons.
+     * @param {integer=} params.pageSize The maximum number of records to return for this request, up to a server-defined upper limit.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/beacons',
@@ -159,13 +158,13 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.update
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.beaconName - Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon. This field must be left empty when registering. After reading a beacon, clients can use the name for future operations.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon. This field must be left empty when registering. After reading a beacon, clients can use the name for future operations.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}',
@@ -188,12 +187,12 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.activate
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.beaconName - The beacon to activate. Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName The beacon to activate. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    activate: function(params, callback) {
+    activate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:activate',
@@ -216,12 +215,12 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beacons.deactivate
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.beaconName - The beacon name of this beacon.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName The beacon name of this beacon.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deactivate: function(params, callback) {
+    deactivate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:deactivate',
@@ -246,13 +245,13 @@ function Proximitybeacon(options) {
        * @alias proximitybeacon.beacons.attachments.create
        * @memberOf! proximitybeacon(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.beaconName - The beacon on which the attachment should be created. Required.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.beaconName The beacon on which the attachment should be created. Required.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments',
@@ -275,13 +274,13 @@ function Proximitybeacon(options) {
        * @alias proximitybeacon.beacons.attachments.list
        * @memberOf! proximitybeacon(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.beaconName - The beacon whose attachments are to be fetched. Required.
-       * @param  {string=} params.namespacedType - Specifies the namespace and type of attachment to include in response in namespace/type format. Accepts `x/x` to specify "all types in all namespaces".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.beaconName The beacon whose attachments are to be fetched. Required.
+       * @param {string=} params.namespacedType Specifies the namespace and type of attachment to include in response in namespace/type format. Accepts `x/x` to specify "all types in all namespaces".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments',
@@ -304,12 +303,12 @@ function Proximitybeacon(options) {
        * @alias proximitybeacon.beacons.attachments.delete
        * @memberOf! proximitybeacon(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.attachmentName - The attachment name (`attachmentName`) of the attachment to remove. For example: `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738` Required.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.attachmentName The attachment name (`attachmentName`) of the attachment to remove. For example: `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738` Required.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{attachmentName}',
@@ -332,13 +331,13 @@ function Proximitybeacon(options) {
        * @alias proximitybeacon.beacons.attachments.batchDelete
        * @memberOf! proximitybeacon(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.beaconName - The beacon whose attachments are to be deleted. Required.
-       * @param  {string=} params.namespacedType - Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.beaconName The beacon whose attachments are to be deleted. Required.
+       * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      batchDelete: function(params, callback) {
+      batchDelete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments:batchDelete',
@@ -364,15 +363,15 @@ function Proximitybeacon(options) {
        * @alias proximitybeacon.beacons.diagnostics.list
        * @memberOf! proximitybeacon(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.beaconName - Beacon that the diagnostics are for.
-       * @param  {integer=} params.pageSize - Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
-       * @param  {string=} params.pageToken - Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
-       * @param  {string=} params.alertFilter - Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.beaconName Beacon that the diagnostics are for.
+       * @param {integer=} params.pageSize Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
+       * @param {string=} params.pageToken Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
+       * @param {string=} params.alertFilter Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/diagnostics',
@@ -389,7 +388,7 @@ function Proximitybeacon(options) {
     }
   };
 
-  this.namespaces = {
+  self.namespaces = {
 
     /**
      * proximitybeacon.namespaces.list
@@ -399,11 +398,11 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.namespaces.list
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/namespaces',
@@ -420,7 +419,7 @@ function Proximitybeacon(options) {
 
   };
 
-  this.beaconinfo = {
+  self.beaconinfo = {
 
     /**
      * proximitybeacon.beaconinfo.getforobserved
@@ -430,12 +429,12 @@ function Proximitybeacon(options) {
      * @alias proximitybeacon.beaconinfo.getforobserved
      * @memberOf! proximitybeacon(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getforobserved: function(params, callback) {
+    getforobserved: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://proximitybeacon.googleapis.com/v1beta1/beaconinfo:getforobserved',

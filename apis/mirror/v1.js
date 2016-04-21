@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for interacting with Glass users via the timeline.
  * @namespace mirror
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Mirror
  * @param {object=} options Options for Mirror
  */
-function Mirror(options) {
-
+function Mirror(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     /**
      * mirror.accounts.insert
@@ -45,15 +44,15 @@ function Mirror(options) {
      * @alias mirror.accounts.insert
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountName - The name of the account to be passed to the Android Account Manager.
-     * @param  {string} params.accountType - Account type to be passed to Android Account Manager.
-     * @param  {string} params.userToken - The ID for the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountName The name of the account to be passed to the Android Account Manager.
+     * @param {string} params.accountType Account type to be passed to Android Account Manager.
+     * @param {string} params.userToken The ID for the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/accounts/{userToken}/{accountType}/{accountName}',
@@ -70,7 +69,7 @@ function Mirror(options) {
 
   };
 
-  this.contacts = {
+  self.contacts = {
 
     /**
      * mirror.contacts.delete
@@ -80,12 +79,12 @@ function Mirror(options) {
      * @alias mirror.contacts.delete
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the contact.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the contact.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
@@ -108,12 +107,12 @@ function Mirror(options) {
      * @alias mirror.contacts.get
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the contact.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the contact.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
@@ -136,12 +135,12 @@ function Mirror(options) {
      * @alias mirror.contacts.insert
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/contacts',
@@ -164,11 +163,11 @@ function Mirror(options) {
      * @alias mirror.contacts.list
      * @memberOf! mirror(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/contacts',
@@ -191,13 +190,13 @@ function Mirror(options) {
      * @alias mirror.contacts.patch
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the contact.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the contact.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
@@ -220,13 +219,13 @@ function Mirror(options) {
      * @alias mirror.contacts.update
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the contact.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the contact.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
@@ -243,7 +242,7 @@ function Mirror(options) {
 
   };
 
-  this.locations = {
+  self.locations = {
 
     /**
      * mirror.locations.get
@@ -253,12 +252,12 @@ function Mirror(options) {
      * @alias mirror.locations.get
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the location or latest for the last known location.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the location or latest for the last known location.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/locations/{id}',
@@ -281,11 +280,11 @@ function Mirror(options) {
      * @alias mirror.locations.list
      * @memberOf! mirror(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/locations',
@@ -302,7 +301,7 @@ function Mirror(options) {
 
   };
 
-  this.settings = {
+  self.settings = {
 
     /**
      * mirror.settings.get
@@ -312,12 +311,12 @@ function Mirror(options) {
      * @alias mirror.settings.get
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.  - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.  - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/settings/{id}',
@@ -334,7 +333,7 @@ function Mirror(options) {
 
   };
 
-  this.subscriptions = {
+  self.subscriptions = {
 
     /**
      * mirror.subscriptions.delete
@@ -344,12 +343,12 @@ function Mirror(options) {
      * @alias mirror.subscriptions.delete
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the subscription.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the subscription.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
@@ -372,12 +371,12 @@ function Mirror(options) {
      * @alias mirror.subscriptions.insert
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/subscriptions',
@@ -400,11 +399,11 @@ function Mirror(options) {
      * @alias mirror.subscriptions.list
      * @memberOf! mirror(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/subscriptions',
@@ -427,13 +426,13 @@ function Mirror(options) {
      * @alias mirror.subscriptions.update
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the subscription.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the subscription.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
@@ -450,7 +449,7 @@ function Mirror(options) {
 
   };
 
-  this.timeline = {
+  self.timeline = {
 
     /**
      * mirror.timeline.delete
@@ -460,12 +459,12 @@ function Mirror(options) {
      * @alias mirror.timeline.delete
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the timeline item.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the timeline item.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
@@ -488,12 +487,12 @@ function Mirror(options) {
      * @alias mirror.timeline.get
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the timeline item.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the timeline item.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
@@ -516,15 +515,15 @@ function Mirror(options) {
      * @alias mirror.timeline.insert
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/timeline',
@@ -548,18 +547,18 @@ function Mirror(options) {
      * @alias mirror.timeline.list
      * @memberOf! mirror(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.bundleId - If provided, only items with the given bundleId will be returned.
-     * @param  {boolean=} params.includeDeleted - If true, tombstone records for deleted items will be returned.
-     * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging.
-     * @param  {string=} params.orderBy - Controls the order in which timeline items are returned.
-     * @param  {string=} params.pageToken - Token for the page of results to return.
-     * @param  {boolean=} params.pinnedOnly - If true, only pinned items will be returned.
-     * @param  {string=} params.sourceItemId - If provided, only items with the given sourceItemId will be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.bundleId If provided, only items with the given bundleId will be returned.
+     * @param {boolean=} params.includeDeleted If true, tombstone records for deleted items will be returned.
+     * @param {integer=} params.maxResults The maximum number of items to include in the response, used for paging.
+     * @param {string=} params.orderBy Controls the order in which timeline items are returned.
+     * @param {string=} params.pageToken Token for the page of results to return.
+     * @param {boolean=} params.pinnedOnly If true, only pinned items will be returned.
+     * @param {string=} params.sourceItemId If provided, only items with the given sourceItemId will be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/timeline',
@@ -582,13 +581,13 @@ function Mirror(options) {
      * @alias mirror.timeline.patch
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the timeline item.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the timeline item.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
@@ -611,16 +610,16 @@ function Mirror(options) {
      * @alias mirror.timeline.update
      * @memberOf! mirror(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the timeline item.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the timeline item.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
@@ -646,13 +645,13 @@ function Mirror(options) {
        * @alias mirror.timeline.attachments.delete
        * @memberOf! mirror(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.attachmentId - The ID of the attachment.
-       * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.attachmentId The ID of the attachment.
+       * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
@@ -675,13 +674,13 @@ function Mirror(options) {
        * @alias mirror.timeline.attachments.get
        * @memberOf! mirror(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.attachmentId - The ID of the attachment.
-       * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.attachmentId The ID of the attachment.
+       * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
@@ -704,15 +703,15 @@ function Mirror(options) {
        * @alias mirror.timeline.attachments.insert
        * @memberOf! mirror(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.itemId - The ID of the timeline item the attachment belongs to.
-       * @param  {object} params.media - Media object
-       * @param  {string} params.media.mimeType - Media mime-type
-       * @param  {string|object} params.media.body - Media body contents
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
+       * @param {object} params.media Media object
+       * @param {string} params.media.mimeType Media mime-type
+       * @param {string|object} params.media.body Media body contents
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function(params, callback) {
+      insert: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
@@ -736,12 +735,12 @@ function Mirror(options) {
        * @alias mirror.timeline.attachments.list
        * @memberOf! mirror(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.itemId - The ID of the timeline item whose attachments should be listed.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.itemId The ID of the timeline item whose attachments should be listed.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',

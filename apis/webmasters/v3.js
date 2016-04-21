@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc View Google Search Console data for your verified sites.
  * @namespace webmasters
- * @version  v3
+ * @version v3
  * @variation v3
  * @this Webmasters
  * @param {object=} options Options for Webmasters
  */
-function Webmasters(options) {
-
+function Webmasters(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.searchanalytics = {
+  self.searchanalytics = {
 
     /**
      * webmasters.searchanalytics.query
@@ -45,13 +44,13 @@ function Webmasters(options) {
      * @alias webmasters.searchanalytics.query
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, callback) {
+    query: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query',
@@ -68,7 +67,7 @@ function Webmasters(options) {
 
   };
 
-  this.sitemaps = {
+  self.sitemaps = {
 
     /**
      * webmasters.sitemaps.delete
@@ -78,13 +77,13 @@ function Webmasters(options) {
      * @alias webmasters.sitemaps.delete
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.feedpath - The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
@@ -107,13 +106,13 @@ function Webmasters(options) {
      * @alias webmasters.sitemaps.get
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.feedpath - The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
@@ -136,13 +135,13 @@ function Webmasters(options) {
      * @alias webmasters.sitemaps.list
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {string=} params.sitemapIndex - A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {string=} params.sitemapIndex A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps',
@@ -165,13 +164,13 @@ function Webmasters(options) {
      * @alias webmasters.sitemaps.submit
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.feedpath - The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.feedpath The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit: function(params, callback) {
+    submit: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
@@ -188,7 +187,7 @@ function Webmasters(options) {
 
   };
 
-  this.sites = {
+  self.sites = {
 
     /**
      * webmasters.sites.add
@@ -198,12 +197,12 @@ function Webmasters(options) {
      * @alias webmasters.sites.add
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The URL of the site to add.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.siteUrl The URL of the site to add.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add: function(params, callback) {
+    add: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
@@ -226,12 +225,12 @@ function Webmasters(options) {
      * @alias webmasters.sites.delete
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
@@ -254,12 +253,12 @@ function Webmasters(options) {
      * @alias webmasters.sites.get
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.siteUrl - The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
@@ -282,11 +281,11 @@ function Webmasters(options) {
      * @alias webmasters.sites.list
      * @memberOf! webmasters(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites',
@@ -303,7 +302,7 @@ function Webmasters(options) {
 
   };
 
-  this.urlcrawlerrorscounts = {
+  self.urlcrawlerrorscounts = {
 
     /**
      * webmasters.urlcrawlerrorscounts.query
@@ -313,15 +312,15 @@ function Webmasters(options) {
      * @alias webmasters.urlcrawlerrorscounts.query
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.category - The crawl error category. For example: serverError. If not specified, returns results for all categories.
-     * @param  {boolean=} params.latestCountsOnly - If true, returns only the latest crawl error counts.
-     * @param  {string=} params.platform - The user agent type (platform) that made the request. For example: web. If not specified, returns results for all platforms.
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.category The crawl error category. For example: serverError. If not specified, returns results for all categories.
+     * @param {boolean=} params.latestCountsOnly If true, returns only the latest crawl error counts.
+     * @param {string=} params.platform The user agent type (platform) that made the request. For example: web. If not specified, returns results for all platforms.
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, callback) {
+    query: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query',
@@ -338,7 +337,7 @@ function Webmasters(options) {
 
   };
 
-  this.urlcrawlerrorssamples = {
+  self.urlcrawlerrorssamples = {
 
     /**
      * webmasters.urlcrawlerrorssamples.get
@@ -348,15 +347,15 @@ function Webmasters(options) {
      * @alias webmasters.urlcrawlerrorssamples.get
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.category - The crawl error category. For example: authPermissions
-     * @param  {string} params.platform - The user agent type (platform) that made the request. For example: web
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {string} params.url - The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.category The crawl error category. For example: authPermissions
+     * @param {string} params.platform The user agent type (platform) that made the request. For example: web
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
@@ -379,14 +378,14 @@ function Webmasters(options) {
      * @alias webmasters.urlcrawlerrorssamples.list
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.category - The crawl error category. For example: authPermissions
-     * @param  {string} params.platform - The user agent type (platform) that made the request. For example: web
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.category The crawl error category. For example: authPermissions
+     * @param {string} params.platform The user agent type (platform) that made the request. For example: web
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples',
@@ -409,15 +408,15 @@ function Webmasters(options) {
      * @alias webmasters.urlcrawlerrorssamples.markAsFixed
      * @memberOf! webmasters(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.category - The crawl error category. For example: authPermissions
-     * @param  {string} params.platform - The user agent type (platform) that made the request. For example: web
-     * @param  {string} params.siteUrl - The site's URL, including protocol. For example: http://www.example.com/
-     * @param  {string} params.url - The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.category The crawl error category. For example: authPermissions
+     * @param {string} params.platform The user agent type (platform) that made the request. For example: web
+     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    markAsFixed: function(params, callback) {
+    markAsFixed: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',

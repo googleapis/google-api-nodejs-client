@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
  * @namespace sqladmin
- * @version  v1beta4
+ * @version v1beta4
  * @variation v1beta4
  * @this Sqladmin
  * @param {object=} options Options for Sqladmin
  */
-function Sqladmin(options) {
-
+function Sqladmin(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.backupRuns = {
+  self.backupRuns = {
 
     /**
      * sql.backupRuns.delete
@@ -45,14 +44,14 @@ function Sqladmin(options) {
      * @alias sql.backupRuns.delete
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
@@ -75,14 +74,14 @@ function Sqladmin(options) {
      * @alias sql.backupRuns.get
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The ID of this Backup Run.
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The ID of this Backup Run.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
@@ -105,15 +104,15 @@ function Sqladmin(options) {
      * @alias sql.backupRuns.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {integer=} params.maxResults - Maximum number of backup runs per response.
-     * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {integer=} params.maxResults Maximum number of backup runs per response.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
@@ -130,7 +129,7 @@ function Sqladmin(options) {
 
   };
 
-  this.databases = {
+  self.databases = {
 
     /**
      * sql.databases.delete
@@ -140,14 +139,14 @@ function Sqladmin(options) {
      * @alias sql.databases.delete
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.database - Name of the database to be deleted in the instance.
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.database Name of the database to be deleted in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
@@ -170,14 +169,14 @@ function Sqladmin(options) {
      * @alias sql.databases.get
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.database - Name of the database in the instance.
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.database Name of the database in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
@@ -200,14 +199,14 @@ function Sqladmin(options) {
      * @alias sql.databases.insert
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
@@ -230,13 +229,13 @@ function Sqladmin(options) {
      * @alias sql.databases.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project for which to list Cloud SQL instances.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
@@ -259,15 +258,15 @@ function Sqladmin(options) {
      * @alias sql.databases.patch
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.database - Name of the database to be updated in the instance.
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.database Name of the database to be updated in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
@@ -290,15 +289,15 @@ function Sqladmin(options) {
      * @alias sql.databases.update
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.database - Name of the database to be updated in the instance.
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.database Name of the database to be updated in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
@@ -315,7 +314,7 @@ function Sqladmin(options) {
 
   };
 
-  this.flags = {
+  self.flags = {
 
     /**
      * sql.flags.list
@@ -325,11 +324,11 @@ function Sqladmin(options) {
      * @alias sql.flags.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/flags',
@@ -346,7 +345,7 @@ function Sqladmin(options) {
 
   };
 
-  this.instances = {
+  self.instances = {
 
     /**
      * sql.instances.clone
@@ -356,14 +355,14 @@ function Sqladmin(options) {
      * @alias sql.instances.clone
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
-     * @param  {string} params.project - Project ID of the source as well as the clone Cloud SQL instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
+     * @param {string} params.project Project ID of the source as well as the clone Cloud SQL instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clone: function(params, callback) {
+    clone: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/clone',
@@ -386,13 +385,13 @@ function Sqladmin(options) {
      * @alias sql.instances.delete
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
@@ -415,14 +414,14 @@ function Sqladmin(options) {
      * @alias sql.instances.export
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance to be exported.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be exported.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function(params, callback) {
+    export: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/export',
@@ -445,14 +444,14 @@ function Sqladmin(options) {
      * @alias sql.instances.failover
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - ID of the project that contains the read replica.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    failover: function(params, callback) {
+    failover: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/failover',
@@ -475,13 +474,13 @@ function Sqladmin(options) {
      * @alias sql.instances.get
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
@@ -504,14 +503,14 @@ function Sqladmin(options) {
      * @alias sql.instances.import
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    import: function(params, callback) {
+    import: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/import',
@@ -534,13 +533,13 @@ function Sqladmin(options) {
      * @alias sql.instances.insert
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID of the project to which the newly created Cloud SQL instances should belong.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
@@ -563,14 +562,14 @@ function Sqladmin(options) {
      * @alias sql.instances.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of results to return per response.
-     * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
-     * @param  {string} params.project - Project ID of the project for which to list Cloud SQL instances.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of results to return per response.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
@@ -593,14 +592,14 @@ function Sqladmin(options) {
      * @alias sql.instances.patch
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
@@ -623,13 +622,13 @@ function Sqladmin(options) {
      * @alias sql.instances.promoteReplica
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL read replica instance name.
-     * @param  {string} params.project - ID of the project that contains the read replica.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL read replica instance name.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    promoteReplica: function(params, callback) {
+    promoteReplica: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica',
@@ -652,13 +651,13 @@ function Sqladmin(options) {
      * @alias sql.instances.resetSslConfig
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetSslConfig: function(params, callback) {
+    resetSslConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig',
@@ -681,13 +680,13 @@ function Sqladmin(options) {
      * @alias sql.instances.restart
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance to be restarted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be restarted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restart: function(params, callback) {
+    restart: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restart',
@@ -710,14 +709,14 @@ function Sqladmin(options) {
      * @alias sql.instances.restoreBackup
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restoreBackup: function(params, callback) {
+    restoreBackup: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup',
@@ -740,13 +739,13 @@ function Sqladmin(options) {
      * @alias sql.instances.startReplica
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL read replica instance name.
-     * @param  {string} params.project - ID of the project that contains the read replica.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL read replica instance name.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    startReplica: function(params, callback) {
+    startReplica: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/startReplica',
@@ -769,13 +768,13 @@ function Sqladmin(options) {
      * @alias sql.instances.stopReplica
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL read replica instance name.
-     * @param  {string} params.project - ID of the project that contains the read replica.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL read replica instance name.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stopReplica: function(params, callback) {
+    stopReplica: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica',
@@ -798,14 +797,14 @@ function Sqladmin(options) {
      * @alias sql.instances.update
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
@@ -822,7 +821,7 @@ function Sqladmin(options) {
 
   };
 
-  this.operations = {
+  self.operations = {
 
     /**
      * sql.operations.get
@@ -832,13 +831,13 @@ function Sqladmin(options) {
      * @alias sql.operations.get
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Instance operation ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Instance operation ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations/{operation}',
@@ -861,15 +860,15 @@ function Sqladmin(options) {
      * @alias sql.operations.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {integer=} params.maxResults - Maximum number of operations per response.
-     * @param  {string=} params.pageToken - A previously-returned page token representing part of the larger set of results to view.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {integer=} params.maxResults Maximum number of operations per response.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations',
@@ -886,7 +885,7 @@ function Sqladmin(options) {
 
   };
 
-  this.sslCerts = {
+  self.sslCerts = {
 
     /**
      * sql.sslCerts.createEphemeral
@@ -896,14 +895,14 @@ function Sqladmin(options) {
      * @alias sql.sslCerts.createEphemeral
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the Cloud SQL project.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the Cloud SQL project.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createEphemeral: function(params, callback) {
+    createEphemeral: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral',
@@ -926,14 +925,14 @@ function Sqladmin(options) {
      * @alias sql.sslCerts.delete
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance to be deleted.
-     * @param  {string} params.sha1Fingerprint - Sha1 FingerPrint.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
@@ -956,14 +955,14 @@ function Sqladmin(options) {
      * @alias sql.sslCerts.get
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {string} params.sha1Fingerprint - Sha1 FingerPrint.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
@@ -986,14 +985,14 @@ function Sqladmin(options) {
      * @alias sql.sslCerts.insert
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project to which the newly created Cloud SQL instances should belong.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
@@ -1016,13 +1015,13 @@ function Sqladmin(options) {
      * @alias sql.sslCerts.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Cloud SQL instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project for which to list Cloud SQL instances.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
@@ -1039,7 +1038,7 @@ function Sqladmin(options) {
 
   };
 
-  this.tiers = {
+  self.tiers = {
 
     /**
      * sql.tiers.list
@@ -1049,12 +1048,12 @@ function Sqladmin(options) {
      * @alias sql.tiers.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID of the project for which to list tiers.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID of the project for which to list tiers.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/tiers',
@@ -1071,7 +1070,7 @@ function Sqladmin(options) {
 
   };
 
-  this.users = {
+  self.users = {
 
     /**
      * sql.users.delete
@@ -1081,15 +1080,15 @@ function Sqladmin(options) {
      * @alias sql.users.delete
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.host - Host of the user in the instance.
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.name - Name of the user in the instance.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.host Host of the user in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.name Name of the user in the instance.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
@@ -1112,14 +1111,14 @@ function Sqladmin(options) {
      * @alias sql.users.insert
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
@@ -1142,13 +1141,13 @@ function Sqladmin(options) {
      * @alias sql.users.list
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
@@ -1171,16 +1170,16 @@ function Sqladmin(options) {
      * @alias sql.users.update
      * @memberOf! sqladmin(v1beta4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.host - Host of the user in the instance.
-     * @param  {string} params.instance - Database instance ID. This does not include the project ID.
-     * @param  {string} params.name - Name of the user in the instance.
-     * @param  {string} params.project - Project ID of the project that contains the instance.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.host Host of the user in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.name Name of the user in the instance.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',

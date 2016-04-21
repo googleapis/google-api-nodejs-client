@@ -29,24 +29,24 @@ var gen = new Generator({ debug: debug, includePrivate: false });
 var args = argv._;
 
 if (args.length) {
-  args.forEach(function(url) {
-    gen.generateAPI(url, function(err) {
+  args.forEach(function (url) {
+    gen.generateAPI(url, function (err) {
       if (err) {
         throw err;
       }
       console.log('Generated API for ' + url);
     });
   });
-  return;
+  process.exit(0);
 }
 
 console.log('Removing old APIs...');
-rimraf(path.join(__dirname, '..', 'apis'), function(err) {
+rimraf(path.join(__dirname, '..', 'apis'), function (err) {
   if (err) {
     throw err;
   }
   console.log('Generating APIs...');
-  gen.generateAllAPIs(function(err) {
+  gen.generateAllAPIs(function (err) {
     if (err) {
       throw err;
     }

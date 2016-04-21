@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Replica Pool API allows users to declaratively provision and manage groups of Google Compute Engine instances based on a common template.
  * @namespace replicapool
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Replicapool
  * @param {object=} options Options for Replicapool
  */
-function Replicapool(options) {
-
+function Replicapool(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.pools = {
+  self.pools = {
 
     /**
      * replicapool.pools.delete
@@ -45,15 +44,15 @@ function Replicapool(options) {
      * @alias replicapool.pools.delete
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.poolName - The name of the replica pool for this request.
-     * @param  {string} params.projectName - The project ID for this replica pool.
-     * @param  {string} params.zone - The zone for this replica pool.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.projectName The project ID for this replica pool.
+     * @param {string} params.zone The zone for this replica pool.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
@@ -76,14 +75,14 @@ function Replicapool(options) {
      * @alias replicapool.pools.get
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.poolName - The name of the replica pool for this request.
-     * @param  {string} params.projectName - The project ID for this replica pool.
-     * @param  {string} params.zone - The zone for this replica pool.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.projectName The project ID for this replica pool.
+     * @param {string} params.zone The zone for this replica pool.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
@@ -106,14 +105,14 @@ function Replicapool(options) {
      * @alias replicapool.pools.insert
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project ID for this replica pool.
-     * @param  {string} params.zone - The zone for this replica pool.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project ID for this replica pool.
+     * @param {string} params.zone The zone for this replica pool.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
@@ -136,15 +135,15 @@ function Replicapool(options) {
      * @alias replicapool.pools.list
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
-     * @param  {string} params.projectName - The project ID for this request.
-     * @param  {string} params.zone - The zone for this replica pool.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param {string} params.projectName The project ID for this request.
+     * @param {string} params.zone The zone for this replica pool.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
@@ -167,15 +166,15 @@ function Replicapool(options) {
      * @alias replicapool.pools.resize
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.numReplicas - The desired number of replicas to resize to. If this number is larger than the existing number of replicas, new replicas will be added. If the number is smaller, then existing replicas will be deleted.
-     * @param  {string} params.poolName - The name of the replica pool for this request.
-     * @param  {string} params.projectName - The project ID for this replica pool.
-     * @param  {string} params.zone - The zone for this replica pool.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.numReplicas The desired number of replicas to resize to. If this number is larger than the existing number of replicas, new replicas will be added. If the number is smaller, then existing replicas will be deleted.
+     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.projectName The project ID for this replica pool.
+     * @param {string} params.zone The zone for this replica pool.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function(params, callback) {
+    resize: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize',
@@ -198,15 +197,15 @@ function Replicapool(options) {
      * @alias replicapool.pools.updatetemplate
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.poolName - The name of the replica pool for this request.
-     * @param  {string} params.projectName - The project ID for this replica pool.
-     * @param  {string} params.zone - The zone for this replica pool.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.projectName The project ID for this replica pool.
+     * @param {string} params.zone The zone for this replica pool.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatetemplate: function(params, callback) {
+    updatetemplate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate',
@@ -223,7 +222,7 @@ function Replicapool(options) {
 
   };
 
-  this.replicas = {
+  self.replicas = {
 
     /**
      * replicapool.replicas.delete
@@ -233,16 +232,16 @@ function Replicapool(options) {
      * @alias replicapool.replicas.delete
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.poolName - The replica pool name for this request.
-     * @param  {string} params.projectName - The project ID for this request.
-     * @param  {string} params.replicaName - The name of the replica for this request.
-     * @param  {string} params.zone - The zone where the replica lives.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.poolName The replica pool name for this request.
+     * @param {string} params.projectName The project ID for this request.
+     * @param {string} params.replicaName The name of the replica for this request.
+     * @param {string} params.zone The zone where the replica lives.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
@@ -265,15 +264,15 @@ function Replicapool(options) {
      * @alias replicapool.replicas.get
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.poolName - The replica pool name for this request.
-     * @param  {string} params.projectName - The project ID for this request.
-     * @param  {string} params.replicaName - The name of the replica for this request.
-     * @param  {string} params.zone - The zone where the replica lives.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.poolName The replica pool name for this request.
+     * @param {string} params.projectName The project ID for this request.
+     * @param {string} params.replicaName The name of the replica for this request.
+     * @param {string} params.zone The zone where the replica lives.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
@@ -296,16 +295,16 @@ function Replicapool(options) {
      * @alias replicapool.replicas.list
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
-     * @param  {string} params.poolName - The replica pool name for this request.
-     * @param  {string} params.projectName - The project ID for this request.
-     * @param  {string} params.zone - The zone where the replica pool lives.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param {string} params.poolName The replica pool name for this request.
+     * @param {string} params.projectName The project ID for this request.
+     * @param {string} params.zone The zone where the replica pool lives.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas',
@@ -328,15 +327,15 @@ function Replicapool(options) {
      * @alias replicapool.replicas.restart
      * @memberOf! replicapool(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.poolName - The replica pool name for this request.
-     * @param  {string} params.projectName - The project ID for this request.
-     * @param  {string} params.replicaName - The name of the replica for this request.
-     * @param  {string} params.zone - The zone where the replica lives.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.poolName The replica pool name for this request.
+     * @param {string} params.projectName The project ID for this request.
+     * @param {string} params.replicaName The name of the replica for this request.
+     * @param {string} params.zone The zone where the replica lives.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restart: function(params, callback) {
+    restart: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart',

@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Google People API service gives access to information about profiles and contacts.
  * @namespace people
- * @version  v1
+ * @version v1
  * @variation v1
  * @this People
  * @param {object=} options Options for People
  */
-function People(options) {
-
+function People(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.people = {
+  self.people = {
 
     /**
      * people.people.get
@@ -45,13 +44,13 @@ function People(options) {
      * @alias people.people.get
      * @memberOf! people(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceName - The resource name of the person to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about any user, specify the resource name that identifies the user, such as the resource names returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
-     * @param  {string=} params.requestMask.includeField - Comma-separated list of fields to be included in the response. Omitting this field will include all fields. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName The resource name of the person to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about any user, specify the resource name that identifies the user, such as the resource names returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     * @param {string=} params.requestMask.includeField Comma-separated list of fields to be included in the response. Omitting this field will include all fields. Each path should start with `person.`: for example, `person.names` or `person.photos`.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://people.googleapis.com/v1/{resourceName}',
@@ -74,13 +73,13 @@ function People(options) {
      * @alias people.people.getBatchGet
      * @memberOf! people(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.resourceNames - The resource name, such as one returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list), of one of the people to provide information about. You can include this parameter up to 50 times in one request.
-     * @param  {string=} params.requestMask.includeField - Comma-separated list of fields to be included in the response. Omitting this field will include all fields. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.resourceNames The resource name, such as one returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list), of one of the people to provide information about. You can include this parameter up to 50 times in one request.
+     * @param {string=} params.requestMask.includeField Comma-separated list of fields to be included in the response. Omitting this field will include all fields. Each path should start with `person.`: for example, `person.names` or `person.photos`.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getBatchGet: function(params, callback) {
+    getBatchGet: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://people.googleapis.com/v1/people:batchGet',
@@ -105,17 +104,17 @@ function People(options) {
        * @alias people.people.connections.list
        * @memberOf! people(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resourceName - The resource name to return connections for. Only `people/me` is valid.
-       * @param  {string=} params.pageToken - The token of the page to be returned.
-       * @param  {integer=} params.pageSize - The number of connections to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100.
-       * @param  {string=} params.sortOrder - The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
-       * @param  {string=} params.syncToken - A sync token, returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created are returned.
-       * @param  {string=} params.requestMask.includeField - Comma-separated list of fields to be included in the response. Omitting this field will include all fields. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
+       * @param {string=} params.pageToken The token of the page to be returned.
+       * @param {integer=} params.pageSize The number of connections to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100.
+       * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
+       * @param {string=} params.syncToken A sync token, returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created are returned.
+       * @param {string=} params.requestMask.includeField Comma-separated list of fields to be included in the response. Omitting this field will include all fields. Each path should start with `person.`: for example, `person.names` or `person.photos`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://people.googleapis.com/v1/{resourceName}/connections',

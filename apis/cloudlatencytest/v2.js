@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Reports latency data.
  * @namespace cloudlatencytest
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Cloudlatencytest
  * @param {object=} options Options for Cloudlatencytest
  */
-function Cloudlatencytest(options) {
-
+function Cloudlatencytest(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.statscollection = {
+  self.statscollection = {
 
     /**
      * cloudlatencytest.statscollection.updateaggregatedstats
@@ -45,12 +44,12 @@ function Cloudlatencytest(options) {
      * @alias cloudlatencytest.statscollection.updateaggregatedstats
      * @memberOf! cloudlatencytest(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateaggregatedstats: function(params, callback) {
+    updateaggregatedstats: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudlatencytest-pa.googleapis.com/v2/statscollection/updateaggregatedstats',
@@ -73,12 +72,12 @@ function Cloudlatencytest(options) {
      * @alias cloudlatencytest.statscollection.updatestats
      * @memberOf! cloudlatencytest(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatestats: function(params, callback) {
+    updatestats: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudlatencytest-pa.googleapis.com/v2/statscollection/updatestats',

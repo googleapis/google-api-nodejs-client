@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Google Classroom API
  * @namespace classroom
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Classroom
  * @param {object=} options Options for Classroom
  */
-function Classroom(options) {
-
+function Classroom(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.courses = {
+  self.courses = {
 
     /**
      * classroom.courses.create
@@ -45,12 +44,12 @@ function Classroom(options) {
      * @alias classroom.courses.create
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/courses',
@@ -73,12 +72,12 @@ function Classroom(options) {
      * @alias classroom.courses.get
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
@@ -101,13 +100,13 @@ function Classroom(options) {
      * @alias classroom.courses.update
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
@@ -130,14 +129,14 @@ function Classroom(options) {
      * @alias classroom.courses.patch
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param  {string=} params.updateMask - Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` When set in a query parameter, this field should be specified as `updateMask=,,...`
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` When set in a query parameter, this field should be specified as `updateMask=,,...`
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
@@ -160,12 +159,12 @@ function Classroom(options) {
      * @alias classroom.courses.delete
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
@@ -188,15 +187,15 @@ function Classroom(options) {
      * @alias classroom.courses.list
      * @memberOf! classroom(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.studentId - Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param  {string=} params.teacherId - Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param  {integer=} params.pageSize - Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     * @param  {string=} params.pageToken - nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.studentId Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {string=} params.teacherId Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/courses',
@@ -221,13 +220,13 @@ function Classroom(options) {
        * @alias classroom.courses.aliases.create
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
@@ -250,13 +249,13 @@ function Classroom(options) {
        * @alias classroom.courses.aliases.delete
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {string} params.alias - Alias to delete. This may not be the Classroom-assigned identifier.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.alias Alias to delete. This may not be the Classroom-assigned identifier.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
@@ -279,14 +278,14 @@ function Classroom(options) {
        * @alias classroom.courses.aliases.list
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {integer=} params.pageSize - Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-       * @param  {string=} params.pageToken - nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
@@ -312,13 +311,13 @@ function Classroom(options) {
        * @alias classroom.courses.teachers.create
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
@@ -341,13 +340,13 @@ function Classroom(options) {
        * @alias classroom.courses.teachers.get
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {string} params.userId - Identifier of the teacher to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.userId Identifier of the teacher to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
@@ -370,13 +369,13 @@ function Classroom(options) {
        * @alias classroom.courses.teachers.delete
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {string} params.userId - Identifier of the teacher to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.userId Identifier of the teacher to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
@@ -399,14 +398,14 @@ function Classroom(options) {
        * @alias classroom.courses.teachers.list
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {integer=} params.pageSize - Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
-       * @param  {string=} params.pageToken - nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
@@ -432,14 +431,14 @@ function Classroom(options) {
        * @alias classroom.courses.students.create
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {string=} params.enrollmentCode - Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string=} params.enrollmentCode Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
@@ -462,13 +461,13 @@ function Classroom(options) {
        * @alias classroom.courses.students.get
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {string} params.userId - Identifier of the student to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.userId Identifier of the student to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
@@ -491,13 +490,13 @@ function Classroom(options) {
        * @alias classroom.courses.students.delete
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {string} params.userId - Identifier of the student to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.userId Identifier of the student to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
@@ -520,14 +519,14 @@ function Classroom(options) {
        * @alias classroom.courses.students.list
        * @memberOf! classroom(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.courseId - Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param  {integer=} params.pageSize - Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
-       * @param  {string=} params.pageToken - nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
@@ -544,7 +543,7 @@ function Classroom(options) {
     }
   };
 
-  this.invitations = {
+  self.invitations = {
 
     /**
      * classroom.invitations.create
@@ -554,12 +553,12 @@ function Classroom(options) {
      * @alias classroom.invitations.create
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/invitations',
@@ -582,12 +581,12 @@ function Classroom(options) {
      * @alias classroom.invitations.get
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the invitation to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the invitation to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/invitations/{id}',
@@ -610,12 +609,12 @@ function Classroom(options) {
      * @alias classroom.invitations.delete
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the invitation to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the invitation to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/invitations/{id}',
@@ -638,15 +637,15 @@ function Classroom(options) {
      * @alias classroom.invitations.list
      * @memberOf! classroom(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.userId - Restricts returned invitations to those for a specific user. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param  {string=} params.courseId - Restricts returned invitations to those for a course with the specified identifier.
-     * @param  {integer=} params.pageSize - Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
-     * @param  {string=} params.pageToken - nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.userId Restricts returned invitations to those for a specific user. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {string=} params.courseId Restricts returned invitations to those for a course with the specified identifier.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/invitations',
@@ -669,12 +668,12 @@ function Classroom(options) {
      * @alias classroom.invitations.accept
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - Identifier of the invitation to accept.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id Identifier of the invitation to accept.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function(params, callback) {
+    accept: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/invitations/{id}:accept',
@@ -691,7 +690,7 @@ function Classroom(options) {
 
   };
 
-  this.userProfiles = {
+  self.userProfiles = {
 
     /**
      * classroom.userProfiles.get
@@ -701,12 +700,12 @@ function Classroom(options) {
      * @alias classroom.userProfiles.get
      * @memberOf! classroom(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userId - Identifier of the profile to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userId Identifier of the profile to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',

@@ -1,18 +1,15 @@
-/**
- * Copyright 2013 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2013-2016, Google, Inc.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 'use strict';
 
@@ -34,7 +31,7 @@ function testHeaders (drive) {
 
 function testContentType (drive) {
   var req = drive.comments.insert({
-      fileId: 'a'
+    fileId: 'a'
   }, utils.noop);
   assert.equal(req.headers['content-type'], 'application/json');
 }
@@ -47,7 +44,7 @@ function testBody (drive) {
 
 function testBodyDelete (drive) {
   var req = drive.files.delete({
-      fileId: 'test'
+    fileId: 'test'
   }, utils.noop);
   assert.equal(req.headers['content-type'], null);
   assert.equal(req.body, null);
@@ -147,7 +144,7 @@ describe('Transporters', function () {
       .get('/drive/v2/files?q=hello')
       .times(2)
       // Simulate an error returned via response body from Google's API endpoint
-      .reply(400, { error: { code: 400, message: 'Error!'} });
+      .reply(400, { error: { code: 400, message: 'Error!' } });
 
     testResponseError(localDrive, function () {
       testResponseError(remoteDrive, function () {
@@ -190,7 +187,7 @@ describe('Transporters', function () {
     var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
-      .reply(500, { error: {message: 'There was an error!'}});
+      .reply(500, { error: { message: 'There was an error!' } });
 
     testBackendError(localUrlshortener, function () {
       testBackendError(remoteUrlshortener, function () {
@@ -206,16 +203,16 @@ describe('Transporters', function () {
       .times(2)
       .reply(500, {
         error: {
-         errors: [
-           {
-             domain: 'global',
-             reason: 'backendError',
-             message: 'There was an error!'
-           }
-         ],
-         code: 500,
-         message: 'There was an error!'
-       }
+          errors: [
+            {
+              domain: 'global',
+              reason: 'backendError',
+              message: 'There was an error!'
+            }
+          ],
+          code: 500,
+          message: 'There was an error!'
+        }
       });
 
     testBackendError(localUrlshortener, function () {

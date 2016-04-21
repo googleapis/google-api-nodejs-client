@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you access a Google App Engine Pull Task Queue over REST.
  * @namespace taskqueue
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Taskqueue
  * @param {object=} options Options for Taskqueue
  */
-function Taskqueue(options) {
-
+function Taskqueue(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.taskqueues = {
+  self.taskqueues = {
 
     /**
      * taskqueue.taskqueues.get
@@ -45,14 +44,14 @@ function Taskqueue(options) {
      * @alias taskqueue.taskqueues.get
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.getStats - Whether to get stats. Optional.
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.taskqueue - The id of the taskqueue to get the properties of.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.getStats Whether to get stats. Optional.
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string} params.taskqueue The id of the taskqueue to get the properties of.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}',
@@ -69,7 +68,7 @@ function Taskqueue(options) {
 
   };
 
-  this.tasks = {
+  self.tasks = {
 
     /**
      * taskqueue.tasks.delete
@@ -79,14 +78,14 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.delete
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.task - The id of the task to delete.
-     * @param  {string} params.taskqueue - The taskqueue to delete a task from.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string} params.task The id of the task to delete.
+     * @param {string} params.taskqueue The taskqueue to delete a task from.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
@@ -109,14 +108,14 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.get
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.task - The task to get properties of.
-     * @param  {string} params.taskqueue - The taskqueue in which the task belongs.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string} params.task The task to get properties of.
+     * @param {string} params.taskqueue The taskqueue in which the task belongs.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
@@ -139,14 +138,14 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.insert
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project under which the queue lies
-     * @param  {string} params.taskqueue - The taskqueue to insert the task into
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project under which the queue lies
+     * @param {string} params.taskqueue The taskqueue to insert the task into
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
@@ -169,17 +168,17 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.lease
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.groupByTag - When true, all returned tasks will have the same tag
-     * @param  {integer} params.leaseSecs - The lease in seconds.
-     * @param  {integer} params.numTasks - The number of tasks to lease.
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string=} params.tag - The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
-     * @param  {string} params.taskqueue - The taskqueue to lease a task from.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.groupByTag When true, all returned tasks will have the same tag
+     * @param {integer} params.leaseSecs The lease in seconds.
+     * @param {integer} params.numTasks The number of tasks to lease.
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string=} params.tag The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
+     * @param {string} params.taskqueue The taskqueue to lease a task from.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lease: function(params, callback) {
+    lease: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/lease',
@@ -202,13 +201,13 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.list
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.taskqueue - The id of the taskqueue to list tasks from.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string} params.taskqueue The id of the taskqueue to list tasks from.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
@@ -231,16 +230,16 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.patch
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.newLeaseSeconds - The new lease in seconds.
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.task - 
-     * @param  {string} params.taskqueue - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.newLeaseSeconds The new lease in seconds.
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string} params.task 
+     * @param {string} params.taskqueue 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
@@ -263,16 +262,16 @@ function Taskqueue(options) {
      * @alias taskqueue.tasks.update
      * @memberOf! taskqueue(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.newLeaseSeconds - The new lease in seconds.
-     * @param  {string} params.project - The project under which the queue lies.
-     * @param  {string} params.task - 
-     * @param  {string} params.taskqueue - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.newLeaseSeconds The new lease in seconds.
+     * @param {string} params.project The project under which the queue lies.
+     * @param {string} params.task 
+     * @param {string} params.taskqueue 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',

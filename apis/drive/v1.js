@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The API to interact with Drive.
  * @namespace drive
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Drive
  * @param {object=} options Options for Drive
  */
-function Drive(options) {
-
+function Drive(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.files = {
+  self.files = {
 
     /**
      * drive.files.get
@@ -45,14 +44,14 @@ function Drive(options) {
      * @alias drive.files.get
      * @memberOf! drive(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id for the file in question.
-     * @param  {string=} params.projection - This parameter is deprecated and has no function.
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id for the file in question.
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully retrieving the file.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v1/files/{id}',
@@ -75,15 +74,15 @@ function Drive(options) {
      * @alias drive.files.insert
      * @memberOf! drive(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v1/files',
@@ -107,16 +106,16 @@ function Drive(options) {
      * @alias drive.files.patch
      * @memberOf! drive(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id for the file in question.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
-     * @param  {boolean=} params.updateModifiedDate - Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id for the file in question.
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
+     * @param {boolean=} params.updateModifiedDate Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v1/files/{id}',
@@ -139,19 +138,19 @@ function Drive(options) {
      * @alias drive.files.update
      * @memberOf! drive(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id for the file in question.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
-     * @param  {boolean=} params.updateModifiedDate - Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id for the file in question.
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions.
+     * @param {boolean=} params.updateModifiedDate Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v1/files/{id}',

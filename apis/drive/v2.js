@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The API to interact with Drive.
  * @namespace drive
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Drive
  * @param {object=} options Options for Drive
  */
-function Drive(options) {
-
+function Drive(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.about = {
+  self.about = {
 
     /**
      * drive.about.get
@@ -45,14 +44,14 @@ function Drive(options) {
      * @alias drive.about.get
      * @memberOf! drive(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {boolean=} params.includeSubscribed - When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
-     * @param  {string=} params.maxChangeIdCount - Maximum number of remaining change IDs to count
-     * @param  {string=} params.startChangeId - Change ID to start counting from when calculating number of remaining change IDs
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {boolean=} params.includeSubscribed When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
+     * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
+     * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/about',
@@ -69,7 +68,7 @@ function Drive(options) {
 
   };
 
-  this.apps = {
+  self.apps = {
 
     /**
      * drive.apps.get
@@ -79,12 +78,12 @@ function Drive(options) {
      * @alias drive.apps.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.appId - The ID of the app.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.appId The ID of the app.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/apps/{appId}',
@@ -107,14 +106,14 @@ function Drive(options) {
      * @alias drive.apps.list
      * @memberOf! drive(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.appFilterExtensions - A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
-     * @param  {string=} params.appFilterMimeTypes - A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
-     * @param  {string=} params.languageCode - A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
+     * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
+     * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/apps',
@@ -131,7 +130,7 @@ function Drive(options) {
 
   };
 
-  this.changes = {
+  self.changes = {
 
     /**
      * drive.changes.get
@@ -141,12 +140,12 @@ function Drive(options) {
      * @alias drive.changes.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.changeId - The ID of the change.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.changeId The ID of the change.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/changes/{changeId}',
@@ -169,17 +168,17 @@ function Drive(options) {
      * @alias drive.changes.list
      * @memberOf! drive(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {boolean=} params.includeDeleted - Whether to include deleted items.
-     * @param  {boolean=} params.includeSubscribed - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
-     * @param  {integer=} params.maxResults - Maximum number of changes to return.
-     * @param  {string=} params.pageToken - Page token for changes.
-     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param  {string=} params.startChangeId - Change ID to start listing changes from.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {boolean=} params.includeDeleted Whether to include deleted items.
+     * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
+     * @param {integer=} params.maxResults Maximum number of changes to return.
+     * @param {string=} params.pageToken Page token for changes.
+     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/changes',
@@ -202,18 +201,18 @@ function Drive(options) {
      * @alias drive.changes.watch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.includeDeleted - Whether to include deleted items.
-     * @param  {boolean=} params.includeSubscribed - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
-     * @param  {integer=} params.maxResults - Maximum number of changes to return.
-     * @param  {string=} params.pageToken - Page token for changes.
-     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param  {string=} params.startChangeId - Change ID to start listing changes from.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.includeDeleted Whether to include deleted items.
+     * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
+     * @param {integer=} params.maxResults Maximum number of changes to return.
+     * @param {string=} params.pageToken Page token for changes.
+     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/changes/watch',
@@ -230,7 +229,7 @@ function Drive(options) {
 
   };
 
-  this.channels = {
+  self.channels = {
 
     /**
      * drive.channels.stop
@@ -240,12 +239,12 @@ function Drive(options) {
      * @alias drive.channels.stop
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, callback) {
+    stop: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/channels/stop',
@@ -262,7 +261,7 @@ function Drive(options) {
 
   };
 
-  this.children = {
+  self.children = {
 
     /**
      * drive.children.delete
@@ -272,13 +271,13 @@ function Drive(options) {
      * @alias drive.children.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.childId - The ID of the child.
-     * @param  {string} params.folderId - The ID of the folder.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.childId The ID of the child.
+     * @param {string} params.folderId The ID of the folder.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
@@ -301,13 +300,13 @@ function Drive(options) {
      * @alias drive.children.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.childId - The ID of the child.
-     * @param  {string} params.folderId - The ID of the folder.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.childId The ID of the child.
+     * @param {string} params.folderId The ID of the folder.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
@@ -330,13 +329,13 @@ function Drive(options) {
      * @alias drive.children.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.folderId - The ID of the folder.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.folderId The ID of the folder.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
@@ -359,16 +358,16 @@ function Drive(options) {
      * @alias drive.children.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.folderId - The ID of the folder.
-     * @param  {integer=} params.maxResults - Maximum number of children to return.
-     * @param  {string=} params.orderBy - A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-     * @param  {string=} params.pageToken - Page token for children.
-     * @param  {string=} params.q - Query string for searching children.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.folderId The ID of the folder.
+     * @param {integer=} params.maxResults Maximum number of children to return.
+     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * @param {string=} params.pageToken Page token for children.
+     * @param {string=} params.q Query string for searching children.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
@@ -385,7 +384,7 @@ function Drive(options) {
 
   };
 
-  this.comments = {
+  self.comments = {
 
     /**
      * drive.comments.delete
@@ -395,13 +394,13 @@ function Drive(options) {
      * @alias drive.comments.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
@@ -424,14 +423,14 @@ function Drive(options) {
      * @alias drive.comments.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {boolean=} params.includeDeleted - If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
@@ -454,13 +453,13 @@ function Drive(options) {
      * @alias drive.comments.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
@@ -483,16 +482,16 @@ function Drive(options) {
      * @alias drive.comments.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {boolean=} params.includeDeleted - If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
-     * @param  {integer=} params.maxResults - The maximum number of discussions to include in the response, used for paging.
-     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string=} params.updatedMin - Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {boolean=} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
+     * @param {integer=} params.maxResults The maximum number of discussions to include in the response, used for paging.
+     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
@@ -515,14 +514,14 @@ function Drive(options) {
      * @alias drive.comments.patch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
@@ -545,14 +544,14 @@ function Drive(options) {
      * @alias drive.comments.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
@@ -569,7 +568,7 @@ function Drive(options) {
 
   };
 
-  this.files = {
+  self.files = {
 
     /**
      * drive.files.copy
@@ -579,20 +578,20 @@ function Drive(options) {
      * @alias drive.files.copy
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
-     * @param  {string} params.fileId - The ID of the file to copy.
-     * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
-     * @param  {string=} params.timedTextLanguage - The language of the timed text.
-     * @param  {string=} params.timedTextTrackName - The timed text track name.
-     * @param  {string=} params.visibility - The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {string} params.fileId The ID of the file to copy.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy: function(params, callback) {
+    copy: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/copy',
@@ -615,12 +614,12 @@ function Drive(options) {
      * @alias drive.files.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
@@ -643,11 +642,11 @@ function Drive(options) {
      * @alias drive.files.emptyTrash
      * @memberOf! drive(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    emptyTrash: function(params, callback) {
+    emptyTrash: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/trash',
@@ -670,13 +669,13 @@ function Drive(options) {
      * @alias drive.files.export
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.mimeType - The MIME type of the format requested for this export.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.mimeType The MIME type of the format requested for this export.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function(params, callback) {
+    export: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/export',
@@ -699,13 +698,13 @@ function Drive(options) {
      * @alias drive.files.generateIds
      * @memberOf! drive(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of IDs to return.
-     * @param  {string=} params.space - The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of IDs to return.
+     * @param {string=} params.space The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateIds: function(params, callback) {
+    generateIds: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/generateIds',
@@ -728,16 +727,16 @@ function Drive(options) {
      * @alias drive.files.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
-     * @param  {string} params.fileId - The ID for the file in question.
-     * @param  {string=} params.projection - This parameter is deprecated and has no function.
-     * @param  {string=} params.revisionId - Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param  {boolean=} params.updateViewedDate - Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
+     * @param {string} params.fileId The ID for the file in question.
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
+     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
@@ -760,23 +759,23 @@ function Drive(options) {
      * @alias drive.files.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
-     * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
-     * @param  {string=} params.timedTextLanguage - The language of the timed text.
-     * @param  {string=} params.timedTextTrackName - The timed text track name.
-     * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
-     * @param  {string=} params.visibility - The visibility of the new file. This parameter is only relevant when convert=false.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when convert=false.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files',
@@ -800,18 +799,18 @@ function Drive(options) {
      * @alias drive.files.list
      * @memberOf! drive(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.corpus - The body of items (files/documents) to which the query applies.
-     * @param  {integer=} params.maxResults - Maximum number of files to return.
-     * @param  {string=} params.orderBy - A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-     * @param  {string=} params.pageToken - Page token for files.
-     * @param  {string=} params.projection - This parameter is deprecated and has no function.
-     * @param  {string=} params.q - Query string for searching files.
-     * @param  {string=} params.spaces - A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.corpus The body of items (files/documents) to which the query applies.
+     * @param {integer=} params.maxResults Maximum number of files to return.
+     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * @param {string=} params.pageToken Page token for files.
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {string=} params.q Query string for searching files.
+     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files',
@@ -834,26 +833,26 @@ function Drive(options) {
      * @alias drive.files.patch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
-     * @param  {boolean=} params.convert - This parameter is deprecated and has no function.
-     * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {string=} params.modifiedDateBehavior - Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
-     * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
-     * @param  {string=} params.removeParents - Comma-separated list of parent IDs to remove.
-     * @param  {boolean=} params.setModifiedDate - Whether to set the modified date with the supplied modified date.
-     * @param  {string=} params.timedTextLanguage - The language of the timed text.
-     * @param  {string=} params.timedTextTrackName - The timed text track name.
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
-     * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
+     * @param {boolean=} params.convert This parameter is deprecated and has no function.
+     * @param {string} params.fileId The ID of the file to update.
+     * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
+     * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
@@ -876,12 +875,12 @@ function Drive(options) {
      * @alias drive.files.touch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file to update.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    touch: function(params, callback) {
+    touch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/touch',
@@ -904,12 +903,12 @@ function Drive(options) {
      * @alias drive.files.trash
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file to trash.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file to trash.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    trash: function(params, callback) {
+    trash: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/trash',
@@ -932,12 +931,12 @@ function Drive(options) {
      * @alias drive.files.untrash
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file to untrash.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file to untrash.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    untrash: function(params, callback) {
+    untrash: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/untrash',
@@ -960,29 +959,29 @@ function Drive(options) {
      * @alias drive.files.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
-     * @param  {boolean=} params.convert - This parameter is deprecated and has no function.
-     * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {string=} params.modifiedDateBehavior - Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
-     * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
-     * @param  {string=} params.removeParents - Comma-separated list of parent IDs to remove.
-     * @param  {boolean=} params.setModifiedDate - Whether to set the modified date with the supplied modified date.
-     * @param  {string=} params.timedTextLanguage - The language of the timed text.
-     * @param  {string=} params.timedTextTrackName - The timed text track name.
-     * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
-     * @param  {boolean=} params.useContentAsIndexableText - Whether to use the content as indexable text.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
+     * @param {boolean=} params.convert This parameter is deprecated and has no function.
+     * @param {string} params.fileId The ID of the file to update.
+     * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
+     * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
+     * @param {string=} params.timedTextLanguage The language of the timed text.
+     * @param {string=} params.timedTextTrackName The timed text track name.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
@@ -1006,17 +1005,17 @@ function Drive(options) {
      * @alias drive.files.watch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
-     * @param  {string} params.fileId - The ID for the file in question.
-     * @param  {string=} params.projection - This parameter is deprecated and has no function.
-     * @param  {string=} params.revisionId - Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param  {boolean=} params.updateViewedDate - Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
+     * @param {string} params.fileId The ID for the file in question.
+     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
+     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/watch',
@@ -1033,7 +1032,7 @@ function Drive(options) {
 
   };
 
-  this.parents = {
+  self.parents = {
 
     /**
      * drive.parents.delete
@@ -1043,13 +1042,13 @@ function Drive(options) {
      * @alias drive.parents.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.parentId - The ID of the parent.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.parentId The ID of the parent.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
@@ -1072,13 +1071,13 @@ function Drive(options) {
      * @alias drive.parents.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.parentId - The ID of the parent.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.parentId The ID of the parent.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
@@ -1101,13 +1100,13 @@ function Drive(options) {
      * @alias drive.parents.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
@@ -1130,12 +1129,12 @@ function Drive(options) {
      * @alias drive.parents.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
@@ -1152,7 +1151,7 @@ function Drive(options) {
 
   };
 
-  this.permissions = {
+  self.permissions = {
 
     /**
      * drive.permissions.delete
@@ -1162,13 +1161,13 @@ function Drive(options) {
      * @alias drive.permissions.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.permissionId The ID for the permission.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
@@ -1191,13 +1190,13 @@ function Drive(options) {
      * @alias drive.permissions.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.permissionId The ID for the permission.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
@@ -1220,12 +1219,12 @@ function Drive(options) {
      * @alias drive.permissions.getIdForEmail
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.email - The email address for which to return a permission ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.email The email address for which to return a permission ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIdForEmail: function(params, callback) {
+    getIdForEmail: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/permissionIds/{email}',
@@ -1248,15 +1247,15 @@ function Drive(options) {
      * @alias drive.permissions.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.emailMessage - A custom message to include in notification emails.
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {boolean=} params.sendNotificationEmails - Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.emailMessage A custom message to include in notification emails.
+     * @param {string} params.fileId The ID for the file.
+     * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
@@ -1279,12 +1278,12 @@ function Drive(options) {
      * @alias drive.permissions.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
@@ -1307,15 +1306,15 @@ function Drive(options) {
      * @alias drive.permissions.patch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.permissionId The ID for the permission.
+     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
@@ -1338,15 +1337,15 @@ function Drive(options) {
      * @alias drive.permissions.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.permissionId The ID for the permission.
+     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
@@ -1363,7 +1362,7 @@ function Drive(options) {
 
   };
 
-  this.properties = {
+  self.properties = {
 
     /**
      * drive.properties.delete
@@ -1373,14 +1372,14 @@ function Drive(options) {
      * @alias drive.properties.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.propertyKey - The key of the property.
-     * @param  {string=} params.visibility - The visibility of the property.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.propertyKey The key of the property.
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
@@ -1403,14 +1402,14 @@ function Drive(options) {
      * @alias drive.properties.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.propertyKey - The key of the property.
-     * @param  {string=} params.visibility - The visibility of the property.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.propertyKey The key of the property.
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
@@ -1433,13 +1432,13 @@ function Drive(options) {
      * @alias drive.properties.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
@@ -1462,12 +1461,12 @@ function Drive(options) {
      * @alias drive.properties.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
@@ -1490,15 +1489,15 @@ function Drive(options) {
      * @alias drive.properties.patch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.propertyKey - The key of the property.
-     * @param  {string=} params.visibility - The visibility of the property.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.propertyKey The key of the property.
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
@@ -1521,15 +1520,15 @@ function Drive(options) {
      * @alias drive.properties.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.propertyKey - The key of the property.
-     * @param  {string=} params.visibility - The visibility of the property.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.propertyKey The key of the property.
+     * @param {string=} params.visibility The visibility of the property.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
@@ -1546,7 +1545,7 @@ function Drive(options) {
 
   };
 
-  this.realtime = {
+  self.realtime = {
 
     /**
      * drive.realtime.get
@@ -1556,13 +1555,13 @@ function Drive(options) {
      * @alias drive.realtime.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file that the Realtime API data model is associated with.
-     * @param  {integer=} params.revision - The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
+     * @param {integer=} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
@@ -1585,16 +1584,16 @@ function Drive(options) {
      * @alias drive.realtime.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.baseRevision - The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
-     * @param  {string} params.fileId - The ID of the file that the Realtime API data model is associated with.
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.baseRevision The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
+     * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
@@ -1612,7 +1611,7 @@ function Drive(options) {
 
   };
 
-  this.replies = {
+  self.replies = {
 
     /**
      * drive.replies.delete
@@ -1622,14 +1621,14 @@ function Drive(options) {
      * @alias drive.replies.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.replyId - The ID of the reply.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.replyId The ID of the reply.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
@@ -1652,15 +1651,15 @@ function Drive(options) {
      * @alias drive.replies.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {boolean=} params.includeDeleted - If set, this will succeed when retrieving a deleted reply.
-     * @param  {string} params.replyId - The ID of the reply.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
+     * @param {string} params.replyId The ID of the reply.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
@@ -1683,14 +1682,14 @@ function Drive(options) {
      * @alias drive.replies.insert
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
@@ -1713,16 +1712,16 @@ function Drive(options) {
      * @alias drive.replies.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {boolean=} params.includeDeleted - If set, all replies, including deleted replies (with content stripped) will be returned.
-     * @param  {integer=} params.maxResults - The maximum number of replies to include in the response, used for paging.
-     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {boolean=} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
+     * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
+     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
@@ -1745,15 +1744,15 @@ function Drive(options) {
      * @alias drive.replies.patch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.replyId - The ID of the reply.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.replyId The ID of the reply.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
@@ -1776,15 +1775,15 @@ function Drive(options) {
      * @alias drive.replies.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment.
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.replyId - The ID of the reply.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment.
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.replyId The ID of the reply.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
@@ -1801,7 +1800,7 @@ function Drive(options) {
 
   };
 
-  this.revisions = {
+  self.revisions = {
 
     /**
      * drive.revisions.delete
@@ -1811,13 +1810,13 @@ function Drive(options) {
      * @alias drive.revisions.delete
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.revisionId - The ID of the revision.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.revisionId The ID of the revision.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
@@ -1840,13 +1839,13 @@ function Drive(options) {
      * @alias drive.revisions.get
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {string} params.revisionId - The ID of the revision.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {string} params.revisionId The ID of the revision.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
@@ -1869,12 +1868,12 @@ function Drive(options) {
      * @alias drive.revisions.list
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID of the file.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID of the file.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions',
@@ -1897,14 +1896,14 @@ function Drive(options) {
      * @alias drive.revisions.patch
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {string} params.revisionId - The ID for the revision.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.revisionId The ID for the revision.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
@@ -1927,14 +1926,14 @@ function Drive(options) {
      * @alias drive.revisions.update
      * @memberOf! drive(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.fileId - The ID for the file.
-     * @param  {string} params.revisionId - The ID for the revision.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.revisionId The ID for the revision.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',

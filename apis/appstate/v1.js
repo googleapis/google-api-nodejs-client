@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Google App State API.
  * @namespace appstate
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Appstate
  * @param {object=} options Options for Appstate
  */
-function Appstate(options) {
-
+function Appstate(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.states = {
+  self.states = {
 
     /**
      * appstate.states.clear
@@ -45,13 +44,13 @@ function Appstate(options) {
      * @alias appstate.states.clear
      * @memberOf! appstate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.currentDataVersion - The version of the data to be cleared. Version strings are returned by the server.
-     * @param  {integer} params.stateKey - The key for the data to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.currentDataVersion The version of the data to be cleared. Version strings are returned by the server.
+     * @param {integer} params.stateKey The key for the data to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear: function(params, callback) {
+    clear: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}/clear',
@@ -74,12 +73,12 @@ function Appstate(options) {
      * @alias appstate.states.delete
      * @memberOf! appstate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.stateKey - The key for the data to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.stateKey The key for the data to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
@@ -102,12 +101,12 @@ function Appstate(options) {
      * @alias appstate.states.get
      * @memberOf! appstate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.stateKey - The key for the data to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.stateKey The key for the data to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
@@ -130,12 +129,12 @@ function Appstate(options) {
      * @alias appstate.states.list
      * @memberOf! appstate(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {boolean=} params.includeData - Whether to include the full data in addition to the version number
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {boolean=} params.includeData Whether to include the full data in addition to the version number
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/appstate/v1/states',
@@ -158,14 +157,14 @@ function Appstate(options) {
      * @alias appstate.states.update
      * @memberOf! appstate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.currentStateVersion - The version of the app state your application is attempting to update. If this does not match the current version, this method will return a conflict error. If there is no data stored on the server for this key, the update will succeed irrespective of the value of this parameter.
-     * @param  {integer} params.stateKey - The key for the data to be retrieved.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.currentStateVersion The version of the app state your application is attempting to update. If this does not match the current version, this method will return a conflict error. If there is no data stored on the server for this key, the update will succeed irrespective of the value of this parameter.
+     * @param {integer} params.stateKey The key for the data to be retrieved.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',

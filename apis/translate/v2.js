@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you translate text from one language to another
  * @namespace translate
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Translate
  * @param {object=} options Options for Translate
  */
-function Translate(options) {
-
+function Translate(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.detections = {
+  self.detections = {
 
     /**
      * language.detections.list
@@ -45,12 +44,12 @@ function Translate(options) {
      * @alias language.detections.list
      * @memberOf! translate(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.q - The text to detect
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.q The text to detect
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/language/translate/v2/detect',
@@ -67,7 +66,7 @@ function Translate(options) {
 
   };
 
-  this.languages = {
+  self.languages = {
 
     /**
      * language.languages.list
@@ -77,12 +76,12 @@ function Translate(options) {
      * @alias language.languages.list
      * @memberOf! translate(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.target - the language and collation in which the localized results should be returned
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.target the language and collation in which the localized results should be returned
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/language/translate/v2/languages',
@@ -99,7 +98,7 @@ function Translate(options) {
 
   };
 
-  this.translations = {
+  self.translations = {
 
     /**
      * language.translations.list
@@ -109,16 +108,16 @@ function Translate(options) {
      * @alias language.translations.list
      * @memberOf! translate(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.cid - The customization id for translate
-     * @param  {string=} params.format - The format of the text
-     * @param  {string} params.q - The text to translate
-     * @param  {string=} params.source - The source language of the text
-     * @param  {string} params.target - The target language into which the text should be translated
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.cid The customization id for translate
+     * @param {string=} params.format The format of the text
+     * @param {string} params.q The text to translate
+     * @param {string=} params.source The source language of the text
+     * @param {string} params.target The target language into which the text should be translated
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/language/translate/v2',

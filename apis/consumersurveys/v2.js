@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for Google Consumer Surveys.
  * @namespace consumersurveys
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Consumersurveys
  * @param {object=} options Options for Consumersurveys
  */
-function Consumersurveys(options) {
-
+function Consumersurveys(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.results = {
+  self.results = {
 
     /**
      * consumersurveys.results.get
@@ -45,13 +44,13 @@ function Consumersurveys(options) {
      * @alias consumersurveys.results.get
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.surveyUrlId - External URL ID for the survey.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.surveyUrlId External URL ID for the survey.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}/results',
@@ -68,7 +67,7 @@ function Consumersurveys(options) {
 
   };
 
-  this.surveys = {
+  self.surveys = {
 
     /**
      * consumersurveys.surveys.get
@@ -78,12 +77,12 @@ function Consumersurveys(options) {
      * @alias consumersurveys.surveys.get
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.surveyUrlId - External URL ID for the survey.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.surveyUrlId External URL ID for the survey.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
@@ -106,12 +105,12 @@ function Consumersurveys(options) {
      * @alias consumersurveys.surveys.insert
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys',
@@ -134,14 +133,14 @@ function Consumersurveys(options) {
      * @alias consumersurveys.surveys.list
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - 
-     * @param  {integer=} params.startIndex - 
-     * @param  {string=} params.token - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults 
+     * @param {integer=} params.startIndex 
+     * @param {string=} params.token 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys',
@@ -164,12 +163,12 @@ function Consumersurveys(options) {
      * @alias consumersurveys.surveys.start
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceId - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceId 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start: function(params, callback) {
+    start: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{resourceId}/start',
@@ -192,12 +191,12 @@ function Consumersurveys(options) {
      * @alias consumersurveys.surveys.stop
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceId - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceId 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, callback) {
+    stop: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{resourceId}/stop',
@@ -220,13 +219,13 @@ function Consumersurveys(options) {
      * @alias consumersurveys.surveys.update
      * @memberOf! consumersurveys(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.surveyUrlId - External URL ID for the survey.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.surveyUrlId External URL ID for the survey.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',

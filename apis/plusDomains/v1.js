@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Google+ API enables developers to build on top of the Google+ platform.
  * @namespace plusDomains
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Plusdomains
  * @param {object=} options Options for Plusdomains
  */
-function Plusdomains(options) {
-
+function Plusdomains(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.activities = {
+  self.activities = {
 
     /**
      * plusDomains.activities.get
@@ -45,12 +44,12 @@ function Plusdomains(options) {
      * @alias plusDomains.activities.get
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}',
@@ -73,14 +72,14 @@ function Plusdomains(options) {
      * @alias plusDomains.activities.insert
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.preview - If "true", extract the potential media attachments for a URL. The response will include all possible attachments for a URL, including video, photos, and articles based on the content of the page.
-     * @param  {string} params.userId - The ID of the user to create the activity on behalf of. Its value should be "me", to indicate the authenticated user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.preview If "true", extract the potential media attachments for a URL. The response will include all possible attachments for a URL, including video, photos, and articles based on the content of the page.
+     * @param {string} params.userId The ID of the user to create the activity on behalf of. Its value should be "me", to indicate the authenticated user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities',
@@ -103,15 +102,15 @@ function Plusdomains(options) {
      * @alias plusDomains.activities.list
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collection - The collection of activities to list.
-     * @param  {integer=} params.maxResults - The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string} params.userId - The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collection The collection of activities to list.
+     * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities/{collection}',
@@ -128,7 +127,7 @@ function Plusdomains(options) {
 
   };
 
-  this.audiences = {
+  self.audiences = {
 
     /**
      * plusDomains.audiences.list
@@ -138,14 +137,14 @@ function Plusdomains(options) {
      * @alias plusDomains.audiences.list
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string} params.userId - The ID of the user to get audiences for. The special value "me" can be used to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId The ID of the user to get audiences for. The special value "me" can be used to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/audiences',
@@ -162,7 +161,7 @@ function Plusdomains(options) {
 
   };
 
-  this.circles = {
+  self.circles = {
 
     /**
      * plusDomains.circles.addPeople
@@ -172,14 +171,14 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.addPeople
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to add the person to.
-     * @param  {string=} params.email - Email of the people to add to the circle. Optional, can be repeated.
-     * @param  {string=} params.userId - IDs of the people to add to the circle. Optional, can be repeated.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to add the person to.
+     * @param {string=} params.email Email of the people to add to the circle. Optional, can be repeated.
+     * @param {string=} params.userId IDs of the people to add to the circle. Optional, can be repeated.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPeople: function(params, callback) {
+    addPeople: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
@@ -202,12 +201,12 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.get
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
@@ -230,13 +229,13 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.insert
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userId - The ID of the user to create the circle on behalf of. The value "me" can be used to indicate the authenticated user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userId The ID of the user to create the circle on behalf of. The value "me" can be used to indicate the authenticated user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
@@ -259,14 +258,14 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.list
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string} params.userId - The ID of the user to get circles for. The special value "me" can be used to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId The ID of the user to get circles for. The special value "me" can be used to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
@@ -289,13 +288,13 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.patch
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
@@ -318,12 +317,12 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.remove
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove: function(params, callback) {
+    remove: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
@@ -346,14 +345,14 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.removePeople
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to remove the person from.
-     * @param  {string=} params.email - Email of the people to add to the circle. Optional, can be repeated.
-     * @param  {string=} params.userId - IDs of the people to remove from the circle. Optional, can be repeated.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to remove the person from.
+     * @param {string=} params.email Email of the people to add to the circle. Optional, can be repeated.
+     * @param {string=} params.userId IDs of the people to remove from the circle. Optional, can be repeated.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removePeople: function(params, callback) {
+    removePeople: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
@@ -376,13 +375,13 @@ function Plusdomains(options) {
      * @alias plusDomains.circles.update
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
@@ -399,7 +398,7 @@ function Plusdomains(options) {
 
   };
 
-  this.comments = {
+  self.comments = {
 
     /**
      * plusDomains.comments.get
@@ -409,12 +408,12 @@ function Plusdomains(options) {
      * @alias plusDomains.comments.get
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/comments/{commentId}',
@@ -437,13 +436,13 @@ function Plusdomains(options) {
      * @alias plusDomains.comments.insert
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to reply to.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to reply to.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
@@ -466,15 +465,15 @@ function Plusdomains(options) {
      * @alias plusDomains.comments.list
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to get comments for.
-     * @param  {integer=} params.maxResults - The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string=} params.sortOrder - The order in which to sort the list of comments.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to get comments for.
+     * @param {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string=} params.sortOrder The order in which to sort the list of comments.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
@@ -491,7 +490,7 @@ function Plusdomains(options) {
 
   };
 
-  this.media = {
+  self.media = {
 
     /**
      * plusDomains.media.insert
@@ -501,17 +500,17 @@ function Plusdomains(options) {
      * @alias plusDomains.media.insert
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collection - 
-     * @param  {string} params.userId - The ID of the user to create the activity on behalf of.
-     * @param  {object} params.resource - Media resource metadata
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collection 
+     * @param {string} params.userId The ID of the user to create the activity on behalf of.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/media/{collection}',
@@ -529,7 +528,7 @@ function Plusdomains(options) {
 
   };
 
-  this.people = {
+  self.people = {
 
     /**
      * plusDomains.people.get
@@ -539,12 +538,12 @@ function Plusdomains(options) {
      * @alias plusDomains.people.get
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userId - The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userId The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}',
@@ -567,16 +566,16 @@ function Plusdomains(options) {
      * @alias plusDomains.people.list
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collection - The collection of people to list.
-     * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.orderBy - The order to return people in.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string} params.userId - Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collection The collection of people to list.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.orderBy The order to return people in.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/people/{collection}',
@@ -599,15 +598,15 @@ function Plusdomains(options) {
      * @alias plusDomains.people.listByActivity
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to get the list of people for.
-     * @param  {string} params.collection - The collection of people to list.
-     * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to get the list of people for.
+     * @param {string} params.collection The collection of people to list.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByActivity: function(params, callback) {
+    listByActivity: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/people/{collection}',
@@ -630,14 +629,14 @@ function Plusdomains(options) {
      * @alias plusDomains.people.listByCircle
      * @memberOf! plusDomains(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.circleId - The ID of the circle to get the members of.
-     * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.circleId The ID of the circle to get the members of.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByCircle: function(params, callback) {
+    listByCircle: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',

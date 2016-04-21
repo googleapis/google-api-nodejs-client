@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Admin SDK Directory API lets you view and manage enterprise resources such as users and groups, administrative notifications, security features, and more.
  * @namespace admin
- * @version  directory_v1
+ * @version directory_v1
  * @variation directory_v1
  * @this Admin
  * @param {object=} options Options for Admin
  */
-function Admin(options) {
-
+function Admin(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.asps = {
+  self.asps = {
 
     /**
      * directory.asps.delete
@@ -45,13 +44,13 @@ function Admin(options) {
      * @alias directory.asps.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.codeId - The unique ID of the ASP to be deleted.
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.codeId The unique ID of the ASP to be deleted.
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
@@ -74,13 +73,13 @@ function Admin(options) {
      * @alias directory.asps.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.codeId - The unique ID of the ASP.
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.codeId The unique ID of the ASP.
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
@@ -103,12 +102,12 @@ function Admin(options) {
      * @alias directory.asps.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps',
@@ -125,7 +124,7 @@ function Admin(options) {
 
   };
 
-  this.channels = {
+  self.channels = {
 
     /**
      * admin.channels.stop
@@ -135,12 +134,12 @@ function Admin(options) {
      * @alias admin.channels.stop
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, callback) {
+    stop: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
@@ -157,7 +156,7 @@ function Admin(options) {
 
   };
 
-  this.chromeosdevices = {
+  self.chromeosdevices = {
 
     /**
      * directory.chromeosdevices.get
@@ -167,14 +166,14 @@ function Admin(options) {
      * @alias directory.chromeosdevices.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.deviceId - Immutable id of Chrome OS Device
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.deviceId Immutable id of Chrome OS Device
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
@@ -197,18 +196,18 @@ function Admin(options) {
      * @alias directory.chromeosdevices.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100
-     * @param  {string=} params.orderBy - Column to use for sorting results
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {string=} params.query - Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
-     * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
+     * @param {string=} params.orderBy Column to use for sorting results
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
+     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos',
@@ -231,15 +230,15 @@ function Admin(options) {
      * @alias directory.chromeosdevices.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.deviceId - Immutable id of Chrome OS Device
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.deviceId Immutable id of Chrome OS Device
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
@@ -262,15 +261,15 @@ function Admin(options) {
      * @alias directory.chromeosdevices.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.deviceId - Immutable id of Chrome OS Device
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.deviceId Immutable id of Chrome OS Device
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
@@ -287,7 +286,7 @@ function Admin(options) {
 
   };
 
-  this.customers = {
+  self.customers = {
 
     /**
      * directory.customers.get
@@ -297,12 +296,12 @@ function Admin(options) {
      * @alias directory.customers.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerKey - Id of the customer to be retrieved
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerKey Id of the customer to be retrieved
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
@@ -325,13 +324,13 @@ function Admin(options) {
      * @alias directory.customers.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerKey - Id of the customer to be updated
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerKey Id of the customer to be updated
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
@@ -354,13 +353,13 @@ function Admin(options) {
      * @alias directory.customers.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerKey - Id of the customer to be updated
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerKey Id of the customer to be updated
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
@@ -377,7 +376,7 @@ function Admin(options) {
 
   };
 
-  this.domainAliases = {
+  self.domainAliases = {
 
     /**
      * directory.domainAliases.delete
@@ -387,13 +386,13 @@ function Admin(options) {
      * @alias directory.domainAliases.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {string} params.domainAliasName - Name of domain alias to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.domainAliasName Name of domain alias to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
@@ -416,13 +415,13 @@ function Admin(options) {
      * @alias directory.domainAliases.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {string} params.domainAliasName - Name of domain alias to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.domainAliasName Name of domain alias to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
@@ -445,13 +444,13 @@ function Admin(options) {
      * @alias directory.domainAliases.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
@@ -474,13 +473,13 @@ function Admin(options) {
      * @alias directory.domainAliases.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {string=} params.parentDomainName - Name of the parent domain for which domain aliases are to be fetched.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string=} params.parentDomainName Name of the parent domain for which domain aliases are to be fetched.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
@@ -497,7 +496,7 @@ function Admin(options) {
 
   };
 
-  this.domains = {
+  self.domains = {
 
     /**
      * directory.domains.delete
@@ -507,13 +506,13 @@ function Admin(options) {
      * @alias directory.domains.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {string} params.domainName - Name of domain to be deleted
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.domainName Name of domain to be deleted
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
@@ -536,13 +535,13 @@ function Admin(options) {
      * @alias directory.domains.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {string} params.domainName - Name of domain to be retrieved
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.domainName Name of domain to be retrieved
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
@@ -565,13 +564,13 @@ function Admin(options) {
      * @alias directory.domains.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
@@ -594,12 +593,12 @@ function Admin(options) {
      * @alias directory.domains.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
@@ -616,7 +615,7 @@ function Admin(options) {
 
   };
 
-  this.groups = {
+  self.groups = {
 
     /**
      * directory.groups.delete
@@ -626,12 +625,12 @@ function Admin(options) {
      * @alias directory.groups.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
@@ -654,12 +653,12 @@ function Admin(options) {
      * @alias directory.groups.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
@@ -682,12 +681,12 @@ function Admin(options) {
      * @alias directory.groups.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
@@ -710,16 +709,16 @@ function Admin(options) {
      * @alias directory.groups.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.customer - Immutable id of the Google Apps account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
-     * @param  {string=} params.domain - Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 200
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.userKey - Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.customer Immutable id of the Google Apps account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
+     * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
@@ -742,13 +741,13 @@ function Admin(options) {
      * @alias directory.groups.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
@@ -771,13 +770,13 @@ function Admin(options) {
      * @alias directory.groups.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
@@ -802,13 +801,13 @@ function Admin(options) {
        * @alias directory.groups.aliases.delete
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.alias - The alias to be removed
-       * @param  {string} params.groupKey - Email or immutable Id of the group
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.alias The alias to be removed
+       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases/{alias}',
@@ -831,13 +830,13 @@ function Admin(options) {
        * @alias directory.groups.aliases.insert
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.groupKey - Email or immutable Id of the group
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function(params, callback) {
+      insert: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
@@ -860,12 +859,12 @@ function Admin(options) {
        * @alias directory.groups.aliases.list
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.groupKey - Email or immutable Id of the group
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
@@ -882,7 +881,7 @@ function Admin(options) {
     }
   };
 
-  this.members = {
+  self.members = {
 
     /**
      * directory.members.delete
@@ -892,13 +891,13 @@ function Admin(options) {
      * @alias directory.members.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @param  {string} params.memberKey - Email or immutable Id of the member
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
@@ -921,13 +920,13 @@ function Admin(options) {
      * @alias directory.members.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @param  {string} params.memberKey - Email or immutable Id of the member
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
@@ -950,13 +949,13 @@ function Admin(options) {
      * @alias directory.members.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
@@ -979,15 +978,15 @@ function Admin(options) {
      * @alias directory.members.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 200
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.roles - Comma separated role values to filter list results on.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.roles Comma separated role values to filter list results on.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
@@ -1010,14 +1009,14 @@ function Admin(options) {
      * @alias directory.members.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param  {string} params.memberKey - Email or immutable Id of the user. If Id, it should match with id of member object
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
+     * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
@@ -1040,14 +1039,14 @@ function Admin(options) {
      * @alias directory.members.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupKey - Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param  {string} params.memberKey - Email or immutable Id of the user. If Id, it should match with id of member object
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
+     * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
@@ -1064,7 +1063,7 @@ function Admin(options) {
 
   };
 
-  this.mobiledevices = {
+  self.mobiledevices = {
 
     /**
      * directory.mobiledevices.action
@@ -1074,14 +1073,14 @@ function Admin(options) {
      * @alias directory.mobiledevices.action
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.resourceId - Immutable id of Mobile Device
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action: function(params, callback) {
+    action: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action',
@@ -1104,13 +1103,13 @@ function Admin(options) {
      * @alias directory.mobiledevices.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.resourceId - Immutable id of Mobile Device
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
@@ -1133,14 +1132,14 @@ function Admin(options) {
      * @alias directory.mobiledevices.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {string} params.resourceId - Immutable id of Mobile Device
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
@@ -1163,18 +1162,18 @@ function Admin(options) {
      * @alias directory.mobiledevices.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100
-     * @param  {string=} params.orderBy - Column to use for sorting results
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {string=} params.query - Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
-     * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
+     * @param {string=} params.orderBy Column to use for sorting results
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
+     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile',
@@ -1191,7 +1190,7 @@ function Admin(options) {
 
   };
 
-  this.notifications = {
+  self.notifications = {
 
     /**
      * directory.notifications.delete
@@ -1201,13 +1200,13 @@ function Admin(options) {
      * @alias directory.notifications.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
-     * @param  {string} params.notificationId - The unique ID of the notification.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
+     * @param {string} params.notificationId The unique ID of the notification.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
@@ -1230,13 +1229,13 @@ function Admin(options) {
      * @alias directory.notifications.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
-     * @param  {string} params.notificationId - The unique ID of the notification.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
+     * @param {string} params.notificationId The unique ID of the notification.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
@@ -1259,15 +1258,15 @@ function Admin(options) {
      * @alias directory.notifications.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - The unique ID for the customer's Google account.
-     * @param  {string=} params.language - The ISO 639-1 code of the language notifications are returned in. The default is English (en).
-     * @param  {integer=} params.maxResults - Maximum number of notifications to return per page. The default is 100.
-     * @param  {string=} params.pageToken - The token to specify the page of results to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer The unique ID for the customer's Google account.
+     * @param {string=} params.language The ISO 639-1 code of the language notifications are returned in. The default is English (en).
+     * @param {integer=} params.maxResults Maximum number of notifications to return per page. The default is 100.
+     * @param {string=} params.pageToken The token to specify the page of results to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications',
@@ -1290,14 +1289,14 @@ function Admin(options) {
      * @alias directory.notifications.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - The unique ID for the customer's Google account.
-     * @param  {string} params.notificationId - The unique ID of the notification.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer The unique ID for the customer's Google account.
+     * @param {string} params.notificationId The unique ID of the notification.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
@@ -1320,14 +1319,14 @@ function Admin(options) {
      * @alias directory.notifications.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - The unique ID for the customer's Google account.
-     * @param  {string} params.notificationId - The unique ID of the notification.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer The unique ID for the customer's Google account.
+     * @param {string} params.notificationId The unique ID of the notification.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
@@ -1344,7 +1343,7 @@ function Admin(options) {
 
   };
 
-  this.orgunits = {
+  self.orgunits = {
 
     /**
      * directory.orgunits.delete
@@ -1354,13 +1353,13 @@ function Admin(options) {
      * @alias directory.orgunits.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
@@ -1383,13 +1382,13 @@ function Admin(options) {
      * @alias directory.orgunits.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
@@ -1412,13 +1411,13 @@ function Admin(options) {
      * @alias directory.orgunits.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
@@ -1441,14 +1440,14 @@ function Admin(options) {
      * @alias directory.orgunits.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string=} params.orgUnitPath - the URL-encoded organization unit's path or its Id
-     * @param  {string=} params.type - Whether to return all sub-organizations or just immediate children
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string=} params.orgUnitPath the URL-encoded organization unit's path or its Id
+     * @param {string=} params.type Whether to return all sub-organizations or just immediate children
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
@@ -1471,14 +1470,14 @@ function Admin(options) {
      * @alias directory.orgunits.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
@@ -1501,14 +1500,14 @@ function Admin(options) {
      * @alias directory.orgunits.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.orgUnitPath - Full path of the organization unit or its Id
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
@@ -1525,7 +1524,7 @@ function Admin(options) {
 
   };
 
-  this.privileges = {
+  self.privileges = {
 
     /**
      * directory.privileges.list
@@ -1535,12 +1534,12 @@ function Admin(options) {
      * @alias directory.privileges.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/ALL/privileges',
@@ -1557,7 +1556,7 @@ function Admin(options) {
 
   };
 
-  this.resources = {
+  self.resources = {
 
     calendars: {
 
@@ -1569,13 +1568,13 @@ function Admin(options) {
        * @alias directory.resources.calendars.delete
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to delete.
-       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.calendarResourceId The unique ID of the calendar resource to delete.
+       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
@@ -1598,13 +1597,13 @@ function Admin(options) {
        * @alias directory.resources.calendars.get
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to retrieve.
-       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
+       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
@@ -1627,13 +1626,13 @@ function Admin(options) {
        * @alias directory.resources.calendars.insert
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function(params, callback) {
+      insert: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
@@ -1656,14 +1655,14 @@ function Admin(options) {
        * @alias directory.resources.calendars.list
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param  {integer=} params.maxResults - Maximum number of results to return.
-       * @param  {string=} params.pageToken - Token to specify the next page in the list.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {integer=} params.maxResults Maximum number of results to return.
+       * @param {string=} params.pageToken Token to specify the next page in the list.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
@@ -1686,14 +1685,14 @@ function Admin(options) {
        * @alias directory.resources.calendars.patch
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to update.
-       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
+       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
@@ -1716,14 +1715,14 @@ function Admin(options) {
        * @alias directory.resources.calendars.update
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.calendarResourceId - The unique ID of the calendar resource to update.
-       * @param  {string} params.customer - The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
+       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
@@ -1740,7 +1739,7 @@ function Admin(options) {
     }
   };
 
-  this.roleAssignments = {
+  self.roleAssignments = {
 
     /**
      * directory.roleAssignments.delete
@@ -1750,13 +1749,13 @@ function Admin(options) {
      * @alias directory.roleAssignments.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {string} params.roleAssignmentId - Immutable ID of the role assignment.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
@@ -1779,13 +1778,13 @@ function Admin(options) {
      * @alias directory.roleAssignments.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {string} params.roleAssignmentId - Immutable ID of the role assignment.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
@@ -1808,13 +1807,13 @@ function Admin(options) {
      * @alias directory.roleAssignments.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
@@ -1837,16 +1836,16 @@ function Admin(options) {
      * @alias directory.roleAssignments.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - Token to specify the next page in the list.
-     * @param  {string=} params.roleId - Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
-     * @param  {string=} params.userKey - The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken Token to specify the next page in the list.
+     * @param {string=} params.roleId Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
+     * @param {string=} params.userKey The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
@@ -1863,7 +1862,7 @@ function Admin(options) {
 
   };
 
-  this.roles = {
+  self.roles = {
 
     /**
      * directory.roles.delete
@@ -1873,13 +1872,13 @@ function Admin(options) {
      * @alias directory.roles.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {string} params.roleId - Immutable ID of the role.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.roleId Immutable ID of the role.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
@@ -1902,13 +1901,13 @@ function Admin(options) {
      * @alias directory.roles.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {string} params.roleId - Immutable ID of the role.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.roleId Immutable ID of the role.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
@@ -1931,13 +1930,13 @@ function Admin(options) {
      * @alias directory.roles.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
@@ -1960,14 +1959,14 @@ function Admin(options) {
      * @alias directory.roles.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable id of the Google Apps account.
-     * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - Token to specify the next page in the list.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken Token to specify the next page in the list.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
@@ -1990,14 +1989,14 @@ function Admin(options) {
      * @alias directory.roles.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {string} params.roleId - Immutable ID of the role.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.roleId Immutable ID of the role.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
@@ -2020,14 +2019,14 @@ function Admin(options) {
      * @alias directory.roles.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customer - Immutable ID of the Google Apps account.
-     * @param  {string} params.roleId - Immutable ID of the role.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.roleId Immutable ID of the role.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
@@ -2044,7 +2043,7 @@ function Admin(options) {
 
   };
 
-  this.schemas = {
+  self.schemas = {
 
     /**
      * directory.schemas.delete
@@ -2054,13 +2053,13 @@ function Admin(options) {
      * @alias directory.schemas.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.schemaKey - Name or immutable Id of the schema
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.schemaKey Name or immutable Id of the schema
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
@@ -2083,13 +2082,13 @@ function Admin(options) {
      * @alias directory.schemas.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.schemaKey - Name or immutable Id of the schema
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.schemaKey Name or immutable Id of the schema
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
@@ -2112,13 +2111,13 @@ function Admin(options) {
      * @alias directory.schemas.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
@@ -2141,12 +2140,12 @@ function Admin(options) {
      * @alias directory.schemas.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
@@ -2169,14 +2168,14 @@ function Admin(options) {
      * @alias directory.schemas.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.schemaKey - Name or immutable Id of the schema.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.schemaKey Name or immutable Id of the schema.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
@@ -2199,14 +2198,14 @@ function Admin(options) {
      * @alias directory.schemas.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Immutable id of the Google Apps account
-     * @param  {string} params.schemaKey - Name or immutable Id of the schema.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.schemaKey Name or immutable Id of the schema.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
@@ -2223,7 +2222,7 @@ function Admin(options) {
 
   };
 
-  this.tokens = {
+  self.tokens = {
 
     /**
      * directory.tokens.delete
@@ -2233,13 +2232,13 @@ function Admin(options) {
      * @alias directory.tokens.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.clientId - The Client ID of the application the token is issued to.
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.clientId The Client ID of the application the token is issued to.
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
@@ -2262,13 +2261,13 @@ function Admin(options) {
      * @alias directory.tokens.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.clientId - The Client ID of the application the token is issued to.
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.clientId The Client ID of the application the token is issued to.
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
@@ -2291,12 +2290,12 @@ function Admin(options) {
      * @alias directory.tokens.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens',
@@ -2313,7 +2312,7 @@ function Admin(options) {
 
   };
 
-  this.users = {
+  self.users = {
 
     /**
      * directory.users.delete
@@ -2323,12 +2322,12 @@ function Admin(options) {
      * @alias directory.users.delete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Email or immutable Id of the user
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
@@ -2351,15 +2350,15 @@ function Admin(options) {
      * @alias directory.users.get
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.customFieldMask - Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param  {string=} params.projection - What subset of fields to fetch for this user.
-     * @param  {string} params.userKey - Email or immutable Id of the user
-     * @param  {string=} params.viewType - Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     * @param {string=} params.projection What subset of fields to fetch for this user.
+     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
@@ -2382,12 +2381,12 @@ function Admin(options) {
      * @alias directory.users.insert
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users',
@@ -2410,23 +2409,23 @@ function Admin(options) {
      * @alias directory.users.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.customFieldMask - Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param  {string=} params.customer - Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param  {string=} params.domain - Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100. Max allowed is 500
-     * @param  {string=} params.orderBy - Column to use for sorting results
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.projection - What subset of fields to fetch for this user.
-     * @param  {string=} params.query - Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param  {string=} params.showDeleted - If set to true retrieves the list of deleted users. Default is false
-     * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order.
-     * @param  {string=} params.viewType - Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     * @param {string=} params.customer Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     * @param {string=} params.event Event on which subscription is intended (if subscribing)
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
+     * @param {string=} params.orderBy Column to use for sorting results
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.projection What subset of fields to fetch for this user.
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
+     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
+     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users',
@@ -2449,13 +2448,13 @@ function Admin(options) {
      * @alias directory.users.makeAdmin
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Email or immutable Id of the user as admin
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Email or immutable Id of the user as admin
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    makeAdmin: function(params, callback) {
+    makeAdmin: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/makeAdmin',
@@ -2478,13 +2477,13 @@ function Admin(options) {
      * @alias directory.users.patch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Email or immutable Id of the user. If Id, it should match with id of user object
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
@@ -2507,13 +2506,13 @@ function Admin(options) {
      * @alias directory.users.undelete
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - The immutable id of the user
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey The immutable id of the user
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete: function(params, callback) {
+    undelete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/undelete',
@@ -2536,13 +2535,13 @@ function Admin(options) {
      * @alias directory.users.update
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Email or immutable Id of the user. If Id, it should match with id of user object
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
@@ -2565,24 +2564,24 @@ function Admin(options) {
      * @alias directory.users.watch
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.customFieldMask - Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param  {string=} params.customer - Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param  {string=} params.domain - Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100. Max allowed is 500
-     * @param  {string=} params.orderBy - Column to use for sorting results
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.projection - What subset of fields to fetch for this user.
-     * @param  {string=} params.query - Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param  {string=} params.showDeleted - If set to true retrieves the list of deleted users. Default is false
-     * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order.
-     * @param  {string=} params.viewType - Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     * @param {string=} params.customer Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     * @param {string=} params.event Event on which subscription is intended (if subscribing)
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
+     * @param {string=} params.orderBy Column to use for sorting results
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.projection What subset of fields to fetch for this user.
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
+     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
+     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
@@ -2607,13 +2606,13 @@ function Admin(options) {
        * @alias directory.users.aliases.delete
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.alias - The alias to be removed
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.alias The alias to be removed
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/{alias}',
@@ -2636,13 +2635,13 @@ function Admin(options) {
        * @alias directory.users.aliases.insert
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function(params, callback) {
+      insert: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
@@ -2665,13 +2664,13 @@ function Admin(options) {
        * @alias directory.users.aliases.list
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.event Event on which subscription is intended (if subscribing)
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
@@ -2694,14 +2693,14 @@ function Admin(options) {
        * @alias directory.users.aliases.watch
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.event Event on which subscription is intended (if subscribing)
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      watch: function(params, callback) {
+      watch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/watch',
@@ -2727,12 +2726,12 @@ function Admin(options) {
        * @alias directory.users.photos.delete
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
@@ -2755,12 +2754,12 @@ function Admin(options) {
        * @alias directory.users.photos.get
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
@@ -2783,13 +2782,13 @@ function Admin(options) {
        * @alias directory.users.photos.patch
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
@@ -2812,13 +2811,13 @@ function Admin(options) {
        * @alias directory.users.photos.update
        * @memberOf! admin(directory_v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userKey - Email or immutable Id of the user
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
@@ -2835,7 +2834,7 @@ function Admin(options) {
     }
   };
 
-  this.verificationCodes = {
+  self.verificationCodes = {
 
     /**
      * directory.verificationCodes.generate
@@ -2845,12 +2844,12 @@ function Admin(options) {
      * @alias directory.verificationCodes.generate
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Email or immutable Id of the user
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, callback) {
+    generate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/generate',
@@ -2873,12 +2872,12 @@ function Admin(options) {
      * @alias directory.verificationCodes.invalidate
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Email or immutable Id of the user
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    invalidate: function(params, callback) {
+    invalidate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/invalidate',
@@ -2901,12 +2900,12 @@ function Admin(options) {
      * @alias directory.verificationCodes.list
      * @memberOf! admin(directory_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userKey - Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes',

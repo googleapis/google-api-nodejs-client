@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
  * @namespace prediction
- * @version  v1.5
+ * @version v1.5
  * @variation v1.5
  * @this Prediction
  * @param {object=} options Options for Prediction
  */
-function Prediction(options) {
-
+function Prediction(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.hostedmodels = {
+  self.hostedmodels = {
 
     /**
      * prediction.hostedmodels.predict
@@ -45,13 +44,13 @@ function Prediction(options) {
      * @alias prediction.hostedmodels.predict
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.hostedModelName - The name of a hosted model.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.hostedModelName The name of a hosted model.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function(params, callback) {
+    predict: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/hostedmodels/{hostedModelName}/predict',
@@ -68,7 +67,7 @@ function Prediction(options) {
 
   };
 
-  this.trainedmodels = {
+  self.trainedmodels = {
 
     /**
      * prediction.trainedmodels.analyze
@@ -78,12 +77,12 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.analyze
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The unique name for the predictive model.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The unique name for the predictive model.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyze: function(params, callback) {
+    analyze: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}/analyze',
@@ -106,12 +105,12 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.delete
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The unique name for the predictive model.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The unique name for the predictive model.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
@@ -134,12 +133,12 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.get
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The unique name for the predictive model.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The unique name for the predictive model.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
@@ -162,12 +161,12 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.insert
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels',
@@ -190,13 +189,13 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.list
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - Pagination token
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken Pagination token
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/list',
@@ -219,13 +218,13 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.predict
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The unique name for the predictive model.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The unique name for the predictive model.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function(params, callback) {
+    predict: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}/predict',
@@ -248,13 +247,13 @@ function Prediction(options) {
      * @alias prediction.trainedmodels.update
      * @memberOf! prediction(v1.5)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The unique name for the predictive model.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The unique name for the predictive model.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',

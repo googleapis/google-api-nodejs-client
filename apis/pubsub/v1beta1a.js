@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Provides reliable, many-to-many, asynchronous messaging between applications.
  * @namespace pubsub
- * @version  v1beta1a
+ * @version v1beta1a
  * @variation v1beta1a
  * @this Pubsub
  * @param {object=} options Options for Pubsub
  */
-function Pubsub(options) {
-
+function Pubsub(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.topics = {
+  self.topics = {
 
     /**
      * pubsub.topics.create
@@ -45,12 +44,12 @@ function Pubsub(options) {
      * @alias pubsub.topics.create
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/topics',
@@ -73,12 +72,12 @@ function Pubsub(options) {
      * @alias pubsub.topics.publish
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publish: function(params, callback) {
+    publish: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/publish',
@@ -101,12 +100,12 @@ function Pubsub(options) {
      * @alias pubsub.topics.publishBatch
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publishBatch: function(params, callback) {
+    publishBatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/publishBatch',
@@ -129,12 +128,12 @@ function Pubsub(options) {
      * @alias pubsub.topics.get
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.topic - The name of the topic to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.topic The name of the topic to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
@@ -157,14 +156,14 @@ function Pubsub(options) {
      * @alias pubsub.topics.list
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.query - A valid label query expression.
-     * @param  {integer=} params.maxResults - Maximum number of topics to return.
-     * @param  {string=} params.pageToken - The value obtained in the last ListTopicsResponse for continuation.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.query A valid label query expression.
+     * @param {integer=} params.maxResults Maximum number of topics to return.
+     * @param {string=} params.pageToken The value obtained in the last ListTopicsResponse for continuation.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/topics',
@@ -187,12 +186,12 @@ function Pubsub(options) {
      * @alias pubsub.topics.delete
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.topic - Name of the topic to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.topic Name of the topic to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
@@ -209,7 +208,7 @@ function Pubsub(options) {
 
   };
 
-  this.subscriptions = {
+  self.subscriptions = {
 
     /**
      * pubsub.subscriptions.create
@@ -219,12 +218,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.create
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions',
@@ -247,12 +246,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.get
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.subscription - The name of the subscription to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.subscription The name of the subscription to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
@@ -275,14 +274,14 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.list
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.query - A valid label query expression.
-     * @param  {integer=} params.maxResults - Maximum number of subscriptions to return.
-     * @param  {string=} params.pageToken - The value obtained in the last ListSubscriptionsResponse for continuation.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.query A valid label query expression.
+     * @param {integer=} params.maxResults Maximum number of subscriptions to return.
+     * @param {string=} params.pageToken The value obtained in the last ListSubscriptionsResponse for continuation.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions',
@@ -305,12 +304,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.delete
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.subscription - The subscription to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.subscription The subscription to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
@@ -333,12 +332,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.modifyPushConfig
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyPushConfig: function(params, callback) {
+    modifyPushConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyPushConfig',
@@ -361,12 +360,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.pull
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pull: function(params, callback) {
+    pull: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/pull',
@@ -389,12 +388,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.pullBatch
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pullBatch: function(params, callback) {
+    pullBatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/pullBatch',
@@ -417,12 +416,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.modifyAckDeadline
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyAckDeadline: function(params, callback) {
+    modifyAckDeadline: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyAckDeadline',
@@ -445,12 +444,12 @@ function Pubsub(options) {
      * @alias pubsub.subscriptions.acknowledge
      * @memberOf! pubsub(v1beta1a)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function(params, callback) {
+    acknowledge: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/acknowledge',

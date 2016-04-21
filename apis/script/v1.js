@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc An API for executing Google Apps Script projects.
  * @namespace script
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Script
  * @param {object=} options Options for Script
  */
-function Script(options) {
-
+function Script(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.scripts = {
+  self.scripts = {
 
     /**
      * script.scripts.run
@@ -45,13 +44,13 @@ function Script(options) {
      * @alias script.scripts.run
      * @memberOf! script(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.scriptId - The project key of the script to be executed. To find the project key, open the project in the script editor, then select **File > Project properties**.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.scriptId The project key of the script to be executed. To find the project key, open the project in the script editor, then select **File > Project properties**.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run: function(params, callback) {
+    run: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://script.googleapis.com/v1/scripts/{scriptId}:run',

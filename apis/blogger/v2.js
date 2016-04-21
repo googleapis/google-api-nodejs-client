@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for access to the data within Blogger.
  * @namespace blogger
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Blogger
  * @param {object=} options Options for Blogger
  */
-function Blogger(options) {
-
+function Blogger(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.blogs = {
+  self.blogs = {
 
     /**
      * blogger.blogs.get
@@ -45,12 +44,12 @@ function Blogger(options) {
      * @alias blogger.blogs.get
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - The ID of the blog to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId The ID of the blog to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}',
@@ -67,7 +66,7 @@ function Blogger(options) {
 
   };
 
-  this.comments = {
+  self.comments = {
 
     /**
      * blogger.comments.get
@@ -77,14 +76,14 @@ function Blogger(options) {
      * @alias blogger.comments.get
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog to containing the comment.
-     * @param  {string} params.commentId - The ID of the comment to get.
-     * @param  {string} params.postId - ID of the post to fetch posts from.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId ID of the blog to containing the comment.
+     * @param {string} params.commentId The ID of the comment to get.
+     * @param {string} params.postId ID of the post to fetch posts from.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}',
@@ -107,17 +106,17 @@ function Blogger(options) {
      * @alias blogger.comments.list
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog to fetch comments from.
-     * @param  {boolean=} params.fetchBodies - Whether the body content of the comments is included.
-     * @param  {integer=} params.maxResults - Maximum number of comments to include in the result.
-     * @param  {string=} params.pageToken - Continuation token if request is paged.
-     * @param  {string} params.postId - ID of the post to fetch posts from.
-     * @param  {string=} params.startDate - Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId ID of the blog to fetch comments from.
+     * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
+     * @param {integer=} params.maxResults Maximum number of comments to include in the result.
+     * @param {string=} params.pageToken Continuation token if request is paged.
+     * @param {string} params.postId ID of the post to fetch posts from.
+     * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments',
@@ -134,7 +133,7 @@ function Blogger(options) {
 
   };
 
-  this.pages = {
+  self.pages = {
 
     /**
      * blogger.pages.get
@@ -144,13 +143,13 @@ function Blogger(options) {
      * @alias blogger.pages.get
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog containing the page.
-     * @param  {string} params.pageId - The ID of the page to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId ID of the blog containing the page.
+     * @param {string} params.pageId The ID of the page to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages/{pageId}',
@@ -173,13 +172,13 @@ function Blogger(options) {
      * @alias blogger.pages.list
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog to fetch pages from.
-     * @param  {boolean=} params.fetchBodies - Whether to retrieve the Page bodies.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId ID of the blog to fetch pages from.
+     * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages',
@@ -196,7 +195,7 @@ function Blogger(options) {
 
   };
 
-  this.posts = {
+  self.posts = {
 
     /**
      * blogger.posts.get
@@ -206,13 +205,13 @@ function Blogger(options) {
      * @alias blogger.posts.get
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog to fetch the post from.
-     * @param  {string} params.postId - The ID of the post
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId ID of the blog to fetch the post from.
+     * @param {string} params.postId The ID of the post
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}',
@@ -235,16 +234,16 @@ function Blogger(options) {
      * @alias blogger.posts.list
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.blogId - ID of the blog to fetch posts from.
-     * @param  {boolean=} params.fetchBodies - Whether the body content of posts is included.
-     * @param  {integer=} params.maxResults - Maximum number of posts to fetch.
-     * @param  {string=} params.pageToken - Continuation token if the request is paged.
-     * @param  {string=} params.startDate - Earliest post date to fetch, a date-time with RFC 3339 formatting.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.blogId ID of the blog to fetch posts from.
+     * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
+     * @param {integer=} params.maxResults Maximum number of posts to fetch.
+     * @param {string=} params.pageToken Continuation token if the request is paged.
+     * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts',
@@ -261,7 +260,7 @@ function Blogger(options) {
 
   };
 
-  this.users = {
+  self.users = {
 
     /**
      * blogger.users.get
@@ -271,12 +270,12 @@ function Blogger(options) {
      * @alias blogger.users.get
      * @memberOf! blogger(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userId - The ID of the user to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userId The ID of the user to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/blogger/v2/users/{userId}',
@@ -301,12 +300,12 @@ function Blogger(options) {
        * @alias blogger.users.blogs.list
        * @memberOf! blogger(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userId - ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userId ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/blogger/v2/users/{userId}/blogs',

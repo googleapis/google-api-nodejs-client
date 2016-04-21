@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you manage your tasks and task lists.
  * @namespace tasks
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Tasks
  * @param {object=} options Options for Tasks
  */
-function Tasks(options) {
-
+function Tasks(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.tasklists = {
+  self.tasklists = {
 
     /**
      * tasks.tasklists.delete
@@ -45,12 +44,12 @@ function Tasks(options) {
      * @alias tasks.tasklists.delete
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tasklist Task list identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
@@ -73,12 +72,12 @@ function Tasks(options) {
      * @alias tasks.tasklists.get
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tasklist Task list identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
@@ -101,12 +100,12 @@ function Tasks(options) {
      * @alias tasks.tasklists.insert
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
@@ -129,13 +128,13 @@ function Tasks(options) {
      * @alias tasks.tasklists.list
      * @memberOf! tasks(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.maxResults - Maximum number of task lists returned on one page. Optional. The default is 100.
-     * @param  {string=} params.pageToken - Token specifying the result page to return. Optional.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * @param {string=} params.pageToken Token specifying the result page to return. Optional.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
@@ -158,13 +157,13 @@ function Tasks(options) {
      * @alias tasks.tasklists.patch
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tasklist Task list identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
@@ -187,13 +186,13 @@ function Tasks(options) {
      * @alias tasks.tasklists.update
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tasklist Task list identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
@@ -210,7 +209,7 @@ function Tasks(options) {
 
   };
 
-  this.tasks = {
+  self.tasks = {
 
     /**
      * tasks.tasks.clear
@@ -220,12 +219,12 @@ function Tasks(options) {
      * @alias tasks.tasks.clear
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tasklist Task list identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear: function(params, callback) {
+    clear: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/clear',
@@ -248,13 +247,13 @@ function Tasks(options) {
      * @alias tasks.tasks.delete
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.task - Task identifier.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.task Task identifier.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
@@ -277,13 +276,13 @@ function Tasks(options) {
      * @alias tasks.tasks.get
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.task - Task identifier.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.task Task identifier.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
@@ -306,15 +305,15 @@ function Tasks(options) {
      * @alias tasks.tasks.insert
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.parent - Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
-     * @param  {string=} params.previous - Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
+     * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
@@ -337,22 +336,22 @@ function Tasks(options) {
      * @alias tasks.tasks.list
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.completedMax - Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
-     * @param  {string=} params.completedMin - Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
-     * @param  {string=} params.dueMax - Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param  {string=} params.dueMin - Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param  {string=} params.maxResults - Maximum number of task lists returned on one page. Optional. The default is 100.
-     * @param  {string=} params.pageToken - Token specifying the result page to return. Optional.
-     * @param  {boolean=} params.showCompleted - Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
-     * @param  {boolean=} params.showDeleted - Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
-     * @param  {boolean=} params.showHidden - Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {string=} params.updatedMin - Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.completedMax Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     * @param {string=} params.completedMin Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     * @param {string=} params.dueMax Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * @param {string=} params.pageToken Token specifying the result page to return. Optional.
+     * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
+     * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
+     * @param {boolean=} params.showHidden Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {string=} params.updatedMin Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
@@ -375,15 +374,15 @@ function Tasks(options) {
      * @alias tasks.tasks.move
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.parent - New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
-     * @param  {string=} params.previous - New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
-     * @param  {string} params.task - Task identifier.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.parent New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
+     * @param {string=} params.previous New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
+     * @param {string} params.task Task identifier.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move: function(params, callback) {
+    move: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}/move',
@@ -406,14 +405,14 @@ function Tasks(options) {
      * @alias tasks.tasks.patch
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.task - Task identifier.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.task Task identifier.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
@@ -436,14 +435,14 @@ function Tasks(options) {
      * @alias tasks.tasks.update
      * @memberOf! tasks(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.task - Task identifier.
-     * @param  {string} params.tasklist - Task list identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.task Task identifier.
+     * @param {string} params.tasklist Task list identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',

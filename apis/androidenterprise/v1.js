@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Manages the deployment of apps to Android for Work users.
  * @namespace androidenterprise
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Androidenterprise
  * @param {object=} options Options for Androidenterprise
  */
-function Androidenterprise(options) {
-
+function Androidenterprise(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.collections = {
+  self.collections = {
 
     /**
      * androidenterprise.collections.delete
@@ -45,13 +44,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collections.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
@@ -74,13 +73,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collections.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
@@ -103,13 +102,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collections.insert
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections',
@@ -132,12 +131,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collections.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections',
@@ -160,14 +159,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collections.patch
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
@@ -190,14 +189,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collections.update
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
@@ -214,7 +213,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.collectionviewers = {
+  self.collectionviewers = {
 
     /**
      * androidenterprise.collectionviewers.delete
@@ -224,14 +223,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collectionviewers.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
@@ -254,14 +253,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collectionviewers.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
@@ -284,13 +283,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collectionviewers.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users',
@@ -313,15 +312,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collectionviewers.patch
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
@@ -344,15 +343,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.collectionviewers.update
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collectionId - The ID of the collection.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collectionId The ID of the collection.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
@@ -369,7 +368,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.devices = {
+  self.devices = {
 
     /**
      * androidenterprise.devices.get
@@ -379,14 +378,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.devices.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}',
@@ -409,14 +408,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.devices.getState
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getState: function(params, callback) {
+    getState: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
@@ -439,13 +438,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.devices.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices',
@@ -468,15 +467,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.devices.setState
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setState: function(params, callback) {
+    setState: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
@@ -493,7 +492,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.enterprises = {
+  self.enterprises = {
 
     /**
      * androidenterprise.enterprises.delete
@@ -503,12 +502,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
@@ -531,13 +530,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.enroll
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.token - The token provided by the enterprise to register the EMM.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.token The token provided by the enterprise to register the EMM.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enroll: function(params, callback) {
+    enroll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/enroll',
@@ -560,12 +559,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
@@ -588,12 +587,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.getStoreLayout
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getStoreLayout: function(params, callback) {
+    getStoreLayout: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
@@ -616,13 +615,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.insert
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.token - The token provided by the enterprise to register the EMM.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.token The token provided by the enterprise to register the EMM.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
@@ -645,12 +644,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.domain - The exact primary domain name of the enterprise to look up.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.domain The exact primary domain name of the enterprise to look up.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
@@ -673,12 +672,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.sendTestPushNotification
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sendTestPushNotification: function(params, callback) {
+    sendTestPushNotification: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification',
@@ -701,13 +700,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.setAccount
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAccount: function(params, callback) {
+    setAccount: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/account',
@@ -730,13 +729,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.setStoreLayout
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setStoreLayout: function(params, callback) {
+    setStoreLayout: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
@@ -759,12 +758,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.enterprises.unenroll
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unenroll: function(params, callback) {
+    unenroll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/unenroll',
@@ -781,7 +780,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.entitlements = {
+  self.entitlements = {
 
     /**
      * androidenterprise.entitlements.delete
@@ -791,14 +790,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.entitlements.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
@@ -821,14 +820,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.entitlements.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
@@ -851,13 +850,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.entitlements.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements',
@@ -880,16 +879,16 @@ function Androidenterprise(options) {
      * @alias androidenterprise.entitlements.patch
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param  {boolean=} params.install - Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
@@ -912,16 +911,16 @@ function Androidenterprise(options) {
      * @alias androidenterprise.entitlements.update
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.entitlementId - The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param  {boolean=} params.install - Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
@@ -938,7 +937,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.grouplicenses = {
+  self.grouplicenses = {
 
     /**
      * androidenterprise.grouplicenses.get
@@ -948,13 +947,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.grouplicenses.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.groupLicenseId - The ID of the product the group license is for, e.g. "app:com.google.android.gm".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.groupLicenseId The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}',
@@ -977,12 +976,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.grouplicenses.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses',
@@ -999,7 +998,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.grouplicenseusers = {
+  self.grouplicenseusers = {
 
     /**
      * androidenterprise.grouplicenseusers.list
@@ -1009,13 +1008,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.grouplicenseusers.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.groupLicenseId - The ID of the product the group license is for, e.g. "app:com.google.android.gm".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.groupLicenseId The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users',
@@ -1032,7 +1031,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.installs = {
+  self.installs = {
 
     /**
      * androidenterprise.installs.delete
@@ -1042,15 +1041,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.installs.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The Android ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.installId - The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
@@ -1073,15 +1072,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.installs.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The Android ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.installId - The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
@@ -1104,14 +1103,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.installs.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The Android ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs',
@@ -1134,16 +1133,16 @@ function Androidenterprise(options) {
      * @alias androidenterprise.installs.patch
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The Android ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.installId - The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
@@ -1166,16 +1165,16 @@ function Androidenterprise(options) {
      * @alias androidenterprise.installs.update
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceId - The Android ID of the device.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.installId - The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
@@ -1192,7 +1191,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.permissions = {
+  self.permissions = {
 
     /**
      * androidenterprise.permissions.get
@@ -1202,13 +1201,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.permissions.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.language - The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
-     * @param  {string} params.permissionId - The ID of the permission.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
+     * @param {string} params.permissionId The ID of the permission.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/permissions/{permissionId}',
@@ -1225,7 +1224,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.products = {
+  self.products = {
 
     /**
      * androidenterprise.products.approve
@@ -1235,14 +1234,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.products.approve
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.productId The ID of the product.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve: function(params, callback) {
+    approve: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve',
@@ -1265,14 +1264,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.products.generateApprovalUrl
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string=} params.languageCode - The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string=} params.languageCode The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateApprovalUrl: function(params, callback) {
+    generateApprovalUrl: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl',
@@ -1295,14 +1294,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.products.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string=} params.language - The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
-     * @param  {string} params.productId - The ID of the product, e.g. "app:com.google.android.gm".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+     * @param {string} params.productId The ID of the product, e.g. "app:com.google.android.gm".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}',
@@ -1325,14 +1324,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.products.getAppRestrictionsSchema
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string=} params.language - The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAppRestrictionsSchema: function(params, callback) {
+    getAppRestrictionsSchema: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema',
@@ -1355,13 +1354,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.products.getPermissions
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPermissions: function(params, callback) {
+    getPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
@@ -1384,14 +1383,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.products.updatePermissions
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.productId The ID of the product.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatePermissions: function(params, callback) {
+    updatePermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
@@ -1408,7 +1407,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.storelayoutclusters = {
+  self.storelayoutclusters = {
 
     /**
      * androidenterprise.storelayoutclusters.delete
@@ -1418,14 +1417,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutclusters.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.clusterId - The ID of the cluster.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterId The ID of the cluster.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
@@ -1448,14 +1447,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutclusters.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.clusterId - The ID of the cluster.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterId The ID of the cluster.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
@@ -1478,14 +1477,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutclusters.insert
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
@@ -1508,13 +1507,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutclusters.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
@@ -1537,15 +1536,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutclusters.patch
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.clusterId - The ID of the cluster.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterId The ID of the cluster.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
@@ -1568,15 +1567,15 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutclusters.update
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.clusterId - The ID of the cluster.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterId The ID of the cluster.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
@@ -1593,7 +1592,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.storelayoutpages = {
+  self.storelayoutpages = {
 
     /**
      * androidenterprise.storelayoutpages.delete
@@ -1603,13 +1602,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutpages.delete
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
@@ -1632,13 +1631,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutpages.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
@@ -1661,13 +1660,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutpages.insert
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
@@ -1690,12 +1689,12 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutpages.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
@@ -1718,14 +1717,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutpages.patch
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
@@ -1748,14 +1747,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.storelayoutpages.update
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.pageId - The ID of the page.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.pageId The ID of the page.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
@@ -1772,7 +1771,7 @@ function Androidenterprise(options) {
 
   };
 
-  this.users = {
+  self.users = {
 
     /**
      * androidenterprise.users.generateToken
@@ -1782,13 +1781,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.users.generateToken
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateToken: function(params, callback) {
+    generateToken: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
@@ -1811,13 +1810,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.users.get
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
@@ -1840,13 +1839,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.users.getAvailableProductSet
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAvailableProductSet: function(params, callback) {
+    getAvailableProductSet: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
@@ -1869,13 +1868,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.users.list
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.email - The exact primary email address of the user to look up.
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.email The exact primary email address of the user to look up.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
@@ -1898,13 +1897,13 @@ function Androidenterprise(options) {
      * @alias androidenterprise.users.revokeToken
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    revokeToken: function(params, callback) {
+    revokeToken: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
@@ -1927,14 +1926,14 @@ function Androidenterprise(options) {
      * @alias androidenterprise.users.setAvailableProductSet
      * @memberOf! androidenterprise(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.enterpriseId - The ID of the enterprise.
-     * @param  {string} params.userId - The ID of the user.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAvailableProductSet: function(params, callback) {
+    setAvailableProductSet: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',

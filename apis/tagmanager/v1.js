@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Accesses Tag Manager accounts and containers.
  * @namespace tagmanager
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Tagmanager
  * @param {object=} options Options for Tagmanager
  */
-function Tagmanager(options) {
-
+function Tagmanager(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     /**
      * tagmanager.accounts.get
@@ -45,12 +44,12 @@ function Tagmanager(options) {
      * @alias tagmanager.accounts.get
      * @memberOf! tagmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The GTM Account ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The GTM Account ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
@@ -73,11 +72,11 @@ function Tagmanager(options) {
      * @alias tagmanager.accounts.list
      * @memberOf! tagmanager(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tagmanager/v1/accounts',
@@ -100,14 +99,14 @@ function Tagmanager(options) {
      * @alias tagmanager.accounts.update
      * @memberOf! tagmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The GTM Account ID.
-     * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the account in storage.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The GTM Account ID.
+     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
@@ -132,13 +131,13 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.containers.create
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
@@ -161,13 +160,13 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.containers.delete
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {string} params.containerId - The GTM Container ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {string} params.containerId The GTM Container ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
@@ -190,13 +189,13 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.containers.get
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {string} params.containerId - The GTM Container ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {string} params.containerId The GTM Container ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
@@ -219,12 +218,12 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.containers.list
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
@@ -247,15 +246,15 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.containers.update
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {string} params.containerId - The GTM Container ID.
-       * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the container in storage.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {string} params.containerId The GTM Container ID.
+       * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
@@ -280,14 +279,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.environments.create
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
@@ -310,14 +309,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.environments.delete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.environmentId - The GTM Environment ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.environmentId The GTM Environment ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
@@ -340,14 +339,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.environments.get
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.environmentId - The GTM Environment ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.environmentId The GTM Environment ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
@@ -370,13 +369,13 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.environments.list
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
@@ -399,16 +398,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.environments.patch
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.environmentId - The GTM Environment ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the environment in storage.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.environmentId The GTM Environment ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function(params, callback) {
+        patch: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
@@ -431,16 +430,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.environments.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.environmentId - The GTM Environment ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the environment in storage.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.environmentId The GTM Environment ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
@@ -466,14 +465,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.folders.create
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
@@ -496,14 +495,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.folders.delete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.folderId - The GTM Folder ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.folderId The GTM Folder ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
@@ -526,14 +525,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.folders.get
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.folderId - The GTM Folder ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.folderId The GTM Folder ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
@@ -556,13 +555,13 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.folders.list
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
@@ -585,16 +584,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.folders.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the folder in storage.
-         * @param  {string} params.folderId - The GTM Folder ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
+         * @param {string} params.folderId The GTM Folder ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
@@ -619,14 +618,14 @@ function Tagmanager(options) {
            * @alias tagmanager.accounts.containers.folders.entities.list
            * @memberOf! tagmanager(v1)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.accountId - The GTM Account ID.
-           * @param  {string} params.containerId - The GTM Container ID.
-           * @param  {string} params.folderId - The GTM Folder ID.
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId The GTM Account ID.
+           * @param {string} params.containerId The GTM Container ID.
+           * @param {string} params.folderId The GTM Folder ID.
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function(params, callback) {
+          list: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities',
@@ -653,18 +652,18 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.move_folders.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.folderId - The GTM Folder ID.
-         * @param  {string=} params.tagId - The tags to be moved to the folder.
-         * @param  {string=} params.triggerId - The triggers to be moved to the folder.
-         * @param  {string=} params.variableId - The variables to be moved to the folder.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.folderId The GTM Folder ID.
+         * @param {string=} params.tagId The tags to be moved to the folder.
+         * @param {string=} params.triggerId The triggers to be moved to the folder.
+         * @param {string=} params.variableId The variables to be moved to the folder.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}',
@@ -690,15 +689,15 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.reauthorize_environments.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.environmentId - The GTM Environment ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.environmentId The GTM Environment ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}',
@@ -724,14 +723,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.tags.create
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
@@ -754,14 +753,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.tags.delete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.tagId - The GTM Tag ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.tagId The GTM Tag ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
@@ -784,14 +783,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.tags.get
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.tagId - The GTM Tag ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.tagId The GTM Tag ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
@@ -814,13 +813,13 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.tags.list
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
@@ -843,16 +842,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.tags.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the tag in storage.
-         * @param  {string} params.tagId - The GTM Tag ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
+         * @param {string} params.tagId The GTM Tag ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
@@ -878,14 +877,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.triggers.create
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
@@ -908,14 +907,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.triggers.delete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.triggerId - The GTM Trigger ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.triggerId The GTM Trigger ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
@@ -938,14 +937,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.triggers.get
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.triggerId - The GTM Trigger ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.triggerId The GTM Trigger ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
@@ -968,13 +967,13 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.triggers.list
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
@@ -997,16 +996,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.triggers.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the trigger in storage.
-         * @param  {string} params.triggerId - The GTM Trigger ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
+         * @param {string} params.triggerId The GTM Trigger ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
@@ -1032,14 +1031,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.variables.create
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
@@ -1062,14 +1061,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.variables.delete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.variableId - The GTM Variable ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.variableId The GTM Variable ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
@@ -1092,14 +1091,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.variables.get
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.variableId - The GTM Variable ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.variableId The GTM Variable ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
@@ -1122,13 +1121,13 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.variables.list
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
@@ -1151,16 +1150,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.variables.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the variable in storage.
-         * @param  {string} params.variableId - The GTM Variable ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
+         * @param {string} params.variableId The GTM Variable ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
@@ -1186,14 +1185,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.create
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
@@ -1216,14 +1215,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.delete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.containerVersionId - The GTM Container Version ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
@@ -1246,14 +1245,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.get
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.containerVersionId - The GTM Container Version ID. Specify published to retrieve the currently published version.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
@@ -1276,15 +1275,15 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.list
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {boolean=} params.headers - Retrieve headers only when true.
-         * @param  {boolean=} params.includeDeleted - Also retrieve deleted (archived) versions when true.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {boolean=} params.headers Retrieve headers only when true.
+         * @param {boolean=} params.includeDeleted Also retrieve deleted (archived) versions when true.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
@@ -1307,15 +1306,15 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.publish
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.containerVersionId - The GTM Container Version ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the container version in storage.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        publish: function(params, callback) {
+        publish: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish',
@@ -1338,14 +1337,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.restore
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.containerVersionId - The GTM Container Version ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        restore: function(params, callback) {
+        restore: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore',
@@ -1368,14 +1367,14 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.undelete
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.containerVersionId - The GTM Container Version ID.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        undelete: function(params, callback) {
+        undelete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete',
@@ -1398,16 +1397,16 @@ function Tagmanager(options) {
          * @alias tagmanager.accounts.containers.versions.update
          * @memberOf! tagmanager(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - The GTM Account ID.
-         * @param  {string} params.containerId - The GTM Container ID.
-         * @param  {string} params.containerVersionId - The GTM Container Version ID.
-         * @param  {string=} params.fingerprint - When provided, this fingerprint must match the fingerprint of the container version in storage.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId The GTM Account ID.
+         * @param {string} params.containerId The GTM Container ID.
+         * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
@@ -1434,13 +1433,13 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.permissions.create
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
@@ -1463,13 +1462,13 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.permissions.delete
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {string} params.permissionId - The GTM User ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {string} params.permissionId The GTM User ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
@@ -1492,13 +1491,13 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.permissions.get
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {string} params.permissionId - The GTM User ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {string} params.permissionId The GTM User ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
@@ -1521,12 +1520,12 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.permissions.list
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID. @required tagmanager.accounts.permissions.list
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID. @required tagmanager.accounts.permissions.list
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
@@ -1549,14 +1548,14 @@ function Tagmanager(options) {
        * @alias tagmanager.accounts.permissions.update
        * @memberOf! tagmanager(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - The GTM Account ID.
-       * @param  {string} params.permissionId - The GTM User ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The GTM Account ID.
+       * @param {string} params.permissionId The GTM User ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',

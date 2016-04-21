@@ -26,17 +26,16 @@ var createAPIRequest = require('../../lib/apirequest');
  * @classdesc Google Cloud Datastore is a schemaless NoSQL datastore providing robust, scalable storage for your application.
 
  * @namespace datastore
- * @version  v1beta3
+ * @version v1beta3
  * @variation v1beta3
  * @this Datastore
  * @param {object=} options Options for Datastore
  */
-function Datastore(options) {
-
+function Datastore(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     /**
      * datastore.projects.runQuery
@@ -46,13 +45,13 @@ function Datastore(options) {
      * @alias datastore.projects.runQuery
      * @memberOf! datastore(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the project against which to make the request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runQuery: function(params, callback) {
+    runQuery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:runQuery',
@@ -75,13 +74,13 @@ function Datastore(options) {
      * @alias datastore.projects.beginTransaction
      * @memberOf! datastore(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the project against which to make the request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction: function(params, callback) {
+    beginTransaction: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:beginTransaction',
@@ -104,13 +103,13 @@ function Datastore(options) {
      * @alias datastore.projects.allocateIds
      * @memberOf! datastore(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the project against which to make the request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateIds: function(params, callback) {
+    allocateIds: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:allocateIds',
@@ -133,13 +132,13 @@ function Datastore(options) {
      * @alias datastore.projects.lookup
      * @memberOf! datastore(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the project against which to make the request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lookup: function(params, callback) {
+    lookup: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:lookup',
@@ -162,13 +161,13 @@ function Datastore(options) {
      * @alias datastore.projects.commit
      * @memberOf! datastore(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the project against which to make the request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit: function(params, callback) {
+    commit: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:commit',
@@ -191,13 +190,13 @@ function Datastore(options) {
      * @alias datastore.projects.rollback
      * @memberOf! datastore(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the project against which to make the request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback: function(params, callback) {
+    rollback: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:rollback',

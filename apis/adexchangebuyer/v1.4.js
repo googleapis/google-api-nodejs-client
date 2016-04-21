@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
  * @namespace adexchangebuyer
- * @version  v1.4
+ * @version v1.4
  * @variation v1.4
  * @this Adexchangebuyer
  * @param {object=} options Options for Adexchangebuyer
  */
-function Adexchangebuyer(options) {
-
+function Adexchangebuyer(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     /**
      * adexchangebuyer.accounts.get
@@ -45,12 +44,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.accounts.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.id - The account id
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.id The account id
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts/{id}',
@@ -73,11 +72,11 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.accounts.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts',
@@ -100,13 +99,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.accounts.patch
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.id - The account id
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.id The account id
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts/{id}',
@@ -129,13 +128,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.accounts.update
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.id - The account id
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.id The account id
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts/{id}',
@@ -152,7 +151,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.billingInfo = {
+  self.billingInfo = {
 
     /**
      * adexchangebuyer.billingInfo.get
@@ -162,12 +161,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.billingInfo.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.accountId - The account id.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.accountId The account id.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}',
@@ -190,11 +189,11 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.billingInfo.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo',
@@ -211,7 +210,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.budget = {
+  self.budget = {
 
     /**
      * adexchangebuyer.budget.get
@@ -221,13 +220,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.budget.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to get the budget information for.
-     * @param  {string} params.billingId - The billing id to get the budget information for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to get the budget information for.
+     * @param {string} params.billingId The billing id to get the budget information for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}/{billingId}',
@@ -250,14 +249,14 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.budget.patch
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id associated with the budget being updated.
-     * @param  {string} params.billingId - The billing id associated with the budget being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id associated with the budget being updated.
+     * @param {string} params.billingId The billing id associated with the budget being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}/{billingId}',
@@ -280,14 +279,14 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.budget.update
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id associated with the budget being updated.
-     * @param  {string} params.billingId - The billing id associated with the budget being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id associated with the budget being updated.
+     * @param {string} params.billingId The billing id associated with the budget being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}/{billingId}',
@@ -304,7 +303,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.creatives = {
+  self.creatives = {
 
     /**
      * adexchangebuyer.creatives.addDeal
@@ -314,14 +313,14 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.creatives.addDeal
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.accountId - The id for the account that will serve this creative.
-     * @param  {string} params.buyerCreativeId - The buyer-specific id for this creative.
-     * @param  {string} params.dealId - The id of the deal id to associate with this creative.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.accountId The id for the account that will serve this creative.
+     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
+     * @param {string} params.dealId The id of the deal id to associate with this creative.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addDeal: function(params, callback) {
+    addDeal: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}/addDeal/{dealId}',
@@ -344,13 +343,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.creatives.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.accountId - The id for the account that will serve this creative.
-     * @param  {string} params.buyerCreativeId - The buyer-specific id for this creative.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.accountId The id for the account that will serve this creative.
+     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}',
@@ -373,12 +372,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.creatives.insert
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives',
@@ -401,17 +400,17 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.creatives.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.accountId - When specified, only creatives for the given account ids are returned.
-     * @param  {string=} params.buyerCreativeId - When specified, only creatives for the given buyer creative ids are returned.
-     * @param  {string=} params.dealsStatusFilter - When specified, only creatives having the given deals status are returned.
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-     * @param  {string=} params.openAuctionStatusFilter - When specified, only creatives having the given open auction status are returned.
-     * @param  {string=} params.pageToken - A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.accountId When specified, only creatives for the given account ids are returned.
+     * @param {string=} params.buyerCreativeId When specified, only creatives for the given buyer creative ids are returned.
+     * @param {string=} params.dealsStatusFilter When specified, only creatives having the given deals status are returned.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     * @param {string=} params.openAuctionStatusFilter When specified, only creatives having the given open auction status are returned.
+     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives',
@@ -434,14 +433,14 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.creatives.removeDeal
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.accountId - The id for the account that will serve this creative.
-     * @param  {string} params.buyerCreativeId - The buyer-specific id for this creative.
-     * @param  {string} params.dealId - The id of the deal id to disassociate with this creative.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.accountId The id for the account that will serve this creative.
+     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
+     * @param {string} params.dealId The id of the deal id to disassociate with this creative.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeDeal: function(params, callback) {
+    removeDeal: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}/removeDeal/{dealId}',
@@ -458,7 +457,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.marketplacedeals = {
+  self.marketplacedeals = {
 
     /**
      * adexchangebuyer.marketplacedeals.delete
@@ -468,13 +467,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplacedeals.delete
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposalId to delete deals from.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposalId to delete deals from.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals/delete',
@@ -497,13 +496,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplacedeals.insert
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - proposalId for which deals need to be added.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId proposalId for which deals need to be added.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals/insert',
@@ -526,12 +525,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplacedeals.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposalId to get deals for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposalId to get deals for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals',
@@ -554,13 +553,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplacedeals.update
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposalId to edit deals on.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposalId to edit deals on.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals/update',
@@ -577,7 +576,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.marketplacenotes = {
+  self.marketplacenotes = {
 
     /**
      * adexchangebuyer.marketplacenotes.insert
@@ -587,13 +586,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplacenotes.insert
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposalId to add notes for.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposalId to add notes for.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/notes/insert',
@@ -616,12 +615,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplacenotes.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposalId to get notes for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposalId to get notes for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/notes',
@@ -638,7 +637,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.marketplaceprivateauction = {
+  self.marketplaceprivateauction = {
 
     /**
      * adexchangebuyer.marketplaceprivateauction.updateproposal
@@ -648,13 +647,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.marketplaceprivateauction.updateproposal
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.privateAuctionId - The private auction id to be updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.privateAuctionId The private auction id to be updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateproposal: function(params, callback) {
+    updateproposal: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/privateauction/{privateAuctionId}/updateproposal',
@@ -671,7 +670,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.performanceReport = {
+  self.performanceReport = {
 
     /**
      * adexchangebuyer.performanceReport.list
@@ -681,16 +680,16 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.performanceReport.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to get the reports.
-     * @param  {string} params.endDateTime - The end time of the report in ISO 8601 timestamp format using UTC.
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-     * @param  {string=} params.pageToken - A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-     * @param  {string} params.startDateTime - The start time of the report in ISO 8601 timestamp format using UTC.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to get the reports.
+     * @param {string} params.endDateTime The end time of the report in ISO 8601 timestamp format using UTC.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     * @param {string=} params.pageToken A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     * @param {string} params.startDateTime The start time of the report in ISO 8601 timestamp format using UTC.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/performancereport',
@@ -707,7 +706,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.pretargetingConfig = {
+  self.pretargetingConfig = {
 
     /**
      * adexchangebuyer.pretargetingConfig.delete
@@ -717,13 +716,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pretargetingConfig.delete
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to delete the pretargeting config for.
-     * @param  {string} params.configId - The specific id of the configuration to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to delete the pretargeting config for.
+     * @param {string} params.configId The specific id of the configuration to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
@@ -746,13 +745,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pretargetingConfig.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to get the pretargeting config for.
-     * @param  {string} params.configId - The specific id of the configuration to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to get the pretargeting config for.
+     * @param {string} params.configId The specific id of the configuration to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
@@ -775,13 +774,13 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pretargetingConfig.insert
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to insert the pretargeting config for.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to insert the pretargeting config for.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}',
@@ -804,12 +803,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pretargetingConfig.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to get the pretargeting configs for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to get the pretargeting configs for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}',
@@ -832,14 +831,14 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pretargetingConfig.patch
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to update the pretargeting config for.
-     * @param  {string} params.configId - The specific id of the configuration to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to update the pretargeting config for.
+     * @param {string} params.configId The specific id of the configuration to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
@@ -862,14 +861,14 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pretargetingConfig.update
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The account id to update the pretargeting config for.
-     * @param  {string} params.configId - The specific id of the configuration to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The account id to update the pretargeting config for.
+     * @param {string} params.configId The specific id of the configuration to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
@@ -886,7 +885,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.products = {
+  self.products = {
 
     /**
      * adexchangebuyer.products.get
@@ -896,12 +895,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.products.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.productId - The id for the product to get the head revision for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.productId The id for the product to get the head revision for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/products/{productId}',
@@ -924,12 +923,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.products.search
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.pqlQuery - The pql query used to query for products.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.pqlQuery The pql query used to query for products.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/products/search',
@@ -946,7 +945,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.proposals = {
+  self.proposals = {
 
     /**
      * adexchangebuyer.proposals.get
@@ -956,12 +955,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.proposals.get
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - Id of the proposal to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId Id of the proposal to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}',
@@ -984,12 +983,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.proposals.insert
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/insert',
@@ -1012,15 +1011,15 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.proposals.patch
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposal id to update.
-     * @param  {string} params.revisionNumber - The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
-     * @param  {string} params.updateAction - The proposed action to take on the proposal.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposal id to update.
+     * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
+     * @param {string} params.updateAction The proposed action to take on the proposal.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/{revisionNumber}/{updateAction}',
@@ -1043,12 +1042,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.proposals.search
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.pqlQuery - Query string to retrieve specific proposals.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.pqlQuery Query string to retrieve specific proposals.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/search',
@@ -1071,12 +1070,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.proposals.setupcomplete
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposal id for which the setup is complete
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposal id for which the setup is complete
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setupcomplete: function(params, callback) {
+    setupcomplete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/setupcomplete',
@@ -1099,15 +1098,15 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.proposals.update
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.proposalId - The proposal id to update.
-     * @param  {string} params.revisionNumber - The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
-     * @param  {string} params.updateAction - The proposed action to take on the proposal.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.proposalId The proposal id to update.
+     * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
+     * @param {string} params.updateAction The proposed action to take on the proposal.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/{revisionNumber}/{updateAction}',
@@ -1124,7 +1123,7 @@ function Adexchangebuyer(options) {
 
   };
 
-  this.pubprofiles = {
+  self.pubprofiles = {
 
     /**
      * adexchangebuyer.pubprofiles.list
@@ -1134,12 +1133,12 @@ function Adexchangebuyer(options) {
      * @alias adexchangebuyer.pubprofiles.list
      * @memberOf! adexchangebuyer(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.accountId - The accountId of the publisher to get profiles for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.accountId The accountId of the publisher to get profiles for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/publisher/{accountId}/profiles',

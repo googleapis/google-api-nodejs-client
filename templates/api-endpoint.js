@@ -28,15 +28,14 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc {{ description }}
  * @namespace {{ name }}
- * @version  {{ version }}
+ * @version {{ version }}
  * @variation {{ version }}
  * @this {{ Name }}
  * @param {object=} options Options for {{ Name }}
  */
-function {{ Name }}(options) {
-
+function {{ Name }} (options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
 {% if methods %}
   {% set globalmethods = true %}
@@ -49,7 +48,7 @@ function {{ Name }}(options) {
 {% set globalmethods = false %}
 {% for rname, r in resources %}
 {% set ResourceNamespace = [Name, rname]|join('.') %}
-  this.{{ rname }} = {
+  self.{{ rname }} = {
     {% include "./resource-partial.js" with r %}
   };
 {%- endfor -%}

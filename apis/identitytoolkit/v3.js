@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Help the third party sites to implement federated login.
  * @namespace identitytoolkit
- * @version  v3
+ * @version v3
  * @variation v3
  * @this Identitytoolkit
  * @param {object=} options Options for Identitytoolkit
  */
-function Identitytoolkit(options) {
-
+function Identitytoolkit(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.relyingparty = {
+  self.relyingparty = {
 
     /**
      * identitytoolkit.relyingparty.createAuthUri
@@ -45,12 +44,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.createAuthUri
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAuthUri: function(params, callback) {
+    createAuthUri: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
@@ -73,12 +72,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.deleteAccount
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteAccount: function(params, callback) {
+    deleteAccount: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
@@ -101,12 +100,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.downloadAccount
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadAccount: function(params, callback) {
+    downloadAccount: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
@@ -129,12 +128,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.getAccountInfo
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAccountInfo: function(params, callback) {
+    getAccountInfo: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
@@ -157,12 +156,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.getOobConfirmationCode
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getOobConfirmationCode: function(params, callback) {
+    getOobConfirmationCode: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
@@ -185,13 +184,13 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.getProjectConfig
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.delegatedProjectNumber - Delegated GCP project number of the request.
-     * @param  {string=} params.projectNumber - GCP project number of the request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.delegatedProjectNumber Delegated GCP project number of the request.
+     * @param {string=} params.projectNumber GCP project number of the request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getProjectConfig: function(params, callback) {
+    getProjectConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig',
@@ -214,11 +213,11 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.getPublicKeys
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPublicKeys: function(params, callback) {
+    getPublicKeys: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
@@ -241,11 +240,11 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.getRecaptchaParam
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRecaptchaParam: function(params, callback) {
+    getRecaptchaParam: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getRecaptchaParam',
@@ -268,12 +267,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.resetPassword
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetPassword: function(params, callback) {
+    resetPassword: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
@@ -296,12 +295,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.setAccountInfo
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAccountInfo: function(params, callback) {
+    setAccountInfo: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
@@ -324,12 +323,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.setProjectConfig
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setProjectConfig: function(params, callback) {
+    setProjectConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
@@ -352,12 +351,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.signOutUser
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signOutUser: function(params, callback) {
+    signOutUser: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signOutUser',
@@ -380,12 +379,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.signupNewUser
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signupNewUser: function(params, callback) {
+    signupNewUser: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser',
@@ -408,12 +407,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.uploadAccount
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadAccount: function(params, callback) {
+    uploadAccount: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
@@ -436,12 +435,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.verifyAssertion
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyAssertion: function(params, callback) {
+    verifyAssertion: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
@@ -464,12 +463,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.verifyCustomToken
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyCustomToken: function(params, callback) {
+    verifyCustomToken: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken',
@@ -492,12 +491,12 @@ function Identitytoolkit(options) {
      * @alias identitytoolkit.relyingparty.verifyPassword
      * @memberOf! identitytoolkit(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyPassword: function(params, callback) {
+    verifyPassword: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
