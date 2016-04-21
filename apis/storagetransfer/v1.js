@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Transfers data from external data sources to a Google Cloud Storage bucket or between Google Cloud Storage buckets.
  * @namespace storagetransfer
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Storagetransfer
  * @param {object=} options Options for Storagetransfer
  */
-function Storagetransfer(options) {
-
+function Storagetransfer(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.googleServiceAccounts = {
+  self.googleServiceAccounts = {
 
     /**
      * storagetransfer.googleServiceAccounts.get
@@ -45,12 +44,12 @@ function Storagetransfer(options) {
      * @alias storagetransfer.googleServiceAccounts.get
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The ID of the Google Developers Console project that the Google service account is associated with. Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the Google Developers Console project that the Google service account is associated with. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/googleServiceAccounts/{projectId}',
@@ -67,7 +66,7 @@ function Storagetransfer(options) {
 
   };
 
-  this.v1 = {
+  self.v1 = {
 
     /**
      * storagetransfer.getGoogleServiceAccount
@@ -77,12 +76,12 @@ function Storagetransfer(options) {
      * @alias storagetransfer.getGoogleServiceAccount
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.projectId - The ID of the Google Developers Console project that the Google service account is associated with. Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.projectId The ID of the Google Developers Console project that the Google service account is associated with. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getGoogleServiceAccount: function(params, callback) {
+    getGoogleServiceAccount: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1:getGoogleServiceAccount',
@@ -99,7 +98,7 @@ function Storagetransfer(options) {
 
   };
 
-  this.transferJobs = {
+  self.transferJobs = {
 
     /**
      * storagetransfer.transferJobs.create
@@ -109,12 +108,12 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferJobs.create
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/transferJobs',
@@ -137,13 +136,13 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferJobs.patch
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobName - The name of job to update. Required.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobName The name of job to update. Required.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{jobName}',
@@ -166,13 +165,13 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferJobs.get
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobName - The job to get. Required.
-     * @param  {string=} params.projectId - The ID of the Google Developers Console project that owns the job. Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobName The job to get. Required.
+     * @param {string=} params.projectId The ID of the Google Developers Console project that owns the job. Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{jobName}',
@@ -195,14 +194,14 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferJobs.list
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.filter - A list of query parameters specified as JSON text in the form of {"`project_id`":"my_project_id", "`job_names`":["jobid1","jobid2",...], "`job_statuses`":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
-     * @param  {integer=} params.pageSize - The list page size. The max allowed value is 256.
-     * @param  {string=} params.pageToken - The list page token.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {"`project_id`":"my_project_id", "`job_names`":["jobid1","jobid2",...], "`job_statuses`":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
+     * @param {string=} params.pageToken The list page token.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/transferJobs',
@@ -219,7 +218,7 @@ function Storagetransfer(options) {
 
   };
 
-  this.transferOperations = {
+  self.transferOperations = {
 
     /**
      * storagetransfer.transferOperations.pause
@@ -229,13 +228,13 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferOperations.pause
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the transfer operation. Required.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the transfer operation. Required.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pause: function(params, callback) {
+    pause: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{name}:pause',
@@ -258,13 +257,13 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferOperations.resume
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the transfer operation. Required.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the transfer operation. Required.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume: function(params, callback) {
+    resume: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{name}:resume',
@@ -287,12 +286,12 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferOperations.get
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{name}',
@@ -315,15 +314,15 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferOperations.list
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The value `transferOperations`.
-     * @param  {string=} params.filter - The standard list filter.
-     * @param  {integer=} params.pageSize - The standard list page size.
-     * @param  {string=} params.pageToken - The standard list page token.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The value `transferOperations`.
+     * @param {string=} params.filter The standard list filter.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{name}',
@@ -346,12 +345,12 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferOperations.cancel
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource to be cancelled.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{name}:cancel',
@@ -374,12 +373,12 @@ function Storagetransfer(options) {
      * @alias storagetransfer.transferOperations.delete
      * @memberOf! storagetransfer(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://storagetransfer.googleapis.com/v1/{name}',

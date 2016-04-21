@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Provides reliable, many-to-many, asynchronous messaging between applications.
  * @namespace pubsub
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Pubsub
  * @param {object=} options Options for Pubsub
  */
-function Pubsub(options) {
-
+function Pubsub(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     topics: {
 
@@ -47,13 +46,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.setIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function(params, callback) {
+      setIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
@@ -76,12 +75,12 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.getIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function(params, callback) {
+      getIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
@@ -104,13 +103,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.testIamPermissions
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function(params, callback) {
+      testIamPermissions: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:testIamPermissions',
@@ -133,13 +132,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.create
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{name}',
@@ -162,13 +161,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.publish
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.topic - The messages in the request will be published on this topic.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.topic The messages in the request will be published on this topic.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      publish: function(params, callback) {
+      publish: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{topic}:publish',
@@ -191,12 +190,12 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.get
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.topic - The name of the topic to get.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.topic The name of the topic to get.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
@@ -219,14 +218,14 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.list
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.project - The name of the cloud project that topics belong to.
-       * @param  {integer=} params.pageSize - Maximum number of topics to return.
-       * @param  {string=} params.pageToken - The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.project The name of the cloud project that topics belong to.
+       * @param {integer=} params.pageSize Maximum number of topics to return.
+       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
@@ -249,12 +248,12 @@ function Pubsub(options) {
        * @alias pubsub.projects.topics.delete
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.topic - Name of the topic to delete.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.topic Name of the topic to delete.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
@@ -279,14 +278,14 @@ function Pubsub(options) {
          * @alias pubsub.projects.topics.subscriptions.list
          * @memberOf! pubsub(v1beta2)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.topic - The name of the topic that subscriptions are attached to.
-         * @param  {integer=} params.pageSize - Maximum number of subscription names to return.
-         * @param  {string=} params.pageToken - The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.topic The name of the topic that subscriptions are attached to.
+         * @param {integer=} params.pageSize Maximum number of subscription names to return.
+         * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://pubsub.googleapis.com/v1beta2/{topic}/subscriptions',
@@ -313,13 +312,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.setIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function(params, callback) {
+      setIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
@@ -342,12 +341,12 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.getIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function(params, callback) {
+      getIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
@@ -370,13 +369,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.testIamPermissions
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function(params, callback) {
+      testIamPermissions: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:testIamPermissions',
@@ -399,13 +398,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.create
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{name}',
@@ -428,12 +427,12 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.get
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription - The name of the subscription to get.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The name of the subscription to get.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
@@ -456,14 +455,14 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.list
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.project - The name of the cloud project that subscriptions belong to.
-       * @param  {integer=} params.pageSize - Maximum number of subscriptions to return.
-       * @param  {string=} params.pageToken - The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.project The name of the cloud project that subscriptions belong to.
+       * @param {integer=} params.pageSize Maximum number of subscriptions to return.
+       * @param {string=} params.pageToken The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{project}/subscriptions',
@@ -486,12 +485,12 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.delete
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription - The subscription to delete.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The subscription to delete.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
@@ -514,13 +513,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.modifyAckDeadline
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription - The name of the subscription.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The name of the subscription.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modifyAckDeadline: function(params, callback) {
+      modifyAckDeadline: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyAckDeadline',
@@ -543,13 +542,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.acknowledge
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription - The subscription whose message is being acknowledged.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The subscription whose message is being acknowledged.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      acknowledge: function(params, callback) {
+      acknowledge: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:acknowledge',
@@ -572,13 +571,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.pull
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription - The subscription from which messages should be pulled.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The subscription from which messages should be pulled.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      pull: function(params, callback) {
+      pull: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:pull',
@@ -601,13 +600,13 @@ function Pubsub(options) {
        * @alias pubsub.projects.subscriptions.modifyPushConfig
        * @memberOf! pubsub(v1beta2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.subscription - The name of the subscription.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The name of the subscription.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modifyPushConfig: function(params, callback) {
+      modifyPushConfig: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyPushConfig',

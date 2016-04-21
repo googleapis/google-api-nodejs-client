@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Writes log entries and manages your logs, log sinks, and logs-based metrics.
  * @namespace logging
- * @version  v2beta1
+ * @version v2beta1
  * @variation v2beta1
  * @this Logging
  * @param {object=} options Options for Logging
  */
-function Logging(options) {
-
+function Logging(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     logs: {
 
@@ -47,12 +46,12 @@ function Logging(options) {
        * @alias logging.projects.logs.delete
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.logName - Required. The resource name of the log to delete. Example: `"projects/my-project/logs/syslog"`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.logName Required. The resource name of the log to delete. Example: `"projects/my-project/logs/syslog"`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{logName}',
@@ -78,14 +77,14 @@ function Logging(options) {
        * @alias logging.projects.sinks.list
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectName - Required. The resource name of the project containing the sinks. Example: `"projects/my-logging-project"`.
-       * @param  {string=} params.pageToken - Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response. The value of `projectName` must be the same as in the previous request.
-       * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectName Required. The resource name of the project containing the sinks. Example: `"projects/my-logging-project"`.
+       * @param {string=} params.pageToken Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response. The value of `projectName` must be the same as in the previous request.
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/sinks',
@@ -108,12 +107,12 @@ function Logging(options) {
        * @alias logging.projects.sinks.get
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.sinkName - The resource name of the sink to return. Example: `"projects/my-project-id/sinks/my-sink-id"`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName The resource name of the sink to return. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{sinkName}',
@@ -136,13 +135,13 @@ function Logging(options) {
        * @alias logging.projects.sinks.create
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectName - The resource name of the project in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectName The resource name of the project in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/sinks',
@@ -165,13 +164,13 @@ function Logging(options) {
        * @alias logging.projects.sinks.update
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.sinkName - The resource name of the sink to update. Example: `"projects/my-project-id/sinks/my-sink-id"`. The updated sink must be provided in the request and have the same name that is specified in `sinkName`. If the sink does not exist, it is created.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName The resource name of the sink to update. Example: `"projects/my-project-id/sinks/my-sink-id"`. The updated sink must be provided in the request and have the same name that is specified in `sinkName`. If the sink does not exist, it is created.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{sinkName}',
@@ -194,12 +193,12 @@ function Logging(options) {
        * @alias logging.projects.sinks.delete
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.sinkName - The resource name of the sink to delete. Example: `"projects/my-project-id/sinks/my-sink-id"`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName The resource name of the sink to delete. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{sinkName}',
@@ -225,14 +224,14 @@ function Logging(options) {
        * @alias logging.projects.metrics.list
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectName - Required. The resource name of the project containing the metrics. Example: `"projects/my-project-id"`.
-       * @param  {string=} params.pageToken - Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response. The value of `projectName` must be the same as in the previous request.
-       * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectName Required. The resource name of the project containing the metrics. Example: `"projects/my-project-id"`.
+       * @param {string=} params.pageToken Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response. The value of `projectName` must be the same as in the previous request.
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/metrics',
@@ -255,12 +254,12 @@ function Logging(options) {
        * @alias logging.projects.metrics.get
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.metricName - The resource name of the desired metric. Example: `"projects/my-project-id/metrics/my-metric-id"`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.metricName The resource name of the desired metric. Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{metricName}',
@@ -283,13 +282,13 @@ function Logging(options) {
        * @alias logging.projects.metrics.create
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectName - The resource name of the project in which to create the metric. Example: `"projects/my-project-id"`. The new metric must be provided in the request.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectName The resource name of the project in which to create the metric. Example: `"projects/my-project-id"`. The new metric must be provided in the request.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/metrics',
@@ -312,13 +311,13 @@ function Logging(options) {
        * @alias logging.projects.metrics.update
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.metricName - The resource name of the metric to update. Example: `"projects/my-project-id/metrics/my-metric-id"`. The updated metric must be provided in the request and have the same identifier that is specified in `metricName`. If the metric does not exist, it is created.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.metricName The resource name of the metric to update. Example: `"projects/my-project-id/metrics/my-metric-id"`. The updated metric must be provided in the request and have the same identifier that is specified in `metricName`. If the metric does not exist, it is created.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{metricName}',
@@ -341,12 +340,12 @@ function Logging(options) {
        * @alias logging.projects.metrics.delete
        * @memberOf! logging(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.metricName - The resource name of the metric to delete. Example: `"projects/my-project-id/metrics/my-metric-id"`.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.metricName The resource name of the metric to delete. Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://logging.googleapis.com/v2beta1/{metricName}',
@@ -363,7 +362,7 @@ function Logging(options) {
     }
   };
 
-  this.entries = {
+  self.entries = {
 
     /**
      * logging.entries.write
@@ -373,12 +372,12 @@ function Logging(options) {
      * @alias logging.entries.write
      * @memberOf! logging(v2beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    write: function(params, callback) {
+    write: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://logging.googleapis.com/v2beta1/entries:write',
@@ -401,12 +400,12 @@ function Logging(options) {
      * @alias logging.entries.list
      * @memberOf! logging(v2beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://logging.googleapis.com/v2beta1/entries:list',
@@ -423,7 +422,7 @@ function Logging(options) {
 
   };
 
-  this.monitoredResourceDescriptors = {
+  self.monitoredResourceDescriptors = {
 
     /**
      * logging.monitoredResourceDescriptors.list
@@ -433,13 +432,13 @@ function Logging(options) {
      * @alias logging.monitoredResourceDescriptors.list
      * @memberOf! logging(v2beta1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.pageSize - Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
-     * @param  {string=} params.pageToken - Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
+     * @param {string=} params.pageToken Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://logging.googleapis.com/v2beta1/monitoredResourceDescriptors',

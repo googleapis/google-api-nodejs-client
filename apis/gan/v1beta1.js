@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you have programmatic access to your Google Affiliate Network data.
  * @namespace gan
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Gan
  * @param {object=} options Options for Gan
  */
-function Gan(options) {
-
+function Gan(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.advertisers = {
+  self.advertisers = {
 
     /**
      * gan.advertisers.get
@@ -45,14 +44,14 @@ function Gan(options) {
      * @alias gan.advertisers.get
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserId - The ID of the advertiser to look up. Optional.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser to look up. Optional.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/advertiser',
@@ -75,20 +74,20 @@ function Gan(options) {
      * @alias gan.advertisers.list
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserCategory - Caret(^) delimted list of advertiser categories. Valid categories are defined here: http://www.google.com/support/affiliatenetwork/advertiser/bin/answer.py?hl=en&answer=107581. Filters out all advertisers not in one of the given advertiser categories. Optional.
-     * @param  {integer=} params.maxResults - Max number of items to return in this page. Optional. Defaults to 20.
-     * @param  {number=} params.minNinetyDayEpc - Filters out all advertisers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
-     * @param  {integer=} params.minPayoutRank - A value between 1 and 4, where 1 represents the quartile of advertisers with the lowest ranks and 4 represents the quartile of advertisers with the highest ranks. Filters out all advertisers with a lower rank than the given quartile. For example if a 2 was given only advertisers with a payout rank of 25 or higher would be included. Optional.
-     * @param  {number=} params.minSevenDayEpc - Filters out all advertisers that have a seven day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
-     * @param  {string=} params.pageToken - The value of 'nextPageToken' from the previous page. Optional.
-     * @param  {string=} params.relationshipStatus - Filters out all advertisers for which do not have the given relationship status with the requesting publisher.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserCategory Caret(^) delimted list of advertiser categories. Valid categories are defined here: http://www.google.com/support/affiliatenetwork/advertiser/bin/answer.py?hl=en&answer=107581. Filters out all advertisers not in one of the given advertiser categories. Optional.
+     * @param {integer=} params.maxResults Max number of items to return in this page. Optional. Defaults to 20.
+     * @param {number=} params.minNinetyDayEpc Filters out all advertisers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
+     * @param {integer=} params.minPayoutRank A value between 1 and 4, where 1 represents the quartile of advertisers with the lowest ranks and 4 represents the quartile of advertisers with the highest ranks. Filters out all advertisers with a lower rank than the given quartile. For example if a 2 was given only advertisers with a payout rank of 25 or higher would be included. Optional.
+     * @param {number=} params.minSevenDayEpc Filters out all advertisers that have a seven day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
+     * @param {string=} params.pageToken The value of 'nextPageToken' from the previous page. Optional.
+     * @param {string=} params.relationshipStatus Filters out all advertisers for which do not have the given relationship status with the requesting publisher.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/advertisers',
@@ -105,7 +104,7 @@ function Gan(options) {
 
   };
 
-  this.ccOffers = {
+  self.ccOffers = {
 
     /**
      * gan.ccOffers.list
@@ -115,14 +114,14 @@ function Gan(options) {
      * @alias gan.ccOffers.list
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiser - The advertiser ID of a card issuer whose offers to include. Optional, may be repeated.
-     * @param  {string=} params.projection - The set of fields to return.
-     * @param  {string} params.publisher - The ID of the publisher in question.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiser The advertiser ID of a card issuer whose offers to include. Optional, may be repeated.
+     * @param {string=} params.projection The set of fields to return.
+     * @param {string} params.publisher The ID of the publisher in question.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/publishers/{publisher}/ccOffers',
@@ -139,7 +138,7 @@ function Gan(options) {
 
   };
 
-  this.events = {
+  self.events = {
 
     /**
      * gan.events.list
@@ -149,29 +148,29 @@ function Gan(options) {
      * @alias gan.events.list
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserId - Caret(^) delimited list of advertiser IDs. Filters out all events that do not reference one of the given advertiser IDs. Only used when under publishers role. Optional.
-     * @param  {string=} params.chargeType - Filters out all charge events that are not of the given charge type. Valid values: 'other', 'slotting_fee', 'monthly_minimum', 'tier_bonus', 'credit', 'debit'. Optional.
-     * @param  {string=} params.eventDateMax - Filters out all events later than given date. Optional. Defaults to 24 hours after eventMin.
-     * @param  {string=} params.eventDateMin - Filters out all events earlier than given date. Optional. Defaults to 24 hours from current date/time.
-     * @param  {string=} params.linkId - Caret(^) delimited list of link IDs. Filters out all events that do not reference one of the given link IDs. Optional.
-     * @param  {integer=} params.maxResults - Max number of offers to return in this page. Optional. Defaults to 20.
-     * @param  {string=} params.memberId - Caret(^) delimited list of member IDs. Filters out all events that do not reference one of the given member IDs. Optional.
-     * @param  {string=} params.modifyDateMax - Filters out all events modified later than given date. Optional. Defaults to 24 hours after modifyDateMin, if modifyDateMin is explicitly set.
-     * @param  {string=} params.modifyDateMin - Filters out all events modified earlier than given date. Optional. Defaults to 24 hours before the current modifyDateMax, if modifyDateMax is explicitly set.
-     * @param  {string=} params.orderId - Caret(^) delimited list of order IDs. Filters out all events that do not reference one of the given order IDs. Optional.
-     * @param  {string=} params.pageToken - The value of 'nextPageToken' from the previous page. Optional.
-     * @param  {string=} params.productCategory - Caret(^) delimited list of product categories. Filters out all events that do not reference a product in one of the given product categories. Optional.
-     * @param  {string=} params.publisherId - Caret(^) delimited list of publisher IDs. Filters out all events that do not reference one of the given publishers IDs. Only used when under advertiser role. Optional.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {string=} params.sku - Caret(^) delimited list of SKUs. Filters out all events that do not reference one of the given SKU. Optional.
-     * @param  {string=} params.status - Filters out all events that do not have the given status. Valid values: 'active', 'canceled'. Optional.
-     * @param  {string=} params.type - Filters out all events that are not of the given type. Valid values: 'action', 'transaction', 'charge'. Optional.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId Caret(^) delimited list of advertiser IDs. Filters out all events that do not reference one of the given advertiser IDs. Only used when under publishers role. Optional.
+     * @param {string=} params.chargeType Filters out all charge events that are not of the given charge type. Valid values: 'other', 'slotting_fee', 'monthly_minimum', 'tier_bonus', 'credit', 'debit'. Optional.
+     * @param {string=} params.eventDateMax Filters out all events later than given date. Optional. Defaults to 24 hours after eventMin.
+     * @param {string=} params.eventDateMin Filters out all events earlier than given date. Optional. Defaults to 24 hours from current date/time.
+     * @param {string=} params.linkId Caret(^) delimited list of link IDs. Filters out all events that do not reference one of the given link IDs. Optional.
+     * @param {integer=} params.maxResults Max number of offers to return in this page. Optional. Defaults to 20.
+     * @param {string=} params.memberId Caret(^) delimited list of member IDs. Filters out all events that do not reference one of the given member IDs. Optional.
+     * @param {string=} params.modifyDateMax Filters out all events modified later than given date. Optional. Defaults to 24 hours after modifyDateMin, if modifyDateMin is explicitly set.
+     * @param {string=} params.modifyDateMin Filters out all events modified earlier than given date. Optional. Defaults to 24 hours before the current modifyDateMax, if modifyDateMax is explicitly set.
+     * @param {string=} params.orderId Caret(^) delimited list of order IDs. Filters out all events that do not reference one of the given order IDs. Optional.
+     * @param {string=} params.pageToken The value of 'nextPageToken' from the previous page. Optional.
+     * @param {string=} params.productCategory Caret(^) delimited list of product categories. Filters out all events that do not reference a product in one of the given product categories. Optional.
+     * @param {string=} params.publisherId Caret(^) delimited list of publisher IDs. Filters out all events that do not reference one of the given publishers IDs. Only used when under advertiser role. Optional.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {string=} params.sku Caret(^) delimited list of SKUs. Filters out all events that do not reference one of the given SKU. Optional.
+     * @param {string=} params.status Filters out all events that do not have the given status. Valid values: 'active', 'canceled'. Optional.
+     * @param {string=} params.type Filters out all events that are not of the given type. Valid values: 'action', 'transaction', 'charge'. Optional.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/events',
@@ -188,7 +187,7 @@ function Gan(options) {
 
   };
 
-  this.links = {
+  self.links = {
 
     /**
      * gan.links.get
@@ -198,14 +197,14 @@ function Gan(options) {
      * @alias gan.links.get
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.linkId - The ID of the link to look up.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.linkId The ID of the link to look up.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/link/{linkId}',
@@ -228,14 +227,14 @@ function Gan(options) {
      * @alias gan.links.insert
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/link',
@@ -258,26 +257,26 @@ function Gan(options) {
      * @alias gan.links.list
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserId - Limits the resulting links to the ones belonging to the listed advertisers.
-     * @param  {string=} params.assetSize - The size of the given asset.
-     * @param  {string=} params.authorship - The role of the author of the link.
-     * @param  {string=} params.createDateMax - The end of the create date range.
-     * @param  {string=} params.createDateMin - The beginning of the create date range.
-     * @param  {string=} params.linkType - The type of the link.
-     * @param  {integer=} params.maxResults - Max number of items to return in this page. Optional. Defaults to 20.
-     * @param  {string=} params.pageToken - The value of 'nextPageToken' from the previous page. Optional.
-     * @param  {string=} params.promotionType - The promotion type.
-     * @param  {string=} params.relationshipStatus - The status of the relationship.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {string=} params.searchText - Field for full text search across title and merchandising text, supports link id search.
-     * @param  {string=} params.startDateMax - The end of the start date range.
-     * @param  {string=} params.startDateMin - The beginning of the start date range.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId Limits the resulting links to the ones belonging to the listed advertisers.
+     * @param {string=} params.assetSize The size of the given asset.
+     * @param {string=} params.authorship The role of the author of the link.
+     * @param {string=} params.createDateMax The end of the create date range.
+     * @param {string=} params.createDateMin The beginning of the create date range.
+     * @param {string=} params.linkType The type of the link.
+     * @param {integer=} params.maxResults Max number of items to return in this page. Optional. Defaults to 20.
+     * @param {string=} params.pageToken The value of 'nextPageToken' from the previous page. Optional.
+     * @param {string=} params.promotionType The promotion type.
+     * @param {string=} params.relationshipStatus The status of the relationship.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {string=} params.searchText Field for full text search across title and merchandising text, supports link id search.
+     * @param {string=} params.startDateMax The end of the start date range.
+     * @param {string=} params.startDateMin The beginning of the start date range.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/links',
@@ -294,7 +293,7 @@ function Gan(options) {
 
   };
 
-  this.publishers = {
+  self.publishers = {
 
     /**
      * gan.publishers.get
@@ -304,14 +303,14 @@ function Gan(options) {
      * @alias gan.publishers.get
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.publisherId - The ID of the publisher to look up. Optional.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.publisherId The ID of the publisher to look up. Optional.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/publisher',
@@ -334,20 +333,20 @@ function Gan(options) {
      * @alias gan.publishers.list
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Max number of items to return in this page. Optional. Defaults to 20.
-     * @param  {number=} params.minNinetyDayEpc - Filters out all publishers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
-     * @param  {integer=} params.minPayoutRank - A value between 1 and 4, where 1 represents the quartile of publishers with the lowest ranks and 4 represents the quartile of publishers with the highest ranks. Filters out all publishers with a lower rank than the given quartile. For example if a 2 was given only publishers with a payout rank of 25 or higher would be included. Optional.
-     * @param  {number=} params.minSevenDayEpc - Filters out all publishers that have a seven day EPC average lower than the given value (inclusive). Min value 0.0. Optional.
-     * @param  {string=} params.pageToken - The value of 'nextPageToken' from the previous page. Optional.
-     * @param  {string=} params.publisherCategory - Caret(^) delimted list of publisher categories. Valid categories: (unclassified|community_and_content|shopping_and_promotion|loyalty_and_rewards|network|search_specialist|comparison_shopping|email). Filters out all publishers not in one of the given advertiser categories. Optional.
-     * @param  {string=} params.relationshipStatus - Filters out all publishers for which do not have the given relationship status with the requesting publisher.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Max number of items to return in this page. Optional. Defaults to 20.
+     * @param {number=} params.minNinetyDayEpc Filters out all publishers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
+     * @param {integer=} params.minPayoutRank A value between 1 and 4, where 1 represents the quartile of publishers with the lowest ranks and 4 represents the quartile of publishers with the highest ranks. Filters out all publishers with a lower rank than the given quartile. For example if a 2 was given only publishers with a payout rank of 25 or higher would be included. Optional.
+     * @param {number=} params.minSevenDayEpc Filters out all publishers that have a seven day EPC average lower than the given value (inclusive). Min value 0.0. Optional.
+     * @param {string=} params.pageToken The value of 'nextPageToken' from the previous page. Optional.
+     * @param {string=} params.publisherCategory Caret(^) delimted list of publisher categories. Valid categories: (unclassified|community_and_content|shopping_and_promotion|loyalty_and_rewards|network|search_specialist|comparison_shopping|email). Filters out all publishers not in one of the given advertiser categories. Optional.
+     * @param {string=} params.relationshipStatus Filters out all publishers for which do not have the given relationship status with the requesting publisher.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/publishers',
@@ -364,7 +363,7 @@ function Gan(options) {
 
   };
 
-  this.reports = {
+  self.reports = {
 
     /**
      * gan.reports.get
@@ -374,25 +373,25 @@ function Gan(options) {
      * @alias gan.reports.get
      * @memberOf! gan(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.advertiserId - The IDs of the advertisers to look up, if applicable.
-     * @param  {boolean=} params.calculateTotals - Whether or not to calculate totals rows. Optional.
-     * @param  {string=} params.endDate - The end date (exclusive), in RFC 3339 format, for the report data to be returned. Defaults to one day after startDate, if that is given, or today. Optional.
-     * @param  {string=} params.eventType - Filters out all events that are not of the given type. Valid values: 'action', 'transaction', or 'charge'. Optional.
-     * @param  {string=} params.linkId - Filters to capture one of given link IDs. Optional.
-     * @param  {integer=} params.maxResults - Max number of items to return in this page. Optional. Defaults to return all results.
-     * @param  {string=} params.orderId - Filters to capture one of the given order IDs. Optional.
-     * @param  {string=} params.publisherId - The IDs of the publishers to look up, if applicable.
-     * @param  {string} params.reportType - The type of report being requested. Valid values: 'order_delta'. Required.
-     * @param  {string} params.role - The role of the requester. Valid values: 'advertisers' or 'publishers'.
-     * @param  {string} params.roleId - The ID of the requesting advertiser or publisher.
-     * @param  {string=} params.startDate - The start date (inclusive), in RFC 3339 format, for the report data to be returned. Defaults to one day before endDate, if that is given, or yesterday. Optional.
-     * @param  {integer=} params.startIndex - Offset on which to return results when paging. Optional.
-     * @param  {string=} params.status - Filters out all events that do not have the given status. Valid values: 'active', 'canceled', or 'invalid'. Optional.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The IDs of the advertisers to look up, if applicable.
+     * @param {boolean=} params.calculateTotals Whether or not to calculate totals rows. Optional.
+     * @param {string=} params.endDate The end date (exclusive), in RFC 3339 format, for the report data to be returned. Defaults to one day after startDate, if that is given, or today. Optional.
+     * @param {string=} params.eventType Filters out all events that are not of the given type. Valid values: 'action', 'transaction', or 'charge'. Optional.
+     * @param {string=} params.linkId Filters to capture one of given link IDs. Optional.
+     * @param {integer=} params.maxResults Max number of items to return in this page. Optional. Defaults to return all results.
+     * @param {string=} params.orderId Filters to capture one of the given order IDs. Optional.
+     * @param {string=} params.publisherId The IDs of the publishers to look up, if applicable.
+     * @param {string} params.reportType The type of report being requested. Valid values: 'order_delta'. Required.
+     * @param {string} params.role The role of the requester. Valid values: 'advertisers' or 'publishers'.
+     * @param {string} params.roleId The ID of the requesting advertiser or publisher.
+     * @param {string=} params.startDate The start date (inclusive), in RFC 3339 format, for the report data to be returned. Defaults to one day before endDate, if that is given, or yesterday. Optional.
+     * @param {integer=} params.startIndex Offset on which to return results when paging. Optional.
+     * @param {string=} params.status Filters out all events that do not have the given status. Valid values: 'active', 'canceled', or 'invalid'. Optional.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/gan/v1beta1/{role}/{roleId}/report/{reportType}',

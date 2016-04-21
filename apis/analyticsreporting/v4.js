@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Analytics Reporting API provides access to Analytics report data.
  * @namespace analyticsreporting
- * @version  v4
+ * @version v4
  * @variation v4
  * @this Analyticsreporting
  * @param {object=} options Options for Analyticsreporting
  */
-function Analyticsreporting(options) {
-
+function Analyticsreporting(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.reports = {
+  self.reports = {
 
     /**
      * analyticsreporting.reports.batchGet
@@ -45,12 +44,12 @@ function Analyticsreporting(options) {
      * @alias analyticsreporting.reports.batchGet
      * @memberOf! analyticsreporting(v4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet: function(params, callback) {
+    batchGet: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://analyticsreporting.googleapis.com/v4/reports:batchGet',

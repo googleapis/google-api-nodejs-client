@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
  * @namespace webfonts
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Webfonts
  * @param {object=} options Options for Webfonts
  */
-function Webfonts(options) {
-
+function Webfonts(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.webfonts = {
+  self.webfonts = {
 
     /**
      * webfonts.webfonts.list
@@ -45,12 +44,12 @@ function Webfonts(options) {
      * @alias webfonts.webfonts.list
      * @memberOf! webfonts(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.sort - Enables sorting of the list
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.sort Enables sorting of the list
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/webfonts/v1/webfonts',

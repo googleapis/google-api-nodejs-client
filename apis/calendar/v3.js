@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Manipulates events and other calendar data.
  * @namespace calendar
- * @version  v3
+ * @version v3
  * @variation v3
  * @this Calendar
  * @param {object=} options Options for Calendar
  */
-function Calendar(options) {
-
+function Calendar(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.acl = {
+  self.acl = {
 
     /**
      * calendar.acl.delete
@@ -45,13 +44,13 @@ function Calendar(options) {
      * @alias calendar.acl.delete
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.ruleId - ACL rule identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.ruleId ACL rule identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
@@ -74,13 +73,13 @@ function Calendar(options) {
      * @alias calendar.acl.get
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.ruleId - ACL rule identifier.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.ruleId ACL rule identifier.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
@@ -103,13 +102,13 @@ function Calendar(options) {
      * @alias calendar.acl.insert
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
@@ -132,16 +131,16 @@ function Calendar(options) {
      * @alias calendar.acl.list
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
@@ -164,14 +163,14 @@ function Calendar(options) {
      * @alias calendar.acl.patch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.ruleId - ACL rule identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.ruleId ACL rule identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
@@ -194,14 +193,14 @@ function Calendar(options) {
      * @alias calendar.acl.update
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.ruleId - ACL rule identifier.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.ruleId ACL rule identifier.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
@@ -224,17 +223,17 @@ function Calendar(options) {
      * @alias calendar.acl.watch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/watch',
@@ -251,7 +250,7 @@ function Calendar(options) {
 
   };
 
-  this.calendarList = {
+  self.calendarList = {
 
     /**
      * calendar.calendarList.delete
@@ -261,12 +260,12 @@ function Calendar(options) {
      * @alias calendar.calendarList.delete
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
@@ -289,12 +288,12 @@ function Calendar(options) {
      * @alias calendar.calendarList.get
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
@@ -317,13 +316,13 @@ function Calendar(options) {
      * @alias calendar.calendarList.insert
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
@@ -346,17 +345,17 @@ function Calendar(options) {
      * @alias calendar.calendarList.list
      * @memberOf! calendar(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.minAccessRole - The minimum access role for the user in the returned entries. Optional. The default is no restriction.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted calendar list entries in the result. Optional. The default is False.
-     * @param  {boolean=} params.showHidden - Whether to show hidden entries. Optional. The default is False.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.minAccessRole The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
@@ -379,14 +378,14 @@ function Calendar(options) {
      * @alias calendar.calendarList.patch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
@@ -409,14 +408,14 @@ function Calendar(options) {
      * @alias calendar.calendarList.update
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {boolean=} params.colorRgbFormat - Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
@@ -439,18 +438,18 @@ function Calendar(options) {
      * @alias calendar.calendarList.watch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.minAccessRole - The minimum access role for the user in the returned entries. Optional. The default is no restriction.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted calendar list entries in the result. Optional. The default is False.
-     * @param  {boolean=} params.showHidden - Whether to show hidden entries. Optional. The default is False.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.minAccessRole The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/watch',
@@ -467,7 +466,7 @@ function Calendar(options) {
 
   };
 
-  this.calendars = {
+  self.calendars = {
 
     /**
      * calendar.calendars.clear
@@ -477,12 +476,12 @@ function Calendar(options) {
      * @alias calendar.calendars.clear
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear: function(params, callback) {
+    clear: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/clear',
@@ -505,12 +504,12 @@ function Calendar(options) {
      * @alias calendar.calendars.delete
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
@@ -533,12 +532,12 @@ function Calendar(options) {
      * @alias calendar.calendars.get
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
@@ -561,12 +560,12 @@ function Calendar(options) {
      * @alias calendar.calendars.insert
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars',
@@ -589,13 +588,13 @@ function Calendar(options) {
      * @alias calendar.calendars.patch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
@@ -618,13 +617,13 @@ function Calendar(options) {
      * @alias calendar.calendars.update
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
@@ -641,7 +640,7 @@ function Calendar(options) {
 
   };
 
-  this.channels = {
+  self.channels = {
 
     /**
      * calendar.channels.stop
@@ -651,12 +650,12 @@ function Calendar(options) {
      * @alias calendar.channels.stop
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, callback) {
+    stop: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/channels/stop',
@@ -673,7 +672,7 @@ function Calendar(options) {
 
   };
 
-  this.colors = {
+  self.colors = {
 
     /**
      * calendar.colors.get
@@ -683,11 +682,11 @@ function Calendar(options) {
      * @alias calendar.colors.get
      * @memberOf! calendar(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/colors',
@@ -704,7 +703,7 @@ function Calendar(options) {
 
   };
 
-  this.events = {
+  self.events = {
 
     /**
      * calendar.events.delete
@@ -714,14 +713,14 @@ function Calendar(options) {
      * @alias calendar.events.delete
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.eventId - Event identifier.
-     * @param  {boolean=} params.sendNotifications - Whether to send notifications about the deletion of the event. Optional. The default is False.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.eventId Event identifier.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
@@ -744,16 +743,16 @@ function Calendar(options) {
      * @alias calendar.events.get
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.eventId - Event identifier.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.eventId Event identifier.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
@@ -776,14 +775,14 @@ function Calendar(options) {
      * @alias calendar.events.import
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    import: function(params, callback) {
+    import: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/import',
@@ -806,16 +805,16 @@ function Calendar(options) {
      * @alias calendar.events.insert
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the new event. Optional. The default is False.
-     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
@@ -838,22 +837,22 @@ function Calendar(options) {
      * @alias calendar.events.instances
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.eventId - Recurring event identifier.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {integer=} params.maxResults - Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-     * @param  {string=} params.originalStart - The original start time of the instance in the result. Optional.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
-     * @param  {string=} params.timeMax - Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
-     * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
-     * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.eventId Recurring event identifier.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {string=} params.originalStart The original start time of the instance in the result. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    instances: function(params, callback) {
+    instances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/instances',
@@ -876,29 +875,29 @@ function Calendar(options) {
      * @alias calendar.events.list
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string=} params.iCalUID - Specifies event ID in the iCalendar format to be included in the response. Optional.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {integer=} params.maxResults - Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-     * @param  {string=} params.orderBy - The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {string=} params.privateExtendedProperty - Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param  {string=} params.q - Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-     * @param  {string=} params.sharedExtendedProperty - Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
-     * @param  {boolean=} params.showHiddenInvitations - Whether to include hidden invitations in the result. Optional. The default is False.
-     * @param  {boolean=} params.singleEvents - Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {string=} params.timeMax - Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
+     * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
@@ -921,15 +920,15 @@ function Calendar(options) {
      * @alias calendar.events.move
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier of the source calendar where the event currently is on.
-     * @param  {string} params.destination - Calendar identifier of the target calendar where the event is to be moved to.
-     * @param  {string} params.eventId - Event identifier.
-     * @param  {boolean=} params.sendNotifications - Whether to send notifications about the change of the event's organizer. Optional. The default is False.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
+     * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
+     * @param {string} params.eventId Event identifier.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move: function(params, callback) {
+    move: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/move',
@@ -952,18 +951,18 @@ function Calendar(options) {
      * @alias calendar.events.patch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.eventId - Event identifier.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
-     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.eventId Event identifier.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
@@ -986,14 +985,14 @@ function Calendar(options) {
      * @alias calendar.events.quickAdd
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {boolean=} params.sendNotifications - Whether to send notifications about the creation of the event. Optional. The default is False.
-     * @param  {string} params.text - The text describing the event to be created.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
+     * @param {string} params.text The text describing the event to be created.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    quickAdd: function(params, callback) {
+    quickAdd: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd',
@@ -1016,18 +1015,18 @@ function Calendar(options) {
      * @alias calendar.events.update
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string} params.eventId - Event identifier.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {boolean=} params.sendNotifications - Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
-     * @param  {boolean=} params.supportsAttachments - Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string} params.eventId Event identifier.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
@@ -1050,30 +1049,30 @@ function Calendar(options) {
      * @alias calendar.events.watch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.alwaysIncludeEmail - Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-     * @param  {string} params.calendarId - Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param  {string=} params.iCalUID - Specifies event ID in the iCalendar format to be included in the response. Optional.
-     * @param  {integer=} params.maxAttendees - The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param  {integer=} params.maxResults - Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-     * @param  {string=} params.orderBy - The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {string=} params.privateExtendedProperty - Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param  {string=} params.q - Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-     * @param  {string=} params.sharedExtendedProperty - Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param  {boolean=} params.showDeleted - Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
-     * @param  {boolean=} params.showHiddenInvitations - Whether to include hidden invitations in the result. Optional. The default is False.
-     * @param  {boolean=} params.singleEvents - Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {string=} params.timeMax - Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * @param  {string=} params.timeMin - Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * @param  {string=} params.timeZone - Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param  {string=} params.updatedMin - Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
+     * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/watch',
@@ -1090,7 +1089,7 @@ function Calendar(options) {
 
   };
 
-  this.freebusy = {
+  self.freebusy = {
 
     /**
      * calendar.freebusy.query
@@ -1100,12 +1099,12 @@ function Calendar(options) {
      * @alias calendar.freebusy.query
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, callback) {
+    query: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/freeBusy',
@@ -1122,7 +1121,7 @@ function Calendar(options) {
 
   };
 
-  this.settings = {
+  self.settings = {
 
     /**
      * calendar.settings.get
@@ -1132,12 +1131,12 @@ function Calendar(options) {
      * @alias calendar.settings.get
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.setting - The id of the user setting.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.setting The id of the user setting.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings/{setting}',
@@ -1160,14 +1159,14 @@ function Calendar(options) {
      * @alias calendar.settings.list
      * @memberOf! calendar(v3)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings',
@@ -1190,15 +1189,15 @@ function Calendar(options) {
      * @alias calendar.settings.watch
      * @memberOf! calendar(v3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param  {string=} params.pageToken - Token specifying which result page to return. Optional.
-     * @param  {string=} params.syncToken - Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function(params, callback) {
+    watch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings/watch',

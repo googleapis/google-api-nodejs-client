@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Verifies ownership of websites or domains with Google.
  * @namespace siteVerification
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Siteverification
  * @param {object=} options Options for Siteverification
  */
-function Siteverification(options) {
-
+function Siteverification(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.webResource = {
+  self.webResource = {
 
     /**
      * siteVerification.webResource.delete
@@ -45,12 +44,12 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.delete
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id of a verified site or domain.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id of a verified site or domain.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
@@ -73,12 +72,12 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.get
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id of a verified site or domain.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id of a verified site or domain.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
@@ -101,12 +100,12 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.getToken
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getToken: function(params, callback) {
+    getToken: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/token',
@@ -129,13 +128,13 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.insert
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.verificationMethod - The method to use for verifying a site or domain.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.verificationMethod The method to use for verifying a site or domain.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/webResource',
@@ -158,11 +157,11 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.list
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/webResource',
@@ -185,13 +184,13 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.patch
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id of a verified site or domain.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id of a verified site or domain.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
@@ -214,13 +213,13 @@ function Siteverification(options) {
      * @alias siteVerification.webResource.update
      * @memberOf! siteVerification(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.id - The id of a verified site or domain.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.id The id of a verified site or domain.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',

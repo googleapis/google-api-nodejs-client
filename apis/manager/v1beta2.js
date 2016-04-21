@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
  * @namespace manager
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Manager
  * @param {object=} options Options for Manager
  */
-function Manager(options) {
-
+function Manager(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.deployments = {
+  self.deployments = {
 
     /**
      * manager.deployments.delete
@@ -45,14 +44,14 @@ function Manager(options) {
      * @alias manager.deployments.delete
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deploymentName - 
-     * @param  {string} params.projectId - 
-     * @param  {string} params.region - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deploymentName 
+     * @param {string} params.projectId 
+     * @param {string} params.region 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments/{deploymentName}',
@@ -75,14 +74,14 @@ function Manager(options) {
      * @alias manager.deployments.get
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deploymentName - 
-     * @param  {string} params.projectId - 
-     * @param  {string} params.region - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deploymentName 
+     * @param {string} params.projectId 
+     * @param {string} params.region 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments/{deploymentName}',
@@ -105,14 +104,14 @@ function Manager(options) {
      * @alias manager.deployments.insert
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - 
-     * @param  {string} params.region - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId 
+     * @param {string} params.region 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments',
@@ -135,15 +134,15 @@ function Manager(options) {
      * @alias manager.deployments.list
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectId - 
-     * @param  {string} params.region - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.projectId 
+     * @param {string} params.region 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/regions/{region}/deployments',
@@ -160,7 +159,7 @@ function Manager(options) {
 
   };
 
-  this.templates = {
+  self.templates = {
 
     /**
      * manager.templates.delete
@@ -170,13 +169,13 @@ function Manager(options) {
      * @alias manager.templates.delete
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - 
-     * @param  {string} params.templateName - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId 
+     * @param {string} params.templateName 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates/{templateName}',
@@ -199,13 +198,13 @@ function Manager(options) {
      * @alias manager.templates.get
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - 
-     * @param  {string} params.templateName - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId 
+     * @param {string} params.templateName 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates/{templateName}',
@@ -228,13 +227,13 @@ function Manager(options) {
      * @alias manager.templates.insert
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates',
@@ -257,14 +256,14 @@ function Manager(options) {
      * @alias manager.templates.list
      * @memberOf! manager(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectId - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.projectId 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/manager/v1beta2/projects/{projectId}/templates',

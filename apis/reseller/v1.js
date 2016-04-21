@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Creates and manages your customers and their subscriptions.
  * @namespace reseller
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Reseller
  * @param {object=} options Options for Reseller
  */
-function Reseller(options) {
-
+function Reseller(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.customers = {
+  self.customers = {
 
     /**
      * reseller.customers.get
@@ -45,12 +44,12 @@ function Reseller(options) {
      * @alias reseller.customers.get
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
@@ -73,13 +72,13 @@ function Reseller(options) {
      * @alias reseller.customers.insert
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.customerAuthToken - An auth token needed for inserting a customer for which domain already exists. Can be generated at https://admin.google.com/TransferToken. Optional.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.customerAuthToken An auth token needed for inserting a customer for which domain already exists. Can be generated at https://admin.google.com/TransferToken. Optional.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers',
@@ -102,13 +101,13 @@ function Reseller(options) {
      * @alias reseller.customers.patch
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
@@ -131,13 +130,13 @@ function Reseller(options) {
      * @alias reseller.customers.update
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
@@ -154,7 +153,7 @@ function Reseller(options) {
 
   };
 
-  this.subscriptions = {
+  self.subscriptions = {
 
     /**
      * reseller.subscriptions.activate
@@ -164,13 +163,13 @@ function Reseller(options) {
      * @alias reseller.subscriptions.activate
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    activate: function(params, callback) {
+    activate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate',
@@ -193,14 +192,14 @@ function Reseller(options) {
      * @alias reseller.subscriptions.changePlan
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    changePlan: function(params, callback) {
+    changePlan: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan',
@@ -223,14 +222,14 @@ function Reseller(options) {
      * @alias reseller.subscriptions.changeRenewalSettings
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    changeRenewalSettings: function(params, callback) {
+    changeRenewalSettings: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings',
@@ -253,14 +252,14 @@ function Reseller(options) {
      * @alias reseller.subscriptions.changeSeats
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    changeSeats: function(params, callback) {
+    changeSeats: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats',
@@ -283,14 +282,14 @@ function Reseller(options) {
      * @alias reseller.subscriptions.delete
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.deletionType - Whether the subscription is to be fully cancelled or downgraded
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.deletionType Whether the subscription is to be fully cancelled or downgraded
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
@@ -313,13 +312,13 @@ function Reseller(options) {
      * @alias reseller.subscriptions.get
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
@@ -342,14 +341,14 @@ function Reseller(options) {
      * @alias reseller.subscriptions.insert
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.customerAuthToken - An auth token needed for transferring a subscription. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken. Optional.
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.customerAuthToken An auth token needed for transferring a subscription. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken. Optional.
+     * @param {string} params.customerId Id of the Customer
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions',
@@ -372,16 +371,16 @@ function Reseller(options) {
      * @alias reseller.subscriptions.list
      * @memberOf! reseller(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.customerAuthToken - An auth token needed if the customer is not a resold customer of this reseller. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken.Optional.
-     * @param  {string=} params.customerId - Id of the Customer
-     * @param  {string=} params.customerNamePrefix - Prefix of the customer's domain name by which the subscriptions should be filtered. Optional
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.customerAuthToken An auth token needed if the customer is not a resold customer of this reseller. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken.Optional.
+     * @param {string=} params.customerId Id of the Customer
+     * @param {string=} params.customerNamePrefix Prefix of the customer's domain name by which the subscriptions should be filtered. Optional
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/subscriptions',
@@ -404,13 +403,13 @@ function Reseller(options) {
      * @alias reseller.subscriptions.startPaidService
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    startPaidService: function(params, callback) {
+    startPaidService: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
@@ -433,13 +432,13 @@ function Reseller(options) {
      * @alias reseller.subscriptions.suspend
      * @memberOf! reseller(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - Id of the Customer
-     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Id of the Customer
+     * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    suspend: function(params, callback) {
+    suspend: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend',

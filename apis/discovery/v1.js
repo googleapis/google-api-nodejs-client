@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API.
  * @namespace discovery
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Discovery
  * @param {object=} options Options for Discovery
  */
-function Discovery(options) {
-
+function Discovery(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.apis = {
+  self.apis = {
 
     /**
      * discovery.apis.getRest
@@ -45,13 +44,13 @@ function Discovery(options) {
      * @alias discovery.apis.getRest
      * @memberOf! discovery(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.api - The name of the API.
-     * @param  {string} params.version - The version of the API.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.api The name of the API.
+     * @param {string} params.version The version of the API.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRest: function(params, callback) {
+    getRest: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
@@ -74,13 +73,13 @@ function Discovery(options) {
      * @alias discovery.apis.list
      * @memberOf! discovery(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.name - Only include APIs with the given name.
-     * @param  {boolean=} params.preferred - Return only the preferred version of an API.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.name Only include APIs with the given name.
+     * @param {boolean=} params.preferred Return only the preferred version of an API.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/discovery/v1/apis',

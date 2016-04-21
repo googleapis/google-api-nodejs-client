@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Knowledge Graph Search API allows developers to search the Google Knowledge Graph for entities.
  * @namespace kgsearch
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Kgsearch
  * @param {object=} options Options for Kgsearch
  */
-function Kgsearch(options) {
-
+function Kgsearch(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.entities = {
+  self.entities = {
 
     /**
      * kgsearch.entities.search
@@ -45,18 +44,18 @@ function Kgsearch(options) {
      * @alias kgsearch.entities.search
      * @memberOf! kgsearch(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.query - The literal query string for search.
-     * @param  {string=} params.ids - The list of entity id to be used for search instead of query string.
-     * @param  {string=} params.languages - The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
-     * @param  {string=} params.types - Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person).
-     * @param  {boolean=} params.indent - Enables indenting of json results.
-     * @param  {boolean=} params.prefix - Enables prefix match against names and aliases of entities
-     * @param  {integer=} params.limit - Limits the number of entities to be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.query The literal query string for search.
+     * @param {string=} params.ids The list of entity id to be used for search instead of query string.
+     * @param {string=} params.languages The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
+     * @param {string=} params.types Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person).
+     * @param {boolean=} params.indent Enables indenting of json results.
+     * @param {boolean=} params.prefix Enables prefix match against names and aliases of entities
+     * @param {integer=} params.limit Limits the number of entities to be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://kgsearch.googleapis.com/v1/entities:search',

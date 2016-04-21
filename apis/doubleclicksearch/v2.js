@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
  * @namespace doubleclicksearch
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Doubleclicksearch
  * @param {object=} options Options for Doubleclicksearch
  */
-function Doubleclicksearch(options) {
-
+function Doubleclicksearch(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.conversion = {
+  self.conversion = {
 
     /**
      * doubleclicksearch.conversion.get
@@ -45,22 +44,22 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.conversion.get
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.adGroupId - Numeric ID of the ad group.
-     * @param  {string=} params.adId - Numeric ID of the ad.
-     * @param  {string} params.advertiserId - Numeric ID of the advertiser.
-     * @param  {string} params.agencyId - Numeric ID of the agency.
-     * @param  {string=} params.campaignId - Numeric ID of the campaign.
-     * @param  {string=} params.criterionId - Numeric ID of the criterion.
-     * @param  {integer} params.endDate - Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param  {string} params.engineAccountId - Numeric ID of the engine account.
-     * @param  {integer} params.rowCount - The number of conversions to return per call.
-     * @param  {integer} params.startDate - First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param  {integer} params.startRow - The 0-based starting index for retrieving conversions results.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.adGroupId Numeric ID of the ad group.
+     * @param {string=} params.adId Numeric ID of the ad.
+     * @param {string} params.advertiserId Numeric ID of the advertiser.
+     * @param {string} params.agencyId Numeric ID of the agency.
+     * @param {string=} params.campaignId Numeric ID of the campaign.
+     * @param {string=} params.criterionId Numeric ID of the criterion.
+     * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     * @param {string} params.engineAccountId Numeric ID of the engine account.
+     * @param {integer} params.rowCount The number of conversions to return per call.
+     * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion',
@@ -83,12 +82,12 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.conversion.insert
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
@@ -111,19 +110,19 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.conversion.patch
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.advertiserId - Numeric ID of the advertiser.
-     * @param  {string} params.agencyId - Numeric ID of the agency.
-     * @param  {integer} params.endDate - Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param  {string} params.engineAccountId - Numeric ID of the engine account.
-     * @param  {integer} params.rowCount - The number of conversions to return per call.
-     * @param  {integer} params.startDate - First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param  {integer} params.startRow - The 0-based starting index for retrieving conversions results.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Numeric ID of the advertiser.
+     * @param {string} params.agencyId Numeric ID of the agency.
+     * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     * @param {string} params.engineAccountId Numeric ID of the engine account.
+     * @param {integer} params.rowCount The number of conversions to return per call.
+     * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
@@ -146,12 +145,12 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.conversion.update
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
@@ -174,12 +173,12 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.conversion.updateAvailability
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateAvailability: function(params, callback) {
+    updateAvailability: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability',
@@ -196,7 +195,7 @@ function Doubleclicksearch(options) {
 
   };
 
-  this.reports = {
+  self.reports = {
 
     /**
      * doubleclicksearch.reports.generate
@@ -206,12 +205,12 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.reports.generate
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, callback) {
+    generate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/generate',
@@ -234,12 +233,12 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.reports.get
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.reportId - ID of the report request being polled.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.reportId ID of the report request being polled.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}',
@@ -262,13 +261,13 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.reports.getFile
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.reportFragment - The index of the report fragment to download.
-     * @param  {string} params.reportId - ID of the report.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.reportFragment The index of the report fragment to download.
+     * @param {string} params.reportId ID of the report.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFile: function(params, callback) {
+    getFile: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}',
@@ -291,12 +290,12 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.reports.request
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    request: function(params, callback) {
+    request: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports',
@@ -313,7 +312,7 @@ function Doubleclicksearch(options) {
 
   };
 
-  this.savedColumns = {
+  self.savedColumns = {
 
     /**
      * doubleclicksearch.savedColumns.list
@@ -323,13 +322,13 @@ function Doubleclicksearch(options) {
      * @alias doubleclicksearch.savedColumns.list
      * @memberOf! doubleclicksearch(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.advertiserId - DS ID of the advertiser.
-     * @param  {string} params.agencyId - DS ID of the agency.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId DS ID of the advertiser.
+     * @param {string} params.agencyId DS ID of the agency.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns',

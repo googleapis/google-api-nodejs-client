@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets advertisers search certified companies and create contact leads with them, and also audits the usage of clients.
  * @namespace partners
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Partners
  * @param {object=} options Options for Partners
  */
-function Partners(options) {
-
+function Partners(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.userEvents = {
+  self.userEvents = {
 
     /**
      * partners.userEvents.log
@@ -45,12 +44,12 @@ function Partners(options) {
      * @alias partners.userEvents.log
      * @memberOf! partners(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    log: function(params, callback) {
+    log: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://partners.googleapis.com/v2/userEvents:log',
@@ -67,7 +66,7 @@ function Partners(options) {
 
   };
 
-  this.clientMessages = {
+  self.clientMessages = {
 
     /**
      * partners.clientMessages.log
@@ -77,12 +76,12 @@ function Partners(options) {
      * @alias partners.clientMessages.log
      * @memberOf! partners(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    log: function(params, callback) {
+    log: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://partners.googleapis.com/v2/clientMessages:log',
@@ -99,7 +98,7 @@ function Partners(options) {
 
   };
 
-  this.userStates = {
+  self.userStates = {
 
     /**
      * partners.userStates.list
@@ -109,18 +108,18 @@ function Partners(options) {
      * @alias partners.userStates.list
      * @memberOf! partners(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.requestMetadata.userOverrides.ipAddress - IP address to use instead of the user's geo-located IP address.
-     * @param  {string=} params.requestMetadata.userOverrides.userId - Logged-in user ID to impersonate instead of the user's ID.
-     * @param  {string=} params.requestMetadata.locale - Locale to use for the current request.
-     * @param  {string=} params.requestMetadata.partnersSessionId - Google Partners session ID.
-     * @param  {string=} params.requestMetadata.experimentIds - Experiment IDs the current request belongs to.
-     * @param  {string=} params.requestMetadata.trafficSource.trafficSourceId - Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param  {string=} params.requestMetadata.trafficSource.trafficSubId - Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://partners.googleapis.com/v2/userStates',
@@ -137,7 +136,7 @@ function Partners(options) {
 
   };
 
-  this.companies = {
+  self.companies = {
 
     /**
      * partners.companies.get
@@ -147,23 +146,23 @@ function Partners(options) {
      * @alias partners.companies.get
      * @memberOf! partners(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.companyId - The ID of the company to retrieve.
-     * @param  {string=} params.requestMetadata.userOverrides.ipAddress - IP address to use instead of the user's geo-located IP address.
-     * @param  {string=} params.requestMetadata.userOverrides.userId - Logged-in user ID to impersonate instead of the user's ID.
-     * @param  {string=} params.requestMetadata.locale - Locale to use for the current request.
-     * @param  {string=} params.requestMetadata.partnersSessionId - Google Partners session ID.
-     * @param  {string=} params.requestMetadata.experimentIds - Experiment IDs the current request belongs to.
-     * @param  {string=} params.requestMetadata.trafficSource.trafficSourceId - Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param  {string=} params.requestMetadata.trafficSource.trafficSubId - Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param  {string=} params.view - The view of `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
-     * @param  {string=} params.orderBy - How to order addresses within the returned company. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
-     * @param  {string=} params.currencyCode - If the company's budget is in a different currency code than this one, then the converted budget is converted to this currency code.
-     * @param  {string=} params.address - The address to use for sorting the company's addresses by proximity. If not given, the geo-located address of the request is used. Used when order_by is set.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.companyId The ID of the company to retrieve.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.view The view of `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
+     * @param {string=} params.orderBy How to order addresses within the returned company. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
+     * @param {string=} params.currencyCode If the company's budget is in a different currency code than this one, then the converted budget is converted to this currency code.
+     * @param {string=} params.address The address to use for sorting the company's addresses by proximity. If not given, the geo-located address of the request is used. Used when order_by is set.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://partners.googleapis.com/v2/companies/{companyId}',
@@ -186,35 +185,35 @@ function Partners(options) {
      * @alias partners.companies.list
      * @memberOf! partners(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.requestMetadata.userOverrides.ipAddress - IP address to use instead of the user's geo-located IP address.
-     * @param  {string=} params.requestMetadata.userOverrides.userId - Logged-in user ID to impersonate instead of the user's ID.
-     * @param  {string=} params.requestMetadata.locale - Locale to use for the current request.
-     * @param  {string=} params.requestMetadata.partnersSessionId - Google Partners session ID.
-     * @param  {string=} params.requestMetadata.experimentIds - Experiment IDs the current request belongs to.
-     * @param  {string=} params.requestMetadata.trafficSource.trafficSourceId - Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param  {string=} params.requestMetadata.trafficSource.trafficSubId - Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param  {integer=} params.pageSize - Requested page size. Server may return fewer companies than requested. If unspecified, server picks an appropriate default.
-     * @param  {string=} params.pageToken - A token identifying a page of results that the server returns. Typically, this is the value of `ListCompaniesResponse.next_page_token` returned from the previous call to ListCompanies.
-     * @param  {string=} params.companyName - Company name to search for.
-     * @param  {string=} params.view - The view of the `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
-     * @param  {string=} params.minMonthlyBudget.currencyCode - The 3-letter currency code defined in ISO 4217.
-     * @param  {string=} params.minMonthlyBudget.units - The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     * @param  {integer=} params.minMonthlyBudget.nanos - Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-     * @param  {string=} params.maxMonthlyBudget.currencyCode - The 3-letter currency code defined in ISO 4217.
-     * @param  {string=} params.maxMonthlyBudget.units - The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     * @param  {integer=} params.maxMonthlyBudget.nanos - Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-     * @param  {string=} params.industries - List of industries the company can help with.
-     * @param  {string=} params.services - List of services the company can help with.
-     * @param  {string=} params.languageCodes - List of language codes that company can support. Only primary language subtags are accepted as defined by BCP 47 (IETF BCP 47, "Tags for Identifying Languages").
-     * @param  {string=} params.address - The address to use when searching for companies. If not given, the geo-located address of the request is used.
-     * @param  {string=} params.orderBy - How to order addresses within the returned companies. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
-     * @param  {string=} params.gpsMotivations - List of reasons for using Google Partner Search to get companies.
-     * @param  {string=} params.websiteUrl - Website URL that will help to find a better matched company. .
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {integer=} params.pageSize Requested page size. Server may return fewer companies than requested. If unspecified, server picks an appropriate default.
+     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListCompaniesResponse.next_page_token` returned from the previous call to ListCompanies.
+     * @param {string=} params.companyName Company name to search for.
+     * @param {string=} params.view The view of the `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
+     * @param {string=} params.minMonthlyBudget.currencyCode The 3-letter currency code defined in ISO 4217.
+     * @param {string=} params.minMonthlyBudget.units The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     * @param {integer=} params.minMonthlyBudget.nanos Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     * @param {string=} params.maxMonthlyBudget.currencyCode The 3-letter currency code defined in ISO 4217.
+     * @param {string=} params.maxMonthlyBudget.units The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     * @param {integer=} params.maxMonthlyBudget.nanos Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     * @param {string=} params.industries List of industries the company can help with.
+     * @param {string=} params.services List of services the company can help with.
+     * @param {string=} params.languageCodes List of language codes that company can support. Only primary language subtags are accepted as defined by BCP 47 (IETF BCP 47, "Tags for Identifying Languages").
+     * @param {string=} params.address The address to use when searching for companies. If not given, the geo-located address of the request is used.
+     * @param {string=} params.orderBy How to order addresses within the returned companies. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
+     * @param {string=} params.gpsMotivations List of reasons for using Google Partner Search to get companies.
+     * @param {string=} params.websiteUrl Website URL that will help to find a better matched company. .
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://partners.googleapis.com/v2/companies',
@@ -239,13 +238,13 @@ function Partners(options) {
        * @alias partners.companies.leads.create
        * @memberOf! partners(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.companyId - The ID of the company to contact.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.companyId The ID of the company to contact.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://partners.googleapis.com/v2/companies/{companyId}/leads',

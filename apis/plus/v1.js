@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Google+ API enables developers to build on top of the Google+ platform.
  * @namespace plus
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Plus
  * @param {object=} options Options for Plus
  */
-function Plus(options) {
-
+function Plus(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.activities = {
+  self.activities = {
 
     /**
      * plus.activities.get
@@ -45,12 +44,12 @@ function Plus(options) {
      * @alias plus.activities.get
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/activities/{activityId}',
@@ -73,15 +72,15 @@ function Plus(options) {
      * @alias plus.activities.list
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collection - The collection of activities to list.
-     * @param  {integer=} params.maxResults - The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string} params.userId - The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collection The collection of activities to list.
+     * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/people/{userId}/activities/{collection}',
@@ -104,16 +103,16 @@ function Plus(options) {
      * @alias plus.activities.search
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.language - Specify the preferred language to search with. See search language codes for available values.
-     * @param  {integer=} params.maxResults - The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.orderBy - Specifies how to order search results.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
-     * @param  {string} params.query - Full-text search query string.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
+     * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.orderBy Specifies how to order search results.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     * @param {string} params.query Full-text search query string.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/activities',
@@ -130,7 +129,7 @@ function Plus(options) {
 
   };
 
-  this.comments = {
+  self.comments = {
 
     /**
      * plus.comments.get
@@ -140,12 +139,12 @@ function Plus(options) {
      * @alias plus.comments.get
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.commentId - The ID of the comment to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.commentId The ID of the comment to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/comments/{commentId}',
@@ -168,15 +167,15 @@ function Plus(options) {
      * @alias plus.comments.list
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to get comments for.
-     * @param  {integer=} params.maxResults - The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string=} params.sortOrder - The order in which to sort the list of comments.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to get comments for.
+     * @param {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string=} params.sortOrder The order in which to sort the list of comments.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/activities/{activityId}/comments',
@@ -193,7 +192,7 @@ function Plus(options) {
 
   };
 
-  this.people = {
+  self.people = {
 
     /**
      * plus.people.get
@@ -203,12 +202,12 @@ function Plus(options) {
      * @alias plus.people.get
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.userId - The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.userId The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/people/{userId}',
@@ -231,16 +230,16 @@ function Plus(options) {
      * @alias plus.people.list
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.collection - The collection of people to list.
-     * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.orderBy - The order to return people in.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {string} params.userId - Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.collection The collection of people to list.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.orderBy The order to return people in.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/people/{userId}/people/{collection}',
@@ -263,15 +262,15 @@ function Plus(options) {
      * @alias plus.people.listByActivity
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.activityId - The ID of the activity to get the list of people for.
-     * @param  {string} params.collection - The collection of people to list.
-     * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.activityId The ID of the activity to get the list of people for.
+     * @param {string} params.collection The collection of people to list.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByActivity: function(params, callback) {
+    listByActivity: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/activities/{activityId}/people/{collection}',
@@ -294,15 +293,15 @@ function Plus(options) {
      * @alias plus.people.search
      * @memberOf! plus(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.language - Specify the preferred language to search with. See search language codes for available values.
-     * @param  {integer=} params.maxResults - The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
-     * @param  {string} params.query - Specify a query string for full text search of public text in all profiles.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     * @param {string} params.query Specify a query string for full text search of public text in all profiles.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/plus/v1/people',

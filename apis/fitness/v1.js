@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Google Fit API
  * @namespace fitness
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Fitness
  * @param {object=} options Options for Fitness
  */
-function Fitness(options) {
-
+function Fitness(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.users = {
+  self.users = {
 
     dataSources: {
 
@@ -47,13 +46,13 @@ function Fitness(options) {
        * @alias fitness.users.dataSources.create
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userId - Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
@@ -76,13 +75,13 @@ function Fitness(options) {
        * @alias fitness.users.dataSources.delete
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.dataSourceId - The data stream ID of the data source to delete.
-       * @param  {string} params.userId - Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.dataSourceId The data stream ID of the data source to delete.
+       * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
@@ -105,13 +104,13 @@ function Fitness(options) {
        * @alias fitness.users.dataSources.get
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.dataSourceId - The data stream ID of the data source to retrieve.
-       * @param  {string} params.userId - Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
+       * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
@@ -134,13 +133,13 @@ function Fitness(options) {
        * @alias fitness.users.dataSources.list
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.dataTypeName - The names of data types to include in the list. If not specified, all data sources will be returned.
-       * @param  {string} params.userId - List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
+       * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
@@ -163,14 +162,14 @@ function Fitness(options) {
        * @alias fitness.users.dataSources.patch
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.dataSourceId - The data stream ID of the data source to update.
-       * @param  {string} params.userId - Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.dataSourceId The data stream ID of the data source to update.
+       * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
@@ -193,14 +192,14 @@ function Fitness(options) {
        * @alias fitness.users.dataSources.update
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.dataSourceId - The data stream ID of the data source to update.
-       * @param  {string} params.userId - Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.dataSourceId The data stream ID of the data source to update.
+       * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
@@ -225,16 +224,16 @@ function Fitness(options) {
          * @alias fitness.users.dataSources.datasets.delete
          * @memberOf! fitness(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string=} params.currentTimeMillis - The client's current time in milliseconds since epoch.
-         * @param  {string} params.dataSourceId - The data stream ID of the data source that created the dataset.
-         * @param  {string} params.datasetId - Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-         * @param  {string=} params.modifiedTimeMillis - When the operation was performed on the client.
-         * @param  {string} params.userId - Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
+         * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+         * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+         * @param {string=} params.modifiedTimeMillis When the operation was performed on the client.
+         * @param {string} params.userId Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
@@ -257,16 +256,16 @@ function Fitness(options) {
          * @alias fitness.users.dataSources.datasets.get
          * @memberOf! fitness(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.dataSourceId - The data stream ID of the data source that created the dataset.
-         * @param  {string} params.datasetId - Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-         * @param  {integer=} params.limit - If specified, no more than this many data points will be included in the dataset. If the there are more data points in the dataset, nextPageToken will be set in the dataset response.
-         * @param  {string=} params.pageToken - The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
-         * @param  {string} params.userId - Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+         * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+         * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If the there are more data points in the dataset, nextPageToken will be set in the dataset response.
+         * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
+         * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
@@ -289,16 +288,16 @@ function Fitness(options) {
          * @alias fitness.users.dataSources.datasets.patch
          * @memberOf! fitness(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string=} params.currentTimeMillis - The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
-         * @param  {string} params.dataSourceId - The data stream ID of the data source that created the dataset.
-         * @param  {string} params.datasetId - Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-         * @param  {string} params.userId - Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
+         * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+         * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+         * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function(params, callback) {
+        patch: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
@@ -325,13 +324,13 @@ function Fitness(options) {
        * @alias fitness.users.dataset.aggregate
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.userId - Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      aggregate: function(params, callback) {
+      aggregate: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataset:aggregate',
@@ -357,14 +356,14 @@ function Fitness(options) {
        * @alias fitness.users.sessions.delete
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.currentTimeMillis - The client's current time in milliseconds since epoch.
-       * @param  {string} params.sessionId - The ID of the session to be deleted.
-       * @param  {string} params.userId - Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
+       * @param {string} params.sessionId The ID of the session to be deleted.
+       * @param {string} params.userId Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
@@ -387,16 +386,16 @@ function Fitness(options) {
        * @alias fitness.users.sessions.list
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.endTime - An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
-       * @param  {boolean=} params.includeDeleted - If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
-       * @param  {string=} params.pageToken - The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-       * @param  {string=} params.startTime - An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
-       * @param  {string} params.userId - List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+       * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
+       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+       * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+       * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions',
@@ -419,15 +418,15 @@ function Fitness(options) {
        * @alias fitness.users.sessions.update
        * @memberOf! fitness(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.currentTimeMillis - The client's current time in milliseconds since epoch.
-       * @param  {string} params.sessionId - The ID of the session to be created.
-       * @param  {string} params.userId - Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
+       * @param {string} params.sessionId The ID of the session to be created.
+       * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',

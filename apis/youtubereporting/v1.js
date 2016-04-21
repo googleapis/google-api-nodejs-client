@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Schedules reporting jobs and downloads the resulting bulk data reports about YouTube channels, videos, etc. in the form of CSV files.
  * @namespace youtubereporting
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Youtubereporting
  * @param {object=} options Options for Youtubereporting
  */
-function Youtubereporting(options) {
-
+function Youtubereporting(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.media = {
+  self.media = {
 
     /**
      * youtubereporting.media.download
@@ -45,12 +44,12 @@ function Youtubereporting(options) {
      * @alias youtubereporting.media.download
      * @memberOf! youtubereporting(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resourceName - Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download: function(params, callback) {
+    download: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://youtubereporting.googleapis.com/v1/media/{resourceName}',
@@ -67,7 +66,7 @@ function Youtubereporting(options) {
 
   };
 
-  this.reportTypes = {
+  self.reportTypes = {
 
     /**
      * youtubereporting.reportTypes.list
@@ -77,15 +76,15 @@ function Youtubereporting(options) {
      * @alias youtubereporting.reportTypes.list
      * @memberOf! youtubereporting(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param  {integer=} params.pageSize - Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-     * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
-     * @param  {boolean=} params.includeSystemManaged - If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
+     * @param {boolean=} params.includeSystemManaged If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://youtubereporting.googleapis.com/v1/reportTypes',
@@ -102,7 +101,7 @@ function Youtubereporting(options) {
 
   };
 
-  this.jobs = {
+  self.jobs = {
 
     /**
      * youtubereporting.jobs.create
@@ -112,13 +111,13 @@ function Youtubereporting(options) {
      * @alias youtubereporting.jobs.create
      * @memberOf! youtubereporting(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, callback) {
+    create: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://youtubereporting.googleapis.com/v1/jobs',
@@ -141,15 +140,15 @@ function Youtubereporting(options) {
      * @alias youtubereporting.jobs.list
      * @memberOf! youtubereporting(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param  {integer=} params.pageSize - Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
-     * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
-     * @param  {boolean=} params.includeSystemManaged - If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
+     * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://youtubereporting.googleapis.com/v1/jobs',
@@ -172,13 +171,13 @@ function Youtubereporting(options) {
      * @alias youtubereporting.jobs.get
      * @memberOf! youtubereporting(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - The ID of the job to retrieve.
-     * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The ID of the job to retrieve.
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}',
@@ -201,13 +200,13 @@ function Youtubereporting(options) {
      * @alias youtubereporting.jobs.delete
      * @memberOf! youtubereporting(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - The ID of the job to delete.
-     * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The ID of the job to delete.
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}',
@@ -232,18 +231,18 @@ function Youtubereporting(options) {
        * @alias youtubereporting.jobs.reports.list
        * @memberOf! youtubereporting(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.jobId - The ID of the job.
-       * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-       * @param  {integer=} params.pageSize - Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-       * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
-       * @param  {string=} params.createdAfter - If set, only reports created after the specified date/time are returned.
-       * @param  {string=} params.startTimeAtOrAfter - If set, only reports whose start time is greater than or equal the specified date/time are returned.
-       * @param  {string=} params.startTimeBefore - If set, only reports whose start time is smaller than the specified date/time are returned.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.jobId The ID of the job.
+       * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+       * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
+       * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
+       * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
+       * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
+       * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}/reports',
@@ -266,14 +265,14 @@ function Youtubereporting(options) {
        * @alias youtubereporting.jobs.reports.get
        * @memberOf! youtubereporting(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.jobId - The ID of the job.
-       * @param  {string} params.reportId - The ID of the report to retrieve.
-       * @param  {string=} params.onBehalfOfContentOwner - The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.jobId The ID of the job.
+       * @param {string} params.reportId The ID of the report to retrieve.
+       * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}/reports/{reportId}',

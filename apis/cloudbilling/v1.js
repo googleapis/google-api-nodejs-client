@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Retrieves Google Developers Console billing accounts and associates them with projects.
  * @namespace cloudbilling
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Cloudbilling
  * @param {object=} options Options for Cloudbilling
  */
-function Cloudbilling(options) {
-
+function Cloudbilling(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.billingAccounts = {
+  self.billingAccounts = {
 
     /**
      * cloudbilling.billingAccounts.get
@@ -45,12 +44,12 @@ function Cloudbilling(options) {
      * @alias cloudbilling.billingAccounts.get
      * @memberOf! cloudbilling(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudbilling.googleapis.com/v1/{name}',
@@ -73,13 +72,13 @@ function Cloudbilling(options) {
      * @alias cloudbilling.billingAccounts.list
      * @memberOf! cloudbilling(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.pageSize - Requested page size. The maximum page size is 100; this is also the default.
-     * @param  {string=} params.pageToken - A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
+     * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudbilling.googleapis.com/v1/billingAccounts',
@@ -104,14 +103,14 @@ function Cloudbilling(options) {
        * @alias cloudbilling.billingAccounts.projects.list
        * @memberOf! cloudbilling(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.name - The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
-       * @param  {integer=} params.pageSize - Requested page size. The maximum page size is 100; this is also the default.
-       * @param  {string=} params.pageToken - A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.name The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+       * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
+       * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudbilling.googleapis.com/v1/{name}/projects',
@@ -128,7 +127,7 @@ function Cloudbilling(options) {
     }
   };
 
-  this.projects = {
+  self.projects = {
 
     /**
      * cloudbilling.projects.getBillingInfo
@@ -138,12 +137,12 @@ function Cloudbilling(options) {
      * @alias cloudbilling.projects.getBillingInfo
      * @memberOf! cloudbilling(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getBillingInfo: function(params, callback) {
+    getBillingInfo: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
@@ -166,13 +165,13 @@ function Cloudbilling(options) {
      * @alias cloudbilling.projects.updateBillingInfo
      * @memberOf! cloudbilling(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateBillingInfo: function(params, callback) {
+    updateBillingInfo: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',

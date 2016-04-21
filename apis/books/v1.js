@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you search for books and manage your Google Books library.
  * @namespace books
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Books
  * @param {object=} options Options for Books
  */
-function Books(options) {
-
+function Books(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.bookshelves = {
+  self.bookshelves = {
 
     /**
      * books.bookshelves.get
@@ -45,14 +44,14 @@ function Books(options) {
      * @alias books.bookshelves.get
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.shelf - ID of bookshelf to retrieve.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {string} params.userId - ID of user for whom to retrieve bookshelves.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.shelf ID of bookshelf to retrieve.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}',
@@ -75,13 +74,13 @@ function Books(options) {
      * @alias books.bookshelves.list
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {string} params.userId - ID of user for whom to retrieve bookshelves.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves',
@@ -106,17 +105,17 @@ function Books(options) {
        * @alias books.bookshelves.volumes.list
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer=} params.maxResults - Maximum number of results to return
-       * @param  {string} params.shelf - ID of bookshelf to retrieve volumes.
-       * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {integer=} params.startIndex - Index of the first element to return (starts at 0)
-       * @param  {string} params.userId - ID of user for whom to retrieve bookshelf volumes.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string} params.shelf ID of bookshelf to retrieve volumes.
+       * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
+       * @param {string} params.userId ID of user for whom to retrieve bookshelf volumes.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes',
@@ -133,7 +132,7 @@ function Books(options) {
     }
   };
 
-  this.cloudloading = {
+  self.cloudloading = {
 
     /**
      * books.cloudloading.addBook
@@ -143,15 +142,15 @@ function Books(options) {
      * @alias books.cloudloading.addBook
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.drive_document_id - A drive document id. The upload_client_token must not be set.
-     * @param  {string=} params.mime_type - The document MIME type. It can be set only if the drive_document_id is set.
-     * @param  {string=} params.name - The document name. It can be set only if the drive_document_id is set.
-     * @param  {string=} params.upload_client_token - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.drive_document_id A drive document id. The upload_client_token must not be set.
+     * @param {string=} params.mime_type The document MIME type. It can be set only if the drive_document_id is set.
+     * @param {string=} params.name The document name. It can be set only if the drive_document_id is set.
+     * @param {string=} params.upload_client_token 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addBook: function(params, callback) {
+    addBook: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/cloudloading/addBook',
@@ -174,12 +173,12 @@ function Books(options) {
      * @alias books.cloudloading.deleteBook
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.volumeId - The id of the book to be removed.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.volumeId The id of the book to be removed.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteBook: function(params, callback) {
+    deleteBook: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/cloudloading/deleteBook',
@@ -202,12 +201,12 @@ function Books(options) {
      * @alias books.cloudloading.updateBook
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateBook: function(params, callback) {
+    updateBook: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/cloudloading/updateBook',
@@ -224,7 +223,7 @@ function Books(options) {
 
   };
 
-  this.dictionary = {
+  self.dictionary = {
 
     /**
      * books.dictionary.listOfflineMetadata
@@ -234,12 +233,12 @@ function Books(options) {
      * @alias books.dictionary.listOfflineMetadata
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.cpksver - The device/version ID from which to request the data.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.cpksver The device/version ID from which to request the data.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOfflineMetadata: function(params, callback) {
+    listOfflineMetadata: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
@@ -256,7 +255,7 @@ function Books(options) {
 
   };
 
-  this.layers = {
+  self.layers = {
 
     /**
      * books.layers.get
@@ -266,15 +265,15 @@ function Books(options) {
      * @alias books.layers.get
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.contentVersion - The content version for the requested volume.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {string} params.summaryId - The ID for the layer to get the summary for.
-     * @param  {string} params.volumeId - The volume to retrieve layers for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.summaryId The ID for the layer to get the summary for.
+     * @param {string} params.volumeId The volume to retrieve layers for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary/{summaryId}',
@@ -297,16 +296,16 @@ function Books(options) {
      * @alias books.layers.list
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.contentVersion - The content version for the requested volume.
-     * @param  {integer=} params.maxResults - Maximum number of results to return
-     * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {string} params.volumeId - The volume to retrieve layers for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {integer=} params.maxResults Maximum number of results to return
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.volumeId The volume to retrieve layers for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary',
@@ -331,21 +330,21 @@ function Books(options) {
        * @alias books.layers.annotationData.get
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {boolean=} params.allowWebDefinitions - For the dictionary layer. Whether or not to allow web definitions.
-       * @param  {string} params.annotationDataId - The ID of the annotation data to retrieve.
-       * @param  {string} params.contentVersion - The content version for the volume you are trying to retrieve.
-       * @param  {integer=} params.h - The requested pixel height for any images. If height is provided width must also be provided.
-       * @param  {string} params.layerId - The ID for the layer to get the annotations.
-       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-       * @param  {integer=} params.scale - The requested scale for the image.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - The volume to retrieve annotations for.
-       * @param  {integer=} params.w - The requested pixel width for any images. If width is provided height must also be provided.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.allowWebDefinitions For the dictionary layer. Whether or not to allow web definitions.
+       * @param {string} params.annotationDataId The ID of the annotation data to retrieve.
+       * @param {string} params.contentVersion The content version for the volume you are trying to retrieve.
+       * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
+       * @param {string} params.layerId The ID for the layer to get the annotations.
+       * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param {integer=} params.scale The requested scale for the image.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId The volume to retrieve annotations for.
+       * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}',
@@ -368,24 +367,24 @@ function Books(options) {
        * @alias books.layers.annotationData.list
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.annotationDataId - The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
-       * @param  {string} params.contentVersion - The content version for the requested volume.
-       * @param  {integer=} params.h - The requested pixel height for any images. If height is provided width must also be provided.
-       * @param  {string} params.layerId - The ID for the layer to get the annotation data.
-       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-       * @param  {integer=} params.maxResults - Maximum number of results to return
-       * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
-       * @param  {integer=} params.scale - The requested scale for the image.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string=} params.updatedMax - RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-       * @param  {string=} params.updatedMin - RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-       * @param  {string} params.volumeId - The volume to retrieve annotation data for.
-       * @param  {integer=} params.w - The requested pixel width for any images. If width is provided height must also be provided.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
+       * @param {string} params.contentVersion The content version for the requested volume.
+       * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
+       * @param {string} params.layerId The ID for the layer to get the annotation data.
+       * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken The value of the nextToken from the previous page.
+       * @param {integer=} params.scale The requested scale for the image.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+       * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+       * @param {string} params.volumeId The volume to retrieve annotation data for.
+       * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data',
@@ -411,16 +410,16 @@ function Books(options) {
        * @alias books.layers.volumeAnnotations.get
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.annotationId - The ID of the volume annotation to retrieve.
-       * @param  {string} params.layerId - The ID for the layer to get the annotations.
-       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - The volume to retrieve annotations for.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.annotationId The ID of the volume annotation to retrieve.
+       * @param {string} params.layerId The ID for the layer to get the annotations.
+       * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId The volume to retrieve annotations for.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}',
@@ -443,26 +442,26 @@ function Books(options) {
        * @alias books.layers.volumeAnnotations.list
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.contentVersion - The content version for the requested volume.
-       * @param  {string=} params.endOffset - The end offset to end retrieving data from.
-       * @param  {string=} params.endPosition - The end position to end retrieving data from.
-       * @param  {string} params.layerId - The ID for the layer to get the annotations.
-       * @param  {string=} params.locale - The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-       * @param  {integer=} params.maxResults - Maximum number of results to return
-       * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
-       * @param  {boolean=} params.showDeleted - Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string=} params.startOffset - The start offset to start retrieving data from.
-       * @param  {string=} params.startPosition - The start position to start retrieving data from.
-       * @param  {string=} params.updatedMax - RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-       * @param  {string=} params.updatedMin - RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-       * @param  {string=} params.volumeAnnotationsVersion - The version of the volume annotations that you are requesting.
-       * @param  {string} params.volumeId - The volume to retrieve annotations for.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.contentVersion The content version for the requested volume.
+       * @param {string=} params.endOffset The end offset to end retrieving data from.
+       * @param {string=} params.endPosition The end position to end retrieving data from.
+       * @param {string} params.layerId The ID for the layer to get the annotations.
+       * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken The value of the nextToken from the previous page.
+       * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string=} params.startOffset The start offset to start retrieving data from.
+       * @param {string=} params.startPosition The start position to start retrieving data from.
+       * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+       * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+       * @param {string=} params.volumeAnnotationsVersion The version of the volume annotations that you are requesting.
+       * @param {string} params.volumeId The volume to retrieve annotations for.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}',
@@ -479,7 +478,7 @@ function Books(options) {
     }
   };
 
-  this.myconfig = {
+  self.myconfig = {
 
     /**
      * books.myconfig.getUserSettings
@@ -489,11 +488,11 @@ function Books(options) {
      * @alias books.myconfig.getUserSettings
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getUserSettings: function(params, callback) {
+    getUserSettings: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/myconfig/getUserSettings',
@@ -516,15 +515,15 @@ function Books(options) {
      * @alias books.myconfig.releaseDownloadAccess
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.cpksver - The device/version ID from which to release the restriction.
-     * @param  {string=} params.locale - ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {string} params.volumeIds - The volume(s) to release restrictions for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.volumeIds The volume(s) to release restrictions for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    releaseDownloadAccess: function(params, callback) {
+    releaseDownloadAccess: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/myconfig/releaseDownloadAccess',
@@ -547,17 +546,17 @@ function Books(options) {
      * @alias books.myconfig.requestAccess
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.cpksver - The device/version ID from which to request the restrictions.
-     * @param  {string=} params.licenseTypes - The type of access license to request. If not specified, the default is BOTH.
-     * @param  {string=} params.locale - ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param  {string} params.nonce - The client nonce value.
-     * @param  {string} params.source - String to identify the originator of this request.
-     * @param  {string} params.volumeId - The volume to request concurrent/download restrictions for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.cpksver The device/version ID from which to request the restrictions.
+     * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
+     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+     * @param {string} params.nonce The client nonce value.
+     * @param {string} params.source String to identify the originator of this request.
+     * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    requestAccess: function(params, callback) {
+    requestAccess: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/myconfig/requestAccess',
@@ -580,19 +579,19 @@ function Books(options) {
      * @alias books.myconfig.syncVolumeLicenses
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.cpksver - The device/version ID from which to release the restriction.
-     * @param  {string=} params.features - List of features supported by the client, i.e., 'RENTALS'
-     * @param  {boolean=} params.includeNonComicsSeries - Set to true to include non-comics series. Defaults to false.
-     * @param  {string=} params.locale - ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param  {string} params.nonce - The client nonce value.
-     * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
-     * @param  {string} params.source - String to identify the originator of this request.
-     * @param  {string=} params.volumeIds - The volume(s) to request download restrictions for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
+     * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
+     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+     * @param {string} params.nonce The client nonce value.
+     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+     * @param {string} params.source String to identify the originator of this request.
+     * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    syncVolumeLicenses: function(params, callback) {
+    syncVolumeLicenses: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/myconfig/syncVolumeLicenses',
@@ -615,12 +614,12 @@ function Books(options) {
      * @alias books.myconfig.updateUserSettings
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateUserSettings: function(params, callback) {
+    updateUserSettings: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/myconfig/updateUserSettings',
@@ -637,7 +636,7 @@ function Books(options) {
 
   };
 
-  this.mylibrary = {
+  self.mylibrary = {
 
     annotations: {
 
@@ -649,13 +648,13 @@ function Books(options) {
        * @alias books.mylibrary.annotations.delete
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.annotationId - The ID for the annotation to delete.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.annotationId The ID for the annotation to delete.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
@@ -678,15 +677,15 @@ function Books(options) {
        * @alias books.mylibrary.annotations.insert
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
-       * @param  {boolean=} params.showOnlySummaryInResponse - Requests that only the summary of the specified layer be provided in the response.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+       * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function(params, callback) {
+      insert: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
@@ -709,21 +708,21 @@ function Books(options) {
        * @alias books.mylibrary.annotations.list
        * @memberOf! books(v1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {string=} params.contentVersion - The content version for the requested volume.
-       * @param  {string=} params.layerId - The layer ID to limit annotation by.
-       * @param  {string=} params.layerIds - The layer ID(s) to limit annotation by.
-       * @param  {integer=} params.maxResults - Maximum number of results to return
-       * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
-       * @param  {boolean=} params.showDeleted - Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string=} params.updatedMax - RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-       * @param  {string=} params.updatedMin - RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-       * @param  {string=} params.volumeId - The volume to restrict annotations to.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {string=} params.contentVersion The content version for the requested volume.
+       * @param {string=} params.layerId The layer ID to limit annotation by.
+       * @param {string=} params.layerIds The layer ID(s) to limit annotation by.
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken The value of the nextToken from the previous page.
+       * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+       * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+       * @param {string=} params.volumeId The volume to restrict annotations to.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
@@ -746,13 +745,13 @@ function Books(options) {
        * @alias books.mylibrary.annotations.summary
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.layerIds - Array of layer IDs to get the summary for.
-       * @param  {string} params.volumeId - Volume id to get the summary for.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.layerIds Array of layer IDs to get the summary for.
+       * @param {string} params.volumeId Volume id to get the summary for.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      summary: function(params, callback) {
+      summary: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/summary',
@@ -775,14 +774,14 @@ function Books(options) {
        * @alias books.mylibrary.annotations.update
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.annotationId - The ID for the annotation to update.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.annotationId The ID for the annotation to update.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
@@ -808,15 +807,15 @@ function Books(options) {
        * @alias books.mylibrary.bookshelves.addVolume
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.reason - The reason for which the book is added to the library.
-       * @param  {string} params.shelf - ID of bookshelf to which to add a volume.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - ID of volume to add.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.reason The reason for which the book is added to the library.
+       * @param {string} params.shelf ID of bookshelf to which to add a volume.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId ID of volume to add.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addVolume: function(params, callback) {
+      addVolume: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume',
@@ -839,13 +838,13 @@ function Books(options) {
        * @alias books.mylibrary.bookshelves.clearVolumes
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.shelf - ID of bookshelf from which to remove a volume.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.shelf ID of bookshelf from which to remove a volume.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      clearVolumes: function(params, callback) {
+      clearVolumes: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes',
@@ -868,13 +867,13 @@ function Books(options) {
        * @alias books.mylibrary.bookshelves.get
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.shelf - ID of bookshelf to retrieve.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.shelf ID of bookshelf to retrieve.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}',
@@ -897,12 +896,12 @@ function Books(options) {
        * @alias books.mylibrary.bookshelves.list
        * @memberOf! books(v1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
@@ -925,15 +924,15 @@ function Books(options) {
        * @alias books.mylibrary.bookshelves.moveVolume
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.shelf - ID of bookshelf with the volume.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - ID of volume to move.
-       * @param  {integer} params.volumePosition - Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.shelf ID of bookshelf with the volume.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId ID of volume to move.
+       * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      moveVolume: function(params, callback) {
+      moveVolume: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume',
@@ -956,15 +955,15 @@ function Books(options) {
        * @alias books.mylibrary.bookshelves.removeVolume
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.reason - The reason for which the book is removed from the library.
-       * @param  {string} params.shelf - ID of bookshelf from which to remove a volume.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - ID of volume to remove.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.reason The reason for which the book is removed from the library.
+       * @param {string} params.shelf ID of bookshelf from which to remove a volume.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId ID of volume to remove.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      removeVolume: function(params, callback) {
+      removeVolume: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume',
@@ -989,19 +988,19 @@ function Books(options) {
          * @alias books.mylibrary.bookshelves.volumes.list
          * @memberOf! books(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
-         * @param  {integer=} params.maxResults - Maximum number of results to return
-         * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-         * @param  {string=} params.q - Full-text search query string in this bookshelf.
-         * @param  {string} params.shelf - The bookshelf ID or name retrieve volumes for.
-         * @param  {boolean=} params.showPreorders - Set to true to show pre-ordered books. Defaults to false.
-         * @param  {string=} params.source - String to identify the originator of this request.
-         * @param  {integer=} params.startIndex - Index of the first element to return (starts at 0)
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+         * @param {integer=} params.maxResults Maximum number of results to return
+         * @param {string=} params.projection Restrict information returned to a set of selected fields.
+         * @param {string=} params.q Full-text search query string in this bookshelf.
+         * @param {string} params.shelf The bookshelf ID or name retrieve volumes for.
+         * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+         * @param {string=} params.source String to identify the originator of this request.
+         * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes',
@@ -1028,14 +1027,14 @@ function Books(options) {
        * @alias books.mylibrary.readingpositions.get
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.contentVersion - Volume content version for which this reading position is requested.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - ID of volume for which to retrieve a reading position.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.contentVersion Volume content version for which this reading position is requested.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId ID of volume for which to retrieve a reading position.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}',
@@ -1058,18 +1057,18 @@ function Books(options) {
        * @alias books.mylibrary.readingpositions.setPosition
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.action - Action that caused this reading position to be set.
-       * @param  {string=} params.contentVersion - Volume content version for which this reading position applies.
-       * @param  {string=} params.deviceCookie - Random persistent device cookie optional on set position.
-       * @param  {string} params.position - Position string for the new volume reading position.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.timestamp - RFC 3339 UTC format timestamp associated with this reading position.
-       * @param  {string} params.volumeId - ID of volume for which to update the reading position.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.action Action that caused this reading position to be set.
+       * @param {string=} params.contentVersion Volume content version for which this reading position applies.
+       * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
+       * @param {string} params.position Position string for the new volume reading position.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
+       * @param {string} params.volumeId ID of volume for which to update the reading position.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setPosition: function(params, callback) {
+      setPosition: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}/setPosition',
@@ -1086,7 +1085,7 @@ function Books(options) {
     }
   };
 
-  this.notification = {
+  self.notification = {
 
     /**
      * books.notification.get
@@ -1096,14 +1095,14 @@ function Books(options) {
      * @alias books.notification.get
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
-     * @param  {string} params.notification_id - String to identify the notification.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
+     * @param {string} params.notification_id String to identify the notification.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/notification/get',
@@ -1120,7 +1119,7 @@ function Books(options) {
 
   };
 
-  this.onboarding = {
+  self.onboarding = {
 
     /**
      * books.onboarding.listCategories
@@ -1130,12 +1129,12 @@ function Books(options) {
      * @alias books.onboarding.listCategories
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategories: function(params, callback) {
+    listCategories: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategories',
@@ -1158,16 +1157,16 @@ function Books(options) {
      * @alias books.onboarding.listCategoryVolumes
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.categoryId - List of category ids requested.
-     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-     * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
-     * @param  {integer=} params.pageSize - Number of maximum results per page to be included in the response.
-     * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.categoryId List of category ids requested.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
+     * @param {integer=} params.pageSize Number of maximum results per page to be included in the response.
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategoryVolumes: function(params, callback) {
+    listCategoryVolumes: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
@@ -1184,7 +1183,7 @@ function Books(options) {
 
   };
 
-  this.personalizedstream = {
+  self.personalizedstream = {
 
     /**
      * books.personalizedstream.get
@@ -1194,14 +1193,14 @@ function Books(options) {
      * @alias books.personalizedstream.get
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/personalizedstream/get',
@@ -1218,7 +1217,7 @@ function Books(options) {
 
   };
 
-  this.promooffer = {
+  self.promooffer = {
 
     /**
      * books.promooffer.accept
@@ -1228,19 +1227,19 @@ function Books(options) {
      * @alias books.promooffer.accept
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.androidId - device android_id
-     * @param  {string=} params.device - device device
-     * @param  {string=} params.manufacturer - device manufacturer
-     * @param  {string=} params.model - device model
-     * @param  {string=} params.offerId - 
-     * @param  {string=} params.product - device product
-     * @param  {string=} params.serial - device serial
-     * @param  {string=} params.volumeId - Volume id to exercise the offer
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.androidId device android_id
+     * @param {string=} params.device device device
+     * @param {string=} params.manufacturer device manufacturer
+     * @param {string=} params.model device model
+     * @param {string=} params.offerId 
+     * @param {string=} params.product device product
+     * @param {string=} params.serial device serial
+     * @param {string=} params.volumeId Volume id to exercise the offer
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function(params, callback) {
+    accept: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/promooffer/accept',
@@ -1263,18 +1262,18 @@ function Books(options) {
      * @alias books.promooffer.dismiss
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.androidId - device android_id
-     * @param  {string=} params.device - device device
-     * @param  {string=} params.manufacturer - device manufacturer
-     * @param  {string=} params.model - device model
-     * @param  {string=} params.offerId - Offer to dimiss
-     * @param  {string=} params.product - device product
-     * @param  {string=} params.serial - device serial
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.androidId device android_id
+     * @param {string=} params.device device device
+     * @param {string=} params.manufacturer device manufacturer
+     * @param {string=} params.model device model
+     * @param {string=} params.offerId Offer to dimiss
+     * @param {string=} params.product device product
+     * @param {string=} params.serial device serial
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss: function(params, callback) {
+    dismiss: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/promooffer/dismiss',
@@ -1297,17 +1296,17 @@ function Books(options) {
      * @alias books.promooffer.get
      * @memberOf! books(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.androidId - device android_id
-     * @param  {string=} params.device - device device
-     * @param  {string=} params.manufacturer - device manufacturer
-     * @param  {string=} params.model - device model
-     * @param  {string=} params.product - device product
-     * @param  {string=} params.serial - device serial
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.androidId device android_id
+     * @param {string=} params.device device device
+     * @param {string=} params.manufacturer device manufacturer
+     * @param {string=} params.model device model
+     * @param {string=} params.product device product
+     * @param {string=} params.serial device serial
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/promooffer/get',
@@ -1324,7 +1323,7 @@ function Books(options) {
 
   };
 
-  this.series = {
+  self.series = {
 
     /**
      * books.series.get
@@ -1334,12 +1333,12 @@ function Books(options) {
      * @alias books.series.get
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.series_id - String that identifies the series
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.series_id String that identifies the series
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/series/get',
@@ -1364,14 +1363,14 @@ function Books(options) {
        * @alias books.series.membership.get
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer=} params.page_size - Number of maximum results per page to be included in the response.
-       * @param  {string=} params.page_token - The value of the nextToken from the previous page.
-       * @param  {string} params.series_id - String that identifies the series
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer=} params.page_size Number of maximum results per page to be included in the response.
+       * @param {string=} params.page_token The value of the nextToken from the previous page.
+       * @param {string} params.series_id String that identifies the series
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/series/membership/get',
@@ -1388,7 +1387,7 @@ function Books(options) {
     }
   };
 
-  this.volumes = {
+  self.volumes = {
 
     /**
      * books.volumes.get
@@ -1398,18 +1397,18 @@ function Books(options) {
      * @alias books.volumes.get
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
-     * @param  {boolean=} params.includeNonComicsSeries - Set to true to include non-comics series. Defaults to false.
-     * @param  {string=} params.partner - Brand results for partner ID.
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {boolean=} params.user_library_consistent_read - 
-     * @param  {string} params.volumeId - ID of volume to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+     * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
+     * @param {string=} params.partner Brand results for partner ID.
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {boolean=} params.user_library_consistent_read 
+     * @param {string} params.volumeId ID of volume to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}',
@@ -1432,24 +1431,24 @@ function Books(options) {
      * @alias books.volumes.list
      * @memberOf! books(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.download - Restrict to volumes by download availability.
-     * @param  {string=} params.filter - Filter search results.
-     * @param  {string=} params.langRestrict - Restrict results to books with this language code.
-     * @param  {string=} params.libraryRestrict - Restrict search to this user's library.
-     * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.orderBy - Sort search results.
-     * @param  {string=} params.partner - Restrict and brand results for partner ID.
-     * @param  {string=} params.printType - Restrict to books or magazines.
-     * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
-     * @param  {string} params.q - Full-text search query string.
-     * @param  {boolean=} params.showPreorders - Set to true to show books available for preorder. Defaults to false.
-     * @param  {string=} params.source - String to identify the originator of this request.
-     * @param  {integer=} params.startIndex - Index of the first result to return (starts at 0)
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.download Restrict to volumes by download availability.
+     * @param {string=} params.filter Filter search results.
+     * @param {string=} params.langRestrict Restrict results to books with this language code.
+     * @param {string=} params.libraryRestrict Restrict search to this user's library.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.orderBy Sort search results.
+     * @param {string=} params.partner Restrict and brand results for partner ID.
+     * @param {string=} params.printType Restrict to books or magazines.
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string} params.q Full-text search query string.
+     * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/books/v1/volumes',
@@ -1474,16 +1473,16 @@ function Books(options) {
        * @alias books.volumes.associated.list
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.association - Association type.
-       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-       * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - ID of the source volume.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.association Association type.
+       * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId ID of the source volume.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/associated',
@@ -1509,18 +1508,18 @@ function Books(options) {
        * @alias books.volumes.mybooks.list
        * @memberOf! books(v1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {string=} params.acquireMethod - How the book was aquired
-       * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
-       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
-       * @param  {integer=} params.maxResults - Maximum number of results to return.
-       * @param  {string=} params.processingState - The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {integer=} params.startIndex - Index of the first result to return (starts at 0)
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {string=} params.acquireMethod How the book was aquired
+       * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+       * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
+       * @param {integer=} params.maxResults Maximum number of results to return.
+       * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/mybooks',
@@ -1546,14 +1545,14 @@ function Books(options) {
        * @alias books.volumes.recommended.list
        * @memberOf! books(v1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-       * @param  {string=} params.maxAllowedMaturityRating - The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/recommended',
@@ -1576,15 +1575,15 @@ function Books(options) {
        * @alias books.volumes.recommended.rate
        * @memberOf! books(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-       * @param  {string} params.rating - Rating to be given to the volume.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {string} params.volumeId - ID of the source volume.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param {string} params.rating Rating to be given to the volume.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {string} params.volumeId ID of the source volume.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      rate: function(params, callback) {
+      rate: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/recommended/rate',
@@ -1610,17 +1609,17 @@ function Books(options) {
        * @alias books.volumes.useruploaded.list
        * @memberOf! books(v1)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-       * @param  {integer=} params.maxResults - Maximum number of results to return.
-       * @param  {string=} params.processingState - The processing state of the user uploaded volumes to be returned.
-       * @param  {string=} params.source - String to identify the originator of this request.
-       * @param  {integer=} params.startIndex - Index of the first result to return (starts at 0)
-       * @param  {string=} params.volumeId - The ids of the volumes to be returned. If not specified all that match the processingState are returned.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+       * @param {integer=} params.maxResults Maximum number of results to return.
+       * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned.
+       * @param {string=} params.source String to identify the originator of this request.
+       * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+       * @param {string=} params.volumeId The ids of the volumes to be returned. If not specified all that match the processingState are returned.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/books/v1/volumes/useruploaded',

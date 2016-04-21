@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for viewing and managing your reports in DoubleClick Bid Manager.
  * @namespace doubleclickbidmanager
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Doubleclickbidmanager
  * @param {object=} options Options for Doubleclickbidmanager
  */
-function Doubleclickbidmanager(options) {
-
+function Doubleclickbidmanager(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.lineitems = {
+  self.lineitems = {
 
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
@@ -45,12 +44,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.lineitems.downloadlineitems
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadlineitems: function(params, callback) {
+    downloadlineitems: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/downloadlineitems',
@@ -73,12 +72,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.lineitems.uploadlineitems
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadlineitems: function(params, callback) {
+    uploadlineitems: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/uploadlineitems',
@@ -95,7 +94,7 @@ function Doubleclickbidmanager(options) {
 
   };
 
-  this.queries = {
+  self.queries = {
 
     /**
      * doubleclickbidmanager.queries.createquery
@@ -105,12 +104,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.queries.createquery
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createquery: function(params, callback) {
+    createquery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query',
@@ -133,12 +132,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.queries.deletequery
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.queryId - Query ID to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.queryId Query ID to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deletequery: function(params, callback) {
+    deletequery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
@@ -161,12 +160,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.queries.getquery
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.queryId - Query ID to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.queryId Query ID to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getquery: function(params, callback) {
+    getquery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
@@ -189,11 +188,11 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.queries.listqueries
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listqueries: function(params, callback) {
+    listqueries: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries',
@@ -216,13 +215,13 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.queries.runquery
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.queryId - Query ID to run.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.queryId Query ID to run.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runquery: function(params, callback) {
+    runquery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
@@ -239,7 +238,7 @@ function Doubleclickbidmanager(options) {
 
   };
 
-  this.reports = {
+  self.reports = {
 
     /**
      * doubleclickbidmanager.reports.listreports
@@ -249,12 +248,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.reports.listreports
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.queryId - Query ID with which the reports are associated.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.queryId Query ID with which the reports are associated.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listreports: function(params, callback) {
+    listreports: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/{queryId}/reports',
@@ -271,7 +270,7 @@ function Doubleclickbidmanager(options) {
 
   };
 
-  this.rubicon = {
+  self.rubicon = {
 
     /**
      * doubleclickbidmanager.rubicon.notifyproposalchange
@@ -281,12 +280,12 @@ function Doubleclickbidmanager(options) {
      * @alias doubleclickbidmanager.rubicon.notifyproposalchange
      * @memberOf! doubleclickbidmanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    notifyproposalchange: function(params, callback) {
+    notifyproposalchange: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/rubicon/notifyproposalchange',

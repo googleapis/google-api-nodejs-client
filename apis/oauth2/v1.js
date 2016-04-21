@@ -25,15 +25,14 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Obtains end-user authorization grants for use with other Google APIs.
  * @namespace oauth2
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Oauth2
  * @param {object=} options Options for Oauth2
  */
-function Oauth2(options) {
-
+function Oauth2(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
   /**
    * oauth2.getCertForOpenIdConnect
@@ -43,11 +42,11 @@ function Oauth2(options) {
    * @alias oauth2.getCertForOpenIdConnect
    * @memberOf! oauth2(v1)
    *
-   * @param  {object=} params - Parameters for request
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object=} params Parameters for request
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect = function(params, callback) {
+  this.getCertForOpenIdConnect = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/oauth2/v1/certs',
@@ -70,11 +69,11 @@ function Oauth2(options) {
    * @alias oauth2.getCertForOpenIdConnectRaw
    * @memberOf! oauth2(v1)
    *
-   * @param  {object=} params - Parameters for request
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object=} params Parameters for request
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnectRaw = function(params, callback) {
+  this.getCertForOpenIdConnectRaw = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/oauth2/v1/raw_public_keys',
@@ -97,12 +96,12 @@ function Oauth2(options) {
    * @alias oauth2.getRobotJwk
    * @memberOf! oauth2(v1)
    *
-   * @param  {object} params - Parameters for request
-   * @param  {string} params.robotEmail - The email of robot account.
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object} params Parameters for request
+   * @param {string} params.robotEmail The email of robot account.
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getRobotJwk = function(params, callback) {
+  this.getRobotJwk = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/service_accounts/v1/jwk/{robotEmail}',
@@ -125,12 +124,12 @@ function Oauth2(options) {
    * @alias oauth2.getRobotMetadataRaw
    * @memberOf! oauth2(v1)
    *
-   * @param  {object} params - Parameters for request
-   * @param  {string} params.robotEmail - The email of robot account.
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object} params Parameters for request
+   * @param {string} params.robotEmail The email of robot account.
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getRobotMetadataRaw = function(params, callback) {
+  this.getRobotMetadataRaw = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/service_accounts/v1/metadata/raw/{robotEmail}',
@@ -153,12 +152,12 @@ function Oauth2(options) {
    * @alias oauth2.getRobotMetadataX509
    * @memberOf! oauth2(v1)
    *
-   * @param  {object} params - Parameters for request
-   * @param  {string} params.robotEmail - The email of robot account.
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object} params Parameters for request
+   * @param {string} params.robotEmail The email of robot account.
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getRobotMetadataX509 = function(params, callback) {
+  this.getRobotMetadataX509 = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/service_accounts/v1/metadata/x509/{robotEmail}',
@@ -181,13 +180,13 @@ function Oauth2(options) {
    * @alias oauth2.tokeninfo
    * @memberOf! oauth2(v1)
    *
-   * @param  {object=} params - Parameters for request
-   * @param  {string=} params.access_token - The oauth2 access token
-   * @param  {string=} params.id_token - The ID token
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object=} params Parameters for request
+   * @param {string=} params.access_token The oauth2 access token
+   * @param {string=} params.id_token The ID token
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.tokeninfo = function(params, callback) {
+  this.tokeninfo = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
@@ -202,7 +201,7 @@ function Oauth2(options) {
     return createAPIRequest(parameters, callback);
   };
 
-  this.userinfo = {
+  self.userinfo = {
 
     /**
      * oauth2.userinfo.get
@@ -212,11 +211,11 @@ function Oauth2(options) {
      * @alias oauth2.userinfo.get
      * @memberOf! oauth2(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/oauth2/v1/userinfo',
@@ -243,11 +242,11 @@ function Oauth2(options) {
          * @alias oauth2.userinfo.v2.me.get
          * @memberOf! oauth2(v1)
          *
-         * @param  {object=} params - Parameters for request
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object=} params Parameters for request
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/userinfo/v2/me',

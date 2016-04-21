@@ -23,19 +23,18 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Compute Engine API
  *
- * @classdesc API for the Google Compute Engine service.
+ * @classdesc Creates and runs virtual machines on Google Cloud Platform.
  * @namespace compute
- * @version  beta
+ * @version beta
  * @variation beta
  * @this Compute
  * @param {object=} options Options for Compute
  */
-function Compute(options) {
-
+function Compute(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.addresses = {
+  self.addresses = {
 
     /**
      * compute.addresses.aggregatedList
@@ -45,16 +44,16 @@ function Compute(options) {
      * @alias compute.addresses.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/addresses',
@@ -77,14 +76,14 @@ function Compute(options) {
      * @alias compute.addresses.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.address - Name of the address resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.address Name of the address resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses/{address}',
@@ -107,14 +106,14 @@ function Compute(options) {
      * @alias compute.addresses.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.address - Name of the address resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.address Name of the address resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses/{address}',
@@ -137,14 +136,14 @@ function Compute(options) {
      * @alias compute.addresses.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses',
@@ -167,17 +166,17 @@ function Compute(options) {
      * @alias compute.addresses.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses',
@@ -200,15 +199,15 @@ function Compute(options) {
      * @alias compute.addresses.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses/{resource}/testIamPermissions',
@@ -225,7 +224,7 @@ function Compute(options) {
 
   };
 
-  this.autoscalers = {
+  self.autoscalers = {
 
     /**
      * compute.autoscalers.aggregatedList
@@ -235,16 +234,16 @@ function Compute(options) {
      * @alias compute.autoscalers.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/autoscalers',
@@ -267,14 +266,14 @@ function Compute(options) {
      * @alias compute.autoscalers.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the autoscaler to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the autoscaler to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -297,14 +296,14 @@ function Compute(options) {
      * @alias compute.autoscalers.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the autoscaler to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the autoscaler to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -327,14 +326,14 @@ function Compute(options) {
      * @alias compute.autoscalers.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
@@ -357,17 +356,17 @@ function Compute(options) {
      * @alias compute.autoscalers.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
@@ -390,15 +389,15 @@ function Compute(options) {
      * @alias compute.autoscalers.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the autoscaler to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the autoscaler to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
@@ -421,15 +420,15 @@ function Compute(options) {
      * @alias compute.autoscalers.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions',
@@ -452,15 +451,15 @@ function Compute(options) {
      * @alias compute.autoscalers.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.autoscaler - Name of the autoscaler to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.autoscaler Name of the autoscaler to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
@@ -477,7 +476,7 @@ function Compute(options) {
 
   };
 
-  this.backendServices = {
+  self.backendServices = {
 
     /**
      * compute.backendServices.delete
@@ -487,13 +486,13 @@ function Compute(options) {
      * @alias compute.backendServices.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.backendService - Name of the BackendService resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
@@ -516,13 +515,13 @@ function Compute(options) {
      * @alias compute.backendServices.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.backendService - Name of the BackendService resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
@@ -545,14 +544,14 @@ function Compute(options) {
      * @alias compute.backendServices.getHealth
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.backendService - Name of the BackendService resource to which the queried instance belongs.
-     * @param  {string} params.project - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
+     * @param {string} params.project 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function(params, callback) {
+    getHealth: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}/getHealth',
@@ -575,13 +574,13 @@ function Compute(options) {
      * @alias compute.backendServices.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices',
@@ -604,16 +603,16 @@ function Compute(options) {
      * @alias compute.backendServices.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices',
@@ -636,14 +635,14 @@ function Compute(options) {
      * @alias compute.backendServices.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.backendService - Name of the BackendService resource to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
@@ -666,14 +665,14 @@ function Compute(options) {
      * @alias compute.backendServices.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{resource}/testIamPermissions',
@@ -696,14 +695,14 @@ function Compute(options) {
      * @alias compute.backendServices.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.backendService - Name of the BackendService resource to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
@@ -720,7 +719,7 @@ function Compute(options) {
 
   };
 
-  this.diskTypes = {
+  self.diskTypes = {
 
     /**
      * compute.diskTypes.aggregatedList
@@ -730,16 +729,16 @@ function Compute(options) {
      * @alias compute.diskTypes.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/diskTypes',
@@ -762,14 +761,14 @@ function Compute(options) {
      * @alias compute.diskTypes.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.diskType - Name of the disk type to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.diskType Name of the disk type to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/diskTypes/{diskType}',
@@ -792,17 +791,17 @@ function Compute(options) {
      * @alias compute.diskTypes.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/diskTypes',
@@ -819,7 +818,7 @@ function Compute(options) {
 
   };
 
-  this.disks = {
+  self.disks = {
 
     /**
      * compute.disks.aggregatedList
@@ -829,16 +828,16 @@ function Compute(options) {
      * @alias compute.disks.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/disks',
@@ -861,15 +860,15 @@ function Compute(options) {
      * @alias compute.disks.createSnapshot
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - Name of the persistent disk to snapshot.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.disk Name of the persistent disk to snapshot.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createSnapshot: function(params, callback) {
+    createSnapshot: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
@@ -892,14 +891,14 @@ function Compute(options) {
      * @alias compute.disks.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - Name of the persistent disk to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.disk Name of the persistent disk to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}',
@@ -922,14 +921,14 @@ function Compute(options) {
      * @alias compute.disks.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - Name of the persistent disk to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.disk Name of the persistent disk to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}',
@@ -952,15 +951,15 @@ function Compute(options) {
      * @alias compute.disks.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string=} params.sourceImage - Optional. Source image to restore onto a disk.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks',
@@ -983,17 +982,17 @@ function Compute(options) {
      * @alias compute.disks.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks',
@@ -1016,15 +1015,15 @@ function Compute(options) {
      * @alias compute.disks.resize
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.disk - The name of the persistent disk.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The name of the persistent disk.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function(params, callback) {
+    resize: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}/resize',
@@ -1042,20 +1041,20 @@ function Compute(options) {
     /**
      * compute.disks.setLabels
      *
-     * @desc Sets the labels on the target disk.
+     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.disks.setLabels
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function(params, callback) {
+    setLabels: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{resource}/setLabels',
@@ -1078,15 +1077,15 @@ function Compute(options) {
      * @alias compute.disks.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions',
@@ -1103,7 +1102,7 @@ function Compute(options) {
 
   };
 
-  this.firewalls = {
+  self.firewalls = {
 
     /**
      * compute.firewalls.delete
@@ -1113,13 +1112,13 @@ function Compute(options) {
      * @alias compute.firewalls.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.firewall - Name of the firewall rule to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.firewall Name of the firewall rule to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
@@ -1142,13 +1141,13 @@ function Compute(options) {
      * @alias compute.firewalls.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.firewall - Name of the firewall rule to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.firewall Name of the firewall rule to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
@@ -1171,13 +1170,13 @@ function Compute(options) {
      * @alias compute.firewalls.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls',
@@ -1200,16 +1199,16 @@ function Compute(options) {
      * @alias compute.firewalls.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls',
@@ -1232,14 +1231,14 @@ function Compute(options) {
      * @alias compute.firewalls.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.firewall - Name of the firewall rule to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.firewall Name of the firewall rule to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
@@ -1262,14 +1261,14 @@ function Compute(options) {
      * @alias compute.firewalls.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{resource}/testIamPermissions',
@@ -1292,14 +1291,14 @@ function Compute(options) {
      * @alias compute.firewalls.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.firewall - Name of the firewall rule to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.firewall Name of the firewall rule to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
@@ -1316,7 +1315,7 @@ function Compute(options) {
 
   };
 
-  this.forwardingRules = {
+  self.forwardingRules = {
 
     /**
      * compute.forwardingRules.aggregatedList
@@ -1326,16 +1325,16 @@ function Compute(options) {
      * @alias compute.forwardingRules.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/forwardingRules',
@@ -1358,14 +1357,14 @@ function Compute(options) {
      * @alias compute.forwardingRules.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
@@ -1388,14 +1387,14 @@ function Compute(options) {
      * @alias compute.forwardingRules.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
@@ -1418,14 +1417,14 @@ function Compute(options) {
      * @alias compute.forwardingRules.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules',
@@ -1448,17 +1447,17 @@ function Compute(options) {
      * @alias compute.forwardingRules.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules',
@@ -1481,15 +1480,15 @@ function Compute(options) {
      * @alias compute.forwardingRules.setTarget
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.forwardingRule - Name of the ForwardingRule resource in which target is to be set.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTarget: function(params, callback) {
+    setTarget: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
@@ -1512,15 +1511,15 @@ function Compute(options) {
      * @alias compute.forwardingRules.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{resource}/testIamPermissions',
@@ -1537,7 +1536,7 @@ function Compute(options) {
 
   };
 
-  this.globalAddresses = {
+  self.globalAddresses = {
 
     /**
      * compute.globalAddresses.delete
@@ -1547,13 +1546,13 @@ function Compute(options) {
      * @alias compute.globalAddresses.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.address - Name of the address resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.address Name of the address resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses/{address}',
@@ -1576,13 +1575,13 @@ function Compute(options) {
      * @alias compute.globalAddresses.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.address - Name of the address resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.address Name of the address resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses/{address}',
@@ -1605,13 +1604,13 @@ function Compute(options) {
      * @alias compute.globalAddresses.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses',
@@ -1634,16 +1633,16 @@ function Compute(options) {
      * @alias compute.globalAddresses.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses',
@@ -1666,14 +1665,14 @@ function Compute(options) {
      * @alias compute.globalAddresses.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses/{resource}/testIamPermissions',
@@ -1690,7 +1689,7 @@ function Compute(options) {
 
   };
 
-  this.globalForwardingRules = {
+  self.globalForwardingRules = {
 
     /**
      * compute.globalForwardingRules.delete
@@ -1700,13 +1699,13 @@ function Compute(options) {
      * @alias compute.globalForwardingRules.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}',
@@ -1729,13 +1728,13 @@ function Compute(options) {
      * @alias compute.globalForwardingRules.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.forwardingRule - Name of the ForwardingRule resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}',
@@ -1758,13 +1757,13 @@ function Compute(options) {
      * @alias compute.globalForwardingRules.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules',
@@ -1787,16 +1786,16 @@ function Compute(options) {
      * @alias compute.globalForwardingRules.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules',
@@ -1819,14 +1818,14 @@ function Compute(options) {
      * @alias compute.globalForwardingRules.setTarget
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.forwardingRule - Name of the ForwardingRule resource in which target is to be set.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTarget: function(params, callback) {
+    setTarget: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
@@ -1849,14 +1848,14 @@ function Compute(options) {
      * @alias compute.globalForwardingRules.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{resource}/testIamPermissions',
@@ -1873,7 +1872,7 @@ function Compute(options) {
 
   };
 
-  this.globalOperations = {
+  self.globalOperations = {
 
     /**
      * compute.globalOperations.aggregatedList
@@ -1883,16 +1882,16 @@ function Compute(options) {
      * @alias compute.globalOperations.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/operations',
@@ -1915,13 +1914,13 @@ function Compute(options) {
      * @alias compute.globalOperations.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the Operations resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/operations/{operation}',
@@ -1944,13 +1943,13 @@ function Compute(options) {
      * @alias compute.globalOperations.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the Operations resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/operations/{operation}',
@@ -1973,16 +1972,16 @@ function Compute(options) {
      * @alias compute.globalOperations.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/operations',
@@ -1999,7 +1998,7 @@ function Compute(options) {
 
   };
 
-  this.httpHealthChecks = {
+  self.httpHealthChecks = {
 
     /**
      * compute.httpHealthChecks.delete
@@ -2009,13 +2008,13 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
@@ -2038,13 +2037,13 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
@@ -2067,13 +2066,13 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks',
@@ -2096,16 +2095,16 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks',
@@ -2128,14 +2127,14 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
@@ -2158,14 +2157,14 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions',
@@ -2188,14 +2187,14 @@ function Compute(options) {
      * @alias compute.httpHealthChecks.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpHealthCheck - Name of the HttpHealthCheck resource to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
@@ -2212,7 +2211,7 @@ function Compute(options) {
 
   };
 
-  this.httpsHealthChecks = {
+  self.httpsHealthChecks = {
 
     /**
      * compute.httpsHealthChecks.delete
@@ -2222,13 +2221,13 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
@@ -2251,13 +2250,13 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
@@ -2280,13 +2279,13 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks',
@@ -2309,16 +2308,16 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks',
@@ -2341,14 +2340,14 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
@@ -2371,14 +2370,14 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions',
@@ -2401,14 +2400,14 @@ function Compute(options) {
      * @alias compute.httpsHealthChecks.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.httpsHealthCheck - Name of the HttpsHealthCheck resource to update.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
@@ -2425,7 +2424,7 @@ function Compute(options) {
 
   };
 
-  this.images = {
+  self.images = {
 
     /**
      * compute.images.delete
@@ -2435,13 +2434,13 @@ function Compute(options) {
      * @alias compute.images.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.image - Name of the image resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.image Name of the image resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{image}',
@@ -2464,14 +2463,14 @@ function Compute(options) {
      * @alias compute.images.deprecate
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.image - Image name.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.image Image name.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deprecate: function(params, callback) {
+    deprecate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{image}/deprecate',
@@ -2494,13 +2493,13 @@ function Compute(options) {
      * @alias compute.images.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.image - Name of the image resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.image Name of the image resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{image}',
@@ -2523,13 +2522,13 @@ function Compute(options) {
      * @alias compute.images.getFromFamily
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.family - Name of the image resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.family Name of the image resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFromFamily: function(params, callback) {
+    getFromFamily: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/family/{family}',
@@ -2552,13 +2551,13 @@ function Compute(options) {
      * @alias compute.images.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images',
@@ -2581,16 +2580,16 @@ function Compute(options) {
      * @alias compute.images.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images',
@@ -2608,19 +2607,19 @@ function Compute(options) {
     /**
      * compute.images.setLabels
      *
-     * @desc Sets the labels on the target image.
+     * @desc Sets the labels on an image. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.images.setLabels
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function(params, callback) {
+    setLabels: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{resource}/setLabels',
@@ -2643,14 +2642,14 @@ function Compute(options) {
      * @alias compute.images.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{resource}/testIamPermissions',
@@ -2667,7 +2666,7 @@ function Compute(options) {
 
   };
 
-  this.instanceGroupManagers = {
+  self.instanceGroupManagers = {
 
     /**
      * compute.instanceGroupManagers.abandonInstances
@@ -2677,15 +2676,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.abandonInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances: function(params, callback) {
+    abandonInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
@@ -2708,16 +2707,16 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/instanceGroupManagers',
@@ -2740,14 +2739,14 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
@@ -2770,15 +2769,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.deleteInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances: function(params, callback) {
+    deleteInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
@@ -2801,14 +2800,14 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
@@ -2831,14 +2830,14 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where you want to create the managed instance group.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where you want to create the managed instance group.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers',
@@ -2861,17 +2860,17 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers',
@@ -2894,14 +2893,14 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.listManagedInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listManagedInstances: function(params, callback) {
+    listManagedInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
@@ -2924,15 +2923,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.recreateInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances: function(params, callback) {
+    recreateInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
@@ -2955,15 +2954,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.resize
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {integer} params.size - The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {integer} params.size The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function(params, callback) {
+    resize: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
@@ -2986,15 +2985,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.resizeAdvanced
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resizeAdvanced: function(params, callback) {
+    resizeAdvanced: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced',
@@ -3017,15 +3016,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.setAutoHealingPolicies
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the instance group manager.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAutoHealingPolicies: function(params, callback) {
+    setAutoHealingPolicies: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
@@ -3048,15 +3047,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.setInstanceTemplate
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate: function(params, callback) {
+    setInstanceTemplate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
@@ -3079,15 +3078,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.setTargetPools
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroupManager - The name of the managed instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the managed instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools: function(params, callback) {
+    setTargetPools: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
@@ -3110,15 +3109,15 @@ function Compute(options) {
      * @alias compute.instanceGroupManagers.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{resource}/testIamPermissions',
@@ -3135,7 +3134,7 @@ function Compute(options) {
 
   };
 
-  this.instanceGroups = {
+  self.instanceGroups = {
 
     /**
      * compute.instanceGroups.addInstances
@@ -3145,15 +3144,15 @@ function Compute(options) {
      * @alias compute.instanceGroups.addInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroup - The name of the instance group where you are adding instances.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup The name of the instance group where you are adding instances.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstances: function(params, callback) {
+    addInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances',
@@ -3176,16 +3175,16 @@ function Compute(options) {
      * @alias compute.instanceGroups.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/instanceGroups',
@@ -3208,14 +3207,14 @@ function Compute(options) {
      * @alias compute.instanceGroups.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroup - The name of the instance group to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup The name of the instance group to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
@@ -3238,14 +3237,14 @@ function Compute(options) {
      * @alias compute.instanceGroups.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroup - The name of the instance group.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup The name of the instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
@@ -3268,14 +3267,14 @@ function Compute(options) {
      * @alias compute.instanceGroups.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where you want to create the instance group.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where you want to create the instance group.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups',
@@ -3298,17 +3297,17 @@ function Compute(options) {
      * @alias compute.instanceGroups.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups',
@@ -3331,19 +3330,19 @@ function Compute(options) {
      * @alias compute.instanceGroups.listInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {string} params.instanceGroup - The name of the instance group from which you want to generate a list of included instances.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {string} params.instanceGroup The name of the instance group from which you want to generate a list of included instances.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstances: function(params, callback) {
+    listInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances',
@@ -3366,15 +3365,15 @@ function Compute(options) {
      * @alias compute.instanceGroups.removeInstances
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroup - The name of the instance group where the specified instances will be removed.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup The name of the instance group where the specified instances will be removed.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeInstances: function(params, callback) {
+    removeInstances: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances',
@@ -3397,15 +3396,15 @@ function Compute(options) {
      * @alias compute.instanceGroups.setNamedPorts
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceGroup - The name of the instance group where the named ports are updated.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone where the instance group is located.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup The name of the instance group where the named ports are updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setNamedPorts: function(params, callback) {
+    setNamedPorts: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
@@ -3428,15 +3427,15 @@ function Compute(options) {
      * @alias compute.instanceGroups.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{resource}/testIamPermissions',
@@ -3453,7 +3452,7 @@ function Compute(options) {
 
   };
 
-  this.instanceTemplates = {
+  self.instanceTemplates = {
 
     /**
      * compute.instanceTemplates.delete
@@ -3463,13 +3462,13 @@ function Compute(options) {
      * @alias compute.instanceTemplates.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceTemplate - The name of the instance template to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceTemplate The name of the instance template to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates/{instanceTemplate}',
@@ -3492,13 +3491,13 @@ function Compute(options) {
      * @alias compute.instanceTemplates.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instanceTemplate - The name of the instance template.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceTemplate The name of the instance template.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates/{instanceTemplate}',
@@ -3521,13 +3520,13 @@ function Compute(options) {
      * @alias compute.instanceTemplates.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates',
@@ -3550,16 +3549,16 @@ function Compute(options) {
      * @alias compute.instanceTemplates.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates',
@@ -3582,14 +3581,14 @@ function Compute(options) {
      * @alias compute.instanceTemplates.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions',
@@ -3606,7 +3605,7 @@ function Compute(options) {
 
   };
 
-  this.instances = {
+  self.instances = {
 
     /**
      * compute.instances.addAccessConfig
@@ -3616,16 +3615,16 @@ function Compute(options) {
      * @alias compute.instances.addAccessConfig
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - The instance name for this request.
-     * @param  {string} params.networkInterface - The name of the network interface to add to this instance.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.networkInterface The name of the network interface to add to this instance.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addAccessConfig: function(params, callback) {
+    addAccessConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
@@ -3648,16 +3647,16 @@ function Compute(options) {
      * @alias compute.instances.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/instances',
@@ -3680,15 +3679,15 @@ function Compute(options) {
      * @alias compute.instances.attachDisk
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - The instance name for this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    attachDisk: function(params, callback) {
+    attachDisk: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
@@ -3711,14 +3710,14 @@ function Compute(options) {
      * @alias compute.instances.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}',
@@ -3741,16 +3740,16 @@ function Compute(options) {
      * @alias compute.instances.deleteAccessConfig
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accessConfig - The name of the access config to delete.
-     * @param  {string} params.instance - The instance name for this request.
-     * @param  {string} params.networkInterface - The name of the network interface.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accessConfig The name of the access config to delete.
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.networkInterface The name of the network interface.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteAccessConfig: function(params, callback) {
+    deleteAccessConfig: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
@@ -3773,15 +3772,15 @@ function Compute(options) {
      * @alias compute.instances.detachDisk
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.deviceName - Disk device name to detach.
-     * @param  {string} params.instance - Instance name.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceName Disk device name to detach.
+     * @param {string} params.instance Instance name.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    detachDisk: function(params, callback) {
+    detachDisk: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
@@ -3804,14 +3803,14 @@ function Compute(options) {
      * @alias compute.instances.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}',
@@ -3834,16 +3833,16 @@ function Compute(options) {
      * @alias compute.instances.getSerialPortOutput
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {integer=} params.port - Specifies which COM or serial port to retrieve data from.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string=} params.start - For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value that was returned in the previous call.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {integer=} params.port Specifies which COM or serial port to retrieve data from.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.start For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value that was returned in the previous call.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSerialPortOutput: function(params, callback) {
+    getSerialPortOutput: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
@@ -3866,14 +3865,14 @@ function Compute(options) {
      * @alias compute.instances.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances',
@@ -3896,17 +3895,17 @@ function Compute(options) {
      * @alias compute.instances.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances',
@@ -3929,14 +3928,14 @@ function Compute(options) {
      * @alias compute.instances.reset
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/reset',
@@ -3959,16 +3958,16 @@ function Compute(options) {
      * @alias compute.instances.setDiskAutoDelete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean} params.autoDelete - Whether to auto-delete the disk when the instance is deleted.
-     * @param  {string} params.deviceName - The device name of the disk to modify.
-     * @param  {string} params.instance - The instance name.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean} params.autoDelete Whether to auto-delete the disk when the instance is deleted.
+     * @param {string} params.deviceName The device name of the disk to modify.
+     * @param {string} params.instance The instance name.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setDiskAutoDelete: function(params, callback) {
+    setDiskAutoDelete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
@@ -3986,20 +3985,20 @@ function Compute(options) {
     /**
      * compute.instances.setLabels
      *
-     * @desc Sets labels for the specified instance to the data included in the request.
+     * @desc Sets labels on an instance. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.instances.setLabels
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function(params, callback) {
+    setLabels: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setLabels',
@@ -4022,15 +4021,15 @@ function Compute(options) {
      * @alias compute.instances.setMachineType
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setMachineType: function(params, callback) {
+    setMachineType: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineType',
@@ -4053,15 +4052,15 @@ function Compute(options) {
      * @alias compute.instances.setMetadata
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setMetadata: function(params, callback) {
+    setMetadata: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
@@ -4084,15 +4083,15 @@ function Compute(options) {
      * @alias compute.instances.setScheduling
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Instance name.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Instance name.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setScheduling: function(params, callback) {
+    setScheduling: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
@@ -4115,15 +4114,15 @@ function Compute(options) {
      * @alias compute.instances.setTags
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance scoping this request.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTags: function(params, callback) {
+    setTags: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setTags',
@@ -4146,17 +4145,48 @@ function Compute(options) {
      * @alias compute.instances.start
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance resource to start.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to start.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start: function(params, callback) {
+    start: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/start',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.startWithEncryptionKey
+     *
+     * @desc Starts an instance that was stopped using the using the instances().stop method. For more information, see Restart an instance.
+     *
+     * @alias compute.instances.startWithEncryptionKey
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to start.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startWithEncryptionKey: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
           method: 'POST'
         },
         params: params,
@@ -4176,14 +4206,14 @@ function Compute(options) {
      * @alias compute.instances.stop
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.instance - Name of the instance resource to stop.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to stop.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, callback) {
+    stop: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/stop',
@@ -4206,15 +4236,15 @@ function Compute(options) {
      * @alias compute.instances.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions',
@@ -4231,7 +4261,7 @@ function Compute(options) {
 
   };
 
-  this.licenses = {
+  self.licenses = {
 
     /**
      * compute.licenses.get
@@ -4241,13 +4271,13 @@ function Compute(options) {
      * @alias compute.licenses.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.license - Name of the License resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.license Name of the License resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/licenses/{license}',
@@ -4264,7 +4294,7 @@ function Compute(options) {
 
   };
 
-  this.machineTypes = {
+  self.machineTypes = {
 
     /**
      * compute.machineTypes.aggregatedList
@@ -4274,16 +4304,16 @@ function Compute(options) {
      * @alias compute.machineTypes.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/machineTypes',
@@ -4306,14 +4336,14 @@ function Compute(options) {
      * @alias compute.machineTypes.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.machineType - Name of the machine type to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.machineType Name of the machine type to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/machineTypes/{machineType}',
@@ -4336,17 +4366,17 @@ function Compute(options) {
      * @alias compute.machineTypes.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/machineTypes',
@@ -4363,7 +4393,7 @@ function Compute(options) {
 
   };
 
-  this.networks = {
+  self.networks = {
 
     /**
      * compute.networks.delete
@@ -4373,13 +4403,13 @@ function Compute(options) {
      * @alias compute.networks.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.network - Name of the network to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}',
@@ -4402,13 +4432,13 @@ function Compute(options) {
      * @alias compute.networks.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.network - Name of the network to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}',
@@ -4431,13 +4461,13 @@ function Compute(options) {
      * @alias compute.networks.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks',
@@ -4460,16 +4490,16 @@ function Compute(options) {
      * @alias compute.networks.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks',
@@ -4492,14 +4522,14 @@ function Compute(options) {
      * @alias compute.networks.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{resource}/testIamPermissions',
@@ -4516,7 +4546,7 @@ function Compute(options) {
 
   };
 
-  this.projects = {
+  self.projects = {
 
     /**
      * compute.projects.get
@@ -4526,12 +4556,12 @@ function Compute(options) {
      * @alias compute.projects.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}',
@@ -4554,13 +4584,13 @@ function Compute(options) {
      * @alias compute.projects.setCommonInstanceMetadata
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setCommonInstanceMetadata: function(params, callback) {
+    setCommonInstanceMetadata: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/setCommonInstanceMetadata',
@@ -4583,13 +4613,13 @@ function Compute(options) {
      * @alias compute.projects.setUsageExportBucket
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUsageExportBucket: function(params, callback) {
+    setUsageExportBucket: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/setUsageExportBucket',
@@ -4606,7 +4636,7 @@ function Compute(options) {
 
   };
 
-  this.regionOperations = {
+  self.regionOperations = {
 
     /**
      * compute.regionOperations.delete
@@ -4616,14 +4646,14 @@ function Compute(options) {
      * @alias compute.regionOperations.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the Operations resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/operations/{operation}',
@@ -4646,14 +4676,14 @@ function Compute(options) {
      * @alias compute.regionOperations.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the Operations resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/operations/{operation}',
@@ -4676,17 +4706,17 @@ function Compute(options) {
      * @alias compute.regionOperations.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/operations',
@@ -4703,7 +4733,7 @@ function Compute(options) {
 
   };
 
-  this.regions = {
+  self.regions = {
 
     /**
      * compute.regions.get
@@ -4713,13 +4743,13 @@ function Compute(options) {
      * @alias compute.regions.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}',
@@ -4742,16 +4772,16 @@ function Compute(options) {
      * @alias compute.regions.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions',
@@ -4768,7 +4798,7 @@ function Compute(options) {
 
   };
 
-  this.routers = {
+  self.routers = {
 
     /**
      * compute.routers.aggregatedList
@@ -4778,16 +4808,16 @@ function Compute(options) {
      * @alias compute.routers.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/routers',
@@ -4810,14 +4840,14 @@ function Compute(options) {
      * @alias compute.routers.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.router - Name of the Router resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
@@ -4840,14 +4870,14 @@ function Compute(options) {
      * @alias compute.routers.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.router - Name of the Router resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
@@ -4870,14 +4900,14 @@ function Compute(options) {
      * @alias compute.routers.getRouterStatus
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.router - Name of the Router resource to query.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRouterStatus: function(params, callback) {
+    getRouterStatus: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
@@ -4900,14 +4930,14 @@ function Compute(options) {
      * @alias compute.routers.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers',
@@ -4930,17 +4960,17 @@ function Compute(options) {
      * @alias compute.routers.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers',
@@ -4963,15 +4993,15 @@ function Compute(options) {
      * @alias compute.routers.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.router - Name of the Router resource to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
@@ -4994,15 +5024,15 @@ function Compute(options) {
      * @alias compute.routers.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{resource}/testIamPermissions',
@@ -5025,15 +5055,15 @@ function Compute(options) {
      * @alias compute.routers.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.router - Name of the Router resource to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
@@ -5050,7 +5080,7 @@ function Compute(options) {
 
   };
 
-  this.routes = {
+  self.routes = {
 
     /**
      * compute.routes.delete
@@ -5060,13 +5090,13 @@ function Compute(options) {
      * @alias compute.routes.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.route - Name of the Route resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.route Name of the Route resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes/{route}',
@@ -5089,13 +5119,13 @@ function Compute(options) {
      * @alias compute.routes.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.route - Name of the Route resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.route Name of the Route resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes/{route}',
@@ -5118,13 +5148,13 @@ function Compute(options) {
      * @alias compute.routes.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes',
@@ -5147,16 +5177,16 @@ function Compute(options) {
      * @alias compute.routes.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes',
@@ -5179,14 +5209,14 @@ function Compute(options) {
      * @alias compute.routes.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes/{resource}/testIamPermissions',
@@ -5203,7 +5233,7 @@ function Compute(options) {
 
   };
 
-  this.snapshots = {
+  self.snapshots = {
 
     /**
      * compute.snapshots.delete
@@ -5213,13 +5243,13 @@ function Compute(options) {
      * @alias compute.snapshots.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.snapshot - Name of the Snapshot resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.snapshot Name of the Snapshot resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{snapshot}',
@@ -5242,13 +5272,13 @@ function Compute(options) {
      * @alias compute.snapshots.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.snapshot - Name of the Snapshot resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.snapshot Name of the Snapshot resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{snapshot}',
@@ -5271,16 +5301,16 @@ function Compute(options) {
      * @alias compute.snapshots.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots',
@@ -5298,19 +5328,19 @@ function Compute(options) {
     /**
      * compute.snapshots.setLabels
      *
-     * @desc Sets the labels on the target snapshot.
+     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.snapshots.setLabels
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function(params, callback) {
+    setLabels: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{resource}/setLabels',
@@ -5333,14 +5363,14 @@ function Compute(options) {
      * @alias compute.snapshots.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{resource}/testIamPermissions',
@@ -5357,7 +5387,7 @@ function Compute(options) {
 
   };
 
-  this.sslCertificates = {
+  self.sslCertificates = {
 
     /**
      * compute.sslCertificates.delete
@@ -5367,13 +5397,13 @@ function Compute(options) {
      * @alias compute.sslCertificates.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.sslCertificate - Name of the SslCertificate resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates/{sslCertificate}',
@@ -5396,13 +5426,13 @@ function Compute(options) {
      * @alias compute.sslCertificates.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.sslCertificate - Name of the SslCertificate resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates/{sslCertificate}',
@@ -5425,13 +5455,13 @@ function Compute(options) {
      * @alias compute.sslCertificates.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates',
@@ -5454,16 +5484,16 @@ function Compute(options) {
      * @alias compute.sslCertificates.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates',
@@ -5486,14 +5516,14 @@ function Compute(options) {
      * @alias compute.sslCertificates.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates/{resource}/testIamPermissions',
@@ -5510,7 +5540,7 @@ function Compute(options) {
 
   };
 
-  this.subnetworks = {
+  self.subnetworks = {
 
     /**
      * compute.subnetworks.aggregatedList
@@ -5520,16 +5550,16 @@ function Compute(options) {
      * @alias compute.subnetworks.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/subnetworks',
@@ -5552,14 +5582,14 @@ function Compute(options) {
      * @alias compute.subnetworks.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.subnetwork - Name of the Subnetwork resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
@@ -5577,19 +5607,19 @@ function Compute(options) {
     /**
      * compute.subnetworks.get
      *
-     * @desc Returns the specified subnetwork. Get a list of available subnetworks by making a list() request.
+     * @desc Returns the specified subnetwork. Get a list of available subnetworks list() request.
      *
      * @alias compute.subnetworks.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.subnetwork - Name of the Subnetwork resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
@@ -5612,14 +5642,14 @@ function Compute(options) {
      * @alias compute.subnetworks.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks',
@@ -5642,17 +5672,17 @@ function Compute(options) {
      * @alias compute.subnetworks.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks',
@@ -5675,15 +5705,15 @@ function Compute(options) {
      * @alias compute.subnetworks.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
@@ -5700,7 +5730,7 @@ function Compute(options) {
 
   };
 
-  this.targetHttpProxies = {
+  self.targetHttpProxies = {
 
     /**
      * compute.targetHttpProxies.delete
@@ -5710,13 +5740,13 @@ function Compute(options) {
      * @alias compute.targetHttpProxies.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
@@ -5739,13 +5769,13 @@ function Compute(options) {
      * @alias compute.targetHttpProxies.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
@@ -5768,13 +5798,13 @@ function Compute(options) {
      * @alias compute.targetHttpProxies.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies',
@@ -5797,16 +5827,16 @@ function Compute(options) {
      * @alias compute.targetHttpProxies.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies',
@@ -5829,14 +5859,14 @@ function Compute(options) {
      * @alias compute.targetHttpProxies.setUrlMap
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpProxy - Name of the TargetHttpProxy to set a URL map for.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUrlMap: function(params, callback) {
+    setUrlMap: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
@@ -5859,14 +5889,14 @@ function Compute(options) {
      * @alias compute.targetHttpProxies.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies/{resource}/testIamPermissions',
@@ -5883,7 +5913,7 @@ function Compute(options) {
 
   };
 
-  this.targetHttpsProxies = {
+  self.targetHttpsProxies = {
 
     /**
      * compute.targetHttpsProxies.delete
@@ -5893,13 +5923,13 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
@@ -5922,13 +5952,13 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
@@ -5951,13 +5981,13 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies',
@@ -5980,16 +6010,16 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies',
@@ -6012,14 +6042,14 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.setSslCertificates
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setSslCertificates: function(params, callback) {
+    setSslCertificates: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
@@ -6042,14 +6072,14 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.setUrlMap
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetHttpsProxy - Name of the TargetHttpsProxy resource whose URL map is to be set.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUrlMap: function(params, callback) {
+    setUrlMap: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
@@ -6072,14 +6102,14 @@ function Compute(options) {
      * @alias compute.targetHttpsProxies.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies/{resource}/testIamPermissions',
@@ -6096,7 +6126,7 @@ function Compute(options) {
 
   };
 
-  this.targetInstances = {
+  self.targetInstances = {
 
     /**
      * compute.targetInstances.aggregatedList
@@ -6106,16 +6136,16 @@ function Compute(options) {
      * @alias compute.targetInstances.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/targetInstances',
@@ -6138,14 +6168,14 @@ function Compute(options) {
      * @alias compute.targetInstances.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetInstance - Name of the TargetInstance resource to delete.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetInstance Name of the TargetInstance resource to delete.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
@@ -6168,14 +6198,14 @@ function Compute(options) {
      * @alias compute.targetInstances.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.targetInstance - Name of the TargetInstance resource to return.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetInstance Name of the TargetInstance resource to return.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
@@ -6198,14 +6228,14 @@ function Compute(options) {
      * @alias compute.targetInstances.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances',
@@ -6228,17 +6258,17 @@ function Compute(options) {
      * @alias compute.targetInstances.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances',
@@ -6261,15 +6291,15 @@ function Compute(options) {
      * @alias compute.targetInstances.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {string} params.zone - The name of the zone for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances/{resource}/testIamPermissions',
@@ -6286,7 +6316,7 @@ function Compute(options) {
 
   };
 
-  this.targetPools = {
+  self.targetPools = {
 
     /**
      * compute.targetPools.addHealthCheck
@@ -6296,15 +6326,15 @@ function Compute(options) {
      * @alias compute.targetPools.addHealthCheck
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the target pool to add a health check to.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the target pool to add a health check to.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addHealthCheck: function(params, callback) {
+    addHealthCheck: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
@@ -6327,15 +6357,15 @@ function Compute(options) {
      * @alias compute.targetPools.addInstance
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the TargetPool resource to add instances to.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the TargetPool resource to add instances to.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstance: function(params, callback) {
+    addInstance: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
@@ -6358,16 +6388,16 @@ function Compute(options) {
      * @alias compute.targetPools.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/targetPools',
@@ -6390,14 +6420,14 @@ function Compute(options) {
      * @alias compute.targetPools.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the TargetPool resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the TargetPool resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}',
@@ -6420,14 +6450,14 @@ function Compute(options) {
      * @alias compute.targetPools.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the TargetPool resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the TargetPool resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}',
@@ -6450,15 +6480,15 @@ function Compute(options) {
      * @alias compute.targetPools.getHealth
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the TargetPool resource to which the queried instance belongs.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the TargetPool resource to which the queried instance belongs.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function(params, callback) {
+    getHealth: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
@@ -6481,14 +6511,14 @@ function Compute(options) {
      * @alias compute.targetPools.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools',
@@ -6511,17 +6541,17 @@ function Compute(options) {
      * @alias compute.targetPools.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools',
@@ -6544,15 +6574,15 @@ function Compute(options) {
      * @alias compute.targetPools.removeHealthCheck
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.targetPool - Name of the target pool to remove health checks from.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.targetPool Name of the target pool to remove health checks from.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeHealthCheck: function(params, callback) {
+    removeHealthCheck: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
@@ -6575,15 +6605,15 @@ function Compute(options) {
      * @alias compute.targetPools.removeInstance
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the TargetPool resource to remove instances from.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the TargetPool resource to remove instances from.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeInstance: function(params, callback) {
+    removeInstance: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
@@ -6606,16 +6636,16 @@ function Compute(options) {
      * @alias compute.targetPools.setBackup
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {number=} params.failoverRatio - New failoverRatio value for the target pool.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region scoping this request.
-     * @param  {string} params.targetPool - Name of the TargetPool resource to set a backup pool for.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {number=} params.failoverRatio New failoverRatio value for the target pool.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetPool Name of the TargetPool resource to set a backup pool for.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setBackup: function(params, callback) {
+    setBackup: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
@@ -6638,15 +6668,15 @@ function Compute(options) {
      * @alias compute.targetPools.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{resource}/testIamPermissions',
@@ -6663,7 +6693,7 @@ function Compute(options) {
 
   };
 
-  this.targetVpnGateways = {
+  self.targetVpnGateways = {
 
     /**
      * compute.targetVpnGateways.aggregatedList
@@ -6673,16 +6703,16 @@ function Compute(options) {
      * @alias compute.targetVpnGateways.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/targetVpnGateways',
@@ -6705,14 +6735,14 @@ function Compute(options) {
      * @alias compute.targetVpnGateways.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.targetVpnGateway - Name of the target VPN gateway to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.targetVpnGateway Name of the target VPN gateway to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
@@ -6735,14 +6765,14 @@ function Compute(options) {
      * @alias compute.targetVpnGateways.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.targetVpnGateway - Name of the target VPN gateway to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.targetVpnGateway Name of the target VPN gateway to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
@@ -6765,14 +6795,14 @@ function Compute(options) {
      * @alias compute.targetVpnGateways.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways',
@@ -6795,17 +6825,17 @@ function Compute(options) {
      * @alias compute.targetVpnGateways.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways',
@@ -6828,15 +6858,15 @@ function Compute(options) {
      * @alias compute.targetVpnGateways.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{resource}/testIamPermissions',
@@ -6853,7 +6883,7 @@ function Compute(options) {
 
   };
 
-  this.urlMaps = {
+  self.urlMaps = {
 
     /**
      * compute.urlMaps.delete
@@ -6863,13 +6893,13 @@ function Compute(options) {
      * @alias compute.urlMaps.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.urlMap - Name of the UrlMap resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
@@ -6892,13 +6922,13 @@ function Compute(options) {
      * @alias compute.urlMaps.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.urlMap - Name of the UrlMap resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
@@ -6921,13 +6951,13 @@ function Compute(options) {
      * @alias compute.urlMaps.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps',
@@ -6950,14 +6980,14 @@ function Compute(options) {
      * @alias compute.urlMaps.invalidateCache
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.urlMap - Name of the UrlMap scoping this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    invalidateCache: function(params, callback) {
+    invalidateCache: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
@@ -6980,16 +7010,16 @@ function Compute(options) {
      * @alias compute.urlMaps.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps',
@@ -7012,14 +7042,14 @@ function Compute(options) {
      * @alias compute.urlMaps.patch
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.urlMap - Name of the UrlMap resource to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
@@ -7042,14 +7072,14 @@ function Compute(options) {
      * @alias compute.urlMaps.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{resource}/testIamPermissions',
@@ -7072,14 +7102,14 @@ function Compute(options) {
      * @alias compute.urlMaps.update
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.urlMap - Name of the UrlMap resource to update.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
@@ -7102,14 +7132,14 @@ function Compute(options) {
      * @alias compute.urlMaps.validate
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.urlMap - Name of the UrlMap resource to be validated as.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    validate: function(params, callback) {
+    validate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}/validate',
@@ -7126,7 +7156,7 @@ function Compute(options) {
 
   };
 
-  this.vpnTunnels = {
+  self.vpnTunnels = {
 
     /**
      * compute.vpnTunnels.aggregatedList
@@ -7136,16 +7166,16 @@ function Compute(options) {
      * @alias compute.vpnTunnels.aggregatedList
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function(params, callback) {
+    aggregatedList: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/vpnTunnels',
@@ -7168,14 +7198,14 @@ function Compute(options) {
      * @alias compute.vpnTunnels.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.vpnTunnel - Name of the VpnTunnel resource to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.vpnTunnel Name of the VpnTunnel resource to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
@@ -7198,14 +7228,14 @@ function Compute(options) {
      * @alias compute.vpnTunnels.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {string} params.vpnTunnel - Name of the VpnTunnel resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.vpnTunnel Name of the VpnTunnel resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
@@ -7228,14 +7258,14 @@ function Compute(options) {
      * @alias compute.vpnTunnels.insert
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels',
@@ -7258,17 +7288,17 @@ function Compute(options) {
      * @alias compute.vpnTunnels.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - Name of the region for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels',
@@ -7291,15 +7321,15 @@ function Compute(options) {
      * @alias compute.vpnTunnels.testIamPermissions
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.region - The name of the region for this request.
-     * @param  {string} params.resource_ - Name of the resource for this request.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{resource}/testIamPermissions',
@@ -7316,7 +7346,7 @@ function Compute(options) {
 
   };
 
-  this.zoneOperations = {
+  self.zoneOperations = {
 
     /**
      * compute.zoneOperations.delete
@@ -7326,14 +7356,14 @@ function Compute(options) {
      * @alias compute.zoneOperations.delete
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the Operations resource to delete.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/operations/{operation}',
@@ -7356,14 +7386,14 @@ function Compute(options) {
      * @alias compute.zoneOperations.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the Operations resource to return.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/operations/{operation}',
@@ -7386,17 +7416,17 @@ function Compute(options) {
      * @alias compute.zoneOperations.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone for request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/operations',
@@ -7413,7 +7443,7 @@ function Compute(options) {
 
   };
 
-  this.zones = {
+  self.zones = {
 
     /**
      * compute.zones.get
@@ -7423,13 +7453,13 @@ function Compute(options) {
      * @alias compute.zones.get
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {string} params.zone - Name of the zone resource to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone resource to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}',
@@ -7452,16 +7482,16 @@ function Compute(options) {
      * @alias compute.zones.list
      * @memberOf! compute(beta)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param  {integer=} params.maxResults - The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param  {string=} params.orderBy - Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param  {string=} params.pageToken - Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param  {string} params.project - Project ID for this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones',

@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Updates groups of Compute Engine instances.
  * @namespace replicapoolupdater
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Replicapoolupdater
  * @param {object=} options Options for Replicapoolupdater
  */
-function Replicapoolupdater(options) {
-
+function Replicapoolupdater(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.rollingUpdates = {
+  self.rollingUpdates = {
 
     /**
      * replicapoolupdater.rollingUpdates.cancel
@@ -45,14 +44,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.cancel
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.rollingUpdate - The name of the update.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.rollingUpdate The name of the update.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/cancel',
@@ -75,14 +74,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.get
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.rollingUpdate - The name of the update.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.rollingUpdate The name of the update.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}',
@@ -105,14 +104,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.insert
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates',
@@ -135,16 +134,16 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.list
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates',
@@ -167,17 +166,17 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.listInstanceUpdates
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.rollingUpdate - The name of the update.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.rollingUpdate The name of the update.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstanceUpdates: function(params, callback) {
+    listInstanceUpdates: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/instanceUpdates',
@@ -200,14 +199,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.pause
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.rollingUpdate - The name of the update.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.rollingUpdate The name of the update.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pause: function(params, callback) {
+    pause: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/pause',
@@ -230,14 +229,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.resume
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.rollingUpdate - The name of the update.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.rollingUpdate The name of the update.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume: function(params, callback) {
+    resume: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/resume',
@@ -260,14 +259,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.rollingUpdates.rollback
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The Google Developers Console project name.
-     * @param  {string} params.rollingUpdate - The name of the update.
-     * @param  {string} params.zone - The name of the zone in which the update's target resides.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.rollingUpdate The name of the update.
+     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback: function(params, callback) {
+    rollback: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/rollback',
@@ -284,7 +283,7 @@ function Replicapoolupdater(options) {
 
   };
 
-  this.zoneOperations = {
+  self.zoneOperations = {
 
     /**
      * replicapoolupdater.zoneOperations.get
@@ -294,14 +293,14 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.zoneOperations.get
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the operation resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the operation resource to return.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/operations/{operation}',
@@ -324,16 +323,16 @@ function Replicapoolupdater(options) {
      * @alias replicapoolupdater.zoneOperations.list
      * @memberOf! replicapoolupdater(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/operations',

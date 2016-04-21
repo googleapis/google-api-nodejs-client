@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Accesses AdSense publishers&#39; inventory and generates performance reports.
  * @namespace adsense
- * @version  v1.4
+ * @version v1.4
  * @variation v1.4
  * @this Adsense
  * @param {object=} options Options for Adsense
  */
-function Adsense(options) {
-
+function Adsense(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     /**
      * adsense.accounts.get
@@ -45,13 +44,13 @@ function Adsense(options) {
      * @alias adsense.accounts.get
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - Account to get information about.
-     * @param  {boolean=} params.tree - Whether the tree of sub accounts should be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Account to get information about.
+     * @param {boolean=} params.tree Whether the tree of sub accounts should be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}',
@@ -74,13 +73,13 @@ function Adsense(options) {
      * @alias adsense.accounts.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of accounts to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/accounts',
@@ -105,14 +104,14 @@ function Adsense(options) {
        * @alias adsense.accounts.adclients.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account for which to list ad clients.
-       * @param  {integer=} params.maxResults - The maximum number of ad clients to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account for which to list ad clients.
+       * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients',
@@ -138,14 +137,14 @@ function Adsense(options) {
        * @alias adsense.accounts.adunits.get
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account to which the ad client belongs.
-       * @param  {string} params.adClientId - Ad client for which to get the ad unit.
-       * @param  {string} params.adUnitId - Ad unit to retrieve.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account to which the ad client belongs.
+       * @param {string} params.adClientId Ad client for which to get the ad unit.
+       * @param {string} params.adUnitId Ad unit to retrieve.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
@@ -168,14 +167,14 @@ function Adsense(options) {
        * @alias adsense.accounts.adunits.getAdCode
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account which contains the ad client.
-       * @param  {string} params.adClientId - Ad client with contains the ad unit.
-       * @param  {string} params.adUnitId - Ad unit to get the code for.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account which contains the ad client.
+       * @param {string} params.adClientId Ad client with contains the ad unit.
+       * @param {string} params.adUnitId Ad unit to get the code for.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getAdCode: function(params, callback) {
+      getAdCode: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
@@ -198,16 +197,16 @@ function Adsense(options) {
        * @alias adsense.accounts.adunits.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account to which the ad client belongs.
-       * @param  {string} params.adClientId - Ad client for which to list ad units.
-       * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
-       * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account to which the ad client belongs.
+       * @param {string} params.adClientId Ad client for which to list ad units.
+       * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+       * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits',
@@ -232,16 +231,16 @@ function Adsense(options) {
          * @alias adsense.accounts.adunits.customchannels.list
          * @memberOf! adsense(v1.4)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - Account to which the ad client belongs.
-         * @param  {string} params.adClientId - Ad client which contains the ad unit.
-         * @param  {string} params.adUnitId - Ad unit for which to list custom channels.
-         * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
-         * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Account to which the ad client belongs.
+         * @param {string} params.adClientId Ad client which contains the ad unit.
+         * @param {string} params.adUnitId Ad unit for which to list custom channels.
+         * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+         * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
@@ -268,13 +267,13 @@ function Adsense(options) {
        * @alias adsense.accounts.alerts.delete
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account which contains the ad unit.
-       * @param  {string} params.alertId - Alert to delete.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account which contains the ad unit.
+       * @param {string} params.alertId Alert to delete.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/alerts/{alertId}',
@@ -297,13 +296,13 @@ function Adsense(options) {
        * @alias adsense.accounts.alerts.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account for which to retrieve the alerts.
-       * @param  {string=} params.locale - The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account for which to retrieve the alerts.
+       * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/alerts',
@@ -329,14 +328,14 @@ function Adsense(options) {
        * @alias adsense.accounts.customchannels.get
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account to which the ad client belongs.
-       * @param  {string} params.adClientId - Ad client which contains the custom channel.
-       * @param  {string} params.customChannelId - Custom channel to retrieve.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account to which the ad client belongs.
+       * @param {string} params.adClientId Ad client which contains the custom channel.
+       * @param {string} params.customChannelId Custom channel to retrieve.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}',
@@ -359,15 +358,15 @@ function Adsense(options) {
        * @alias adsense.accounts.customchannels.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account to which the ad client belongs.
-       * @param  {string} params.adClientId - Ad client for which to list custom channels.
-       * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account to which the ad client belongs.
+       * @param {string} params.adClientId Ad client for which to list custom channels.
+       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels',
@@ -392,17 +391,17 @@ function Adsense(options) {
          * @alias adsense.accounts.customchannels.adunits.list
          * @memberOf! adsense(v1.4)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - Account to which the ad client belongs.
-         * @param  {string} params.adClientId - Ad client which contains the custom channel.
-         * @param  {string} params.customChannelId - Custom channel for which to list ad units.
-         * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
-         * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
-         * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Account to which the ad client belongs.
+         * @param {string} params.adClientId Ad client which contains the custom channel.
+         * @param {string} params.customChannelId Custom channel for which to list ad units.
+         * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+         * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+         * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
@@ -429,12 +428,12 @@ function Adsense(options) {
        * @alias adsense.accounts.payments.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account for which to retrieve the payments.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account for which to retrieve the payments.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/payments',
@@ -460,23 +459,23 @@ function Adsense(options) {
        * @alias adsense.accounts.reports.generate
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account upon which to report.
-       * @param  {string=} params.currency - Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
-       * @param  {string=} params.dimension - Dimensions to base the report on.
-       * @param  {string} params.endDate - End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-       * @param  {string=} params.filter - Filters to be run on the report.
-       * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-       * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
-       * @param  {string=} params.metric - Numeric columns to include in the report.
-       * @param  {string=} params.sort - The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-       * @param  {string} params.startDate - Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-       * @param  {integer=} params.startIndex - Index of the first row of report data to return.
-       * @param  {boolean=} params.useTimezoneReporting - Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account upon which to report.
+       * @param {string=} params.currency Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+       * @param {string=} params.dimension Dimensions to base the report on.
+       * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+       * @param {string=} params.filter Filters to be run on the report.
+       * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+       * @param {integer=} params.maxResults The maximum number of rows of report data to return.
+       * @param {string=} params.metric Numeric columns to include in the report.
+       * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+       * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+       * @param {integer=} params.startIndex Index of the first row of report data to return.
+       * @param {boolean=} params.useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function(params, callback) {
+      generate: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports',
@@ -501,16 +500,16 @@ function Adsense(options) {
          * @alias adsense.accounts.reports.saved.generate
          * @memberOf! adsense(v1.4)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - Account to which the saved reports belong.
-         * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-         * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
-         * @param  {string} params.savedReportId - The saved report to retrieve.
-         * @param  {integer=} params.startIndex - Index of the first row of report data to return.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Account to which the saved reports belong.
+         * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+         * @param {integer=} params.maxResults The maximum number of rows of report data to return.
+         * @param {string} params.savedReportId The saved report to retrieve.
+         * @param {integer=} params.startIndex Index of the first row of report data to return.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        generate: function(params, callback) {
+        generate: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports/{savedReportId}',
@@ -533,14 +532,14 @@ function Adsense(options) {
          * @alias adsense.accounts.reports.saved.list
          * @memberOf! adsense(v1.4)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.accountId - Account to which the saved reports belong.
-         * @param  {integer=} params.maxResults - The maximum number of saved reports to include in the response, used for paging.
-         * @param  {string=} params.pageToken - A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Account to which the saved reports belong.
+         * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+         * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports/saved',
@@ -567,13 +566,13 @@ function Adsense(options) {
        * @alias adsense.accounts.savedadstyles.get
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account for which to get the saved ad style.
-       * @param  {string} params.savedAdStyleId - Saved ad style to retrieve.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account for which to get the saved ad style.
+       * @param {string} params.savedAdStyleId Saved ad style to retrieve.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/savedadstyles/{savedAdStyleId}',
@@ -596,14 +595,14 @@ function Adsense(options) {
        * @alias adsense.accounts.savedadstyles.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account for which to list saved ad styles.
-       * @param  {integer=} params.maxResults - The maximum number of saved ad styles to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account for which to list saved ad styles.
+       * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/savedadstyles',
@@ -629,15 +628,15 @@ function Adsense(options) {
        * @alias adsense.accounts.urlchannels.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account to which the ad client belongs.
-       * @param  {string} params.adClientId - Ad client for which to list URL channels.
-       * @param  {integer=} params.maxResults - The maximum number of URL channels to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account to which the ad client belongs.
+       * @param {string} params.adClientId Ad client for which to list URL channels.
+       * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/urlchannels',
@@ -654,7 +653,7 @@ function Adsense(options) {
     }
   };
 
-  this.adclients = {
+  self.adclients = {
 
     /**
      * adsense.adclients.list
@@ -664,13 +663,13 @@ function Adsense(options) {
      * @alias adsense.adclients.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of ad clients to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients',
@@ -687,7 +686,7 @@ function Adsense(options) {
 
   };
 
-  this.adunits = {
+  self.adunits = {
 
     /**
      * adsense.adunits.get
@@ -697,13 +696,13 @@ function Adsense(options) {
      * @alias adsense.adunits.get
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to get the ad unit.
-     * @param  {string} params.adUnitId - Ad unit to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to get the ad unit.
+     * @param {string} params.adUnitId Ad unit to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}',
@@ -726,13 +725,13 @@ function Adsense(options) {
      * @alias adsense.adunits.getAdCode
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client with contains the ad unit.
-     * @param  {string} params.adUnitId - Ad unit to get the code for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client with contains the ad unit.
+     * @param {string} params.adUnitId Ad unit to get the code for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAdCode: function(params, callback) {
+    getAdCode: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/adcode',
@@ -755,15 +754,15 @@ function Adsense(options) {
      * @alias adsense.adunits.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to list ad units.
-     * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
-     * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to list ad units.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits',
@@ -788,15 +787,15 @@ function Adsense(options) {
        * @alias adsense.adunits.customchannels.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.adClientId - Ad client which contains the ad unit.
-       * @param  {string} params.adUnitId - Ad unit for which to list custom channels.
-       * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.adClientId Ad client which contains the ad unit.
+       * @param {string} params.adUnitId Ad unit for which to list custom channels.
+       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
@@ -813,7 +812,7 @@ function Adsense(options) {
     }
   };
 
-  this.alerts = {
+  self.alerts = {
 
     /**
      * adsense.alerts.delete
@@ -823,12 +822,12 @@ function Adsense(options) {
      * @alias adsense.alerts.delete
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.alertId - Alert to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.alertId Alert to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/alerts/{alertId}',
@@ -851,12 +850,12 @@ function Adsense(options) {
      * @alias adsense.alerts.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.locale - The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/alerts',
@@ -873,7 +872,7 @@ function Adsense(options) {
 
   };
 
-  this.customchannels = {
+  self.customchannels = {
 
     /**
      * adsense.customchannels.get
@@ -883,13 +882,13 @@ function Adsense(options) {
      * @alias adsense.customchannels.get
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client which contains the custom channel.
-     * @param  {string} params.customChannelId - Custom channel to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client which contains the custom channel.
+     * @param {string} params.customChannelId Custom channel to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}',
@@ -912,14 +911,14 @@ function Adsense(options) {
      * @alias adsense.customchannels.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to list custom channels.
-     * @param  {integer=} params.maxResults - The maximum number of custom channels to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels',
@@ -944,16 +943,16 @@ function Adsense(options) {
        * @alias adsense.customchannels.adunits.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.adClientId - Ad client which contains the custom channel.
-       * @param  {string} params.customChannelId - Custom channel for which to list ad units.
-       * @param  {boolean=} params.includeInactive - Whether to include inactive ad units. Default: true.
-       * @param  {integer=} params.maxResults - The maximum number of ad units to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.adClientId Ad client which contains the custom channel.
+       * @param {string} params.customChannelId Custom channel for which to list ad units.
+       * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+       * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
@@ -970,7 +969,7 @@ function Adsense(options) {
     }
   };
 
-  this.metadata = {
+  self.metadata = {
 
     dimensions: {
 
@@ -982,11 +981,11 @@ function Adsense(options) {
        * @alias adsense.metadata.dimensions.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/metadata/dimensions',
@@ -1012,11 +1011,11 @@ function Adsense(options) {
        * @alias adsense.metadata.metrics.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/metadata/metrics',
@@ -1033,7 +1032,7 @@ function Adsense(options) {
     }
   };
 
-  this.payments = {
+  self.payments = {
 
     /**
      * adsense.payments.list
@@ -1043,11 +1042,11 @@ function Adsense(options) {
      * @alias adsense.payments.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/payments',
@@ -1064,7 +1063,7 @@ function Adsense(options) {
 
   };
 
-  this.reports = {
+  self.reports = {
 
     /**
      * adsense.reports.generate
@@ -1074,23 +1073,23 @@ function Adsense(options) {
      * @alias adsense.reports.generate
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.accountId - Accounts upon which to report.
-     * @param  {string=} params.currency - Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
-     * @param  {string=} params.dimension - Dimensions to base the report on.
-     * @param  {string} params.endDate - End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param  {string=} params.filter - Filters to be run on the report.
-     * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
-     * @param  {string=} params.metric - Numeric columns to include in the report.
-     * @param  {string=} params.sort - The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     * @param  {string} params.startDate - Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param  {integer=} params.startIndex - Index of the first row of report data to return.
-     * @param  {boolean=} params.useTimezoneReporting - Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.accountId Accounts upon which to report.
+     * @param {string=} params.currency Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     * @param {string=} params.dimension Dimensions to base the report on.
+     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {string=} params.filter Filters to be run on the report.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
+     * @param {string=} params.metric Numeric columns to include in the report.
+     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {boolean=} params.useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, callback) {
+    generate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/reports',
@@ -1115,15 +1114,15 @@ function Adsense(options) {
        * @alias adsense.reports.saved.generate
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.locale - Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-       * @param  {integer=} params.maxResults - The maximum number of rows of report data to return.
-       * @param  {string} params.savedReportId - The saved report to retrieve.
-       * @param  {integer=} params.startIndex - Index of the first row of report data to return.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+       * @param {integer=} params.maxResults The maximum number of rows of report data to return.
+       * @param {string} params.savedReportId The saved report to retrieve.
+       * @param {integer=} params.startIndex Index of the first row of report data to return.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function(params, callback) {
+      generate: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/reports/{savedReportId}',
@@ -1146,13 +1145,13 @@ function Adsense(options) {
        * @alias adsense.reports.saved.list
        * @memberOf! adsense(v1.4)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.maxResults - The maximum number of saved reports to include in the response, used for paging.
-       * @param  {string=} params.pageToken - A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/adsense/v1.4/reports/saved',
@@ -1169,7 +1168,7 @@ function Adsense(options) {
     }
   };
 
-  this.savedadstyles = {
+  self.savedadstyles = {
 
     /**
      * adsense.savedadstyles.get
@@ -1179,12 +1178,12 @@ function Adsense(options) {
      * @alias adsense.savedadstyles.get
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.savedAdStyleId - Saved ad style to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.savedAdStyleId Saved ad style to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/savedadstyles/{savedAdStyleId}',
@@ -1207,13 +1206,13 @@ function Adsense(options) {
      * @alias adsense.savedadstyles.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of saved ad styles to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/savedadstyles',
@@ -1230,7 +1229,7 @@ function Adsense(options) {
 
   };
 
-  this.urlchannels = {
+  self.urlchannels = {
 
     /**
      * adsense.urlchannels.list
@@ -1240,14 +1239,14 @@ function Adsense(options) {
      * @alias adsense.urlchannels.list
      * @memberOf! adsense(v1.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.adClientId - Ad client for which to list URL channels.
-     * @param  {integer=} params.maxResults - The maximum number of URL channels to include in the response, used for paging.
-     * @param  {string=} params.pageToken - A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.adClientId Ad client for which to list URL channels.
+     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/urlchannels',

@@ -13,12 +13,12 @@
 
 'use strict';
 
-function getDiscoveryUrl(name, version) {
+function getDiscoveryUrl (name, version) {
   return 'https://www.googleapis.com/discovery/v1/apis/' + name +
     '/' + version + '/rest';
 }
 
-function loadApi(google, name, version, options, cb) {
+function loadApi (google, name, version, options, cb) {
   if (typeof options === 'function') {
     cb = options;
     options = {};

@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for spectrum-management functions.
  * @namespace spectrum
- * @version  v1explorer
+ * @version v1explorer
  * @variation v1explorer
  * @this Spectrum
  * @param {object=} options Options for Spectrum
  */
-function Spectrum(options) {
-
+function Spectrum(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.paws = {
+  self.paws = {
 
     /**
      * spectrum.paws.getSpectrum
@@ -45,12 +44,12 @@ function Spectrum(options) {
      * @alias spectrum.paws.getSpectrum
      * @memberOf! spectrum(v1explorer)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSpectrum: function(params, callback) {
+    getSpectrum: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrum',
@@ -73,12 +72,12 @@ function Spectrum(options) {
      * @alias spectrum.paws.getSpectrumBatch
      * @memberOf! spectrum(v1explorer)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSpectrumBatch: function(params, callback) {
+    getSpectrumBatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrumBatch',
@@ -101,12 +100,12 @@ function Spectrum(options) {
      * @alias spectrum.paws.init
      * @memberOf! spectrum(v1explorer)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    init: function(params, callback) {
+    init: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/init',
@@ -129,12 +128,12 @@ function Spectrum(options) {
      * @alias spectrum.paws.notifySpectrumUse
      * @memberOf! spectrum(v1explorer)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    notifySpectrumUse: function(params, callback) {
+    notifySpectrumUse: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/notifySpectrumUse',
@@ -157,12 +156,12 @@ function Spectrum(options) {
      * @alias spectrum.paws.register
      * @memberOf! spectrum(v1explorer)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    register: function(params, callback) {
+    register: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/register',
@@ -185,12 +184,12 @@ function Spectrum(options) {
      * @alias spectrum.paws.verifyDevice
      * @memberOf! spectrum(v1explorer)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyDevice: function(params, callback) {
+    verifyDevice: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/verifyDevice',

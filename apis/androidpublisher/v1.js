@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets Android application developers access their Google Play accounts.
  * @namespace androidpublisher
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Androidpublisher
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options) {
-
+function Androidpublisher(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.purchases = {
+  self.purchases = {
 
     /**
      * androidpublisher.purchases.cancel
@@ -45,14 +44,14 @@ function Androidpublisher(options) {
      * @alias androidpublisher.purchases.cancel
      * @memberOf! androidpublisher(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-     * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel',
@@ -75,14 +74,14 @@ function Androidpublisher(options) {
      * @alias androidpublisher.purchases.get
      * @memberOf! androidpublisher(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-     * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}',

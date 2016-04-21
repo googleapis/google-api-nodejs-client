@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Manages product items, inventory, and Merchant Center accounts for Google Shopping.
  * @namespace content
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Content
  * @param {object=} options Options for Content
  */
-function Content(options) {
-
+function Content(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     /**
      * content.accounts.authinfo
@@ -45,11 +44,11 @@ function Content(options) {
      * @alias content.accounts.authinfo
      * @memberOf! content(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    authinfo: function(params, callback) {
+    authinfo: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/accounts/authinfo',
@@ -72,13 +71,13 @@ function Content(options) {
      * @alias content.accounts.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/accounts/batch',
@@ -101,14 +100,14 @@ function Content(options) {
      * @alias content.accounts.delete
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
@@ -131,13 +130,13 @@ function Content(options) {
      * @alias content.accounts.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
@@ -160,14 +159,14 @@ function Content(options) {
      * @alias content.accounts.insert
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
@@ -190,14 +189,14 @@ function Content(options) {
      * @alias content.accounts.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of accounts to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
@@ -220,15 +219,15 @@ function Content(options) {
      * @alias content.accounts.patch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
@@ -251,15 +250,15 @@ function Content(options) {
      * @alias content.accounts.update
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
@@ -276,7 +275,7 @@ function Content(options) {
 
   };
 
-  this.accountshipping = {
+  self.accountshipping = {
 
     /**
      * content.accountshipping.custombatch
@@ -286,13 +285,13 @@ function Content(options) {
      * @alias content.accountshipping.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/accountshipping/batch',
@@ -315,13 +314,13 @@ function Content(options) {
      * @alias content.accountshipping.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update account shipping settings.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
@@ -344,14 +343,14 @@ function Content(options) {
      * @alias content.accountshipping.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of shipping settings to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping',
@@ -374,15 +373,15 @@ function Content(options) {
      * @alias content.accountshipping.patch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update account shipping settings.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
@@ -405,15 +404,15 @@ function Content(options) {
      * @alias content.accountshipping.update
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account shipping settings.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update account shipping settings.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
@@ -430,7 +429,7 @@ function Content(options) {
 
   };
 
-  this.accountstatuses = {
+  self.accountstatuses = {
 
     /**
      * content.accountstatuses.custombatch
@@ -440,12 +439,12 @@ function Content(options) {
      * @alias content.accountstatuses.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/accountstatuses/batch',
@@ -468,13 +467,13 @@ function Content(options) {
      * @alias content.accountstatuses.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses/{accountId}',
@@ -497,14 +496,14 @@ function Content(options) {
      * @alias content.accountstatuses.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of account statuses to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of account statuses to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses',
@@ -521,7 +520,7 @@ function Content(options) {
 
   };
 
-  this.accounttax = {
+  self.accounttax = {
 
     /**
      * content.accounttax.custombatch
@@ -531,13 +530,13 @@ function Content(options) {
      * @alias content.accounttax.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/accounttax/batch',
@@ -560,13 +559,13 @@ function Content(options) {
      * @alias content.accounttax.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
@@ -589,14 +588,14 @@ function Content(options) {
      * @alias content.accounttax.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of tax settings to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of tax settings to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax',
@@ -619,15 +618,15 @@ function Content(options) {
      * @alias content.accounttax.patch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
@@ -650,15 +649,15 @@ function Content(options) {
      * @alias content.accounttax.update
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.accountId - The ID of the account for which to get/update account tax settings.
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
@@ -675,7 +674,7 @@ function Content(options) {
 
   };
 
-  this.datafeeds = {
+  self.datafeeds = {
 
     /**
      * content.datafeeds.custombatch
@@ -685,13 +684,13 @@ function Content(options) {
      * @alias content.datafeeds.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/datafeeds/batch',
@@ -714,14 +713,14 @@ function Content(options) {
      * @alias content.datafeeds.delete
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId - 
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datafeedId 
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
@@ -744,13 +743,13 @@ function Content(options) {
      * @alias content.datafeeds.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId - 
-     * @param  {string} params.merchantId - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datafeedId 
+     * @param {string} params.merchantId 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
@@ -773,14 +772,14 @@ function Content(options) {
      * @alias content.datafeeds.insert
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
@@ -803,14 +802,14 @@ function Content(options) {
      * @alias content.datafeeds.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
@@ -833,15 +832,15 @@ function Content(options) {
      * @alias content.datafeeds.patch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId - 
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datafeedId 
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
@@ -864,15 +863,15 @@ function Content(options) {
      * @alias content.datafeeds.update
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId - 
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - 
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datafeedId 
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
@@ -889,7 +888,7 @@ function Content(options) {
 
   };
 
-  this.datafeedstatuses = {
+  self.datafeedstatuses = {
 
     /**
      * content.datafeedstatuses.custombatch
@@ -899,12 +898,12 @@ function Content(options) {
      * @alias content.datafeedstatuses.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/datafeedstatuses/batch',
@@ -927,13 +926,13 @@ function Content(options) {
      * @alias content.datafeedstatuses.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datafeedId - 
-     * @param  {string} params.merchantId - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datafeedId 
+     * @param {string} params.merchantId 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses/{datafeedId}',
@@ -956,14 +955,14 @@ function Content(options) {
      * @alias content.datafeedstatuses.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses',
@@ -980,7 +979,7 @@ function Content(options) {
 
   };
 
-  this.inventory = {
+  self.inventory = {
 
     /**
      * content.inventory.custombatch
@@ -990,13 +989,13 @@ function Content(options) {
      * @alias content.inventory.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/inventory/batch',
@@ -1019,16 +1018,16 @@ function Content(options) {
      * @alias content.inventory.set
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.productId - The ID of the product for which to update price and availability.
-     * @param  {string} params.storeCode - The code of the store for which to update price and availability. Use online to update price and availability of an online product.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.productId The ID of the product for which to update price and availability.
+     * @param {string} params.storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set: function(params, callback) {
+    set: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/inventory/{storeCode}/products/{productId}',
@@ -1045,7 +1044,7 @@ function Content(options) {
 
   };
 
-  this.orders = {
+  self.orders = {
 
     /**
      * content.orders.acknowledge
@@ -1055,14 +1054,14 @@ function Content(options) {
      * @alias content.orders.acknowledge
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function(params, callback) {
+    acknowledge: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/acknowledge',
@@ -1085,13 +1084,13 @@ function Content(options) {
      * @alias content.orders.advancetestorder
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the test order to modify.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the test order to modify.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    advancetestorder: function(params, callback) {
+    advancetestorder: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders/{orderId}/advance',
@@ -1114,14 +1113,14 @@ function Content(options) {
      * @alias content.orders.cancel
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order to cancel.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order to cancel.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancel',
@@ -1144,14 +1143,14 @@ function Content(options) {
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancellineitem: function(params, callback) {
+    cancellineitem: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancelLineItem',
@@ -1174,13 +1173,13 @@ function Content(options) {
      * @alias content.orders.createtestorder
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createtestorder: function(params, callback) {
+    createtestorder: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders',
@@ -1203,12 +1202,12 @@ function Content(options) {
      * @alias content.orders.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/orders/batch',
@@ -1231,13 +1230,13 @@ function Content(options) {
      * @alias content.orders.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}',
@@ -1260,13 +1259,13 @@ function Content(options) {
      * @alias content.orders.getbymerchantorderid
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.merchantOrderId - The merchant order id to be looked for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantOrderId The merchant order id to be looked for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getbymerchantorderid: function(params, callback) {
+    getbymerchantorderid: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/ordersbymerchantid/{merchantOrderId}',
@@ -1289,13 +1288,13 @@ function Content(options) {
      * @alias content.orders.gettestordertemplate
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.templateName - The name of the template to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.templateName The name of the template to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    gettestordertemplate: function(params, callback) {
+    gettestordertemplate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testordertemplates/{templateName}',
@@ -1318,19 +1317,19 @@ function Content(options) {
      * @alias content.orders.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.acknowledged - Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
-     * @param  {integer=} params.maxResults - The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.orderBy - The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {string=} params.placedDateEnd - Obtains orders placed before this date (exclusively), in ISO 8601 format.
-     * @param  {string=} params.placedDateStart - Obtains orders placed after this date (inclusively), in ISO 8601 format.
-     * @param  {string=} params.statuses - Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
+     * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
+     * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
+     * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders',
@@ -1353,14 +1352,14 @@ function Content(options) {
      * @alias content.orders.refund
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order to refund.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order to refund.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    refund: function(params, callback) {
+    refund: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/refund',
@@ -1383,14 +1382,14 @@ function Content(options) {
      * @alias content.orders.returnlineitem
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    returnlineitem: function(params, callback) {
+    returnlineitem: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/returnLineItem',
@@ -1413,14 +1412,14 @@ function Content(options) {
      * @alias content.orders.shiplineitems
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    shiplineitems: function(params, callback) {
+    shiplineitems: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/shipLineItems',
@@ -1443,14 +1442,14 @@ function Content(options) {
      * @alias content.orders.updatemerchantorderid
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatemerchantorderid: function(params, callback) {
+    updatemerchantorderid: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateMerchantOrderId',
@@ -1473,14 +1472,14 @@ function Content(options) {
      * @alias content.orders.updateshipment
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateshipment: function(params, callback) {
+    updateshipment: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateShipment',
@@ -1497,7 +1496,7 @@ function Content(options) {
 
   };
 
-  this.products = {
+  self.products = {
 
     /**
      * content.products.custombatch
@@ -1507,13 +1506,13 @@ function Content(options) {
      * @alias content.products.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/products/batch',
@@ -1536,14 +1535,14 @@ function Content(options) {
      * @alias content.products.delete
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
@@ -1566,13 +1565,13 @@ function Content(options) {
      * @alias content.products.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
@@ -1595,14 +1594,14 @@ function Content(options) {
      * @alias content.products.insert
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.dryRun - Flag to run the request in dry-run mode.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
@@ -1625,15 +1624,15 @@ function Content(options) {
      * @alias content.products.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.includeInvalidInsertedItems - Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
-     * @param  {integer=} params.maxResults - The maximum number of products to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
+     * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
@@ -1650,7 +1649,7 @@ function Content(options) {
 
   };
 
-  this.productstatuses = {
+  self.productstatuses = {
 
     /**
      * content.productstatuses.custombatch
@@ -1660,12 +1659,12 @@ function Content(options) {
      * @alias content.productstatuses.custombatch
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/productstatuses/batch',
@@ -1688,13 +1687,13 @@ function Content(options) {
      * @alias content.productstatuses.get
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.productId - The ID of the product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses/{productId}',
@@ -1717,15 +1716,15 @@ function Content(options) {
      * @alias content.productstatuses.list
      * @memberOf! content(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.includeInvalidInsertedItems - Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
-     * @param  {integer=} params.maxResults - The maximum number of product statuses to return in the response, used for paging.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
+     * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses',

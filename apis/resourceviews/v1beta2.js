@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
  * @namespace resourceviews
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Resourceviews
  * @param {object=} options Options for Resourceviews
  */
-function Resourceviews(options) {
-
+function Resourceviews(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.zoneOperations = {
+  self.zoneOperations = {
 
     /**
      * resourceviews.zoneOperations.get
@@ -45,14 +44,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneOperations.get
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - Name of the operation resource to return.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the operation resource to return.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
@@ -75,16 +74,16 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneOperations.list
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - Optional. Filter expression for filtering listed resources.
-     * @param  {integer=} params.maxResults - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param  {string=} params.pageToken - Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param  {string} params.project - Name of the project scoping this request.
-     * @param  {string} params.zone - Name of the zone scoping this request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.zone Name of the zone scoping this request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations',
@@ -101,7 +100,7 @@ function Resourceviews(options) {
 
   };
 
-  this.zoneViews = {
+  self.zoneViews = {
 
     /**
      * resourceviews.zoneViews.addResources
@@ -111,15 +110,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.addResources
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addResources: function(params, callback) {
+    addResources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/addResources',
@@ -142,14 +141,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.delete
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
@@ -172,14 +171,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.get
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
@@ -202,15 +201,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.getService
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string=} params.resourceName - The name of the resource if user wants to get the service information of the resource.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string=} params.resourceName The name of the resource if user wants to get the service information of the resource.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getService: function(params, callback) {
+    getService: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/getService',
@@ -233,14 +232,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.insert
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
@@ -263,15 +262,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.list
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
@@ -294,19 +293,19 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.listResources
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.format - The requested format of the return value. It can be URL or URL_PORT. A JSON object will be included in the response based on the format. The default format is NONE, which results in no JSON in the response.
-     * @param  {string=} params.listState - The state of the instance to list. By default, it lists all instances.
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string=} params.serviceName - The service name to return in the response. It is optional and if it is not set, all the service end points will be returned.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.format The requested format of the return value. It can be URL or URL_PORT. A JSON object will be included in the response based on the format. The default format is NONE, which results in no JSON in the response.
+     * @param {string=} params.listState The state of the instance to list. By default, it lists all instances.
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string=} params.serviceName The service name to return in the response. It is optional and if it is not set, all the service end points will be returned.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listResources: function(params, callback) {
+    listResources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/resources',
@@ -329,15 +328,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.removeResources
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeResources: function(params, callback) {
+    removeResources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/removeResources',
@@ -360,15 +359,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.setService
      * @memberOf! resourceviews(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - The project name of the resource view.
-     * @param  {string} params.resourceView - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project name of the resource view.
+     * @param {string} params.resourceView The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setService: function(params, callback) {
+    setService: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/setService',

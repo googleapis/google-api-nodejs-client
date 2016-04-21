@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Licensing API to view and manage license for your domain.
  * @namespace licensing
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Licensing
  * @param {object=} options Options for Licensing
  */
-function Licensing(options) {
-
+function Licensing(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.licenseAssignments = {
+  self.licenseAssignments = {
 
     /**
      * licensing.licenseAssignments.delete
@@ -45,14 +44,14 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.delete
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.productId - Name for product
-     * @param  {string} params.skuId - Name for sku
-     * @param  {string} params.userId - email id or unique Id of the user
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.productId Name for product
+     * @param {string} params.skuId Name for sku
+     * @param {string} params.userId email id or unique Id of the user
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
@@ -75,14 +74,14 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.get
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.productId - Name for product
-     * @param  {string} params.skuId - Name for sku
-     * @param  {string} params.userId - email id or unique Id of the user
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.productId Name for product
+     * @param {string} params.skuId Name for sku
+     * @param {string} params.userId email id or unique Id of the user
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
@@ -105,14 +104,14 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.insert
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.productId - Name for product
-     * @param  {string} params.skuId - Name for sku
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.productId Name for product
+     * @param {string} params.skuId Name for sku
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user',
@@ -135,15 +134,15 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.listForProduct
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - CustomerId represents the customer for whom licenseassignments are queried
-     * @param  {integer=} params.maxResults - Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param  {string=} params.pageToken - Token to fetch the next page.Optional. By default server will return first page
-     * @param  {string} params.productId - Name for product
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
+     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
+     * @param {string} params.productId Name for product
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listForProduct: function(params, callback) {
+    listForProduct: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/users',
@@ -166,16 +165,16 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.listForProductAndSku
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.customerId - CustomerId represents the customer for whom licenseassignments are queried
-     * @param  {integer=} params.maxResults - Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param  {string=} params.pageToken - Token to fetch the next page.Optional. By default server will return first page
-     * @param  {string} params.productId - Name for product
-     * @param  {string} params.skuId - Name for sku
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
+     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
+     * @param {string} params.productId Name for product
+     * @param {string} params.skuId Name for sku
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listForProductAndSku: function(params, callback) {
+    listForProductAndSku: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/users',
@@ -198,15 +197,15 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.patch
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.productId - Name for product
-     * @param  {string} params.skuId - Name for sku for which license would be revoked
-     * @param  {string} params.userId - email id or unique Id of the user
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.productId Name for product
+     * @param {string} params.skuId Name for sku for which license would be revoked
+     * @param {string} params.userId email id or unique Id of the user
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
@@ -229,15 +228,15 @@ function Licensing(options) {
      * @alias licensing.licenseAssignments.update
      * @memberOf! licensing(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.productId - Name for product
-     * @param  {string} params.skuId - Name for sku for which license would be revoked
-     * @param  {string} params.userId - email id or unique Id of the user
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.productId Name for product
+     * @param {string} params.skuId Name for sku for which license would be revoked
+     * @param {string} params.userId email id or unique Id of the user
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',

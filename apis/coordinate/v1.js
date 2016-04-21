@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you view and manage jobs in a Coordinate team.
  * @namespace coordinate
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Coordinate
  * @param {object=} options Options for Coordinate
  */
-function Coordinate(options) {
-
+function Coordinate(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.customFieldDef = {
+  self.customFieldDef = {
 
     /**
      * coordinate.customFieldDef.list
@@ -45,12 +44,12 @@ function Coordinate(options) {
      * @alias coordinate.customFieldDef.list
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.teamId - Team ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.teamId Team ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/custom_fields',
@@ -67,7 +66,7 @@ function Coordinate(options) {
 
   };
 
-  this.jobs = {
+  self.jobs = {
 
     /**
      * coordinate.jobs.get
@@ -77,13 +76,13 @@ function Coordinate(options) {
      * @alias coordinate.jobs.get
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Job number
-     * @param  {string} params.teamId - Team ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId Job number
+     * @param {string} params.teamId Team ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}',
@@ -106,22 +105,22 @@ function Coordinate(options) {
      * @alias coordinate.jobs.insert
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.address - Job address as newline (Unix) separated string
-     * @param  {string=} params.assignee - Assignee email address, or empty string to unassign.
-     * @param  {string=} params.customField - Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
-     * @param  {string=} params.customerName - Customer name
-     * @param  {string=} params.customerPhoneNumber - Customer phone number
-     * @param  {number} params.lat - The latitude coordinate of this job's location.
-     * @param  {number} params.lng - The longitude coordinate of this job's location.
-     * @param  {string=} params.note - Job note as newline (Unix) separated string
-     * @param  {string} params.teamId - Team ID
-     * @param  {string} params.title - Job title
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.address Job address as newline (Unix) separated string
+     * @param {string=} params.assignee Assignee email address, or empty string to unassign.
+     * @param {string=} params.customField Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
+     * @param {string=} params.customerName Customer name
+     * @param {string=} params.customerPhoneNumber Customer phone number
+     * @param {number} params.lat The latitude coordinate of this job's location.
+     * @param {number} params.lng The longitude coordinate of this job's location.
+     * @param {string=} params.note Job note as newline (Unix) separated string
+     * @param {string} params.teamId Team ID
+     * @param {string} params.title Job title
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs',
@@ -144,16 +143,16 @@ function Coordinate(options) {
      * @alias coordinate.jobs.list
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return in one page.
-     * @param  {string=} params.minModifiedTimestampMs - Minimum time a job was modified in milliseconds since epoch.
-     * @param  {boolean=} params.omitJobChanges - Whether to omit detail job history information.
-     * @param  {string=} params.pageToken - Continuation token
-     * @param  {string} params.teamId - Team ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return in one page.
+     * @param {string=} params.minModifiedTimestampMs Minimum time a job was modified in milliseconds since epoch.
+     * @param {boolean=} params.omitJobChanges Whether to omit detail job history information.
+     * @param {string=} params.pageToken Continuation token
+     * @param {string} params.teamId Team ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs',
@@ -176,24 +175,24 @@ function Coordinate(options) {
      * @alias coordinate.jobs.patch
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.address - Job address as newline (Unix) separated string
-     * @param  {string=} params.assignee - Assignee email address, or empty string to unassign.
-     * @param  {string=} params.customField - Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
-     * @param  {string=} params.customerName - Customer name
-     * @param  {string=} params.customerPhoneNumber - Customer phone number
-     * @param  {string} params.jobId - Job number
-     * @param  {number=} params.lat - The latitude coordinate of this job's location.
-     * @param  {number=} params.lng - The longitude coordinate of this job's location.
-     * @param  {string=} params.note - Job note as newline (Unix) separated string
-     * @param  {string=} params.progress - Job progress
-     * @param  {string} params.teamId - Team ID
-     * @param  {string=} params.title - Job title
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.address Job address as newline (Unix) separated string
+     * @param {string=} params.assignee Assignee email address, or empty string to unassign.
+     * @param {string=} params.customField Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
+     * @param {string=} params.customerName Customer name
+     * @param {string=} params.customerPhoneNumber Customer phone number
+     * @param {string} params.jobId Job number
+     * @param {number=} params.lat The latitude coordinate of this job's location.
+     * @param {number=} params.lng The longitude coordinate of this job's location.
+     * @param {string=} params.note Job note as newline (Unix) separated string
+     * @param {string=} params.progress Job progress
+     * @param {string} params.teamId Team ID
+     * @param {string=} params.title Job title
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}',
@@ -216,24 +215,24 @@ function Coordinate(options) {
      * @alias coordinate.jobs.update
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.address - Job address as newline (Unix) separated string
-     * @param  {string=} params.assignee - Assignee email address, or empty string to unassign.
-     * @param  {string=} params.customField - Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
-     * @param  {string=} params.customerName - Customer name
-     * @param  {string=} params.customerPhoneNumber - Customer phone number
-     * @param  {string} params.jobId - Job number
-     * @param  {number=} params.lat - The latitude coordinate of this job's location.
-     * @param  {number=} params.lng - The longitude coordinate of this job's location.
-     * @param  {string=} params.note - Job note as newline (Unix) separated string
-     * @param  {string=} params.progress - Job progress
-     * @param  {string} params.teamId - Team ID
-     * @param  {string=} params.title - Job title
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.address Job address as newline (Unix) separated string
+     * @param {string=} params.assignee Assignee email address, or empty string to unassign.
+     * @param {string=} params.customField Sets the value of custom fields. To set a custom field, pass the field id (from /team/teamId/custom_fields), a URL escaped '=' character, and the desired value as a parameter. For example, customField=12%3DAlice. Repeat the parameter for each custom field. Note that '=' cannot appear in the parameter value. Specifying an invalid, or inactive enum field will result in an error 500.
+     * @param {string=} params.customerName Customer name
+     * @param {string=} params.customerPhoneNumber Customer phone number
+     * @param {string} params.jobId Job number
+     * @param {number=} params.lat The latitude coordinate of this job's location.
+     * @param {number=} params.lng The longitude coordinate of this job's location.
+     * @param {string=} params.note Job note as newline (Unix) separated string
+     * @param {string=} params.progress Job progress
+     * @param {string} params.teamId Team ID
+     * @param {string=} params.title Job title
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}',
@@ -250,7 +249,7 @@ function Coordinate(options) {
 
   };
 
-  this.location = {
+  self.location = {
 
     /**
      * coordinate.location.list
@@ -260,16 +259,16 @@ function Coordinate(options) {
      * @alias coordinate.location.list
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return in one page.
-     * @param  {string=} params.pageToken - Continuation token
-     * @param  {string} params.startTimestampMs - Start timestamp in milliseconds since the epoch.
-     * @param  {string} params.teamId - Team ID
-     * @param  {string} params.workerEmail - Worker email address.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return in one page.
+     * @param {string=} params.pageToken Continuation token
+     * @param {string} params.startTimestampMs Start timestamp in milliseconds since the epoch.
+     * @param {string} params.teamId Team ID
+     * @param {string} params.workerEmail Worker email address.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/workers/{workerEmail}/locations',
@@ -286,7 +285,7 @@ function Coordinate(options) {
 
   };
 
-  this.schedule = {
+  self.schedule = {
 
     /**
      * coordinate.schedule.get
@@ -296,13 +295,13 @@ function Coordinate(options) {
      * @alias coordinate.schedule.get
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.jobId - Job number
-     * @param  {string} params.teamId - Team ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId Job number
+     * @param {string} params.teamId Team ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule',
@@ -325,18 +324,18 @@ function Coordinate(options) {
      * @alias coordinate.schedule.patch
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.allDay - Whether the job is scheduled for the whole day. Time of day in start/end times is ignored if this is true.
-     * @param  {string=} params.duration - Job duration in milliseconds.
-     * @param  {string=} params.endTime - Scheduled end time in milliseconds since epoch.
-     * @param  {string} params.jobId - Job number
-     * @param  {string=} params.startTime - Scheduled start time in milliseconds since epoch.
-     * @param  {string} params.teamId - Team ID
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.allDay Whether the job is scheduled for the whole day. Time of day in start/end times is ignored if this is true.
+     * @param {string=} params.duration Job duration in milliseconds.
+     * @param {string=} params.endTime Scheduled end time in milliseconds since epoch.
+     * @param {string} params.jobId Job number
+     * @param {string=} params.startTime Scheduled start time in milliseconds since epoch.
+     * @param {string} params.teamId Team ID
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule',
@@ -359,18 +358,18 @@ function Coordinate(options) {
      * @alias coordinate.schedule.update
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.allDay - Whether the job is scheduled for the whole day. Time of day in start/end times is ignored if this is true.
-     * @param  {string=} params.duration - Job duration in milliseconds.
-     * @param  {string=} params.endTime - Scheduled end time in milliseconds since epoch.
-     * @param  {string} params.jobId - Job number
-     * @param  {string=} params.startTime - Scheduled start time in milliseconds since epoch.
-     * @param  {string} params.teamId - Team ID
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.allDay Whether the job is scheduled for the whole day. Time of day in start/end times is ignored if this is true.
+     * @param {string=} params.duration Job duration in milliseconds.
+     * @param {string=} params.endTime Scheduled end time in milliseconds since epoch.
+     * @param {string} params.jobId Job number
+     * @param {string=} params.startTime Scheduled start time in milliseconds since epoch.
+     * @param {string} params.teamId Team ID
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule',
@@ -387,7 +386,7 @@ function Coordinate(options) {
 
   };
 
-  this.team = {
+  self.team = {
 
     /**
      * coordinate.team.list
@@ -397,14 +396,14 @@ function Coordinate(options) {
      * @alias coordinate.team.list
      * @memberOf! coordinate(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {boolean=} params.admin - Whether to include teams for which the user has the Admin role.
-     * @param  {boolean=} params.dispatcher - Whether to include teams for which the user has the Dispatcher role.
-     * @param  {boolean=} params.worker - Whether to include teams for which the user has the Worker role.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {boolean=} params.admin Whether to include teams for which the user has the Admin role.
+     * @param {boolean=} params.dispatcher Whether to include teams for which the user has the Dispatcher role.
+     * @param {boolean=} params.worker Whether to include teams for which the user has the Worker role.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams',
@@ -421,7 +420,7 @@ function Coordinate(options) {
 
   };
 
-  this.worker = {
+  self.worker = {
 
     /**
      * coordinate.worker.list
@@ -431,12 +430,12 @@ function Coordinate(options) {
      * @alias coordinate.worker.list
      * @memberOf! coordinate(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.teamId - Team ID
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.teamId Team ID
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/coordinate/v1/teams/{teamId}/workers',

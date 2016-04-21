@@ -23,19 +23,18 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Ad Exchange Buyer API II
  *
- * @classdesc The Ad Exchange Buyer API II lets you access the latest features for managing Ad Exchange accounts and Real-Time Bidding configurations.
+ * @classdesc Accesses the latest features for managing Ad Exchange accounts and Real-Time Bidding configurations.
  * @namespace adexchangebuyer2
- * @version  v2beta1
+ * @version v2beta1
  * @variation v2beta1
  * @this Adexchangebuyer2
  * @param {object=} options Options for Adexchangebuyer2
  */
-function Adexchangebuyer2(options) {
-
+function Adexchangebuyer2(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.accounts = {
+  self.accounts = {
 
     clients: {
 
@@ -47,14 +46,14 @@ function Adexchangebuyer2(options) {
        * @alias adexchangebuyer2.accounts.clients.update
        * @memberOf! adexchangebuyer2(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.clientAccountId - Unique numerical account ID of the client to update. (required)
-       * @param  {string} params.accountId - Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.clientAccountId Unique numerical account ID of the client to update. (required)
+       * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}',
@@ -77,13 +76,13 @@ function Adexchangebuyer2(options) {
        * @alias adexchangebuyer2.accounts.clients.create
        * @memberOf! adexchangebuyer2(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
@@ -106,13 +105,13 @@ function Adexchangebuyer2(options) {
        * @alias adexchangebuyer2.accounts.clients.get
        * @memberOf! adexchangebuyer2(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.clientAccountId - Numerical account ID of the client buyer to retrieve. (required)
-       * @param  {string} params.accountId - Numerical account ID of the client's sponsor buyer. (required)
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.clientAccountId Numerical account ID of the client buyer to retrieve. (required)
+       * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}',
@@ -135,14 +134,14 @@ function Adexchangebuyer2(options) {
        * @alias adexchangebuyer2.accounts.clients.list
        * @memberOf! adexchangebuyer2(v2beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer=} params.pageSize - Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
-       * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the accounts.clients.list method.
-       * @param  {string} params.accountId - Unique numerical account ID of the sponsor buyer to list the clients for.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
+       * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the accounts.clients.list method.
+       * @param {string} params.accountId Unique numerical account ID of the sponsor buyer to list the clients for.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
@@ -167,15 +166,15 @@ function Adexchangebuyer2(options) {
          * @alias adexchangebuyer2.accounts.clients.users.update
          * @memberOf! adexchangebuyer2(v2beta1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.clientAccountId - Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
-         * @param  {string} params.userId - Numerical identifier of the user to retrieve. (required)
-         * @param  {string} params.accountId - Numerical account ID of the client's sponsor buyer. (required)
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
+         * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
@@ -198,14 +197,14 @@ function Adexchangebuyer2(options) {
          * @alias adexchangebuyer2.accounts.clients.users.get
          * @memberOf! adexchangebuyer2(v2beta1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.clientAccountId - Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
-         * @param  {string} params.userId - Numerical identifier of the user to retrieve. (required)
-         * @param  {string} params.accountId - Numerical account ID of the client's sponsor buyer. (required)
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
+         * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
@@ -228,15 +227,15 @@ function Adexchangebuyer2(options) {
          * @alias adexchangebuyer2.accounts.clients.users.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {integer=} params.pageSize - Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
-         * @param  {string} params.clientAccountId - The account ID of the client buyer to list users for. (required) You must specify either a string representation of a numerical account identifier or the `-` character to list all the client users for all the clients of a given sponsor buyer.
-         * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the accounts.clients.users.list method.
-         * @param  {string} params.accountId - Numerical account ID of the sponsor buyer of the client to list users for. (required)
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
+         * @param {string} params.clientAccountId The account ID of the client buyer to list users for. (required) You must specify either a string representation of a numerical account identifier or the `-` character to list all the client users for all the clients of a given sponsor buyer.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the accounts.clients.users.list method.
+         * @param {string} params.accountId Numerical account ID of the sponsor buyer of the client to list users for. (required)
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users',
@@ -262,14 +261,14 @@ function Adexchangebuyer2(options) {
          * @alias adexchangebuyer2.accounts.clients.invitations.get
          * @memberOf! adexchangebuyer2(v2beta1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.clientAccountId - Numerical account ID of the client buyer that the user invitation to be retrieved is associated with. (required)
-         * @param  {string} params.invitationId - Numerical identifier of the user invitation to retrieve. (required)
-         * @param  {string} params.accountId - Numerical account ID of the client's sponsor buyer. (required)
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user invitation to be retrieved is associated with. (required)
+         * @param {string} params.invitationId Numerical identifier of the user invitation to retrieve. (required)
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}',
@@ -292,14 +291,14 @@ function Adexchangebuyer2(options) {
          * @alias adexchangebuyer2.accounts.clients.invitations.create
          * @memberOf! adexchangebuyer2(v2beta1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.clientAccountId - Numerical account ID of the client buyer that the user should be associated with. (required)
-         * @param  {string} params.accountId - Numerical account ID of the client's sponsor buyer. (required)
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',
@@ -322,15 +321,15 @@ function Adexchangebuyer2(options) {
          * @alias adexchangebuyer2.accounts.clients.invitations.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {integer=} params.pageSize - Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
-         * @param  {string} params.clientAccountId - Numerical account ID of the client buyer to list invitations for. (required) You must either specify a string representation of a numerical account identifier or the `-` character to list all the invitations for all the clients of a given sponsor buyer.
-         * @param  {string=} params.pageToken - A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
-         * @param  {string} params.accountId - Numerical account ID of the client's sponsor buyer. (required)
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {integer=} params.pageSize Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer to list invitations for. (required) You must either specify a string representation of a numerical account identifier or the `-` character to list all the invitations for all the clients of a given sponsor buyer.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',

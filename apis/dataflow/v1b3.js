@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Develops and executes data processing patterns like ETL, batch computation, and continuous computation.
  * @namespace dataflow
- * @version  v1b3
+ * @version v1b3
  * @variation v1b3
  * @this Dataflow
  * @param {object=} options Options for Dataflow
  */
-function Dataflow(options) {
-
+function Dataflow(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     /**
      * dataflow.projects.workerMessages
@@ -45,13 +44,13 @@ function Dataflow(options) {
      * @alias dataflow.projects.workerMessages
      * @memberOf! dataflow(v1b3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The project to send the WorkerMessages to.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The project to send the WorkerMessages to.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    workerMessages: function(params, callback) {
+    workerMessages: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/WorkerMessages',
@@ -76,15 +75,15 @@ function Dataflow(options) {
        * @alias dataflow.projects.jobs.create
        * @memberOf! dataflow(v1b3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The project which owns the job.
-       * @param  {string=} params.view - Level of information requested in response.
-       * @param  {string=} params.replaceJobId - DEPRECATED. This field is now on the Job message.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The project which owns the job.
+       * @param {string=} params.view Level of information requested in response.
+       * @param {string=} params.replaceJobId DEPRECATED. This field is now on the Job message.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs',
@@ -107,14 +106,14 @@ function Dataflow(options) {
        * @alias dataflow.projects.jobs.get
        * @memberOf! dataflow(v1b3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The project which owns the job.
-       * @param  {string} params.jobId - Identifies a single job.
-       * @param  {string=} params.view - Level of information requested in response.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The project which owns the job.
+       * @param {string} params.jobId Identifies a single job.
+       * @param {string=} params.view Level of information requested in response.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
@@ -137,14 +136,14 @@ function Dataflow(options) {
        * @alias dataflow.projects.jobs.update
        * @memberOf! dataflow(v1b3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The project which owns the job.
-       * @param  {string} params.jobId - Identifies a single job.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The project which owns the job.
+       * @param {string} params.jobId Identifies a single job.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
@@ -167,16 +166,16 @@ function Dataflow(options) {
        * @alias dataflow.projects.jobs.list
        * @memberOf! dataflow(v1b3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The project which owns the jobs.
-       * @param  {string=} params.filter - The kind of filter to use.
-       * @param  {string=} params.view - Level of information requested in response. Default is SUMMARY.
-       * @param  {integer=} params.pageSize - If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-       * @param  {string=} params.pageToken - Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The project which owns the jobs.
+       * @param {string=} params.filter The kind of filter to use.
+       * @param {string=} params.view Level of information requested in response. Default is SUMMARY.
+       * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
+       * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs',
@@ -199,14 +198,14 @@ function Dataflow(options) {
        * @alias dataflow.projects.jobs.getMetrics
        * @memberOf! dataflow(v1b3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - A project id.
-       * @param  {string} params.jobId - The job to get messages for.
-       * @param  {string=} params.startTime - Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId A project id.
+       * @param {string} params.jobId The job to get messages for.
+       * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getMetrics: function(params, callback) {
+      getMetrics: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/metrics',
@@ -231,18 +230,18 @@ function Dataflow(options) {
          * @alias dataflow.projects.jobs.messages.list
          * @memberOf! dataflow(v1b3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - A project id.
-         * @param  {string} params.jobId - The job to get messages about.
-         * @param  {string=} params.minimumImportance - Filter to only get messages with importance >= level
-         * @param  {integer=} params.pageSize - If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-         * @param  {string=} params.pageToken - If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-         * @param  {string=} params.startTime - If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
-         * @param  {string=} params.endTime - Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId A project id.
+         * @param {string} params.jobId The job to get messages about.
+         * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
+         * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+         * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+         * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+         * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/messages',
@@ -268,14 +267,14 @@ function Dataflow(options) {
          * @alias dataflow.projects.jobs.workItems.reportStatus
          * @memberOf! dataflow(v1b3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The project which owns the WorkItem's job.
-         * @param  {string} params.jobId - The job which the WorkItem is part of.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The project which owns the WorkItem's job.
+         * @param {string} params.jobId The job which the WorkItem is part of.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        reportStatus: function(params, callback) {
+        reportStatus: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus',
@@ -298,14 +297,14 @@ function Dataflow(options) {
          * @alias dataflow.projects.jobs.workItems.lease
          * @memberOf! dataflow(v1b3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - Identifies the project this worker belongs to.
-         * @param  {string} params.jobId - Identifies the workflow job this worker belongs to.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId Identifies the project this worker belongs to.
+         * @param {string} params.jobId Identifies the workflow job this worker belongs to.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        lease: function(params, callback) {
+        lease: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease',

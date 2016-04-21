@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Finds the least expensive flights between an origin and a destination.
  * @namespace qpxExpress
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Qpxexpress
  * @param {object=} options Options for Qpxexpress
  */
-function Qpxexpress(options) {
-
+function Qpxexpress(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.trips = {
+  self.trips = {
 
     /**
      * qpxExpress.trips.search
@@ -45,12 +44,12 @@ function Qpxexpress(options) {
      * @alias qpxExpress.trips.search
      * @memberOf! qpxExpress(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/qpxExpress/v1/trips/search',

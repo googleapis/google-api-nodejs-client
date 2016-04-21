@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc API for working with Fusion Tables data.
  * @namespace fusiontables
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Fusiontables
  * @param {object=} options Options for Fusiontables
  */
-function Fusiontables(options) {
-
+function Fusiontables(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.column = {
+  self.column = {
 
     /**
      * fusiontables.column.delete
@@ -45,13 +44,13 @@ function Fusiontables(options) {
      * @alias fusiontables.column.delete
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.columnId - Name or identifier for the column being deleted.
-     * @param  {string} params.tableId - Table from which the column is being deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.columnId Name or identifier for the column being deleted.
+     * @param {string} params.tableId Table from which the column is being deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
@@ -74,13 +73,13 @@ function Fusiontables(options) {
      * @alias fusiontables.column.get
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.columnId - Name or identifier for the column that is being requested.
-     * @param  {string} params.tableId - Table to which the column belongs.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.columnId Name or identifier for the column that is being requested.
+     * @param {string} params.tableId Table to which the column belongs.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
@@ -103,13 +102,13 @@ function Fusiontables(options) {
      * @alias fusiontables.column.insert
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table for which a new column is being added.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table for which a new column is being added.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns',
@@ -132,14 +131,14 @@ function Fusiontables(options) {
      * @alias fusiontables.column.list
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of columns to return. Default is 5.
-     * @param  {string=} params.pageToken - Continuation token specifying which result page to return.
-     * @param  {string} params.tableId - Table whose columns are being listed.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of columns to return. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which result page to return.
+     * @param {string} params.tableId Table whose columns are being listed.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns',
@@ -162,14 +161,14 @@ function Fusiontables(options) {
      * @alias fusiontables.column.patch
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.columnId - Name or identifier for the column that is being updated.
-     * @param  {string} params.tableId - Table for which the column is being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.columnId Name or identifier for the column that is being updated.
+     * @param {string} params.tableId Table for which the column is being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
@@ -192,14 +191,14 @@ function Fusiontables(options) {
      * @alias fusiontables.column.update
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.columnId - Name or identifier for the column that is being updated.
-     * @param  {string} params.tableId - Table for which the column is being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.columnId Name or identifier for the column that is being updated.
+     * @param {string} params.tableId Table for which the column is being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
@@ -216,7 +215,7 @@ function Fusiontables(options) {
 
   };
 
-  this.query = {
+  self.query = {
 
     /**
      * fusiontables.query.sql
@@ -226,14 +225,14 @@ function Fusiontables(options) {
      * @alias fusiontables.query.sql
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.hdrs - Whether column names are included in the first row. Default is true.
-     * @param  {string} params.sql - A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE
-     * @param  {boolean=} params.typed - Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.hdrs Whether column names are included in the first row. Default is true.
+     * @param {string} params.sql A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE
+     * @param {boolean=} params.typed Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sql: function(params, callback) {
+    sql: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/query',
@@ -256,14 +255,14 @@ function Fusiontables(options) {
      * @alias fusiontables.query.sqlGet
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.hdrs - Whether column names are included (in the first row). Default is true.
-     * @param  {string} params.sql - A SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
-     * @param  {boolean=} params.typed - Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.hdrs Whether column names are included (in the first row). Default is true.
+     * @param {string} params.sql A SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
+     * @param {boolean=} params.typed Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sqlGet: function(params, callback) {
+    sqlGet: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/query',
@@ -280,7 +279,7 @@ function Fusiontables(options) {
 
   };
 
-  this.style = {
+  self.style = {
 
     /**
      * fusiontables.style.delete
@@ -290,13 +289,13 @@ function Fusiontables(options) {
      * @alias fusiontables.style.delete
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.styleId - Identifier (within a table) for the style being deleted
-     * @param  {string} params.tableId - Table from which the style is being deleted
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.styleId Identifier (within a table) for the style being deleted
+     * @param {string} params.tableId Table from which the style is being deleted
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
@@ -319,13 +318,13 @@ function Fusiontables(options) {
      * @alias fusiontables.style.get
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.styleId - Identifier (integer) for a specific style in a table
-     * @param  {string} params.tableId - Table to which the requested style belongs
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.styleId Identifier (integer) for a specific style in a table
+     * @param {string} params.tableId Table to which the requested style belongs
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
@@ -348,13 +347,13 @@ function Fusiontables(options) {
      * @alias fusiontables.style.insert
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table for which a new style is being added
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table for which a new style is being added
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles',
@@ -377,14 +376,14 @@ function Fusiontables(options) {
      * @alias fusiontables.style.list
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of styles to return. Optional. Default is 5.
-     * @param  {string=} params.pageToken - Continuation token specifying which result page to return. Optional.
-     * @param  {string} params.tableId - Table whose styles are being listed
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of styles to return. Optional. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which result page to return. Optional.
+     * @param {string} params.tableId Table whose styles are being listed
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles',
@@ -407,14 +406,14 @@ function Fusiontables(options) {
      * @alias fusiontables.style.patch
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.styleId - Identifier (within a table) for the style being updated.
-     * @param  {string} params.tableId - Table whose style is being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.styleId Identifier (within a table) for the style being updated.
+     * @param {string} params.tableId Table whose style is being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
@@ -437,14 +436,14 @@ function Fusiontables(options) {
      * @alias fusiontables.style.update
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer} params.styleId - Identifier (within a table) for the style being updated.
-     * @param  {string} params.tableId - Table whose style is being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer} params.styleId Identifier (within a table) for the style being updated.
+     * @param {string} params.tableId Table whose style is being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
@@ -461,7 +460,7 @@ function Fusiontables(options) {
 
   };
 
-  this.table = {
+  self.table = {
 
     /**
      * fusiontables.table.copy
@@ -471,13 +470,13 @@ function Fusiontables(options) {
      * @alias fusiontables.table.copy
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.copyPresentation - Whether to also copy tabs, styles, and templates. Default is false.
-     * @param  {string} params.tableId - ID of the table that is being copied.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.copyPresentation Whether to also copy tabs, styles, and templates. Default is false.
+     * @param {string} params.tableId ID of the table that is being copied.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy: function(params, callback) {
+    copy: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/copy',
@@ -500,12 +499,12 @@ function Fusiontables(options) {
      * @alias fusiontables.table.delete
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - ID of the table to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId ID of the table to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
@@ -528,12 +527,12 @@ function Fusiontables(options) {
      * @alias fusiontables.table.get
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Identifier for the table being requested.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Identifier for the table being requested.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
@@ -556,20 +555,20 @@ function Fusiontables(options) {
      * @alias fusiontables.table.importRows
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
-     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
-     * @param  {integer=} params.endLine - The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
-     * @param  {boolean=} params.isStrict - Whether the imported CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
-     * @param  {integer=} params.startLine - The index of the first line from which to start importing, inclusive. Default is 0.
-     * @param  {string} params.tableId - The table into which new rows are being imported.
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.delimiter The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
+     * @param {string=} params.encoding The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
+     * @param {integer=} params.endLine The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
+     * @param {boolean=} params.isStrict Whether the imported CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
+     * @param {integer=} params.startLine The index of the first line from which to start importing, inclusive. Default is 0.
+     * @param {string} params.tableId The table into which new rows are being imported.
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importRows: function(params, callback) {
+    importRows: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/import',
@@ -593,17 +592,17 @@ function Fusiontables(options) {
      * @alias fusiontables.table.importTable
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
-     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
-     * @param  {string} params.name - The name to be assigned to the new table.
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.delimiter The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
+     * @param {string=} params.encoding The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
+     * @param {string} params.name The name to be assigned to the new table.
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importTable: function(params, callback) {
+    importTable: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/import',
@@ -627,12 +626,12 @@ function Fusiontables(options) {
      * @alias fusiontables.table.insert
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables',
@@ -655,13 +654,13 @@ function Fusiontables(options) {
      * @alias fusiontables.table.list
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of tables to return. Default is 5.
-     * @param  {string=} params.pageToken - Continuation token specifying which result page to return.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of tables to return. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which result page to return.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables',
@@ -684,14 +683,14 @@ function Fusiontables(options) {
      * @alias fusiontables.table.patch
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.replaceViewDefinition - Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
-     * @param  {string} params.tableId - ID of the table that is being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.replaceViewDefinition Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
+     * @param {string} params.tableId ID of the table that is being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
@@ -714,20 +713,20 @@ function Fusiontables(options) {
      * @alias fusiontables.table.replaceRows
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.delimiter - The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
-     * @param  {string=} params.encoding - The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
-     * @param  {integer=} params.endLine - The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
-     * @param  {boolean=} params.isStrict - Whether the imported CSV must have the same number of column values for each row. If true, throws an exception if the CSV does not have the same number of columns. If false, rows with fewer column values will be padded with empty values. Default is true.
-     * @param  {integer=} params.startLine - The index of the first line from which to start importing, inclusive. Default is 0.
-     * @param  {string} params.tableId - Table whose rows will be replaced.
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.delimiter The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
+     * @param {string=} params.encoding The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
+     * @param {integer=} params.endLine The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
+     * @param {boolean=} params.isStrict Whether the imported CSV must have the same number of column values for each row. If true, throws an exception if the CSV does not have the same number of columns. If false, rows with fewer column values will be padded with empty values. Default is true.
+     * @param {integer=} params.startLine The index of the first line from which to start importing, inclusive. Default is 0.
+     * @param {string} params.tableId Table whose rows will be replaced.
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    replaceRows: function(params, callback) {
+    replaceRows: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/replace',
@@ -751,14 +750,14 @@ function Fusiontables(options) {
      * @alias fusiontables.table.update
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.replaceViewDefinition - Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
-     * @param  {string} params.tableId - ID of the table that is being updated.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.replaceViewDefinition Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
+     * @param {string} params.tableId ID of the table that is being updated.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
@@ -775,7 +774,7 @@ function Fusiontables(options) {
 
   };
 
-  this.task = {
+  self.task = {
 
     /**
      * fusiontables.task.delete
@@ -785,13 +784,13 @@ function Fusiontables(options) {
      * @alias fusiontables.task.delete
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table from which the task is being deleted.
-     * @param  {string} params.taskId - The identifier of the task to delete.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table from which the task is being deleted.
+     * @param {string} params.taskId The identifier of the task to delete.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks/{taskId}',
@@ -814,13 +813,13 @@ function Fusiontables(options) {
      * @alias fusiontables.task.get
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table to which the task belongs.
-     * @param  {string} params.taskId - The identifier of the task to get.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table to which the task belongs.
+     * @param {string} params.taskId The identifier of the task to get.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks/{taskId}',
@@ -843,15 +842,15 @@ function Fusiontables(options) {
      * @alias fusiontables.task.list
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of tasks to return. Default is 5.
-     * @param  {string=} params.pageToken - Continuation token specifying which result page to return.
-     * @param  {integer=} params.startIndex - Index of the first result returned in the current page.
-     * @param  {string} params.tableId - Table whose tasks are being listed.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of tasks to return. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which result page to return.
+     * @param {integer=} params.startIndex Index of the first result returned in the current page.
+     * @param {string} params.tableId Table whose tasks are being listed.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks',
@@ -868,7 +867,7 @@ function Fusiontables(options) {
 
   };
 
-  this.template = {
+  self.template = {
 
     /**
      * fusiontables.template.delete
@@ -878,13 +877,13 @@ function Fusiontables(options) {
      * @alias fusiontables.template.delete
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table from which the template is being deleted
-     * @param  {integer} params.templateId - Identifier for the template which is being deleted
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table from which the template is being deleted
+     * @param {integer} params.templateId Identifier for the template which is being deleted
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
@@ -907,13 +906,13 @@ function Fusiontables(options) {
      * @alias fusiontables.template.get
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table to which the template belongs
-     * @param  {integer} params.templateId - Identifier for the template that is being requested
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table to which the template belongs
+     * @param {integer} params.templateId Identifier for the template that is being requested
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
@@ -936,13 +935,13 @@ function Fusiontables(options) {
      * @alias fusiontables.template.insert
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table for which a new template is being created
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table for which a new template is being created
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates',
@@ -965,14 +964,14 @@ function Fusiontables(options) {
      * @alias fusiontables.template.list
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of templates to return. Optional. Default is 5.
-     * @param  {string=} params.pageToken - Continuation token specifying which results page to return. Optional.
-     * @param  {string} params.tableId - Identifier for the table whose templates are being requested
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of templates to return. Optional. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which results page to return. Optional.
+     * @param {string} params.tableId Identifier for the table whose templates are being requested
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates',
@@ -995,14 +994,14 @@ function Fusiontables(options) {
      * @alias fusiontables.template.patch
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table to which the updated template belongs
-     * @param  {integer} params.templateId - Identifier for the template that is being updated
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table to which the updated template belongs
+     * @param {integer} params.templateId Identifier for the template that is being updated
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
@@ -1025,14 +1024,14 @@ function Fusiontables(options) {
      * @alias fusiontables.template.update
      * @memberOf! fusiontables(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.tableId - Table to which the updated template belongs
-     * @param  {integer} params.templateId - Identifier for the template that is being updated
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.tableId Table to which the updated template belongs
+     * @param {integer} params.templateId Identifier for the template that is being updated
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',

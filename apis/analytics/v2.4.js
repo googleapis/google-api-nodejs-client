@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Views and manages your Google Analytics data.
  * @namespace analytics
- * @version  v2.4
+ * @version v2.4
  * @variation v2.4
  * @this Analytics
  * @param {object=} options Options for Analytics
  */
-function Analytics(options) {
-
+function Analytics(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.data = {
+  self.data = {
 
     /**
      * analytics.data.get
@@ -45,21 +44,21 @@ function Analytics(options) {
      * @alias analytics.data.get
      * @memberOf! analytics(v2.4)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.dimensions - A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
-     * @param  {string} params.end-date - End date for fetching report data. All requests should specify an end date formatted as YYYY-MM-DD.
-     * @param  {string=} params.filters - A comma-separated list of dimension or metric filters to be applied to the report data.
-     * @param  {string} params.ids - Unique table ID for retrieving report data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-     * @param  {integer=} params.max-results - The maximum number of entries to include in this feed.
-     * @param  {string} params.metrics - A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified to retrieve a valid Analytics report.
-     * @param  {string=} params.segment - An Analytics advanced segment to be applied to the report data.
-     * @param  {string=} params.sort - A comma-separated list of dimensions or metrics that determine the sort order for the report data.
-     * @param  {string} params.start-date - Start date for fetching report data. All requests should specify a start date formatted as YYYY-MM-DD.
-     * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.dimensions A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
+     * @param {string} params.end-date End date for fetching report data. All requests should specify an end date formatted as YYYY-MM-DD.
+     * @param {string=} params.filters A comma-separated list of dimension or metric filters to be applied to the report data.
+     * @param {string} params.ids Unique table ID for retrieving report data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * @param {integer=} params.max-results The maximum number of entries to include in this feed.
+     * @param {string} params.metrics A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified to retrieve a valid Analytics report.
+     * @param {string=} params.segment An Analytics advanced segment to be applied to the report data.
+     * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for the report data.
+     * @param {string} params.start-date Start date for fetching report data. All requests should specify a start date formatted as YYYY-MM-DD.
+     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/analytics/v2.4/data',
@@ -76,7 +75,7 @@ function Analytics(options) {
 
   };
 
-  this.management = {
+  self.management = {
 
     accounts: {
 
@@ -88,13 +87,13 @@ function Analytics(options) {
        * @alias analytics.management.accounts.list
        * @memberOf! analytics(v2.4)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.max-results - The maximum number of accounts to include in this response.
-       * @param  {integer=} params.start-index - An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.max-results The maximum number of accounts to include in this response.
+       * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts',
@@ -120,16 +119,16 @@ function Analytics(options) {
        * @alias analytics.management.goals.list
        * @memberOf! analytics(v2.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-       * @param  {integer=} params.max-results - The maximum number of goals to include in this response.
-       * @param  {string} params.profileId - View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
-       * @param  {integer=} params.start-index - An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {string} params.webPropertyId - Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+       * @param {integer=} params.max-results The maximum number of goals to include in this response.
+       * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
+       * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
@@ -155,15 +154,15 @@ function Analytics(options) {
        * @alias analytics.management.profiles.list
        * @memberOf! analytics(v2.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account ID for the views (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
-       * @param  {integer=} params.max-results - The maximum number of views (profiles) to include in this response.
-       * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {string} params.webPropertyId - Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID for the views (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
+       * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
+       * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
@@ -189,13 +188,13 @@ function Analytics(options) {
        * @alias analytics.management.segments.list
        * @memberOf! analytics(v2.4)
        *
-       * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.max-results - The maximum number of advanced segments to include in this response.
-       * @param  {integer=} params.start-index - An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.max-results The maximum number of advanced segments to include in this response.
+       * @param {integer=} params.start-index An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/analytics/v2.4/management/segments',
@@ -221,14 +220,14 @@ function Analytics(options) {
        * @alias analytics.management.webproperties.list
        * @memberOf! analytics(v2.4)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-       * @param  {integer=} params.max-results - The maximum number of web properties to include in this response.
-       * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+       * @param {integer=} params.max-results The maximum number of web properties to include in this response.
+       * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties',

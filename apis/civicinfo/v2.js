@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc An API for accessing civic information.
  * @namespace civicinfo
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Civicinfo
  * @param {object=} options Options for Civicinfo
  */
-function Civicinfo(options) {
-
+function Civicinfo(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.divisions = {
+  self.divisions = {
 
     /**
      * civicinfo.divisions.search
@@ -45,12 +44,12 @@ function Civicinfo(options) {
      * @alias civicinfo.divisions.search
      * @memberOf! civicinfo(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.query - The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, callback) {
+    search: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/civicinfo/v2/divisions',
@@ -67,7 +66,7 @@ function Civicinfo(options) {
 
   };
 
-  this.elections = {
+  self.elections = {
 
     /**
      * civicinfo.elections.electionQuery
@@ -77,11 +76,11 @@ function Civicinfo(options) {
      * @alias civicinfo.elections.electionQuery
      * @memberOf! civicinfo(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    electionQuery: function(params, callback) {
+    electionQuery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/civicinfo/v2/elections',
@@ -104,14 +103,14 @@ function Civicinfo(options) {
      * @alias civicinfo.elections.voterInfoQuery
      * @memberOf! civicinfo(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.address - The registered address of the voter to look up.
-     * @param  {string=} params.electionId - The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
-     * @param  {boolean=} params.officialOnly - If set to true, only data from official state sources will be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.address The registered address of the voter to look up.
+     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
+     * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    voterInfoQuery: function(params, callback) {
+    voterInfoQuery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/civicinfo/v2/voterinfo',
@@ -128,7 +127,7 @@ function Civicinfo(options) {
 
   };
 
-  this.representatives = {
+  self.representatives = {
 
     /**
      * civicinfo.representatives.representativeInfoByAddress
@@ -138,15 +137,15 @@ function Civicinfo(options) {
      * @alias civicinfo.representatives.representativeInfoByAddress
      * @memberOf! civicinfo(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.address - The address to look up. May only be specified if the field ocdId is not given in the URL.
-     * @param  {boolean=} params.includeOffices - Whether to return information about offices and officials. If false, only the top-level district information will be returned.
-     * @param  {string=} params.levels - A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param  {string=} params.roles - A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.address The address to look up. May only be specified if the field ocdId is not given in the URL.
+     * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
+     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByAddress: function(params, callback) {
+    representativeInfoByAddress: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/civicinfo/v2/representatives',
@@ -169,15 +168,15 @@ function Civicinfo(options) {
      * @alias civicinfo.representatives.representativeInfoByDivision
      * @memberOf! civicinfo(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.levels - A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param  {string} params.ocdId - The Open Civic Data division identifier of the division to look up.
-     * @param  {boolean=} params.recursive - If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
-     * @param  {string=} params.roles - A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
+     * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
+     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByDivision: function(params, callback) {
+    representativeInfoByDivision: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/civicinfo/v2/representatives/{ocdId}',

@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets Android application developers access their Google Play accounts.
  * @namespace androidpublisher
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Androidpublisher
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options) {
-
+function Androidpublisher(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.edits = {
+  self.edits = {
 
     /**
      * androidpublisher.edits.commit
@@ -45,13 +44,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.edits.commit
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.editId - Unique identifier for this edit.
-     * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit: function(params, callback) {
+    commit: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit',
@@ -74,13 +73,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.edits.delete
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.editId - Unique identifier for this edit.
-     * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
@@ -103,13 +102,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.edits.get
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.editId - Unique identifier for this edit.
-     * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
@@ -132,13 +131,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.edits.insert
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits',
@@ -161,13 +160,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.edits.validate
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.editId - Unique identifier for this edit.
-     * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    validate: function(params, callback) {
+    validate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate',
@@ -192,15 +191,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apklistings.delete
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The APK version code whose APK-specific listings should be read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
@@ -223,14 +222,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apklistings.deleteall
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The APK version code whose APK-specific listings should be read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteall: function(params, callback) {
+      deleteall: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
@@ -253,15 +252,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apklistings.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The APK version code whose APK-specific listings should be read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
@@ -284,14 +283,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apklistings.list
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The APK version code whose APK-specific listings should be read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
@@ -314,16 +313,16 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apklistings.patch
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The APK version code whose APK-specific listings should be read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
@@ -346,16 +345,16 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apklistings.update
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The APK version code whose APK-specific listings should be read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
@@ -381,14 +380,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apks.addexternallyhosted
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addexternallyhosted: function(params, callback) {
+      addexternallyhosted: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted',
@@ -411,13 +410,13 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apks.list
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
@@ -440,16 +439,16 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.apks.upload
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.media - Media object
-       * @param  {string} params.media.mimeType - Media mime-type
-       * @param  {string|object} params.media.body - Media body contents
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.media Media object
+       * @param {string} params.media.mimeType Media mime-type
+       * @param {string|object} params.media.body Media body contents
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function(params, callback) {
+      upload: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
@@ -476,13 +475,13 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.details.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
@@ -505,14 +504,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.details.patch
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
@@ -535,14 +534,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.details.update
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
@@ -568,15 +567,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.expansionfiles.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType - 
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.expansionFileType 
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
@@ -599,16 +598,16 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.expansionfiles.patch
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType - 
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.expansionFileType 
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
@@ -631,16 +630,16 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.expansionfiles.update
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType - 
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.expansionFileType 
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
@@ -663,18 +662,18 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.expansionfiles.upload
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer} params.apkVersionCode - The version code of the APK whose Expansion File configuration is being read or modified.
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.expansionFileType - 
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.media - Media object
-       * @param  {string} params.media.mimeType - Media mime-type
-       * @param  {string|object} params.media.body - Media body contents
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.expansionFileType 
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.media Media object
+       * @param {string} params.media.mimeType Media mime-type
+       * @param {string|object} params.media.body Media body contents
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function(params, callback) {
+      upload: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
@@ -701,16 +700,16 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.images.delete
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageId - Unique identifier an image within the set of images attached to this edit.
-       * @param  {string} params.imageType - 
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.imageId Unique identifier an image within the set of images attached to this edit.
+       * @param {string} params.imageType 
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}',
@@ -733,15 +732,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.images.deleteall
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageType - 
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.imageType 
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteall: function(params, callback) {
+      deleteall: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
@@ -764,15 +763,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.images.list
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageType - 
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.imageType 
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
@@ -795,18 +794,18 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.images.upload
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.imageType - 
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.media - Media object
-       * @param  {string} params.media.mimeType - Media mime-type
-       * @param  {string|object} params.media.body - Media body contents
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.imageType 
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.media Media object
+       * @param {string} params.media.mimeType Media mime-type
+       * @param {string|object} params.media.body Media body contents
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function(params, callback) {
+      upload: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
@@ -833,14 +832,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.listings.delete
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
@@ -863,13 +862,13 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.listings.deleteall
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteall: function(params, callback) {
+      deleteall: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
@@ -892,14 +891,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.listings.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
@@ -922,13 +921,13 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.listings.list
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
@@ -951,15 +950,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.listings.patch
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
@@ -982,15 +981,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.listings.update
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.language - The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
@@ -1016,14 +1015,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.testers.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track - 
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {string} params.track 
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
@@ -1046,15 +1045,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.testers.patch
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track - 
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {string} params.track 
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
@@ -1077,15 +1076,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.testers.update
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track - 
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {string} params.track 
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
@@ -1111,14 +1110,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.tracks.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track - The track type to read or modify.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {string} params.track The track type to read or modify.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
@@ -1141,13 +1140,13 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.tracks.list
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks',
@@ -1170,15 +1169,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.tracks.patch
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track - The track type to read or modify.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {string} params.track The track type to read or modify.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
@@ -1201,15 +1200,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.edits.tracks.update
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.editId - Unique identifier for this edit.
-       * @param  {string} params.packageName - Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param  {string} params.track - The track type to read or modify.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.editId Unique identifier for this edit.
+       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {string} params.track The track type to read or modify.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function(params, callback) {
+      update: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
@@ -1226,7 +1225,7 @@ function Androidpublisher(options) {
     }
   };
 
-  this.entitlements = {
+  self.entitlements = {
 
     /**
      * androidpublisher.entitlements.list
@@ -1236,16 +1235,16 @@ function Androidpublisher(options) {
      * @alias androidpublisher.entitlements.list
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - 
-     * @param  {string} params.packageName - The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     * @param  {string=} params.productId - The product id of the inapp product (for example, 'sku1'). This can be used to restrict the result set.
-     * @param  {integer=} params.startIndex - 
-     * @param  {string=} params.token - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults 
+     * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     * @param {string=} params.productId The product id of the inapp product (for example, 'sku1'). This can be used to restrict the result set.
+     * @param {integer=} params.startIndex 
+     * @param {string=} params.token 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/entitlements',
@@ -1262,7 +1261,7 @@ function Androidpublisher(options) {
 
   };
 
-  this.inappproducts = {
+  self.inappproducts = {
 
     /**
      * androidpublisher.inappproducts.batch
@@ -1272,12 +1271,12 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.batch
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batch: function(params, callback) {
+    batch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/inappproducts/batch',
@@ -1300,13 +1299,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.delete
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.packageName - Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
-     * @param  {string} params.sku - Unique identifier for the in-app product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.sku Unique identifier for the in-app product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
@@ -1329,13 +1328,13 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.get
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.packageName - 
-     * @param  {string} params.sku - Unique identifier for the in-app product.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName 
+     * @param {string} params.sku Unique identifier for the in-app product.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
@@ -1358,14 +1357,14 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.insert
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.autoConvertMissingPrices - If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param  {string} params.packageName - Unique identifier for the Android app; for example, "com.spiffygame".
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
@@ -1388,15 +1387,15 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.list
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - 
-     * @param  {string} params.packageName - Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
-     * @param  {integer=} params.startIndex - 
-     * @param  {string=} params.token - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults 
+     * @param {string} params.packageName Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
+     * @param {integer=} params.startIndex 
+     * @param {string=} params.token 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
@@ -1419,15 +1418,15 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.patch
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.autoConvertMissingPrices - If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param  {string} params.packageName - Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
-     * @param  {string} params.sku - Unique identifier for the in-app product.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.sku Unique identifier for the in-app product.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
@@ -1450,15 +1449,15 @@ function Androidpublisher(options) {
      * @alias androidpublisher.inappproducts.update
      * @memberOf! androidpublisher(v2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.autoConvertMissingPrices - If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param  {string} params.packageName - Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
-     * @param  {string} params.sku - Unique identifier for the in-app product.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.sku Unique identifier for the in-app product.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
@@ -1475,7 +1474,7 @@ function Androidpublisher(options) {
 
   };
 
-  this.purchases = {
+  self.purchases = {
 
     products: {
 
@@ -1487,14 +1486,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.purchases.products.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.packageName - The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-       * @param  {string} params.productId - The inapp product SKU (for example, 'com.some.thing.inapp1').
-       * @param  {string} params.token - The token provided to the user's device when the inapp product was purchased.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+       * @param {string} params.productId The inapp product SKU (for example, 'com.some.thing.inapp1').
+       * @param {string} params.token The token provided to the user's device when the inapp product was purchased.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/products/{productId}/tokens/{token}',
@@ -1520,14 +1519,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.purchases.subscriptions.cancel
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+       * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel: function(params, callback) {
+      cancel: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel',
@@ -1550,15 +1549,15 @@ function Androidpublisher(options) {
        * @alias androidpublisher.purchases.subscriptions.defer
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+       * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      defer: function(params, callback) {
+      defer: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer',
@@ -1581,14 +1580,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.purchases.subscriptions.get
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+       * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}',
@@ -1611,14 +1610,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.purchases.subscriptions.refund
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+       * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      refund: function(params, callback) {
+      refund: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund',
@@ -1641,14 +1640,14 @@ function Androidpublisher(options) {
        * @alias androidpublisher.purchases.subscriptions.revoke
        * @memberOf! androidpublisher(v2)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.packageName - The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-       * @param  {string} params.subscriptionId - The purchased subscription ID (for example, 'monthly001').
-       * @param  {string} params.token - The token provided to the user's device when the subscription was purchased.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+       * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+       * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      revoke: function(params, callback) {
+      revoke: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke',

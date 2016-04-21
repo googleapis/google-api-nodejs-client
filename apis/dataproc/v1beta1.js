@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
  * @namespace dataproc
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Dataproc
  * @param {object=} options Options for Dataproc
  */
-function Dataproc(options) {
-
+function Dataproc(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     clusters: {
 
@@ -47,13 +46,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.create
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters',
@@ -76,15 +75,15 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.patch
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project the cluster belongs to.
-       * @param  {string} params.clusterName - [Required] The cluster name.
-       * @param  {string=} params.updateMask - [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as configuration.worker_configuration.num_instances, and the `PATCH` request body would specify the new value, as follows: { "configuration":{ "workerConfiguration":{ "numInstances":"5" } } } Note: Currently, configuration.worker_configuration.num_instances is the only field that can be updated.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project the cluster belongs to.
+       * @param {string} params.clusterName [Required] The cluster name.
+       * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as configuration.worker_configuration.num_instances, and the `PATCH` request body would specify the new value, as follows: { "configuration":{ "workerConfiguration":{ "numInstances":"5" } } } Note: Currently, configuration.worker_configuration.num_instances is the only field that can be updated.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function(params, callback) {
+      patch: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}',
@@ -107,13 +106,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.delete
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-       * @param  {string} params.clusterName - [Required] The cluster name.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+       * @param {string} params.clusterName [Required] The cluster name.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}',
@@ -136,13 +135,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.get
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-       * @param  {string} params.clusterName - [Required] The cluster name.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+       * @param {string} params.clusterName [Required] The cluster name.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}',
@@ -165,14 +164,14 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.list
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-       * @param  {integer=} params.pageSize - The standard List page size.
-       * @param  {string=} params.pageToken - The standard List page token.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+       * @param {integer=} params.pageSize The standard List page size.
+       * @param {string=} params.pageToken The standard List page token.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters',
@@ -195,14 +194,14 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.diagnose
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
-       * @param  {string} params.clusterName - [Required] The cluster name.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+       * @param {string} params.clusterName [Required] The cluster name.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      diagnose: function(params, callback) {
+      diagnose: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}:diagnose',
@@ -225,13 +224,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.setIamPolicy
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function(params, callback) {
+      setIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/{resource}:setIamPolicy',
@@ -254,12 +253,12 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.getIamPolicy
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function(params, callback) {
+      getIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/{resource}:getIamPolicy',
@@ -282,13 +281,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.clusters.testIamPermissions
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function(params, callback) {
+      testIamPermissions: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/{resource}:testIamPermissions',
@@ -314,13 +313,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.submit
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      submit: function(params, callback) {
+      submit: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs:submit',
@@ -343,13 +342,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.get
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-       * @param  {string} params.jobId - [Required] The job ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+       * @param {string} params.jobId [Required] The job ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs/{jobId}',
@@ -372,16 +371,16 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.list
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-       * @param  {integer=} params.pageSize - [Optional] The number of results to return in each response.
-       * @param  {string=} params.pageToken - [Optional] The page token, returned by a previous call, to request the next page of results.
-       * @param  {string=} params.clusterName - [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
-       * @param  {string=} params.jobStateMatcher - [Optional] Specifies enumerated categories of jobs to list.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+       * @param {integer=} params.pageSize [Optional] The number of results to return in each response.
+       * @param {string=} params.pageToken [Optional] The page token, returned by a previous call, to request the next page of results.
+       * @param {string=} params.clusterName [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
+       * @param {string=} params.jobStateMatcher [Optional] Specifies enumerated categories of jobs to list.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs',
@@ -404,14 +403,14 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.cancel
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-       * @param  {string} params.jobId - [Required] The job ID.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+       * @param {string} params.jobId [Required] The job ID.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel: function(params, callback) {
+      cancel: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs/{jobId}:cancel',
@@ -434,13 +433,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.delete
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - [Required] The ID of the Google Cloud Platform project that the job belongs to.
-       * @param  {string} params.jobId - [Required] The job ID.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
+       * @param {string} params.jobId [Required] The job ID.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      delete: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs/{jobId}',
@@ -463,13 +462,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.setIamPolicy
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function(params, callback) {
+      setIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/{resource}:setIamPolicy',
@@ -492,12 +491,12 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.getIamPolicy
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function(params, callback) {
+      getIamPolicy: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/{resource}:getIamPolicy',
@@ -520,13 +519,13 @@ function Dataproc(options) {
        * @alias dataproc.projects.jobs.testIamPermissions
        * @memberOf! dataproc(v1beta1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.resource_ - REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function(params, callback) {
+      testIamPermissions: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://dataproc.googleapis.com/v1beta1/{resource}:testIamPermissions',
@@ -543,7 +542,7 @@ function Dataproc(options) {
     }
   };
 
-  this.operations = {
+  self.operations = {
 
     /**
      * dataproc.operations.get
@@ -553,12 +552,12 @@ function Dataproc(options) {
      * @alias dataproc.operations.get
      * @memberOf! dataproc(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataproc.googleapis.com/v1beta1/{name}',
@@ -581,15 +580,15 @@ function Dataproc(options) {
      * @alias dataproc.operations.list
      * @memberOf! dataproc(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation collection.
-     * @param  {string=} params.filter - The standard list filter.
-     * @param  {integer=} params.pageSize - The standard list page size.
-     * @param  {string=} params.pageToken - The standard list page token.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.filter The standard list filter.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataproc.googleapis.com/v1beta1/{name}',
@@ -612,13 +611,13 @@ function Dataproc(options) {
      * @alias dataproc.operations.cancel
      * @memberOf! dataproc(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource to be cancelled.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataproc.googleapis.com/v1beta1/{name}:cancel',
@@ -641,12 +640,12 @@ function Dataproc(options) {
      * @alias dataproc.operations.delete
      * @memberOf! dataproc(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource to be deleted.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://dataproc.googleapis.com/v1beta1/{name}',

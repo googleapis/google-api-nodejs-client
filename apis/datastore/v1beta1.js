@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Stores and queries data in Google Cloud Datastore.
  * @namespace datastore
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Datastore
  * @param {object=} options Options for Datastore
  */
-function Datastore(options) {
-
+function Datastore(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.datasets = {
+  self.datasets = {
 
     /**
      * datastore.datasets.allocateIds
@@ -45,13 +44,13 @@ function Datastore(options) {
      * @alias datastore.datasets.allocateIds
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateIds: function(params, callback) {
+    allocateIds: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/allocateIds',
@@ -74,13 +73,13 @@ function Datastore(options) {
      * @alias datastore.datasets.beginTransaction
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction: function(params, callback) {
+    beginTransaction: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/beginTransaction',
@@ -103,13 +102,13 @@ function Datastore(options) {
      * @alias datastore.datasets.blindWrite
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    blindWrite: function(params, callback) {
+    blindWrite: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/blindWrite',
@@ -132,13 +131,13 @@ function Datastore(options) {
      * @alias datastore.datasets.commit
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit: function(params, callback) {
+    commit: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/commit',
@@ -161,13 +160,13 @@ function Datastore(options) {
      * @alias datastore.datasets.lookup
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lookup: function(params, callback) {
+    lookup: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/lookup',
@@ -190,13 +189,13 @@ function Datastore(options) {
      * @alias datastore.datasets.rollback
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback: function(params, callback) {
+    rollback: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/rollback',
@@ -219,13 +218,13 @@ function Datastore(options) {
      * @alias datastore.datasets.runQuery
      * @memberOf! datastore(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.datasetId - Identifies the dataset.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Identifies the dataset.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runQuery: function(params, callback) {
+    runQuery: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/runQuery',

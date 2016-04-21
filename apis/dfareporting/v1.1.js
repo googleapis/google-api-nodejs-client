@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you create, run and download reports.
  * @namespace dfareporting
- * @version  v1.1
+ * @version v1.1
  * @variation v1.1
  * @this Dfareporting
  * @param {object=} options Options for Dfareporting
  */
-function Dfareporting(options) {
-
+function Dfareporting(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.dimensionValues = {
+  self.dimensionValues = {
 
     /**
      * dfareporting.dimensionValues.query
@@ -45,15 +44,15 @@ function Dfareporting(options) {
      * @alias dfareporting.dimensionValues.query
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextToken from the previous result page.
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, callback) {
+    query: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/dimensionvalues/query',
@@ -70,7 +69,7 @@ function Dfareporting(options) {
 
   };
 
-  this.files = {
+  self.files = {
 
     /**
      * dfareporting.files.list
@@ -80,16 +79,16 @@ function Dfareporting(options) {
      * @alias dfareporting.files.list
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextToken from the previous result page.
-     * @param  {string} params.profileId - The DFA profile ID.
-     * @param  {string=} params.sortField - The field by which to sort the list.
-     * @param  {string=} params.sortOrder - Order of sorted results, default is 'DESCENDING'.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+     * @param {string} params.profileId The DFA profile ID.
+     * @param {string=} params.sortField The field by which to sort the list.
+     * @param {string=} params.sortOrder Order of sorted results, default is 'DESCENDING'.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/files',
@@ -106,7 +105,7 @@ function Dfareporting(options) {
 
   };
 
-  this.reports = {
+  self.reports = {
 
     /**
      * dfareporting.reports.delete
@@ -116,13 +115,13 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.delete
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {string} params.reportId - The ID of the report.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}',
@@ -145,13 +144,13 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.get
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {string} params.reportId - The ID of the report.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}',
@@ -174,13 +173,13 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.insert
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports',
@@ -203,16 +202,16 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.list
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum number of results to return.
-     * @param  {string=} params.pageToken - The value of the nextToken from the previous result page.
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {string=} params.sortField - The field by which to sort the list.
-     * @param  {string=} params.sortOrder - Order of sorted results, default is 'DESCENDING'.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string=} params.sortField The field by which to sort the list.
+     * @param {string=} params.sortOrder Order of sorted results, default is 'DESCENDING'.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports',
@@ -235,14 +234,14 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.patch
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {string} params.reportId - The ID of the report.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}',
@@ -265,14 +264,14 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.run
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The DFA profile ID.
-     * @param  {string} params.reportId - The ID of the report.
-     * @param  {boolean=} params.synchronous - If set and true, tries to run the report synchronously.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA profile ID.
+     * @param {string} params.reportId The ID of the report.
+     * @param {boolean=} params.synchronous If set and true, tries to run the report synchronously.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run: function(params, callback) {
+    run: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}/run',
@@ -295,14 +294,14 @@ function Dfareporting(options) {
      * @alias dfareporting.reports.update
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The DFA user profile ID.
-     * @param  {string} params.reportId - The ID of the report.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}',
@@ -327,14 +326,14 @@ function Dfareporting(options) {
        * @alias dfareporting.reports.files.get
        * @memberOf! dfareporting(v1.1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.fileId - The ID of the report file.
-       * @param  {string} params.profileId - The DFA profile ID.
-       * @param  {string} params.reportId - The ID of the report.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.fileId The ID of the report file.
+       * @param {string} params.profileId The DFA profile ID.
+       * @param {string} params.reportId The ID of the report.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
@@ -357,17 +356,17 @@ function Dfareporting(options) {
        * @alias dfareporting.reports.files.list
        * @memberOf! dfareporting(v1.1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer=} params.maxResults - Maximum number of results to return.
-       * @param  {string=} params.pageToken - The value of the nextToken from the previous result page.
-       * @param  {string} params.profileId - The DFA profile ID.
-       * @param  {string} params.reportId - The ID of the parent report.
-       * @param  {string=} params.sortField - The field by which to sort the list.
-       * @param  {string=} params.sortOrder - Order of sorted results, default is 'DESCENDING'.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer=} params.maxResults Maximum number of results to return.
+       * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+       * @param {string} params.profileId The DFA profile ID.
+       * @param {string} params.reportId The ID of the parent report.
+       * @param {string=} params.sortField The field by which to sort the list.
+       * @param {string=} params.sortOrder Order of sorted results, default is 'DESCENDING'.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}/reports/{reportId}/files',
@@ -384,7 +383,7 @@ function Dfareporting(options) {
     }
   };
 
-  this.userProfiles = {
+  self.userProfiles = {
 
     /**
      * dfareporting.userProfiles.get
@@ -394,12 +393,12 @@ function Dfareporting(options) {
      * @alias dfareporting.userProfiles.get
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.profileId - The user profile ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The user profile ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles/{profileId}',
@@ -422,11 +421,11 @@ function Dfareporting(options) {
      * @alias dfareporting.userProfiles.list
      * @memberOf! dfareporting(v1.1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/dfareporting/v1.1/userprofiles',

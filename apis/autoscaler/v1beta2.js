@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Google Compute Engine Autoscaler API provides autoscaling for groups of Cloud VMs.
  * @namespace autoscaler
- * @version  v1beta2
+ * @version v1beta2
  * @variation v1beta2
  * @this Autoscaler
  * @param {object=} options Options for Autoscaler
  */
-function Autoscaler(options) {
-
+function Autoscaler(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.autoscalers = {
+  self.autoscalers = {
 
     /**
      * autoscaler.autoscalers.delete
@@ -45,14 +44,14 @@ function Autoscaler(options) {
      * @alias autoscaler.autoscalers.delete
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the Autoscaler resource.
-     * @param  {string} params.project - Project ID of Autoscaler resource.
-     * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the Autoscaler resource.
+     * @param {string} params.project Project ID of Autoscaler resource.
+     * @param {string} params.zone Zone name of Autoscaler resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -75,14 +74,14 @@ function Autoscaler(options) {
      * @alias autoscaler.autoscalers.get
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the Autoscaler resource.
-     * @param  {string} params.project - Project ID of Autoscaler resource.
-     * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the Autoscaler resource.
+     * @param {string} params.project Project ID of Autoscaler resource.
+     * @param {string} params.zone Zone name of Autoscaler resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -105,14 +104,14 @@ function Autoscaler(options) {
      * @alias autoscaler.autoscalers.insert
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.project - Project ID of Autoscaler resource.
-     * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID of Autoscaler resource.
+     * @param {string} params.zone Zone name of Autoscaler resource.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers',
@@ -135,16 +134,16 @@ function Autoscaler(options) {
      * @alias autoscaler.autoscalers.list
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - 
-     * @param  {integer=} params.maxResults - 
-     * @param  {string=} params.pageToken - 
-     * @param  {string} params.project - Project ID of Autoscaler resource.
-     * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter 
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.pageToken 
+     * @param {string} params.project Project ID of Autoscaler resource.
+     * @param {string} params.zone Zone name of Autoscaler resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers',
@@ -167,15 +166,15 @@ function Autoscaler(options) {
      * @alias autoscaler.autoscalers.patch
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the Autoscaler resource.
-     * @param  {string} params.project - Project ID of Autoscaler resource.
-     * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the Autoscaler resource.
+     * @param {string} params.project Project ID of Autoscaler resource.
+     * @param {string} params.zone Zone name of Autoscaler resource.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function(params, callback) {
+    patch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -198,15 +197,15 @@ function Autoscaler(options) {
      * @alias autoscaler.autoscalers.update
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.autoscaler - Name of the Autoscaler resource.
-     * @param  {string} params.project - Project ID of Autoscaler resource.
-     * @param  {string} params.zone - Zone name of Autoscaler resource.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the Autoscaler resource.
+     * @param {string} params.project Project ID of Autoscaler resource.
+     * @param {string} params.zone Zone name of Autoscaler resource.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -223,7 +222,7 @@ function Autoscaler(options) {
 
   };
 
-  this.zoneOperations = {
+  self.zoneOperations = {
 
     /**
      * autoscaler.zoneOperations.delete
@@ -233,14 +232,14 @@ function Autoscaler(options) {
      * @alias autoscaler.zoneOperations.delete
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - 
-     * @param  {string} params.project - 
-     * @param  {string} params.zone - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation 
+     * @param {string} params.project 
+     * @param {string} params.zone 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations/{operation}',
@@ -263,14 +262,14 @@ function Autoscaler(options) {
      * @alias autoscaler.zoneOperations.get
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.operation - 
-     * @param  {string} params.project - 
-     * @param  {string} params.zone - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.operation 
+     * @param {string} params.project 
+     * @param {string} params.zone 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations/{operation}',
@@ -293,16 +292,16 @@ function Autoscaler(options) {
      * @alias autoscaler.zoneOperations.list
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - 
-     * @param  {integer=} params.maxResults - 
-     * @param  {string=} params.pageToken - 
-     * @param  {string} params.project - 
-     * @param  {string} params.zone - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter 
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.pageToken 
+     * @param {string} params.project 
+     * @param {string} params.zone 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations',
@@ -319,7 +318,7 @@ function Autoscaler(options) {
 
   };
 
-  this.zones = {
+  self.zones = {
 
     /**
      * autoscaler.zones.list
@@ -329,15 +328,15 @@ function Autoscaler(options) {
      * @alias autoscaler.zones.list
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.filter - 
-     * @param  {integer=} params.maxResults - 
-     * @param  {string=} params.pageToken - 
-     * @param  {string} params.project - 
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter 
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.pageToken 
+     * @param {string} params.project 
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones',

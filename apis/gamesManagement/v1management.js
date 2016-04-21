@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Management API for Google Play Game Services.
  * @namespace gamesManagement
- * @version  v1management
+ * @version v1management
  * @variation v1management
  * @this Gamesmanagement
  * @param {object=} options Options for Gamesmanagement
  */
-function Gamesmanagement(options) {
-
+function Gamesmanagement(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.achievements = {
+  self.achievements = {
 
     /**
      * gamesManagement.achievements.reset
@@ -45,12 +44,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.achievements.reset
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/reset',
@@ -73,11 +72,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.achievements.resetAll
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function(params, callback) {
+    resetAll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/achievements/reset',
@@ -100,11 +99,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.achievements.resetAllForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function(params, callback) {
+    resetAllForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/achievements/resetAllForAllPlayers',
@@ -127,12 +126,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.achievements.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.achievementId - The ID of the achievement used by this method.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function(params, callback) {
+    resetForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/resetForAllPlayers',
@@ -155,12 +154,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.achievements.resetMultipleForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function(params, callback) {
+    resetMultipleForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/achievements/resetMultipleForAllPlayers',
@@ -177,7 +176,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.applications = {
+  self.applications = {
 
     /**
      * gamesManagement.applications.listHidden
@@ -187,14 +186,14 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.applications.listHidden
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {integer=} params.maxResults - The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listHidden: function(params, callback) {
+    listHidden: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden',
@@ -211,7 +210,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.events = {
+  self.events = {
 
     /**
      * gamesManagement.events.reset
@@ -221,12 +220,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.events.reset
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.eventId - The ID of the event.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.eventId The ID of the event.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/events/{eventId}/reset',
@@ -249,11 +248,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.events.resetAll
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function(params, callback) {
+    resetAll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/events/reset',
@@ -276,11 +275,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.events.resetAllForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function(params, callback) {
+    resetAllForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/events/resetAllForAllPlayers',
@@ -303,12 +302,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.events.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.eventId - The ID of the event.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.eventId The ID of the event.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function(params, callback) {
+    resetForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/events/{eventId}/resetForAllPlayers',
@@ -331,12 +330,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.events.resetMultipleForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function(params, callback) {
+    resetMultipleForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/events/resetMultipleForAllPlayers',
@@ -353,7 +352,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.players = {
+  self.players = {
 
     /**
      * gamesManagement.players.hide
@@ -363,13 +362,13 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.players.hide
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hide: function(params, callback) {
+    hide: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
@@ -392,13 +391,13 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.players.unhide
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
-     * @param  {string} params.playerId - A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unhide: function(params, callback) {
+    unhide: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
@@ -415,7 +414,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.quests = {
+  self.quests = {
 
     /**
      * gamesManagement.quests.reset
@@ -425,12 +424,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.quests.reset
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.questId - The ID of the quest.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.questId The ID of the quest.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/quests/{questId}/reset',
@@ -453,11 +452,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.quests.resetAll
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function(params, callback) {
+    resetAll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/quests/reset',
@@ -480,11 +479,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.quests.resetAllForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function(params, callback) {
+    resetAllForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/quests/resetAllForAllPlayers',
@@ -507,12 +506,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.quests.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.questId - The ID of the quest.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.questId The ID of the quest.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function(params, callback) {
+    resetForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/quests/{questId}/resetForAllPlayers',
@@ -535,12 +534,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.quests.resetMultipleForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function(params, callback) {
+    resetMultipleForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/quests/resetMultipleForAllPlayers',
@@ -557,7 +556,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.rooms = {
+  self.rooms = {
 
     /**
      * gamesManagement.rooms.reset
@@ -567,11 +566,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.rooms.reset
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/rooms/reset',
@@ -594,11 +593,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.rooms.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function(params, callback) {
+    resetForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/rooms/resetForAllPlayers',
@@ -615,7 +614,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.scores = {
+  self.scores = {
 
     /**
      * gamesManagement.scores.reset
@@ -625,12 +624,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.scores.reset
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/reset',
@@ -653,11 +652,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.scores.resetAll
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function(params, callback) {
+    resetAll: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/scores/reset',
@@ -680,11 +679,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.scores.resetAllForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function(params, callback) {
+    resetAllForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/scores/resetAllForAllPlayers',
@@ -707,12 +706,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.scores.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.leaderboardId - The ID of the leaderboard.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function(params, callback) {
+    resetForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers',
@@ -735,12 +734,12 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.scores.resetMultipleForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function(params, callback) {
+    resetMultipleForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/scores/resetMultipleForAllPlayers',
@@ -757,7 +756,7 @@ function Gamesmanagement(options) {
 
   };
 
-  this.turnBasedMatches = {
+  self.turnBasedMatches = {
 
     /**
      * gamesManagement.turnBasedMatches.reset
@@ -767,11 +766,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.turnBasedMatches.reset
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function(params, callback) {
+    reset: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/reset',
@@ -794,11 +793,11 @@ function Gamesmanagement(options) {
      * @alias gamesManagement.turnBasedMatches.resetForAllPlayers
      * @memberOf! gamesManagement(v1management)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function(params, callback) {
+    resetForAllPlayers: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/resetForAllPlayers',

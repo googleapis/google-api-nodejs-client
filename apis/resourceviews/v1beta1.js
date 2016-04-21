@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
  * @namespace resourceviews
- * @version  v1beta1
+ * @version v1beta1
  * @variation v1beta1
  * @this Resourceviews
  * @param {object=} options Options for Resourceviews
  */
-function Resourceviews(options) {
-
+function Resourceviews(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.regionViews = {
+  self.regionViews = {
 
     /**
      * resourceviews.regionViews.addresources
@@ -45,15 +44,15 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.addresources
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addresources: function(params, callback) {
+    addresources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/addResources',
@@ -76,14 +75,14 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.delete
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}',
@@ -106,14 +105,14 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.get
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}',
@@ -136,14 +135,14 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.insert
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews',
@@ -166,15 +165,15 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.list
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews',
@@ -197,16 +196,16 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.listresources
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listresources: function(params, callback) {
+    listresources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/resources',
@@ -229,15 +228,15 @@ function Resourceviews(options) {
      * @alias resourceviews.regionViews.removeresources
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.region - The region name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.region The region name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeresources: function(params, callback) {
+    removeresources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/removeResources',
@@ -254,7 +253,7 @@ function Resourceviews(options) {
 
   };
 
-  this.zoneViews = {
+  self.zoneViews = {
 
     /**
      * resourceviews.zoneViews.addresources
@@ -264,15 +263,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.addresources
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addresources: function(params, callback) {
+    addresources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/addResources',
@@ -295,14 +294,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.delete
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}',
@@ -325,14 +324,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.get
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}',
@@ -355,14 +354,14 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.insert
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews',
@@ -385,15 +384,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.list
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews',
@@ -416,16 +415,16 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.listresources
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.maxResults - Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-     * @param  {string=} params.pageToken - Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+     * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listresources: function(params, callback) {
+    listresources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/resources',
@@ -448,15 +447,15 @@ function Resourceviews(options) {
      * @alias resourceviews.zoneViews.removeresources
      * @memberOf! resourceviews(v1beta1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectName - The project name of the resource view.
-     * @param  {string} params.resourceViewName - The name of the resource view.
-     * @param  {string} params.zone - The zone name of the resource view.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectName The project name of the resource view.
+     * @param {string} params.resourceViewName The name of the resource view.
+     * @param {string} params.zone The zone name of the resource view.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeresources: function(params, callback) {
+    removeresources: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/removeResources',

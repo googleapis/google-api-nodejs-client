@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Lets you create, inspect, and manage goo.gl short URLs
  * @namespace urlshortener
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Urlshortener
  * @param {object=} options Options for Urlshortener
  */
-function Urlshortener(options) {
-
+function Urlshortener(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.url = {
+  self.url = {
 
     /**
      * urlshortener.url.get
@@ -45,13 +44,13 @@ function Urlshortener(options) {
      * @alias urlshortener.url.get
      * @memberOf! urlshortener(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string=} params.projection - Additional information to return.
-     * @param  {string} params.shortUrl - The short URL, including the protocol.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string=} params.projection Additional information to return.
+     * @param {string} params.shortUrl The short URL, including the protocol.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/urlshortener/v1/url',
@@ -74,12 +73,12 @@ function Urlshortener(options) {
      * @alias urlshortener.url.insert
      * @memberOf! urlshortener(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/urlshortener/v1/url',
@@ -102,13 +101,13 @@ function Urlshortener(options) {
      * @alias urlshortener.url.list
      * @memberOf! urlshortener(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.projection - Additional information to return.
-     * @param  {string=} params.start-token - Token for requesting successive pages of results.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.projection Additional information to return.
+     * @param {string=} params.start-token Token for requesting successive pages of results.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/urlshortener/v1/url/history',

@@ -25,15 +25,14 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Obtains end-user authorization grants for use with other Google APIs.
  * @namespace oauth2
- * @version  v2
+ * @version v2
  * @variation v2
  * @this Oauth2
  * @param {object=} options Options for Oauth2
  */
-function Oauth2(options) {
-
+function Oauth2(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
   /**
    * oauth2.getCertForOpenIdConnect
@@ -43,11 +42,11 @@ function Oauth2(options) {
    * @alias oauth2.getCertForOpenIdConnect
    * @memberOf! oauth2(v2)
    *
-   * @param  {object=} params - Parameters for request
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object=} params Parameters for request
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect = function(params, callback) {
+  this.getCertForOpenIdConnect = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/oauth2/v2/certs',
@@ -70,14 +69,14 @@ function Oauth2(options) {
    * @alias oauth2.tokeninfo
    * @memberOf! oauth2(v2)
    *
-   * @param  {object=} params - Parameters for request
-   * @param  {string=} params.access_token - 
-   * @param  {string=} params.id_token - 
-   * @param  {string=} params.token_handle - 
-   * @param  {callback} callback - The callback that handles the response.
+   * @param {object=} params Parameters for request
+   * @param {string=} params.access_token 
+   * @param {string=} params.id_token 
+   * @param {string=} params.token_handle 
+   * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.tokeninfo = function(params, callback) {
+  this.tokeninfo = function (params, callback) {
     var parameters = {
       options: {
         url: 'https://www.googleapis.com/oauth2/v2/tokeninfo',
@@ -92,7 +91,7 @@ function Oauth2(options) {
     return createAPIRequest(parameters, callback);
   };
 
-  this.userinfo = {
+  self.userinfo = {
 
     /**
      * oauth2.userinfo.get
@@ -102,11 +101,11 @@ function Oauth2(options) {
      * @alias oauth2.userinfo.get
      * @memberOf! oauth2(v2)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/oauth2/v2/userinfo',
@@ -133,11 +132,11 @@ function Oauth2(options) {
          * @alias oauth2.userinfo.v2.me.get
          * @memberOf! oauth2(v2)
          *
-         * @param  {object=} params - Parameters for request
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object=} params Parameters for request
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/userinfo/v2/me',

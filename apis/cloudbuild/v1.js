@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Builds container images in the cloud.
  * @namespace cloudbuild
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Cloudbuild
  * @param {object=} options Options for Cloudbuild
  */
-function Cloudbuild(options) {
-
+function Cloudbuild(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     builds: {
 
@@ -47,13 +46,13 @@ function Cloudbuild(options) {
        * @alias cloudbuild.projects.builds.get
        * @memberOf! cloudbuild(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.id - ID of the build.
-       * @param  {string} params.projectId - ID of the project.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.id ID of the build.
+       * @param {string} params.projectId ID of the project.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}',
@@ -76,13 +75,13 @@ function Cloudbuild(options) {
        * @alias cloudbuild.projects.builds.create
        * @memberOf! cloudbuild(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - ID of the project.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
@@ -105,14 +104,14 @@ function Cloudbuild(options) {
        * @alias cloudbuild.projects.builds.list
        * @memberOf! cloudbuild(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {integer=} params.pageSize - Number of results to return in the list.
-       * @param  {string=} params.pageToken - Token to provide to skip to a particular spot in the list.
-       * @param  {string} params.projectId - ID of the project.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Number of results to return in the list.
+       * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
+       * @param {string} params.projectId ID of the project.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
@@ -135,14 +134,14 @@ function Cloudbuild(options) {
        * @alias cloudbuild.projects.builds.cancel
        * @memberOf! cloudbuild(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.id - ID of the build.
-       * @param  {string} params.projectId - ID of the project.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.id ID of the build.
+       * @param {string} params.projectId ID of the project.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel: function(params, callback) {
+      cancel: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}:cancel',
@@ -159,7 +158,7 @@ function Cloudbuild(options) {
     }
   };
 
-  this.operations = {
+  self.operations = {
 
     /**
      * cloudbuild.operations.get
@@ -169,12 +168,12 @@ function Cloudbuild(options) {
      * @alias cloudbuild.operations.get
      * @memberOf! cloudbuild(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.name - The name of the operation resource.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudbuild.googleapis.com/v1/{name}',
@@ -197,15 +196,15 @@ function Cloudbuild(options) {
      * @alias cloudbuild.operations.list
      * @memberOf! cloudbuild(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {integer=} params.pageSize - The standard list page size.
-     * @param  {string=} params.filter - The standard list filter.
-     * @param  {string=} params.pageToken - The standard list page token.
-     * @param  {string} params.name - The name of the operation collection.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {string} params.name The name of the operation collection.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudbuild.googleapis.com/v1/{name}',

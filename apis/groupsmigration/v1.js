@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Groups Migration Api.
  * @namespace groupsmigration
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Groupsmigration
  * @param {object=} options Options for Groupsmigration
  */
-function Groupsmigration(options) {
-
+function Groupsmigration(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.archive = {
+  self.archive = {
 
     /**
      * groupsmigration.archive.insert
@@ -45,15 +44,15 @@ function Groupsmigration(options) {
      * @alias groupsmigration.archive.insert
      * @memberOf! groupsmigration(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.groupId - The group ID
-     * @param  {object} params.media - Media object
-     * @param  {string} params.media.mimeType - Media mime-type
-     * @param  {string|object} params.media.body - Media body contents
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.groupId The group ID
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/groups/v1/groups/{groupId}/archive',

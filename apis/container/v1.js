@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Builds and manages clusters that run container-based applications, powered by open source Kubernetes technology.
  * @namespace container
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Container
  * @param {object=} options Options for Container
  */
-function Container(options) {
-
+function Container(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     zones: {
 
@@ -47,13 +46,13 @@ function Container(options) {
        * @alias container.projects.zones.getServerconfig
        * @memberOf! container(v1)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-       * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+       * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getServerconfig: function(params, callback) {
+      getServerconfig: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/serverconfig',
@@ -78,13 +77,13 @@ function Container(options) {
          * @alias container.projects.zones.clusters.list
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters',
@@ -107,14 +106,14 @@ function Container(options) {
          * @alias container.projects.zones.clusters.get
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
-         * @param  {string} params.clusterId - The name of the cluster to retrieve.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+         * @param {string} params.clusterId The name of the cluster to retrieve.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}',
@@ -137,14 +136,14 @@ function Container(options) {
          * @alias container.projects.zones.clusters.create
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters',
@@ -167,15 +166,15 @@ function Container(options) {
          * @alias container.projects.zones.clusters.update
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
-         * @param  {string} params.clusterId - The name of the cluster to upgrade.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+         * @param {string} params.clusterId The name of the cluster to upgrade.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function(params, callback) {
+        update: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}',
@@ -198,14 +197,14 @@ function Container(options) {
          * @alias container.projects.zones.clusters.delete
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
-         * @param  {string} params.clusterId - The name of the cluster to delete.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+         * @param {string} params.clusterId The name of the cluster to delete.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, callback) {
+        delete: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}',
@@ -231,13 +230,13 @@ function Container(options) {
          * @alias container.projects.zones.operations.list
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/operations',
@@ -260,14 +259,14 @@ function Container(options) {
          * @alias container.projects.zones.operations.get
          * @memberOf! container(v1)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.projectId - The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-         * @param  {string} params.zone - The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
-         * @param  {string} params.operationId - The server-assigned `name` of the operation.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+         * @param {string} params.operationId The server-assigned `name` of the operation.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/operations/{operationId}',

@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Transfers user data from one user to another.
  * @namespace admin
- * @version  datatransfer_v1
+ * @version datatransfer_v1
  * @variation datatransfer_v1
  * @this Admin
  * @param {object=} options Options for Admin
  */
-function Admin(options) {
-
+function Admin(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.applications = {
+  self.applications = {
 
     /**
      * datatransfer.applications.get
@@ -45,12 +44,12 @@ function Admin(options) {
      * @alias datatransfer.applications.get
      * @memberOf! admin(datatransfer_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - ID of the application resource to be retrieved.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.applicationId ID of the application resource to be retrieved.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications/{applicationId}',
@@ -73,14 +72,14 @@ function Admin(options) {
      * @alias datatransfer.applications.list
      * @memberOf! admin(datatransfer_v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.customerId - Immutable ID of the Google Apps account.
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100.
-     * @param  {string=} params.pageToken - Token to specify next page in the list.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.customerId Immutable ID of the Google Apps account.
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+     * @param {string=} params.pageToken Token to specify next page in the list.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications',
@@ -97,7 +96,7 @@ function Admin(options) {
 
   };
 
-  this.transfers = {
+  self.transfers = {
 
     /**
      * datatransfer.transfers.get
@@ -107,12 +106,12 @@ function Admin(options) {
      * @alias datatransfer.transfers.get
      * @memberOf! admin(datatransfer_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.dataTransferId - ID of the resource to be retrieved. This is returned in the response from the insert method.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.dataTransferId ID of the resource to be retrieved. This is returned in the response from the insert method.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers/{dataTransferId}',
@@ -135,12 +134,12 @@ function Admin(options) {
      * @alias datatransfer.transfers.insert
      * @memberOf! admin(datatransfer_v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, callback) {
+    insert: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
@@ -163,17 +162,17 @@ function Admin(options) {
      * @alias datatransfer.transfers.list
      * @memberOf! admin(datatransfer_v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.customerId - Immutable ID of the Google Apps account.
-     * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100.
-     * @param  {string=} params.newOwnerUserId - Destination user's profile ID.
-     * @param  {string=} params.oldOwnerUserId - Source user's profile ID.
-     * @param  {string=} params.pageToken - Token to specify the next page in the list.
-     * @param  {string=} params.status - Status of the transfer.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.customerId Immutable ID of the Google Apps account.
+     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+     * @param {string=} params.newOwnerUserId Destination user's profile ID.
+     * @param {string=} params.oldOwnerUserId Source user's profile ID.
+     * @param {string=} params.pageToken Token to specify the next page in the list.
+     * @param {string=} params.status Status of the transfer.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',

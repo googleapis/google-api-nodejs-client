@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Reads and publishes results from Cloud Test Lab.
  * @namespace toolresults
- * @version  v1beta3
+ * @version v1beta3
  * @variation v1beta3
  * @this Toolresults
  * @param {object=} options Options for Toolresults
  */
-function Toolresults(options) {
-
+function Toolresults(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     /**
      * toolresults.projects.getSettings
@@ -45,12 +44,12 @@ function Toolresults(options) {
      * @alias toolresults.projects.getSettings
      * @memberOf! toolresults(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - A Project id.  Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSettings: function(params, callback) {
+    getSettings: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/settings',
@@ -73,12 +72,12 @@ function Toolresults(options) {
      * @alias toolresults.projects.initializeSettings
      * @memberOf! toolresults(v1beta3)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - A Project id.  Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    initializeSettings: function(params, callback) {
+    initializeSettings: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}:initializeSettings',
@@ -103,14 +102,14 @@ function Toolresults(options) {
        * @alias toolresults.projects.histories.create
        * @memberOf! toolresults(v1beta3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.projectId - A Project id.  Required.
-       * @param  {string=} params.requestId - A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-       * @param  {object} params.resource - Request body data
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId A Project id.  Required.
+       * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, callback) {
+      create: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories',
@@ -133,13 +132,13 @@ function Toolresults(options) {
        * @alias toolresults.projects.histories.get
        * @memberOf! toolresults(v1beta3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.historyId - A History id.  Required.
-       * @param  {string} params.projectId - A Project id.  Required.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string} params.historyId A History id.  Required.
+       * @param {string} params.projectId A Project id.  Required.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, callback) {
+      get: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}',
@@ -162,15 +161,15 @@ function Toolresults(options) {
        * @alias toolresults.projects.histories.list
        * @memberOf! toolresults(v1beta3)
        *
-       * @param  {object} params - Parameters for request
-       * @param  {string=} params.filterByName - If set, only return histories with the given name.  Optional.
-       * @param  {integer=} params.pageSize - The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
-       * @param  {string=} params.pageToken - A continuation token to resume the query at the next item.  Optional.
-       * @param  {string} params.projectId - A Project id.  Required.
-       * @param  {callback} callback - The callback that handles the response.
+       * @param {object} params Parameters for request
+       * @param {string=} params.filterByName If set, only return histories with the given name.  Optional.
+       * @param {integer=} params.pageSize The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
+       * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+       * @param {string} params.projectId A Project id.  Required.
+       * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, callback) {
+      list: function (params, callback) {
         var parameters = {
           options: {
             url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories',
@@ -195,15 +194,15 @@ function Toolresults(options) {
          * @alias toolresults.projects.histories.executions.create
          * @memberOf! toolresults(v1beta3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.historyId - A History id.  Required.
-         * @param  {string} params.projectId - A Project id.  Required.
-         * @param  {string=} params.requestId - A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.historyId A History id.  Required.
+         * @param {string} params.projectId A Project id.  Required.
+         * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions',
@@ -226,14 +225,14 @@ function Toolresults(options) {
          * @alias toolresults.projects.histories.executions.get
          * @memberOf! toolresults(v1beta3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.executionId - An Execution id.  Required.
-         * @param  {string} params.historyId - A History id.  Required.
-         * @param  {string} params.projectId - A Project id.  Required.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.executionId An Execution id.  Required.
+         * @param {string} params.historyId A History id.  Required.
+         * @param {string} params.projectId A Project id.  Required.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, callback) {
+        get: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}',
@@ -256,15 +255,15 @@ function Toolresults(options) {
          * @alias toolresults.projects.histories.executions.list
          * @memberOf! toolresults(v1beta3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.historyId - A History id.  Required.
-         * @param  {integer=} params.pageSize - The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-         * @param  {string=} params.pageToken - A continuation token to resume the query at the next item.  Optional.
-         * @param  {string} params.projectId - A Project id.  Required.
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.historyId A History id.  Required.
+         * @param {integer=} params.pageSize The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
+         * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+         * @param {string} params.projectId A Project id.  Required.
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions',
@@ -287,16 +286,16 @@ function Toolresults(options) {
          * @alias toolresults.projects.histories.executions.patch
          * @memberOf! toolresults(v1beta3)
          *
-         * @param  {object} params - Parameters for request
-         * @param  {string} params.executionId - Required.
-         * @param  {string} params.historyId - Required.
-         * @param  {string} params.projectId - A Project id. Required.
-         * @param  {string=} params.requestId - A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-         * @param  {object} params.resource - Request body data
-         * @param  {callback} callback - The callback that handles the response.
+         * @param {object} params Parameters for request
+         * @param {string} params.executionId Required.
+         * @param {string} params.historyId Required.
+         * @param {string} params.projectId A Project id. Required.
+         * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function(params, callback) {
+        patch: function (params, callback) {
           var parameters = {
             options: {
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}',
@@ -321,16 +320,16 @@ function Toolresults(options) {
            * @alias toolresults.projects.histories.executions.steps.create
            * @memberOf! toolresults(v1beta3)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.executionId - A Execution id.  Required.
-           * @param  {string} params.historyId - A History id.  Required.
-           * @param  {string} params.projectId - A Project id.  Required.
-           * @param  {string=} params.requestId - A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-           * @param  {object} params.resource - Request body data
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.executionId A Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+           * @param {object} params.resource Request body data
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create: function(params, callback) {
+          create: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
@@ -353,15 +352,15 @@ function Toolresults(options) {
            * @alias toolresults.projects.histories.executions.steps.get
            * @memberOf! toolresults(v1beta3)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.executionId - A Execution id.  Required.
-           * @param  {string} params.historyId - A History id.  Required.
-           * @param  {string} params.projectId - A Project id.  Required.
-           * @param  {string} params.stepId - A Step id.  Required.
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.executionId A Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {string} params.stepId A Step id.  Required.
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get: function(params, callback) {
+          get: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
@@ -384,16 +383,16 @@ function Toolresults(options) {
            * @alias toolresults.projects.histories.executions.steps.list
            * @memberOf! toolresults(v1beta3)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.executionId - A Execution id.  Required.
-           * @param  {string} params.historyId - A History id.  Required.
-           * @param  {integer=} params.pageSize - The maximum number of Steps to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-           * @param  {string=} params.pageToken - A continuation token to resume the query at the next item.  Optional.
-           * @param  {string} params.projectId - A Project id.  Required.
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.executionId A Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {integer=} params.pageSize The maximum number of Steps to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
+           * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function(params, callback) {
+          list: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
@@ -416,17 +415,17 @@ function Toolresults(options) {
            * @alias toolresults.projects.histories.executions.steps.patch
            * @memberOf! toolresults(v1beta3)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.executionId - A Execution id.  Required.
-           * @param  {string} params.historyId - A History id.  Required.
-           * @param  {string} params.projectId - A Project id.  Required.
-           * @param  {string=} params.requestId - A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-           * @param  {string} params.stepId - A Step id.  Required.
-           * @param  {object} params.resource - Request body data
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.executionId A Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+           * @param {string} params.stepId A Step id.  Required.
+           * @param {object} params.resource Request body data
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          patch: function(params, callback) {
+          patch: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
@@ -449,16 +448,16 @@ function Toolresults(options) {
            * @alias toolresults.projects.histories.executions.steps.publishXunitXmlFiles
            * @memberOf! toolresults(v1beta3)
            *
-           * @param  {object} params - Parameters for request
-           * @param  {string} params.executionId - A Execution id.  Required.
-           * @param  {string} params.historyId - A History id.  Required.
-           * @param  {string} params.projectId - A Project id.  Required.
-           * @param  {string} params.stepId - A Step id. Note: This step must include a TestExecutionStep.  Required.
-           * @param  {object} params.resource - Request body data
-           * @param  {callback} callback - The callback that handles the response.
+           * @param {object} params Parameters for request
+           * @param {string} params.executionId A Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
+           * @param {object} params.resource Request body data
+           * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          publishXunitXmlFiles: function(params, callback) {
+          publishXunitXmlFiles: function (params, callback) {
             var parameters = {
               options: {
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles',
@@ -483,17 +482,17 @@ function Toolresults(options) {
              * @alias toolresults.projects.histories.executions.steps.thumbnails.list
              * @memberOf! toolresults(v1beta3)
              *
-             * @param  {object} params - Parameters for request
-             * @param  {string} params.executionId - An Execution id.  Required.
-             * @param  {string} params.historyId - A History id.  Required.
-             * @param  {integer=} params.pageSize - The maximum number of thumbnails to fetch.  Default value: 50. The server will use this default if the field is not set or has a value of 0.  Optional.
-             * @param  {string=} params.pageToken - A continuation token to resume the query at the next item.  Optional.
-             * @param  {string} params.projectId - A Project id.  Required.
-             * @param  {string} params.stepId - A Step id.  Required.
-             * @param  {callback} callback - The callback that handles the response.
+             * @param {object} params Parameters for request
+             * @param {string} params.executionId An Execution id.  Required.
+             * @param {string} params.historyId A History id.  Required.
+             * @param {integer=} params.pageSize The maximum number of thumbnails to fetch.  Default value: 50. The server will use this default if the field is not set or has a value of 0.  Optional.
+             * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+             * @param {string} params.projectId A Project id.  Required.
+             * @param {string} params.stepId A Step id.  Required.
+             * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            list: function(params, callback) {
+            list: function (params, callback) {
               var parameters = {
                 options: {
                   url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails',

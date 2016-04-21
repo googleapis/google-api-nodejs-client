@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.
  * @namespace cloudresourcemanager
- * @version  v1
+ * @version v1
  * @variation v1
  * @this Cloudresourcemanager
  * @param {object=} options Options for Cloudresourcemanager
  */
-function Cloudresourcemanager(options) {
-
+function Cloudresourcemanager(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.projects = {
+  self.projects = {
 
     /**
      * cloudresourcemanager.projects.get
@@ -45,12 +44,12 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.get
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The Project ID (for example, `my-project-123`). Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`). Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
@@ -73,14 +72,14 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.list
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object=} params - Parameters for request
-     * @param  {string=} params.pageToken - A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
-     * @param  {integer=} params.pageSize - The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
-     * @param  {string=} params.filter - An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: + `name` + `id` + labels.key where *key* is the name of a label Some examples of using labels as filters: |Filter|Description| |------|-----------| |name:*|The project has a name.| |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project has the label `color`.| |labels.color:red|The project's label `color` has the value `red`.| |labels.color:red label.size:big|The project's label `color` has the value `red` and its label `size` has the value `big`. Optional.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object=} params Parameters for request
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
+     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: + `name` + `id` + labels.key where *key* is the name of a label Some examples of using labels as filters: |Filter|Description| |------|-----------| |name:*|The project has a name.| |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project has the label `color`.| |labels.color:red|The project's label `color` has the value `red`.| |labels.color:red label.size:big|The project's label `color` has the value `red` and its label `size` has the value `big`. Optional.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects',
@@ -103,13 +102,13 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.update
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The project ID (for example, `my-project-123`). Required.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The project ID (for example, `my-project-123`). Required.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function(params, callback) {
+    update: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
@@ -132,12 +131,12 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.delete
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The Project ID (for example, `foo-bar-123`). Required.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The Project ID (for example, `foo-bar-123`). Required.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, callback) {
+    delete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
@@ -160,13 +159,13 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.undelete
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.projectId - The project ID (for example, `foo-bar-123`). Required.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The project ID (for example, `foo-bar-123`). Required.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete: function(params, callback) {
+    undelete: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}:undelete',
@@ -189,13 +188,13 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.getIamPolicy
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy: function(params, callback) {
+    getIamPolicy: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:getIamPolicy',
@@ -218,13 +217,13 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.setIamPolicy
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resource_ - REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy: function(params, callback) {
+    setIamPolicy: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:setIamPolicy',
@@ -247,13 +246,13 @@ function Cloudresourcemanager(options) {
      * @alias cloudresourcemanager.projects.testIamPermissions
      * @memberOf! cloudresourcemanager(v1)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.resource_ - REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function(params, callback) {
+    testIamPermissions: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:testIamPermissions',

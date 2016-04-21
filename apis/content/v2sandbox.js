@@ -25,17 +25,16 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @classdesc Manages product items, inventory, and Merchant Center accounts for Google Shopping.
  * @namespace content
- * @version  v2sandbox
+ * @version v2sandbox
  * @variation v2sandbox
  * @this Content
  * @param {object=} options Options for Content
  */
-function Content(options) {
-
+function Content(options) { // eslint-disable-line
   var self = this;
-  this._options = options || {};
+  self._options = options || {};
 
-  this.orders = {
+  self.orders = {
 
     /**
      * content.orders.acknowledge
@@ -45,14 +44,14 @@ function Content(options) {
      * @alias content.orders.acknowledge
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function(params, callback) {
+    acknowledge: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge',
@@ -75,13 +74,13 @@ function Content(options) {
      * @alias content.orders.advancetestorder
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the test order to modify.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the test order to modify.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    advancetestorder: function(params, callback) {
+    advancetestorder: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders/{orderId}/advance',
@@ -104,14 +103,14 @@ function Content(options) {
      * @alias content.orders.cancel
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order to cancel.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order to cancel.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, callback) {
+    cancel: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancel',
@@ -134,14 +133,14 @@ function Content(options) {
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancellineitem: function(params, callback) {
+    cancellineitem: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem',
@@ -164,13 +163,13 @@ function Content(options) {
      * @alias content.orders.createtestorder
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createtestorder: function(params, callback) {
+    createtestorder: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders',
@@ -193,12 +192,12 @@ function Content(options) {
      * @alias content.orders.custombatch
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, callback) {
+    custombatch: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/orders/batch',
@@ -221,13 +220,13 @@ function Content(options) {
      * @alias content.orders.get
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}',
@@ -250,13 +249,13 @@ function Content(options) {
      * @alias content.orders.getbymerchantorderid
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.merchantOrderId - The merchant order id to be looked for.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantOrderId The merchant order id to be looked for.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getbymerchantorderid: function(params, callback) {
+    getbymerchantorderid: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}',
@@ -279,13 +278,13 @@ function Content(options) {
      * @alias content.orders.gettestordertemplate
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.templateName - The name of the template to retrieve.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.templateName The name of the template to retrieve.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    gettestordertemplate: function(params, callback) {
+    gettestordertemplate: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testordertemplates/{templateName}',
@@ -308,19 +307,19 @@ function Content(options) {
      * @alias content.orders.list
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {boolean=} params.acknowledged - Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
-     * @param  {integer=} params.maxResults - The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string=} params.orderBy - The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
-     * @param  {string=} params.pageToken - The token returned by the previous request.
-     * @param  {string=} params.placedDateEnd - Obtains orders placed before this date (exclusively), in ISO 8601 format.
-     * @param  {string=} params.placedDateStart - Obtains orders placed after this date (inclusively), in ISO 8601 format.
-     * @param  {string=} params.statuses - Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
+     * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
+     * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
+     * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, callback) {
+    list: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders',
@@ -343,14 +342,14 @@ function Content(options) {
      * @alias content.orders.refund
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order to refund.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order to refund.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    refund: function(params, callback) {
+    refund: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/refund',
@@ -373,14 +372,14 @@ function Content(options) {
      * @alias content.orders.returnlineitem
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    returnlineitem: function(params, callback) {
+    returnlineitem: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem',
@@ -403,14 +402,14 @@ function Content(options) {
      * @alias content.orders.shiplineitems
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    shiplineitems: function(params, callback) {
+    shiplineitems: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems',
@@ -433,14 +432,14 @@ function Content(options) {
      * @alias content.orders.updatemerchantorderid
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatemerchantorderid: function(params, callback) {
+    updatemerchantorderid: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId',
@@ -463,14 +462,14 @@ function Content(options) {
      * @alias content.orders.updateshipment
      * @memberOf! content(v2sandbox)
      *
-     * @param  {object} params - Parameters for request
-     * @param  {string} params.merchantId - The ID of the managing account.
-     * @param  {string} params.orderId - The ID of the order.
-     * @param  {object} params.resource - Request body data
-     * @param  {callback} callback - The callback that handles the response.
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateshipment: function(params, callback) {
+    updateshipment: function (params, callback) {
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment',

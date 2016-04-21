@@ -1,18 +1,17 @@
-/**
- * Copyright 2014 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2014-2016, Google, Inc.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+'use strict';
 
 var google = require('../lib/googleapis.js');
 var compute = google.compute('v1');
@@ -35,10 +34,9 @@ var compute = google.compute('v1');
  */
 
 // Get the appropriate type of credential client, depending upon the runtime environment.
-google.auth.getApplicationDefault(function(err, authClient) {
+google.auth.getApplicationDefault(function (err, authClient) {
   if (err) {
-    console.log('Failed to get the default credentials: ' + String(err));
-    return;
+    return console.log('Failed to get the default credentials: ' + String(err));
   }
   // The createScopedRequired method returns true when running on GAE or a local developer
   // machine. In that case, the desired scopes must be passed in manually. When the code is
@@ -51,7 +49,7 @@ google.auth.getApplicationDefault(function(err, authClient) {
   // Fetch the list of GCE zones within a project.
   // NOTE: You must fill in your valid project ID before running this sample!
   var projectId = 'fill in your project id here!';
-  compute.zones.list({ project: projectId, auth: authClient }, function(error, result) {
-    console.log(error, result);
+  compute.zones.list({ project: projectId, auth: authClient }, function (err, result) {
+    console.log(err, result);
   });
 });
