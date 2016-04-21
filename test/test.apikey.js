@@ -17,48 +17,103 @@
 'use strict';
 
 var assert = require('assert');
+var async = require('async');
 var googleapis = require('../');
-var google, drive, authClient, OAuth2;
+var nock = require('nock');
+var utils = require('./utils');
 
-describe('API key', function() {
+function testGet (drive) {
+  var req = drive.files.get({
+    fileId: '123',
+    auth: 'APIKEY'
+  }, utils.noop);
+  assert.equal(req.uri.query, 'key=APIKEY');
+}
 
-  function noop() {}
+function testParams (drive) {
+  var req = drive.files.get({
+    fileId: '123',
+    auth: 'API KEY'
+  }, utils.noop);
+  assert.equal(req.uri.query, 'key=API%20KEY');
+}
 
-  beforeEach(function() {
-    google = new googleapis.GoogleApis();
-    OAuth2 = google.auth.OAuth2;
+function testKeyParam (drive) {
+  var req = drive.files.get({
+    fileId: '123',
+    auth: 'API KEY',
+    key: 'abc123'
+  }, utils.noop);
+  assert.equal(req.uri.query, 'key=abc123');
+}
+
+function testAuthKey (urlshortener) {
+  var req = urlshortener.url.list({
+    auth: 'YOUR API KEY'
+  }, utils.noop);
+  assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
+}
+
+describe('API key', function () {
+  var localDrive, remoteDrive;
+  var localUrlshortener, remoteUrlshortener;
+  var authClient;
+
+  before(function (done) {
+    nock.cleanAll();
+    var google = new googleapis.GoogleApis();
+    nock.enableNetConnect();
+    async.parallel([
+      function (cb) {
+        utils.loadApi(google, 'drive', 'v2', cb);
+      },
+      function (cb) {
+        utils.loadApi(google, 'urlshortener', 'v1', cb);
+      }
+    ], function (err, apis) {
+      if (err) {
+        return done(err);
+      }
+      remoteDrive = apis[0];
+      remoteUrlshortener = apis[1];
+      nock.disableNetConnect();
+      done();
+    });
+  });
+
+  beforeEach(function () {
+    nock.cleanAll();
+    nock.disableNetConnect();
+    var google = new googleapis.GoogleApis();
+    var OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');
     authClient.setCredentials({ access_token: 'abc123' });
-    drive = google.drive('v2');
+    localDrive = google.drive('v2');
+    localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should include auth APIKEY as key=<APIKEY>', function() {
-    var req = drive.files.get({
-      fileId: '123',
-      auth: 'APIKEY'
-    }, noop);
-    assert.equal(req.uri.query, 'key=APIKEY');
+  it('should include auth APIKEY as key=<APIKEY>', function () {
+    testGet(localDrive);
+    testGet(remoteDrive);
   });
 
-  it('should properly escape params E.g. API KEY to API%20KEY', function() {
-    var req = drive.files.get({
-      fileId: '123',
-      auth: 'API KEY'
-    }, noop);
-    assert.equal(req.uri.query, 'key=API%20KEY');
+  it('should properly escape params E.g. API KEY to API%20KEY', function () {
+    testParams(localDrive);
+    testParams(remoteDrive);
   });
 
-  it('should use key param over auth apikey param if both provided and', function() {
-    var req = drive.files.get({
-      fileId: '123',
-      auth: 'API KEY',
-      key: 'abc123'
-    }, noop);
-    assert.equal(req.uri.query, 'key=abc123');
+  it('should use key param over auth apikey param if both provided', function () {
+    testKeyParam(localDrive);
+    testKeyParam(remoteDrive);
   });
 
-  it('should set API key parameter if it is presented', function() {
-    var req = google.urlshortener('v1').url.list({ auth: 'YOUR API KEY' }, noop);
-    assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
+  it('should set API key parameter if it is present', function () {
+    testAuthKey(localUrlshortener);
+    testAuthKey(remoteUrlshortener);
+  });
+
+  after(function () {
+    nock.cleanAll();
+    nock.enableNetConnect();
   });
 });
