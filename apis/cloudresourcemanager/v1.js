@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var cloudresourcemanager = google.cloudresourcemanager('v1');
  *
- * @name GoogleApis#cloudresourcemanager
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Cloud Resource Manager API
- *
- * The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.
- *
- * @example
- * var google = require('googleapis');
- * var cloudresourcemanager = google.cloudresourcemanager('v1');
- *
  * @namespace cloudresourcemanager
  * @type {Function}
  * @version v1

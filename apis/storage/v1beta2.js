@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var storage = google.storage('v1beta2');
  *
- * @name GoogleApis#storage
- * @version v1beta2
- * @variation v1beta2
- */
-
-/**
- * Cloud Storage JSON API
- *
- * Lets you store and retrieve potentially-large, immutable data objects.
- *
- * @example
- * var google = require('googleapis');
- * var storage = google.storage('v1beta2');
- *
  * @namespace storage
  * @type {Function}
  * @version v1beta2

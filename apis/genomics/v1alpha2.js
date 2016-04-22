@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var genomics = google.genomics('v1alpha2');
  *
- * @name GoogleApis#genomics
- * @version v1alpha2
- * @variation v1alpha2
- */
-
-/**
- * Genomics API
- *
- * Stores, processes, explores and shares genomic data. This API implements the Global Alliance for Genomics and Health (GA4GH) v0.5.1 API as well as several extensions.
- *
- * @example
- * var google = require('googleapis');
- * var genomics = google.genomics('v1alpha2');
- *
  * @namespace genomics
  * @type {Function}
  * @version v1alpha2

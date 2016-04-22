@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var replicapool = google.replicapool('v1beta1');
  *
- * @name GoogleApis#replicapool
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * Replica Pool API
- *
- * The Replica Pool API allows users to declaratively provision and manage groups of Google Compute Engine instances based on a common template.
- *
- * @example
- * var google = require('googleapis');
- * var replicapool = google.replicapool('v1beta1');
- *
  * @namespace replicapool
  * @type {Function}
  * @version v1beta1

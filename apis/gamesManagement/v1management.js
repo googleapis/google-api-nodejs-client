@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var gamesManagement = google.gamesManagement('v1management');
  *
- * @name GoogleApis#gamesManagement
- * @version v1management
- * @variation v1management
- */
-
-/**
- * Google Play Game Services Management API
- *
- * The Management API for Google Play Game Services.
- *
- * @example
- * var google = require('googleapis');
- * var gamesManagement = google.gamesManagement('v1management');
- *
  * @namespace gamesManagement
  * @type {Function}
  * @version v1management

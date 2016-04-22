@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var books = google.books('v1');
  *
- * @name GoogleApis#books
- * @version v1
- * @variation v1
- */
-
-/**
- * Books API
- *
- * Lets you search for books and manage your Google Books library.
- *
- * @example
- * var google = require('googleapis');
- * var books = google.books('v1');
- *
  * @namespace books
  * @type {Function}
  * @version v1

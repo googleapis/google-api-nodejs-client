@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var autoscaler = google.autoscaler('v1beta2');
  *
- * @name GoogleApis#autoscaler
- * @version v1beta2
- * @variation v1beta2
- */
-
-/**
- * Google Compute Engine Autoscaler API
- *
- * The Google Compute Engine Autoscaler API provides autoscaling for groups of Cloud VMs.
- *
- * @example
- * var google = require('googleapis');
- * var autoscaler = google.autoscaler('v1beta2');
- *
  * @namespace autoscaler
  * @type {Function}
  * @version v1beta2

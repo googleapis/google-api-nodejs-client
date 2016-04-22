@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var gmail = google.gmail('v1');
  *
- * @name GoogleApis#gmail
- * @version v1
- * @variation v1
- */
-
-/**
- * Gmail API
- *
- * Access Gmail mailboxes including sending user email.
- *
- * @example
- * var google = require('googleapis');
- * var gmail = google.gmail('v1');
- *
  * @namespace gmail
  * @type {Function}
  * @version v1

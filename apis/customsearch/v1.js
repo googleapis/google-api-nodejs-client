@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var customsearch = google.customsearch('v1');
  *
- * @name GoogleApis#customsearch
- * @version v1
- * @variation v1
- */
-
-/**
- * CustomSearch API
- *
- * Lets you search over a website or collection of websites
- *
- * @example
- * var google = require('googleapis');
- * var customsearch = google.customsearch('v1');
- *
  * @namespace customsearch
  * @type {Function}
  * @version v1

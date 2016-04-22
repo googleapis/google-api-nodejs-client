@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var androidpublisher = google.androidpublisher('v1.1');
  *
- * @name GoogleApis#androidpublisher
- * @version v1.1
- * @variation v1.1
- */
-
-/**
- * Google Play Developer API
- *
- * Lets Android application developers access their Google Play accounts.
- *
- * @example
- * var google = require('googleapis');
- * var androidpublisher = google.androidpublisher('v1.1');
- *
  * @namespace androidpublisher
  * @type {Function}
  * @version v1.1

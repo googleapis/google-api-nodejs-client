@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var replicapool = google.replicapool('v1beta2');
  *
- * @name GoogleApis#replicapool
- * @version v1beta2
- * @variation v1beta2
- */
-
-/**
- * Google Compute Engine Instance Group Manager API
- *
- * [Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.
- *
- * @example
- * var google = require('googleapis');
- * var replicapool = google.replicapool('v1beta2');
- *
  * @namespace replicapool
  * @type {Function}
  * @version v1beta2

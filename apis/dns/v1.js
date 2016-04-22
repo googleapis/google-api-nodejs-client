@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var dns = google.dns('v1');
  *
- * @name GoogleApis#dns
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Cloud DNS API
- *
- * Configures and serves authoritative DNS records.
- *
- * @example
- * var google = require('googleapis');
- * var dns = google.dns('v1');
- *
  * @namespace dns
  * @type {Function}
  * @version v1

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var gamesConfiguration = google.gamesConfiguration('v1configuration');
  *
- * @name GoogleApis#gamesConfiguration
- * @version v1configuration
- * @variation v1configuration
- */
-
-/**
- * Google Play Game Services Publishing API
- *
- * The Publishing API for Google Play Game Services.
- *
- * @example
- * var google = require('googleapis');
- * var gamesConfiguration = google.gamesConfiguration('v1configuration');
- *
  * @namespace gamesConfiguration
  * @type {Function}
  * @version v1configuration

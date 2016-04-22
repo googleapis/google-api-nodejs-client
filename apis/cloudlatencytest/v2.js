@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var cloudlatencytest = google.cloudlatencytest('v2');
  *
- * @name GoogleApis#cloudlatencytest
- * @version v2
- * @variation v2
- */
-
-/**
- * Google Cloud Network Performance Monitoring API
- *
- * Reports latency data.
- *
- * @example
- * var google = require('googleapis');
- * var cloudlatencytest = google.cloudlatencytest('v2');
- *
  * @namespace cloudlatencytest
  * @type {Function}
  * @version v2

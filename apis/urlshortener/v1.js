@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var urlshortener = google.urlshortener('v1');
  *
- * @name GoogleApis#urlshortener
- * @version v1
- * @variation v1
- */
-
-/**
- * URL Shortener API
- *
- * Lets you create, inspect, and manage goo.gl short URLs
- *
- * @example
- * var google = require('googleapis');
- * var urlshortener = google.urlshortener('v1');
- *
  * @namespace urlshortener
  * @type {Function}
  * @version v1

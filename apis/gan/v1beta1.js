@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var gan = google.gan('v1beta1');
  *
- * @name GoogleApis#gan
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * Google Affiliate Network API
- *
- * Lets you have programmatic access to your Google Affiliate Network data.
- *
- * @example
- * var google = require('googleapis');
- * var gan = google.gan('v1beta1');
- *
  * @namespace gan
  * @type {Function}
  * @version v1beta1

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var pubsub = google.pubsub('v1');
  *
- * @name GoogleApis#pubsub
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Cloud Pub/Sub API
- *
- * Provides reliable, many-to-many, asynchronous messaging between applications.
- *
- * @example
- * var google = require('googleapis');
- * var pubsub = google.pubsub('v1');
- *
  * @namespace pubsub
  * @type {Function}
  * @version v1

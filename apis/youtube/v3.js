@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var youtube = google.youtube('v3');
  *
- * @name GoogleApis#youtube
- * @version v3
- * @variation v3
- */
-
-/**
- * YouTube Data API
- *
- * Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
- *
- * @example
- * var google = require('googleapis');
- * var youtube = google.youtube('v3');
- *
  * @namespace youtube
  * @type {Function}
  * @version v3

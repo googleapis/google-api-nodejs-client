@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var prediction = google.prediction('v1.3');
  *
- * @name GoogleApis#prediction
- * @version v1.3
- * @variation v1.3
- */
-
-/**
- * Prediction API
- *
- * Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
- *
- * @example
- * var google = require('googleapis');
- * var prediction = google.prediction('v1.3');
- *
  * @namespace prediction
  * @type {Function}
  * @version v1.3

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var admin = google.admin('reports_v1');
  *
- * @name GoogleApis#admin
- * @version reports_v1
- * @variation reports_v1
- */
-
-/**
- * Admin Reports API
- *
- * Allows the administrators of Google Apps customers to fetch reports about the usage, collaboration, security and risk for their users.
- *
- * @example
- * var google = require('googleapis');
- * var admin = google.admin('reports_v1');
- *
  * @namespace admin
  * @type {Function}
  * @version reports_v1

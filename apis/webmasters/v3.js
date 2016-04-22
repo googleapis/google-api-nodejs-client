@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var webmasters = google.webmasters('v3');
  *
- * @name GoogleApis#webmasters
- * @version v3
- * @variation v3
- */
-
-/**
- * Search Console API
- *
- * View Google Search Console data for your verified sites.
- *
- * @example
- * var google = require('googleapis');
- * var webmasters = google.webmasters('v3');
- *
  * @namespace webmasters
  * @type {Function}
  * @version v3

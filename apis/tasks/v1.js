@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var tasks = google.tasks('v1');
  *
- * @name GoogleApis#tasks
- * @version v1
- * @variation v1
- */
-
-/**
- * Tasks API
- *
- * Lets you manage your tasks and task lists.
- *
- * @example
- * var google = require('googleapis');
- * var tasks = google.tasks('v1');
- *
  * @namespace tasks
  * @type {Function}
  * @version v1

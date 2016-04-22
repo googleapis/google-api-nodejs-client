@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var serviceregistry = google.serviceregistry('alpha');
  *
- * @name GoogleApis#serviceregistry
- * @version alpha
- * @variation alpha
- */
-
-/**
- * Google Cloud Service Registry API
- *
- * Manages service endpoints in Service Registry and provides integration with DNS for service discovery and name resolution.
- *
- * @example
- * var google = require('googleapis');
- * var serviceregistry = google.serviceregistry('alpha');
- *
  * @namespace serviceregistry
  * @type {Function}
  * @version alpha

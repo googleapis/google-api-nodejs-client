@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var bigquery = google.bigquery('v2');
  *
- * @name GoogleApis#bigquery
- * @version v2
- * @variation v2
- */
-
-/**
- * BigQuery API
- *
- * A data platform for customers to create, manage, share and query data.
- *
- * @example
- * var google = require('googleapis');
- * var bigquery = google.bigquery('v2');
- *
  * @namespace bigquery
  * @type {Function}
  * @version v2

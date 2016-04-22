@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var dfareporting = google.dfareporting('v1.2');
  *
- * @name GoogleApis#dfareporting
- * @version v1.2
- * @variation v1.2
- */
-
-/**
- * DFA Reporting API
- *
- * Lets you create, run and download reports.
- *
- * @example
- * var google = require('googleapis');
- * var dfareporting = google.dfareporting('v1.2');
- *
  * @namespace dfareporting
  * @type {Function}
  * @version v1.2

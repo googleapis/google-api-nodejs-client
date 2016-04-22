@@ -1,3 +1,15 @@
+##### 5.2.0 - 21 April 2016
+
+###### Backwards compatible changes
+- Added `instances.startWithEncryptionKey` to `compute` `beta` API
+- Added `images.getFromFamily` to `compute` `v1` API
+- #555 - Added "discover" and "discoverAPI" methods for discovering API(s) at runtime.
+  - Closes #416
+
+###### Other
+- #556 - Switched from JSHint to Semistandard
+- Improved JSDocs
+
 ##### 5.1.0 - 19 April 2016
 
 ###### Backwards compatible changes

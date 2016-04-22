@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var freebase = google.freebase('v1');
  *
- * @name GoogleApis#freebase
- * @version v1
- * @variation v1
- */
-
-/**
- * Freebase Search
- *
- * Find Freebase entities using textual queries and other constraints.
- *
- * @example
- * var google = require('googleapis');
- * var freebase = google.freebase('v1');
- *
  * @namespace freebase
  * @type {Function}
  * @version v1

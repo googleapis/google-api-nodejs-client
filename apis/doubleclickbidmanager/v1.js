@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var doubleclickbidmanager = google.doubleclickbidmanager('v1');
  *
- * @name GoogleApis#doubleclickbidmanager
- * @version v1
- * @variation v1
- */
-
-/**
- * DoubleClick Bid Manager API
- *
- * API for viewing and managing your reports in DoubleClick Bid Manager.
- *
- * @example
- * var google = require('googleapis');
- * var doubleclickbidmanager = google.doubleclickbidmanager('v1');
- *
  * @namespace doubleclickbidmanager
  * @type {Function}
  * @version v1

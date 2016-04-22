@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var blogger = google.blogger('v3');
  *
- * @name GoogleApis#blogger
- * @version v3
- * @variation v3
- */
-
-/**
- * Blogger API
- *
- * API for access to the data within Blogger.
- *
- * @example
- * var google = require('googleapis');
- * var blogger = google.blogger('v3');
- *
  * @namespace blogger
  * @type {Function}
  * @version v3

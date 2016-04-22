@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var partners = google.partners('v2');
  *
- * @name GoogleApis#partners
- * @version v2
- * @variation v2
- */
-
-/**
- * Google Partners API
- *
- * Lets advertisers search certified companies and create contact leads with them, and also audits the usage of clients.
- *
- * @example
- * var google = require('googleapis');
- * var partners = google.partners('v2');
- *
  * @namespace partners
  * @type {Function}
  * @version v2

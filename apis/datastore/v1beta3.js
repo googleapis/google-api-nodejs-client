@@ -30,21 +30,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var datastore = google.datastore('v1beta3');
  *
- * @name GoogleApis#datastore
- * @version v1beta3
- * @variation v1beta3
- */
-
-/**
- * Google Cloud Datastore API - NEW
- *
- * Google Cloud Datastore is a schemaless NoSQL datastore providing robust, scalable storage for your application.
-
- *
- * @example
- * var google = require('googleapis');
- * var datastore = google.datastore('v1beta3');
- *
  * @namespace datastore
  * @type {Function}
  * @version v1beta3

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var admin = google.admin('datatransfer_v1');
  *
- * @name GoogleApis#admin
- * @version datatransfer_v1
- * @variation datatransfer_v1
- */
-
-/**
- * Admin Data Transfer API
- *
- * Transfers user data from one user to another.
- *
- * @example
- * var google = require('googleapis');
- * var admin = google.admin('datatransfer_v1');
- *
  * @namespace admin
  * @type {Function}
  * @version datatransfer_v1

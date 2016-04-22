@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var sqladmin = google.sqladmin('v1beta3');
  *
- * @name GoogleApis#sqladmin
- * @version v1beta3
- * @variation v1beta3
- */
-
-/**
- * Cloud SQL Administration API
- *
- * Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
- *
- * @example
- * var google = require('googleapis');
- * var sqladmin = google.sqladmin('v1beta3');
- *
  * @namespace sqladmin
  * @type {Function}
  * @version v1beta3

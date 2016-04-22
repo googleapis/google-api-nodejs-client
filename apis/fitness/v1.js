@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var fitness = google.fitness('v1');
  *
- * @name GoogleApis#fitness
- * @version v1
- * @variation v1
- */
-
-/**
- * Fitness
- *
- * Google Fit API
- *
- * @example
- * var google = require('googleapis');
- * var fitness = google.fitness('v1');
- *
  * @namespace fitness
  * @type {Function}
  * @version v1

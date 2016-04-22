@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var civicinfo = google.civicinfo('v2');
  *
- * @name GoogleApis#civicinfo
- * @version v2
- * @variation v2
- */
-
-/**
- * Google Civic Information API
- *
- * An API for accessing civic information.
- *
- * @example
- * var google = require('googleapis');
- * var civicinfo = google.civicinfo('v2');
- *
  * @namespace civicinfo
  * @type {Function}
  * @version v2

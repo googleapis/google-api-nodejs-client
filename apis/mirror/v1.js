@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var mirror = google.mirror('v1');
  *
- * @name GoogleApis#mirror
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Mirror API
- *
- * API for interacting with Glass users via the timeline.
- *
- * @example
- * var google = require('googleapis');
- * var mirror = google.mirror('v1');
- *
  * @namespace mirror
  * @type {Function}
  * @version v1

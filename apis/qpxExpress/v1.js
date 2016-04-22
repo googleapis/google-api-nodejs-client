@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var qpxExpress = google.qpxExpress('v1');
  *
- * @name GoogleApis#qpxExpress
- * @version v1
- * @variation v1
- */
-
-/**
- * QPX Express API
- *
- * Finds the least expensive flights between an origin and a destination.
- *
- * @example
- * var google = require('googleapis');
- * var qpxExpress = google.qpxExpress('v1');
- *
  * @namespace qpxExpress
  * @type {Function}
  * @version v1

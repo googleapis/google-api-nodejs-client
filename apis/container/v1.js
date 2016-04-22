@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var container = google.container('v1');
  *
- * @name GoogleApis#container
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Container Engine API
- *
- * Builds and manages clusters that run container-based applications, powered by open source Kubernetes technology.
- *
- * @example
- * var google = require('googleapis');
- * var container = google.container('v1');
- *
  * @namespace container
  * @type {Function}
  * @version v1
@@ -236,6 +222,132 @@ function Container(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
+        },
+
+        nodePools: {
+
+          /**
+           * container.projects.zones.clusters.nodePools.list
+           *
+           * @desc Lists the node pools for a cluster.
+           *
+           * @alias container.projects.zones.clusters.nodePools.list
+           * @memberOf! container(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.projectId The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
+           * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+           * @param {string} params.clusterId The name of the cluster.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools',
+                method: 'GET'
+              },
+              params: params,
+              requiredParams: ['projectId', 'zone', 'clusterId'],
+              pathParams: ['projectId', 'zone', 'clusterId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * container.projects.zones.clusters.nodePools.get
+           *
+           * @desc Retrieves the node pool requested.
+           *
+           * @alias container.projects.zones.clusters.nodePools.get
+           * @memberOf! container(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.projectId The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
+           * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+           * @param {string} params.clusterId The name of the cluster.
+           * @param {string} params.nodePoolId The name of the node pool.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}',
+                method: 'GET'
+              },
+              params: params,
+              requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+              pathParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * container.projects.zones.clusters.nodePools.create
+           *
+           * @desc Creates a node pool for a cluster.
+           *
+           * @alias container.projects.zones.clusters.nodePools.create
+           * @memberOf! container(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.projectId The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
+           * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+           * @param {string} params.clusterId The name of the cluster.
+           * @param {object} params.resource Request body data
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools',
+                method: 'POST'
+              },
+              params: params,
+              requiredParams: ['projectId', 'zone', 'clusterId'],
+              pathParams: ['projectId', 'zone', 'clusterId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * container.projects.zones.clusters.nodePools.delete
+           *
+           * @desc Deletes a node pool from a cluster.
+           *
+           * @alias container.projects.zones.clusters.nodePools.delete
+           * @memberOf! container(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.projectId The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
+           * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+           * @param {string} params.clusterId The name of the cluster.
+           * @param {string} params.nodePoolId The name of the node pool to delete.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}',
+                method: 'DELETE'
+              },
+              params: params,
+              requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+              pathParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
         }
       },
 

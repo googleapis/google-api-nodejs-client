@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var discovery = google.discovery('v1');
  *
- * @name GoogleApis#discovery
- * @version v1
- * @variation v1
- */
-
-/**
- * APIs Discovery Service
- *
- * Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API.
- *
- * @example
- * var google = require('googleapis');
- * var discovery = google.discovery('v1');
- *
  * @namespace discovery
  * @type {Function}
  * @version v1

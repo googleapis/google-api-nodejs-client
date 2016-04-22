@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var translate = google.translate('v2');
  *
- * @name GoogleApis#translate
- * @version v2
- * @variation v2
- */
-
-/**
- * Translate API
- *
- * Lets you translate text from one language to another
- *
- * @example
- * var google = require('googleapis');
- * var translate = google.translate('v2');
- *
  * @namespace translate
  * @type {Function}
  * @version v2

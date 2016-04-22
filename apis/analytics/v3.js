@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var analytics = google.analytics('v3');
  *
- * @name GoogleApis#analytics
- * @version v3
- * @variation v3
- */
-
-/**
- * Google Analytics API
- *
- * Views and manages your Google Analytics data.
- *
- * @example
- * var google = require('googleapis');
- * var analytics = google.analytics('v3');
- *
  * @namespace analytics
  * @type {Function}
  * @version v3

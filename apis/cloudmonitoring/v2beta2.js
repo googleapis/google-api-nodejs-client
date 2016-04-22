@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var cloudmonitoring = google.cloudmonitoring('v2beta2');
  *
- * @name GoogleApis#cloudmonitoring
- * @version v2beta2
- * @variation v2beta2
- */
-
-/**
- * Cloud Monitoring API
- *
- * Accesses Google Cloud Monitoring data.
- *
- * @example
- * var google = require('googleapis');
- * var cloudmonitoring = google.cloudmonitoring('v2beta2');
- *
  * @namespace cloudmonitoring
  * @type {Function}
  * @version v2beta2

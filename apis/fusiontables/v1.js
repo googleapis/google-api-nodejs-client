@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var fusiontables = google.fusiontables('v1');
  *
- * @name GoogleApis#fusiontables
- * @version v1
- * @variation v1
- */
-
-/**
- * Fusion Tables API
- *
- * API for working with Fusion Tables data.
- *
- * @example
- * var google = require('googleapis');
- * var fusiontables = google.fusiontables('v1');
- *
  * @namespace fusiontables
  * @type {Function}
  * @version v1

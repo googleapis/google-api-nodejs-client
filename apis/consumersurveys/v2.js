@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var consumersurveys = google.consumersurveys('v2');
  *
- * @name GoogleApis#consumersurveys
- * @version v2
- * @variation v2
- */
-
-/**
- * Consumer Surveys API
- *
- * API for Google Consumer Surveys.
- *
- * @example
- * var google = require('googleapis');
- * var consumersurveys = google.consumersurveys('v2');
- *
  * @namespace consumersurveys
  * @type {Function}
  * @version v2

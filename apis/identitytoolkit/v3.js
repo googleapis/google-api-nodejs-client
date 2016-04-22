@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var identitytoolkit = google.identitytoolkit('v3');
  *
- * @name GoogleApis#identitytoolkit
- * @version v3
- * @variation v3
- */
-
-/**
- * Google Identity Toolkit API
- *
- * Help the third party sites to implement federated login.
- *
- * @example
- * var google = require('googleapis');
- * var identitytoolkit = google.identitytoolkit('v3');
- *
  * @namespace identitytoolkit
  * @type {Function}
  * @version v3
