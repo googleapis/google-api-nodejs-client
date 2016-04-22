@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Data API
  *
- * @classdesc Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
- * @namespace youtube
+ * Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var youtube = google.youtube('v3');
+ *
+ * @name GoogleApis#youtube
  * @version v3
  * @variation v3
- * @this Youtube
+ */
+
+/**
+ * YouTube Data API
+ *
+ * Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var youtube = google.youtube('v3');
+ *
+ * @namespace youtube
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Youtube
  */
 function Youtube(options) { // eslint-disable-line
@@ -2383,8 +2402,4 @@ function Youtube(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Youtube object
- * @type Youtube
- */
 module.exports = Youtube;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Civic Information API
  *
- * @classdesc An API for accessing civic information.
- * @namespace civicinfo
+ * An API for accessing civic information.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var civicinfo = google.civicinfo('v2');
+ *
+ * @name GoogleApis#civicinfo
  * @version v2
  * @variation v2
- * @this Civicinfo
+ */
+
+/**
+ * Google Civic Information API
+ *
+ * An API for accessing civic information.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var civicinfo = google.civicinfo('v2');
+ *
+ * @namespace civicinfo
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Civicinfo
  */
 function Civicinfo(options) { // eslint-disable-line
@@ -194,8 +213,4 @@ function Civicinfo(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Civicinfo object
- * @type Civicinfo
- */
 module.exports = Civicinfo;

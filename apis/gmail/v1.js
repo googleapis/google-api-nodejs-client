@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Gmail API
  *
- * @classdesc Access Gmail mailboxes including sending user email.
- * @namespace gmail
+ * Access Gmail mailboxes including sending user email.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var gmail = google.gmail('v1');
+ *
+ * @name GoogleApis#gmail
  * @version v1
  * @variation v1
- * @this Gmail
+ */
+
+/**
+ * Gmail API
+ *
+ * Access Gmail mailboxes including sending user email.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var gmail = google.gmail('v1');
+ *
+ * @namespace gmail
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Gmail
  */
 function Gmail(options) { // eslint-disable-line
@@ -1064,8 +1083,4 @@ function Gmail(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Gmail object
- * @type Gmail
- */
 module.exports = Gmail;

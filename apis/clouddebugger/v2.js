@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Debugger API
  *
- * @classdesc Examines the call stack and variables of a running application without stopping or slowing it down.
- * @namespace clouddebugger
+ * Examines the call stack and variables of a running application without stopping or slowing it down.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var clouddebugger = google.clouddebugger('v2');
+ *
+ * @name GoogleApis#clouddebugger
  * @version v2
  * @variation v2
- * @this Clouddebugger
+ */
+
+/**
+ * Google Cloud Debugger API
+ *
+ * Examines the call stack and variables of a running application without stopping or slowing it down.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var clouddebugger = google.clouddebugger('v2');
+ *
+ * @namespace clouddebugger
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Clouddebugger
  */
 function Clouddebugger(options) { // eslint-disable-line
@@ -295,8 +314,4 @@ function Clouddebugger(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Clouddebugger object
- * @type Clouddebugger
- */
 module.exports = Clouddebugger;

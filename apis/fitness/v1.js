@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Fitness
  *
- * @classdesc Google Fit API
- * @namespace fitness
+ * Google Fit API
+ *
+ * @example
+ * var google = require('googleapis');
+ * var fitness = google.fitness('v1');
+ *
+ * @name GoogleApis#fitness
  * @version v1
  * @variation v1
- * @this Fitness
+ */
+
+/**
+ * Fitness
+ *
+ * Google Fit API
+ *
+ * @example
+ * var google = require('googleapis');
+ * var fitness = google.fitness('v1');
+ *
+ * @namespace fitness
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Fitness
  */
 function Fitness(options) { // eslint-disable-line
@@ -444,8 +463,4 @@ function Fitness(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Fitness object
- * @type Fitness
- */
 module.exports = Fitness;

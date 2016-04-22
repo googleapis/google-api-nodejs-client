@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Pub/Sub API
  *
- * @classdesc Provides reliable, many-to-many, asynchronous messaging between applications.
- * @namespace pubsub
+ * Provides reliable, many-to-many, asynchronous messaging between applications.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var pubsub = google.pubsub('v1');
+ *
+ * @name GoogleApis#pubsub
  * @version v1
  * @variation v1
- * @this Pubsub
+ */
+
+/**
+ * Google Cloud Pub/Sub API
+ *
+ * Provides reliable, many-to-many, asynchronous messaging between applications.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var pubsub = google.pubsub('v1');
+ *
+ * @namespace pubsub
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Pubsub
  */
 function Pubsub(options) { // eslint-disable-line
@@ -624,8 +643,4 @@ function Pubsub(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Pubsub object
- * @type Pubsub
- */
 module.exports = Pubsub;

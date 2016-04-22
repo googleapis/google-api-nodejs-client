@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Site Verification API
  *
- * @classdesc Verifies ownership of websites or domains with Google.
- * @namespace siteVerification
+ * Verifies ownership of websites or domains with Google.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var siteVerification = google.siteVerification('v1');
+ *
+ * @name GoogleApis#siteVerification
  * @version v1
  * @variation v1
- * @this Siteverification
+ */
+
+/**
+ * Google Site Verification API
+ *
+ * Verifies ownership of websites or domains with Google.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var siteVerification = google.siteVerification('v1');
+ *
+ * @namespace siteVerification
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Siteverification
  */
 function Siteverification(options) { // eslint-disable-line
@@ -237,8 +256,4 @@ function Siteverification(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Siteverification object
- * @type Siteverification
- */
 module.exports = Siteverification;

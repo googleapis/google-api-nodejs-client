@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Admin Data Transfer API
  *
- * @classdesc Transfers user data from one user to another.
- * @namespace admin
+ * Transfers user data from one user to another.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var admin = google.admin('datatransfer_v1');
+ *
+ * @name GoogleApis#admin
  * @version datatransfer_v1
  * @variation datatransfer_v1
- * @this Admin
+ */
+
+/**
+ * Admin Data Transfer API
+ *
+ * Transfers user data from one user to another.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var admin = google.admin('datatransfer_v1');
+ *
+ * @namespace admin
+ * @type {Function}
+ * @version datatransfer_v1
+ * @variation datatransfer_v1
  * @param {object=} options Options for Admin
  */
 function Admin(options) { // eslint-disable-line
@@ -190,8 +209,4 @@ function Admin(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Admin object
- * @type Admin
- */
 module.exports = Admin;

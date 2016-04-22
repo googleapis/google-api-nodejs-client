@@ -4,20 +4,26 @@
   },
   "source": {
     "include": ["apis/", "lib/" ],
+    "exclude": [
+      "lib/apirequest.js",
+      "lib/generator.js"
+    ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
-  "plugins": [],
-  "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": false
-  },
+  "plugins": ["plugins/markdown"],
   "opts": {
-    "template": "templates/default",
-    "encoding": "utf8",
-    "destination": "./docs/",
+    "template": "./node_modules/ink-docstrap/template",
+    "destination": "./doc/",
     "recurse": true,
+    "verbose": true,
     "readme": "./README.md",
     "package": "./package.json"
+  },
+  "templates": {
+    "theme": "lumen",
+    "copyright": "google-api-nodejs-client Copyright © 2012-2016 Google Inc.",
+    "outputSourceFiles": false,
+    "linenums": true
   }
 }

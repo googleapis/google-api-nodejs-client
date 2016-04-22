@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Enterprise Apps Reseller API
  *
- * @classdesc Creates and manages your customers and their subscriptions.
- * @namespace reseller
+ * Creates and manages your customers and their subscriptions.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var reseller = google.reseller('v1sandbox');
+ *
+ * @name GoogleApis#reseller
  * @version v1sandbox
  * @variation v1sandbox
- * @this Reseller
+ */
+
+/**
+ * Enterprise Apps Reseller API
+ *
+ * Creates and manages your customers and their subscriptions.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var reseller = google.reseller('v1sandbox');
+ *
+ * @namespace reseller
+ * @type {Function}
+ * @version v1sandbox
+ * @variation v1sandbox
  * @param {object=} options Options for Reseller
  */
 function Reseller(options) { // eslint-disable-line
@@ -456,8 +475,4 @@ function Reseller(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Reseller object
- * @type Reseller
- */
 module.exports = Reseller;

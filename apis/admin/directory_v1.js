@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Admin Directory API
  *
- * @classdesc The Admin SDK Directory API lets you view and manage enterprise resources such as users and groups, administrative notifications, security features, and more.
- * @namespace admin
+ * The Admin SDK Directory API lets you view and manage enterprise resources such as users and groups, administrative notifications, security features, and more.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var admin = google.admin('directory_v1');
+ *
+ * @name GoogleApis#admin
  * @version directory_v1
  * @variation directory_v1
- * @this Admin
+ */
+
+/**
+ * Admin Directory API
+ *
+ * The Admin SDK Directory API lets you view and manage enterprise resources such as users and groups, administrative notifications, security features, and more.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var admin = google.admin('directory_v1');
+ *
+ * @namespace admin
+ * @type {Function}
+ * @version directory_v1
+ * @variation directory_v1
  * @param {object=} options Options for Admin
  */
 function Admin(options) { // eslint-disable-line
@@ -2923,8 +2942,4 @@ function Admin(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Admin object
- * @type Admin
- */
 module.exports = Admin;

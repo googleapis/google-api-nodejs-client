@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud DNS API
  *
- * @classdesc Configures and serves authoritative DNS records.
- * @namespace dns
+ * Configures and serves authoritative DNS records.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dns = google.dns('v1');
+ *
+ * @name GoogleApis#dns
  * @version v1
  * @variation v1
- * @this Dns
+ */
+
+/**
+ * Google Cloud DNS API
+ *
+ * Configures and serves authoritative DNS records.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dns = google.dns('v1');
+ *
+ * @namespace dns
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Dns
  */
 function Dns(options) { // eslint-disable-line
@@ -323,8 +342,4 @@ function Dns(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Dns object
- * @type Dns
- */
 module.exports = Dns;

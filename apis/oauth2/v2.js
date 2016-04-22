@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google OAuth2 API
  *
- * @classdesc Obtains end-user authorization grants for use with other Google APIs.
- * @namespace oauth2
+ * Obtains end-user authorization grants for use with other Google APIs.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var oauth2 = google.oauth2('v2');
+ *
+ * @name GoogleApis#oauth2
  * @version v2
  * @variation v2
- * @this Oauth2
+ */
+
+/**
+ * Google OAuth2 API
+ *
+ * Obtains end-user authorization grants for use with other Google APIs.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var oauth2 = google.oauth2('v2');
+ *
+ * @namespace oauth2
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Oauth2
  */
 function Oauth2(options) { // eslint-disable-line
@@ -155,8 +174,4 @@ function Oauth2(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Oauth2 object
- * @type Oauth2
- */
 module.exports = Oauth2;

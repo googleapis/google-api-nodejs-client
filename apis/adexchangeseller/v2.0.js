@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Ad Exchange Seller API
  *
- * @classdesc Gives Ad Exchange seller users access to their inventory and the ability to generate reports
- * @namespace adexchangeseller
+ * Gives Ad Exchange seller users access to their inventory and the ability to generate reports
+ *
+ * @example
+ * var google = require('googleapis');
+ * var adexchangeseller = google.adexchangeseller('v2.0');
+ *
+ * @name GoogleApis#adexchangeseller
  * @version v2.0
  * @variation v2.0
- * @this Adexchangeseller
+ */
+
+/**
+ * Ad Exchange Seller API
+ *
+ * Gives Ad Exchange seller users access to their inventory and the ability to generate reports
+ *
+ * @example
+ * var google = require('googleapis');
+ * var adexchangeseller = google.adexchangeseller('v2.0');
+ *
+ * @namespace adexchangeseller
+ * @type {Function}
+ * @version v2.0
+ * @variation v2.0
  * @param {object=} options Options for Adexchangeseller
  */
 function Adexchangeseller(options) { // eslint-disable-line
@@ -488,8 +507,4 @@ function Adexchangeseller(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Adexchangeseller object
- * @type Adexchangeseller
- */
 module.exports = Adexchangeseller;

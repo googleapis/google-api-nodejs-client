@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud User Accounts API
  *
- * @classdesc Creates and manages users and groups for accessing Google Compute Engine virtual machines.
- * @namespace clouduseraccounts
+ * Creates and manages users and groups for accessing Google Compute Engine virtual machines.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var clouduseraccounts = google.clouduseraccounts('alpha');
+ *
+ * @name GoogleApis#clouduseraccounts
  * @version alpha
  * @variation alpha
- * @this Clouduseraccounts
+ */
+
+/**
+ * Cloud User Accounts API
+ *
+ * Creates and manages users and groups for accessing Google Compute Engine virtual machines.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var clouduseraccounts = google.clouduseraccounts('alpha');
+ *
+ * @namespace clouduseraccounts
+ * @type {Function}
+ * @version alpha
+ * @variation alpha
  * @param {object=} options Options for Clouduseraccounts
  */
 function Clouduseraccounts(options) { // eslint-disable-line
@@ -743,8 +762,4 @@ function Clouduseraccounts(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Clouduseraccounts object
- * @type Clouduseraccounts
- */
 module.exports = Clouduseraccounts;

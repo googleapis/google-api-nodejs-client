@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Deployment Manager API
  *
- * @classdesc The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
- * @namespace manager
+ * The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var manager = google.manager('v1beta2');
+ *
+ * @name GoogleApis#manager
  * @version v1beta2
  * @variation v1beta2
- * @this Manager
+ */
+
+/**
+ * Deployment Manager API
+ *
+ * The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var manager = google.manager('v1beta2');
+ *
+ * @namespace manager
+ * @type {Function}
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Manager
  */
 function Manager(options) { // eslint-disable-line
@@ -281,8 +300,4 @@ function Manager(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Manager object
- * @type Manager
- */
 module.exports = Manager;

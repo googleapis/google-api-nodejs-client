@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Admin Reports API
  *
- * @classdesc Allows the administrators of Google Apps customers to fetch reports about the usage, collaboration, security and risk for their users.
- * @namespace admin
+ * Allows the administrators of Google Apps customers to fetch reports about the usage, collaboration, security and risk for their users.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var admin = google.admin('reports_v1');
+ *
+ * @name GoogleApis#admin
  * @version reports_v1
  * @variation reports_v1
- * @this Admin
+ */
+
+/**
+ * Admin Reports API
+ *
+ * Allows the administrators of Google Apps customers to fetch reports about the usage, collaboration, security and risk for their users.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var admin = google.admin('reports_v1');
+ *
+ * @namespace admin
+ * @type {Function}
+ * @version reports_v1
+ * @variation reports_v1
  * @param {object=} options Options for Admin
  */
 function Admin(options) { // eslint-disable-line
@@ -219,8 +238,4 @@ function Admin(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Admin object
- * @type Admin
- */
 module.exports = Admin;

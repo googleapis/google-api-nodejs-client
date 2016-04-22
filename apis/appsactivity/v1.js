@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Apps Activity API
  *
- * @classdesc Provides a historical view of activity.
- * @namespace appsactivity
+ * Provides a historical view of activity.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var appsactivity = google.appsactivity('v1');
+ *
+ * @name GoogleApis#appsactivity
  * @version v1
  * @variation v1
- * @this Appsactivity
+ */
+
+/**
+ * Google Apps Activity API
+ *
+ * Provides a historical view of activity.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var appsactivity = google.appsactivity('v1');
+ *
+ * @namespace appsactivity
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Appsactivity
  */
 function Appsactivity(options) { // eslint-disable-line
@@ -73,8 +92,4 @@ function Appsactivity(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Appsactivity object
- * @type Appsactivity
- */
 module.exports = Appsactivity;

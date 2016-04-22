@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Tag Manager API
  *
- * @classdesc Accesses Tag Manager accounts and containers.
- * @namespace tagmanager
+ * Accesses Tag Manager accounts and containers.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var tagmanager = google.tagmanager('v1');
+ *
+ * @name GoogleApis#tagmanager
  * @version v1
  * @variation v1
- * @this Tagmanager
+ */
+
+/**
+ * Tag Manager API
+ *
+ * Accesses Tag Manager accounts and containers.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var tagmanager = google.tagmanager('v1');
+ *
+ * @namespace tagmanager
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Tagmanager
  */
 function Tagmanager(options) { // eslint-disable-line
@@ -1573,8 +1592,4 @@ function Tagmanager(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Tagmanager object
- * @type Tagmanager
- */
 module.exports = Tagmanager;

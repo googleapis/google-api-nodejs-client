@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Datastore API
  *
- * @classdesc Stores and queries data in Google Cloud Datastore.
- * @namespace datastore
+ * Stores and queries data in Google Cloud Datastore.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var datastore = google.datastore('v1beta2');
+ *
+ * @name GoogleApis#datastore
  * @version v1beta2
  * @variation v1beta2
- * @this Datastore
+ */
+
+/**
+ * Google Cloud Datastore API
+ *
+ * Stores and queries data in Google Cloud Datastore.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var datastore = google.datastore('v1beta2');
+ *
+ * @namespace datastore
+ * @type {Function}
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Datastore
  */
 function Datastore(options) { // eslint-disable-line
@@ -213,8 +232,4 @@ function Datastore(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Datastore object
- * @type Datastore
- */
 module.exports = Datastore;

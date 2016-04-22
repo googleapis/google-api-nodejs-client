@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Groups Settings API
  *
- * @classdesc Lets you manage permission levels and related settings of a group.
- * @namespace groupssettings
+ * Lets you manage permission levels and related settings of a group.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var groupssettings = google.groupssettings('v1');
+ *
+ * @name GoogleApis#groupssettings
  * @version v1
  * @variation v1
- * @this Groupssettings
+ */
+
+/**
+ * Groups Settings API
+ *
+ * Lets you manage permission levels and related settings of a group.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var groupssettings = google.groupssettings('v1');
+ *
+ * @namespace groupssettings
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Groupssettings
  */
 function Groupssettings(options) { // eslint-disable-line
@@ -125,8 +144,4 @@ function Groupssettings(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Groupssettings object
- * @type Groupssettings
- */
 module.exports = Groupssettings;

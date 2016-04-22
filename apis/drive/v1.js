@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Drive API
  *
- * @classdesc The API to interact with Drive.
- * @namespace drive
+ * The API to interact with Drive.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var drive = google.drive('v1');
+ *
+ * @name GoogleApis#drive
  * @version v1
  * @variation v1
- * @this Drive
+ */
+
+/**
+ * Drive API
+ *
+ * The API to interact with Drive.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var drive = google.drive('v1');
+ *
+ * @namespace drive
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Drive
  */
 function Drive(options) { // eslint-disable-line
@@ -169,8 +188,4 @@ function Drive(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Drive object
- * @type Drive
- */
 module.exports = Drive;

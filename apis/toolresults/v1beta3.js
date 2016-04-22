@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud Tool Results API
  *
- * @classdesc Reads and publishes results from Cloud Test Lab.
- * @namespace toolresults
+ * Reads and publishes results from Cloud Test Lab.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var toolresults = google.toolresults('v1beta3');
+ *
+ * @name GoogleApis#toolresults
  * @version v1beta3
  * @variation v1beta3
- * @this Toolresults
+ */
+
+/**
+ * Cloud Tool Results API
+ *
+ * Reads and publishes results from Cloud Test Lab.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var toolresults = google.toolresults('v1beta3');
+ *
+ * @namespace toolresults
+ * @type {Function}
+ * @version v1beta3
+ * @variation v1beta3
  * @param {object=} options Options for Toolresults
  */
 function Toolresults(options) { // eslint-disable-line
@@ -513,8 +532,4 @@ function Toolresults(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Toolresults object
- * @type Toolresults
- */
 module.exports = Toolresults;

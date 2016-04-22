@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Trace API
  *
- * @classdesc The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
- * @namespace cloudtrace
+ * The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudtrace = google.cloudtrace('v1');
+ *
+ * @name GoogleApis#cloudtrace
  * @version v1
  * @variation v1
- * @this Cloudtrace
+ */
+
+/**
+ * Google Cloud Trace API
+ *
+ * The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudtrace = google.cloudtrace('v1');
+ *
+ * @namespace cloudtrace
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Cloudtrace
  */
 function Cloudtrace(options) { // eslint-disable-line
@@ -134,8 +153,4 @@ function Cloudtrace(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Cloudtrace object
- * @type Cloudtrace
- */
 module.exports = Cloudtrace;

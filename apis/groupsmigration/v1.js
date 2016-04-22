@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Groups Migration API
  *
- * @classdesc Groups Migration Api.
- * @namespace groupsmigration
+ * Groups Migration Api.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var groupsmigration = google.groupsmigration('v1');
+ *
+ * @name GoogleApis#groupsmigration
  * @version v1
  * @variation v1
- * @this Groupsmigration
+ */
+
+/**
+ * Groups Migration API
+ *
+ * Groups Migration Api.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var groupsmigration = google.groupsmigration('v1');
+ *
+ * @namespace groupsmigration
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Groupsmigration
  */
 function Groupsmigration(options) { // eslint-disable-line
@@ -71,8 +90,4 @@ function Groupsmigration(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Groupsmigration object
- * @type Groupsmigration
- */
 module.exports = Groupsmigration;

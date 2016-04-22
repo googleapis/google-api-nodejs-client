@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * BigQuery API
  *
- * @classdesc A data platform for customers to create, manage, share and query data.
- * @namespace bigquery
+ * A data platform for customers to create, manage, share and query data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var bigquery = google.bigquery('v2');
+ *
+ * @name GoogleApis#bigquery
  * @version v2
  * @variation v2
- * @this Bigquery
+ */
+
+/**
+ * BigQuery API
+ *
+ * A data platform for customers to create, manage, share and query data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var bigquery = google.bigquery('v2');
+ *
+ * @namespace bigquery
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Bigquery
  */
 function Bigquery(options) { // eslint-disable-line
@@ -696,8 +715,4 @@ function Bigquery(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Bigquery object
- * @type Bigquery
- */
 module.exports = Bigquery;

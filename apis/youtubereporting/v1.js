@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Reporting API
  *
- * @classdesc Schedules reporting jobs and downloads the resulting bulk data reports about YouTube channels, videos, etc. in the form of CSV files.
- * @namespace youtubereporting
+ * Schedules reporting jobs and downloads the resulting bulk data reports about YouTube channels, videos, etc. in the form of CSV files.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var youtubereporting = google.youtubereporting('v1');
+ *
+ * @name GoogleApis#youtubereporting
  * @version v1
  * @variation v1
- * @this Youtubereporting
+ */
+
+/**
+ * YouTube Reporting API
+ *
+ * Schedules reporting jobs and downloads the resulting bulk data reports about YouTube channels, videos, etc. in the form of CSV files.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var youtubereporting = google.youtubereporting('v1');
+ *
+ * @namespace youtubereporting
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Youtubereporting
  */
 function Youtubereporting(options) { // eslint-disable-line
@@ -290,8 +309,4 @@ function Youtubereporting(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Youtubereporting object
- * @type Youtubereporting
- */
 module.exports = Youtubereporting;

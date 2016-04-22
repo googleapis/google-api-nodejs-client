@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Analytics API
  *
- * @classdesc Views and manages your Google Analytics data.
- * @namespace analytics
+ * Views and manages your Google Analytics data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var analytics = google.analytics('v3');
+ *
+ * @name GoogleApis#analytics
  * @version v3
  * @variation v3
- * @this Analytics
+ */
+
+/**
+ * Google Analytics API
+ *
+ * Views and manages your Google Analytics data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var analytics = google.analytics('v3');
+ *
+ * @namespace analytics
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Analytics
  */
 function Analytics(options) { // eslint-disable-line
@@ -2554,8 +2573,4 @@ function Analytics(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Analytics object
- * @type Analytics
- */
 module.exports = Analytics;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google People API
  *
- * @classdesc The Google People API service gives access to information about profiles and contacts.
- * @namespace people
+ * The Google People API service gives access to information about profiles and contacts.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var people = google.people('v1');
+ *
+ * @name GoogleApis#people
  * @version v1
  * @variation v1
- * @this People
+ */
+
+/**
+ * Google People API
+ *
+ * The Google People API service gives access to information about profiles and contacts.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var people = google.people('v1');
+ *
+ * @namespace people
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for People
  */
 function People(options) { // eslint-disable-line
@@ -132,8 +151,4 @@ function People(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports People object
- * @type People
- */
 module.exports = People;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Identity Toolkit API
  *
- * @classdesc Help the third party sites to implement federated login.
- * @namespace identitytoolkit
+ * Help the third party sites to implement federated login.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var identitytoolkit = google.identitytoolkit('v3');
+ *
+ * @name GoogleApis#identitytoolkit
  * @version v3
  * @variation v3
- * @this Identitytoolkit
+ */
+
+/**
+ * Google Identity Toolkit API
+ *
+ * Help the third party sites to implement federated login.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var identitytoolkit = google.identitytoolkit('v3');
+ *
+ * @namespace identitytoolkit
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Identitytoolkit
  */
 function Identitytoolkit(options) { // eslint-disable-line
@@ -514,8 +533,4 @@ function Identitytoolkit(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Identitytoolkit object
- * @type Identitytoolkit
- */
 module.exports = Identitytoolkit;

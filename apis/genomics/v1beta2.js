@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Genomics API
  *
- * @classdesc Provides access to Genomics data.
- * @namespace genomics
+ * Provides access to Genomics data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var genomics = google.genomics('v1beta2');
+ *
+ * @name GoogleApis#genomics
  * @version v1beta2
  * @variation v1beta2
- * @this Genomics
+ */
+
+/**
+ * Genomics API
+ *
+ * Provides access to Genomics data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var genomics = google.genomics('v1beta2');
+ *
+ * @namespace genomics
+ * @type {Function}
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Genomics
  */
 function Genomics(options) { // eslint-disable-line
@@ -1741,8 +1760,4 @@ function Genomics(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Genomics object
- * @type Genomics
- */
 module.exports = Genomics;

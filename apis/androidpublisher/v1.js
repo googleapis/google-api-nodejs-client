@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play Developer API
  *
- * @classdesc Lets Android application developers access their Google Play accounts.
- * @namespace androidpublisher
+ * Lets Android application developers access their Google Play accounts.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var androidpublisher = google.androidpublisher('v1');
+ *
+ * @name GoogleApis#androidpublisher
  * @version v1
  * @variation v1
- * @this Androidpublisher
+ */
+
+/**
+ * Google Play Developer API
+ *
+ * Lets Android application developers access their Google Play accounts.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var androidpublisher = google.androidpublisher('v1');
+ *
+ * @namespace androidpublisher
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Androidpublisher
  */
 function Androidpublisher(options) { // eslint-disable-line
@@ -99,8 +118,4 @@ function Androidpublisher(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Androidpublisher object
- * @type Androidpublisher
- */
 module.exports = Androidpublisher;

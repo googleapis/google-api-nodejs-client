@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * AdSense Management API
  *
- * @classdesc Accesses AdSense publishers&#39; inventory and generates performance reports.
- * @namespace adsense
+ * Accesses AdSense publishers&#39; inventory and generates performance reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var adsense = google.adsense('v1.4');
+ *
+ * @name GoogleApis#adsense
  * @version v1.4
  * @variation v1.4
- * @this Adsense
+ */
+
+/**
+ * AdSense Management API
+ *
+ * Accesses AdSense publishers&#39; inventory and generates performance reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var adsense = google.adsense('v1.4');
+ *
+ * @namespace adsense
+ * @type {Function}
+ * @version v1.4
+ * @variation v1.4
  * @param {object=} options Options for Adsense
  */
 function Adsense(options) { // eslint-disable-line
@@ -1264,8 +1283,4 @@ function Adsense(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Adsense object
- * @type Adsense
- */
 module.exports = Adsense;

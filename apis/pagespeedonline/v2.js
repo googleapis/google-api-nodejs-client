@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * PageSpeed Insights API
  *
- * @classdesc Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
- * @namespace pagespeedonline
+ * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var pagespeedonline = google.pagespeedonline('v2');
+ *
+ * @name GoogleApis#pagespeedonline
  * @version v2
  * @variation v2
- * @this Pagespeedonline
+ */
+
+/**
+ * PageSpeed Insights API
+ *
+ * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var pagespeedonline = google.pagespeedonline('v2');
+ *
+ * @namespace pagespeedonline
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Pagespeedonline
  */
 function Pagespeedonline(options) { // eslint-disable-line
@@ -72,8 +91,4 @@ function Pagespeedonline(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Pagespeedonline object
- * @type Pagespeedonline
- */
 module.exports = Pagespeedonline;

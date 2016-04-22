@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * TaskQueue API
  *
- * @classdesc Lets you access a Google App Engine Pull Task Queue over REST.
- * @namespace taskqueue
+ * Lets you access a Google App Engine Pull Task Queue over REST.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var taskqueue = google.taskqueue('v1beta1');
+ *
+ * @name GoogleApis#taskqueue
  * @version v1beta1
  * @variation v1beta1
- * @this Taskqueue
+ */
+
+/**
+ * TaskQueue API
+ *
+ * Lets you access a Google App Engine Pull Task Queue over REST.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var taskqueue = google.taskqueue('v1beta1');
+ *
+ * @namespace taskqueue
+ * @type {Function}
+ * @version v1beta1
+ * @variation v1beta1
  * @param {object=} options Options for Taskqueue
  */
 function Taskqueue(options) { // eslint-disable-line
@@ -193,8 +212,4 @@ function Taskqueue(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Taskqueue object
- * @type Taskqueue
- */
 module.exports = Taskqueue;

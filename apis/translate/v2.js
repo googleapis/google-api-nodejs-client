@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Translate API
  *
- * @classdesc Lets you translate text from one language to another
- * @namespace translate
+ * Lets you translate text from one language to another
+ *
+ * @example
+ * var google = require('googleapis');
+ * var translate = google.translate('v2');
+ *
+ * @name GoogleApis#translate
  * @version v2
  * @variation v2
- * @this Translate
+ */
+
+/**
+ * Translate API
+ *
+ * Lets you translate text from one language to another
+ *
+ * @example
+ * var google = require('googleapis');
+ * var translate = google.translate('v2');
+ *
+ * @namespace translate
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Translate
  */
 function Translate(options) { // eslint-disable-line
@@ -135,8 +154,4 @@ function Translate(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Translate object
- * @type Translate
- */
 module.exports = Translate;

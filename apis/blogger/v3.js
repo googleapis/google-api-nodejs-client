@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Blogger API
  *
- * @classdesc API for access to the data within Blogger.
- * @namespace blogger
+ * API for access to the data within Blogger.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var blogger = google.blogger('v3');
+ *
+ * @name GoogleApis#blogger
  * @version v3
  * @variation v3
- * @this Blogger
+ */
+
+/**
+ * Blogger API
+ *
+ * API for access to the data within Blogger.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var blogger = google.blogger('v3');
+ *
+ * @namespace blogger
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Blogger
  */
 function Blogger(options) { // eslint-disable-line
@@ -1102,8 +1121,4 @@ function Blogger(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Blogger object
- * @type Blogger
- */
 module.exports = Blogger;

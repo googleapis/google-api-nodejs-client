@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google+ API
  *
- * @classdesc The Google+ API enables developers to build on top of the Google+ platform.
- * @namespace plus
+ * The Google+ API enables developers to build on top of the Google+ platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var plus = google.plus('v1');
+ *
+ * @name GoogleApis#plus
  * @version v1
  * @variation v1
- * @this Plus
+ */
+
+/**
+ * Google+ API
+ *
+ * The Google+ API enables developers to build on top of the Google+ platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var plus = google.plus('v1');
+ *
+ * @namespace plus
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Plus
  */
 function Plus(options) { // eslint-disable-line
@@ -319,8 +338,4 @@ function Plus(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Plus object
- * @type Plus
- */
 module.exports = Plus;

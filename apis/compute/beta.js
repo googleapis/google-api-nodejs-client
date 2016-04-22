@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Compute Engine API
  *
- * @classdesc Creates and runs virtual machines on Google Cloud Platform.
- * @namespace compute
+ * Creates and runs virtual machines on Google Cloud Platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var compute = google.compute('beta');
+ *
+ * @name GoogleApis#compute
  * @version beta
  * @variation beta
- * @this Compute
+ */
+
+/**
+ * Compute Engine API
+ *
+ * Creates and runs virtual machines on Google Cloud Platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var compute = google.compute('beta');
+ *
+ * @namespace compute
+ * @type {Function}
+ * @version beta
+ * @variation beta
  * @param {object=} options Options for Compute
  */
 function Compute(options) { // eslint-disable-line
@@ -7509,8 +7528,4 @@ function Compute(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Compute object
- * @type Compute
- */
 module.exports = Compute;

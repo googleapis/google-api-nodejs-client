@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Search Console API
  *
- * @classdesc View Google Search Console data for your verified sites.
- * @namespace webmasters
+ * View Google Search Console data for your verified sites.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var webmasters = google.webmasters('v3');
+ *
+ * @name GoogleApis#webmasters
  * @version v3
  * @variation v3
- * @this Webmasters
+ */
+
+/**
+ * Search Console API
+ *
+ * View Google Search Console data for your verified sites.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var webmasters = google.webmasters('v3');
+ *
+ * @namespace webmasters
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Webmasters
  */
 function Webmasters(options) { // eslint-disable-line
@@ -434,8 +453,4 @@ function Webmasters(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Webmasters object
- * @type Webmasters
- */
 module.exports = Webmasters;

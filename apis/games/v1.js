@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play Game Services API
  *
- * @classdesc The API for Google Play Game Services.
- * @namespace games
+ * The API for Google Play Game Services.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var games = google.games('v1');
+ *
+ * @name GoogleApis#games
  * @version v1
  * @variation v1
- * @this Games
+ */
+
+/**
+ * Google Play Game Services API
+ *
+ * The API for Google Play Game Services.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var games = google.games('v1');
+ *
+ * @namespace games
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Games
  */
 function Games(options) { // eslint-disable-line
@@ -1670,8 +1689,4 @@ function Games(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Games object
- * @type Games
- */
 module.exports = Games;

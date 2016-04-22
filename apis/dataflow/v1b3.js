@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Dataflow API
  *
- * @classdesc Develops and executes data processing patterns like ETL, batch computation, and continuous computation.
- * @namespace dataflow
+ * Develops and executes data processing patterns like ETL, batch computation, and continuous computation.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dataflow = google.dataflow('v1b3');
+ *
+ * @name GoogleApis#dataflow
  * @version v1b3
  * @variation v1b3
- * @this Dataflow
+ */
+
+/**
+ * Google Dataflow API
+ *
+ * Develops and executes data processing patterns like ETL, batch computation, and continuous computation.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dataflow = google.dataflow('v1b3');
+ *
+ * @namespace dataflow
+ * @type {Function}
+ * @version v1b3
+ * @variation v1b3
  * @param {object=} options Options for Dataflow
  */
 function Dataflow(options) { // eslint-disable-line
@@ -323,8 +342,4 @@ function Dataflow(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Dataflow object
- * @type Dataflow
- */
 module.exports = Dataflow;

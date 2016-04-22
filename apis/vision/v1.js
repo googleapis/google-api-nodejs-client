@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Vision API
  *
- * @classdesc Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
- * @namespace vision
+ * Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var vision = google.vision('v1');
+ *
+ * @name GoogleApis#vision
  * @version v1
  * @variation v1
- * @this Vision
+ */
+
+/**
+ * Google Cloud Vision API
+ *
+ * Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var vision = google.vision('v1');
+ *
+ * @namespace vision
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Vision
  */
 function Vision(options) { // eslint-disable-line
@@ -67,8 +86,4 @@ function Vision(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Vision object
- * @type Vision
- */
 module.exports = Vision;
