@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Compute Engine Instance Group Manager API
  *
- * @classdesc [Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.
- * @namespace replicapool
+ * [Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var replicapool = google.replicapool('v1beta2');
+ *
+ * @name GoogleApis#replicapool
  * @version v1beta2
  * @variation v1beta2
- * @this Replicapool
+ */
+
+/**
+ * Google Compute Engine Instance Group Manager API
+ *
+ * [Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var replicapool = google.replicapool('v1beta2');
+ *
+ * @namespace replicapool
+ * @type {Function}
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Replicapool
  */
 function Replicapool(options) { // eslint-disable-line
@@ -414,8 +433,4 @@ function Replicapool(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Replicapool object
- * @type Replicapool
- */
 module.exports = Replicapool;

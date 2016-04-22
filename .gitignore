@@ -1,6 +1,6 @@
 node_modules/*
 .idea
-docs/
+doc/
 npm-debug.log
 coverage
 .secrets.json

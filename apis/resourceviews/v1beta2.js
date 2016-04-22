@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Compute Engine Instance Groups API
  *
- * @classdesc The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
- * @namespace resourceviews
+ * The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var resourceviews = google.resourceviews('v1beta2');
+ *
+ * @name GoogleApis#resourceviews
  * @version v1beta2
  * @variation v1beta2
- * @this Resourceviews
+ */
+
+/**
+ * Google Compute Engine Instance Groups API
+ *
+ * The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var resourceviews = google.resourceviews('v1beta2');
+ *
+ * @namespace resourceviews
+ * @type {Function}
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Resourceviews
  */
 function Resourceviews(options) { // eslint-disable-line
@@ -385,8 +404,4 @@ function Resourceviews(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Resourceviews object
- * @type Resourceviews
- */
 module.exports = Resourceviews;

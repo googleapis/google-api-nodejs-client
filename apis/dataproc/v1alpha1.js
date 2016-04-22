@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Dataproc API
  *
- * @classdesc An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
- * @namespace dataproc
+ * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dataproc = google.dataproc('v1alpha1');
+ *
+ * @name GoogleApis#dataproc
  * @version v1alpha1
  * @variation v1alpha1
- * @this Dataproc
+ */
+
+/**
+ * Google Cloud Dataproc API
+ *
+ * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dataproc = google.dataproc('v1alpha1');
+ *
+ * @namespace dataproc
+ * @type {Function}
+ * @version v1alpha1
+ * @variation v1alpha1
  * @param {object=} options Options for Dataproc
  */
 function Dataproc(options) { // eslint-disable-line
@@ -441,8 +460,4 @@ function Dataproc(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Dataproc object
- * @type Dataproc
- */
 module.exports = Dataproc;

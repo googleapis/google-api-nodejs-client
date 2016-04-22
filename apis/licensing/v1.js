@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Enterprise License Manager API
  *
- * @classdesc Licensing API to view and manage license for your domain.
- * @namespace licensing
+ * Licensing API to view and manage license for your domain.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var licensing = google.licensing('v1');
+ *
+ * @name GoogleApis#licensing
  * @version v1
  * @variation v1
- * @this Licensing
+ */
+
+/**
+ * Enterprise License Manager API
+ *
+ * Licensing API to view and manage license for your domain.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var licensing = google.licensing('v1');
+ *
+ * @namespace licensing
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Licensing
  */
 function Licensing(options) { // eslint-disable-line
@@ -254,8 +273,4 @@ function Licensing(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Licensing object
- * @type Licensing
- */
 module.exports = Licensing;

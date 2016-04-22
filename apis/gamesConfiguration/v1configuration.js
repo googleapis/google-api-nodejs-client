@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play Game Services Publishing API
  *
- * @classdesc The Publishing API for Google Play Game Services.
- * @namespace gamesConfiguration
+ * The Publishing API for Google Play Game Services.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var gamesConfiguration = google.gamesConfiguration('v1configuration');
+ *
+ * @name GoogleApis#gamesConfiguration
  * @version v1configuration
  * @variation v1configuration
- * @this Gamesconfiguration
+ */
+
+/**
+ * Google Play Game Services Publishing API
+ *
+ * The Publishing API for Google Play Game Services.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var gamesConfiguration = google.gamesConfiguration('v1configuration');
+ *
+ * @namespace gamesConfiguration
+ * @type {Function}
+ * @version v1configuration
+ * @variation v1configuration
  * @param {object=} options Options for Gamesconfiguration
  */
 function Gamesconfiguration(options) { // eslint-disable-line
@@ -426,8 +445,4 @@ function Gamesconfiguration(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Gamesconfiguration object
- * @type Gamesconfiguration
- */
 module.exports = Gamesconfiguration;

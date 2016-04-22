@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Fusion Tables API
  *
- * @classdesc API for working with Fusion Tables data.
- * @namespace fusiontables
+ * API for working with Fusion Tables data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var fusiontables = google.fusiontables('v1');
+ *
+ * @name GoogleApis#fusiontables
  * @version v1
  * @variation v1
- * @this Fusiontables
+ */
+
+/**
+ * Fusion Tables API
+ *
+ * API for working with Fusion Tables data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var fusiontables = google.fusiontables('v1');
+ *
+ * @namespace fusiontables
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Fusiontables
  */
 function Fusiontables(options) { // eslint-disable-line
@@ -1012,8 +1031,4 @@ function Fusiontables(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Fusiontables object
- * @type Fusiontables
- */
 module.exports = Fusiontables;

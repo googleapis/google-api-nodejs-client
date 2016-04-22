@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * QPX Express API
  *
- * @classdesc Finds the least expensive flights between an origin and a destination.
- * @namespace qpxExpress
+ * Finds the least expensive flights between an origin and a destination.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var qpxExpress = google.qpxExpress('v1');
+ *
+ * @name GoogleApis#qpxExpress
  * @version v1
  * @variation v1
- * @this Qpxexpress
+ */
+
+/**
+ * QPX Express API
+ *
+ * Finds the least expensive flights between an origin and a destination.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var qpxExpress = google.qpxExpress('v1');
+ *
+ * @namespace qpxExpress
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Qpxexpress
  */
 function Qpxexpress(options) { // eslint-disable-line
@@ -67,8 +86,4 @@ function Qpxexpress(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Qpxexpress object
- * @type Qpxexpress
- */
 module.exports = Qpxexpress;

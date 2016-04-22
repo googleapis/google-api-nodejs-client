@@ -5,12 +5,11 @@
 [![npm version][npmimg]][npm]
 [![Build Status][travisimg]][travis]
 [![Code Coverage][codecovimg]][codecov]
+[![Downloads][downloadsimg]][downloads]
 
 Google's officially supported [Node.js][node] client library for using Google
 APIs. Support for authorization and authentication with OAuth 2.0, API Keys and
 JWT (Service Tokens) is included.
-
-<a href="https://nodei.co/npm/googleapis/"><img src="https://nodei.co/npm/googleapis.png?downloads=true&downloadRank=true&stars=true" align="right"/></a>
 
 ## Table of Contents
 
@@ -520,3 +519,5 @@ See [CONTRIBUTING][contributing].
 [cloudplatform]: https://cloud.google.com/docs/
 [codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
 [codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
+[downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
+[downloads]: https://nodei.co/npm/googleapis/

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Monitoring API
  *
- * @classdesc The Google Monitoring API lets you manage your monitoring data and configurations.
- * @namespace monitoring
+ * The Google Monitoring API lets you manage your monitoring data and configurations.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var monitoring = google.monitoring('v3');
+ *
+ * @name GoogleApis#monitoring
  * @version v3
  * @variation v3
- * @this Monitoring
+ */
+
+/**
+ * Google Monitoring API
+ *
+ * The Google Monitoring API lets you manage your monitoring data and configurations.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var monitoring = google.monitoring('v3');
+ *
+ * @namespace monitoring
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Monitoring
  */
 function Monitoring(options) { // eslint-disable-line
@@ -510,8 +529,4 @@ function Monitoring(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Monitoring object
- * @type Monitoring
- */
 module.exports = Monitoring;

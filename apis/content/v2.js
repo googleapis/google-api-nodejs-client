@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Content API for Shopping
  *
- * @classdesc Manages product items, inventory, and Merchant Center accounts for Google Shopping.
- * @namespace content
+ * Manages product items, inventory, and Merchant Center accounts for Google Shopping.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var content = google.content('v2');
+ *
+ * @name GoogleApis#content
  * @version v2
  * @variation v2
- * @this Content
+ */
+
+/**
+ * Content API for Shopping
+ *
+ * Manages product items, inventory, and Merchant Center accounts for Google Shopping.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var content = google.content('v2');
+ *
+ * @namespace content
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Content
  */
 function Content(options) { // eslint-disable-line
@@ -1742,8 +1761,4 @@ function Content(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Content object
- * @type Content
- */
 module.exports = Content;

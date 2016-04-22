@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud Storage JSON API
  *
- * @classdesc Stores and retrieves potentially large, immutable data objects.
- * @namespace storage
+ * Stores and retrieves potentially large, immutable data objects.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var storage = google.storage('v1');
+ *
+ * @name GoogleApis#storage
  * @version v1
  * @variation v1
- * @this Storage
+ */
+
+/**
+ * Cloud Storage JSON API
+ *
+ * Stores and retrieves potentially large, immutable data objects.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var storage = google.storage('v1');
+ *
+ * @namespace storage
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Storage
  */
 function Storage(options) { // eslint-disable-line
@@ -1193,8 +1212,4 @@ function Storage(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Storage object
- * @type Storage
- */
 module.exports = Storage;

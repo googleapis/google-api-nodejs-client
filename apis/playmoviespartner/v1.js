@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play Movies Partner API
  *
- * @classdesc Lets Google Play Movies Partners get the delivery status of their titles.
- * @namespace playmoviespartner
+ * Lets Google Play Movies Partners get the delivery status of their titles.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var playmoviespartner = google.playmoviespartner('v1');
+ *
+ * @name GoogleApis#playmoviespartner
  * @version v1
  * @variation v1
- * @this Playmoviespartner
+ */
+
+/**
+ * Google Play Movies Partner API
+ *
+ * Lets Google Play Movies Partners get the delivery status of their titles.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var playmoviespartner = google.playmoviespartner('v1');
+ *
+ * @namespace playmoviespartner
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Playmoviespartner
  */
 function Playmoviespartner(options) { // eslint-disable-line
@@ -285,8 +304,4 @@ function Playmoviespartner(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Playmoviespartner object
- * @type Playmoviespartner
- */
 module.exports = Playmoviespartner;

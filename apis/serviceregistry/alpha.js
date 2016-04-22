@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Service Registry API
  *
- * @classdesc Manages service endpoints in Service Registry and provides integration with DNS for service discovery and name resolution.
- * @namespace serviceregistry
+ * Manages service endpoints in Service Registry and provides integration with DNS for service discovery and name resolution.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var serviceregistry = google.serviceregistry('alpha');
+ *
+ * @name GoogleApis#serviceregistry
  * @version alpha
  * @variation alpha
- * @this Serviceregistry
+ */
+
+/**
+ * Google Cloud Service Registry API
+ *
+ * Manages service endpoints in Service Registry and provides integration with DNS for service discovery and name resolution.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var serviceregistry = google.serviceregistry('alpha');
+ *
+ * @namespace serviceregistry
+ * @type {Function}
+ * @version alpha
+ * @variation alpha
  * @param {object=} options Options for Serviceregistry
  */
 function Serviceregistry(options) { // eslint-disable-line
@@ -283,8 +302,4 @@ function Serviceregistry(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Serviceregistry object
- * @type Serviceregistry
- */
 module.exports = Serviceregistry;

@@ -23,12 +23,32 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Datastore API - NEW
  *
- * @classdesc Google Cloud Datastore is a schemaless NoSQL datastore providing robust, scalable storage for your application.
+ * Google Cloud Datastore is a schemaless NoSQL datastore providing robust, scalable storage for your application.
 
- * @namespace datastore
+ *
+ * @example
+ * var google = require('googleapis');
+ * var datastore = google.datastore('v1beta3');
+ *
+ * @name GoogleApis#datastore
  * @version v1beta3
  * @variation v1beta3
- * @this Datastore
+ */
+
+/**
+ * Google Cloud Datastore API - NEW
+ *
+ * Google Cloud Datastore is a schemaless NoSQL datastore providing robust, scalable storage for your application.
+
+ *
+ * @example
+ * var google = require('googleapis');
+ * var datastore = google.datastore('v1beta3');
+ *
+ * @namespace datastore
+ * @type {Function}
+ * @version v1beta3
+ * @variation v1beta3
  * @param {object=} options Options for Datastore
  */
 function Datastore(options) { // eslint-disable-line
@@ -214,8 +234,4 @@ function Datastore(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Datastore object
- * @type Datastore
- */
 module.exports = Datastore;

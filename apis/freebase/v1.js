@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Freebase Search
  *
- * @classdesc Find Freebase entities using textual queries and other constraints.
- * @namespace freebase
+ * Find Freebase entities using textual queries and other constraints.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var freebase = google.freebase('v1');
+ *
+ * @name GoogleApis#freebase
  * @version v1
  * @variation v1
- * @this Freebase
+ */
+
+/**
+ * Freebase Search
+ *
+ * Find Freebase entities using textual queries and other constraints.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var freebase = google.freebase('v1');
+ *
+ * @namespace freebase
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Freebase
  */
 function Freebase(options) { // eslint-disable-line
@@ -118,8 +137,4 @@ function Freebase(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Freebase object
- * @type Freebase
- */
 module.exports = Freebase;

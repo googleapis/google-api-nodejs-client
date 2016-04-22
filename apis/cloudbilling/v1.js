@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Billing API
  *
- * @classdesc Retrieves Google Developers Console billing accounts and associates them with projects.
- * @namespace cloudbilling
+ * Retrieves Google Developers Console billing accounts and associates them with projects.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudbilling = google.cloudbilling('v1');
+ *
+ * @name GoogleApis#cloudbilling
  * @version v1
  * @variation v1
- * @this Cloudbilling
+ */
+
+/**
+ * Google Cloud Billing API
+ *
+ * Retrieves Google Developers Console billing accounts and associates them with projects.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudbilling = google.cloudbilling('v1');
+ *
+ * @namespace cloudbilling
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Cloudbilling
  */
 function Cloudbilling(options) { // eslint-disable-line
@@ -189,8 +208,4 @@ function Cloudbilling(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Cloudbilling object
- * @type Cloudbilling
- */
 module.exports = Cloudbilling;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * DCM/DFA Reporting And Trafficking API
  *
- * @classdesc Manages your DoubleClick Campaign Manager ad campaigns and reports.
- * @namespace dfareporting
+ * Manages your DoubleClick Campaign Manager ad campaigns and reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dfareporting = google.dfareporting('v2.2');
+ *
+ * @name GoogleApis#dfareporting
  * @version v2.2
  * @variation v2.2
- * @this Dfareporting
+ */
+
+/**
+ * DCM/DFA Reporting And Trafficking API
+ *
+ * Manages your DoubleClick Campaign Manager ad campaigns and reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dfareporting = google.dfareporting('v2.2');
+ *
+ * @namespace dfareporting
+ * @type {Function}
+ * @version v2.2
+ * @variation v2.2
  * @param {object=} options Options for Dfareporting
  */
 function Dfareporting(options) { // eslint-disable-line
@@ -6188,8 +6207,4 @@ function Dfareporting(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Dfareporting object
- * @type Dfareporting
- */
 module.exports = Dfareporting;

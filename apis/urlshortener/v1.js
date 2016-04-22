@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * URL Shortener API
  *
- * @classdesc Lets you create, inspect, and manage goo.gl short URLs
- * @namespace urlshortener
+ * Lets you create, inspect, and manage goo.gl short URLs
+ *
+ * @example
+ * var google = require('googleapis');
+ * var urlshortener = google.urlshortener('v1');
+ *
+ * @name GoogleApis#urlshortener
  * @version v1
  * @variation v1
- * @this Urlshortener
+ */
+
+/**
+ * URL Shortener API
+ *
+ * Lets you create, inspect, and manage goo.gl short URLs
+ *
+ * @example
+ * var google = require('googleapis');
+ * var urlshortener = google.urlshortener('v1');
+ *
+ * @namespace urlshortener
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Urlshortener
  */
 function Urlshortener(options) { // eslint-disable-line
@@ -125,8 +144,4 @@ function Urlshortener(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Urlshortener object
- * @type Urlshortener
- */
 module.exports = Urlshortener;

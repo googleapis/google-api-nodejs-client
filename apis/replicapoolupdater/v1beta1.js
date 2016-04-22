@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Compute Engine Instance Group Updater API
  *
- * @classdesc Updates groups of Compute Engine instances.
- * @namespace replicapoolupdater
+ * Updates groups of Compute Engine instances.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var replicapoolupdater = google.replicapoolupdater('v1beta1');
+ *
+ * @name GoogleApis#replicapoolupdater
  * @version v1beta1
  * @variation v1beta1
- * @this Replicapoolupdater
+ */
+
+/**
+ * Google Compute Engine Instance Group Updater API
+ *
+ * Updates groups of Compute Engine instances.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var replicapoolupdater = google.replicapoolupdater('v1beta1');
+ *
+ * @namespace replicapoolupdater
+ * @type {Function}
+ * @version v1beta1
+ * @variation v1beta1
  * @param {object=} options Options for Replicapoolupdater
  */
 function Replicapoolupdater(options) { // eslint-disable-line
@@ -350,8 +369,4 @@ function Replicapoolupdater(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Replicapoolupdater object
- * @type Replicapoolupdater
- */
 module.exports = Replicapoolupdater;

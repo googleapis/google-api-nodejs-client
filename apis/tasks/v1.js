@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Tasks API
  *
- * @classdesc Lets you manage your tasks and task lists.
- * @namespace tasks
+ * Lets you manage your tasks and task lists.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var tasks = google.tasks('v1');
+ *
+ * @name GoogleApis#tasks
  * @version v1
  * @variation v1
- * @this Tasks
+ */
+
+/**
+ * Tasks API
+ *
+ * Lets you manage your tasks and task lists.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var tasks = google.tasks('v1');
+ *
+ * @namespace tasks
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Tasks
  */
 function Tasks(options) { // eslint-disable-line
@@ -460,8 +479,4 @@ function Tasks(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Tasks object
- * @type Tasks
- */
 module.exports = Tasks;

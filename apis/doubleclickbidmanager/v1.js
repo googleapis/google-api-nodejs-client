@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * DoubleClick Bid Manager API
  *
- * @classdesc API for viewing and managing your reports in DoubleClick Bid Manager.
- * @namespace doubleclickbidmanager
+ * API for viewing and managing your reports in DoubleClick Bid Manager.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var doubleclickbidmanager = google.doubleclickbidmanager('v1');
+ *
+ * @name GoogleApis#doubleclickbidmanager
  * @version v1
  * @variation v1
- * @this Doubleclickbidmanager
+ */
+
+/**
+ * DoubleClick Bid Manager API
+ *
+ * API for viewing and managing your reports in DoubleClick Bid Manager.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var doubleclickbidmanager = google.doubleclickbidmanager('v1');
+ *
+ * @namespace doubleclickbidmanager
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Doubleclickbidmanager
  */
 function Doubleclickbidmanager(options) { // eslint-disable-line
@@ -303,8 +322,4 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Doubleclickbidmanager object
- * @type Doubleclickbidmanager
- */
 module.exports = Doubleclickbidmanager;

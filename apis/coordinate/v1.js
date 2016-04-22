@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Maps Coordinate API
  *
- * @classdesc Lets you view and manage jobs in a Coordinate team.
- * @namespace coordinate
+ * Lets you view and manage jobs in a Coordinate team.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var coordinate = google.coordinate('v1');
+ *
+ * @name GoogleApis#coordinate
  * @version v1
  * @variation v1
- * @this Coordinate
+ */
+
+/**
+ * Google Maps Coordinate API
+ *
+ * Lets you view and manage jobs in a Coordinate team.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var coordinate = google.coordinate('v1');
+ *
+ * @namespace coordinate
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Coordinate
  */
 function Coordinate(options) { // eslint-disable-line
@@ -453,8 +472,4 @@ function Coordinate(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Coordinate object
- * @type Coordinate
- */
 module.exports = Coordinate;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Analytics API
  *
- * @classdesc Retrieves your YouTube Analytics reports.
- * @namespace youtubeAnalytics
+ * Retrieves your YouTube Analytics reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var youtubeAnalytics = google.youtubeAnalytics('v1');
+ *
+ * @name GoogleApis#youtubeAnalytics
  * @version v1
  * @variation v1
- * @this Youtubeanalytics
+ */
+
+/**
+ * YouTube Analytics API
+ *
+ * Retrieves your YouTube Analytics reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var youtubeAnalytics = google.youtubeAnalytics('v1');
+ *
+ * @namespace youtubeAnalytics
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Youtubeanalytics
  */
 function Youtubeanalytics(options) { // eslint-disable-line
@@ -354,8 +373,4 @@ function Youtubeanalytics(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Youtubeanalytics object
- * @type Youtubeanalytics
- */
 module.exports = Youtubeanalytics;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud SQL Administration API
  *
- * @classdesc Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
- * @namespace sqladmin
+ * Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var sqladmin = google.sqladmin('v1beta3');
+ *
+ * @name GoogleApis#sqladmin
  * @version v1beta3
  * @variation v1beta3
- * @this Sqladmin
+ */
+
+/**
+ * Cloud SQL Administration API
+ *
+ * Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var sqladmin = google.sqladmin('v1beta3');
+ *
+ * @namespace sqladmin
+ * @type {Function}
+ * @version v1beta3
+ * @variation v1beta3
  * @param {object=} options Options for Sqladmin
  */
 function Sqladmin(options) { // eslint-disable-line
@@ -771,8 +790,4 @@ function Sqladmin(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Sqladmin object
- * @type Sqladmin
- */
 module.exports = Sqladmin;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google App State API
  *
- * @classdesc The Google App State API.
- * @namespace appstate
+ * The Google App State API.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var appstate = google.appstate('v1');
+ *
+ * @name GoogleApis#appstate
  * @version v1
  * @variation v1
- * @this Appstate
+ */
+
+/**
+ * Google App State API
+ *
+ * The Google App State API.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var appstate = google.appstate('v1');
+ *
+ * @namespace appstate
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Appstate
  */
 function Appstate(options) { // eslint-disable-line
@@ -182,8 +201,4 @@ function Appstate(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Appstate object
- * @type Appstate
- */
 module.exports = Appstate;

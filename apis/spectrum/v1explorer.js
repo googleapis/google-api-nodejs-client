@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Spectrum Database API
  *
- * @classdesc API for spectrum-management functions.
- * @namespace spectrum
+ * API for spectrum-management functions.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var spectrum = google.spectrum('v1explorer');
+ *
+ * @name GoogleApis#spectrum
  * @version v1explorer
  * @variation v1explorer
- * @this Spectrum
+ */
+
+/**
+ * Google Spectrum Database API
+ *
+ * API for spectrum-management functions.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var spectrum = google.spectrum('v1explorer');
+ *
+ * @namespace spectrum
+ * @type {Function}
+ * @version v1explorer
+ * @variation v1explorer
  * @param {object=} options Options for Spectrum
  */
 function Spectrum(options) { // eslint-disable-line
@@ -207,8 +226,4 @@ function Spectrum(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Spectrum object
- * @type Spectrum
- */
 module.exports = Spectrum;

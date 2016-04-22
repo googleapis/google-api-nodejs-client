@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Calendar API
  *
- * @classdesc Manipulates events and other calendar data.
- * @namespace calendar
+ * Manipulates events and other calendar data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var calendar = google.calendar('v3');
+ *
+ * @name GoogleApis#calendar
  * @version v3
  * @variation v3
- * @this Calendar
+ */
+
+/**
+ * Calendar API
+ *
+ * Manipulates events and other calendar data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var calendar = google.calendar('v3');
+ *
+ * @namespace calendar
+ * @type {Function}
+ * @version v3
+ * @variation v3
  * @param {object=} options Options for Calendar
  */
 function Calendar(options) { // eslint-disable-line
@@ -1215,8 +1234,4 @@ function Calendar(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Calendar object
- * @type Calendar
- */
 module.exports = Calendar;

@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Logging API
  *
- * @classdesc Writes log entries and manages your logs, log sinks, and logs-based metrics.
- * @namespace logging
+ * Writes log entries and manages your logs, log sinks, and logs-based metrics.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var logging = google.logging('v2beta1');
+ *
+ * @name GoogleApis#logging
  * @version v2beta1
  * @variation v2beta1
- * @this Logging
+ */
+
+/**
+ * Google Cloud Logging API
+ *
+ * Writes log entries and manages your logs, log sinks, and logs-based metrics.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var logging = google.logging('v2beta1');
+ *
+ * @namespace logging
+ * @type {Function}
+ * @version v2beta1
+ * @variation v2beta1
  * @param {object=} options Options for Logging
  */
 function Logging(options) { // eslint-disable-line
@@ -456,8 +475,4 @@ function Logging(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Logging object
- * @type Logging
- */
 module.exports = Logging;

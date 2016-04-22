@@ -68,6 +68,7 @@
   },
   "devDependencies": {
     "codecov": "^1.0.1",
+    "ink-docstrap": "1.1.4",
     "istanbul": "^0.4.2",
     "js-beautify": "^1.6.2",
     "jsdoc": "^3.4.0",

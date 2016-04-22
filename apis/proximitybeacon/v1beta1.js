@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Proximity Beacon API
  *
- * @classdesc This API provides services to register, manage, index, and search beacons.
- * @namespace proximitybeacon
+ * This API provides services to register, manage, index, and search beacons.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var proximitybeacon = google.proximitybeacon('v1beta1');
+ *
+ * @name GoogleApis#proximitybeacon
  * @version v1beta1
  * @variation v1beta1
- * @this Proximitybeacon
+ */
+
+/**
+ * Google Proximity Beacon API
+ *
+ * This API provides services to register, manage, index, and search beacons.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var proximitybeacon = google.proximitybeacon('v1beta1');
+ *
+ * @namespace proximitybeacon
+ * @type {Function}
+ * @version v1beta1
+ * @variation v1beta1
  * @param {object=} options Options for Proximitybeacon
  */
 function Proximitybeacon(options) { // eslint-disable-line
@@ -452,8 +471,4 @@ function Proximitybeacon(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Proximitybeacon object
- * @type Proximitybeacon
- */
 module.exports = Proximitybeacon;

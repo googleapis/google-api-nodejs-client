@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Network Performance Monitoring API
  *
- * @classdesc Reports latency data.
- * @namespace cloudlatencytest
+ * Reports latency data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudlatencytest = google.cloudlatencytest('v2');
+ *
+ * @name GoogleApis#cloudlatencytest
  * @version v2
  * @variation v2
- * @this Cloudlatencytest
+ */
+
+/**
+ * Google Cloud Network Performance Monitoring API
+ *
+ * Reports latency data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudlatencytest = google.cloudlatencytest('v2');
+ *
+ * @namespace cloudlatencytest
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Cloudlatencytest
  */
 function Cloudlatencytest(options) { // eslint-disable-line
@@ -95,8 +114,4 @@ function Cloudlatencytest(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Cloudlatencytest object
- * @type Cloudlatencytest
- */
 module.exports = Cloudlatencytest;

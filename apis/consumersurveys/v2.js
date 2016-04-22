@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Consumer Surveys API
  *
- * @classdesc API for Google Consumer Surveys.
- * @namespace consumersurveys
+ * API for Google Consumer Surveys.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var consumersurveys = google.consumersurveys('v2');
+ *
+ * @name GoogleApis#consumersurveys
  * @version v2
  * @variation v2
- * @this Consumersurveys
+ */
+
+/**
+ * Consumer Surveys API
+ *
+ * API for Google Consumer Surveys.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var consumersurveys = google.consumersurveys('v2');
+ *
+ * @namespace consumersurveys
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Consumersurveys
  */
 function Consumersurveys(options) { // eslint-disable-line
@@ -243,8 +262,4 @@ function Consumersurveys(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Consumersurveys object
- * @type Consumersurveys
- */
 module.exports = Consumersurveys;

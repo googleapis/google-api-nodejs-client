@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google App Engine Admin API
  *
- * @classdesc Provisions and manages App Engine applications.
- * @namespace appengine
+ * Provisions and manages App Engine applications.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var appengine = google.appengine('v1beta5');
+ *
+ * @name GoogleApis#appengine
  * @version v1beta5
  * @variation v1beta5
- * @this Appengine
+ */
+
+/**
+ * Google App Engine Admin API
+ *
+ * Provisions and manages App Engine applications.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var appengine = google.appengine('v1beta5');
+ *
+ * @namespace appengine
+ * @type {Function}
+ * @version v1beta5
+ * @variation v1beta5
  * @param {object=} options Options for Appengine
  */
 function Appengine(options) { // eslint-disable-line
@@ -446,8 +465,4 @@ function Appengine(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Appengine object
- * @type Appengine
- */
 module.exports = Appengine;

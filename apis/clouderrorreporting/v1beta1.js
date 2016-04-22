@@ -23,12 +23,32 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Error Reporting API
  *
- * @classdesc Google Stackdriver Error Reporting groups and counts similar errors from cloud services. The Google Stackdriver Error Reporting API provides read access to error groups and their associated errors.
+ * Google Stackdriver Error Reporting groups and counts similar errors from cloud services. The Google Stackdriver Error Reporting API provides read access to error groups and their associated errors.
 
- * @namespace clouderrorreporting
+ *
+ * @example
+ * var google = require('googleapis');
+ * var clouderrorreporting = google.clouderrorreporting('v1beta1');
+ *
+ * @name GoogleApis#clouderrorreporting
  * @version v1beta1
  * @variation v1beta1
- * @this Clouderrorreporting
+ */
+
+/**
+ * Google Cloud Error Reporting API
+ *
+ * Google Stackdriver Error Reporting groups and counts similar errors from cloud services. The Google Stackdriver Error Reporting API provides read access to error groups and their associated errors.
+
+ *
+ * @example
+ * var google = require('googleapis');
+ * var clouderrorreporting = google.clouderrorreporting('v1beta1');
+ *
+ * @namespace clouderrorreporting
+ * @type {Function}
+ * @version v1beta1
+ * @variation v1beta1
  * @param {object=} options Options for Clouderrorreporting
  */
 function Clouderrorreporting(options) { // eslint-disable-line
@@ -205,8 +225,4 @@ function Clouderrorreporting(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Clouderrorreporting object
- * @type Clouderrorreporting
- */
 module.exports = Clouderrorreporting;

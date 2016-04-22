@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Analytics Reporting API V4
  *
- * @classdesc The Analytics Reporting API provides access to Analytics report data.
- * @namespace analyticsreporting
+ * The Analytics Reporting API provides access to Analytics report data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var analyticsreporting = google.analyticsreporting('v4');
+ *
+ * @name GoogleApis#analyticsreporting
  * @version v4
  * @variation v4
- * @this Analyticsreporting
+ */
+
+/**
+ * Analytics Reporting API V4
+ *
+ * The Analytics Reporting API provides access to Analytics report data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var analyticsreporting = google.analyticsreporting('v4');
+ *
+ * @namespace analyticsreporting
+ * @type {Function}
+ * @version v4
+ * @variation v4
  * @param {object=} options Options for Analyticsreporting
  */
 function Analyticsreporting(options) { // eslint-disable-line
@@ -67,8 +86,4 @@ function Analyticsreporting(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Analyticsreporting object
- * @type Analyticsreporting
- */
 module.exports = Analyticsreporting;

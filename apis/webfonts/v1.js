@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Fonts Developer API
  *
- * @classdesc Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
- * @namespace webfonts
+ * Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
+ *
+ * @example
+ * var google = require('googleapis');
+ * var webfonts = google.webfonts('v1');
+ *
+ * @name GoogleApis#webfonts
  * @version v1
  * @variation v1
- * @this Webfonts
+ */
+
+/**
+ * Google Fonts Developer API
+ *
+ * Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
+ *
+ * @example
+ * var google = require('googleapis');
+ * var webfonts = google.webfonts('v1');
+ *
+ * @namespace webfonts
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Webfonts
  */
 function Webfonts(options) { // eslint-disable-line
@@ -67,8 +86,4 @@ function Webfonts(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Webfonts object
- * @type Webfonts
- */
 module.exports = Webfonts;

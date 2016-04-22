@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Container Builder API
  *
- * @classdesc Builds container images in the cloud.
- * @namespace cloudbuild
+ * Builds container images in the cloud.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudbuild = google.cloudbuild('v1');
+ *
+ * @name GoogleApis#cloudbuild
  * @version v1
  * @variation v1
- * @this Cloudbuild
+ */
+
+/**
+ * Google Cloud Container Builder API
+ *
+ * Builds container images in the cloud.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudbuild = google.cloudbuild('v1');
+ *
+ * @namespace cloudbuild
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Cloudbuild
  */
 function Cloudbuild(options) { // eslint-disable-line
@@ -222,8 +241,4 @@ function Cloudbuild(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Cloudbuild object
- * @type Cloudbuild
- */
 module.exports = Cloudbuild;

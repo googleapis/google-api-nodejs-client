@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Cloud Monitoring API
  *
- * @classdesc Accesses Google Cloud Monitoring data.
- * @namespace cloudmonitoring
+ * Accesses Google Cloud Monitoring data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudmonitoring = google.cloudmonitoring('v2beta2');
+ *
+ * @name GoogleApis#cloudmonitoring
  * @version v2beta2
  * @variation v2beta2
- * @this Cloudmonitoring
+ */
+
+/**
+ * Cloud Monitoring API
+ *
+ * Accesses Google Cloud Monitoring data.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudmonitoring = google.cloudmonitoring('v2beta2');
+ *
+ * @namespace cloudmonitoring
+ * @type {Function}
+ * @version v2beta2
+ * @variation v2beta2
  * @param {object=} options Options for Cloudmonitoring
  */
 function Cloudmonitoring(options) { // eslint-disable-line
@@ -242,8 +261,4 @@ function Cloudmonitoring(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Cloudmonitoring object
- * @type Cloudmonitoring
- */
 module.exports = Cloudmonitoring;

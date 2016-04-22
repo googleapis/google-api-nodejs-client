@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Container Engine API
  *
- * @classdesc Builds and manages clusters that run container-based applications, powered by open source Kubernetes technology.
- * @namespace container
+ * Builds and manages clusters that run container-based applications, powered by open source Kubernetes technology.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var container = google.container('v1');
+ *
+ * @name GoogleApis#container
  * @version v1
  * @variation v1
- * @this Container
+ */
+
+/**
+ * Google Container Engine API
+ *
+ * Builds and manages clusters that run container-based applications, powered by open source Kubernetes technology.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var container = google.container('v1');
+ *
+ * @namespace container
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Container
  */
 function Container(options) { // eslint-disable-line
@@ -285,8 +304,4 @@ function Container(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Container object
- * @type Container
- */
 module.exports = Container;

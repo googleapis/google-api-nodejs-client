@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google+ Domains API
  *
- * @classdesc The Google+ API enables developers to build on top of the Google+ platform.
- * @namespace plusDomains
+ * The Google+ API enables developers to build on top of the Google+ platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var plusDomains = google.plusDomains('v1');
+ *
+ * @name GoogleApis#plusDomains
  * @version v1
  * @variation v1
- * @this Plusdomains
+ */
+
+/**
+ * Google+ Domains API
+ *
+ * The Google+ API enables developers to build on top of the Google+ platform.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var plusDomains = google.plusDomains('v1');
+ *
+ * @namespace plusDomains
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Plusdomains
  */
 function Plusdomains(options) { // eslint-disable-line
@@ -654,8 +673,4 @@ function Plusdomains(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Plusdomains object
- * @type Plusdomains
- */
 module.exports = Plusdomains;

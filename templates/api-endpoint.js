@@ -26,11 +26,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * {{ title }}
  *
- * @classdesc {{ description }}
- * @namespace {{ name }}
+ * {{ description }}
+ *
+ * @example
+ * var google = require('googleapis');
+ * var {{ name }} = google.{{ name }}('{{ version }}');
+ *
+ * @name GoogleApis#{{ name }}
  * @version {{ version }}
  * @variation {{ version }}
- * @this {{ Name }}
+ */
+
+/**
+ * {{ title }}
+ *
+ * {{ description }}
+ *
+ * @example
+ * var google = require('googleapis');
+ * var {{ name }} = google.{{ name }}('{{ version }}');
+ *
+ * @namespace {{ name }}
+ * @type {Function}
+ * @version {{ version }}
+ * @variation {{ version }}
  * @param {object=} options Options for {{ Name }}
  */
 function {{ Name }} (options) { // eslint-disable-line
@@ -55,8 +74,4 @@ function {{ Name }} (options) { // eslint-disable-line
 {%- endif -%}
 }
 
-/**
- * Exports {{ Name }} object
- * @type {{ Name }}
- */
 module.exports = {{ Name }};

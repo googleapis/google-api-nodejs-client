@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play Game Services Management API
  *
- * @classdesc The Management API for Google Play Game Services.
- * @namespace gamesManagement
+ * The Management API for Google Play Game Services.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var gamesManagement = google.gamesManagement('v1management');
+ *
+ * @name GoogleApis#gamesManagement
  * @version v1management
  * @variation v1management
- * @this Gamesmanagement
+ */
+
+/**
+ * Google Play Game Services Management API
+ *
+ * The Management API for Google Play Game Services.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var gamesManagement = google.gamesManagement('v1management');
+ *
+ * @namespace gamesManagement
+ * @type {Function}
+ * @version v1management
+ * @variation v1management
  * @param {object=} options Options for Gamesmanagement
  */
 function Gamesmanagement(options) { // eslint-disable-line
@@ -815,8 +834,4 @@ function Gamesmanagement(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Gamesmanagement object
- * @type Gamesmanagement
- */
 module.exports = Gamesmanagement;

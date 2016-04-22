@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Ad Exchange Buyer API
  *
- * @classdesc Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
- * @namespace adexchangebuyer
+ * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var adexchangebuyer = google.adexchangebuyer('v1.4');
+ *
+ * @name GoogleApis#adexchangebuyer
  * @version v1.4
  * @variation v1.4
- * @this Adexchangebuyer
+ */
+
+/**
+ * Ad Exchange Buyer API
+ *
+ * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var adexchangebuyer = google.adexchangebuyer('v1.4');
+ *
+ * @namespace adexchangebuyer
+ * @type {Function}
+ * @version v1.4
+ * @variation v1.4
  * @param {object=} options Options for Adexchangebuyer
  */
 function Adexchangebuyer(options) { // eslint-disable-line
@@ -1156,8 +1175,4 @@ function Adexchangebuyer(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Adexchangebuyer object
- * @type Adexchangebuyer
- */
 module.exports = Adexchangebuyer;

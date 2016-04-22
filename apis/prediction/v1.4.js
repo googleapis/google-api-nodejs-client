@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Prediction API
  *
- * @classdesc Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
- * @namespace prediction
+ * Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
+ *
+ * @example
+ * var google = require('googleapis');
+ * var prediction = google.prediction('v1.4');
+ *
+ * @name GoogleApis#prediction
  * @version v1.4
  * @variation v1.4
- * @this Prediction
+ */
+
+/**
+ * Prediction API
+ *
+ * Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
+ *
+ * @example
+ * var google = require('googleapis');
+ * var prediction = google.prediction('v1.4');
+ *
+ * @namespace prediction
+ * @type {Function}
+ * @version v1.4
+ * @variation v1.4
  * @param {object=} options Options for Prediction
  */
 function Prediction(options) { // eslint-disable-line
@@ -214,8 +233,4 @@ function Prediction(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Prediction object
- * @type Prediction
- */
 module.exports = Prediction;

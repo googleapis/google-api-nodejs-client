@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Resource Manager API
  *
- * @classdesc The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.
- * @namespace cloudresourcemanager
+ * The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudresourcemanager = google.cloudresourcemanager('v1beta1');
+ *
+ * @name GoogleApis#cloudresourcemanager
  * @version v1beta1
  * @variation v1beta1
- * @this Cloudresourcemanager
+ */
+
+/**
+ * Google Cloud Resource Manager API
+ *
+ * The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var cloudresourcemanager = google.cloudresourcemanager('v1beta1');
+ *
+ * @namespace cloudresourcemanager
+ * @type {Function}
+ * @version v1beta1
+ * @variation v1beta1
  * @param {object=} options Options for Cloudresourcemanager
  */
 function Cloudresourcemanager(options) { // eslint-disable-line
@@ -476,8 +495,4 @@ function Cloudresourcemanager(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Cloudresourcemanager object
- * @type Cloudresourcemanager
- */
 module.exports = Cloudresourcemanager;

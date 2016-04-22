@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Mirror API
  *
- * @classdesc API for interacting with Glass users via the timeline.
- * @namespace mirror
+ * API for interacting with Glass users via the timeline.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var mirror = google.mirror('v1');
+ *
+ * @name GoogleApis#mirror
  * @version v1
  * @variation v1
- * @this Mirror
+ */
+
+/**
+ * Google Mirror API
+ *
+ * API for interacting with Glass users via the timeline.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var mirror = google.mirror('v1');
+ *
+ * @namespace mirror
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Mirror
  */
 function Mirror(options) { // eslint-disable-line
@@ -758,8 +777,4 @@ function Mirror(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Mirror object
- * @type Mirror
- */
 module.exports = Mirror;

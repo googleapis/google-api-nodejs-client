@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Compute Engine Autoscaler API
  *
- * @classdesc The Google Compute Engine Autoscaler API provides autoscaling for groups of Cloud VMs.
- * @namespace autoscaler
+ * The Google Compute Engine Autoscaler API provides autoscaling for groups of Cloud VMs.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var autoscaler = google.autoscaler('v1beta2');
+ *
+ * @name GoogleApis#autoscaler
  * @version v1beta2
  * @variation v1beta2
- * @this Autoscaler
+ */
+
+/**
+ * Google Compute Engine Autoscaler API
+ *
+ * The Google Compute Engine Autoscaler API provides autoscaling for groups of Cloud VMs.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var autoscaler = google.autoscaler('v1beta2');
+ *
+ * @namespace autoscaler
+ * @type {Function}
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Autoscaler
  */
 function Autoscaler(options) { // eslint-disable-line
@@ -354,8 +373,4 @@ function Autoscaler(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Autoscaler object
- * @type Autoscaler
- */
 module.exports = Autoscaler;

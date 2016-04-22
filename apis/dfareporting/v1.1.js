@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * DFA Reporting API
  *
- * @classdesc Lets you create, run and download reports.
- * @namespace dfareporting
+ * Lets you create, run and download reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dfareporting = google.dfareporting('v1.1');
+ *
+ * @name GoogleApis#dfareporting
  * @version v1.1
  * @variation v1.1
- * @this Dfareporting
+ */
+
+/**
+ * DFA Reporting API
+ *
+ * Lets you create, run and download reports.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var dfareporting = google.dfareporting('v1.1');
+ *
+ * @namespace dfareporting
+ * @type {Function}
+ * @version v1.1
+ * @variation v1.1
  * @param {object=} options Options for Dfareporting
  */
 function Dfareporting(options) { // eslint-disable-line
@@ -443,8 +462,4 @@ function Dfareporting(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Dfareporting object
- * @type Dfareporting
- */
 module.exports = Dfareporting;

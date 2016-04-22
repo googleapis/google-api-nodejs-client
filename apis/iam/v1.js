@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Identity and Access Management API
  *
- * @classdesc Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
- * @namespace iam
+ * Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var iam = google.iam('v1');
+ *
+ * @name GoogleApis#iam
  * @version v1
  * @variation v1
- * @this Iam
+ */
+
+/**
+ * Google Identity and Access Management API
+ *
+ * Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var iam = google.iam('v1');
+ *
+ * @namespace iam
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Iam
  */
 function Iam(options) { // eslint-disable-line
@@ -417,8 +436,4 @@ function Iam(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Iam object
- * @type Iam
- */
 module.exports = Iam;

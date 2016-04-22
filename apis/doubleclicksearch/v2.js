@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * DoubleClick Search API
  *
- * @classdesc Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
- * @namespace doubleclicksearch
+ * Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
+ *
+ * @example
+ * var google = require('googleapis');
+ * var doubleclicksearch = google.doubleclicksearch('v2');
+ *
+ * @name GoogleApis#doubleclicksearch
  * @version v2
  * @variation v2
- * @this Doubleclicksearch
+ */
+
+/**
+ * DoubleClick Search API
+ *
+ * Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
+ *
+ * @example
+ * var google = require('googleapis');
+ * var doubleclicksearch = google.doubleclicksearch('v2');
+ *
+ * @namespace doubleclicksearch
+ * @type {Function}
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Doubleclicksearch
  */
 function Doubleclicksearch(options) { // eslint-disable-line
@@ -346,8 +365,4 @@ function Doubleclicksearch(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Doubleclicksearch object
- * @type Doubleclicksearch
- */
 module.exports = Doubleclicksearch;

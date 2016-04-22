@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Classroom API
  *
- * @classdesc Google Classroom API
- * @namespace classroom
+ * Google Classroom API
+ *
+ * @example
+ * var google = require('googleapis');
+ * var classroom = google.classroom('v1');
+ *
+ * @name GoogleApis#classroom
  * @version v1
  * @variation v1
- * @this Classroom
+ */
+
+/**
+ * Google Classroom API
+ *
+ * Google Classroom API
+ *
+ * @example
+ * var google = require('googleapis');
+ * var classroom = google.classroom('v1');
+ *
+ * @namespace classroom
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Classroom
  */
 function Classroom(options) { // eslint-disable-line
@@ -723,8 +742,4 @@ function Classroom(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Classroom object
- * @type Classroom
- */
 module.exports = Classroom;

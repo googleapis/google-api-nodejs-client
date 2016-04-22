@@ -23,11 +23,30 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Apps Script Execution API
  *
- * @classdesc An API for executing Google Apps Script projects.
- * @namespace script
+ * An API for executing Google Apps Script projects.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var script = google.script('v1');
+ *
+ * @name GoogleApis#script
  * @version v1
  * @variation v1
- * @this Script
+ */
+
+/**
+ * Google Apps Script Execution API
+ *
+ * An API for executing Google Apps Script projects.
+ *
+ * @example
+ * var google = require('googleapis');
+ * var script = google.script('v1');
+ *
+ * @namespace script
+ * @type {Function}
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Script
  */
 function Script(options) { // eslint-disable-line
@@ -68,8 +87,4 @@ function Script(options) { // eslint-disable-line
   };
 }
 
-/**
- * Exports Script object
- * @type Script
- */
 module.exports = Script;
