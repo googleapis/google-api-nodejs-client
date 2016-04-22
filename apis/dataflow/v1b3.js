@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var dataflow = google.dataflow('v1b3');
  *
- * @name GoogleApis#dataflow
- * @version v1b3
- * @variation v1b3
- */
-
-/**
- * Google Dataflow API
- *
- * Develops and executes data processing patterns like ETL, batch computation, and continuous computation.
- *
- * @example
- * var google = require('googleapis');
- * var dataflow = google.dataflow('v1b3');
- *
  * @namespace dataflow
  * @type {Function}
  * @version v1b3

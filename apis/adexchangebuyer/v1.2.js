@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var adexchangebuyer = google.adexchangebuyer('v1.2');
  *
- * @name GoogleApis#adexchangebuyer
- * @version v1.2
- * @variation v1.2
- */
-
-/**
- * Ad Exchange Buyer API
- *
- * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
- *
- * @example
- * var google = require('googleapis');
- * var adexchangebuyer = google.adexchangebuyer('v1.2');
- *
  * @namespace adexchangebuyer
  * @type {Function}
  * @version v1.2

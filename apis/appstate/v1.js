@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var appstate = google.appstate('v1');
  *
- * @name GoogleApis#appstate
- * @version v1
- * @variation v1
- */
-
-/**
- * Google App State API
- *
- * The Google App State API.
- *
- * @example
- * var google = require('googleapis');
- * var appstate = google.appstate('v1');
- *
  * @namespace appstate
  * @type {Function}
  * @version v1

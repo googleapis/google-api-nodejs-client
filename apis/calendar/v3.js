@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var calendar = google.calendar('v3');
  *
- * @name GoogleApis#calendar
- * @version v3
- * @variation v3
- */
-
-/**
- * Calendar API
- *
- * Manipulates events and other calendar data.
- *
- * @example
- * var google = require('googleapis');
- * var calendar = google.calendar('v3');
- *
  * @namespace calendar
  * @type {Function}
  * @version v3

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var kgsearch = google.kgsearch('v1');
  *
- * @name GoogleApis#kgsearch
- * @version v1
- * @variation v1
- */
-
-/**
- * Knowledge Graph Search API
- *
- * Knowledge Graph Search API allows developers to search the Google Knowledge Graph for entities.
- *
- * @example
- * var google = require('googleapis');
- * var kgsearch = google.kgsearch('v1');
- *
  * @namespace kgsearch
  * @type {Function}
  * @version v1

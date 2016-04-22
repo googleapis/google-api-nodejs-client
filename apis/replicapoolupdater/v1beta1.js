@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var replicapoolupdater = google.replicapoolupdater('v1beta1');
  *
- * @name GoogleApis#replicapoolupdater
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * Google Compute Engine Instance Group Updater API
- *
- * Updates groups of Compute Engine instances.
- *
- * @example
- * var google = require('googleapis');
- * var replicapoolupdater = google.replicapoolupdater('v1beta1');
- *
  * @namespace replicapoolupdater
  * @type {Function}
  * @version v1beta1

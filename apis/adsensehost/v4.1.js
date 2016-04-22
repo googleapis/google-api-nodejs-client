@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var adsensehost = google.adsensehost('v4.1');
  *
- * @name GoogleApis#adsensehost
- * @version v4.1
- * @variation v4.1
- */
-
-/**
- * AdSense Host API
- *
- * Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
- *
- * @example
- * var google = require('googleapis');
- * var adsensehost = google.adsensehost('v4.1');
- *
  * @namespace adsensehost
  * @type {Function}
  * @version v4.1

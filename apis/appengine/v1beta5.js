@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var appengine = google.appengine('v1beta5');
  *
- * @name GoogleApis#appengine
- * @version v1beta5
- * @variation v1beta5
- */
-
-/**
- * Google App Engine Admin API
- *
- * Provisions and manages App Engine applications.
- *
- * @example
- * var google = require('googleapis');
- * var appengine = google.appengine('v1beta5');
- *
  * @namespace appengine
  * @type {Function}
  * @version v1beta5

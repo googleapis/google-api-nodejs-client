@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var resourceviews = google.resourceviews('v1beta2');
  *
- * @name GoogleApis#resourceviews
- * @version v1beta2
- * @variation v1beta2
- */
-
-/**
- * Google Compute Engine Instance Groups API
- *
- * The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
- *
- * @example
- * var google = require('googleapis');
- * var resourceviews = google.resourceviews('v1beta2');
- *
  * @namespace resourceviews
  * @type {Function}
  * @version v1beta2

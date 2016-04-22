@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var cloudbilling = google.cloudbilling('v1');
  *
- * @name GoogleApis#cloudbilling
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Cloud Billing API
- *
- * Retrieves Google Developers Console billing accounts and associates them with projects.
- *
- * @example
- * var google = require('googleapis');
- * var cloudbilling = google.cloudbilling('v1');
- *
  * @namespace cloudbilling
  * @type {Function}
  * @version v1

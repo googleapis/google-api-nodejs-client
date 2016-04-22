@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var coordinate = google.coordinate('v1');
  *
- * @name GoogleApis#coordinate
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Maps Coordinate API
- *
- * Lets you view and manage jobs in a Coordinate team.
- *
- * @example
- * var google = require('googleapis');
- * var coordinate = google.coordinate('v1');
- *
  * @namespace coordinate
  * @type {Function}
  * @version v1

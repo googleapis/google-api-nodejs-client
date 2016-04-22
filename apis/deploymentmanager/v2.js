@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var deploymentmanager = google.deploymentmanager('v2');
  *
- * @name GoogleApis#deploymentmanager
- * @version v2
- * @variation v2
- */
-
-/**
- * Google Cloud Deployment Manager API
- *
- * Declares, configures, and deploys complex solutions on Google Cloud Platform.
- *
- * @example
- * var google = require('googleapis');
- * var deploymentmanager = google.deploymentmanager('v2');
- *
  * @namespace deploymentmanager
  * @type {Function}
  * @version v2

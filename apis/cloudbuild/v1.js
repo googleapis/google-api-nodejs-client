@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var cloudbuild = google.cloudbuild('v1');
  *
- * @name GoogleApis#cloudbuild
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Cloud Container Builder API
- *
- * Builds container images in the cloud.
- *
- * @example
- * var google = require('googleapis');
- * var cloudbuild = google.cloudbuild('v1');
- *
  * @namespace cloudbuild
  * @type {Function}
  * @version v1

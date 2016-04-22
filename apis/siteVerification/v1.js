@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var siteVerification = google.siteVerification('v1');
  *
- * @name GoogleApis#siteVerification
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Site Verification API
- *
- * Verifies ownership of websites or domains with Google.
- *
- * @example
- * var google = require('googleapis');
- * var siteVerification = google.siteVerification('v1');
- *
  * @namespace siteVerification
  * @type {Function}
  * @version v1

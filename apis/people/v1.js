@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var people = google.people('v1');
  *
- * @name GoogleApis#people
- * @version v1
- * @variation v1
- */
-
-/**
- * Google People API
- *
- * The Google People API service gives access to information about profiles and contacts.
- *
- * @example
- * var google = require('googleapis');
- * var people = google.people('v1');
- *
  * @namespace people
  * @type {Function}
  * @version v1

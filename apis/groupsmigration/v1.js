@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var groupsmigration = google.groupsmigration('v1');
  *
- * @name GoogleApis#groupsmigration
- * @version v1
- * @variation v1
- */
-
-/**
- * Groups Migration API
- *
- * Groups Migration Api.
- *
- * @example
- * var google = require('googleapis');
- * var groupsmigration = google.groupsmigration('v1');
- *
  * @namespace groupsmigration
  * @type {Function}
  * @version v1

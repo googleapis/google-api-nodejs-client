@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var spectrum = google.spectrum('v1explorer');
  *
- * @name GoogleApis#spectrum
- * @version v1explorer
- * @variation v1explorer
- */
-
-/**
- * Google Spectrum Database API
- *
- * API for spectrum-management functions.
- *
- * @example
- * var google = require('googleapis');
- * var spectrum = google.spectrum('v1explorer');
- *
  * @namespace spectrum
  * @type {Function}
  * @version v1explorer

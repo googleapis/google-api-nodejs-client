@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var script = google.script('v1');
  *
- * @name GoogleApis#script
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Apps Script Execution API
- *
- * An API for executing Google Apps Script projects.
- *
- * @example
- * var google = require('googleapis');
- * var script = google.script('v1');
- *
  * @namespace script
  * @type {Function}
  * @version v1

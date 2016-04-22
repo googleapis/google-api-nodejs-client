@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var dfareporting = google.dfareporting('v2.3');
  *
- * @name GoogleApis#dfareporting
- * @version v2.3
- * @variation v2.3
- */
-
-/**
- * DCM/DFA Reporting And Trafficking API
- *
- * Manages your DoubleClick Campaign Manager ad campaigns and reports.
- *
- * @example
- * var google = require('googleapis');
- * var dfareporting = google.dfareporting('v2.3');
- *
  * @namespace dfareporting
  * @type {Function}
  * @version v2.3

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var monitoring = google.monitoring('v3');
  *
- * @name GoogleApis#monitoring
- * @version v3
- * @variation v3
- */
-
-/**
- * Google Monitoring API
- *
- * The Google Monitoring API lets you manage your monitoring data and configurations.
- *
- * @example
- * var google = require('googleapis');
- * var monitoring = google.monitoring('v3');
- *
  * @namespace monitoring
  * @type {Function}
  * @version v3

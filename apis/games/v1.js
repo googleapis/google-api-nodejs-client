@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var games = google.games('v1');
  *
- * @name GoogleApis#games
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Play Game Services API
- *
- * The API for Google Play Game Services.
- *
- * @example
- * var google = require('googleapis');
- * var games = google.games('v1');
- *
  * @namespace games
  * @type {Function}
  * @version v1

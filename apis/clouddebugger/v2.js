@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var clouddebugger = google.clouddebugger('v2');
  *
- * @name GoogleApis#clouddebugger
- * @version v2
- * @variation v2
- */
-
-/**
- * Google Cloud Debugger API
- *
- * Examines the call stack and variables of a running application without stopping or slowing it down.
- *
- * @example
- * var google = require('googleapis');
- * var clouddebugger = google.clouddebugger('v2');
- *
  * @namespace clouddebugger
  * @type {Function}
  * @version v2

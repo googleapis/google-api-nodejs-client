@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var plus = google.plus('v1');
  *
- * @name GoogleApis#plus
- * @version v1
- * @variation v1
- */
-
-/**
- * Google+ API
- *
- * The Google+ API enables developers to build on top of the Google+ platform.
- *
- * @example
- * var google = require('googleapis');
- * var plus = google.plus('v1');
- *
  * @namespace plus
  * @type {Function}
  * @version v1

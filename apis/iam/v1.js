@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var iam = google.iam('v1');
  *
- * @name GoogleApis#iam
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Identity and Access Management API
- *
- * Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
- *
- * @example
- * var google = require('googleapis');
- * var iam = google.iam('v1');
- *
  * @namespace iam
  * @type {Function}
  * @version v1

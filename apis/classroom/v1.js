@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var classroom = google.classroom('v1');
  *
- * @name GoogleApis#classroom
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Classroom API
- *
- * Google Classroom API
- *
- * @example
- * var google = require('googleapis');
- * var classroom = google.classroom('v1');
- *
  * @namespace classroom
  * @type {Function}
  * @version v1

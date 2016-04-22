@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var doubleclicksearch = google.doubleclicksearch('v2');
  *
- * @name GoogleApis#doubleclicksearch
- * @version v2
- * @variation v2
- */
-
-/**
- * DoubleClick Search API
- *
- * Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
- *
- * @example
- * var google = require('googleapis');
- * var doubleclicksearch = google.doubleclicksearch('v2');
- *
  * @namespace doubleclicksearch
  * @type {Function}
  * @version v2

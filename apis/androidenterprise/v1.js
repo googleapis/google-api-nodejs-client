@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var androidenterprise = google.androidenterprise('v1');
  *
- * @name GoogleApis#androidenterprise
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Play EMM API
- *
- * Manages the deployment of apps to Android for Work users.
- *
- * @example
- * var google = require('googleapis');
- * var androidenterprise = google.androidenterprise('v1');
- *
  * @namespace androidenterprise
  * @type {Function}
  * @version v1

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var reseller = google.reseller('v1sandbox');
  *
- * @name GoogleApis#reseller
- * @version v1sandbox
- * @variation v1sandbox
- */
-
-/**
- * Enterprise Apps Reseller API
- *
- * Creates and manages your customers and their subscriptions.
- *
- * @example
- * var google = require('googleapis');
- * var reseller = google.reseller('v1sandbox');
- *
  * @namespace reseller
  * @type {Function}
  * @version v1sandbox

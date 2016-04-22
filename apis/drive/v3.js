@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var drive = google.drive('v3');
  *
- * @name GoogleApis#drive
- * @version v3
- * @variation v3
- */
-
-/**
- * Drive API
- *
- * The API to interact with Drive.
- *
- * @example
- * var google = require('googleapis');
- * var drive = google.drive('v3');
- *
  * @namespace drive
  * @type {Function}
  * @version v3

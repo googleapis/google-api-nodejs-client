@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var appsactivity = google.appsactivity('v1');
  *
- * @name GoogleApis#appsactivity
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Apps Activity API
- *
- * Provides a historical view of activity.
- *
- * @example
- * var google = require('googleapis');
- * var appsactivity = google.appsactivity('v1');
- *
  * @namespace appsactivity
  * @type {Function}
  * @version v1

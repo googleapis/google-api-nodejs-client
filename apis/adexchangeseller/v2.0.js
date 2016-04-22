@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var adexchangeseller = google.adexchangeseller('v2.0');
  *
- * @name GoogleApis#adexchangeseller
- * @version v2.0
- * @variation v2.0
- */
-
-/**
- * Ad Exchange Seller API
- *
- * Gives Ad Exchange seller users access to their inventory and the ability to generate reports
- *
- * @example
- * var google = require('googleapis');
- * var adexchangeseller = google.adexchangeseller('v2.0');
- *
  * @namespace adexchangeseller
  * @type {Function}
  * @version v2.0

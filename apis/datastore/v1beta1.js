@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var datastore = google.datastore('v1beta1');
  *
- * @name GoogleApis#datastore
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * Google Cloud Datastore API
- *
- * Stores and queries data in Google Cloud Datastore.
- *
- * @example
- * var google = require('googleapis');
- * var datastore = google.datastore('v1beta1');
- *
  * @namespace datastore
  * @type {Function}
  * @version v1beta1

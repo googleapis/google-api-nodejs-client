@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var content = google.content('v2');
  *
- * @name GoogleApis#content
- * @version v2
- * @variation v2
- */
-
-/**
- * Content API for Shopping
- *
- * Manages product items, inventory, and Merchant Center accounts for Google Shopping.
- *
- * @example
- * var google = require('googleapis');
- * var content = google.content('v2');
- *
  * @namespace content
  * @type {Function}
  * @version v2

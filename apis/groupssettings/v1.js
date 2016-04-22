@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var groupssettings = google.groupssettings('v1');
  *
- * @name GoogleApis#groupssettings
- * @version v1
- * @variation v1
- */
-
-/**
- * Groups Settings API
- *
- * Lets you manage permission levels and related settings of a group.
- *
- * @example
- * var google = require('googleapis');
- * var groupssettings = google.groupssettings('v1');
- *
  * @namespace groupssettings
  * @type {Function}
  * @version v1

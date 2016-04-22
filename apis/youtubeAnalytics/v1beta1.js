@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var youtubeAnalytics = google.youtubeAnalytics('v1beta1');
  *
- * @name GoogleApis#youtubeAnalytics
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * YouTube Analytics API
- *
- * Retrieves your YouTube Analytics reports.
- *
- * @example
- * var google = require('googleapis');
- * var youtubeAnalytics = google.youtubeAnalytics('v1beta1');
- *
  * @namespace youtubeAnalytics
  * @type {Function}
  * @version v1beta1

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var taskqueue = google.taskqueue('v1beta2');
  *
- * @name GoogleApis#taskqueue
- * @version v1beta2
- * @variation v1beta2
- */
-
-/**
- * TaskQueue API
- *
- * Lets you access a Google App Engine Pull Task Queue over REST.
- *
- * @example
- * var google = require('googleapis');
- * var taskqueue = google.taskqueue('v1beta2');
- *
  * @namespace taskqueue
  * @type {Function}
  * @version v1beta2

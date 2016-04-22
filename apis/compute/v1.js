@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var compute = google.compute('v1');
  *
- * @name GoogleApis#compute
- * @version v1
- * @variation v1
- */
-
-/**
- * Compute Engine API
- *
- * Creates and runs virtual machines on Google Cloud Platform.
- *
- * @example
- * var google = require('googleapis');
- * var compute = google.compute('v1');
- *
  * @namespace compute
  * @type {Function}
  * @version v1

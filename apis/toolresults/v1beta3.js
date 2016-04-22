@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var toolresults = google.toolresults('v1beta3');
  *
- * @name GoogleApis#toolresults
- * @version v1beta3
- * @variation v1beta3
- */
-
-/**
- * Cloud Tool Results API
- *
- * Reads and publishes results from Cloud Test Lab.
- *
- * @example
- * var google = require('googleapis');
- * var toolresults = google.toolresults('v1beta3');
- *
  * @namespace toolresults
  * @type {Function}
  * @version v1beta3

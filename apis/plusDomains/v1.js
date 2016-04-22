@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var plusDomains = google.plusDomains('v1');
  *
- * @name GoogleApis#plusDomains
- * @version v1
- * @variation v1
- */
-
-/**
- * Google+ Domains API
- *
- * The Google+ API enables developers to build on top of the Google+ platform.
- *
- * @example
- * var google = require('googleapis');
- * var plusDomains = google.plusDomains('v1');
- *
  * @namespace plusDomains
  * @type {Function}
  * @version v1

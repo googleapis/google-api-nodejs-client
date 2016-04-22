@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var genomics = google.genomics('v1beta2');
  *
- * @name GoogleApis#genomics
- * @version v1beta2
- * @variation v1beta2
- */
-
-/**
- * Genomics API
- *
- * Provides access to Genomics data.
- *
- * @example
- * var google = require('googleapis');
- * var genomics = google.genomics('v1beta2');
- *
  * @namespace genomics
  * @type {Function}
  * @version v1beta2

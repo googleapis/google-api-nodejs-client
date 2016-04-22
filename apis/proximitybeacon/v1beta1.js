@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var proximitybeacon = google.proximitybeacon('v1beta1');
  *
- * @name GoogleApis#proximitybeacon
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * Google Proximity Beacon API
- *
- * This API provides services to register, manage, index, and search beacons.
- *
- * @example
- * var google = require('googleapis');
- * var proximitybeacon = google.proximitybeacon('v1beta1');
- *
  * @namespace proximitybeacon
  * @type {Function}
  * @version v1beta1

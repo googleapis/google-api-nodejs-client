@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var tagmanager = google.tagmanager('v1');
  *
- * @name GoogleApis#tagmanager
- * @version v1
- * @variation v1
- */
-
-/**
- * Tag Manager API
- *
- * Accesses Tag Manager accounts and containers.
- *
- * @example
- * var google = require('googleapis');
- * var tagmanager = google.tagmanager('v1');
- *
  * @namespace tagmanager
  * @type {Function}
  * @version v1

@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var adsense = google.adsense('v1.4');
  *
- * @name GoogleApis#adsense
- * @version v1.4
- * @variation v1.4
- */
-
-/**
- * AdSense Management API
- *
- * Accesses AdSense publishers&#39; inventory and generates performance reports.
- *
- * @example
- * var google = require('googleapis');
- * var adsense = google.adsense('v1.4');
- *
  * @namespace adsense
  * @type {Function}
  * @version v1.4

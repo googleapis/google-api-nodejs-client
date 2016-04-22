@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var storagetransfer = google.storagetransfer('v1');
  *
- * @name GoogleApis#storagetransfer
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Storage Transfer API
- *
- * Transfers data from external data sources to a Google Cloud Storage bucket or between Google Cloud Storage buckets.
- *
- * @example
- * var google = require('googleapis');
- * var storagetransfer = google.storagetransfer('v1');
- *
  * @namespace storagetransfer
  * @type {Function}
  * @version v1

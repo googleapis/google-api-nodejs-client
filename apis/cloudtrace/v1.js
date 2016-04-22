@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var cloudtrace = google.cloudtrace('v1');
  *
- * @name GoogleApis#cloudtrace
- * @version v1
- * @variation v1
- */
-
-/**
- * Google Cloud Trace API
- *
- * The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
- *
- * @example
- * var google = require('googleapis');
- * var cloudtrace = google.cloudtrace('v1');
- *
  * @namespace cloudtrace
  * @type {Function}
  * @version v1

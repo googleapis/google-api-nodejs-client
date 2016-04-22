@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
  *
- * @name GoogleApis#adexchangebuyer2
- * @version v2beta1
- * @variation v2beta1
- */
-
-/**
- * Ad Exchange Buyer API II
- *
- * Accesses the latest features for managing Ad Exchange accounts and Real-Time Bidding configurations.
- *
- * @example
- * var google = require('googleapis');
- * var adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
- *
  * @namespace adexchangebuyer2
  * @type {Function}
  * @version v2beta1

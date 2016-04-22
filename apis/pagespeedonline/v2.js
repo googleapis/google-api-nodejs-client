@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var pagespeedonline = google.pagespeedonline('v2');
  *
- * @name GoogleApis#pagespeedonline
- * @version v2
- * @variation v2
- */
-
-/**
- * PageSpeed Insights API
- *
- * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
- *
- * @example
- * var google = require('googleapis');
- * var pagespeedonline = google.pagespeedonline('v2');
- *
  * @namespace pagespeedonline
  * @type {Function}
  * @version v2

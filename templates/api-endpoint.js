@@ -23,19 +23,6 @@ var createAPIRequest = require('../../lib/apirequest');
 {% set Name = name|capitalize %}
 {% set Version = version|replace('\.', '_')|capitalize %}
 {% set Namespace = [Name, Version]|join('') %}
-/**
- * {{ title }}
- *
- * {{ description }}
- *
- * @example
- * var google = require('googleapis');
- * var {{ name }} = google.{{ name }}('{{ version }}');
- *
- * @name GoogleApis#{{ name }}
- * @version {{ version }}
- * @variation {{ version }}
- */
 
 /**
  * {{ title }}

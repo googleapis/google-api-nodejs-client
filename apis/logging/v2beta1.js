@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var logging = google.logging('v2beta1');
  *
- * @name GoogleApis#logging
- * @version v2beta1
- * @variation v2beta1
- */
-
-/**
- * Google Cloud Logging API
- *
- * Writes log entries and manages your logs, log sinks, and logs-based metrics.
- *
- * @example
- * var google = require('googleapis');
- * var logging = google.logging('v2beta1');
- *
  * @namespace logging
  * @type {Function}
  * @version v2beta1

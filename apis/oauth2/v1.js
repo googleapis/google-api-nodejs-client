@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var oauth2 = google.oauth2('v1');
  *
- * @name GoogleApis#oauth2
- * @version v1
- * @variation v1
- */
-
-/**
- * Google OAuth2 API
- *
- * Obtains end-user authorization grants for use with other Google APIs.
- *
- * @example
- * var google = require('googleapis');
- * var oauth2 = google.oauth2('v1');
- *
  * @namespace oauth2
  * @type {Function}
  * @version v1

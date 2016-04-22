@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var clouduseraccounts = google.clouduseraccounts('beta');
  *
- * @name GoogleApis#clouduseraccounts
- * @version beta
- * @variation beta
- */
-
-/**
- * Cloud User Accounts API
- *
- * Creates and manages users and groups for accessing Google Compute Engine virtual machines.
- *
- * @example
- * var google = require('googleapis');
- * var clouduseraccounts = google.clouduseraccounts('beta');
- *
  * @namespace clouduseraccounts
  * @type {Function}
  * @version beta

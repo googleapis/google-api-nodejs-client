@@ -29,20 +29,6 @@ var createAPIRequest = require('../../lib/apirequest');
  * var google = require('googleapis');
  * var dataproc = google.dataproc('v1beta1');
  *
- * @name GoogleApis#dataproc
- * @version v1beta1
- * @variation v1beta1
- */
-
-/**
- * Google Cloud Dataproc API
- *
- * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
- *
- * @example
- * var google = require('googleapis');
- * var dataproc = google.dataproc('v1beta1');
- *
  * @namespace dataproc
  * @type {Function}
  * @version v1beta1
