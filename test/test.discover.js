@@ -20,7 +20,7 @@ var path = require('path');
 
 describe('GoogleApis#discover', function () {
   it('should generate all apis', function (done) {
-    this.timeout(60000);
+    this.timeout(120000);
 
     var localApis = fs.readdirSync(path.join(__dirname, '../apis'));
     var google = new googleapis.GoogleApis();
