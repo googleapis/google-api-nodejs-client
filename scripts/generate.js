@@ -37,19 +37,18 @@ if (args.length) {
       console.log('Generated API for ' + url);
     });
   });
-  process.exit(0);
-}
-
-console.log('Removing old APIs...');
-rimraf(path.join(__dirname, '..', 'apis'), function (err) {
-  if (err) {
-    throw err;
-  }
-  console.log('Generating APIs...');
-  gen.generateAllAPIs(function (err) {
+} else {
+  console.log('Removing old APIs...');
+  rimraf(path.join(__dirname, '..', 'apis'), function (err) {
     if (err) {
       throw err;
     }
-    console.log('Finished generating APIs!');
+    console.log('Generating APIs...');
+    gen.generateAllAPIs(function (err) {
+      if (err) {
+        throw err;
+      }
+      console.log('Finished generating APIs!');
+    });
   });
-});
+}
