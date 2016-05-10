@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Dataproc API
  *
- * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
+ * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
  *
  * @example
  * var google = require('googleapis');

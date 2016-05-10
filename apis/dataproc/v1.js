@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Dataproc API
  *
- * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
+ * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
  *
  * @example
  * var google = require('googleapis');
@@ -38,71 +38,6 @@ var createAPIRequest = require('../../lib/apirequest');
 function Dataproc(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
-
-  self.media = {
-
-    /**
-     * dataproc.media.upload
-     *
-     * @desc Method for media upload. Upload is supported on the URI `/upload/v1/media/{+name}`.
-     *
-     * @alias dataproc.media.upload
-     * @memberOf! dataproc(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
-     * @param  {object} params.resource Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    upload: function (params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://dataproc.googleapis.com/v1/media/{resourceName}',
-          method: 'POST'
-        },
-        params: params,
-        mediaUrl: 'https://dataproc.googleapis.com/upload/v1/media/{resourceName}',
-        requiredParams: ['resourceName'],
-        pathParams: ['resourceName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * dataproc.media.download
-     *
-     * @desc Method for media download. Download is supported on the URI `/v1/media/{+name}?alt=media`.
-     *
-     * @alias dataproc.media.download
-     * @memberOf! dataproc(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    download: function (params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://dataproc.googleapis.com/v1/media/{resourceName}',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['resourceName'],
-        pathParams: ['resourceName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
 
   self.projects = {
 
@@ -152,7 +87,7 @@ function Dataproc(options) { // eslint-disable-line
          * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project the cluster belongs to.
          * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
          * @param {string} params.clusterName [Required] The cluster name.
-         * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the `PATCH` request body would specify the new value, as follows: { "config":{ "workerConfig":{ "numInstances":"5" } } } Note: Currently, config.worker_config.num_instances is the only field that can be updated.
+         * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the `PATCH` request body would specify the new value, as follows: { "config":{ "workerConfig":{ "numInstances":"5" } } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the `PATCH` request body would be set as follows: { "config":{ "secondaryWorkerConfig":{ "numInstances":"5" } } } Note: Currently, config.worker_config.num_instances and config.secondary_worker_config.num_instances are the only fields that can be updated.
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object

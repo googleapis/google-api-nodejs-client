@@ -21,9 +21,9 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Cloud Error Reporting API
+ * Stackdriver Error Reporting API
  *
- * Google Stackdriver Error Reporting groups and counts similar errors from cloud services. The Google Stackdriver Error Reporting API provides read access to error groups and their associated errors.
+ * Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides read access to error groups and their associated errors.
 
  *
  * @example
@@ -85,8 +85,8 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {string} params.projectName The resource name of the Google Cloud Platform project. Required. Example: projects/my-project
        * @param {string=} params.serviceFilter.service The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
        * @param {string=} params.groupId The group for which events shall be returned. Required.
-       * @param {integer=} params.pageSize The maximum number of results to return per response.
        * @param {string=} params.serviceFilter.version The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+       * @param {integer=} params.pageSize The maximum number of results to return per response.
        * @param {string=} params.pageToken A `next_page_token` provided by a previous response.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -95,47 +95,6 @@ function Clouderrorreporting(options) { // eslint-disable-line
         var parameters = {
           options: {
             url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
-    groupStats: {
-
-      /**
-       * clouderrorreporting.projects.groupStats.list
-       *
-       * @desc Lists the specified groups.
-       *
-       * @alias clouderrorreporting.projects.groupStats.list
-       * @memberOf! clouderrorreporting(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.alignment The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
-       * @param {string=} params.timeRange.period Restricts the query to the specified time range.
-       * @param {string} params.projectName The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Required. Example: `projects/my-project-123`.
-       * @param {string=} params.order The sort order in which the results are returned. Default is `COUNT_DESC`.
-       * @param {string=} params.serviceFilter.service The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-       * @param {string=} params.groupId List all `ErrorGroupStats` with these IDs. If not specified, all error group stats with a non-zero error count for the given selection criteria are returned.
-       * @param {string=} params.alignmentTime Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
-       * @param {integer=} params.pageSize The maximum number of results to return per response. Default is 20.
-       * @param {string=} params.serviceFilter.version The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-       * @param {string=} params.timedCountDuration The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
-       * @param {string=} params.pageToken A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/groupStats',
             method: 'GET'
           },
           params: params,
@@ -201,6 +160,47 @@ function Clouderrorreporting(options) { // eslint-disable-line
           params: params,
           requiredParams: ['groupName'],
           pathParams: ['groupName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    groupStats: {
+
+      /**
+       * clouderrorreporting.projects.groupStats.list
+       *
+       * @desc Lists the specified groups.
+       *
+       * @alias clouderrorreporting.projects.groupStats.list
+       * @memberOf! clouderrorreporting(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.alignment The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
+       * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+       * @param {string} params.projectName The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Required. Example: `projects/my-project-123`.
+       * @param {string=} params.order The sort order in which the results are returned. Default is `COUNT_DESC`.
+       * @param {string=} params.groupId List all `ErrorGroupStats` with these IDs. If not specified, all error group stats with a non-zero error count for the given selection criteria are returned.
+       * @param {string=} params.serviceFilter.service The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+       * @param {string=} params.alignmentTime Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
+       * @param {string=} params.serviceFilter.version The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+       * @param {integer=} params.pageSize The maximum number of results to return per response. Default is 20.
+       * @param {string=} params.timedCountDuration The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+       * @param {string=} params.pageToken A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/groupStats',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectName'],
+          pathParams: ['projectName'],
           context: self
         };
 

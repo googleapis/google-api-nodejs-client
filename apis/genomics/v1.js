@@ -1523,7 +1523,7 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The ID of the variant to be updated (must already exist).
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. Supported fields: * metadata. Leaving `updateMask` unset is equivalent to specifying all mutable fields.
+     * @param {string=} params.updateMask An optional mask specifying which fields to update. Supported fields: * metadata. * name. * description. Leaving `updateMask` unset is equivalent to specifying all mutable fields.
      * @param {object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

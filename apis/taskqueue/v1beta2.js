@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * TaskQueue API
  *
- * Lets you access a Google App Engine Pull Task Queue over REST.
+ * Accesses a Google App Engine Pull Task Queue over REST.
  *
  * @example
  * var google = require('googleapis');

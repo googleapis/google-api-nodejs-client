@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Cloud Datastore API - NEW
+ * Google Cloud Datastore API
  *
  * Google Cloud Datastore is a schemaless NoSQL datastore providing robust, scalable storage for your application.
 

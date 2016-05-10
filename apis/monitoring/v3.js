@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Monitoring API
  *
- * The Google Monitoring API lets you manage your monitoring data and configurations.
+ * Manages your Stackdriver monitoring data and configurations. Projects must be associated with a Stackdriver account, except for the following methods: [monitoredResourceDescriptors.list](v3/projects.monitoredResourceDescriptors/list), [monitoredResourceDescriptors.get](v3/projects.monitoredResourceDescriptors/get), [metricDescriptors.list](v3/projects.metricDescriptors/list), [metricDescriptors.get](v3/projects.metricDescriptors/get), and [timeSeries.list](v3/projects.timeSeries/list).
  *
  * @example
  * var google = require('googleapis');
@@ -239,8 +239,8 @@ function Monitoring(options) { // eslint-disable-line
          * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
          * @param {string=} params.pageToken If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
          * @param {string=} params.filter An optional [list filter](/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: resource.type = "gce_instance"
-         * @param {string=} params.interval.endTime (required) The end of the interval. The interval includes this time.
-         * @param {string=} params.interval.startTime (optional) If omitted, the interval is a point in time, `endTime`. If `startTime` is present, it must be earlier than (less than) `endTime`. The interval begins after `startTime`—it does not include `startTime`.
+         * @param {string=} params.interval.endTime Required. The end of the interval. The interval includes this time.
+         * @param {string=} params.interval.startTime If this value is omitted, the interval is a point in time, `endTime`. If `startTime` is present, it must be earlier than (less than) `endTime`. The interval begins after `startTime`—it does not include `startTime`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -266,7 +266,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.monitoredResourceDescriptors.list
        *
-       * @desc Lists monitored resource descriptors that match a filter.
+       * @desc Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
        *
        * @alias monitoring.projects.monitoredResourceDescriptors.list
        * @memberOf! monitoring(v3)
@@ -297,7 +297,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.monitoredResourceDescriptors.get
        *
-       * @desc Gets a single monitored resource descriptor.
+       * @desc Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
        *
        * @alias monitoring.projects.monitoredResourceDescriptors.get
        * @memberOf! monitoring(v3)
@@ -328,7 +328,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.metricDescriptors.list
        *
-       * @desc Lists metric descriptors that match a filter.
+       * @desc Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
        *
        * @alias monitoring.projects.metricDescriptors.list
        * @memberOf! monitoring(v3)
@@ -359,7 +359,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.metricDescriptors.get
        *
-       * @desc Gets a single metric descriptor.
+       * @desc Gets a single metric descriptor. This method does not require a Stackdriver account.
        *
        * @alias monitoring.projects.metricDescriptors.get
        * @memberOf! monitoring(v3)
@@ -447,7 +447,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.timeSeries.list
        *
-       * @desc Lists time series that match a filter.
+       * @desc Lists time series that match a filter. This method does not require a Stackdriver account.
        *
        * @alias monitoring.projects.timeSeries.list
        * @memberOf! monitoring(v3)
@@ -455,8 +455,8 @@ function Monitoring(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {string=} params.filter A [monitoring filter](/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.label.instance_name = "my-instance-name"
-       * @param {string=} params.interval.endTime (required) The end of the interval. The interval includes this time.
-       * @param {string=} params.interval.startTime (optional) If omitted, the interval is a point in time, `endTime`. If `startTime` is present, it must be earlier than (less than) `endTime`. The interval begins after `startTime`—it does not include `startTime`.
+       * @param {string=} params.interval.endTime Required. The end of the interval. The interval includes this time.
+       * @param {string=} params.interval.startTime If this value is omitted, the interval is a point in time, `endTime`. If `startTime` is present, it must be earlier than (less than) `endTime`. The interval begins after `startTime`—it does not include `startTime`.
        * @param {string=} params.aggregation.alignmentPeriod The alignment period for per-[time series](TimeSeries) alignment. If present, `alignmentPeriod` must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If `perSeriesAligner` is not specified or equals `ALIGN_NONE`, then this field is ignored. If `perSeriesAligner` is specified and does not equal `ALIGN_NONE`, then this field must be defined; otherwise an error is returned.
        * @param {string=} params.aggregation.perSeriesAligner The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series. Time series data must be aligned in order to perform cross-time series reduction. If `crossSeriesReducer` is specified, then `perSeriesAligner` must be specified and not equal `ALIGN_NONE` and `alignmentPeriod` must be specified; otherwise, an error is returned.
        * @param {string=} params.aggregation.crossSeriesReducer The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series. Time series data must be aligned in order to perform cross-time series reduction. If `crossSeriesReducer` is specified, then `perSeriesAligner` must be specified and not equal `ALIGN_NONE` and `alignmentPeriod` must be specified; otherwise, an error is returned.

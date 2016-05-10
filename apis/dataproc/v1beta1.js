@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Dataproc API
  *
- * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
+ * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
  *
  * @example
  * var google = require('googleapis');
@@ -83,7 +83,7 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project the cluster belongs to.
        * @param {string} params.clusterName [Required] The cluster name.
-       * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as configuration.worker_configuration.num_instances, and the `PATCH` request body would specify the new value, as follows: { "configuration":{ "workerConfiguration":{ "numInstances":"5" } } } Note: Currently, configuration.worker_configuration.num_instances is the only field that can be updated.
+       * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as configuration.worker_configuration.num_instances, and the `PATCH` request body would specify the new value, as follows: { "configuration":{ "workerConfiguration":{ "numInstances":"5" } } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the `PATCH` request body would be set as follows: { "config":{ "secondaryWorkerConfig":{ "numInstances":"5" } } } Note: Currently, config.worker_config.num_instances and config.secondary_worker_config.num_instances are the only fields that can be updated.
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -215,92 +215,6 @@ function Dataproc(options) { // eslint-disable-line
           params: params,
           requiredParams: ['projectId', 'clusterName'],
           pathParams: ['projectId', 'clusterName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataproc.projects.clusters.setIamPolicy
-       *
-       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-       *
-       * @alias dataproc.projects.clusters.setIamPolicy
-       * @memberOf! dataproc(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param {object} params.resource Request body data
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setIamPolicy: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://dataproc.googleapis.com/v1beta1/{resource}:setIamPolicy',
-            method: 'POST'
-          },
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataproc.projects.clusters.getIamPolicy
-       *
-       * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
-       *
-       * @alias dataproc.projects.clusters.getIamPolicy
-       * @memberOf! dataproc(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://dataproc.googleapis.com/v1beta1/{resource}:getIamPolicy',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataproc.projects.clusters.testIamPermissions
-       *
-       * @desc Returns permissions that a caller has on the specified resource.
-       *
-       * @alias dataproc.projects.clusters.testIamPermissions
-       * @memberOf! dataproc(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param {object} params.resource Request body data
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      testIamPermissions: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://dataproc.googleapis.com/v1beta1/{resource}:testIamPermissions',
-            method: 'POST'
-          },
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
           context: self
         };
 
@@ -453,92 +367,6 @@ function Dataproc(options) { // eslint-disable-line
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataproc.projects.jobs.setIamPolicy
-       *
-       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-       *
-       * @alias dataproc.projects.jobs.setIamPolicy
-       * @memberOf! dataproc(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param {object} params.resource Request body data
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setIamPolicy: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://dataproc.googleapis.com/v1beta1/{resource}:setIamPolicy',
-            method: 'POST'
-          },
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataproc.projects.jobs.getIamPolicy
-       *
-       * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
-       *
-       * @alias dataproc.projects.jobs.getIamPolicy
-       * @memberOf! dataproc(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://dataproc.googleapis.com/v1beta1/{resource}:getIamPolicy',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataproc.projects.jobs.testIamPermissions
-       *
-       * @desc Returns permissions that a caller has on the specified resource.
-       *
-       * @alias dataproc.projects.jobs.testIamPermissions
-       * @memberOf! dataproc(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param {object} params.resource Request body data
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      testIamPermissions: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://dataproc.googleapis.com/v1beta1/{resource}:testIamPermissions',
-            method: 'POST'
-          },
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
           context: self
         };
 

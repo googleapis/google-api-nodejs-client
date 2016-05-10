@@ -74,35 +74,6 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       /**
-       * adexchangebuyer2.accounts.clients.create
-       *
-       * @desc Creates a new client buyer.
-       *
-       * @alias adexchangebuyer2.accounts.clients.create
-       * @memberOf! adexchangebuyer2(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
-       * @param {object} params.resource Request body data
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
-            method: 'POST'
-          },
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * adexchangebuyer2.accounts.clients.get
        *
        * @desc Gets a client buyer with a given client account ID.
@@ -132,6 +103,35 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       /**
+       * adexchangebuyer2.accounts.clients.create
+       *
+       * @desc Creates a new client buyer.
+       *
+       * @alias adexchangebuyer2.accounts.clients.create
+       * @memberOf! adexchangebuyer2(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * adexchangebuyer2.accounts.clients.list
        *
        * @desc Lists all the clients for the current sponsor buyer.
@@ -141,8 +141,8 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
-       * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the accounts.clients.list method.
        * @param {string} params.accountId Unique numerical account ID of the sponsor buyer to list the clients for.
+       * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the accounts.clients.list method.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -233,10 +233,10 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
          * @param {string} params.clientAccountId The account ID of the client buyer to list users for. (required) You must specify either a string representation of a numerical account identifier or the `-` character to list all the client users for all the clients of a given sponsor buyer.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the accounts.clients.users.list method.
+         * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
          * @param {string} params.accountId Numerical account ID of the sponsor buyer of the client to list users for. (required)
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the accounts.clients.users.list method.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -257,36 +257,6 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       invitations: {
-
-        /**
-         * adexchangebuyer2.accounts.clients.invitations.get
-         *
-         * @desc Retrieves an existing client user invitation.
-         *
-         * @alias adexchangebuyer2.accounts.clients.invitations.get
-         * @memberOf! adexchangebuyer2(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user invitation to be retrieved is associated with. (required)
-         * @param {string} params.invitationId Numerical identifier of the user invitation to retrieve. (required)
-         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, callback) {
-          var parameters = {
-            options: {
-              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}',
-              method: 'GET'
-            },
-            params: params,
-            requiredParams: ['accountId', 'clientAccountId', 'invitationId'],
-            pathParams: ['clientAccountId', 'invitationId', 'accountId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * adexchangebuyer2.accounts.clients.invitations.create
@@ -319,6 +289,36 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         },
 
         /**
+         * adexchangebuyer2.accounts.clients.invitations.get
+         *
+         * @desc Retrieves an existing client user invitation.
+         *
+         * @alias adexchangebuyer2.accounts.clients.invitations.get
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user invitation to be retrieved is associated with. (required)
+         * @param {string} params.invitationId Numerical identifier of the user invitation to retrieve. (required)
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['accountId', 'clientAccountId', 'invitationId'],
+            pathParams: ['clientAccountId', 'invitationId', 'accountId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
          * adexchangebuyer2.accounts.clients.invitations.list
          *
          * @desc Lists all the client users invitations for a client with a given account ID.
@@ -327,10 +327,10 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
          * @param {string} params.clientAccountId Numerical account ID of the client buyer to list invitations for. (required) You must either specify a string representation of a numerical account identifier or the `-` character to list all the invitations for all the clients of a given sponsor buyer.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
+         * @param {integer=} params.pageSize Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */

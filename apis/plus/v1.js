@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google+ API
  *
- * The Google+ API enables developers to build on top of the Google+ platform.
+ * Builds on top of the Google+ platform.
  *
  * @example
  * var google = require('googleapis');

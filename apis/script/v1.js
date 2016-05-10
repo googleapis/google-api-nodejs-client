@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Apps Script Execution API
  *
- * An API for executing Google Apps Script projects.
+ * Executes Google Apps Script projects.
  *
  * @example
  * var google = require('googleapis');

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Classroom API
  *
- * Google Classroom API
+ * Manages classes, rosters, and invitations in Google Classroom.
  *
  * @example
  * var google = require('googleapis');

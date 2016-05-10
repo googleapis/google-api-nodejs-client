@@ -21,9 +21,9 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Analytics Reporting API V4
+ * Google Analytics Reporting API
  *
- * The Analytics Reporting API provides access to Analytics report data.
+ * Accesses Analytics report data.
  *
  * @example
  * var google = require('googleapis');
