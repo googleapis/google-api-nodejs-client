@@ -44,35 +44,6 @@ function Cloudbuild(options) { // eslint-disable-line
     builds: {
 
       /**
-       * cloudbuild.projects.builds.get
-       *
-       * @desc Returns information about a previously requested build.  The Build that is returned includes its status (e.g., success or failure, or in-progress), and timing information.
-       *
-       * @alias cloudbuild.projects.builds.get
-       * @memberOf! cloudbuild(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id ID of the build.
-       * @param {string} params.projectId ID of the project.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * cloudbuild.projects.builds.create
        *
        * @desc Starts a build with the specified configuration.  The long-running Operation returned by this method will include the ID of the build, which can be passed to GetBuild to determine its status (e.g., success or failure).
@@ -102,6 +73,35 @@ function Cloudbuild(options) { // eslint-disable-line
       },
 
       /**
+       * cloudbuild.projects.builds.get
+       *
+       * @desc Returns information about a previously requested build.  The Build that is returned includes its status (e.g., success or failure, or in-progress), and timing information.
+       *
+       * @alias cloudbuild.projects.builds.get
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project.
+       * @param {string} params.id ID of the build.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectId', 'id'],
+          pathParams: ['projectId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * cloudbuild.projects.builds.list
        *
        * @desc Lists previously requested builds.  Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
@@ -111,8 +111,8 @@ function Cloudbuild(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize Number of results to return in the list.
-       * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
        * @param {string} params.projectId ID of the project.
+       * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -140,8 +140,8 @@ function Cloudbuild(options) { // eslint-disable-line
        * @memberOf! cloudbuild(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.id ID of the build.
        * @param {string} params.projectId ID of the project.
+       * @param {string} params.id ID of the build.
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -154,7 +154,7 @@ function Cloudbuild(options) { // eslint-disable-line
           },
           params: params,
           requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
+          pathParams: ['projectId', 'id'],
           context: self
         };
 
@@ -204,8 +204,8 @@ function Cloudbuild(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.pageToken The standard list page token.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

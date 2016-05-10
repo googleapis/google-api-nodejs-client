@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * APIs Discovery Service
  *
- * Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API.
+ * Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.
  *
  * @example
  * var google = require('googleapis');

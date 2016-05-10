@@ -1,3 +1,35 @@
+##### 6.0.0 - 10 May 2016
+
+###### Breaking changes
+- Removed `media.upload` from `dataproc` `v1` API
+- Removed `media.download` from `dataproc` `v1` API
+- Removed `projects.clusters.setIamPolicy` from `dataproc` `v1beta` API
+- Removed `projects.clusters.getIamPolicy` from `dataproc` `v1beta` API
+- Removed `projects.clusters.testIamPermissions` from `dataproc` `v1beta` API
+- Removed `projects.jobs.setIamPolicy` from `dataproc` `v1beta` API
+- Removed `projects.jobs.getIamPolicy` from `dataproc` `v1beta` API
+- Removed `projects.jobs.testIamPermissions` from `dataproc` `v1beta` API
+- Removed `dfareporting` `v1` API
+- Removed `dfareporting` `v1.1` API
+- Removed `dfareporting` `v1.2` API
+- Removed `dfareporting` `v1.3` API
+- Removed `dfareporting` `v2.0` API
+- Removed `dfareporting` `v2.1` API
+- Removed `gan` `v1beta1` API
+- Removed `manager` `v1beta2` API
+
+###### Backwards compatible changes
+- Added `products.list` to `androidenterprise` `v1` API
+- Added `projects.moveDisk` to `compute` `beta` API
+- Added `projects.moveInstance` to `compute` `beta` API
+- Added `v1beta1.getEidparams` to `proximitybeacon` `v1beta1` API
+- Added `compute` `alpha` API
+- Added `firebaserules` `v1` API
+- Added `safebrowsing` `v4` API
+
+###### Other
+- Merged PR #571 by @georules - v2 does not have the create function, updating to v3
+
 ##### 5.2.0 - 21 April 2016
 
 ###### Backwards compatible changes

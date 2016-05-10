@@ -1234,7 +1234,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.products.approve
      *
-     * @desc Approves the specified product (and the relevant app permissions, if any).
+     * @desc Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000.  To learn how to use Google Play for Work to design and create a store layout to display approved products to your users, see Store Layout Design.
      *
      * @alias androidenterprise.products.approve
      * @memberOf! androidenterprise(v1)
@@ -1374,6 +1374,39 @@ function Androidenterprise(options) { // eslint-disable-line
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.products.list
+     *
+     * @desc Finds approved products that match a query.
+     *
+     * @alias androidenterprise.products.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.approved Specifies whether to search among all products (false) or among only products that have been approved (true). Only "true" is supported, and should be specified.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
+     * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
+     * @param {string=} params.query The search query as typed in the Google Play Store search box. If omitted, all approved apps will be returned (using the pagination parameters).
+     * @param {string=} params.token A pagination token is contained in a requests response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
         context: self
       };
 

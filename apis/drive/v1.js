@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Drive API
  *
- * The API to interact with Drive.
+ * Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.
  *
  * @example
  * var google = require('googleapis');
