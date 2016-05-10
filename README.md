@@ -355,7 +355,7 @@ This example uploads a plain text file to Google Drive with the title "Test" and
 contents "Hello World".
 
 ``` js
-var drive = google.drive({ version: 'v2', auth: oauth2Client });
+var drive = google.drive({ version: 'v3', auth: oauth2Client });
 
 drive.files.create({
   resource: {
@@ -378,7 +378,7 @@ Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
 ```js
 var fs = require('fs');
-var drive = google.drive({ version: 'v2', auth: oauth2Client });
+var drive = google.drive({ version: 'v3', auth: oauth2Client });
 
 drive.files.create({
   resource: {
