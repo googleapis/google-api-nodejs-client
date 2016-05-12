@@ -1,3 +1,9 @@
+##### 6.1.0 - 11 May 2016
+
+###### Backwards compatible changes
+- Added `dfareporting` `v2.5` API
+- Added ability to use authentication with `discoverAPI`
+
 ##### 6.0.0 - 10 May 2016
 
 ###### Breaking changes

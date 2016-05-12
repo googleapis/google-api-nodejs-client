@@ -333,23 +333,23 @@ function Autoscaler(options) { // eslint-disable-line
      * @alias autoscaler.zones.list
      * @memberOf! autoscaler(v1beta2)
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.filter 
      * @param {integer=} params.maxResults 
      * @param {string=} params.pageToken 
-     * @param {string} params.project 
+     * @param {string=} params.project 
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list: function (params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/zones',
           method: 'GET'
         },
         params: params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
