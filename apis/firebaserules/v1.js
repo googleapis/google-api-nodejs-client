@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Firebase Rules API
  *
- * The Firebase Rules API allows developers to create and manage rules that determine when a Firebase Rules-enabled service should permit a request.
+ * Creates and manages rules that determine when a Firebase Rules-enabled service should permit a request.
 
  *
  * @example

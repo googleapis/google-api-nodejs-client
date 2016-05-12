@@ -1406,7 +1406,7 @@ function Genomics(options) { // eslint-disable-line
      * @memberOf! genomics(v1beta2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.variantId The ID of the variant.
+     * @param {string} params.variantId Required.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
