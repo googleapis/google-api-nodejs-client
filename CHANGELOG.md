@@ -1,3 +1,13 @@
+##### 7.0.0 - 16 May 2016
+
+###### Breaking changes
+- Removed `reseller` `v1sandbox` API
+
+###### Backwards compatible changes
+- Added `namespaces.update` to `proximitybeacon` `v1beta1` API
+- Added `runtimeconfig` `v4` API
+- Added `sheets` `v1beta1` API
+
 ##### 6.1.0 - 11 May 2016
 
 ###### Backwards compatible changes
