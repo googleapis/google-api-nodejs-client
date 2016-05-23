@@ -16,6 +16,7 @@
 var assert = require('assert');
 var googleapis = require('../');
 var nock = require('nock');
+var path = require('path');
 var utils = require('./utils');
 
 function testSingleRequest (urlshortener) {
@@ -87,7 +88,7 @@ describe('Urlshortener', function () {
     })
       .post('/urlshortener/v1/url')
       .times(2)
-      .replyWithFile(200, __dirname + '/fixtures/urlshort-insert-res.json');
+      .replyWithFile(200, path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
 
     testInsert(localUrlshortener, function (err) {
       if (err) {

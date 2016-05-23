@@ -18,6 +18,7 @@ var async = require('async');
 var fs = require('fs');
 var googleapis = require('../');
 var nock = require('nock');
+var path = require('path');
 var utils = require('./utils');
 
 describe('Clients', function () {
@@ -121,11 +122,11 @@ describe('Clients', function () {
       return files_;
     }
 
-    var api_files = getFiles(__dirname + '/../apis');
+    var apiFiles = getFiles(path.join(__dirname, '/../apis'));
 
     assert.doesNotThrow(function () {
-      for (var i in api_files) {
-        require(api_files[i]);
+      for (var i in apiFiles) {
+        require(apiFiles[i]);
       }
     });
   });

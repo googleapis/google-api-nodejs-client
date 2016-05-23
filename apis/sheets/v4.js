@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Sheets API
  *
- * An API for reading and modifying Google Sheets.
+ * Reads and writes Google Sheets.
  *
  * @example
  * var google = require('googleapis');
@@ -72,7 +72,7 @@ function Sheets(options) { // eslint-disable-line
     /**
      * sheets.spreadsheets.get
      *
-     * @desc Returns the spreadsheet at the given id. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways: specify a field mask listing your desired fields (using the `fields` URL parameter in HTTP, or `FieldMaskContext.response_mask` in the request extensions in an RPC), or by setting the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored.  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
+     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
      *
      * @alias sheets.spreadsheets.get
      * @memberOf! sheets(v4)
@@ -102,7 +102,7 @@ function Sheets(options) { // eslint-disable-line
     /**
      * sheets.spreadsheets.batchUpdate
      *
-     * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that all the updates in the request will be applied atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
+     * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
      *
      * @alias sheets.spreadsheets.batchUpdate
      * @memberOf! sheets(v4)
@@ -140,7 +140,7 @@ function Sheets(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string=} params.valueInputOption How the input data should be interpreted.
-       * @param {string} params.spreadsheetId The id of the spreadsheet to update.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
        * @param {string} params.range The A1 notation of the values to update.
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
@@ -170,9 +170,9 @@ function Sheets(options) { // eslint-disable-line
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.spreadsheetId The id of the spreadsheet to retrieve data from.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
        * @param {string=} params.valueRenderOption How values should be represented in the output.
-       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if the ValueRenderOption option is FORMATTED_VALUE.
+       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
        * @param {string} params.range The A1 notation of the values to retrieve.
        * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
        * @param {callback} callback The callback that handles the response.
@@ -202,10 +202,10 @@ function Sheets(options) { // eslint-disable-line
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.spreadsheetId The id of the spreadsheet to retrieve data from.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
        * @param {string=} params.ranges The A1 notation of the values to retrieve.
        * @param {string=} params.valueRenderOption How values should be represented in the output.
-       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if ValueRenderOption option is FORMATTED_VALUE.
+       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
        * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -228,13 +228,13 @@ function Sheets(options) { // eslint-disable-line
       /**
        * sheets.spreadsheets.values.batchUpdate
        *
-       * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
+       * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
        *
        * @alias sheets.spreadsheets.values.batchUpdate
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.spreadsheetId The id of the spreadsheet to update.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -267,7 +267,7 @@ function Sheets(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer} params.sheetId The ID of the sheet to copy.
-       * @param {string} params.spreadsheetId The id of the spreadsheet containing the sheet to copy.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet containing the sheet to copy.
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
