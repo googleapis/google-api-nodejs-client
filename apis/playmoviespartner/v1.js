@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Play Movies Partner API
  *
- * Lets Google Play Movies Partners get the delivery status of their titles.
+ * Gets the delivery status of titles for Google Play Movies Partners.
  *
  * @example
  * var google = require('googleapis');
@@ -44,6 +44,35 @@ function Playmoviespartner(options) { // eslint-disable-line
     avails: {
 
       /**
+       * playmoviespartner.accounts.avails.get
+       *
+       * @desc Get an Avail given its avail group id and avail id.
+       *
+       * @alias playmoviespartner.accounts.avails.get
+       * @memberOf! playmoviespartner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {string} params.availId REQUIRED. Avail ID.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails/{availId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'availId'],
+          pathParams: ['accountId', 'availId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * playmoviespartner.accounts.avails.list
        *
        * @desc List Avails owned or managed by the partner. See _Authentication and Authorization rules_ and _List methods rules_ for more information about this method.
@@ -57,10 +86,11 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.pageToken See _List methods rules_ for info about this field.
        * @param {string=} params.pphNames See _List methods rules_ for info about this field.
        * @param {string=} params.studioNames See _List methods rules_ for info about this field.
-       * @param {string=} params.title Filter Avails that match a case-insensitive substring of the default Title name.
+       * @param {string=} params.title Filter that matches Avails with a `title_internal_alias`, `series_title_internal_alias`, `season_title_internal_alias`, or `episode_title_internal_alias` that contains the given case-insensitive title.
        * @param {string=} params.territories Filter Avails that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
-       * @param {string=} params.altId Filter Avails that match a case-insensitive, partner-specific custom id.
+       * @param {string=} params.altId Filter Avails that match a case-insensitive, partner-specific custom id. NOTE: this field is deprecated and will be removed on V2; `alt_ids` should be used instead.
        * @param {string=} params.videoIds Filter Avails that match any of the given `video_id`s.
+       * @param {string=} params.altIds Filter Avails that match (case-insensitive) any of the given partner-specific custom ids.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -125,9 +155,10 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.pageToken See _List methods rules_ for info about this field.
        * @param {string=} params.pphNames See _List methods rules_ for info about this field.
        * @param {string=} params.studioNames See _List methods rules_ for info about this field.
-       * @param {string=} params.name Filter Orders that match a title name (case-insensitive, sub-string match).
+       * @param {string=} params.name Filter that matches Orders with a `name`, `show`, `season` or `episode` that contains the given case-insensitive name.
        * @param {string=} params.status Filter Orders that match one of the given status.
        * @param {string=} params.customId Filter Orders that match a case-insensitive, partner-specific custom id.
+       * @param {string=} params.videoIds Filter Orders that match any of the given `video_id`s.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -216,6 +247,84 @@ function Playmoviespartner(options) { // eslint-disable-line
       }
     },
 
+    components: {
+
+      /**
+       * playmoviespartner.accounts.components.list
+       *
+       * @desc List Components owned or managed by the partner. See _Authentication and Authorization rules_ and _List methods rules_ for more information about this method.
+       *
+       * @alias playmoviespartner.accounts.components.list
+       * @memberOf! playmoviespartner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
+       * @param {string=} params.pageToken See _List methods rules_ for info about this field.
+       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
+       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
+       * @param {string=} params.titleLevelEidr Filter Components that match a given title-level EIDR.
+       * @param {string=} params.editLevelEidr Filter Components that match a given edit-level EIDR.
+       * @param {string=} params.status Filter Components that match one of the given status.
+       * @param {string=} params.customId Filter Components that match a case-insensitive partner-specific custom id.
+       * @param {string=} params.inventoryId InventoryID available in Common Manifest.
+       * @param {string=} params.presentationId PresentationID available in Common Manifest.
+       * @param {string=} params.playableSequenceId PlayableSequenceID available in Common Manifest.
+       * @param {string=} params.elId Experience ID, as defined by Google.
+       * @param {string=} params.altCutId Filter Components that match a case-insensitive, partner-specific Alternative Cut ID.
+       * @param {string=} params.filename Filter Components that match a case-insensitive substring of the physical name of the delivered file.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/components',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      type: {
+
+        /**
+         * playmoviespartner.accounts.components.type.get
+         *
+         * @desc Get a Component given its id.
+         *
+         * @alias playmoviespartner.accounts.components.type.get
+         * @memberOf! playmoviespartner(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+         * @param {string} params.componentId REQUIRED. Component ID.
+         * @param {string} params.type REQUIRED. Component Type.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/components/{componentId}/type/{type}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['accountId', 'componentId', 'type'],
+            pathParams: ['accountId', 'componentId', 'type'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    },
+
     storeInfos: {
 
       /**
@@ -234,8 +343,10 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.studioNames See _List methods rules_ for info about this field.
        * @param {string=} params.videoId Filter StoreInfos that match a given `video_id`. NOTE: this field is deprecated and will be removed on V2; `video_ids` should be used instead.
        * @param {string=} params.countries Filter StoreInfos that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
-       * @param {string=} params.name Filter StoreInfos that match a case-insensitive substring of the default name.
+       * @param {string=} params.name Filter that matches StoreInfos with a `name` or `show_name` that contains the given case-insensitive name.
        * @param {string=} params.videoIds Filter StoreInfos that match any of the given `video_id`s.
+       * @param {string=} params.mids Filter StoreInfos that match any of the given `mid`s.
+       * @param {string=} params.seasonIds Filter StoreInfos that match any of the given `season_id`s.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */

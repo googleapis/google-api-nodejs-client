@@ -1,3 +1,25 @@
+##### 7.1.0 - 24 May 2016
+
+###### Backwards compatible changes
+- Added `acceleratedmobilepageurl` `v1` API
+- Added `reviews.get` to `androidpublisher` `v2` API
+- Added `reviews.list` to `androidpublisher` `v2` API
+- Added `reviews.reply` to `androidpublisher` `v2` API
+- Added `courses.courseWork.create` to `classroom` `v1` API
+- Added `courses.courseWork.get` to `classroom` `v1` API
+- Added `courses.courseWork.list` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.get` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.patch` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.list` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.turnIn` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.reclaim` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.return` to `classroom` `v1` API
+- Added `courses.courseWork.studentSubmissions.modifyAttachments` to `classroom` `v1` API
+- Added `projects.getAncestry` to `cloudresourcemanager` `v1beta1` API
+- Added `accounts.avails.get` to `playmoviespartner` `v1` API
+- Added `accounts.components.list` to `playmoviespartner` `v1` API
+- Added `accounts.components.type.get` to `playmoviespartner` `v1` API
+
 ##### 7.0.0 - 16 May 2016
 
 ###### Breaking changes

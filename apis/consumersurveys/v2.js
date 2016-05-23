@@ -170,6 +170,7 @@ function Consumersurveys(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceId 
+     * @param {object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

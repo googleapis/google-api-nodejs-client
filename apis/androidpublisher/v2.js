@@ -1668,6 +1668,100 @@ function Androidpublisher(options) { // eslint-disable-line
       }
     }
   };
+
+  self.reviews = {
+
+    /**
+     * androidpublisher.reviews.get
+     *
+     * @desc Returns a single review.
+     *
+     * @alias androidpublisher.reviews.get
+     * @memberOf! androidpublisher(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * @param {string} params.reviewId 
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['packageName', 'reviewId'],
+        pathParams: ['packageName', 'reviewId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidpublisher.reviews.list
+     *
+     * @desc Returns a list of reviews.
+     *
+     * @alias androidpublisher.reviews.list
+     * @memberOf! androidpublisher(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults 
+     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * @param {integer=} params.startIndex 
+     * @param {string=} params.token 
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidpublisher.reviews.reply
+     *
+     * @desc Reply to a single review, or update an existing reply.
+     *
+     * @alias androidpublisher.reviews.reply
+     * @memberOf! androidpublisher(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * @param {string} params.reviewId 
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reply: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}:reply',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['packageName', 'reviewId'],
+        pathParams: ['packageName', 'reviewId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 module.exports = Androidpublisher;

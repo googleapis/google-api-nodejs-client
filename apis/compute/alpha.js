@@ -1139,6 +1139,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.disk Name of the persistent disk to snapshot.
+     * @param {boolean=} params.guestFlush 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} params.resource Request body data

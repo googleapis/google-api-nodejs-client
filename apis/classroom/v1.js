@@ -545,6 +545,322 @@ function Classroom(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       }
+    },
+
+    courseWork: {
+
+      /**
+       * classroom.courses.courseWork.create
+       *
+       * @desc Creates course work. The resulting course work (and corresponding student submissions) are associated with the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to make the request. Classroom API requests to modify course work and student submissions must be made with an OAuth client ID from the associated Developer Console project. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work in the requested course, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+       *
+       * @alias classroom.courses.courseWork.create
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['courseId'],
+          pathParams: ['courseId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.courseWork.get
+       *
+       * @desc Returns course work. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
+       *
+       * @alias classroom.courses.courseWork.get
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the course work.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.courseWork.list
+       *
+       * @desc Returns a list of course work that the requester is permitted to view. Course students may only view `PUBLISHED` course work. Course teachers and domain administrators may view all course work. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+       *
+       * @alias classroom.courses.courseWork.list
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string=} params.courseWorkStates Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
+       * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['courseId'],
+          pathParams: ['courseId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      studentSubmissions: {
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.get
+         *
+         * @desc Returns a student submission. * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, course work, or student submission or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.get
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifier of the course work.
+         * @param {string} params.id Identifier of the student submission.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId', 'id'],
+            pathParams: ['courseId', 'courseWorkId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.patch
+         *
+         * @desc Updates one or more fields of a student submission. See google.classroom.v1.StudentSubmission for details of which fields may be updated and who may change them. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.patch
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifier of the course work.
+         * @param {string} params.id Identifier of the student submission.
+         * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields may be specified by teachers: * `draft_grade` * `assigned_grade`
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        patch: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
+              method: 'PATCH'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId', 'id'],
+            pathParams: ['courseId', 'courseWorkId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.list
+         *
+         * @desc Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. `-` may be specified as the `course_work_id` to include student submissions for multiple course work items. Course students may only view their own work. Course teachers and domain administrators may view all student submissions. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.list
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifer of the student work to request. If `user_id` is specified, this may be set to the string literal `"-"` to request student work for all course work in the specified course.
+         * @param {string=} params.userId Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+         * @param {string=} params.states Requested submission states. If specified, returned student submissions match one of the specified submission states.
+         * @param {string=} params.late Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
+         * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+         * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId'],
+            pathParams: ['courseId', 'courseWorkId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.turnIn
+         *
+         * @desc Turns in a student submission. Turning in a student submission transfers ownership of attached Drive files to the teacher and may also update the submission state. This may only be called by the student that owns the specified student submission. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, turn in the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.turnIn
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifier of the course work.
+         * @param {string} params.id Identifier of the student submission.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        turnIn: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId', 'id'],
+            pathParams: ['courseId', 'courseWorkId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.reclaim
+         *
+         * @desc Reclaims a student submission on behalf of the student that owns it. Reclaiming a student submission transfers ownership of attached Drive files to the student and update the submission state. Only the student that ownes the requested student submission may call this method, and only for a student submission that has been turned in. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, unsubmit the requested student submission, or for access errors. * `FAILED_PRECONDITION` if the student submission has not been turned in. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.reclaim
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifier of the course work.
+         * @param {string} params.id Identifier of the student submission.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        reclaim: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId', 'id'],
+            pathParams: ['courseId', 'courseWorkId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.return
+         *
+         * @desc Returns a student submission. Returning a student submission transfers ownership of attached Drive files to the student and may also update the submission state. Unlike the Classroom application, returning a student submission does not set assignedGrade to the draftGrade value. Only a teacher of the course that contains the requested student submission may call this method. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, return the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.return
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifier of the course work.
+         * @param {string} params.id Identifier of the student submission.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        return: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId', 'id'],
+            pathParams: ['courseId', 'courseWorkId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * classroom.courses.courseWork.studentSubmissions.modifyAttachments
+         *
+         * @desc Modifies attachments of student submission. Attachments may only be added to student submissions whose type is `ASSIGNMENT`. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, if the user is not permitted to modify attachments on the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         *
+         * @alias classroom.courses.courseWork.studentSubmissions.modifyAttachments
+         * @memberOf! classroom(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+         * @param {string} params.courseWorkId Identifier of the course work.
+         * @param {string} params.id Identifier of the student submission.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        modifyAttachments: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['courseId', 'courseWorkId', 'id'],
+            pathParams: ['courseId', 'courseWorkId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
     }
   };
 

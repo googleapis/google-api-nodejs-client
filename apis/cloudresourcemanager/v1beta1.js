@@ -214,6 +214,35 @@ function Cloudresourcemanager(options) { // eslint-disable-line
     },
 
     /**
+     * cloudresourcemanager.projects.getAncestry
+     *
+     * @desc Gets a list of ancestors in the resource hierarchy for the Project identified by the specified `project_id` (for example, `my-project-123`). The caller must have read permissions for this Project.
+     *
+     * @alias cloudresourcemanager.projects.getAncestry
+     * @memberOf! cloudresourcemanager(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`). Required.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAncestry: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://cloudresourcemanager.googleapis.com/v1beta1/projects/{projectId}:getAncestry',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * cloudresourcemanager.projects.getIamPolicy
      *
      * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.

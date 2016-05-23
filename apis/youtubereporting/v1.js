@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * YouTube Reporting API
  *
- * Schedules reporting jobs and downloads the resulting bulk data reports about YouTube channels, videos, etc. in the form of CSV files.
+ * Schedules reporting jobs containing your YouTube Analytics data and downloads the resulting bulk data reports in the form of CSV files.
  *
  * @example
  * var google = require('googleapis');
@@ -50,7 +50,7 @@ function Youtubereporting(options) { // eslint-disable-line
      * @memberOf! youtubereporting(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ByteStream.ReadRequest.resource_name.
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

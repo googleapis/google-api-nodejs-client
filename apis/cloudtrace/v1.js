@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Cloud Trace API
  *
- * The Cloud Trace API allows you to send traces to and retrieve traces from Google Cloud Trace.
+ * Send and retrieve trace data from Google Cloud Trace. Data is generated and available by default for all App Engine applications. Data from other applications can be written to Cloud Trace for display, reporting, and analysis.
  *
  * @example
  * var google = require('googleapis');
@@ -44,7 +44,7 @@ function Cloudtrace(options) { // eslint-disable-line
     /**
      * cloudtrace.projects.patchTraces
      *
-     * @desc Sends new traces to Cloud Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
+     * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
      *
      * @alias cloudtrace.projects.patchTraces
      * @memberOf! cloudtrace(v1)

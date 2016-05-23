@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "author": "Google Inc.",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -75,10 +75,10 @@
     "jsdoc": "^3.4.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^2.4.5",
+    "mocha": "^2.5.1",
     "nock": "^8.0.0",
     "rimraf": "^2.5.2",
-    "semistandard": "^7.0.5",
+    "semistandard": "^8.0.0",
     "swig": "^1.4.2"
   },
   "scripts": {

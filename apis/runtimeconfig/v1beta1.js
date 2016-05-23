@@ -21,9 +21,10 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Cloud Runtime Configuration API
+ * Google Cloud RuntimeConfig API
  *
- * Google Cloud Runtime Configuration Service.
+ * Provides capabilities for dynamic configuration and coordination for applications running on Google Cloud Platform.
+
  *
  * @example
  * var google = require('googleapis');

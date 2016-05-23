@@ -97,10 +97,10 @@ function testExpired (drive, oauth2client, now, cb) {
     fileId: 'wat',
     auth: oauth2client
   }, function () {
-    var expiry_date = oauth2client.credentials.expiry_date;
-    assert.notEqual(expiry_date, undefined);
-    assert(expiry_date > now);
-    assert(expiry_date < now + 5000);
+    var expiryDate = oauth2client.credentials.expiry_date;
+    assert.notEqual(expiryDate, undefined);
+    assert(expiryDate > now);
+    assert(expiryDate < now + 5000);
     assert.equal(oauth2client.credentials.refresh_token, 'abc');
     assert.equal(oauth2client.credentials.access_token, 'abc123');
     cb();
@@ -112,10 +112,10 @@ function testNoAccessToken (drive, oauth2client, now, cb) {
     fileId: 'wat',
     auth: oauth2client
   }, function () {
-    var expiry_date = oauth2client.credentials.expiry_date;
-    assert.notEqual(expiry_date, undefined);
-    assert(expiry_date > now);
-    assert(expiry_date < now + 4000);
+    var expiryDate = oauth2client.credentials.expiry_date;
+    assert.notEqual(expiryDate, undefined);
+    assert(expiryDate > now);
+    assert(expiryDate < now + 4000);
     assert.equal(oauth2client.credentials.refresh_token, 'abc');
     assert.equal(oauth2client.credentials.access_token, 'abc123');
     cb();
