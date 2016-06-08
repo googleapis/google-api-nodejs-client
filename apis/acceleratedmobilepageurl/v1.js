@@ -21,9 +21,9 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Accelerated Mobile Page (AMP) URL API
+ * Accelerated Mobile Pages (AMP) URL API
  *
- * This API contains a single method, [batchGet](/amp/cache/reference/acceleratedmobilepageurl/rest/v1/ampUrls/batchGet). Call this method to retrieve the AMP URL (and equivalent AMP Cache URL) for given public URL(s). For more information, see [Link to AMP Content](/amp/cache/use-amp-url).
+ * This API contains a single method, batchGet. Call this method to retrieve the AMP URL (and equivalent AMP Cache URL) for given public URL(s).
 
  *
  * @example

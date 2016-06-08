@@ -1,3 +1,26 @@
+##### 8.0.0 - 08 June 2016
+
+###### Breaking changes
+- Removed `cloudbuild` `v1` API
+- Removed `cloudlatencytest` `v2` API
+- Removed `drive` `v1` API
+
+###### Backwards compatible changes
+- Added `dns` `v2beta1` API
+- Added `routers.preview` to `compute` `alpha` API
+- Added `instances.startWithEncryptionKey` to `compute` `v1` API
+- Added `routers.aggregatedList` to `compute` `v1` API
+- Added `routers.delete` to `compute` `v1` API
+- Added `routers.get` to `compute` `v1` API
+- Added `routers.getRouterStatus` to `compute` `v1` API
+- Added `routers.insert` to `compute` `v1` API
+- Added `routers.list` to `compute` `v1` API
+- Added `routers.patch` to `compute` `v1` API
+- Added `routers.updated` to `compute` `v1` API
+- Added `mobileapppanels.get` to `consumersurveys` `v2` API
+- Added `mobileapppanels.list` to `consumersurveys` `v2` API
+- Added `mobileapppanels.update` to `consumersurveys` `v2` API
+
 ##### 7.1.0 - 24 May 2016
 
 ###### Backwards compatible changes

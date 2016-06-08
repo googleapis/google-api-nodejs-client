@@ -39,6 +39,97 @@ function Consumersurveys(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.mobileapppanels = {
+
+    /**
+     * consumersurveys.mobileapppanels.get
+     *
+     * @desc Retrieves a MobileAppPanel that is available to the authenticated user.
+     *
+     * @alias consumersurveys.mobileapppanels.get
+     * @memberOf! consumersurveys(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.panelId External URL ID for the panel.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels/{panelId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['panelId'],
+        pathParams: ['panelId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * consumersurveys.mobileapppanels.list
+     *
+     * @desc Lists the MobileAppPanels available to the authenticated user.
+     *
+     * @alias consumersurveys.mobileapppanels.list
+     * @memberOf! consumersurveys(v2)
+     *
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults 
+     * @param {integer=} params.startIndex 
+     * @param {string=} params.token 
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * consumersurveys.mobileapppanels.update
+     *
+     * @desc Updates a MobileAppPanel. Currently the only property that can be updated is the owners property.
+     *
+     * @alias consumersurveys.mobileapppanels.update
+     * @memberOf! consumersurveys(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.panelId External URL ID for the panel.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels/{panelId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['panelId'],
+        pathParams: ['panelId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.results = {
 
     /**

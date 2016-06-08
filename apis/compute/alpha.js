@@ -3066,7 +3066,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.list
      *
-     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 7. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.  See Accessing images for more information.
+     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * @alias compute.images.list
      * @memberOf! compute(alpha)
@@ -6470,6 +6470,37 @@ function Compute(options) { // eslint-disable-line
         options: {
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.preview
+     *
+     * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
+     *
+     * @alias compute.routers.preview
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    preview: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}/preview',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['project', 'region', 'router'],
