@@ -798,6 +798,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.permissionId The ID of the permission.
+     * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
      * @param {object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.

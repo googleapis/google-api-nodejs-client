@@ -47,13 +47,13 @@ function Runtimeconfig(options) { // eslint-disable-line
       /**
        * runtimeconfig.projects.configs.update
        *
-       * @desc Updates the config resource object. RuntimeConfig object must already exist.
+       * @desc Updates a RuntimeConfig resource. The configuration must exist beforehand.
        *
        * @alias runtimeconfig.projects.configs.update
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The name of the config resource to update. Required. Must be a valid config resource.
+       * @param {string} params.name The name of the RuntimeConfig resource to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -76,13 +76,13 @@ function Runtimeconfig(options) { // eslint-disable-line
       /**
        * runtimeconfig.projects.configs.get
        *
-       * @desc Gets the config resource object.
+       * @desc Gets information about a RuntimeConfig resource.
        *
        * @alias runtimeconfig.projects.configs.get
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The name of the RuntimeConfig resource object to retrieve.
+       * @param {string} params.name The name of the RuntimeConfig resource to retrieve, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -104,13 +104,13 @@ function Runtimeconfig(options) { // eslint-disable-line
       /**
        * runtimeconfig.projects.configs.create
        *
-       * @desc CreateConfig creates a new config resource object. The configuration name must be unique within project.
+       * @desc Creates a new RuntimeConfig resource. The configuration name must be unique within project.
        *
        * @alias runtimeconfig.projects.configs.create
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent The cloud project to which configuration belongs. Required. Must be a valid GCP project.
+       * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -133,15 +133,15 @@ function Runtimeconfig(options) { // eslint-disable-line
       /**
        * runtimeconfig.projects.configs.list
        *
-       * @desc Lists all the config objects within project.
+       * @desc Lists all the RuntimeConfig resources within project.
        *
        * @alias runtimeconfig.projects.configs.list
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize List pagination support. The size of the page to return. We may return fewer elements.
-       * @param {string} params.parent The cloud project, whose configuration resources we want to list. Required. Must be a valid GCP project.
-       * @param {string=} params.pageToken The token for pagination.
+       * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
+       * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
+       * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -163,13 +163,13 @@ function Runtimeconfig(options) { // eslint-disable-line
       /**
        * runtimeconfig.projects.configs.delete
        *
-       * @desc Deletes the config object.
+       * @desc Deletes a RuntimeConfig resource.
        *
        * @alias runtimeconfig.projects.configs.delete
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The configuration resource object to delete. Required. Must be a valid GCP project.
+       * @param {string} params.name The RuntimeConfig resource to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -193,13 +193,13 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.variables.watch
          *
-         * @desc WatchVariable watches for a variable to change and then returns the new value or times out. If variable is deleted while being watched, VariableState will be DELETED and the Value will contain the last known value. If the operation deadline is set to a larger value than internal timeout existing, current variable value will be returned and Variable state will be VARIABLE_STATE_UNSPECIFIED.
+         * @desc Watches a specific variable and waits for a change in the variable's value. When there is a change, this method returns the new value or times out.  If a variable is deleted while being watched, the `variableState` state is set to `DELETED` and the method returns the last known variable `value`.  If you set the deadline for watching to a larger value than internal timeout (60 seconds), the current variable value is returned and the `variableState` will be `VARIABLE_STATE_UNSPECIFIED`.  To learn more about creating a watcher, read the [Watching a Variable for Changes](/deployment-manager/runtime-configurator/watching-a-variable) documentation.
          *
          * @alias runtimeconfig.projects.configs.variables.watch
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The name of the variable to retrieve.
+         * @param {string} params.name The name of the variable to watch, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -222,16 +222,16 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.variables.list
          *
-         * @desc Lists variables within given RuntimeConfig object, matching optionally provided filter. List contains only variable metadata, but not values.
+         * @desc Lists variables within given a configuration, matching any provided filters. This only lists variable names, not the values.
          *
          * @alias runtimeconfig.projects.configs.variables.list
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize List pagination support. The size of the page to return. We may return fewer elements.
-         * @param {string=} params.filter List only variables matching filter prefix exactly. e.g. `projects/{project_id}/config/{config_id}/variables/{variable/id}`.
-         * @param {string} params.parent Which RuntimeConfig object to list for variables.
-         * @param {string=} params.pageToken The token for pagination.
+         * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
+         * @param {string=} params.filter Filters variables by matching the specified filter. For example:  `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
+         * @param {string} params.parent The path to the RuntimeConfig resource for which you want to list variables. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+         * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -253,13 +253,13 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.variables.get
          *
-         * @desc Gets the variable resource object.
+         * @desc Gets information about a single variable.
          *
          * @alias runtimeconfig.projects.configs.variables.get
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name What variable to return.
+         * @param {string} params.name The name of the variable to return, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIBLE_NAME]`
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -281,13 +281,13 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.variables.create
          *
-         * @desc Creates a variable within the given configuration. Create variable will create all required intermediate path elements. It is a FAILED_PRECONDITION error to create a variable with a name that is a prefix of an existing variable name, or that has an existing variable name as a prefix.
+         * @desc Creates a variable within the given configuration. You cannot create a variable with a name that is a prefix of an existing variable name, or a name that has an existing variable name as a prefix.  To learn more about creating a variable, read the [Setting and Getting Data](/deployment-manager/runtime-configurator/seta-and-get-variables) documentation.
          *
          * @alias runtimeconfig.projects.configs.variables.create
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.parent The configuration parent, that will own the variable. Required, must a valid configuration name within project_id.
+         * @param {string} params.parent The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -316,7 +316,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The name of the variable to update. In the format of: "projects/{project_id}/configs/{config_id}/variables/{variable_id}"
+         * @param {string} params.name The name of the variable to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -339,14 +339,14 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.variables.delete
          *
-         * @desc Deletes variable or variables. If name denotes a variable, that variable is deleted. If name is a prefix and recursive is true, then all variables with that prefix are deleted, it's a FAILED_PRECONDITION to delete a prefix without recursive being true.
+         * @desc Deletes a variable or multiple variables.  If you specify a variable name, then that variable is deleted. If you specify a prefix and `recursive` is true, then all variables with that prefix are deleted. You must set a `recursive` to true if you delete variables by prefix.
          *
          * @alias runtimeconfig.projects.configs.variables.delete
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {boolean=} params.recursive If recursive is false and name is a prefix of other variables, then the request will fail.
-         * @param {string} params.name The name of the variable to delete.
+         * @param {boolean=} params.recursive Set to `true` to recursively delete multiple variables with the same prefix.
+         * @param {string} params.name The name of the variable to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -371,13 +371,13 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.waiters.get
          *
-         * @desc Gets the Waiter resource with the specified name.
+         * @desc Gets information about a single waiter.
          *
          * @alias runtimeconfig.projects.configs.waiters.get
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The fully-qualified name of the Waiter resource object to retrieve.
+         * @param {string} params.name The fully-qualified name of the Waiter resource object to retrieve, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -399,13 +399,13 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.waiters.create
          *
-         * @desc Creates a Waiter resource. This operation returns a long-running Operation resource which can be polled for completion. However, a Waiter with the given name will exist (and can be retrieved) prior to the resultant Operation completing. If the resultant Operation indicates a failure, the failed Waiter resource will still exist and must be deleted prior to subsequent creation attempts.
+         * @desc Creates a Waiter resource. This operation returns a long-running Operation resource which can be polled for completion. However, a waiter with the given name will exist (and can be retrieved) prior to the operation completing. If the operation fails, the failed Waiter resource will still exist and must be deleted prior to subsequent creation attempts.
          *
          * @alias runtimeconfig.projects.configs.waiters.create
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.parent The fully-qualified name of the configuration that will own the waiter. Required. Must be a valid configuration name.
+         * @param {string} params.parent The path to the configuration that will own the waiter. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -428,15 +428,15 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.waiters.list
          *
-         * @desc List Waiters within the given RuntimeConfig resource.
+         * @desc List waiters within the given configuration.
          *
          * @alias runtimeconfig.projects.configs.waiters.list
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize List pagination support. The size of the page to return. We may return fewer elements.
-         * @param {string} params.parent The fully-qualified name of the configuration to list. Required. Must be a valid configuration name.
-         * @param {string=} params.pageToken The token for pagination.
+         * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
+         * @param {string} params.parent The path to the configuration for which you want to get a list of waiters. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+         * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -458,13 +458,13 @@ function Runtimeconfig(options) { // eslint-disable-line
         /**
          * runtimeconfig.projects.configs.waiters.delete
          *
-         * @desc Deletes the Waiter with the specified name.
+         * @desc Deletes the waiter with the specified name.
          *
          * @alias runtimeconfig.projects.configs.waiters.delete
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The Waiter resource to delete.
+         * @param {string} params.name The Waiter resource to delete, in the format:   `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */

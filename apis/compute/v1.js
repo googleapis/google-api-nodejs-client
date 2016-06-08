@@ -2227,7 +2227,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.list
      *
-     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 7. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.  See Accessing images for more information.
+     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * @alias compute.images.list
      * @memberOf! compute(v1)
@@ -3565,6 +3565,37 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.startWithEncryptionKey
+     *
+     * @desc Starts an instance that was stopped using the using the instances().stop method. For more information, see Restart an instance.
+     *
+     * @alias compute.instances.startWithEncryptionKey
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to start.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startWithEncryptionKey: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.stop
      *
      * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur per-minute, virtual machine usage charges while they are stopped, but any resources that the virtual machine is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
@@ -4148,6 +4179,255 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.routers = {
+
+    /**
+     * compute.routers.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of routers.
+     *
+     * @alias compute.routers.aggregatedList
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/routers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.delete
+     *
+     * @desc Deletes the specified Router resource.
+     *
+     * @alias compute.routers.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to delete.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.get
+     *
+     * @desc Returns the specified Router resource. Get a list of available routers by making a list() request.
+     *
+     * @alias compute.routers.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to return.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.getRouterStatus
+     *
+     * @desc Retrieves runtime information of the specified router.
+     *
+     * @alias compute.routers.getRouterStatus
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getRouterStatus: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.insert
+     *
+     * @desc Creates a Router resource in the specified project and region using the data included in the request.
+     *
+     * @alias compute.routers.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.list
+     *
+     * @desc Retrieves a list of Router resources available to the specified project.
+     *
+     * @alias compute.routers.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.patch
+     *
+     * @desc Updates the entire content of the Router resource. This method supports patch semantics.
+     *
+     * @alias compute.routers.patch
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.update
+     *
+     * @desc Updates the entire content of the Router resource.
+     *
+     * @alias compute.routers.update
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
         context: self
       };
 
