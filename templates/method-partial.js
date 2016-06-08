@@ -6,6 +6,11 @@
  *
  * {% if m.description %}@desc {{ m.description|oneLine|cleanComments|safe }}{% endif %}
  *
+{% if m.fragment -%}
+ * @example
+ * {{ m.fragment|safe }}
+ *
+{% endif -%}
  * @alias {{ m.id }}
  * @memberOf! {{ name }}({{ version }})
  *

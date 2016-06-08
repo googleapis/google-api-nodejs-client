@@ -1,3 +1,8 @@
+##### 8.1.0 - 08 June 2016
+
+###### Backwards compatible changes
+- Update generator to pull in auto generated code samples and add them to the JSDoc comments.
+
 ##### 8.0.0 - 08 June 2016
 
 ###### Breaking changes
