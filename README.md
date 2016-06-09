@@ -481,6 +481,40 @@ var drive = google.drive('v2');
 You can specify an `auth` object to be used per request. Each request also
 inherits the options specified at the service level and global level.
 
+For example:
+
+```js
+var google = require('googleapis');
+var bigquery = google.bigquery('v2');
+
+google.auth.getApplicationDefault(function (err, authClient) {
+  if (err) {
+    console.log('Authentication failed because of ', err);
+    return;
+  }
+  if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+    var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    authClient = authClient.createScoped(scopes);
+  }
+
+  var request = {
+    projectId: '<your-project-id>',
+    datasetId: '<your-dataset-id>',
+    
+    // This is a "request-level" option
+    auth: authClient
+  };
+
+  bigquery.datasets.delete(request, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+    }
+  });
+});
+```
+
 ## License
 
 This library is licensed under Apache 2.0. Full license text is
