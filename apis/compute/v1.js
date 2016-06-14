@@ -47,9 +47,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of addresses.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -59,17 +67,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -81,7 +89,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.addresses.aggregatedList(request, recur);
      * });
      *
@@ -117,9 +125,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified address resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -129,10 +145,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -142,7 +158,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.addresses.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -183,9 +199,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified address resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -195,10 +219,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -208,7 +232,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.addresses.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -249,9 +273,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an address resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -261,10 +293,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -273,7 +305,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.addresses.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -314,9 +346,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of addresses contained within the specified region.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -326,10 +366,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -337,8 +377,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -350,7 +390,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.addresses.list(request, recur);
      * });
      *
@@ -391,9 +431,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of autoscalers.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -403,17 +451,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -425,7 +473,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.autoscalers.aggregatedList(request, recur);
      * });
      *
@@ -461,9 +509,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified autoscaler.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -473,10 +529,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -486,7 +542,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.autoscalers.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -527,9 +583,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified autoscaler resource. Get a list of available autoscalers by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -539,10 +603,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -552,7 +616,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.autoscalers.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -593,9 +657,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an autoscaler in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -605,10 +677,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -617,7 +689,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.autoscalers.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -658,9 +730,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of autoscalers contained within the specified zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -670,10 +750,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -681,8 +761,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -694,7 +774,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.autoscalers.list(request, recur);
      * });
      *
@@ -731,9 +811,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -743,10 +831,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -757,7 +845,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.autoscalers.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -799,9 +887,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates an autoscaler in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -811,10 +907,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -823,7 +919,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.autoscalers.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -869,9 +965,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified BackendService resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -881,10 +985,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the BackendService resource to delete.
@@ -892,7 +996,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.backendServices.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -932,9 +1036,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified BackendService resource. Get a list of available backend services by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -944,10 +1056,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the BackendService resource to return.
@@ -955,7 +1067,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.backendServices.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -995,9 +1107,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Gets the most recent health check results for this BackendService.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1007,11 +1127,11 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'getHealth' method:
-     * 
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getHealth' method:
+     *
+     *
      *     project: "",
      *     // Name of the BackendService resource to which the queried instance belongs.
      *     backendService: "",
@@ -1019,7 +1139,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.backendServices.getHealth(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1060,9 +1180,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a backend service. Read  Restrictions and Guidelines for more information.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1072,17 +1200,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.backendServices.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1122,9 +1250,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of BackendService resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1134,17 +1270,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1156,7 +1292,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.backendServices.list(request, recur);
      * });
      *
@@ -1192,9 +1328,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates the entire content of the BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1204,10 +1348,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the BackendService resource to update.
@@ -1216,7 +1360,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.backendServices.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1257,9 +1401,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates the entire content of the BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1269,10 +1421,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the BackendService resource to update.
@@ -1281,7 +1433,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.backendServices.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1326,9 +1478,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of disk types.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1338,17 +1498,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1360,7 +1520,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.diskTypes.aggregatedList(request, recur);
      * });
      *
@@ -1396,9 +1556,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified disk type. Get a list of available disk types by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1408,10 +1576,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1421,7 +1589,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.diskTypes.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1462,9 +1630,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of disk types available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1474,10 +1650,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1485,8 +1661,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1498,7 +1674,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.diskTypes.list(request, recur);
      * });
      *
@@ -1539,9 +1715,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of persistent disks.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1551,17 +1735,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1573,7 +1757,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.disks.aggregatedList(request, recur);
      * });
      *
@@ -1609,9 +1793,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a snapshot of a specified persistent disk.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1621,10 +1813,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'createSnapshot' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'createSnapshot' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1635,7 +1827,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.disks.createSnapshot(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1677,9 +1869,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1689,10 +1889,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1702,7 +1902,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.disks.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1743,9 +1943,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns a specified persistent disk. Get a list of available persistent disks by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1755,10 +1963,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1768,7 +1976,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.disks.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1809,9 +2017,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1821,10 +2037,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1833,7 +2049,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.disks.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1875,9 +2091,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of persistent disks contained within the specified zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1887,10 +2111,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1898,8 +2122,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1911,7 +2135,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.disks.list(request, recur);
      * });
      *
@@ -1948,9 +2172,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Resizes the specified persistent disk.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1960,10 +2192,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'resize' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'resize' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -1974,7 +2206,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.disks.resize(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2020,9 +2252,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified firewall.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2032,10 +2272,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the firewall rule to delete.
@@ -2043,7 +2283,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.firewalls.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2083,9 +2323,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified firewall.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2095,10 +2343,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the firewall rule to return.
@@ -2106,7 +2354,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.firewalls.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2146,9 +2394,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a firewall rule in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2158,17 +2414,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.firewalls.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2208,9 +2464,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of firewall rules available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2220,17 +2484,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2242,7 +2506,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.firewalls.list(request, recur);
      * });
      *
@@ -2278,9 +2542,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates the specified firewall rule with the data included in the request. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2290,10 +2562,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the firewall rule to update.
@@ -2302,7 +2574,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.firewalls.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2343,9 +2615,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates the specified firewall rule with the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2355,10 +2635,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the firewall rule to update.
@@ -2367,7 +2647,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.firewalls.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2412,9 +2692,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of forwarding rules.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2424,17 +2712,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2446,7 +2734,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.forwardingRules.aggregatedList(request, recur);
      * });
      *
@@ -2482,9 +2770,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified ForwardingRule resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2494,10 +2790,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -2507,7 +2803,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.forwardingRules.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2548,9 +2844,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified ForwardingRule resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2560,10 +2864,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -2573,7 +2877,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.forwardingRules.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2614,9 +2918,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2626,10 +2938,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -2638,7 +2950,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.forwardingRules.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2679,9 +2991,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of ForwardingRule resources available to the specified project and region.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2691,10 +3011,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -2702,8 +3022,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2715,7 +3035,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.forwardingRules.list(request, recur);
      * });
      *
@@ -2752,9 +3072,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2764,10 +3092,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setTarget' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setTarget' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -2778,7 +3106,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.forwardingRules.setTarget(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2824,9 +3152,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified address resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2836,10 +3172,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the address resource to delete.
@@ -2847,7 +3183,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalAddresses.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2887,9 +3223,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified address resource. Get a list of available addresses by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2899,10 +3243,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the address resource to return.
@@ -2910,7 +3254,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalAddresses.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -2950,9 +3294,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an address resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -2962,17 +3314,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalAddresses.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3012,9 +3364,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of global addresses.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3024,17 +3384,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3046,7 +3406,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.globalAddresses.list(request, recur);
      * });
      *
@@ -3086,9 +3446,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified ForwardingRule resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3098,10 +3466,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the ForwardingRule resource to delete.
@@ -3109,7 +3477,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalForwardingRules.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3149,9 +3517,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified ForwardingRule resource. Get a list of available forwarding rules by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3161,10 +3537,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the ForwardingRule resource to return.
@@ -3172,7 +3548,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalForwardingRules.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3212,9 +3588,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3224,17 +3608,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalForwardingRules.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3274,9 +3658,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of ForwardingRule resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3286,17 +3678,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3308,7 +3700,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.globalForwardingRules.list(request, recur);
      * });
      *
@@ -3344,9 +3736,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3356,10 +3756,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setTarget' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setTarget' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the ForwardingRule resource in which target is to be set.
@@ -3368,7 +3768,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalForwardingRules.setTarget(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3413,9 +3813,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of all operations.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3425,17 +3833,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3447,7 +3855,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.globalOperations.aggregatedList(request, recur);
      * });
      *
@@ -3483,9 +3891,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified Operations resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3495,10 +3911,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the Operations resource to delete.
@@ -3506,7 +3922,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalOperations.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3546,9 +3962,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the specified Operations resource. Get a list of operations by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3558,10 +3982,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the Operations resource to return.
@@ -3569,7 +3993,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.globalOperations.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3609,9 +4033,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of Operation resources contained within the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3621,17 +4053,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3643,7 +4075,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.globalOperations.list(request, recur);
      * });
      *
@@ -3683,9 +4115,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified HttpHealthCheck resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3695,10 +4135,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpHealthCheck resource to delete.
@@ -3706,7 +4146,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpHealthChecks.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3746,9 +4186,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified HttpHealthCheck resource. Get a list of available HTTP health checks by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3758,10 +4206,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpHealthCheck resource to return.
@@ -3769,7 +4217,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpHealthChecks.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3809,9 +4257,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a HttpHealthCheck resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3821,17 +4277,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpHealthChecks.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3871,9 +4327,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of HttpHealthCheck resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3883,17 +4347,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -3905,7 +4369,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.httpHealthChecks.list(request, recur);
      * });
      *
@@ -3941,9 +4405,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -3953,10 +4425,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpHealthCheck resource to update.
@@ -3965,7 +4437,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpHealthChecks.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4006,9 +4478,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4018,10 +4498,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpHealthCheck resource to update.
@@ -4030,7 +4510,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpHealthChecks.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4075,9 +4555,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified HttpsHealthCheck resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4087,10 +4575,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpsHealthCheck resource to delete.
@@ -4098,7 +4586,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpsHealthChecks.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4138,9 +4626,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified HttpsHealthCheck resource. Get a list of available HTTPS health checks by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4150,10 +4646,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpsHealthCheck resource to return.
@@ -4161,7 +4657,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpsHealthChecks.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4201,9 +4697,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a HttpsHealthCheck resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4213,17 +4717,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpsHealthChecks.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4263,9 +4767,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of HttpsHealthCheck resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4275,17 +4787,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4297,7 +4809,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.httpsHealthChecks.list(request, recur);
      * });
      *
@@ -4333,9 +4845,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4345,10 +4865,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpsHealthCheck resource to update.
@@ -4357,7 +4877,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpsHealthChecks.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4398,9 +4918,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4410,10 +4938,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the HttpsHealthCheck resource to update.
@@ -4422,7 +4950,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.httpsHealthChecks.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4467,9 +4995,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified image.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4479,10 +5015,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the image resource to delete.
@@ -4490,7 +5026,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.images.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4530,9 +5066,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets the deprecation status of an image.  If an empty request body is given, clears the deprecation status instead.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4542,10 +5086,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'deprecate' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'deprecate' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Image name.
@@ -4554,7 +5098,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.images.deprecate(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4595,9 +5139,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified image. Get a list of available images by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4607,10 +5159,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the image resource to return.
@@ -4618,7 +5170,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.images.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4658,9 +5210,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the latest image that is part of an image family and is not deprecated.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4670,10 +5230,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'getFromFamily' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getFromFamily' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the image resource to return.
@@ -4681,7 +5241,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.images.getFromFamily(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4721,9 +5281,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an image in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4733,17 +5301,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.images.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4783,9 +5351,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4795,17 +5371,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4817,7 +5393,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.images.list(request, recur);
      * });
      *
@@ -4857,9 +5433,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4869,10 +5453,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'abandonInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'abandonInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -4883,7 +5467,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.abandonInstances(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4925,9 +5509,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of managed instance groups and groups them by zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -4937,17 +5529,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -4959,7 +5551,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.aggregatedList(request, recur);
      * });
      *
@@ -4995,9 +5587,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read  Deleting an instance group for more information.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5007,10 +5607,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5020,7 +5620,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5061,9 +5661,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5073,10 +5681,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'deleteInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'deleteInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5087,7 +5695,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.deleteInstances(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5129,9 +5737,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns all of the details about the specified managed instance group. Get a list of available managed instance groups by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5141,10 +5757,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5154,7 +5770,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5195,9 +5811,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5207,10 +5831,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where you want to create the managed instance group.
@@ -5219,7 +5843,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5260,9 +5884,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of managed instance groups that are contained within the specified project and zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5272,10 +5904,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5283,8 +5915,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5296,7 +5928,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.list(request, recur);
      * });
      *
@@ -5333,9 +5965,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5345,10 +5985,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'listManagedInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'listManagedInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5358,7 +5998,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.listManagedInstances(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5399,9 +6039,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5411,10 +6059,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'recreateInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'recreateInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5425,7 +6073,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.recreateInstances(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5467,9 +6115,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5479,22 +6135,24 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'resize' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'resize' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
      *     zone: "",
      *     // The name of the managed instance group.
      *     instanceGroupManager: "",
-     *     // The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
+     *     // The number of running instances that the managed instance group should maintain at any given time.
+     *     // The group automatically adds or removes instances to maintain the number of instances specified by
+     *     // this parameter.
      *     size: 0,
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.resize(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5536,9 +6194,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5548,10 +6214,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setInstanceTemplate' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setInstanceTemplate' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5562,7 +6228,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.setInstanceTemplate(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5604,9 +6270,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5616,10 +6290,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setTargetPools' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setTargetPools' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the managed instance group is located.
@@ -5630,7 +6304,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroupManagers.setTargetPools(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5676,9 +6350,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read  Adding instances for more information.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5688,10 +6370,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'addInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'addInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -5702,7 +6384,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroups.addInstances(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5744,9 +6426,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of instance groups and sorts them by zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5756,17 +6446,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5778,7 +6468,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instanceGroups.aggregatedList(request, recur);
      * });
      *
@@ -5814,9 +6504,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read  Deleting an instance group for more information.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5826,10 +6524,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -5839,7 +6537,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroups.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5880,9 +6578,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified instance group. Get a list of available instance groups by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5892,10 +6598,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -5905,7 +6611,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroups.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -5946,9 +6652,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an instance group in the specified project using the parameters that are included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -5958,10 +6672,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where you want to create the instance group.
@@ -5970,7 +6684,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroups.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6011,9 +6725,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of instance groups that are located in the specified project and zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6023,10 +6745,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -6034,8 +6756,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6047,7 +6769,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instanceGroups.list(request, recur);
      * });
      *
@@ -6084,9 +6806,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Lists the instances in the specified instance group.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6096,10 +6826,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'listInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'listInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -6110,8 +6840,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6123,7 +6853,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instanceGroups.listInstances(request, recur);
      * });
      *
@@ -6162,9 +6892,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Removes one or more instances from the specified instance group, but does not delete those instances.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6174,10 +6912,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'removeInstances' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'removeInstances' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -6188,7 +6926,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroups.removeInstances(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6230,9 +6968,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets the named ports for the specified instance group.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6242,10 +6988,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setNamedPorts' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setNamedPorts' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone where the instance group is located.
@@ -6256,7 +7002,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceGroups.setNamedPorts(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6302,9 +7048,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified instance template. If you delete an instance template that is being referenced from another instance group, the instance group will not be able to create or recreate virtual machine instances. Deleting an instance template is permanent and cannot be undone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6314,10 +7068,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the instance template to delete.
@@ -6325,7 +7079,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceTemplates.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6365,9 +7119,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified instance template. Get a list of available instance templates by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6377,10 +7139,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the instance template.
@@ -6388,7 +7150,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceTemplates.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6428,9 +7190,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6440,17 +7210,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instanceTemplates.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6490,9 +7260,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of instance templates that are contained within the specified project and zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6502,17 +7280,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6524,7 +7302,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instanceTemplates.list(request, recur);
      * });
      *
@@ -6564,9 +7342,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Adds an access config to an instance's network interface.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6576,10 +7362,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'addAccessConfig' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'addAccessConfig' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -6592,7 +7378,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.addAccessConfig(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6635,9 +7421,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves aggregated list of instances.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6647,17 +7441,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6669,7 +7463,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instances.aggregatedList(request, recur);
      * });
      *
@@ -6705,9 +7499,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Attaches a Disk resource to an instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6717,10 +7519,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'attachDisk' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'attachDisk' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -6731,7 +7533,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.attachDisk(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6773,9 +7575,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified Instance resource. For more information, see Stopping or Deleting an Instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6785,10 +7595,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -6798,7 +7608,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6839,9 +7649,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes an access config from an instance's network interface.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6851,10 +7669,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'deleteAccessConfig' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'deleteAccessConfig' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -6868,7 +7686,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.deleteAccessConfig(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6911,9 +7729,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Detaches a disk from an instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6923,10 +7749,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'detachDisk' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'detachDisk' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -6938,7 +7764,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.detachDisk(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -6980,9 +7806,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified Instance resource. Get a list of available instances by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -6992,10 +7826,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7005,7 +7839,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7046,9 +7880,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified instance's serial port output.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7058,10 +7900,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'getSerialPortOutput' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getSerialPortOutput' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7071,7 +7913,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.getSerialPortOutput(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7113,9 +7955,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates an instance resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7125,10 +7975,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7137,7 +7987,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7178,9 +8028,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of instances contained within the specified zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7190,10 +8048,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7201,8 +8059,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7214,7 +8072,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.instances.list(request, recur);
      * });
      *
@@ -7251,9 +8109,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Performs a hard reset on the instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7263,10 +8129,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'reset' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'reset' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7276,7 +8142,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.reset(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7317,9 +8183,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets the auto-delete flag for a disk attached to an instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7329,10 +8203,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setDiskAutoDelete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setDiskAutoDelete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7346,7 +8220,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.setDiskAutoDelete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7389,9 +8263,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Changes the machine type for a stopped instance to the machine type specified in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7401,10 +8283,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setMachineType' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setMachineType' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7415,7 +8297,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.setMachineType(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7457,9 +8339,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets metadata for the specified instance to the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7469,10 +8359,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setMetadata' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setMetadata' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7483,7 +8373,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.setMetadata(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7525,9 +8415,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets an instance's scheduling options.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7537,10 +8435,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setScheduling' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setScheduling' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7551,7 +8449,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.setScheduling(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7593,9 +8491,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets tags for the specified instance to the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7605,10 +8511,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setTags' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setTags' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7619,7 +8525,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.setTags(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7661,9 +8567,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Starts an instance that was stopped using the using the instances().stop method. For more information, see Restart an instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7673,10 +8587,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'start' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'start' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7686,7 +8600,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.start(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7726,6 +8640,51 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Starts an instance that was stopped using the using the instances().stop method. For more information, see Restart an instance.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'startWithEncryptionKey' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // The name of the zone for this request.
+     *     zone: "",
+     *     // Name of the instance resource to start.
+     *     instance: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.instances.startWithEncryptionKey(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.instances.startWithEncryptionKey
      * @memberOf! compute(v1)
      *
@@ -7758,9 +8717,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur per-minute, virtual machine usage charges while they are stopped, but any resources that the virtual machine is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7770,10 +8737,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'stop' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'stop' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7783,7 +8750,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.instances.stop(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7828,9 +8795,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified License resource. Get a list of available licenses by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7840,10 +8815,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the License resource to return.
@@ -7851,7 +8826,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.licenses.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7895,9 +8870,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of machine types.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7907,17 +8890,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -7929,7 +8912,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.machineTypes.aggregatedList(request, recur);
      * });
      *
@@ -7965,9 +8948,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified machine type. Get a list of available machine types by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -7977,10 +8968,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -7990,7 +8981,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.machineTypes.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8031,9 +9022,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of machine types available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8043,10 +9042,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // The name of the zone for this request.
@@ -8054,8 +9053,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8067,7 +9066,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.machineTypes.list(request, recur);
      * });
      *
@@ -8108,9 +9107,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified network.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8120,10 +9127,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the network to delete.
@@ -8131,7 +9138,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.networks.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8171,9 +9178,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified network. Get a list of available networks by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8183,10 +9198,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the network to return.
@@ -8194,7 +9209,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.networks.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8234,9 +9249,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a network in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8246,17 +9269,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.networks.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8296,9 +9319,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of networks available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8308,17 +9339,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8330,7 +9361,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.networks.list(request, recur);
      * });
      *
@@ -8370,9 +9401,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified Project resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8382,16 +9421,16 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.projects.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8430,9 +9469,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Moves a persistent disk from one zone to another.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8442,17 +9489,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'moveDisk' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'moveDisk' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.projects.moveDisk(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8492,9 +9539,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Moves an instance and its attached persistent disks from one zone to another.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8504,17 +9559,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'moveInstance' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'moveInstance' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.projects.moveInstance(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8554,9 +9609,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Sets metadata common to all instances within the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8566,17 +9629,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setCommonInstanceMetadata' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setCommonInstanceMetadata' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.projects.setCommonInstanceMetadata(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8616,9 +9679,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8628,17 +9699,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setUsageExportBucket' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setUsageExportBucket' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.projects.setUsageExportBucket(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8682,9 +9753,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified region-specific Operations resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8694,10 +9773,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -8707,7 +9786,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.regionOperations.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8748,9 +9827,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the specified region-specific Operations resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8760,10 +9847,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -8773,7 +9860,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.regionOperations.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8814,9 +9901,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of Operation resources contained within the specified region.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8826,10 +9921,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -8837,8 +9932,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8850,7 +9945,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.regionOperations.list(request, recur);
      * });
      *
@@ -8891,9 +9986,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified Region resource. Get a list of available regions by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8903,10 +10006,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region resource to return.
@@ -8914,7 +10017,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.regions.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8954,9 +10057,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of region resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -8966,17 +10077,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -8988,7 +10099,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.regions.list(request, recur);
      * });
      *
@@ -9027,6 +10138,53 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Retrieves an aggregated list of routers.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         compute.routers.aggregatedList(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   compute.routers.aggregatedList(request, recur);
+     * });
+     *
      * @alias compute.routers.aggregatedList
      * @memberOf! compute(v1)
      *
@@ -9058,6 +10216,50 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Deletes the specified Router resource.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     // Name of the Router resource to delete.
+     *     router: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.routers.delete
      * @memberOf! compute(v1)
      *
@@ -9087,6 +10289,50 @@ function Compute(options) { // eslint-disable-line
      * compute.routers.get
      *
      * @desc Returns the specified Router resource. Get a list of available routers by making a list() request.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     // Name of the Router resource to return.
+     *     router: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias compute.routers.get
      * @memberOf! compute(v1)
@@ -9118,6 +10364,50 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Retrieves runtime information of the specified router.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getRouterStatus' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     // Name of the Router resource to query.
+     *     router: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.getRouterStatus(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.routers.getRouterStatus
      * @memberOf! compute(v1)
      *
@@ -9148,6 +10438,49 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Creates a Router resource in the specified project and region using the data included in the request.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.routers.insert
      * @memberOf! compute(v1)
      *
@@ -9177,6 +10510,55 @@ function Compute(options) { // eslint-disable-line
      * compute.routers.list
      *
      * @desc Retrieves a list of Router resources available to the specified project.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         compute.routers.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   compute.routers.list(request, recur);
+     * });
      *
      * @alias compute.routers.list
      * @memberOf! compute(v1)
@@ -9210,6 +10592,51 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Updates the entire content of the Router resource. This method supports patch semantics.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     // Name of the Router resource to update.
+     *     router: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.routers.patch
      * @memberOf! compute(v1)
      *
@@ -9240,6 +10667,51 @@ function Compute(options) { // eslint-disable-line
      * compute.routers.update
      *
      * @desc Updates the entire content of the Router resource.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the region for this request.
+     *     region: "",
+     *     // Name of the Router resource to update.
+     *     router: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias compute.routers.update
      * @memberOf! compute(v1)
@@ -9277,9 +10749,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified Route resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9289,10 +10769,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the Route resource to delete.
@@ -9300,7 +10780,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.routes.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9340,9 +10820,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified Route resource. Get a list of available routes by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9352,10 +10840,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the Route resource to return.
@@ -9363,7 +10851,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.routes.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9403,9 +10891,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a Route resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9415,17 +10911,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.routes.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9465,9 +10961,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of Route resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9477,17 +10981,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9499,7 +11003,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.routes.list(request, recur);
      * });
      *
@@ -9539,9 +11043,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot.  For more information, see Deleting snaphots.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9551,10 +11063,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the Snapshot resource to delete.
@@ -9562,7 +11074,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.snapshots.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9602,9 +11114,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified Snapshot resource. Get a list of available snapshots by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9614,10 +11134,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the Snapshot resource to return.
@@ -9625,7 +11145,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.snapshots.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9665,9 +11185,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of Snapshot resources contained within the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9677,17 +11205,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9699,7 +11227,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.snapshots.list(request, recur);
      * });
      *
@@ -9739,9 +11267,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified SslCertificate resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9751,10 +11287,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the SslCertificate resource to delete.
@@ -9762,7 +11298,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.sslCertificates.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9802,9 +11338,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified SslCertificate resource. Get a list of available SSL certificates by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9814,10 +11358,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the SslCertificate resource to return.
@@ -9825,7 +11369,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.sslCertificates.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9865,9 +11409,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a SslCertificate resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9877,17 +11429,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.sslCertificates.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9927,9 +11479,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of SslCertificate resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -9939,17 +11499,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -9961,7 +11521,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.sslCertificates.list(request, recur);
      * });
      *
@@ -10001,9 +11561,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of subnetworks.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10013,17 +11581,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10035,7 +11603,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.subnetworks.aggregatedList(request, recur);
      * });
      *
@@ -10071,9 +11639,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified subnetwork.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10083,10 +11659,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -10096,7 +11672,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.subnetworks.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10137,9 +11713,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified subnetwork. Get a list of available subnetworks list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10149,10 +11733,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -10162,7 +11746,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.subnetworks.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10203,9 +11787,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a subnetwork in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10215,10 +11807,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -10227,7 +11819,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.subnetworks.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10268,9 +11860,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of subnetworks available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10280,10 +11880,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -10291,8 +11891,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10304,7 +11904,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.subnetworks.list(request, recur);
      * });
      *
@@ -10345,9 +11945,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified TargetHttpProxy resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10357,10 +11965,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpProxy resource to delete.
@@ -10368,7 +11976,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpProxies.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10408,9 +12016,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified TargetHttpProxy resource. Get a list of available target HTTP proxies by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10420,10 +12036,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpProxy resource to return.
@@ -10431,7 +12047,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpProxies.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10471,9 +12087,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a TargetHttpProxy resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10483,17 +12107,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpProxies.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10533,9 +12157,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of TargetHttpProxy resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10545,17 +12177,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10567,7 +12199,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetHttpProxies.list(request, recur);
      * });
      *
@@ -10603,9 +12235,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Changes the URL map for TargetHttpProxy.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10615,10 +12255,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setUrlMap' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setUrlMap' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpProxy to set a URL map for.
@@ -10627,7 +12267,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpProxies.setUrlMap(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10672,9 +12312,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified TargetHttpsProxy resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10684,10 +12332,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpsProxy resource to delete.
@@ -10695,7 +12343,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpsProxies.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10735,9 +12383,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified TargetHttpsProxy resource. Get a list of available target HTTPS proxies by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10747,10 +12403,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpsProxy resource to return.
@@ -10758,7 +12414,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpsProxies.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10798,9 +12454,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10810,17 +12474,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpsProxies.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10860,9 +12524,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10872,17 +12544,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10894,7 +12566,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetHttpsProxies.list(request, recur);
      * });
      *
@@ -10930,9 +12602,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Replaces SslCertificates for TargetHttpsProxy.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -10942,10 +12622,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setSslCertificates' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setSslCertificates' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
@@ -10954,7 +12634,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpsProxies.setSslCertificates(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -10995,9 +12675,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Changes the URL map for TargetHttpsProxy.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11007,10 +12695,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setUrlMap' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setUrlMap' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the TargetHttpsProxy resource whose URL map is to be set.
@@ -11019,7 +12707,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetHttpsProxies.setUrlMap(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11064,9 +12752,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of target instances.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11076,17 +12772,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11098,7 +12794,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetInstances.aggregatedList(request, recur);
      * });
      *
@@ -11134,9 +12830,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified TargetInstance resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11146,10 +12850,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone scoping this request.
@@ -11159,7 +12863,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetInstances.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11200,9 +12904,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified TargetInstance resource. Get a list of available target instances by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11212,10 +12924,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone scoping this request.
@@ -11225,7 +12937,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetInstances.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11266,9 +12978,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a TargetInstance resource in the specified project and zone using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11278,10 +12998,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone scoping this request.
@@ -11290,7 +13010,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetInstances.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11331,9 +13051,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of TargetInstance resources available to the specified project and zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11343,10 +13071,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone scoping this request.
@@ -11354,8 +13082,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11367,7 +13095,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetInstances.list(request, recur);
      * });
      *
@@ -11408,9 +13136,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Adds health check URLs to a target pool.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11420,10 +13156,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'addHealthCheck' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'addHealthCheck' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11434,7 +13170,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.addHealthCheck(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11476,9 +13212,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Adds an instance to a target pool.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11488,10 +13232,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'addInstance' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'addInstance' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11502,7 +13246,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.addInstance(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11544,9 +13288,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of target pools.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11556,17 +13308,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11578,7 +13330,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetPools.aggregatedList(request, recur);
      * });
      *
@@ -11614,9 +13366,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified target pool.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11626,10 +13386,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11639,7 +13399,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11680,9 +13440,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified target pool. Get a list of available target pools by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11692,10 +13460,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11705,7 +13473,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11746,9 +13514,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11758,10 +13534,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'getHealth' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getHealth' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11772,7 +13548,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.getHealth(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11814,9 +13590,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a target pool in the specified project and region using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11826,10 +13610,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11838,7 +13622,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11879,9 +13663,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of target pools available to the specified project and region.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11891,10 +13683,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -11902,8 +13694,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -11915,7 +13707,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetPools.list(request, recur);
      * });
      *
@@ -11952,9 +13744,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Removes health check URL from a target pool.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -11964,10 +13764,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'removeHealthCheck' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'removeHealthCheck' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -11978,7 +13778,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.removeHealthCheck(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12020,9 +13820,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Removes instance URL from a target pool.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12032,10 +13840,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'removeInstance' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'removeInstance' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -12046,7 +13854,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.removeInstance(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12088,9 +13896,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Changes a backup target pool's configurations.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12100,10 +13916,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'setBackup' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'setBackup' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region scoping this request.
@@ -12114,7 +13930,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetPools.setBackup(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12161,9 +13977,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of target VPN gateways.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12173,17 +13997,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12195,7 +14019,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetVpnGateways.aggregatedList(request, recur);
      * });
      *
@@ -12231,9 +14055,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified target VPN gateway.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12243,10 +14075,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -12256,7 +14088,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetVpnGateways.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12297,9 +14129,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified target VPN gateway. Get a list of available target VPN gateways by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12309,10 +14149,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -12322,7 +14162,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetVpnGateways.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12363,9 +14203,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a target VPN gateway in the specified project and region using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12375,10 +14223,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -12387,7 +14235,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.targetVpnGateways.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12428,9 +14276,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of target VPN gateways available to the specified project and region.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12440,10 +14296,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -12451,8 +14307,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12464,7 +14320,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.targetVpnGateways.list(request, recur);
      * });
      *
@@ -12505,9 +14361,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified UrlMap resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12517,10 +14381,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the UrlMap resource to delete.
@@ -12528,7 +14392,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.urlMaps.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12568,9 +14432,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified UrlMap resource. Get a list of available URL maps by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12580,10 +14452,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the UrlMap resource to return.
@@ -12591,7 +14463,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.urlMaps.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12631,9 +14503,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a UrlMap resource in the specified project using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12643,17 +14523,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.urlMaps.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12693,9 +14573,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of UrlMap resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12705,17 +14593,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12727,7 +14615,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.urlMaps.list(request, recur);
      * });
      *
@@ -12763,9 +14651,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates the entire content of the UrlMap resource. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12775,10 +14671,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the UrlMap resource to update.
@@ -12787,7 +14683,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.urlMaps.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12828,9 +14724,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Updates the entire content of the UrlMap resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12840,10 +14744,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the UrlMap resource to update.
@@ -12852,7 +14756,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.urlMaps.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12893,9 +14797,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12905,10 +14817,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'validate' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'validate' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the UrlMap resource to be validated as.
@@ -12917,7 +14829,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.urlMaps.validate(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12962,9 +14874,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves an aggregated list of VPN tunnels.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -12974,17 +14894,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'aggregatedList' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'aggregatedList' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -12996,7 +14916,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.vpnTunnels.aggregatedList(request, recur);
      * });
      *
@@ -13032,9 +14952,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified VpnTunnel resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13044,10 +14972,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -13057,7 +14985,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.vpnTunnels.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13098,9 +15026,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified VpnTunnel resource. Get a list of available VPN tunnels by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13110,10 +15046,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -13123,7 +15059,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.vpnTunnels.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13164,9 +15100,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Creates a VpnTunnel resource in the specified project and region using the data included in the request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13176,10 +15120,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -13188,7 +15132,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.vpnTunnels.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13229,9 +15173,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of VpnTunnel resources contained in the specified project and region.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13241,10 +15193,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the region for this request.
@@ -13252,8 +15204,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13265,7 +15217,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.vpnTunnels.list(request, recur);
      * });
      *
@@ -13306,9 +15258,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Deletes the specified zone-specific Operations resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13318,10 +15278,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -13331,7 +15291,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.zoneOperations.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13372,9 +15332,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the specified zone-specific Operations resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13384,10 +15352,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for this request.
@@ -13397,7 +15365,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.zoneOperations.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13438,9 +15406,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves a list of Operation resources contained within the specified zone.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13450,10 +15426,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone for request.
@@ -13461,8 +15437,8 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13474,7 +15450,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.zoneOperations.list(request, recur);
      * });
      *
@@ -13515,9 +15491,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Returns the specified Zone resource. Get a list of available zones by making a list() request.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13527,10 +15511,10 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Name of the zone resource to return.
@@ -13538,7 +15522,7 @@ function Compute(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   compute.zones.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13578,9 +15562,17 @@ function Compute(options) { // eslint-disable-line
      * @desc Retrieves the list of Zone resources available to the specified project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var compute = google.compute('v1');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -13590,17 +15582,17 @@ function Compute(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -13612,7 +15604,7 @@ function Compute(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   compute.zones.list(request, recur);
      * });
      *

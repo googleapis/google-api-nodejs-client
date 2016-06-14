@@ -8,7 +8,7 @@
  *
 {% if m.fragment -%}
  * @example
- * {{ m.fragment|safe }}
+ {{ m.fragment|safe }}
  *
 {% endif -%}
  * @alias {{ m.id }}

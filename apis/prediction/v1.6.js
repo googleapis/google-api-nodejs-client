@@ -46,6 +46,49 @@ function Prediction(options) { // eslint-disable-line
      *
      * @desc Submit input and request an output against a hosted model.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'predict' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // The name of a hosted model.
+     *     hostedModelName: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.hostedmodels.predict(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias prediction.hostedmodels.predict
      * @memberOf! prediction(v1.6)
      *
@@ -80,6 +123,48 @@ function Prediction(options) { // eslint-disable-line
      *
      * @desc Get analysis of the model and the data the model was trained on.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'analyze' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // The unique name for the predictive model.
+     *     id: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.trainedmodels.analyze(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias prediction.trainedmodels.analyze
      * @memberOf! prediction(v1.6)
      *
@@ -108,6 +193,48 @@ function Prediction(options) { // eslint-disable-line
      * prediction.trainedmodels.delete
      *
      * @desc Delete a trained model.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // The unique name for the predictive model.
+     *     id: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.trainedmodels.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias prediction.trainedmodels.delete
      * @memberOf! prediction(v1.6)
@@ -138,6 +265,48 @@ function Prediction(options) { // eslint-disable-line
      *
      * @desc Check training status of your model.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // The unique name for the predictive model.
+     *     id: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.trainedmodels.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias prediction.trainedmodels.get
      * @memberOf! prediction(v1.6)
      *
@@ -167,6 +336,47 @@ function Prediction(options) { // eslint-disable-line
      *
      * @desc Train a Prediction API model.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.trainedmodels.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias prediction.trainedmodels.insert
      * @memberOf! prediction(v1.6)
      *
@@ -195,6 +405,53 @@ function Prediction(options) { // eslint-disable-line
      * prediction.trainedmodels.list
      *
      * @desc List available models.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         prediction.trainedmodels.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   prediction.trainedmodels.list(request, recur);
+     * });
      *
      * @alias prediction.trainedmodels.list
      * @memberOf! prediction(v1.6)
@@ -226,6 +483,49 @@ function Prediction(options) { // eslint-disable-line
      *
      * @desc Submit model id and request a prediction.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'predict' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // The unique name for the predictive model.
+     *     id: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.trainedmodels.predict(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias prediction.trainedmodels.predict
      * @memberOf! prediction(v1.6)
      *
@@ -255,6 +555,49 @@ function Prediction(options) { // eslint-disable-line
      * prediction.trainedmodels.update
      *
      * @desc Add new data to a trained model.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Prediction API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/prediction_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var prediction = google.prediction('v1.6');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
+     *     // The project associated with the model.
+     *     project: "",
+     *     // The unique name for the predictive model.
+     *     id: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   prediction.trainedmodels.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias prediction.trainedmodels.update
      * @memberOf! prediction(v1.6)

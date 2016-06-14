@@ -46,6 +46,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Deletes the specified operation resource.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the Operations resource to delete.
+     *     operation: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.globalAccountsOperations.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.globalAccountsOperations.delete
      * @memberOf! clouduseraccounts(beta)
      *
@@ -75,6 +117,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Retrieves the specified operation resource.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the Operations resource to return.
+     *     operation: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.globalAccountsOperations.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.globalAccountsOperations.get
      * @memberOf! clouduseraccounts(beta)
      *
@@ -103,6 +187,53 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.globalAccountsOperations.list
      *
      * @desc Retrieves the list of operation resources contained within the specified project.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         clouduseraccounts.globalAccountsOperations.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   clouduseraccounts.globalAccountsOperations.list(request, recur);
+     * });
      *
      * @alias clouduseraccounts.globalAccountsOperations.list
      * @memberOf! clouduseraccounts(beta)
@@ -140,6 +271,49 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Adds users to the specified group.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'addMember' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the group for this request.
+     *     groupName: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.groups.addMember(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.groups.addMember
      * @memberOf! clouduseraccounts(beta)
      *
@@ -170,6 +344,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Deletes the specified Group resource.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the Group resource to delete.
+     *     groupName: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.groups.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.groups.delete
      * @memberOf! clouduseraccounts(beta)
      *
@@ -198,6 +414,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.groups.get
      *
      * @desc Returns the specified Group resource.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the Group resource to return.
+     *     groupName: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.groups.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias clouduseraccounts.groups.get
      * @memberOf! clouduseraccounts(beta)
@@ -228,6 +486,47 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Creates a Group resource in the specified project using the data included in the request.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.groups.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.groups.insert
      * @memberOf! clouduseraccounts(beta)
      *
@@ -256,6 +555,53 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.groups.list
      *
      * @desc Retrieves the list of groups contained within the specified project.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         clouduseraccounts.groups.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   clouduseraccounts.groups.list(request, recur);
+     * });
      *
      * @alias clouduseraccounts.groups.list
      * @memberOf! clouduseraccounts(beta)
@@ -288,6 +634,49 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.groups.removeMember
      *
      * @desc Removes users from the specified group.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'removeMember' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the group for this request.
+     *     groupName: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.groups.removeMember(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias clouduseraccounts.groups.removeMember
      * @memberOf! clouduseraccounts(beta)
@@ -323,6 +712,52 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Returns a list of authorized public keys for a specific user account.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getAuthorizedKeysView' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the zone for this request.
+     *     zone: "",
+     *     // The user account for which you want to get a list of authorized public keys.
+     *     user: "",
+     *     // The fully-qualified URL of the virtual machine requesting the view.
+     *     instance: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.linux.getAuthorizedKeysView(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.linux.getAuthorizedKeysView
      * @memberOf! clouduseraccounts(beta)
      *
@@ -354,6 +789,50 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.linux.getLinuxAccountViews
      *
      * @desc Retrieves a list of user accounts for an instance within a specific project.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getLinuxAccountViews' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the zone for this request.
+     *     zone: "",
+     *     // The fully-qualified URL of the virtual machine requesting the views.
+     *     instance: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.linux.getLinuxAccountViews(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias clouduseraccounts.linux.getLinuxAccountViews
      * @memberOf! clouduseraccounts(beta)
@@ -393,6 +872,49 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Adds a public key to the specified User resource with the data included in the request.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'addPublicKey' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the user for this request.
+     *     user: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.users.addPublicKey(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.users.addPublicKey
      * @memberOf! clouduseraccounts(beta)
      *
@@ -423,6 +945,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Deletes the specified User resource.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the user resource to delete.
+     *     user: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.users.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.users.delete
      * @memberOf! clouduseraccounts(beta)
      *
@@ -451,6 +1015,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.users.get
      *
      * @desc Returns the specified User resource.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the user resource to return.
+     *     user: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.users.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias clouduseraccounts.users.get
      * @memberOf! clouduseraccounts(beta)
@@ -481,6 +1087,47 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @desc Creates a User resource in the specified project using the data included in the request.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.users.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias clouduseraccounts.users.insert
      * @memberOf! clouduseraccounts(beta)
      *
@@ -509,6 +1156,53 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.users.list
      *
      * @desc Retrieves a list of users contained within the specified project.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         clouduseraccounts.users.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   clouduseraccounts.users.list(request, recur);
+     * });
      *
      * @alias clouduseraccounts.users.list
      * @memberOf! clouduseraccounts(beta)
@@ -541,6 +1235,51 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * clouduseraccounts.users.removePublicKey
      *
      * @desc Removes the specified public key from the user.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud User Accounts API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/clouduseraccounts_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var clouduseraccounts = google.clouduseraccounts('beta');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'removePublicKey' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the user for this request.
+     *     user: "",
+     *     // The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which
+     *     // is defined by RFC4716 to be the MD5 digest of the public key.
+     *     fingerprint: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   clouduseraccounts.users.removePublicKey(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias clouduseraccounts.users.removePublicKey
      * @memberOf! clouduseraccounts(beta)

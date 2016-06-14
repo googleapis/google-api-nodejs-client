@@ -1,3 +1,8 @@
+##### 8.2.0 - 14 June 2016
+
+###### Backwards compatible changes
+- Regenerate, now including code snippets
+
 ##### 8.1.0 - 08 June 2016
 
 ###### Backwards compatible changes
