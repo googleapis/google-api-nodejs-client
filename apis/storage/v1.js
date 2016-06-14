@@ -46,6 +46,40 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.bucketAccessControls.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.bucketAccessControls.delete
      * @memberOf! storage(v1)
      *
@@ -74,6 +108,40 @@ function Storage(options) { // eslint-disable-line
      * storage.bucketAccessControls.get
      *
      * @desc Returns the ACL entry for the specified entity on the specified bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.bucketAccessControls.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.bucketAccessControls.get
      * @memberOf! storage(v1)
@@ -104,6 +172,39 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Creates a new ACL entry on the specified bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.bucketAccessControls.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.bucketAccessControls.insert
      * @memberOf! storage(v1)
      *
@@ -133,6 +234,38 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Retrieves ACL entries on the specified bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.bucketAccessControls.list(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.bucketAccessControls.list
      * @memberOf! storage(v1)
      *
@@ -160,6 +293,41 @@ function Storage(options) { // eslint-disable-line
      * storage.bucketAccessControls.patch
      *
      * @desc Updates an ACL entry on the specified bucket. This method supports patch semantics.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.bucketAccessControls.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.bucketAccessControls.patch
      * @memberOf! storage(v1)
@@ -190,6 +358,41 @@ function Storage(options) { // eslint-disable-line
      * storage.bucketAccessControls.update
      *
      * @desc Updates an ACL entry on the specified bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.bucketAccessControls.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.bucketAccessControls.update
      * @memberOf! storage(v1)
@@ -225,6 +428,38 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Permanently deletes an empty bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.buckets.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.buckets.delete
      * @memberOf! storage(v1)
      *
@@ -254,6 +489,38 @@ function Storage(options) { // eslint-disable-line
      * storage.buckets.get
      *
      * @desc Returns metadata for the specified bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.buckets.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.buckets.get
      * @memberOf! storage(v1)
@@ -285,6 +552,39 @@ function Storage(options) { // eslint-disable-line
      * storage.buckets.insert
      *
      * @desc Creates a new bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // A valid API project identifier.
+     *     project: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.buckets.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.buckets.insert
      * @memberOf! storage(v1)
@@ -318,6 +618,45 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Retrieves a list of buckets for a given project.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // A valid API project identifier.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     * 
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         storage.buckets.list(request, recur);
+     *       }
+     *     }
+     *   };
+     * 
+     *   storage.buckets.list(request, recur);
+     * });
+     *
      * @alias storage.buckets.list
      * @memberOf! storage(v1)
      *
@@ -349,6 +688,39 @@ function Storage(options) { // eslint-disable-line
      * storage.buckets.patch
      *
      * @desc Updates a bucket. This method supports patch semantics.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.buckets.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.buckets.patch
      * @memberOf! storage(v1)
@@ -383,6 +755,39 @@ function Storage(options) { // eslint-disable-line
      * storage.buckets.update
      *
      * @desc Updates a bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.buckets.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.buckets.update
      * @memberOf! storage(v1)
@@ -422,6 +827,37 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Stop watching resources through this channel
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'stop' method:
+     * 
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.channels.stop(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.channels.stop
      * @memberOf! storage(v1)
      *
@@ -454,6 +890,40 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.defaultObjectAccessControls.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.defaultObjectAccessControls.delete
      * @memberOf! storage(v1)
      *
@@ -482,6 +952,40 @@ function Storage(options) { // eslint-disable-line
      * storage.defaultObjectAccessControls.get
      *
      * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.defaultObjectAccessControls.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.defaultObjectAccessControls.get
      * @memberOf! storage(v1)
@@ -512,6 +1016,39 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Creates a new default object ACL entry on the specified bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.defaultObjectAccessControls.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.defaultObjectAccessControls.insert
      * @memberOf! storage(v1)
      *
@@ -540,6 +1077,38 @@ function Storage(options) { // eslint-disable-line
      * storage.defaultObjectAccessControls.list
      *
      * @desc Retrieves default object ACL entries on the specified bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.defaultObjectAccessControls.list(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.defaultObjectAccessControls.list
      * @memberOf! storage(v1)
@@ -571,6 +1140,41 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Updates a default object ACL entry on the specified bucket. This method supports patch semantics.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.defaultObjectAccessControls.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.defaultObjectAccessControls.patch
      * @memberOf! storage(v1)
      *
@@ -600,6 +1204,41 @@ function Storage(options) { // eslint-disable-line
      * storage.defaultObjectAccessControls.update
      *
      * @desc Updates a default object ACL entry on the specified bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.defaultObjectAccessControls.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.defaultObjectAccessControls.update
      * @memberOf! storage(v1)
@@ -635,6 +1274,42 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objectAccessControls.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.objectAccessControls.delete
      * @memberOf! storage(v1)
      *
@@ -665,6 +1340,42 @@ function Storage(options) { // eslint-disable-line
      * storage.objectAccessControls.get
      *
      * @desc Returns the ACL entry for the specified entity on the specified object.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objectAccessControls.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objectAccessControls.get
      * @memberOf! storage(v1)
@@ -697,6 +1408,41 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Creates a new ACL entry on the specified object.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objectAccessControls.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.objectAccessControls.insert
      * @memberOf! storage(v1)
      *
@@ -728,6 +1474,40 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Retrieves ACL entries on the specified object.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objectAccessControls.list(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.objectAccessControls.list
      * @memberOf! storage(v1)
      *
@@ -757,6 +1537,43 @@ function Storage(options) { // eslint-disable-line
      * storage.objectAccessControls.patch
      *
      * @desc Updates an ACL entry on the specified object. This method supports patch semantics.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objectAccessControls.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objectAccessControls.patch
      * @memberOf! storage(v1)
@@ -789,6 +1606,43 @@ function Storage(options) { // eslint-disable-line
      * storage.objectAccessControls.update
      *
      * @desc Updates an ACL entry on the specified object.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Name of a bucket.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objectAccessControls.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objectAccessControls.update
      * @memberOf! storage(v1)
@@ -826,6 +1680,41 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Concatenates a list of existing objects into a new object in the same bucket.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'compose' method:
+     * 
+     *     // Name of the bucket in which to store the new object.
+     *     destinationBucket: "",
+     *     // Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     destinationObject: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.compose(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.objects.compose
      * @memberOf! storage(v1)
      *
@@ -858,6 +1747,45 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.copy
      *
      * @desc Copies a source object to a destination object. Optionally overrides metadata.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'copy' method:
+     * 
+     *     // Name of the bucket in which to find the source object.
+     *     sourceBucket: "",
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     sourceObject: "",
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     destinationBucket: "",
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     *     destinationObject: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.copy(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objects.copy
      * @memberOf! storage(v1)
@@ -902,6 +1830,40 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Name of the bucket in which the object resides.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.objects.delete
      * @memberOf! storage(v1)
      *
@@ -935,6 +1897,40 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.get
      *
      * @desc Retrieves an object or its metadata.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Name of the bucket in which the object resides.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objects.get
      * @memberOf! storage(v1)
@@ -970,6 +1966,44 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.insert
      *
      * @desc Stores a new object and metadata.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     *     bucket: "",
+     *     resource: {},
+     *     media: {
+     *       // See https://github.com/google/google-api-nodejs-client#media-uploads
+     *       mimeType: 'text/plain',
+     *       body: 'Hello World!'
+     *     },
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objects.insert
      * @memberOf! storage(v1)
@@ -1012,6 +2046,45 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Retrieves a list of objects matching the criteria.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Name of the bucket in which to look for objects.
+     *     bucket: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     * 
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         storage.objects.list(request, recur);
+     *       }
+     *     }
+     *   };
+     * 
+     *   storage.objects.list(request, recur);
+     * });
+     *
      * @alias storage.objects.list
      * @memberOf! storage(v1)
      *
@@ -1045,6 +2118,41 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.patch
      *
      * @desc Updates an object's metadata. This method supports patch semantics.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Name of the bucket in which the object resides.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objects.patch
      * @memberOf! storage(v1)
@@ -1082,6 +2190,45 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.rewrite
      *
      * @desc Rewrites a source object to a destination object. Optionally overrides metadata.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'rewrite' method:
+     * 
+     *     // Name of the bucket in which to find the source object.
+     *     sourceBucket: "",
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     sourceObject: "",
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     *     destinationBucket: "",
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     destinationObject: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.rewrite(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objects.rewrite
      * @memberOf! storage(v1)
@@ -1128,6 +2275,41 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Updates an object's metadata.
      *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Name of the bucket in which the object resides.
+     *     bucket: "",
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storage.objects.update
      * @memberOf! storage(v1)
      *
@@ -1164,6 +2346,39 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.watchAll
      *
      * @desc Watch for changes on all objects in a bucket.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'watchAll' method:
+     * 
+     *     // Name of the bucket in which to look for objects.
+     *     bucket: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   storage.objects.watchAll(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storage.objects.watchAll
      * @memberOf! storage(v1)

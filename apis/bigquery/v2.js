@@ -46,6 +46,40 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Project ID of the dataset being deleted
+     *     projectId: "",
+     *     // Dataset ID of dataset being deleted
+     *     datasetId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.datasets.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.datasets.delete
      * @memberOf! bigquery(v2)
      *
@@ -76,6 +110,40 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Returns the dataset specified by datasetID.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Project ID of the requested dataset
+     *     projectId: "",
+     *     // Dataset ID of the requested dataset
+     *     datasetId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.datasets.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.datasets.get
      * @memberOf! bigquery(v2)
      *
@@ -105,6 +173,39 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Creates a new empty dataset.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Project ID of the new dataset
+     *     projectId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.datasets.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.datasets.insert
      * @memberOf! bigquery(v2)
      *
@@ -133,6 +234,45 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.datasets.list
      *
      * @desc Lists all datasets in the specified project to which you have been granted the READER dataset role.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Project ID of the datasets to be listed
+     *     projectId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     * 
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         bigquery.datasets.list(request, recur);
+     *       }
+     *     }
+     *   };
+     * 
+     *   bigquery.datasets.list(request, recur);
+     * });
      *
      * @alias bigquery.datasets.list
      * @memberOf! bigquery(v2)
@@ -165,6 +305,41 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Project ID of the dataset being updated
+     *     projectId: "",
+     *     // Dataset ID of the dataset being updated
+     *     datasetId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.datasets.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.datasets.patch
      * @memberOf! bigquery(v2)
      *
@@ -194,6 +369,41 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.datasets.update
      *
      * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Project ID of the dataset being updated
+     *     projectId: "",
+     *     // Dataset ID of the dataset being updated
+     *     datasetId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.datasets.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias bigquery.datasets.update
      * @memberOf! bigquery(v2)
@@ -229,6 +439,40 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'cancel' method:
+     * 
+     *     // [Required] Project ID of the job to cancel
+     *     projectId: "",
+     *     // [Required] Job ID of the job to cancel
+     *     jobId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.jobs.cancel(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.jobs.cancel
      * @memberOf! bigquery(v2)
      *
@@ -258,6 +502,40 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // [Required] Project ID of the requested job
+     *     projectId: "",
+     *     // [Required] Job ID of the requested job
+     *     jobId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.jobs.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.jobs.get
      * @memberOf! bigquery(v2)
      *
@@ -286,6 +564,40 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.jobs.getQueryResults
      *
      * @desc Retrieves the results of a query job.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'getQueryResults' method:
+     * 
+     *     // [Required] Project ID of the query job
+     *     projectId: "",
+     *     // [Required] Job ID of the query job
+     *     jobId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.jobs.getQueryResults(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias bigquery.jobs.getQueryResults
      * @memberOf! bigquery(v2)
@@ -320,6 +632,44 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Starts a new asynchronous job. Requires the Can View project role.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Project ID of the project that will be billed for the job
+     *     projectId: "",
+     *     resource: {},
+     *     media: {
+     *       // See https://github.com/google/google-api-nodejs-client#media-uploads
+     *       mimeType: 'text/plain',
+     *       body: 'Hello World!'
+     *     },
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.jobs.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.jobs.insert
      * @memberOf! bigquery(v2)
      *
@@ -352,6 +702,45 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.jobs.list
      *
      * @desc Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Project ID of the jobs to list
+     *     projectId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     * 
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         bigquery.jobs.list(request, recur);
+     *       }
+     *     }
+     *   };
+     * 
+     *   bigquery.jobs.list(request, recur);
+     * });
      *
      * @alias bigquery.jobs.list
      * @memberOf! bigquery(v2)
@@ -386,6 +775,39 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'query' method:
+     * 
+     *     // Project ID of the project billed for the query
+     *     projectId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.jobs.query(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.jobs.query
      * @memberOf! bigquery(v2)
      *
@@ -418,6 +840,43 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.projects.list
      *
      * @desc Lists all projects to which you have been granted any project role.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     * 
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         bigquery.projects.list(request, recur);
+     *       }
+     *     }
+     *   };
+     * 
+     *   bigquery.projects.list(request, recur);
+     * });
      *
      * @alias bigquery.projects.list
      * @memberOf! bigquery(v2)
@@ -452,6 +911,43 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insertAll' method:
+     * 
+     *     // Project ID of the destination table.
+     *     projectId: "",
+     *     // Dataset ID of the destination table.
+     *     datasetId: "",
+     *     // Table ID of the destination table.
+     *     tableId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tabledata.insertAll(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.tabledata.insertAll
      * @memberOf! bigquery(v2)
      *
@@ -482,6 +978,42 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.tabledata.list
      *
      * @desc Retrieves table data from a specified set of rows. Requires the READER dataset role.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Project ID of the table to read
+     *     projectId: "",
+     *     // Dataset ID of the table to read
+     *     datasetId: "",
+     *     // Table ID of the table to read
+     *     tableId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tabledata.list(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias bigquery.tabledata.list
      * @memberOf! bigquery(v2)
@@ -520,6 +1052,42 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
+     * 
+     *     // Project ID of the table to delete
+     *     projectId: "",
+     *     // Dataset ID of the table to delete
+     *     datasetId: "",
+     *     // Table ID of the table to delete
+     *     tableId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tables.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.tables.delete
      * @memberOf! bigquery(v2)
      *
@@ -549,6 +1117,42 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.tables.get
      *
      * @desc Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
+     * 
+     *     // Project ID of the requested table
+     *     projectId: "",
+     *     // Dataset ID of the requested table
+     *     datasetId: "",
+     *     // Table ID of the requested table
+     *     tableId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tables.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias bigquery.tables.get
      * @memberOf! bigquery(v2)
@@ -580,6 +1184,41 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Creates a new, empty table in the dataset.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
+     * 
+     *     // Project ID of the new table
+     *     projectId: "",
+     *     // Dataset ID of the new table
+     *     datasetId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tables.insert(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.tables.insert
      * @memberOf! bigquery(v2)
      *
@@ -609,6 +1248,47 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.tables.list
      *
      * @desc Lists all tables in the specified dataset. Requires the READER dataset role.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
+     * 
+     *     // Project ID of the tables to list
+     *     projectId: "",
+     *     // Dataset ID of the tables to list
+     *     datasetId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     * 
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         bigquery.tables.list(request, recur);
+     *       }
+     *     }
+     *   };
+     * 
+     *   bigquery.tables.list(request, recur);
+     * });
      *
      * @alias bigquery.tables.list
      * @memberOf! bigquery(v2)
@@ -641,6 +1321,43 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
      *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
+     * 
+     *     // Project ID of the table to update
+     *     projectId: "",
+     *     // Dataset ID of the table to update
+     *     datasetId: "",
+     *     // Table ID of the table to update
+     *     tableId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tables.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias bigquery.tables.patch
      * @memberOf! bigquery(v2)
      *
@@ -671,6 +1388,43 @@ function Bigquery(options) { // eslint-disable-line
      * bigquery.tables.update
      *
      * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
+     *
+     * @example
+     * var google = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     * 
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     * 
+     *   var request = {
+     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
+     * 
+     *     // Project ID of the table to update
+     *     projectId: "",
+     *     // Dataset ID of the table to update
+     *     datasetId: "",
+     *     // Table ID of the table to update
+     *     tableId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     * 
+     *   bigquery.tables.update(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias bigquery.tables.update
      * @memberOf! bigquery(v2)

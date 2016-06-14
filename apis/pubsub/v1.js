@@ -48,6 +48,39 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'setIamPolicy' method:
+       * 
+       *     // REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       *     resource_: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.setIamPolicy(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.topics.setIamPolicy
        * @memberOf! pubsub(v1)
        *
@@ -77,6 +110,38 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'getIamPolicy' method:
+       * 
+       *     // REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       *     resource_: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.getIamPolicy(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.topics.getIamPolicy
        * @memberOf! pubsub(v1)
        *
@@ -104,6 +169,39 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.topics.testIamPermissions
        *
        * @desc Returns permissions that a caller has on the specified resource.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'testIamPermissions' method:
+       * 
+       *     // REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       *     resource_: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.testIamPermissions(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias pubsub.projects.topics.testIamPermissions
        * @memberOf! pubsub(v1)
@@ -134,6 +232,39 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Creates the given topic with the given name.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       * 
+       *     // The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+       *     name: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.topics.create
        * @memberOf! pubsub(v1)
        *
@@ -162,6 +293,39 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.topics.publish
        *
        * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist. The message payload must not be empty; it must contain either a non-empty data field, or at least one attribute.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'publish' method:
+       * 
+       *     // The messages in the request will be published on this topic.
+       *     topic: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.publish(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias pubsub.projects.topics.publish
        * @memberOf! pubsub(v1)
@@ -192,6 +356,38 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Gets the configuration of a topic.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       * 
+       *     // The name of the topic to get.
+       *     topic: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.topics.get
        * @memberOf! pubsub(v1)
        *
@@ -219,6 +415,45 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.topics.list
        *
        * @desc Lists matching topics.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       * 
+       *     // The name of the cloud project that topics belong to.
+       *     project: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       * 
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         pubsub.projects.topics.list(request, recur);
+       *       }
+       *     }
+       *   };
+       * 
+       *   pubsub.projects.topics.list(request, recur);
+       * });
        *
        * @alias pubsub.projects.topics.list
        * @memberOf! pubsub(v1)
@@ -250,6 +485,38 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       * 
+       *     // Name of the topic to delete.
+       *     topic: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.topics.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.topics.delete
        * @memberOf! pubsub(v1)
        *
@@ -279,6 +546,45 @@ function Pubsub(options) { // eslint-disable-line
          * pubsub.projects.topics.subscriptions.list
          *
          * @desc Lists the name of the subscriptions for this topic.
+         *
+         * @example
+         * var google = require('googleapis');
+         * var pubsub = google.pubsub('v1');
+         * 
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         * 
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+         * 
+         *     // The name of the topic that subscriptions are attached to.
+         *     topic: "",
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         * 
+         * 
+         *   var recur = function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *       if (result.nextPageToken) {
+         *         request.pageToken = result.nextPageToken;
+         *         pubsub.projects.topics.subscriptions.list(request, recur);
+         *       }
+         *     }
+         *   };
+         * 
+         *   pubsub.projects.topics.subscriptions.list(request, recur);
+         * });
          *
          * @alias pubsub.projects.topics.subscriptions.list
          * @memberOf! pubsub(v1)
@@ -314,6 +620,39 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'setIamPolicy' method:
+       * 
+       *     // REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       *     resource_: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.setIamPolicy(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.setIamPolicy
        * @memberOf! pubsub(v1)
        *
@@ -343,6 +682,38 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'getIamPolicy' method:
+       * 
+       *     // REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       *     resource_: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.getIamPolicy(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.getIamPolicy
        * @memberOf! pubsub(v1)
        *
@@ -370,6 +741,39 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.subscriptions.testIamPermissions
        *
        * @desc Returns permissions that a caller has on the specified resource.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'testIamPermissions' method:
+       * 
+       *     // REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       *     resource_: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.testIamPermissions(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias pubsub.projects.subscriptions.testIamPermissions
        * @memberOf! pubsub(v1)
@@ -400,6 +804,39 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Creates a subscription to a given topic. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       * 
+       *     // The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+       *     name: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.create
        * @memberOf! pubsub(v1)
        *
@@ -429,6 +866,38 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Gets the configuration details of a subscription.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       * 
+       *     // The name of the subscription to get.
+       *     subscription: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.get
        * @memberOf! pubsub(v1)
        *
@@ -456,6 +925,45 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.subscriptions.list
        *
        * @desc Lists matching subscriptions.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       * 
+       *     // The name of the cloud project that subscriptions belong to.
+       *     project: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       * 
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         pubsub.projects.subscriptions.list(request, recur);
+       *       }
+       *     }
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.list(request, recur);
+       * });
        *
        * @alias pubsub.projects.subscriptions.list
        * @memberOf! pubsub(v1)
@@ -487,6 +995,38 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       * 
+       *     // The subscription to delete.
+       *     subscription: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.delete
        * @memberOf! pubsub(v1)
        *
@@ -514,6 +1054,39 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.subscriptions.modifyAckDeadline
        *
        * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'modifyAckDeadline' method:
+       * 
+       *     // The name of the subscription.
+       *     subscription: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias pubsub.projects.subscriptions.modifyAckDeadline
        * @memberOf! pubsub(v1)
@@ -544,6 +1117,39 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'acknowledge' method:
+       * 
+       *     // The subscription whose message is being acknowledged.
+       *     subscription: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.acknowledge(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.acknowledge
        * @memberOf! pubsub(v1)
        *
@@ -573,6 +1179,39 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
        *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'pull' method:
+       * 
+       *     // The subscription from which messages should be pulled.
+       *     subscription: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.pull(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias pubsub.projects.subscriptions.pull
        * @memberOf! pubsub(v1)
        *
@@ -601,6 +1240,39 @@ function Pubsub(options) { // eslint-disable-line
        * pubsub.projects.subscriptions.modifyPushConfig
        *
        * @desc Modifies the `PushConfig` for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
+       *
+       * @example
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       * 
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       * 
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'modifyPushConfig' method:
+       * 
+       *     // The name of the subscription.
+       *     subscription: "",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       * 
+       *   pubsub.projects.subscriptions.modifyPushConfig(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias pubsub.projects.subscriptions.modifyPushConfig
        * @memberOf! pubsub(v1)
