@@ -48,6 +48,47 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Creates a new time series with the given data points. This method is only for use in `collectd`-related code, including the Google Monitoring Agent. See [google.monitoring.v3.MetricService.CreateTimeSeries] instead.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The project in which to create the time series. The format is `"projects/PROJECT_ID_OR_NUMBER"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.collectdTimeSeries.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias monitoring.projects.collectdTimeSeries.create
        * @memberOf! monitoring(v3)
        *
@@ -79,6 +120,53 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.groups.list
        *
        * @desc Lists the existing groups.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // The project whose groups are to be listed. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         monitoring.projects.groups.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   monitoring.projects.groups.list(request, recur);
+       * });
        *
        * @alias monitoring.projects.groups.list
        * @memberOf! monitoring(v3)
@@ -113,6 +201,46 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Gets a single group.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *
+       *     // The group to retrieve. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
+       *     name: "projects/{MY-PROJECT}/groups/{MY-GROUP}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.groups.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias monitoring.projects.groups.get
        * @memberOf! monitoring(v3)
        *
@@ -140,6 +268,47 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.groups.create
        *
        * @desc Creates a new group.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The project in which to create the group. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.groups.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias monitoring.projects.groups.create
        * @memberOf! monitoring(v3)
@@ -171,6 +340,50 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Updates an existing group. You can change any group attributes except `name`.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+       *
+       *     // The name of this group. The format is `"projects/{project_id_or_number}/groups/{group_id}"`. When
+       *     // creating a group, this field is ignored and a new name is created consisting of the project
+       *     // specified in the call to `CreateGroup` and a unique `{group_id}` that is generated automatically.
+       *     // @OutputOnly
+       *     name: "projects/{MY-PROJECT}/groups/{MY-GROUP}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.groups.update(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias monitoring.projects.groups.update
        * @memberOf! monitoring(v3)
        *
@@ -201,6 +414,46 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Deletes an existing group.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       *
+       *     // The group to delete. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
+       *     name: "projects/{MY-PROJECT}/groups/{MY-GROUP}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.groups.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias monitoring.projects.groups.delete
        * @memberOf! monitoring(v3)
        *
@@ -230,6 +483,54 @@ function Monitoring(options) { // eslint-disable-line
          * monitoring.projects.groups.members.list
          *
          * @desc Lists the monitored resources that are members of a group.
+         *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+         * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var monitoring = google.monitoring('v3');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+         *
+         *     // The group whose members are listed. The format is
+         *     // `"projects/{project_id_or_number}/groups/{group_id}"`.
+         *     name: "projects/{MY-PROJECT}/groups/{MY-GROUP}",
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *
+         *   var recur = function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *       if (result.nextPageToken) {
+         *         request.pageToken = result.nextPageToken;
+         *         monitoring.projects.groups.members.list(request, recur);
+         *       }
+         *     }
+         *   };
+         *
+         *   monitoring.projects.groups.members.list(request, recur);
+         * });
          *
          * @alias monitoring.projects.groups.members.list
          * @memberOf! monitoring(v3)
@@ -268,6 +569,53 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         monitoring.projects.monitoredResourceDescriptors.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   monitoring.projects.monitoredResourceDescriptors.list(request, recur);
+       * });
+       *
        * @alias monitoring.projects.monitoredResourceDescriptors.list
        * @memberOf! monitoring(v3)
        *
@@ -298,6 +646,48 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.monitoredResourceDescriptors.get
        *
        * @desc Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *
+       *     // The monitored resource descriptor to get. The format is
+       *     // `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`. The
+       *     // `{resource_type}` is a predefined type, such as `cloudsql_database`.
+       *     name: "projects/{MY-PROJECT}/monitoredResourceDescriptors/{MY-MONITOREDRESOURCEDESCRIPTOR}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.monitoredResourceDescriptors.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias monitoring.projects.monitoredResourceDescriptors.get
        * @memberOf! monitoring(v3)
@@ -330,6 +720,53 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         monitoring.projects.metricDescriptors.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   monitoring.projects.metricDescriptors.list(request, recur);
+       * });
+       *
        * @alias monitoring.projects.metricDescriptors.list
        * @memberOf! monitoring(v3)
        *
@@ -361,6 +798,48 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @desc Gets a single metric descriptor. This method does not require a Stackdriver account.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *
+       *     // The metric descriptor on which to execute the request. The format is
+       *     // `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`. An example value of `{metric_id}`
+       *     // is `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+       *     name: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.metricDescriptors.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias monitoring.projects.metricDescriptors.get
        * @memberOf! monitoring(v3)
        *
@@ -388,6 +867,47 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.metricDescriptors.create
        *
        * @desc Creates a new metric descriptor. User-created metric descriptors define [custom metrics](/monitoring/custom-metrics).
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.metricDescriptors.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias monitoring.projects.metricDescriptors.create
        * @memberOf! monitoring(v3)
@@ -417,6 +937,48 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.metricDescriptors.delete
        *
        * @desc Deletes a metric descriptor. Only user-created [custom metrics](/monitoring/custom-metrics) can be deleted.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       *
+       *     // The metric descriptor on which to execute the request. The format is
+       *     // `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`. An example of `{metric_id}` is:
+       *     // `"custom.googleapis.com/my_test_metric"`.
+       *     name: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.metricDescriptors.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias monitoring.projects.metricDescriptors.delete
        * @memberOf! monitoring(v3)
@@ -448,6 +1010,53 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.timeSeries.list
        *
        * @desc Lists time series that match a filter. This method does not require a Stackdriver account.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // The project on which to execute the request. The format is "projects/{project_id_or_number}".
+       *     name: "projects/{MY-PROJECT}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         monitoring.projects.timeSeries.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   monitoring.projects.timeSeries.list(request, recur);
+       * });
        *
        * @alias monitoring.projects.timeSeries.list
        * @memberOf! monitoring(v3)
@@ -487,6 +1096,47 @@ function Monitoring(options) { // eslint-disable-line
        * monitoring.projects.timeSeries.create
        *
        * @desc Creates or adds data to one or more time series. The response is empty if all time series in the request were written. If any time series could not be written, a corresponding failure message is included in the error response.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.timeSeries.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias monitoring.projects.timeSeries.create
        * @memberOf! monitoring(v3)

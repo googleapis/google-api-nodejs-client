@@ -47,9 +47,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Cancels and removes the preview currently associated with the deployment.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -59,10 +67,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'cancelPreview' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'cancelPreview' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -71,7 +79,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.cancelPreview(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -112,9 +120,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Deletes a deployment and all of the resources in the deployment.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -124,10 +140,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -135,7 +151,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -175,9 +191,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a specific deployment.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -187,10 +211,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -198,7 +222,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -238,9 +262,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Creates a deployment and all of the resources described by the deployment manifest.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -250,17 +282,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -301,9 +333,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all deployments for a given project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -313,17 +353,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -335,7 +375,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.list(request, recur);
      * });
      *
@@ -371,9 +411,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Updates a deployment and all of the resources described by the deployment manifest. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -383,10 +431,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -395,7 +443,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -439,9 +487,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -451,10 +507,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'stop' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'stop' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -463,7 +519,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.stop(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -504,9 +560,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Updates a deployment and all of the resources described by the deployment manifest.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -516,10 +580,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -528,7 +592,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.deployments.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -576,9 +640,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a specific manifest.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -588,10 +660,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -601,7 +673,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.manifests.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -642,9 +714,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all manifests for a given deployment.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -654,10 +734,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -665,8 +745,8 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -678,7 +758,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   deploymentmanager.manifests.list(request, recur);
      * });
      *
@@ -719,9 +799,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a specific operation.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -731,10 +819,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the operation for this request.
@@ -742,7 +830,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.operations.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -782,9 +870,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all operations for a project.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -794,17 +890,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -816,7 +912,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   deploymentmanager.operations.list(request, recur);
      * });
      *
@@ -856,9 +952,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a single resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -868,10 +972,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -881,7 +985,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   deploymentmanager.resources.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -922,9 +1026,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all resources in a given deployment.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -934,10 +1046,10 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // The name of the deployment for this request.
@@ -945,8 +1057,8 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -958,7 +1070,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   deploymentmanager.resources.list(request, recur);
      * });
      *
@@ -999,9 +1111,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all resource types for Deployment Manager.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1011,17 +1131,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // The project ID for this request.
      *     project: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1033,7 +1153,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   deploymentmanager.types.list(request, recur);
      * });
      *

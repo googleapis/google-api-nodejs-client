@@ -47,9 +47,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -59,10 +67,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID of the dataset being deleted
      *     projectId: "",
      *     // Dataset ID of dataset being deleted
@@ -70,7 +78,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.datasets.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -111,9 +119,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Returns the dataset specified by datasetID.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -123,10 +139,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID of the requested dataset
      *     projectId: "",
      *     // Dataset ID of the requested dataset
@@ -134,7 +150,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.datasets.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -174,9 +190,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Creates a new empty dataset.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -186,17 +210,17 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID of the new dataset
      *     projectId: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.datasets.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -236,9 +260,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Lists all datasets in the specified project to which you have been granted the READER dataset role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -248,17 +280,17 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID of the datasets to be listed
      *     projectId: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -270,7 +302,7 @@ function Bigquery(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   bigquery.datasets.list(request, recur);
      * });
      *
@@ -306,9 +338,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -318,10 +358,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID of the dataset being updated
      *     projectId: "",
      *     // Dataset ID of the dataset being updated
@@ -330,7 +370,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.datasets.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -371,9 +411,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -383,10 +431,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID of the dataset being updated
      *     projectId: "",
      *     // Dataset ID of the dataset being updated
@@ -395,7 +443,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.datasets.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -440,9 +488,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -452,10 +508,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'cancel' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'cancel' method:
+     *
      *     // [Required] Project ID of the job to cancel
      *     projectId: "",
      *     // [Required] Job ID of the job to cancel
@@ -463,7 +519,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.jobs.cancel(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -503,9 +559,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -515,10 +579,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // [Required] Project ID of the requested job
      *     projectId: "",
      *     // [Required] Job ID of the requested job
@@ -526,7 +590,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.jobs.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -566,9 +630,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Retrieves the results of a query job.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -578,10 +650,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'getQueryResults' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'getQueryResults' method:
+     *
      *     // [Required] Project ID of the query job
      *     projectId: "",
      *     // [Required] Job ID of the query job
@@ -589,7 +661,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.jobs.getQueryResults(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -633,9 +705,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Starts a new asynchronous job. Requires the Can View project role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -645,10 +725,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID of the project that will be billed for the job
      *     projectId: "",
      *     resource: {},
@@ -660,7 +740,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.jobs.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -704,9 +784,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -716,17 +804,17 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID of the jobs to list
      *     projectId: "",
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -738,7 +826,7 @@ function Bigquery(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   bigquery.jobs.list(request, recur);
      * });
      *
@@ -776,9 +864,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -788,17 +884,17 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'query' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'query' method:
+     *
      *     // Project ID of the project billed for the query
      *     projectId: "",
      *     resource: {},
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.jobs.query(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -842,9 +938,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Lists all projects to which you have been granted any project role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -854,15 +958,15 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -874,7 +978,7 @@ function Bigquery(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   bigquery.projects.list(request, recur);
      * });
      *
@@ -912,9 +1016,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -924,10 +1036,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insertAll' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insertAll' method:
+     *
      *     // Project ID of the destination table.
      *     projectId: "",
      *     // Dataset ID of the destination table.
@@ -938,7 +1050,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tabledata.insertAll(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -980,9 +1092,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Retrieves table data from a specified set of rows. Requires the READER dataset role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -992,10 +1112,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID of the table to read
      *     projectId: "",
      *     // Dataset ID of the table to read
@@ -1005,7 +1125,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tabledata.list(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1053,9 +1173,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1065,10 +1193,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'delete' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
      *     // Project ID of the table to delete
      *     projectId: "",
      *     // Dataset ID of the table to delete
@@ -1078,7 +1206,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tables.delete(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1119,9 +1247,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1131,10 +1267,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'get' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
      *     // Project ID of the requested table
      *     projectId: "",
      *     // Dataset ID of the requested table
@@ -1144,7 +1280,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tables.get(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1185,9 +1321,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Creates a new, empty table in the dataset.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1197,10 +1341,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'insert' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *
      *     // Project ID of the new table
      *     projectId: "",
      *     // Dataset ID of the new table
@@ -1209,7 +1353,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tables.insert(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1250,9 +1394,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Lists all tables in the specified dataset. Requires the READER dataset role.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1262,10 +1414,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'list' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
      *     // Project ID of the tables to list
      *     projectId: "",
      *     // Dataset ID of the tables to list
@@ -1273,8 +1425,8 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
-     * 
+     *
+     *
      *   var recur = function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1286,7 +1438,7 @@ function Bigquery(options) { // eslint-disable-line
      *       }
      *     }
      *   };
-     * 
+     *
      *   bigquery.tables.list(request, recur);
      * });
      *
@@ -1322,9 +1474,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1334,10 +1494,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'patch' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
      *     // Project ID of the table to update
      *     projectId: "",
      *     // Dataset ID of the table to update
@@ -1348,7 +1508,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tables.patch(request, function(err, result) {
      *     if (err) {
      *       console.log(err);
@@ -1390,9 +1550,17 @@ function Bigquery(options) { // eslint-disable-line
      * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
      *
      * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
      * var google = require('googleapis');
      * var bigquery = google.bigquery('v2');
-     * 
+     *
      * google.auth.getApplicationDefault(function(err, authClient) {
      *   if (err) {
      *     console.log('Authentication failed because of ', err);
@@ -1402,10 +1570,10 @@ function Bigquery(options) { // eslint-disable-line
      *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
      *     authClient = authClient.createScoped(scopes);
      *   }
-     * 
+     *
      *   var request = {
-     *     // TODO: Change placeholders below to values for parameters to the 'update' method:
-     * 
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *
      *     // Project ID of the table to update
      *     projectId: "",
      *     // Dataset ID of the table to update
@@ -1416,7 +1584,7 @@ function Bigquery(options) { // eslint-disable-line
      *     // Auth client
      *     auth: authClient
      *   };
-     * 
+     *
      *   bigquery.tables.update(request, function(err, result) {
      *     if (err) {
      *       console.log(err);

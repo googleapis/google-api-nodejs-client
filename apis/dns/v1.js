@@ -46,6 +46,49 @@ function Dns(options) { // eslint-disable-line
      *
      * @desc Atomically update the ResourceRecordSet collection.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     managedZone: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   dns.changes.create(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias dns.changes.create
      * @memberOf! dns(v1)
      *
@@ -76,6 +119,50 @@ function Dns(options) { // eslint-disable-line
      *
      * @desc Fetch the representation of an existing Change.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     managedZone: "",
+     *     // The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+     *     changeId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   dns.changes.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias dns.changes.get
      * @memberOf! dns(v1)
      *
@@ -105,6 +192,55 @@ function Dns(options) { // eslint-disable-line
      * dns.changes.list
      *
      * @desc Enumerate Changes to a ResourceRecordSet collection.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     managedZone: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         dns.changes.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   dns.changes.list(request, recur);
+     * });
      *
      * @alias dns.changes.list
      * @memberOf! dns(v1)
@@ -143,6 +279,47 @@ function Dns(options) { // eslint-disable-line
      *
      * @desc Create a new ManagedZone.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   dns.managedZones.create(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias dns.managedZones.create
      * @memberOf! dns(v1)
      *
@@ -171,6 +348,48 @@ function Dns(options) { // eslint-disable-line
      * dns.managedZones.delete
      *
      * @desc Delete a previously created ManagedZone.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     managedZone: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   dns.managedZones.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias dns.managedZones.delete
      * @memberOf! dns(v1)
@@ -201,6 +420,48 @@ function Dns(options) { // eslint-disable-line
      *
      * @desc Fetch the representation of an existing ManagedZone.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     managedZone: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   dns.managedZones.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias dns.managedZones.get
      * @memberOf! dns(v1)
      *
@@ -229,6 +490,53 @@ function Dns(options) { // eslint-disable-line
      * dns.managedZones.list
      *
      * @desc Enumerate ManagedZones that have been created but not yet deleted.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         dns.managedZones.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   dns.managedZones.list(request, recur);
+     * });
      *
      * @alias dns.managedZones.list
      * @memberOf! dns(v1)
@@ -265,6 +573,46 @@ function Dns(options) { // eslint-disable-line
      *
      * @desc Fetch the representation of an existing Project.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   dns.projects.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias dns.projects.get
      * @memberOf! dns(v1)
      *
@@ -296,6 +644,55 @@ function Dns(options) { // eslint-disable-line
      * dns.resourceRecordSets.list
      *
      * @desc Enumerate ResourceRecordSets that have been created but not yet deleted.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns_component/quotas
+     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var dns = google.dns('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Identifies the project addressed by this request.
+     *     project: "",
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     managedZone: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         dns.resourceRecordSets.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   dns.resourceRecordSets.list(request, recur);
+     * });
      *
      * @alias dns.resourceRecordSets.list
      * @memberOf! dns(v1)
