@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Books API
  *
- * Lets you search for books and manage your Google Books library.
+ * Searches for books and manages your Google Books library.
  *
  * @example
  * var google = require('googleapis');

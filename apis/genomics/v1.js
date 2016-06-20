@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Genomics API
  *
- * Stores, processes, explores and shares genomic data. This API implements the Global Alliance for Genomics and Health (GA4GH) v0.5.1 API as well as several extensions.
+ * Stores, processes, explores and shares genomic data.
  *
  * @example
  * var google = require('googleapis');

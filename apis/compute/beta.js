@@ -2003,6 +2003,219 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.healthChecks = {
+
+    /**
+     * compute.healthChecks.delete
+     *
+     * @desc Deletes the specified HealthCheck resource.
+     *
+     * @alias compute.healthChecks.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.get
+     *
+     * @desc Returns the specified HealthCheck resource. Get a list of available health checks by making a list() request.
+     *
+     * @alias compute.healthChecks.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.insert
+     *
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
+     *
+     * @alias compute.healthChecks.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.list
+     *
+     * @desc Retrieves the list of HealthCheck resources available to the specified project.
+     *
+     * @alias compute.healthChecks.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.patch
+     *
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports patch semantics.
+     *
+     * @alias compute.healthChecks.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.healthChecks.testIamPermissions
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{resource}/testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.update
+     *
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
+     *
+     * @alias compute.healthChecks.update
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.httpHealthChecks = {
 
     /**
@@ -6748,6 +6961,249 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.targetSslProxies = {
+
+    /**
+     * compute.targetSslProxies.delete
+     *
+     * @desc Deletes the specified TargetSslProxy resource.
+     *
+     * @alias compute.targetSslProxies.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to delete.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.get
+     *
+     * @desc Returns the specified TargetSslProxy resource. Get a list of available target SSL proxies by making a list() request.
+     *
+     * @alias compute.targetSslProxies.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to return.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.insert
+     *
+     * @desc Creates a TargetSslProxy resource in the specified project using the data included in the request.
+     *
+     * @alias compute.targetSslProxies.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.list
+     *
+     * @desc Retrieves the list of TargetSslProxy resources available to the specified project.
+     *
+     * @alias compute.targetSslProxies.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setBackendService
+     *
+     * @desc Changes the BackendService for TargetSslProxy.
+     *
+     * @alias compute.targetSslProxies.setBackendService
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose BackendService resource is to be set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setBackendService: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setProxyHeader
+     *
+     * @desc Changes the ProxyHeaderType for TargetSslProxy.
+     *
+     * @alias compute.targetSslProxies.setProxyHeader
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose ProxyHeader is to be set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setProxyHeader: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setSslCertificates
+     *
+     * @desc Changes SslCertificates for TargetSslProxy.
+     *
+     * @alias compute.targetSslProxies.setSslCertificates
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslCertificates: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.targetSslProxies.testIamPermissions
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{resource}/testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
         context: self
       };
 

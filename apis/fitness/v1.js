@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Fitness
  *
- * Google Fit API
+ * Stores and accesses user data in the fitness store from apps on any platform.
  *
  * @example
  * var google = require('googleapis');
@@ -75,7 +75,7 @@ function Fitness(options) { // eslint-disable-line
       /**
        * fitness.users.dataSources.delete
        *
-       * @desc Delete the data source if there are no datapoints associated with it
+       * @desc Deletes the specified data source. The request will fail if the data source contains any data points.
        *
        * @alias fitness.users.dataSources.delete
        * @memberOf! fitness(v1)
@@ -104,7 +104,7 @@ function Fitness(options) { // eslint-disable-line
       /**
        * fitness.users.dataSources.get
        *
-       * @desc Returns a data source identified by a data stream ID.
+       * @desc Returns the specified data source.
        *
        * @alias fitness.users.dataSources.get
        * @memberOf! fitness(v1)
@@ -133,7 +133,7 @@ function Fitness(options) { // eslint-disable-line
       /**
        * fitness.users.dataSources.list
        *
-       * @desc Lists all data sources that are visible to the developer, using the OAuth scopes provided. The list is not exhaustive: the user may have private data sources that are only visible to other developers or calls using other scopes.
+       * @desc Lists all data sources that are visible to the developer, using the OAuth scopes provided. The list is not exhaustive; the user may have private data sources that are only visible to other developers, or calls using other scopes.
        *
        * @alias fitness.users.dataSources.list
        * @memberOf! fitness(v1)
@@ -162,7 +162,7 @@ function Fitness(options) { // eslint-disable-line
       /**
        * fitness.users.dataSources.patch
        *
-       * @desc Updates a given data source. It is an error to modify the data source's data stream ID, data type, type, stream name or device information apart from the device version. Changing these fields would require a new unique data stream ID and separate data source.  Data sources are identified by their data stream ID. This method supports patch semantics.
+       * @desc Updates the specified data source. The dataStreamId, dataType, type, dataStreamName, and device properties with the exception of version, cannot be modified.  Data sources are identified by their dataStreamId. This method supports patch semantics.
        *
        * @alias fitness.users.dataSources.patch
        * @memberOf! fitness(v1)
@@ -192,7 +192,7 @@ function Fitness(options) { // eslint-disable-line
       /**
        * fitness.users.dataSources.update
        *
-       * @desc Updates a given data source. It is an error to modify the data source's data stream ID, data type, type, stream name or device information apart from the device version. Changing these fields would require a new unique data stream ID and separate data source.  Data sources are identified by their data stream ID.
+       * @desc Updates the specified data source. The dataStreamId, dataType, type, dataStreamName, and device properties with the exception of version, cannot be modified.  Data sources are identified by their dataStreamId.
        *
        * @alias fitness.users.dataSources.update
        * @memberOf! fitness(v1)
