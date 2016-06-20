@@ -1,3 +1,40 @@
+##### 9.0.0 - 20 June 2016
+
+###### Breaking changes
+- Removed `regionalBackendServices.testIamPermissions` from `compute` `alpha` API
+
+###### Backwards compatible changes
+- Added `appengine` `v1` API
+- Added `instances.setServiceAccount` to `compute` `alpha` API
+- Added `networks.switchToCustomMode` to `compute` `alpha` API
+- Added `regionBackendServices.delete` to `compute` `alpha` API
+- Added `regionBackendServices.get` to `compute` `alpha` API
+- Added `regionBackendServices.getHealth` to `compute` `alpha` API
+- Added `regionBackendServices.insert` to `compute` `alpha` API
+- Added `regionBackendServices.list` to `compute` `alpha` API
+- Added `regionBackendServices.patch` to `compute` `alpha` API
+- Added `regionBackendServices.testIamPermissions` to `compute` `alpha` API
+- Added `regionBackendServices.update` to `compute` `alpha` API
+- Added `subnetworks.expandIpCidrRange` to `compute` `alpha` API
+- Added `subnetworks.getIamPolicy` to `compute` `alpha` API
+- Added `subnetworks.setIamPolicy` to `compute` `alpha` API
+- Added `healthChecks.delete` to `compute` `beta` API
+- Added `healthChecks.get` to `compute` `beta` API
+- Added `healthChecks.insert` to `compute` `beta` API
+- Added `healthChecks.list` to `compute` `beta` API
+- Added `healthChecks.patch` to `compute` `beta` API
+- Added `healthChecks.testIamPermissions` to `compute` `beta` API
+- Added `healthChecks.update` to `compute` `beta` API
+- Added `targetSslProxies.delete` to `compute` `beta` API
+- Added `targetSslProxies.get` to `compute` `beta` API
+- Added `targetSslProxies.insert` to `compute` `beta` API
+- Added `targetSslProxies.list` to `compute` `beta` API
+- Added `targetSslProxies.setBackendService` to `compute` `beta` API
+- Added `targetSslProxies.setProxyHeader` to `compute` `beta` API
+- Added `targetSslProxies.setSslCertificates` to `compute` `beta` API
+- Added `targetSslProxies.testIamPermissions` to `compute` `beta` API
+- Added `urlMaps.invalidateCache` to `compute` `v1` API
+
 ##### 8.2.0 - 14 June 2016
 
 ###### Backwards compatible changes

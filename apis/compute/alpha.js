@@ -4659,6 +4659,37 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.setServiceAccount
+     *
+     * @desc Sets the service account on the instance.
+     *
+     * @alias compute.instances.setServiceAccount
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to start.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setServiceAccount: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.setTags
      *
      * @desc Sets tags for the specified instance to the data included in the request.
@@ -5097,6 +5128,35 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.networks.switchToCustomMode
+     *
+     * @desc Switches the network mode from auto subnet mode to custom subnet mode.
+     *
+     * @alias compute.networks.switchToCustomMode
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to be updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    switchToCustomMode: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/switchToCustomMode',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.networks.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -5488,6 +5548,257 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.regionBackendServices = {
+
+    /**
+     * compute.regionBackendServices.delete
+     *
+     * @desc Deletes the specified regional BackendService resource.
+     *
+     * @alias compute.regionBackendServices.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.get
+     *
+     * @desc Returns the specified regional BackendService resource.
+     *
+     * @alias compute.regionBackendServices.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.getHealth
+     *
+     * @desc Gets the most recent health check results for this regional BackendService.
+     *
+     * @alias compute.regionBackendServices.getHealth
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
+     * @param {string} params.project 
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getHealth: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.insert
+     *
+     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information.
+     *
+     * @alias compute.regionBackendServices.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.list
+     *
+     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region.
+     *
+     * @alias compute.regionBackendServices.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: When filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.patch
+     *
+     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     *
+     * @alias compute.regionBackendServices.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.regionBackendServices.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.update
+     *
+     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     *
+     * @alias compute.regionBackendServices.update
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
         context: self
       };
 
@@ -6154,41 +6465,6 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.regionalBackendServices = {
-
-    /**
-     * compute.regionalBackendServices.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified resource.
-     *
-     * @alias compute.regionalBackendServices.testIamPermissions
-     * @memberOf! compute(alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} params.resource Request body data
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function (params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
-          method: 'POST'
-        },
-        params: params,
-        requiredParams: ['project', 'region', 'resource'],
-        pathParams: ['project', 'region', 'resource'],
         context: self
       };
 
@@ -7100,6 +7376,37 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.subnetworks.expandIpCidrRange
+     *
+     * @desc Expands the IP CIDR range of the subnetwork to a specified value.
+     *
+     * @alias compute.subnetworks.expandIpCidrRange
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource to update.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    expandIpCidrRange: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.subnetworks.get
      *
      * @desc Returns the specified subnetwork. Get a list of available subnetworks list() request.
@@ -7123,6 +7430,36 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias compute.subnetworks.getIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
         context: self
       };
 
@@ -7186,6 +7523,37 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias compute.subnetworks.setIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
         context: self
       };
 

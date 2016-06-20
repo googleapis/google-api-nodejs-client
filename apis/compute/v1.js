@@ -14568,6 +14568,36 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.urlMaps.invalidateCache
+     *
+     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap.
+     *
+     * @alias compute.urlMaps.invalidateCache
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.urlMap Name of the UrlMap scoping this request.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    invalidateCache: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'urlMap'],
+        pathParams: ['project', 'urlMap'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.urlMaps.list
      *
      * @desc Retrieves the list of UrlMap resources available to the specified project.
