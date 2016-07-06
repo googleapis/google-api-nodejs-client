@@ -1,3 +1,65 @@
+##### 10.0.0 - 06 July 2016
+
+###### Breaking changes
+- Removed `autoscaler` `v1beta2` API
+- Removed `coordinate` `v1` API
+- Removed `serviceregistry` `alpha` API
+
+###### Backwards compatible changes
+- Added `cloudbuild` `v2` API
+- Added `accounts.filterSets.getBidMetrics` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.get` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.create` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.getImpressionMetrics` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.delete` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.responsesWithoutBids.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.responsesErrors.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.losingBids.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.filteredBids.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.filteredBids.creatives.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.filteredBids.creatives.details.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.filteredBids.details.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.filteredImpressions.list` to `adexchangebuyer2` `v2beta1` API
+- Added `accounts.filterSets.filteredRequests.list` to `adexchangebuyer2` `v2beta1` API
+- Added `enterprises.acknowledgeNotificationSet` to `androidenterprise` `v1` API
+- Added `enterprises.completeSignup` to `androidenterprise` `v1` API
+- Added `enterprises.generateSignupUrl` to `androidenterprise` `v1` API
+- Added `enterprises.getServiceAccount` to `androidenterprise` `v1` API
+- Added `enterprises.pullNotificationSet` to `androidenterprise` `v1` API
+- Added `products.unapprove` to `androidenterprise` `v1` API
+- Added `serviceaccountkeys.delete` to `androidenterprise` `v1` API
+- Added `serviceaccountkeys.insert` to `androidenterprise` `v1` API
+- Added `serviceaccountkeys.list` to `androidenterprise` `v1` API
+- Added `users.delete` to `androidenterprise` `v1` API
+- Added `users.generateAuthenticationToken` to `androidenterprise` `v1` API
+- Added `users.insert` to `androidenterprise` `v1` API
+- Added `users.patch` to `androidenterprise` `v1` API
+- Added `users.update` to `androidenterprise` `v1` API
+- Added `users.settings.getAutoForwarding` to `gmail` `v1` API
+- Added `users.settings.getImap` to `gmail` `v1` API
+- Added `users.settings.getPop` to `gmail` `v1` API
+- Added `users.settings.getVacation` to `gmail` `v1` API
+- Added `users.settings.updateAutoForwarding` to `gmail` `v1` API
+- Added `users.settings.updateImap` to `gmail` `v1` API
+- Added `users.settings.updatePop` to `gmail` `v1` API
+- Added `users.settings.updateVacation` to `gmail` `v1` API
+- Added `users.settings.filters.create` to `gmail` `v1` API
+- Added `users.settings.filters.delete` to `gmail` `v1` API
+- Added `users.settings.filters.get` to `gmail` `v1` API
+- Added `users.settings.filters.list` to `gmail` `v1` API
+- Added `users.settings.forwardingAddresses.create` to `gmail` `v1` API
+- Added `users.settings.forwardingAddresses.delete` to `gmail` `v1` API
+- Added `users.settings.forwardingAddresses.get` to `gmail` `v1` API
+- Added `users.settings.forwardingAddresses.list` to `gmail` `v1` API
+- Added `users.settings.sendAs.create` to `gmail` `v1` API
+- Added `users.settings.sendAs.delete` to `gmail` `v1` API
+- Added `users.settings.sendAs.get` to `gmail` `v1` API
+- Added `users.settings.sendAs.list` to `gmail` `v1` API
+- Added `users.settings.sendAs.patch` to `gmail` `v1` API
+- Added `users.settings.sendAs.update` to `gmail` `v1` API
+- Added `users.settings.sendAs.verify` to `gmail` `v1` API
+
 ##### 9.0.0 - 20 June 2016
 
 ###### Breaking changes

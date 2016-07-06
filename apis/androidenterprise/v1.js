@@ -408,7 +408,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.devices.getState
      *
-     * @desc Retrieves whether a device is enabled or disabled for access by the user to Google services. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services.
+     * @desc Retrieves whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
      *
      * @alias androidenterprise.devices.getState
      * @memberOf! androidenterprise(v1)
@@ -467,7 +467,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.devices.setState
      *
-     * @desc Sets whether a device is enabled or disabled for access by the user to Google services. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services.
+     * @desc Sets whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
      *
      * @alias androidenterprise.devices.setState
      * @memberOf! androidenterprise(v1)
@@ -498,6 +498,63 @@ function Androidenterprise(options) { // eslint-disable-line
   };
 
   self.enterprises = {
+
+    /**
+     * androidenterprise.enterprises.acknowledgeNotificationSet
+     *
+     * @desc Acknowledges notifications that were received from Enterprises.PullNotificationSet to prevent subsequent calls from returning the same notifications.
+     *
+     * @alias androidenterprise.enterprises.acknowledgeNotificationSet
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.notificationSetId The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    acknowledgeNotificationSet: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/acknowledgeNotificationSet',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.enterprises.completeSignup
+     *
+     * @desc Completes the signup flow, by specifying the Completion token and Enterprise token. This request must not be called multiple times for a given Enterprise Token.
+     *
+     * @alias androidenterprise.enterprises.completeSignup
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.completionToken The Completion token initially returned by GenerateSignupUrl.
+     * @param {string=} params.enterpriseToken The Enterprise token appended to the Callback URL.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    completeSignup: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/completeSignup',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * androidenterprise.enterprises.delete
@@ -557,6 +614,34 @@ function Androidenterprise(options) { // eslint-disable-line
     },
 
     /**
+     * androidenterprise.enterprises.generateSignupUrl
+     *
+     * @desc Generates a sign-up URL.
+     *
+     * @alias androidenterprise.enterprises.generateSignupUrl
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.callbackUrl The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    generateSignupUrl: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/signupUrl',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.enterprises.get
      *
      * @desc Retrieves the name and domain of an enterprise.
@@ -573,6 +658,35 @@ function Androidenterprise(options) { // eslint-disable-line
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.enterprises.getServiceAccount
+     *
+     * @desc Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side.  This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error.  Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials.  Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource.
+     *
+     * @alias androidenterprise.enterprises.getServiceAccount
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId 
+     * @param {string=} params.keyType The type of credential to return with the service account. Required.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getServiceAccount: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount',
           method: 'GET'
         },
         params: params,
@@ -644,7 +758,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.list
      *
-     * @desc Looks up an enterprise by domain name.
+     * @desc Looks up an enterprise by domain name. This is only supported for enterprises created via the Google-initiated creation flow. Lookup of the id is not needed for enterprises created via the EMM-initiated flow since the EMM learns the enterprise ID in the callback specified in the Enterprises.generateSignupUrl call.
      *
      * @alias androidenterprise.enterprises.list
      * @memberOf! androidenterprise(v1)
@@ -662,6 +776,34 @@ function Androidenterprise(options) { // eslint-disable-line
         },
         params: params,
         requiredParams: ['domain'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.enterprises.pullNotificationSet
+     *
+     * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending.
+     *
+     * @alias androidenterprise.enterprises.pullNotificationSet
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.requestMode The request mode for pulling notifications. If omitted, defaults to WAIT_FOR_NOTIFCATIONS. If this is set to WAIT_FOR_NOTIFCATIONS, the request will eventually timeout, in which case it should be retried.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    pullNotificationSet: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/pullNotificationSet',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
         pathParams: [],
         context: self
       };
@@ -1414,6 +1556,35 @@ function Androidenterprise(options) { // eslint-disable-line
     },
 
     /**
+     * androidenterprise.products.unapprove
+     *
+     * @desc Unapproves the specified product (and the relevant app permissions, if any)
+     *
+     * @alias androidenterprise.products.unapprove
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.productId The ID of the product.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    unapprove: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'productId'],
+        pathParams: ['enterpriseId', 'productId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.products.updatePermissions
      *
      * @desc This method has been deprecated. To programmatically approve applications, you must use the iframe mechanism via the  generateApprovalUrl and  approve methods of the Products resource. For more information, see the  Play EMM API usage requirements.  The updatePermissions method (deprecated) updates the set of Android app permissions for this app that have been accepted by the enterprise.
@@ -1437,6 +1608,96 @@ function Androidenterprise(options) { // eslint-disable-line
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.serviceaccountkeys = {
+
+    /**
+     * androidenterprise.serviceaccountkeys.delete
+     *
+     * @desc Removes and invalidates the specified credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.
+     *
+     * @alias androidenterprise.serviceaccountkeys.delete
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.keyId The ID of the key.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'keyId'],
+        pathParams: ['enterpriseId', 'keyId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.serviceaccountkeys.insert
+     *
+     * @desc Generates new credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.  Only the type of the key should be populated in the resource to be inserted.
+     *
+     * @alias androidenterprise.serviceaccountkeys.insert
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.serviceaccountkeys.list
+     *
+     * @desc Lists all active credentials for the service account associated with this enterprise. Only the ID and key type are returned. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.
+     *
+     * @alias androidenterprise.serviceaccountkeys.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
         context: self
       };
 
@@ -1812,6 +2073,64 @@ function Androidenterprise(options) { // eslint-disable-line
   self.users = {
 
     /**
+     * androidenterprise.users.delete
+     *
+     * @desc Deleted an EMM-managed user.
+     *
+     * @alias androidenterprise.users.delete
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.users.generateAuthenticationToken
+     *
+     * @desc Generates an authentication token which the device policy client can use to provision the given EMM-managed user account on a device. The generated token is single-use and expires after a few minutes.  This call only works with EMM-managed accounts.
+     *
+     * @alias androidenterprise.users.generateAuthenticationToken
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    generateAuthenticationToken: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.users.generateToken
      *
      * @desc Generates a token (activation code) to allow this user to configure their work account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
@@ -1899,9 +2218,38 @@ function Androidenterprise(options) { // eslint-disable-line
     },
 
     /**
+     * androidenterprise.users.insert
+     *
+     * @desc Creates a new EMM-managed user.  The required details of the user are passed in the Users resource in the body of the request. Specifically, the accountIdentifier, accountType, and displayName fields must be provided.
+     *
+     * @alias androidenterprise.users.insert
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.users.list
      *
-     * @desc Looks up a user by their primary email address.
+     * @desc Looks up a user by their primary email address. This is only supported for Google-managed users. Lookup of the id is not needed for EMM-managed users because the id is already returned in the result of the Users.insert call.
      *
      * @alias androidenterprise.users.list
      * @memberOf! androidenterprise(v1)
@@ -1921,6 +2269,36 @@ function Androidenterprise(options) { // eslint-disable-line
         params: params,
         requiredParams: ['enterpriseId', 'email'],
         pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.users.patch
+     *
+     * @desc Updates the details of an EMM-managed user.  This only works with EMM-managed users. Pass the new details in Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value. This method supports patch semantics.
+     *
+     * @alias androidenterprise.users.patch
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
         context: self
       };
 
@@ -1975,6 +2353,36 @@ function Androidenterprise(options) { // eslint-disable-line
       var parameters = {
         options: {
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.users.update
+     *
+     * @desc Updates the details of an EMM-managed user.  This only works with EMM-managed users. Pass the new details in Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value.
+     *
+     * @alias androidenterprise.users.update
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'PUT'
         },
         params: params,

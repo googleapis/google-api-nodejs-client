@@ -49,9 +49,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -122,9 +124,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -196,9 +200,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -282,9 +288,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -352,9 +360,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -423,9 +433,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -494,9 +506,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -576,9 +590,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -648,9 +664,11 @@ function Dns(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Google Cloud DNS API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dns
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'

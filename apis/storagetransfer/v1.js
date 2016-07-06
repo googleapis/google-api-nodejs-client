@@ -46,6 +46,49 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * @desc Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Developers Console project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // The ID of the Google Developers Console project that the Google service account is associated with.
+     *     // Required.
+     *     projectId: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.googleServiceAccounts.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storagetransfer.googleServiceAccounts.get
      * @memberOf! storagetransfer(v1)
      *
@@ -110,6 +153,47 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * @desc Creates a transfer job that runs periodically.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+     *
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferJobs.create(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storagetransfer.transferJobs.create
      * @memberOf! storagetransfer(v1)
      *
@@ -137,6 +221,49 @@ function Storagetransfer(options) { // eslint-disable-line
      * storagetransfer.transferJobs.patch
      *
      * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating the scheduling of a job is not allowed.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *
+     *     // The name of job to update. Required.
+     *     jobName: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferJobs.patch(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storagetransfer.transferJobs.patch
      * @memberOf! storagetransfer(v1)
@@ -167,6 +294,48 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * @desc Gets a transfer job.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // The job to get. Required.
+     *     jobName: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferJobs.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storagetransfer.transferJobs.get
      * @memberOf! storagetransfer(v1)
      *
@@ -195,6 +364,53 @@ function Storagetransfer(options) { // eslint-disable-line
      * storagetransfer.transferJobs.list
      *
      * @desc Lists transfer jobs.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         storagetransfer.transferJobs.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   storagetransfer.transferJobs.list(request, recur);
+     * });
      *
      * @alias storagetransfer.transferJobs.list
      * @memberOf! storagetransfer(v1)
@@ -230,6 +446,49 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * @desc Pauses a transfer operation.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'pause' method:
+     *
+     *     // The name of the transfer operation. Required.
+     *     name: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferOperations.pause(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storagetransfer.transferOperations.pause
      * @memberOf! storagetransfer(v1)
      *
@@ -258,6 +517,49 @@ function Storagetransfer(options) { // eslint-disable-line
      * storagetransfer.transferOperations.resume
      *
      * @desc Resumes a transfer operation that is paused.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'resume' method:
+     *
+     *     // The name of the transfer operation. Required.
+     *     name: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferOperations.resume(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storagetransfer.transferOperations.resume
      * @memberOf! storagetransfer(v1)
@@ -288,6 +590,48 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *
+     *     // The name of the operation resource.
+     *     name: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferOperations.get(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storagetransfer.transferOperations.get
      * @memberOf! storagetransfer(v1)
      *
@@ -315,6 +659,55 @@ function Storagetransfer(options) { // eslint-disable-line
      * storagetransfer.transferOperations.list
      *
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // The value `transferOperations`.
+     *     name: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         storagetransfer.transferOperations.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   storagetransfer.transferOperations.list(request, recur);
+     * });
      *
      * @alias storagetransfer.transferOperations.list
      * @memberOf! storagetransfer(v1)
@@ -347,6 +740,48 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * @desc Cancels a transfer. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'cancel' method:
+     *
+     *     // The name of the operation resource to be cancelled.
+     *     name: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferOperations.cancel(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias storagetransfer.transferOperations.cancel
      * @memberOf! storagetransfer(v1)
      *
@@ -374,6 +809,48 @@ function Storagetransfer(options) { // eslint-disable-line
      * storagetransfer.transferOperations.delete
      *
      * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *
+     *     // The name of the operation resource to be deleted.
+     *     name: "",
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferOperations.delete(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
      *
      * @alias storagetransfer.transferOperations.delete
      * @memberOf! storagetransfer(v1)

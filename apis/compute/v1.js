@@ -49,9 +49,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -127,9 +129,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -201,9 +205,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -275,9 +281,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -348,9 +356,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -433,9 +443,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -511,9 +523,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -585,9 +599,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -659,9 +675,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -732,9 +750,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -813,9 +833,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -889,9 +911,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -967,9 +991,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1038,9 +1064,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1109,9 +1137,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1182,9 +1212,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1252,9 +1284,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1330,9 +1364,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1403,9 +1439,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1480,9 +1518,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1558,9 +1598,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1632,9 +1674,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1717,9 +1761,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1795,9 +1841,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1871,9 +1919,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -1945,9 +1995,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2019,9 +2071,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2093,9 +2147,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2174,9 +2230,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2254,9 +2312,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2325,9 +2385,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2396,9 +2458,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2466,9 +2530,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2544,9 +2610,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2617,9 +2685,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2694,9 +2764,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2772,9 +2844,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2846,9 +2920,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2920,9 +2996,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -2993,9 +3071,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3074,9 +3154,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3154,9 +3236,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3225,9 +3309,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3296,9 +3382,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3366,9 +3454,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3448,9 +3538,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3519,9 +3611,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3590,9 +3684,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3660,9 +3756,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3738,9 +3836,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3815,9 +3915,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3893,9 +3995,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -3964,9 +4068,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4035,9 +4141,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4117,9 +4225,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4188,9 +4298,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4259,9 +4371,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4329,9 +4443,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4407,9 +4523,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4480,9 +4598,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4557,9 +4677,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4628,9 +4750,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4699,9 +4823,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4769,9 +4895,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4847,9 +4975,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4920,9 +5050,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -4997,9 +5129,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5068,9 +5202,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5141,9 +5277,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5212,9 +5350,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5283,9 +5423,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5353,9 +5495,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5435,9 +5579,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5511,9 +5657,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5589,9 +5737,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5663,9 +5813,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5739,9 +5891,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5813,9 +5967,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5886,9 +6042,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -5967,9 +6125,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6041,9 +6201,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6117,9 +6279,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6196,9 +6360,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6272,9 +6438,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6352,9 +6520,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6428,9 +6598,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6506,9 +6678,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6580,9 +6754,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6654,9 +6830,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6727,9 +6905,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6808,9 +6988,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6894,9 +7076,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -6970,9 +7154,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7050,9 +7236,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7121,9 +7309,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7192,9 +7382,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7262,9 +7454,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7344,9 +7538,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7423,9 +7619,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7501,9 +7699,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7577,9 +7777,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7651,9 +7853,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7731,9 +7935,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7808,9 +8014,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7882,9 +8090,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -7957,9 +8167,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8030,9 +8242,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8111,9 +8325,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8185,9 +8401,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8265,9 +8483,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8341,9 +8561,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8417,9 +8639,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8493,9 +8717,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8569,9 +8795,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8643,9 +8871,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8719,9 +8949,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8797,9 +9029,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8872,9 +9106,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -8950,9 +9186,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9024,9 +9262,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9109,9 +9349,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9180,9 +9422,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9251,9 +9495,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9321,9 +9567,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9403,9 +9651,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9471,9 +9721,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9541,9 +9793,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9611,9 +9865,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9681,9 +9937,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9755,9 +10013,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9829,9 +10089,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9903,9 +10165,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -9988,9 +10252,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10059,9 +10325,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10141,9 +10409,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10219,9 +10489,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10293,9 +10565,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10367,9 +10641,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10441,9 +10717,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10514,9 +10792,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10595,9 +10875,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10671,9 +10953,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10751,9 +11035,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10822,9 +11108,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10893,9 +11181,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -10963,9 +11253,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11045,9 +11337,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11116,9 +11410,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11187,9 +11483,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11269,9 +11567,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11340,9 +11640,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11411,9 +11713,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11481,9 +11785,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11563,9 +11869,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11641,9 +11949,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11715,9 +12025,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11789,9 +12101,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11862,9 +12176,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -11947,9 +12263,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12018,9 +12336,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12089,9 +12409,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12159,9 +12481,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12237,9 +12561,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12314,9 +12640,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12385,9 +12713,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12456,9 +12786,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12526,9 +12858,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12604,9 +12938,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12677,9 +13013,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12754,9 +13092,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12832,9 +13172,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12906,9 +13248,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -12980,9 +13324,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13053,9 +13399,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13138,9 +13486,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13214,9 +13564,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13290,9 +13642,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13368,9 +13722,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13442,9 +13798,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13516,9 +13874,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13592,9 +13952,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13665,9 +14027,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13746,9 +14110,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13822,9 +14188,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13898,9 +14266,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -13979,9 +14349,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14057,9 +14429,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14131,9 +14505,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14205,9 +14581,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14278,9 +14656,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14363,9 +14743,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14434,9 +14816,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14505,9 +14889,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14572,6 +14958,51 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'invalidateCache' method:
+     *
+     *     // Project ID for this request.
+     *     project: "",
+     *     // Name of the UrlMap scoping this request.
+     *     urlMap: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.urlMaps.invalidateCache(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.urlMaps.invalidateCache
      * @memberOf! compute(v1)
      *
@@ -14605,9 +15036,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14683,9 +15116,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14756,9 +15191,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14829,9 +15266,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14906,9 +15345,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -14984,9 +15425,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15058,9 +15501,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15132,9 +15577,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15205,9 +15652,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15290,9 +15739,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15364,9 +15815,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15438,9 +15891,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15523,9 +15978,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
@@ -15594,9 +16051,11 @@ function Compute(options) { // eslint-disable-line
      * @example
      * // PRE-REQUISITES:
      * // ---------------
-     * // 1. If not already done, enable the Compute Engine API and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute_component/quotas
-     * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'

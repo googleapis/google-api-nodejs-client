@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Mirror API
  *
- * API for interacting with Glass users via the timeline.
+ * Interacts with Glass users via the timeline.
  *
  * @example
  * var google = require('googleapis');
