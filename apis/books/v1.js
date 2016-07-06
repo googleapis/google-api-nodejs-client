@@ -1514,7 +1514,7 @@ function Books(options) { // eslint-disable-line
        * @memberOf! books(v1)
        *
        * @param {object=} params Parameters for request
-       * @param {string=} params.acquireMethod How the book was aquired
+       * @param {string=} params.acquireMethod How the book was acquired
        * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
        * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
        * @param {integer=} params.maxResults Maximum number of results to return.

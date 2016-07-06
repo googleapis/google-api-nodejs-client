@@ -48,6 +48,49 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       *
+       *     // Required. The resource name of the log to delete.  Example:
+       *     // `"projects/my-project/logs/syslog"`.
+       *     logName: "projects/{MY-PROJECT}/logs/{MY-LOG}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.logs.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias logging.projects.logs.delete
        * @memberOf! logging(v2beta1)
        *
@@ -79,6 +122,56 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Lists sinks.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // Required. The resource name containing the sinks.
+       *     // Example: `"projects/my-logging-project"`.
+       *     parent: "projects/{MY-PROJECT}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         logging.projects.sinks.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   logging.projects.sinks.list(request, recur);
+       * });
+       *
        * @alias logging.projects.sinks.list
        * @memberOf! logging(v2beta1)
        *
@@ -109,6 +202,49 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Gets a sink.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *
+       *     // The resource name of the sink to return.
+       *     // Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.sinks.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias logging.projects.sinks.get
        * @memberOf! logging(v2beta1)
        *
@@ -136,6 +272,51 @@ function Logging(options) { // eslint-disable-line
        * logging.projects.sinks.create
        *
        * @desc Creates a sink.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The resource in which to create the sink.
+       *     // Example: `"projects/my-project-id"`.
+       *     // The new sink must be provided in the request.
+       *     parent: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.sinks.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias logging.projects.sinks.create
        * @memberOf! logging(v2beta1)
@@ -166,6 +347,53 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Creates or updates a sink.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+       *
+       *     // The resource name of the sink to update.
+       *     // Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     // The updated sink must be provided in the request and have the
+       *     // same name that is specified in `sinkName`.  If the sink does not
+       *     // exist, it is created.
+       *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.sinks.update(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias logging.projects.sinks.update
        * @memberOf! logging(v2beta1)
        *
@@ -194,6 +422,49 @@ function Logging(options) { // eslint-disable-line
        * logging.projects.sinks.delete
        *
        * @desc Deletes a sink.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       *
+       *     // The resource name of the sink to delete.
+       *     // Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.sinks.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias logging.projects.sinks.delete
        * @memberOf! logging(v2beta1)
@@ -226,6 +497,56 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Lists logs-based metrics.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // Required. The resource name containing the metrics.
+       *     // Example: `"projects/my-project-id"`.
+       *     parent: "projects/{MY-PROJECT}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         logging.projects.metrics.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   logging.projects.metrics.list(request, recur);
+       * });
+       *
        * @alias logging.projects.metrics.list
        * @memberOf! logging(v2beta1)
        *
@@ -256,6 +577,49 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Gets a logs-based metric.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *
+       *     // The resource name of the desired metric.
+       *     // Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       *     metricName: "projects/{MY-PROJECT}/metrics/{MY-METRIC}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.metrics.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias logging.projects.metrics.get
        * @memberOf! logging(v2beta1)
        *
@@ -283,6 +647,51 @@ function Logging(options) { // eslint-disable-line
        * logging.projects.metrics.create
        *
        * @desc Creates a logs-based metric.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The resource name of the project in which to create the metric.
+       *     // Example: `"projects/my-project-id"`.
+       *     // The new metric must be provided in the request.
+       *     parent: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.metrics.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias logging.projects.metrics.create
        * @memberOf! logging(v2beta1)
@@ -313,6 +722,53 @@ function Logging(options) { // eslint-disable-line
        *
        * @desc Creates or updates a logs-based metric.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+       *
+       *     // The resource name of the metric to update.
+       *     // Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       *     // The updated metric must be provided in the request and have the
+       *     // same identifier that is specified in `metricName`.
+       *     // If the metric does not exist, it is created.
+       *     metricName: "projects/{MY-PROJECT}/metrics/{MY-METRIC}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.metrics.update(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias logging.projects.metrics.update
        * @memberOf! logging(v2beta1)
        *
@@ -341,6 +797,49 @@ function Logging(options) { // eslint-disable-line
        * logging.projects.metrics.delete
        *
        * @desc Deletes a logs-based metric.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Logging API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/logging
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var logging = google.logging('v2beta1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+       *
+       *     // The resource name of the metric to delete.
+       *     // Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       *     metricName: "projects/{MY-PROJECT}/metrics/{MY-METRIC}",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   logging.projects.metrics.delete(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias logging.projects.metrics.delete
        * @memberOf! logging(v2beta1)
@@ -374,6 +873,47 @@ function Logging(options) { // eslint-disable-line
      *
      * @desc Writes log entries to Cloud Logging. All log entries in Cloud Logging are written by this method.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Logging API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/logging
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var logging = google.logging('v2beta1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'write' method:
+     *
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   logging.entries.write(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias logging.entries.write
      * @memberOf! logging(v2beta1)
      *
@@ -401,6 +941,54 @@ function Logging(options) { // eslint-disable-line
      * logging.entries.list
      *
      * @desc Lists log entries. Use this method to retrieve log entries from Cloud Logging. For ways to export log entries, see [Exporting Logs](/logging/docs/export).
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Logging API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/logging
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var logging = google.logging('v2beta1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         logging.entries.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   logging.entries.list(request, recur);
+     * });
      *
      * @alias logging.entries.list
      * @memberOf! logging(v2beta1)
@@ -433,6 +1021,53 @@ function Logging(options) { // eslint-disable-line
      * logging.monitoredResourceDescriptors.list
      *
      * @desc Lists monitored resource descriptors that are used by Cloud Logging.
+     *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Logging API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/logging
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var logging = google.logging('v2beta1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *
+     *   var recur = function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *       if (result.nextPageToken) {
+     *         request.pageToken = result.nextPageToken;
+     *         logging.monitoredResourceDescriptors.list(request, recur);
+     *       }
+     *     }
+     *   };
+     *
+     *   logging.monitoredResourceDescriptors.list(request, recur);
+     * });
      *
      * @alias logging.monitoredResourceDescriptors.list
      * @memberOf! logging(v2beta1)

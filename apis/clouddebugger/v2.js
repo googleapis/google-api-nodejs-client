@@ -48,6 +48,47 @@ function Clouddebugger(options) { // eslint-disable-line
        *
        * @desc Registers the debuggee with the controller service. All agents attached to the same application should call this method with the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method. This allows the controller service to disable the agent or recover from any data loss. If the debuggee is disabled by the server, the response will have `is_disabled` set to `true`.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Debugger API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouddebugger
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var clouddebugger = google.clouddebugger('v2');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'register' method:
+       *
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   clouddebugger.controller.debuggees.register(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias clouddebugger.controller.debuggees.register
        * @memberOf! clouddebugger(v2)
        *
@@ -78,6 +119,48 @@ function Clouddebugger(options) { // eslint-disable-line
          *
          * @desc Returns the list of all active breakpoints for the debuggee. The breakpoint specification (location, condition, and expression fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics. This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
          *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for Auth.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var clouddebugger = google.clouddebugger('v2');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+         *
+         *     // Identifies the debuggee.
+         *     debuggeeId: "",
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   clouddebugger.controller.debuggees.breakpoints.list(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
          * @alias clouddebugger.controller.debuggees.breakpoints.list
          * @memberOf! clouddebugger(v2)
          *
@@ -107,6 +190,51 @@ function Clouddebugger(options) { // eslint-disable-line
          * clouddebugger.controller.debuggees.breakpoints.update
          *
          * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service. Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expression` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
+         *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for Auth.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var clouddebugger = google.clouddebugger('v2');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+         *
+         *     // Identifies the debuggee being debugged.
+         *     debuggeeId: "",
+         *     // Breakpoint identifier, unique in the scope of the debuggee.
+         *     id: "",
+         *     resource: {},
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   clouddebugger.controller.debuggees.breakpoints.update(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias clouddebugger.controller.debuggees.breakpoints.update
          * @memberOf! clouddebugger(v2)
@@ -145,6 +273,46 @@ function Clouddebugger(options) { // eslint-disable-line
        *
        * @desc Lists all the debuggees that the user can set breakpoints to.
        *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Debugger API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouddebugger
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var clouddebugger = google.clouddebugger('v2');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   clouddebugger.debugger.debuggees.list(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias clouddebugger.debugger.debuggees.list
        * @memberOf! clouddebugger(v2)
        *
@@ -177,6 +345,49 @@ function Clouddebugger(options) { // eslint-disable-line
          *
          * @desc Sets the breakpoint to the debuggee.
          *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for Auth.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var clouddebugger = google.clouddebugger('v2');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'set' method:
+         *
+         *     // ID of the debuggee where the breakpoint is to be set.
+         *     debuggeeId: "",
+         *     resource: {},
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   clouddebugger.debugger.debuggees.breakpoints.set(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
          * @alias clouddebugger.debugger.debuggees.breakpoints.set
          * @memberOf! clouddebugger(v2)
          *
@@ -206,6 +417,50 @@ function Clouddebugger(options) { // eslint-disable-line
          * clouddebugger.debugger.debuggees.breakpoints.get
          *
          * @desc Gets breakpoint information.
+         *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for Auth.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var clouddebugger = google.clouddebugger('v2');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+         *
+         *     // ID of the debuggee whose breakpoint to get.
+         *     debuggeeId: "",
+         *     // ID of the breakpoint to get.
+         *     breakpointId: "",
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   clouddebugger.debugger.debuggees.breakpoints.get(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias clouddebugger.debugger.debuggees.breakpoints.get
          * @memberOf! clouddebugger(v2)
@@ -237,6 +492,50 @@ function Clouddebugger(options) { // eslint-disable-line
          *
          * @desc Deletes the breakpoint from the debuggee.
          *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for Auth.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var clouddebugger = google.clouddebugger('v2');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+         *
+         *     // ID of the debuggee whose breakpoint to delete.
+         *     debuggeeId: "",
+         *     // ID of the breakpoint to delete.
+         *     breakpointId: "",
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   clouddebugger.debugger.debuggees.breakpoints.delete(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
          * @alias clouddebugger.debugger.debuggees.breakpoints.delete
          * @memberOf! clouddebugger(v2)
          *
@@ -266,6 +565,48 @@ function Clouddebugger(options) { // eslint-disable-line
          * clouddebugger.debugger.debuggees.breakpoints.list
          *
          * @desc Lists all breakpoints for the debuggee.
+         *
+         * @example
+         * // PRE-REQUISITES:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for Auth.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+         * // 3. To install the client library and Application Default Credentials library, run:
+         * //    'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var clouddebugger = google.clouddebugger('v2');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+         *
+         *     // ID of the debuggee whose breakpoints to list.
+         *     debuggeeId: "",
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   clouddebugger.debugger.debuggees.breakpoints.list(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias clouddebugger.debugger.debuggees.breakpoints.list
          * @memberOf! clouddebugger(v2)

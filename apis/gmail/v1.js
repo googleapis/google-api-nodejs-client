@@ -232,6 +232,7 @@ function Gmail(options) { // eslint-disable-line
        * @param {boolean=} params.includeSpamTrash Include drafts from SPAM and TRASH in the results.
        * @param {integer=} params.maxResults Maximum number of drafts to return.
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
+       * @param {string=} params.q Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -875,6 +876,680 @@ function Gmail(options) { // eslint-disable-line
             params: params,
             requiredParams: ['userId', 'messageId', 'id'],
             pathParams: ['id', 'messageId', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    },
+
+    settings: {
+
+      /**
+       * gmail.users.settings.getAutoForwarding
+       *
+       * @desc Gets the auto-forwarding setting for the specified account.
+       *
+       * @alias gmail.users.settings.getAutoForwarding
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getAutoForwarding: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.getImap
+       *
+       * @desc Gets IMAP settings.
+       *
+       * @alias gmail.users.settings.getImap
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getImap: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.getPop
+       *
+       * @desc Gets POP settings.
+       *
+       * @alias gmail.users.settings.getPop
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getPop: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.getVacation
+       *
+       * @desc Gets vacation responder settings.
+       *
+       * @alias gmail.users.settings.getVacation
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getVacation: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.updateAutoForwarding
+       *
+       * @desc Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled.
+       *
+       * @alias gmail.users.settings.updateAutoForwarding
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      updateAutoForwarding: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.updateImap
+       *
+       * @desc Updates IMAP settings.
+       *
+       * @alias gmail.users.settings.updateImap
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      updateImap: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.updatePop
+       *
+       * @desc Updates POP settings.
+       *
+       * @alias gmail.users.settings.updatePop
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      updatePop: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * gmail.users.settings.updateVacation
+       *
+       * @desc Updates vacation responder settings.
+       *
+       * @alias gmail.users.settings.updateVacation
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      updateVacation: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      filters: {
+
+        /**
+         * gmail.users.settings.filters.create
+         *
+         * @desc Creates a filter.
+         *
+         * @alias gmail.users.settings.filters.create
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['userId'],
+            pathParams: ['userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.filters.delete
+         *
+         * @desc Deletes a filter.
+         *
+         * @alias gmail.users.settings.filters.delete
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.id The ID of the filter to be deleted.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
+              method: 'DELETE'
+            },
+            params: params,
+            requiredParams: ['userId', 'id'],
+            pathParams: ['id', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.filters.get
+         *
+         * @desc Gets a filter.
+         *
+         * @alias gmail.users.settings.filters.get
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.id The ID of the filter to be fetched.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId', 'id'],
+            pathParams: ['id', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.filters.list
+         *
+         * @desc Lists the message filters of a Gmail user.
+         *
+         * @alias gmail.users.settings.filters.list
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId'],
+            pathParams: ['userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
+      forwardingAddresses: {
+
+        /**
+         * gmail.users.settings.forwardingAddresses.create
+         *
+         * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`.
+         *
+         * @alias gmail.users.settings.forwardingAddresses.create
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['userId'],
+            pathParams: ['userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.forwardingAddresses.delete
+         *
+         * @desc Deletes the specified forwarding address and revokes any verification that may have been required.
+         *
+         * @alias gmail.users.settings.forwardingAddresses.delete
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.forwardingEmail The forwarding address to be deleted.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
+              method: 'DELETE'
+            },
+            params: params,
+            requiredParams: ['userId', 'forwardingEmail'],
+            pathParams: ['forwardingEmail', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.forwardingAddresses.get
+         *
+         * @desc Gets the specified forwarding address.
+         *
+         * @alias gmail.users.settings.forwardingAddresses.get
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.forwardingEmail The forwarding address to be retrieved.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId', 'forwardingEmail'],
+            pathParams: ['forwardingEmail', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.forwardingAddresses.list
+         *
+         * @desc Lists the forwarding addresses for the specified account.
+         *
+         * @alias gmail.users.settings.forwardingAddresses.list
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId'],
+            pathParams: ['userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
+      sendAs: {
+
+        /**
+         * gmail.users.settings.sendAs.create
+         *
+         * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
+         *
+         * @alias gmail.users.settings.sendAs.create
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['userId'],
+            pathParams: ['userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.sendAs.delete
+         *
+         * @desc Deletes the specified send-as alias. Revokes any verification that may have been required for using it.
+         *
+         * @alias gmail.users.settings.sendAs.delete
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.sendAsEmail The send-as alias to be deleted.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              method: 'DELETE'
+            },
+            params: params,
+            requiredParams: ['userId', 'sendAsEmail'],
+            pathParams: ['sendAsEmail', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.sendAs.get
+         *
+         * @desc Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection.
+         *
+         * @alias gmail.users.settings.sendAs.get
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.sendAsEmail The send-as alias to be retrieved.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId', 'sendAsEmail'],
+            pathParams: ['sendAsEmail', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.sendAs.list
+         *
+         * @desc Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases.
+         *
+         * @alias gmail.users.settings.sendAs.list
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
+              method: 'GET'
+            },
+            params: params,
+            requiredParams: ['userId'],
+            pathParams: ['userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.sendAs.patch
+         *
+         * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. This method supports patch semantics.
+         *
+         * @alias gmail.users.settings.sendAs.patch
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.sendAsEmail The send-as alias to be updated.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        patch: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              method: 'PATCH'
+            },
+            params: params,
+            requiredParams: ['userId', 'sendAsEmail'],
+            pathParams: ['sendAsEmail', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.sendAs.update
+         *
+         * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
+         *
+         * @alias gmail.users.settings.sendAs.update
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.sendAsEmail The send-as alias to be updated.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              method: 'PUT'
+            },
+            params: params,
+            requiredParams: ['userId', 'sendAsEmail'],
+            pathParams: ['sendAsEmail', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * gmail.users.settings.sendAs.verify
+         *
+         * @desc Sends a verification email to the specified send-as alias address. The verification status must be `pending`.
+         *
+         * @alias gmail.users.settings.sendAs.verify
+         * @memberOf! gmail(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.sendAsEmail The send-as alias to be verified.
+         * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        verify: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['userId', 'sendAsEmail'],
+            pathParams: ['sendAsEmail', 'userId'],
             context: self
           };
 

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Translate API
  *
- * Lets you translate text from one language to another
+ * Translates text from one language to another.
  *
  * @example
  * var google = require('googleapis');
