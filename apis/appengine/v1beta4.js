@@ -352,6 +352,68 @@ function Appengine(options) { // eslint-disable-line
         instances: {
 
           /**
+           * appengine.apps.modules.versions.instances.delete
+           *
+           * @desc Stops a running instance.
+           *
+           * @alias appengine.apps.modules.versions.instances.delete
+           * @memberOf! appengine(v1beta4)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1/instances/instance-1".
+           * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}',
+                method: 'DELETE'
+              },
+              params: params,
+              requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+              pathParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * appengine.apps.modules.versions.instances.get
+           *
+           * @desc Gets instance information.
+           *
+           * @alias appengine.apps.modules.versions.instances.get
+           * @memberOf! appengine(v1beta4)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1/instances/instance-1".
+           * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}',
+                method: 'GET'
+              },
+              params: params,
+              requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+              pathParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
            * appengine.apps.modules.versions.instances.list
            *
            * @desc Lists the instances of a version.
@@ -377,6 +439,38 @@ function Appengine(options) { // eslint-disable-line
               params: params,
               requiredParams: ['appsId', 'modulesId', 'versionsId'],
               pathParams: ['appsId', 'modulesId', 'versionsId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * appengine.apps.modules.versions.instances.debug
+           *
+           * @desc Enable debugging of this VM instance. This call allows you to SSH to the VM. While the VM is in debug mode, it continues to serve live traffic. After you're done debugging an instance, delete the instance; the system creates a new instance when needed. You can't debug a non-VM instance.
+           *
+           * @alias appengine.apps.modules.versions.instances.debug
+           * @memberOf! appengine(v1beta4)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1/instances/instance-1".
+           * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {object} params.resource Request body data
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          debug: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}:debug',
+                method: 'POST'
+              },
+              params: params,
+              requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+              pathParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
               context: self
             };
 

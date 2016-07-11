@@ -5395,7 +5395,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.family Name of the image resource to return.
+     * @param {string} params.family Name of the image family to search for.
      * @param {string} params.project Project ID for this request.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

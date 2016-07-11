@@ -1,3 +1,17 @@
+##### 11.0.0 - 11 July 2016
+
+###### Breaking changes
+- Removed `appengine` `v1` API
+
+###### Backwards compatible changes
+- Added `apps.modules.versions.instances.delete` to `appengine` `v1beta4` API
+- Added `apps.modules.versions.instances.get` to `appengine` `v1beta4` API
+- Added `apps.modules.versions.instances.debug` to `appengine` `v1beta4` API
+- Added `apps.modules.versions.instances.delete` to `appengine` `v1beta5` API
+- Added `apps.modules.versions.instances.get` to `appengine` `v1beta5` API
+- Added `apps.modules.versions.instances.debug` to `appengine` `v1beta5` API
+- Added `routers.preview` to `compute` `beta` API
+
 ##### 10.0.0 - 06 July 2016
 
 ###### Breaking changes

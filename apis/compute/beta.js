@@ -2741,7 +2741,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.family Name of the image resource to return.
+     * @param {string} params.family Name of the image family to search for.
      * @param {string} params.project Project ID for this request.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3198,7 +3198,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.resizeAdvanced
      *
-     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. This method is an extended version of Resize and it supports more advanced options.
+     * @desc Resizes the managed instance group with advanced configuration options like disabling creation retries. This is an extended version of the resize method.  If you increase the size of the instance group, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating, creatingWithoutRetries, or deleting actions with the get or listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.resizeAdvanced
      * @memberOf! compute(beta)
@@ -5282,6 +5282,37 @@ function Compute(options) { // eslint-disable-line
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.routers.preview
+     *
+     * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
+     *
+     * @alias compute.routers.preview
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    preview: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}/preview',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['project', 'region', 'router'],
