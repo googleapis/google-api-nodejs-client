@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Google Civic Information API
  *
- * An API for accessing civic information.
+ * Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.
  *
  * @example
  * var google = require('googleapis');

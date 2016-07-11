@@ -1525,7 +1525,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.products.list
      *
-     * @desc Finds approved products that match a query.
+     * @desc Finds approved products that match a query, or all approved products if there is no query.
      *
      * @alias androidenterprise.products.list
      * @memberOf! androidenterprise(v1)
@@ -1535,7 +1535,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
      * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
-     * @param {string=} params.query The search query as typed in the Google Play Store search box. If omitted, all approved apps will be returned (using the pagination parameters).
+     * @param {string=} params.query The search query as typed in the Google Play Store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
      * @param {string=} params.token A pagination token is contained in a requests response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
