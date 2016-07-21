@@ -166,6 +166,34 @@ function Consumersurveys(options) { // eslint-disable-line
   self.surveys = {
 
     /**
+     * consumersurveys.surveys.delete
+     *
+     * @desc Removes a survey from view in all user GET requests.
+     *
+     * @alias consumersurveys.surveys.delete
+     * @memberOf! consumersurveys(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.surveyUrlId External URL ID for the survey.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['surveyUrlId'],
+        pathParams: ['surveyUrlId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * consumersurveys.surveys.get
      *
      * @desc Retrieves information about the specified survey.

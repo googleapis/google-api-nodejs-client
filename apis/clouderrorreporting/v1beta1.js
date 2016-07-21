@@ -104,6 +104,35 @@ function Clouderrorreporting(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * clouderrorreporting.projects.events.report
+       *
+       * @desc Report an individual error event.  This endpoint accepts <strong>either</strong> an OAuth token, <strong>or</strong> an <a href="https://support.google.com/cloud/answer/6158862">API key</a> for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example: <pre>POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
+       *
+       * @alias clouderrorreporting.projects.events.report
+       * @memberOf! clouderrorreporting(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      report: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['projectName'],
+          pathParams: ['projectName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     },
 

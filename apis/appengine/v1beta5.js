@@ -42,6 +42,34 @@ function Appengine(options) { // eslint-disable-line
   self.apps = {
 
     /**
+     * appengine.apps.create
+     *
+     * @desc Creates an App Engine application for a Google Cloud Platform project. This requires a project that excludes an App Engine application. For details about creating a project without an application, see the [Google Cloud Resource Manager create project topic](https://cloud.google.com/resource-manager/docs/creating-project).
+     *
+     * @alias appengine.apps.create
+     * @memberOf! appengine(v1beta5)
+     *
+     * @param {object} params Parameters for request
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://appengine.googleapis.com/v1beta5/apps',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * appengine.apps.get
      *
      * @desc Gets information about an application.
@@ -540,6 +568,69 @@ function Appengine(options) { // eslint-disable-line
             return createAPIRequest(parameters, callback);
           }
         }
+      }
+    },
+
+    locations: {
+
+      /**
+       * appengine.apps.locations.list
+       *
+       * @desc Lists information about the supported locations for this service.
+       *
+       * @alias appengine.apps.locations.list
+       * @memberOf! appengine(v1beta5)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
+       * @param {string=} params.filter The standard list filter.
+       * @param {integer=} params.pageSize The standard list page size.
+       * @param {string=} params.pageToken The standard list page token.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/locations',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['appsId'],
+          pathParams: ['appsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * appengine.apps.locations.get
+       *
+       * @desc Get information about a location.
+       *
+       * @alias appengine.apps.locations.get
+       * @memberOf! appengine(v1beta5)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Resource name for the location.
+       * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/locations/{locationsId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['appsId', 'locationsId'],
+          pathParams: ['appsId', 'locationsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };

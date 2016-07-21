@@ -56,7 +56,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -130,7 +130,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -210,7 +210,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -281,7 +281,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -355,7 +355,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -431,7 +431,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -505,7 +505,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -585,7 +585,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -656,7 +656,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -730,7 +730,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -806,7 +806,7 @@ function Logging(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/logging
        * // 2. This sample uses Application Default Credentials for Auth.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
        * // 3. To install the client library and Application Default Credentials library, run:
        * //    'npm install googleapis --save'
        * var google = require('googleapis');
@@ -881,7 +881,7 @@ function Logging(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/logging
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -950,7 +950,7 @@ function Logging(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/logging
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1030,7 +1030,7 @@ function Logging(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/logging
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');

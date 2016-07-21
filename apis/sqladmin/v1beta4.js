@@ -102,6 +102,36 @@ function Sqladmin(options) { // eslint-disable-line
     },
 
     /**
+     * sql.backupRuns.insert
+     *
+     * @desc Creates a new backup run on demand.
+     *
+     * @alias sql.backupRuns.insert
+     * @memberOf! sqladmin(v1beta4)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * sql.backupRuns.list
      *
      * @desc Lists all backup runs associated with a given instance and configuration in the reverse chronological order of the enqueued time.
