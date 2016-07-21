@@ -1237,7 +1237,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.forwardingAddresses.create
          *
-         * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`.
+         * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted.
          *
          * @alias gmail.users.settings.forwardingAddresses.create
          * @memberOf! gmail(v1)
@@ -1355,7 +1355,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.create
          *
-         * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
+         * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
          *
          * @alias gmail.users.settings.sendAs.create
          * @memberOf! gmail(v1)
@@ -1530,7 +1530,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.verify
          *
-         * @desc Sends a verification email to the specified send-as alias address. The verification status must be `pending`.
+         * @desc Sends a verification email to the specified send-as alias address. The verification status must be pending.
          *
          * @alias gmail.users.settings.sendAs.verify
          * @memberOf! gmail(v1)

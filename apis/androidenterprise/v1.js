@@ -678,7 +678,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @memberOf! androidenterprise(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId 
+     * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.keyType The type of credential to return with the service account. Required.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -701,7 +701,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.getStoreLayout
      *
-     * @desc Returns the store layout resource.
+     * @desc Returns the store layout resource for the enterprise. If store layout has not been set, or if store layout has no homepage set, returns a NOT_FOUND error.
      *
      * @alias androidenterprise.enterprises.getStoreLayout
      * @memberOf! androidenterprise(v1)
@@ -2220,7 +2220,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.insert
      *
-     * @desc Creates a new EMM-managed user.  The required details of the user are passed in the Users resource in the body of the request. Specifically, the accountIdentifier, accountType, and displayName fields must be provided.
+     * @desc Inserts a new resource into this collection.
      *
      * @alias androidenterprise.users.insert
      * @memberOf! androidenterprise(v1)
@@ -2249,7 +2249,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.list
      *
-     * @desc Looks up a user by their primary email address. This is only supported for Google-managed users. Lookup of the id is not needed for EMM-managed users because the id is already returned in the result of the Users.insert call.
+     * @desc Looks up a user by primary email address. This is only supported for Google-managed users. Lookup of the id is not needed for EMM-managed users because the id is already returned in the result of the Users.insert call.
      *
      * @alias androidenterprise.users.list
      * @memberOf! androidenterprise(v1)
@@ -2278,7 +2278,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.patch
      *
-     * @desc Updates the details of an EMM-managed user.  This only works with EMM-managed users. Pass the new details in Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value. This method supports patch semantics.
+     * @desc Updates the details of an EMM-managed user.  Can be used with EMM-managed users only (not Google managed users). Pass the new details in the Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value. This method supports patch semantics.
      *
      * @alias androidenterprise.users.patch
      * @memberOf! androidenterprise(v1)
@@ -2367,7 +2367,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.update
      *
-     * @desc Updates the details of an EMM-managed user.  This only works with EMM-managed users. Pass the new details in Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value.
+     * @desc Updates the details of an EMM-managed user.  Can be used with EMM-managed users only (not Google managed users). Pass the new details in the Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value.
      *
      * @alias androidenterprise.users.update
      * @memberOf! androidenterprise(v1)

@@ -46,6 +46,49 @@ function Cloudtrace(options) { // eslint-disable-line
      *
      * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
      *
+     * @example
+     * // PRE-REQUISITES:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Trace API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtrace
+     * // 2. This sample uses Application Default Credentials for Auth.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
+     * // 3. To install the client library and Application Default Credentials library, run:
+     * //    'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var cloudtrace = google.cloudtrace('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'patchTraces' method:
+     *
+     *     // ID of the Cloud project where the trace data is stored.
+     *     projectId: "",
+     *     resource: {},
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   cloudtrace.projects.patchTraces(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias cloudtrace.projects.patchTraces
      * @memberOf! cloudtrace(v1)
      *
@@ -76,6 +119,55 @@ function Cloudtrace(options) { // eslint-disable-line
        * cloudtrace.projects.traces.list
        *
        * @desc Returns of a list of traces that match the specified filter conditions.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Trace API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/cloudtrace
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var cloudtrace = google.cloudtrace('v1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *
+       *     // ID of the Cloud project where the trace data is stored.
+       *     projectId: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *
+       *   var recur = function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         cloudtrace.projects.traces.list(request, recur);
+       *       }
+       *     }
+       *   };
+       *
+       *   cloudtrace.projects.traces.list(request, recur);
+       * });
        *
        * @alias cloudtrace.projects.traces.list
        * @memberOf! cloudtrace(v1)
@@ -111,6 +203,50 @@ function Cloudtrace(options) { // eslint-disable-line
        * cloudtrace.projects.traces.get
        *
        * @desc Gets a single trace by its ID.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Trace API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/cloudtrace
+       * // 2. This sample uses Application Default Credentials for Auth.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var cloudtrace = google.cloudtrace('v1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *
+       *     // ID of the Cloud project where the trace data is stored.
+       *     projectId: "",
+       *     // ID of the trace to return.
+       *     traceId: "",
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   cloudtrace.projects.traces.get(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
        *
        * @alias cloudtrace.projects.traces.get
        * @memberOf! cloudtrace(v1)

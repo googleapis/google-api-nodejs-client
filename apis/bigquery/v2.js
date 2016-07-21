@@ -54,7 +54,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -128,7 +128,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -201,7 +201,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -273,7 +273,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -319,6 +319,7 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.all Whether to list all datasets, including hidden ones
+     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.[:]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See https://cloud.google.com/bigquery/docs/labeling-datasets#filtering_datasets_using_labels for details.
      * @param {integer=} params.maxResults The maximum number of results to return
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the datasets to be listed
@@ -353,7 +354,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -428,7 +429,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -507,7 +508,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -580,7 +581,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -653,7 +654,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -730,7 +731,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -811,7 +812,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -893,7 +894,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -969,7 +970,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1049,7 +1050,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1127,7 +1128,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1210,7 +1211,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1286,7 +1287,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1362,7 +1363,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1437,7 +1438,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1519,7 +1520,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1597,7 +1598,7 @@ function Bigquery(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/bigquery
      * // 2. This sample uses Application Default Credentials for Auth.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
      * // 3. To install the client library and Application Default Credentials library, run:
      * //    'npm install googleapis --save'
      * var google = require('googleapis');

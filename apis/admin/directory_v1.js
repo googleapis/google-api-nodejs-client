@@ -296,7 +296,7 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.customers.get
      *
-     * @desc Retrives a customer.
+     * @desc Retrieves a customer.
      *
      * @alias directory.customers.get
      * @memberOf! admin(directory_v1)
@@ -535,7 +535,7 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.domains.get
      *
-     * @desc Retrives a domain of the customer.
+     * @desc Retrieves a domain of the customer.
      *
      * @alias directory.domains.get
      * @memberOf! admin(directory_v1)

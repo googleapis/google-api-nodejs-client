@@ -1,3 +1,35 @@
+##### 12.0.0 - 21 July 2016
+
+###### Breaking changes
+- Removed `accounts.filterSets.getBidMetrics` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.get` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.create` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.getImpressionMetrics` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.delete` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.responsesWithoutBids.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.responsesErrors.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.losingBids.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.filteredBids.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.filteredBids.creatives.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.filteredBids.creatives.details.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.filteredBids.details.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.filteredImpressions.list` from `adexchangebuyer2` `v2beta1` API
+- Removed `accounts.filterSets.filteredRequests.list` from `adexchangebuyer2` `v2beta1` API
+
+###### Backwards compatible changes
+- Added `language` `v1beta1` API
+- Added `speech` `v1beta1` API
+- Added `apps.create` to `appengine` `v1beta4` API
+- Added `apps.locations.list` to `appengine` `v1beta4` API
+- Added `apps.locations.get` to `appengine` `v1beta4` API
+- Added `apps.create` to `appengine` `v1beta5` API
+- Added `apps.locations.list` to `appengine` `v1beta5` API
+- Added `apps.locations.get` to `appengine` `v1beta5` API
+- Added `projects.events.report` to `clouderrorreporting` `v1beta1` API
+- Added `surveys.delete` to `consumersurveys` `v2` API
+- Added `backupRuns.insert` to `sqladmin` `v1beta4` API
+
 ##### 11.0.0 - 11 July 2016
 
 ###### Breaking changes
