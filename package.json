@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "async": "~1.5.2",
+    "bluebird": "^3.3.5",
     "gapitoken": "~0.1.5",
     "google-auth-library": "~0.9.7",
     "request": "~2.72.0",
