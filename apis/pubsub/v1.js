@@ -49,16 +49,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -75,11 +76,13 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'setIamPolicy' method:
        *
-       *     // REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a
-       *     // path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in
-       *     // this value is resource specific and is specified in the `setIamPolicy` documentation.
+       *     // * REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as
+       *     //   a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified
+       *     //   in this value is resource specific and is specified in the `setIamPolicy` documentation.
        *     resource_: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -123,16 +126,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -149,10 +153,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'getIamPolicy' method:
        *
-       *     // REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a
-       *     // path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in
-       *     // this value is resource specific and is specified in the `getIamPolicy` documentation.
+       *     // * REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as
+       *     //   a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified
+       *     //   in this value is resource specific and is specified in the `getIamPolicy` documentation.
        *     resource_: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -195,16 +200,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Returns permissions that a caller has on the specified resource.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -221,12 +227,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'testIamPermissions' method:
        *
-       *     // REQUIRED: The resource for which the policy detail is being requested. `resource` is usually
-       *     // specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path
-       *     // specified in this value is resource specific and is specified in the `testIamPermissions`
-       *     // documentation.
+       *     // * REQUIRED: The resource for which the policy detail is being requested. `resource` is usually
+       *     //   specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the
+       *     //   path specified in this value is resource specific and is specified in the `testIamPermissions`
+       *     //   documentation.
        *     resource_: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -270,16 +278,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Creates the given topic with the given name.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -296,12 +305,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
        *
-       *     // The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must
-       *     // start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-       *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be
-       *     // between 3 and 255 characters in length, and it must not start with `"goog"`.
+       *     // * The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}`
+       *     //   must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+       *     //   underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be
+       *     //   between 3 and 255 characters in length, and it must not start with `"goog"`.
        *     name: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -345,16 +356,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist. The message payload must not be empty; it must contain either a non-empty data field, or at least one attribute.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -371,9 +383,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'publish' method:
        *
-       *     // The messages in the request will be published on this topic.
+       *     // * The messages in the request will be published on this topic.
        *     topic: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -417,16 +431,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Gets the configuration of a topic.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -443,8 +458,9 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
        *
-       *     // The name of the topic to get.
+       *     // * The name of the topic to get.
        *     topic: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -487,16 +503,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Lists matching topics.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -513,8 +530,9 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
        *
-       *     // The name of the cloud project that topics belong to.
+       *     // * The name of the cloud project that topics belong to.
        *     project: "projects/{MY-PROJECT}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -566,16 +584,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -592,8 +611,9 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
        *
-       *     // Name of the topic to delete.
+       *     // * Name of the topic to delete.
        *     topic: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -638,16 +658,17 @@ function Pubsub(options) { // eslint-disable-line
          * @desc Lists the name of the subscriptions for this topic.
          *
          * @example
-         * // PRE-REQUISITES:
+         * // BEFORE RUNNING:
          * // ---------------
          * // 1. If not already done, enable the Google Cloud Pub/Sub API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/pubsub
-         * // 2. This sample uses Application Default Credentials for Auth.
+         * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-         * // 3. To install the client library and Application Default Credentials library, run:
-         * //    'npm install googleapis --save'
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
          * var pubsub = google.pubsub('v1');
          *
@@ -664,8 +685,9 @@ function Pubsub(options) { // eslint-disable-line
          *   var request = {
          *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
          *
-         *     // The name of the topic that subscriptions are attached to.
+         *     // * The name of the topic that subscriptions are attached to.
          *     topic: "projects/{MY-PROJECT}/topics/{MY-TOPIC}",
+         *
          *     // Auth client
          *     auth: authClient
          *   };
@@ -721,16 +743,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -747,11 +770,13 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'setIamPolicy' method:
        *
-       *     // REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a
-       *     // path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in
-       *     // this value is resource specific and is specified in the `setIamPolicy` documentation.
+       *     // * REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as
+       *     //   a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified
+       *     //   in this value is resource specific and is specified in the `setIamPolicy` documentation.
        *     resource_: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -795,16 +820,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -821,10 +847,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'getIamPolicy' method:
        *
-       *     // REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a
-       *     // path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified in
-       *     // this value is resource specific and is specified in the `getIamPolicy` documentation.
+       *     // * REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as
+       *     //   a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path specified
+       *     //   in this value is resource specific and is specified in the `getIamPolicy` documentation.
        *     resource_: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -867,16 +894,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Returns permissions that a caller has on the specified resource.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -893,12 +921,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'testIamPermissions' method:
        *
-       *     // REQUIRED: The resource for which the policy detail is being requested. `resource` is usually
-       *     // specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the path
-       *     // specified in this value is resource specific and is specified in the `testIamPermissions`
-       *     // documentation.
+       *     // * REQUIRED: The resource for which the policy detail is being requested. `resource` is usually
+       *     //   specified as a path, such as `projects/<project>/zones/<zone>/disks/<disk>`. The format for the
+       *     //   path specified in this value is resource specific and is specified in the `testIamPermissions`
+       *     //   documentation.
        *     resource_: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -942,16 +972,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Creates a subscription to a given topic. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -968,13 +999,15 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
        *
-       *     // The name of the subscription. It must have the format
-       *     // `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and
-       *     // contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods
-       *     // (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in
-       *     // length, and it must not start with `"goog"`.
+       *     // * The name of the subscription. It must have the format
+       *     //   `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter,
+       *     //   and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods
+       *     //   (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in
+       *     //   length, and it must not start with `"goog"`.
        *     name: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1018,16 +1051,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Gets the configuration details of a subscription.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1044,8 +1078,9 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
        *
-       *     // The name of the subscription to get.
+       *     // * The name of the subscription to get.
        *     subscription: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1088,16 +1123,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Lists matching subscriptions.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1114,8 +1150,9 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
        *
-       *     // The name of the cloud project that subscriptions belong to.
+       *     // * The name of the cloud project that subscriptions belong to.
        *     project: "projects/{MY-PROJECT}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1167,16 +1204,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1193,8 +1231,9 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
        *
-       *     // The subscription to delete.
+       *     // * The subscription to delete.
        *     subscription: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1237,16 +1276,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1263,9 +1303,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'modifyAckDeadline' method:
        *
-       *     // The name of the subscription.
+       *     // * The name of the subscription.
        *     subscription: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1309,16 +1351,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1335,9 +1378,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'acknowledge' method:
        *
-       *     // The subscription whose message is being acknowledged.
+       *     // * The subscription whose message is being acknowledged.
        *     subscription: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1381,16 +1426,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1407,9 +1453,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'pull' method:
        *
-       *     // The subscription from which messages should be pulled.
+       *     // * The subscription from which messages should be pulled.
        *     subscription: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -1453,16 +1501,17 @@ function Pubsub(options) { // eslint-disable-line
        * @desc Modifies the `PushConfig` for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Pub/Sub API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var pubsub = google.pubsub('v1');
        *
@@ -1479,9 +1528,11 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'modifyPushConfig' method:
        *
-       *     // The name of the subscription.
+       *     // * The name of the subscription.
        *     subscription: "projects/{MY-PROJECT}/subscriptions/{MY-SUBSCRIPTION}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };

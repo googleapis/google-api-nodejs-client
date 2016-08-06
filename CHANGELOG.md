@@ -1,3 +1,71 @@
+##### 12.1.0 - 05 August 2016
+
+###### Backwards compatible changes
+- #612 - Upgrade request dependency, fixes #608 by @bengourley
+- Added `managedconfigurationsfordevice.delete` to `androidenterprise` `v1` API
+- Added `managedconfigurationsfordevice.get` to `androidenterprise` `v1` API
+- Added `managedconfigurationsfordevice.list` to `androidenterprise` `v1` API
+- Added `managedconfigurationsfordevice.patch` to `androidenterprise` `v1` API
+- Added `managedconfigurationsfordevice.update` to `androidenterprise` `v1` API
+- Added `managedconfigurationsforuser.delete` to `androidenterprise` `v1` API
+- Added `managedconfigurationsforuser.get` to `androidenterprise` `v1` API
+- Added `managedconfigurationsforuser.list` to `androidenterprise` `v1` API
+- Added `managedconfigurationsforuser.patch` to `androidenterprise` `v1` API
+- Added `managedconfigurationsforuser.update` to `androidenterprise` `v1` API
+- Added `appengine` `v1` API
+- Added `clientSslPolicies.testIamPermissions` to `compute` `alpha` API
+- Added `instanceGroupManagers.patch` to `compute` `alpha` API
+- Added `instanceGroupManagers.update` to `compute` `alpha` API
+- Added `projects.disableXpnHost` to `compute` `alpha` API
+- Added `projects.disableXpnResource` to `compute` `alpha` API
+- Added `projects.enableXpnHost` to `compute` `alpha` API
+- Added `projects.enableXpnResource` to `compute` `alpha` API
+- Added `projects.getXpnHost` to `compute` `alpha` API
+- Added `projects.getXpnResources` to `compute` `alpha` API
+- Added `projects.listXpnHosts` to `compute` `alpha` API
+- Added `regionDiskTypes.get` to `compute` `alpha` API
+- Added `regionDiskTypes.list` to `compute` `alpha` API
+- Added `regionDisks.createSnapshot` to `compute` `alpha` API
+- Added `regionDisks.deletes` to `compute` `alpha` API
+- Added `regionDisks.get` to `compute` `alpha` API
+- Added `regionDisks.insert` to `compute` `alpha` API
+- Added `regionDisks.list` to `compute` `alpha` API
+- Added `regionDisks.setLabels` to `compute` `alpha` API
+- Added `regionDisks.testIamPermissions` to `compute` `alpha` API
+- Added `regionAutoscalers.delete` to `compute` `beta` API
+- Added `regionAutoscalers.get` to `compute` `beta` API
+- Added `regionAutoscalers.insert` to `compute` `beta` API
+- Added `regionAutoscalers.list` to `compute` `beta` API
+- Added `regionAutoscalers.patch` to `compute` `beta` API
+- Added `regionAutoscalers.testIamPermissions` to `compute` `beta` API
+- Added `regionAutoscalers.update` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.abandonInstances` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.delete` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.deleteInstances` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.get` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.insert` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.list` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.listManagedInstances` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.recreateInstances` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.resize` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.setAutoHealingPolicies` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.setInstanceTemplate` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.setTargetPools` to `compute` `beta` API
+- Added `regionInstanceGroupManagers.testIamPermissions` to `compute` `beta` API
+- Added `regionInstanceGroups.get` to `compute` `beta` API
+- Added `regionInstanceGroups.list` to `compute` `beta` API
+- Added `regionInstanceGroups.listInstances` to `compute` `beta` API
+- Added `regionInstanceGroups.setNamedPorts` to `compute` `beta` API
+- Added `regionInstanceGroups.testIamPermissions` to `compute` `beta` API
+- Added `projects.jobs.debug.getConfig` to `dataflow` `v1b3` API
+- Added `projects.jobs.debug.sendCapture` to `dataflow` `v1b3` API
+- Added `projects.templates.create` to `dataflow` `v1b3` API
+- Added `dfareporting` `v2.6` API
+- Added `servicecontrol` `v1` API
+- Added `servicemanagement` `v1` API
+- Added `servicemanagement` `v1` API
+- Added `spreadsheets.values.append` to `sheets` `v4` API
+
 ##### 12.0.0 - 21 July 2016
 
 ###### Breaking changes

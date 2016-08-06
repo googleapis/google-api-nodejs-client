@@ -532,7 +532,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.pqlQuery Query string to retrieve specific deals.
-     * @param {string} params.proposalId The proposalId to get deals for. To search across proposals specify order_id = '-' as part of the URL.
+     * @param {string} params.proposalId The proposalId to get deals for. To search across all proposals specify order_id = '-' as part of the URL.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -622,7 +622,8 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.4)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposalId to get notes for.
+     * @param {string=} params.pqlQuery Query string to retrieve specific notes. To search the text contents of notes, please use syntax like "WHERE note.note = "foo" or "WHERE note.note LIKE "%bar%"
+     * @param {string} params.proposalId The proposalId to get notes for. To search across all proposals specify order_id = '-' as part of the URL.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

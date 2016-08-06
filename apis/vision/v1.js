@@ -47,16 +47,17 @@ function Vision(options) { // eslint-disable-line
      * @desc Run image detection and annotation for a batch of images.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Vision API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var vision = google.vision('v1');
      *
@@ -74,6 +75,7 @@ function Vision(options) { // eslint-disable-line
      *     // TODO: Change placeholders below to appropriate parameter values for the 'annotate' method:
      *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };

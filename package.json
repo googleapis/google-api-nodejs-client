@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "author": "Google Inc.",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -60,24 +60,22 @@
     ]
   },
   "dependencies": {
-    "async": "~1.5.2",
-    "gapitoken": "~0.1.5",
+    "async": "~2.0.1",
     "google-auth-library": "~0.9.7",
     "request": "^2.74.0",
-    "string-template": "~1.0.0",
-    "url": "^0.11.0"
+    "string-template": "~1.0.0"
   },
   "devDependencies": {
     "codecov": "^1.0.1",
     "ink-docstrap": "1.2.1",
-    "istanbul": "^0.4.2",
+    "istanbul": "^0.4.4",
     "js-beautify": "^1.6.3",
     "jsdoc": "^3.4.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^2.5.3",
+    "mocha": "^3.0.1",
     "nock": "^8.0.0",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.4",
     "semistandard": "^8.0.0",
     "swig": "^1.4.2"
   },

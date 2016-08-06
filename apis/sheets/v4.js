@@ -131,6 +131,38 @@ function Sheets(options) { // eslint-disable-line
     values: {
 
       /**
+       * sheets.spreadsheets.values.append
+       *
+       * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/guides/values#appending_values) and [sample code](/sheets/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
+       *
+       * @alias sheets.spreadsheets.values.append
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.valueInputOption How the input data should be interpreted.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
+       * @param {string=} params.insertDataOption How the input data should be inserted.
+       * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      append: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}:append',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['spreadsheetId', 'range'],
+          pathParams: ['spreadsheetId', 'range'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * sheets.spreadsheets.values.update
        *
        * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, range, and a valueInputOption.
