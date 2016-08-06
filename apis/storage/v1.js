@@ -47,16 +47,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -73,11 +74,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -121,16 +124,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Returns the ACL entry for the specified entity on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -147,11 +151,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -195,16 +201,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Creates a new ACL entry on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -221,9 +228,11 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -267,16 +276,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Retrieves ACL entries on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -293,8 +303,9 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -337,16 +348,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates an ACL entry on the specified bucket. This method supports patch semantics.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -363,12 +375,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -413,16 +428,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates an ACL entry on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -439,12 +455,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -493,16 +512,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Permanently deletes an empty bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -519,8 +539,9 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -565,16 +586,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Returns metadata for the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -591,8 +613,9 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -638,16 +661,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Creates a new bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -664,9 +688,11 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // A valid API project identifier.
+     *     // * A valid API project identifier.
      *     project: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -713,16 +739,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Retrieves a list of buckets for a given project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -739,8 +766,9 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // A valid API project identifier.
+     *     // * A valid API project identifier.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -794,16 +822,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates a bucket. This method supports patch semantics.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -820,9 +849,11 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -871,16 +902,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates a bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -897,9 +929,11 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -952,16 +986,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Stop watching resources through this channel
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -979,6 +1014,7 @@ function Storage(options) { // eslint-disable-line
      *     // TODO: Change placeholders below to appropriate parameter values for the 'stop' method:
      *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1025,16 +1061,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1051,11 +1088,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1099,16 +1138,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1125,11 +1165,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1173,16 +1215,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Creates a new default object ACL entry on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1199,9 +1242,11 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1245,16 +1290,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Retrieves default object ACL entries on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1271,8 +1317,9 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1317,16 +1364,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates a default object ACL entry on the specified bucket. This method supports patch semantics.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1343,12 +1391,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1393,16 +1444,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates a default object ACL entry on the specified bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1419,12 +1471,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1473,16 +1528,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1499,14 +1555,17 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1552,16 +1611,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Returns the ACL entry for the specified entity on the specified object.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1578,14 +1638,17 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1631,16 +1694,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Creates a new ACL entry on the specified object.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1657,12 +1721,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1708,16 +1775,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Retrieves ACL entries on the specified object.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1734,11 +1802,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1783,16 +1853,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates an ACL entry on the specified object. This method supports patch semantics.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1809,15 +1880,19 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1864,16 +1939,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates an ACL entry on the specified object.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1890,15 +1966,19 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
      *
-     *     // Name of a bucket.
+     *     // * Name of a bucket.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *
+     *     // * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
+     *     //   group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1949,16 +2029,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Concatenates a list of existing objects into a new object in the same bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -1975,12 +2056,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'compose' method:
      *
-     *     // Name of the bucket in which to store the new object.
+     *     // * Name of the bucket in which to store the new object.
      *     destinationBucket: "",
-     *     // Name of the new object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the new object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     destinationObject: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2028,16 +2112,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Copies a source object to a destination object. Optionally overrides metadata.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2054,19 +2139,24 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'copy' method:
      *
-     *     // Name of the bucket in which to find the source object.
+     *     // * Name of the bucket in which to find the source object.
      *     sourceBucket: "",
-     *     // Name of the source object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the source object. For information about how to URL encode object names to be path safe,
+     *     //   see Encoding URI Path Parts.
      *     sourceObject: "",
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket
-     *     // value, if any.For information about how to URL encode object names to be path safe, see Encoding URI
-     *     // Path Parts.
+     *
+     *     // * Name of the bucket in which to store the new object. Overrides the provided object metadata's
+     *     //   bucket value, if any.For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     destinationBucket: "",
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
-     *     // object metadata's name value, if any.
+     *
+     *     // * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
+     *     //   object metadata's name value, if any.
      *     destinationObject: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2124,16 +2214,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2150,11 +2241,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Name of the bucket in which the object resides.
+     *     // * Name of the bucket in which the object resides.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2203,16 +2296,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Retrieves an object or its metadata.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2229,11 +2323,13 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Name of the bucket in which the object resides.
+     *     // * Name of the bucket in which the object resides.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2283,16 +2379,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Stores a new object and metadata.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2309,10 +2406,12 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket
-     *     // value, if any.
+     *     // * Name of the bucket in which to store the new object. Overrides the provided object metadata's
+     *     //   bucket value, if any.
      *     bucket: "",
+     *
      *     resource: {},
+     *
      *     media: {
      *       // See https://github.com/google/google-api-nodejs-client#media-uploads
      *       mimeType: 'text/plain',
@@ -2373,16 +2472,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Retrieves a list of objects matching the criteria.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2399,8 +2499,9 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Name of the bucket in which to look for objects.
+     *     // * Name of the bucket in which to look for objects.
      *     bucket: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2456,16 +2557,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates an object's metadata. This method supports patch semantics.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2482,12 +2584,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
      *
-     *     // Name of the bucket in which the object resides.
+     *     // * Name of the bucket in which the object resides.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2539,16 +2644,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Rewrites a source object to a destination object. Optionally overrides metadata.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2565,19 +2671,24 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'rewrite' method:
      *
-     *     // Name of the bucket in which to find the source object.
+     *     // * Name of the bucket in which to find the source object.
      *     sourceBucket: "",
-     *     // Name of the source object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the source object. For information about how to URL encode object names to be path safe,
+     *     //   see Encoding URI Path Parts.
      *     sourceObject: "",
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket
-     *     // value, if any.
+     *
+     *     // * Name of the bucket in which to store the new object. Overrides the provided object metadata's
+     *     //   bucket value, if any.
      *     destinationBucket: "",
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
-     *     // object metadata's name value, if any. For information about how to URL encode object names to be
-     *     // path safe, see Encoding URI Path Parts.
+     *
+     *     // * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
+     *     //   object metadata's name value, if any. For information about how to URL encode object names to be
+     *     //   path safe, see Encoding URI Path Parts.
      *     destinationObject: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2637,16 +2748,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Updates an object's metadata.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2663,12 +2775,15 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
      *
-     *     // Name of the bucket in which the object resides.
+     *     // * Name of the bucket in which the object resides.
      *     bucket: "",
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
+     *
+     *     // * Name of the object. For information about how to URL encode object names to be path safe, see
+     *     //   Encoding URI Path Parts.
      *     object: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -2720,16 +2835,17 @@ function Storage(options) { // eslint-disable-line
      * @desc Watch for changes on all objects in a bucket.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var storage = google.storage('v1');
      *
@@ -2746,9 +2862,11 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'watchAll' method:
      *
-     *     // Name of the bucket in which to look for objects.
+     *     // * Name of the bucket in which to look for objects.
      *     bucket: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };

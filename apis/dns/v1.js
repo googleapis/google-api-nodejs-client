@@ -47,16 +47,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Atomically update the ResourceRecordSet collection.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -73,11 +74,14 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
+     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -122,16 +126,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Fetch the representation of an existing Change.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -148,12 +153,15 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
+     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: "",
-     *     // The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+     *
+     *     // * The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
      *     changeId: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -198,16 +206,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Enumerate Changes to a ResourceRecordSet collection.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -224,10 +233,12 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
+     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -286,16 +297,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Create a new ManagedZone.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -312,9 +324,11 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -358,16 +372,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Delete a previously created ManagedZone.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -384,10 +399,12 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
+     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -431,16 +448,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Fetch the representation of an existing ManagedZone.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -457,10 +475,12 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
+     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -504,16 +524,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Enumerate ManagedZones that have been created but not yet deleted.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -530,8 +551,9 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -588,16 +610,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Fetch the representation of an existing Project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -614,8 +637,9 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -662,16 +686,17 @@ function Dns(options) { // eslint-disable-line
      * @desc Enumerate ResourceRecordSets that have been created but not yet deleted.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud DNS API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var dns = google.dns('v1');
      *
@@ -688,10 +713,12 @@ function Dns(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Identifies the project addressed by this request.
+     *     // * Identifies the project addressed by this request.
      *     project: "",
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
+     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };

@@ -78,7 +78,7 @@ function Appengine(options) { // eslint-disable-line
      * @memberOf! appengine(v1beta4)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the application to get. For example: "apps/myapp".
+     * @param {string} params.appsId Part of `name`. Name of the application to get. Example: `apps/myapp`.
      * @param {boolean=} params.ensureResourcesExist Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -103,13 +103,13 @@ function Appengine(options) { // eslint-disable-line
       /**
        * appengine.apps.modules.delete
        *
-       * @desc Deletes a module and all enclosed versions.
+       * @desc Deletes the specified module and all enclosed versions.
        *
        * @alias appengine.apps.modules.delete
        * @memberOf! appengine(v1beta4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default".
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default`.
        * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -132,13 +132,13 @@ function Appengine(options) { // eslint-disable-line
       /**
        * appengine.apps.modules.get
        *
-       * @desc Gets the current configuration of the module.
+       * @desc Gets the current configuration of the specified module.
        *
        * @alias appengine.apps.modules.get
        * @memberOf! appengine(v1beta4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default".
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default`.
        * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -167,7 +167,7 @@ function Appengine(options) { // eslint-disable-line
        * @memberOf! appengine(v1beta4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp".
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp`.
        * @param {integer=} params.pageSize Maximum results to return per page.
        * @param {string=} params.pageToken Continuation token for fetching the next page of results.
        * @param {callback} callback The callback that handles the response.
@@ -197,10 +197,10 @@ function Appengine(options) { // eslint-disable-line
        * @memberOf! appengine(v1beta4)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/modules/default".
+       * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: `apps/myapp/modules/default`.
        * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
        * @param {string=} params.mask Standard field mask for the set of fields to be updated.
-       * @param {boolean=} params.migrateTraffic Whether to use Traffic Migration to shift traffic gradually. Traffic can only be migrated from a single version to another single version.
+       * @param {boolean=} params.migrateTraffic Set to `true` to gradually shift traffic from one version to another single version. By default, traffic is shifted immediately. For gradual traffic migration, the target version must be located within instances that are configured for both [warmup requests](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#inboundservicetype) and [automatic scaling](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#automaticscaling). You must specify the [`shardBy`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules#shardby) field in the Module resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see [Migrating and Splitting Traffic](https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -225,13 +225,13 @@ function Appengine(options) { // eslint-disable-line
         /**
          * appengine.apps.modules.versions.create
          *
-         * @desc Deploys new code and resource files to a version.
+         * @desc Deploys code and resource files to a new version.
          *
          * @alias appengine.apps.modules.versions.create
          * @memberOf! appengine(v1beta4)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/modules/default".
+         * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: `apps/myapp/modules/default`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
@@ -261,7 +261,7 @@ function Appengine(options) { // eslint-disable-line
          * @memberOf! appengine(v1beta4)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1".
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
          * @param {callback} callback The callback that handles the response.
@@ -285,13 +285,13 @@ function Appengine(options) { // eslint-disable-line
         /**
          * appengine.apps.modules.versions.get
          *
-         * @desc Gets application deployment information.
+         * @desc Gets the specified Version resource. By default, only a `BASIC_VIEW` will be returned. Specify the `FULL_VIEW` parameter to get the full resource.
          *
          * @alias appengine.apps.modules.versions.get
          * @memberOf! appengine(v1beta4)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1".
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
          * @param {string=} params.view Controls the set of fields returned in the `Get` response.
@@ -322,7 +322,7 @@ function Appengine(options) { // eslint-disable-line
          * @memberOf! appengine(v1beta4)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default".
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {string=} params.view Controls the set of fields returned in the `List` response.
          * @param {integer=} params.pageSize Maximum results to return per page.
@@ -348,13 +348,13 @@ function Appengine(options) { // eslint-disable-line
         /**
          * appengine.apps.modules.versions.patch
          *
-         * @desc Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses: * [`serving_status`](/appengine/docs/admin-api/reference/rest/v1beta4/apps.services.versions#Version.FIELDS.serving_status): For Version resources that use basic scaling, manual scaling, or run in the App Engine flexible environment. * [`instance_class`](/appengine/docs/admin-api/reference/rest/v1beta4/apps.services.versions#Version.FIELDS.instance_class): For Version resources that run in the App Engine standard environment. * [`automatic_scaling.min_idle_instances`](/appengine/docs/admin-api/reference/rest/v1beta4/apps.services.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment. * [`automatic_scaling.max_idle_instances`](/appengine/docs/admin-api/reference/rest/v1beta4/apps.services.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment.
+         * @desc Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses: * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.serving_status): For Version resources that use basic scaling, manual scaling, or run in the App Engine flexible environment. * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.instance_class): For Version resources that run in the App Engine standard environment. * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment. * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment.
          *
          * @alias appengine.apps.modules.versions.patch
          * @memberOf! appengine(v1beta4)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/modules/default/versions/1".
+         * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: `apps/myapp/modules/default/versions/1`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
          * @param {string=} params.mask Standard field mask for the set of fields to be updated.
@@ -388,7 +388,7 @@ function Appengine(options) { // eslint-disable-line
            * @memberOf! appengine(v1beta4)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1/instances/instance-1".
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1/instances/instance-1`.
            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
@@ -419,7 +419,7 @@ function Appengine(options) { // eslint-disable-line
            * @memberOf! appengine(v1beta4)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1/instances/instance-1".
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1/instances/instance-1`.
            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
@@ -450,7 +450,7 @@ function Appengine(options) { // eslint-disable-line
            * @memberOf! appengine(v1beta4)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1".
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1`.
            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {integer=} params.pageSize Maximum results to return per page.
@@ -476,13 +476,13 @@ function Appengine(options) { // eslint-disable-line
           /**
            * appengine.apps.modules.versions.instances.debug
            *
-           * @desc Enable debugging of this VM instance. This call allows you to SSH to the VM. While the VM is in debug mode, it continues to serve live traffic. After you're done debugging an instance, delete the instance; the system creates a new instance when needed. You can't debug a non-VM instance.
+           * @desc Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in "debug mode", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started. Only applicable for instances in App Engine flexible environment.
            *
            * @alias appengine.apps.modules.versions.instances.debug
            * @memberOf! appengine(v1beta4)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/modules/default/versions/v1/instances/instance-1".
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1/instances/instance-1`.
            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.

@@ -23,7 +23,7 @@ var createAPIRequest = require('../../lib/apirequest');
 /**
  * Ad Exchange Seller API
  *
- * Gives Ad Exchange seller users access to their inventory and the ability to generate reports
+ * Accesses the inventory of Ad Exchange seller users and generates reports.
  *
  * @example
  * var google = require('googleapis');

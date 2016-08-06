@@ -27,12 +27,12 @@ var createAPIRequest = require('../../lib/apirequest');
  *
  * @example
  * var google = require('googleapis');
- * var appengine = google.appengine('v1beta5');
+ * var appengine = google.appengine('v1');
  *
  * @namespace appengine
  * @type {Function}
- * @version v1beta5
- * @variation v1beta5
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Appengine
  */
 function Appengine(options) { // eslint-disable-line
@@ -42,27 +42,27 @@ function Appengine(options) { // eslint-disable-line
   self.apps = {
 
     /**
-     * appengine.apps.create
+     * appengine.apps.get
      *
-     * @desc Creates an App Engine application for a Google Cloud Platform project. This requires a project that excludes an App Engine application. For details about creating a project without an application, see the [Google Cloud Resource Manager create project topic](https://cloud.google.com/resource-manager/docs/creating-project).
+     * @desc Gets information about an application.
      *
-     * @alias appengine.apps.create
-     * @memberOf! appengine(v1beta5)
+     * @alias appengine.apps.get
+     * @memberOf! appengine(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {string} params.appsId Part of `name`. Name of the Application resource to get. Example: `apps/myapp`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    get: function (params, callback) {
       var parameters = {
         options: {
-          url: 'https://appengine.googleapis.com/v1beta5/apps',
-          method: 'POST'
+          url: 'https://appengine.googleapis.com/v1/apps/{appsId}',
+          method: 'GET'
         },
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
         context: self
       };
 
@@ -70,24 +70,24 @@ function Appengine(options) { // eslint-disable-line
     },
 
     /**
-     * appengine.apps.get
+     * appengine.apps.repair
      *
-     * @desc Gets information about an application.
+     * @desc Recreates the required App Engine features for the application in your project, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example "*Error retrieving the App Engine service account*".
      *
-     * @alias appengine.apps.get
-     * @memberOf! appengine(v1beta5)
+     * @alias appengine.apps.repair
+     * @memberOf! appengine(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the application to get. Example: `apps/myapp`.
-     * @param {boolean=} params.ensureResourcesExist Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete. Note: This parameter will be deprecated in a future version of the API.
+     * @param {string} params.appsId Part of `name`. Name of the application to repair. Example: `apps/myapp`
+     * @param {object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    repair: function (params, callback) {
       var parameters = {
         options: {
-          url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}',
-          method: 'GET'
+          url: 'https://appengine.googleapis.com/v1/apps/{appsId}:repair',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['appsId'],
@@ -106,7 +106,7 @@ function Appengine(options) { // eslint-disable-line
        * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
        *
        * @alias appengine.apps.operations.get
-       * @memberOf! appengine(v1beta5)
+       * @memberOf! appengine(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. The name of the operation resource.
@@ -117,7 +117,7 @@ function Appengine(options) { // eslint-disable-line
       get: function (params, callback) {
         var parameters = {
           options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/operations/{operationsId}',
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/operations/{operationsId}',
             method: 'GET'
           },
           params: params,
@@ -135,7 +135,7 @@ function Appengine(options) { // eslint-disable-line
        * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
        *
        * @alias appengine.apps.operations.list
-       * @memberOf! appengine(v1beta5)
+       * @memberOf! appengine(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. The name of the operation collection.
@@ -148,7 +148,7 @@ function Appengine(options) { // eslint-disable-line
       list: function (params, callback) {
         var parameters = {
           options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/operations',
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/operations',
             method: 'GET'
           },
           params: params,
@@ -164,73 +164,15 @@ function Appengine(options) { // eslint-disable-line
     services: {
 
       /**
-       * appengine.apps.services.delete
-       *
-       * @desc Deletes the specified service and all enclosed versions.
-       *
-       * @alias appengine.apps.services.delete
-       * @memberOf! appengine(v1beta5)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default`.
-       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}',
-            method: 'DELETE'
-          },
-          params: params,
-          requiredParams: ['appsId', 'servicesId'],
-          pathParams: ['appsId', 'servicesId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * appengine.apps.services.get
-       *
-       * @desc Gets the current configuration of the specified service.
-       *
-       * @alias appengine.apps.services.get
-       * @memberOf! appengine(v1beta5)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default`.
-       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}',
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['appsId', 'servicesId'],
-          pathParams: ['appsId', 'servicesId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * appengine.apps.services.list
        *
        * @desc Lists all the services in the application.
        *
        * @alias appengine.apps.services.list
-       * @memberOf! appengine(v1beta5)
+       * @memberOf! appengine(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp`.
+       * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: `apps/myapp`.
        * @param {integer=} params.pageSize Maximum results to return per page.
        * @param {string=} params.pageToken Continuation token for fetching the next page of results.
        * @param {callback} callback The callback that handles the response.
@@ -239,7 +181,7 @@ function Appengine(options) { // eslint-disable-line
       list: function (params, callback) {
         var parameters = {
           options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services',
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services',
             method: 'GET'
           },
           params: params,
@@ -252,18 +194,47 @@ function Appengine(options) { // eslint-disable-line
       },
 
       /**
+       * appengine.apps.services.get
+       *
+       * @desc Gets the current configuration of the specified service.
+       *
+       * @alias appengine.apps.services.get
+       * @memberOf! appengine(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default`.
+       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['appsId', 'servicesId'],
+          pathParams: ['appsId', 'servicesId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * appengine.apps.services.patch
        *
        * @desc Updates the configuration of the specified service.
        *
        * @alias appengine.apps.services.patch
-       * @memberOf! appengine(v1beta5)
+       * @memberOf! appengine(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: `apps/myapp/services/default`.
        * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-       * @param {string=} params.mask Standard field mask for the set of fields to be updated.
-       * @param {boolean=} params.migrateTraffic Set to `true` to gradually shift traffic from one version to another single version. By default, traffic is shifted immediately. For gradual traffic migration, the target version must be located within instances that are configured for both [warmup requests](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#inboundservicetype) and [automatic scaling](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#automaticscaling). You must specify the [`shardBy`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services#shardby) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see [Migrating and Splitting Traffic](https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
+       * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
+       * @param {boolean=} params.migrateTraffic Set to `true` to gradually shift traffic from one version to another single version. By default, traffic is shifted immediately. For gradual traffic migration, the target version must be located within instances that are configured for both [warmup requests](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#inboundservicetype) and [automatic scaling](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#automaticscaling). You must specify the [`shardBy`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#shardby) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see [Migrating and Splitting Traffic](https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
        * @param {object} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -271,8 +242,37 @@ function Appengine(options) { // eslint-disable-line
       patch: function (params, callback) {
         var parameters = {
           options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}',
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}',
             method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['appsId', 'servicesId'],
+          pathParams: ['appsId', 'servicesId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * appengine.apps.services.delete
+       *
+       * @desc Deletes the specified service and all enclosed versions.
+       *
+       * @alias appengine.apps.services.delete
+       * @memberOf! appengine(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default`.
+       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}',
+            method: 'DELETE'
           },
           params: params,
           requiredParams: ['appsId', 'servicesId'],
@@ -286,59 +286,31 @@ function Appengine(options) { // eslint-disable-line
       versions: {
 
         /**
-         * appengine.apps.services.versions.create
+         * appengine.apps.services.versions.list
          *
-         * @desc Deploys new code and resource files to a new version.
+         * @desc Lists the versions of a service.
          *
-         * @alias appengine.apps.services.versions.create
-         * @memberOf! appengine(v1beta5)
+         * @alias appengine.apps.services.versions.list
+         * @memberOf! appengine(v1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
-         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-         * @param {object} params.resource Request body data
+         * @param {string} params.appsId Part of `parent`. Name of the parent Service resource. Example: `apps/myapp/services/default`.
+         * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
+         * @param {string=} params.view Controls the set of fields returned in the `List` response.
+         * @param {integer=} params.pageSize Maximum results to return per page.
+         * @param {string=} params.pageToken Continuation token for fetching the next page of results.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        list: function (params, callback) {
           var parameters = {
             options: {
-              url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions',
-              method: 'POST'
+              url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions',
+              method: 'GET'
             },
             params: params,
             requiredParams: ['appsId', 'servicesId'],
             pathParams: ['appsId', 'servicesId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * appengine.apps.services.versions.delete
-         *
-         * @desc Deletes an existing version.
-         *
-         * @alias appengine.apps.services.versions.delete
-         * @memberOf! appengine(v1beta5)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1`.
-         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-         * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, callback) {
-          var parameters = {
-            options: {
-              url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
-              method: 'DELETE'
-            },
-            params: params,
-            requiredParams: ['appsId', 'servicesId', 'versionsId'],
-            pathParams: ['appsId', 'servicesId', 'versionsId'],
             context: self
           };
 
@@ -351,7 +323,7 @@ function Appengine(options) { // eslint-disable-line
          * @desc Gets the specified Version resource. By default, only a `BASIC_VIEW` will be returned. Specify the `FULL_VIEW` parameter to get the full resource.
          *
          * @alias appengine.apps.services.versions.get
-         * @memberOf! appengine(v1beta5)
+         * @memberOf! appengine(v1)
          *
          * @param {object} params Parameters for request
          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1`.
@@ -364,7 +336,7 @@ function Appengine(options) { // eslint-disable-line
         get: function (params, callback) {
           var parameters = {
             options: {
-              url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
+              url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
               method: 'GET'
             },
             params: params,
@@ -377,27 +349,25 @@ function Appengine(options) { // eslint-disable-line
         },
 
         /**
-         * appengine.apps.services.versions.list
+         * appengine.apps.services.versions.create
          *
-         * @desc Lists the versions of a service.
+         * @desc Deploys code and resource files to a new version.
          *
-         * @alias appengine.apps.services.versions.list
-         * @memberOf! appengine(v1beta5)
+         * @alias appengine.apps.services.versions.create
+         * @memberOf! appengine(v1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default`.
-         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-         * @param {string=} params.view Controls the set of fields returned in the `List` response.
-         * @param {integer=} params.pageSize Maximum results to return per page.
-         * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+         * @param {string} params.appsId Part of `parent`. Name of the parent resource to create this version under. Example: `apps/myapp/services/default`.
+         * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
+         * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        create: function (params, callback) {
           var parameters = {
             options: {
-              url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions',
-              method: 'GET'
+              url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions',
+              method: 'POST'
             },
             params: params,
             requiredParams: ['appsId', 'servicesId'],
@@ -411,16 +381,16 @@ function Appengine(options) { // eslint-disable-line
         /**
          * appengine.apps.services.versions.patch
          *
-         * @desc Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses: * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.serving_status): For Version resources that use basic scaling, manual scaling, or run in the App Engine flexible environment. * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.instance_class): For Version resources that run in the App Engine standard environment. * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment. * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment.
+         * @desc Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses: * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status): For Version resources that use basic scaling, manual scaling, or run in the App Engine flexible environment. * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class): For Version resources that run in the App Engine standard environment. * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment. * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling): For Version resources that use automatic scaling and run in the App Engine standard environment.
          *
          * @alias appengine.apps.services.versions.patch
-         * @memberOf! appengine(v1beta5)
+         * @memberOf! appengine(v1)
          *
          * @param {object} params Parameters for request
          * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: `apps/myapp/services/default/versions/1`.
          * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-         * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+         * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
          * @param {object} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -428,8 +398,38 @@ function Appengine(options) { // eslint-disable-line
         patch: function (params, callback) {
           var parameters = {
             options: {
-              url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
+              url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
               method: 'PATCH'
+            },
+            params: params,
+            requiredParams: ['appsId', 'servicesId', 'versionsId'],
+            pathParams: ['appsId', 'servicesId', 'versionsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.services.versions.delete
+         *
+         * @desc Deletes an existing Version resource.
+         *
+         * @alias appengine.apps.services.versions.delete
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1`.
+         * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+         * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}',
+              method: 'DELETE'
             },
             params: params,
             requiredParams: ['appsId', 'servicesId', 'versionsId'],
@@ -443,79 +443,17 @@ function Appengine(options) { // eslint-disable-line
         instances: {
 
           /**
-           * appengine.apps.services.versions.instances.delete
-           *
-           * @desc Stops a running instance.
-           *
-           * @alias appengine.apps.services.versions.instances.delete
-           * @memberOf! appengine(v1beta5)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1/instances/instance-1".
-           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          delete: function (params, callback) {
-            var parameters = {
-              options: {
-                url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}',
-                method: 'DELETE'
-              },
-              params: params,
-              requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
-              pathParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
-
-          /**
-           * appengine.apps.services.versions.instances.get
-           *
-           * @desc Gets instance information.
-           *
-           * @alias appengine.apps.services.versions.instances.get
-           * @memberOf! appengine(v1beta5)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
-           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get: function (params, callback) {
-            var parameters = {
-              options: {
-                url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}',
-                method: 'GET'
-              },
-              params: params,
-              requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
-              pathParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
-
-          /**
            * appengine.apps.services.versions.instances.list
            *
            * @desc Lists the instances of a version.
            *
            * @alias appengine.apps.services.versions.instances.list
-           * @memberOf! appengine(v1beta5)
+           * @memberOf! appengine(v1)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1`.
-           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.appsId Part of `parent`. Name of the parent Version resource. Example: `apps/myapp/services/default/versions/v1`.
+           * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `parent`. See documentation of `appsId`.
            * @param {integer=} params.pageSize Maximum results to return per page.
            * @param {string=} params.pageToken Continuation token for fetching the next page of results.
            * @param {callback} callback The callback that handles the response.
@@ -524,7 +462,7 @@ function Appengine(options) { // eslint-disable-line
           list: function (params, callback) {
             var parameters = {
               options: {
-                url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances',
+                url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances',
                 method: 'GET'
               },
               params: params,
@@ -537,12 +475,74 @@ function Appengine(options) { // eslint-disable-line
           },
 
           /**
+           * appengine.apps.services.versions.instances.get
+           *
+           * @desc Gets instance information.
+           *
+           * @alias appengine.apps.services.versions.instances.get
+           * @memberOf! appengine(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
+           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}',
+                method: 'GET'
+              },
+              params: params,
+              requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
+              pathParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * appengine.apps.services.versions.instances.delete
+           *
+           * @desc Stops a running instance.
+           *
+           * @alias appengine.apps.services.versions.instances.delete
+           * @memberOf! appengine(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
+           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete: function (params, callback) {
+            var parameters = {
+              options: {
+                url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}',
+                method: 'DELETE'
+              },
+              params: params,
+              requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
+              pathParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
            * appengine.apps.services.versions.instances.debug
            *
            * @desc Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in "debug mode", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started. Only applicable for instances in App Engine flexible environment.
            *
            * @alias appengine.apps.services.versions.instances.debug
-           * @memberOf! appengine(v1beta5)
+           * @memberOf! appengine(v1)
            *
            * @param {object} params Parameters for request
            * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
@@ -556,7 +556,7 @@ function Appengine(options) { // eslint-disable-line
           debug: function (params, callback) {
             var parameters = {
               options: {
-                url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug',
+                url: 'https://appengine.googleapis.com/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug',
                 method: 'POST'
               },
               params: params,
@@ -579,7 +579,7 @@ function Appengine(options) { // eslint-disable-line
        * @desc Lists information about the supported locations for this service.
        *
        * @alias appengine.apps.locations.list
-       * @memberOf! appengine(v1beta5)
+       * @memberOf! appengine(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
@@ -592,7 +592,7 @@ function Appengine(options) { // eslint-disable-line
       list: function (params, callback) {
         var parameters = {
           options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/locations',
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/locations',
             method: 'GET'
           },
           params: params,
@@ -610,7 +610,7 @@ function Appengine(options) { // eslint-disable-line
        * @desc Get information about a location.
        *
        * @alias appengine.apps.locations.get
-       * @memberOf! appengine(v1beta5)
+       * @memberOf! appengine(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. Resource name for the location.
@@ -621,7 +621,7 @@ function Appengine(options) { // eslint-disable-line
       get: function (params, callback) {
         var parameters = {
           options: {
-            url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}/locations/{locationsId}',
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/locations/{locationsId}',
             method: 'GET'
           },
           params: params,

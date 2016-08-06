@@ -225,6 +225,69 @@ function Dataflow(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
+      debug: {
+
+        /**
+         * dataflow.projects.jobs.debug.getConfig
+         *
+         * @desc Get encoded debug configuration for component. Not cacheable.
+         *
+         * @alias dataflow.projects.jobs.debug.getConfig
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The project id.
+         * @param {string} params.jobId The job id.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        getConfig: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['projectId', 'jobId'],
+            pathParams: ['projectId', 'jobId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.jobs.debug.sendCapture
+         *
+         * @desc Send encoded debug capture data for component.
+         *
+         * @alias dataflow.projects.jobs.debug.sendCapture
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The project id.
+         * @param {string} params.jobId The job id.
+         * @param {object} params.resource Request body data
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        sendCapture: function (params, callback) {
+          var parameters = {
+            options: {
+              url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture',
+              method: 'POST'
+            },
+            params: params,
+            requiredParams: ['projectId', 'jobId'],
+            pathParams: ['projectId', 'jobId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
       messages: {
 
         /**
@@ -323,6 +386,38 @@ function Dataflow(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         }
+      }
+    },
+
+    templates: {
+
+      /**
+       * dataflow.projects.templates.create
+       *
+       * @desc Creates a dataflow job from a template.
+       *
+       * @alias dataflow.projects.templates.create
+       * @memberOf! dataflow(v1b3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The project which owns the job.
+       * @param {object} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/templates',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };

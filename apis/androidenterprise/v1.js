@@ -701,7 +701,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.getStoreLayout
      *
-     * @desc Returns the store layout resource for the enterprise. If store layout has not been set, or if store layout has no homepage set, returns a NOT_FOUND error.
+     * @desc Returns the store layout for the enterprise. If the store layout has not been set, or if the store layout has no homepageId set, returns a NOT_FOUND error.
      *
      * @alias androidenterprise.enterprises.getStoreLayout
      * @memberOf! androidenterprise(v1)
@@ -871,7 +871,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.setStoreLayout
      *
-     * @desc Sets the store layout resource.
+     * @desc Sets the store layout for the enterprise.
      *
      * @alias androidenterprise.enterprises.setStoreLayout
      * @memberOf! androidenterprise(v1)
@@ -1338,6 +1338,321 @@ function Androidenterprise(options) { // eslint-disable-line
 
   };
 
+  self.managedconfigurationsfordevice = {
+
+    /**
+     * androidenterprise.managedconfigurationsfordevice.delete
+     *
+     * @desc Removes a per-device managed configuration for an app for the specified device.
+     *
+     * @alias androidenterprise.managedconfigurationsfordevice.delete
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
+        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsfordevice.get
+     *
+     * @desc Retrieves details of a per-device managed configuration.
+     *
+     * @alias androidenterprise.managedconfigurationsfordevice.get
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
+        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsfordevice.list
+     *
+     * @desc Lists all the per-device managed configurations for the specified device. Only the ID is set.
+     *
+     * @alias androidenterprise.managedconfigurationsfordevice.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId'],
+        pathParams: ['deviceId', 'enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsfordevice.patch
+     *
+     * @desc Adds or updates a per-device managed configuration for an app for the specified device. This method supports patch semantics.
+     *
+     * @alias androidenterprise.managedconfigurationsfordevice.patch
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
+        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsfordevice.update
+     *
+     * @desc Adds or updates a per-device managed configuration for an app for the specified device.
+     *
+     * @alias androidenterprise.managedconfigurationsfordevice.update
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The Android ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
+        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.managedconfigurationsforuser = {
+
+    /**
+     * androidenterprise.managedconfigurationsforuser.delete
+     *
+     * @desc Removes a per-user managed configuration for an app for the specified user.
+     *
+     * @alias androidenterprise.managedconfigurationsforuser.delete
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsforuser.get
+     *
+     * @desc Retrieves details of a per-user managed configuration for an app for the specified user.
+     *
+     * @alias androidenterprise.managedconfigurationsforuser.get
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsforuser.list
+     *
+     * @desc Lists all the per-user managed configurations for the specified user. Only the ID is set.
+     *
+     * @alias androidenterprise.managedconfigurationsforuser.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsforuser.patch
+     *
+     * @desc Adds or updates a per-user managed configuration for an app for the specified user. This method supports patch semantics.
+     *
+     * @alias androidenterprise.managedconfigurationsforuser.patch
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.managedconfigurationsforuser.update
+     *
+     * @desc Adds or updates a per-user managed configuration for an app for the specified user.
+     *
+     * @alias androidenterprise.managedconfigurationsforuser.update
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.userId The ID of the user.
+     * @param {object} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.permissions = {
 
     /**
@@ -1466,7 +1781,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.products.getAppRestrictionsSchema
      *
-     * @desc Retrieves the schema defining app restrictions configurable for this product. All products have a schema, but this may be empty if no app restrictions are defined.
+     * @desc Retrieves the schema that defines the configurable properties for this product. All products have a schema, but this schema may be empty if no managed configurations have been defined. This schema can be used to populate a UI that allows an administrator to configure the product. To apply a managed configuration based on the schema obtained using this API, see Managed Configurations through Play.
      *
      * @alias androidenterprise.products.getAppRestrictionsSchema
      * @memberOf! androidenterprise(v1)
@@ -2220,7 +2535,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.insert
      *
-     * @desc Inserts a new resource into this collection.
+     * @desc Creates a new EMM-managed user.  The Users resource passed in the body of the request should include an accountIdentifier and an accountType.
      *
      * @alias androidenterprise.users.insert
      * @memberOf! androidenterprise(v1)

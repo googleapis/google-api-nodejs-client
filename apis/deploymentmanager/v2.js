@@ -47,16 +47,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Cancels and removes the preview currently associated with the deployment.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -73,11 +74,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'cancelPreview' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -122,16 +126,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Deletes a deployment and all of the resources in the deployment.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -148,10 +153,12 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -195,16 +202,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a specific deployment.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -221,10 +229,12 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -268,16 +278,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Creates a deployment and all of the resources described by the deployment manifest.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -294,9 +305,11 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -341,16 +354,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all deployments for a given project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -367,8 +381,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -421,16 +436,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Updates a deployment and all of the resources described by the deployment manifest. This method supports patch semantics.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -447,11 +463,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -499,16 +518,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -525,11 +545,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'stop' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -574,16 +597,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Updates a deployment and all of the resources described by the deployment manifest.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -600,11 +624,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -656,16 +683,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a specific manifest.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -682,12 +710,15 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
-     *     // The name of the manifest for this request.
+     *
+     *     // * The name of the manifest for this request.
      *     manifest: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -732,16 +763,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all manifests for a given deployment.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -758,10 +790,12 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -819,16 +853,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a specific operation.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -845,10 +880,12 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the operation for this request.
+     *
+     *     // * The name of the operation for this request.
      *     operation: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -892,16 +929,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all operations for a project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -918,8 +956,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -976,16 +1015,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Gets information about a single resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -1002,12 +1042,15 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
-     *     // The name of the resource for this request.
+     *
+     *     // * The name of the resource for this request.
      *     resource_: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1052,16 +1095,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all resources in a given deployment.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -1078,10 +1122,12 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
-     *     // The name of the deployment for this request.
+     *
+     *     // * The name of the deployment for this request.
      *     deployment: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1139,16 +1185,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @desc Lists all resource types for Deployment Manager.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var deploymentmanager = google.deploymentmanager('v2');
      *
@@ -1165,8 +1212,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // The project ID for this request.
+     *     // * The project ID for this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };

@@ -49,16 +49,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -75,9 +76,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
        *
-       *     // Required. The resource name of the log to delete.  Example:
-       *     // `"projects/my-project/logs/syslog"`.
+       *     // * Required. The resource name of the log to delete.  Example:
+       *     //   `"projects/my-project/logs/syslog"`.
        *     logName: "projects/{MY-PROJECT}/logs/{MY-LOG}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -123,16 +125,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Lists sinks.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -149,9 +152,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
        *
-       *     // Required. The resource name containing the sinks.
-       *     // Example: `"projects/my-logging-project"`.
+       *     // * Required. The resource name containing the sinks.
+       *     //   Example: `"projects/my-logging-project"`.
        *     parent: "projects/{MY-PROJECT}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -203,16 +207,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Gets a sink.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -229,9 +234,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
        *
-       *     // The resource name of the sink to return.
-       *     // Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     // * The resource name of the sink to return.
+       *     //   Example: `"projects/my-project-id/sinks/my-sink-id"`.
        *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -274,16 +280,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Creates a sink.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -300,11 +307,13 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
        *
-       *     // The resource in which to create the sink.
-       *     // Example: `"projects/my-project-id"`.
-       *     // The new sink must be provided in the request.
+       *     // * The resource in which to create the sink.
+       *     //   Example: `"projects/my-project-id"`.
+       *     //   The new sink must be provided in the request.
        *     parent: "projects/{MY-PROJECT}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -348,16 +357,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Creates or updates a sink.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -374,13 +384,15 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
        *
-       *     // The resource name of the sink to update.
-       *     // Example: `"projects/my-project-id/sinks/my-sink-id"`.
-       *     // The updated sink must be provided in the request and have the
-       *     // same name that is specified in `sinkName`.  If the sink does not
-       *     // exist, it is created.
+       *     // * The resource name of the sink to update.
+       *     //   Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     //   The updated sink must be provided in the request and have the
+       *     //   same name that is specified in `sinkName`.  If the sink does not
+       *     //   exist, it is created.
        *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -424,16 +436,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Deletes a sink.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -450,9 +463,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
        *
-       *     // The resource name of the sink to delete.
-       *     // Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     // * The resource name of the sink to delete.
+       *     //   Example: `"projects/my-project-id/sinks/my-sink-id"`.
        *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -498,16 +512,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Lists logs-based metrics.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -524,9 +539,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
        *
-       *     // Required. The resource name containing the metrics.
-       *     // Example: `"projects/my-project-id"`.
+       *     // * Required. The resource name containing the metrics.
+       *     //   Example: `"projects/my-project-id"`.
        *     parent: "projects/{MY-PROJECT}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -578,16 +594,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Gets a logs-based metric.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -604,9 +621,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
        *
-       *     // The resource name of the desired metric.
-       *     // Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       *     // * The resource name of the desired metric.
+       *     //   Example: `"projects/my-project-id/metrics/my-metric-id"`.
        *     metricName: "projects/{MY-PROJECT}/metrics/{MY-METRIC}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -649,16 +667,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Creates a logs-based metric.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -675,11 +694,13 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
        *
-       *     // The resource name of the project in which to create the metric.
-       *     // Example: `"projects/my-project-id"`.
-       *     // The new metric must be provided in the request.
+       *     // * The resource name of the project in which to create the metric.
+       *     //   Example: `"projects/my-project-id"`.
+       *     //   The new metric must be provided in the request.
        *     parent: "projects/{MY-PROJECT}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -723,16 +744,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Creates or updates a logs-based metric.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -749,13 +771,15 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
        *
-       *     // The resource name of the metric to update.
-       *     // Example: `"projects/my-project-id/metrics/my-metric-id"`.
-       *     // The updated metric must be provided in the request and have the
-       *     // same identifier that is specified in `metricName`.
-       *     // If the metric does not exist, it is created.
+       *     // * The resource name of the metric to update.
+       *     //   Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       *     //   The updated metric must be provided in the request and have the
+       *     //   same identifier that is specified in `metricName`.
+       *     //   If the metric does not exist, it is created.
        *     metricName: "projects/{MY-PROJECT}/metrics/{MY-METRIC}",
+       *
        *     resource: {},
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -799,16 +823,17 @@ function Logging(options) { // eslint-disable-line
        * @desc Deletes a logs-based metric.
        *
        * @example
-       * // PRE-REQUISITES:
+       * // BEFORE RUNNING:
        * // ---------------
        * // 1. If not already done, enable the Google Cloud Logging API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for Auth.
+       * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
        * var logging = google.logging('v2beta1');
        *
@@ -825,9 +850,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
        *
-       *     // The resource name of the metric to delete.
-       *     // Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       *     // * The resource name of the metric to delete.
+       *     //   Example: `"projects/my-project-id/metrics/my-metric-id"`.
        *     metricName: "projects/{MY-PROJECT}/metrics/{MY-METRIC}",
+       *
        *     // Auth client
        *     auth: authClient
        *   };
@@ -874,16 +900,17 @@ function Logging(options) { // eslint-disable-line
      * @desc Writes log entries to Cloud Logging. All log entries in Cloud Logging are written by this method.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Logging API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var logging = google.logging('v2beta1');
      *
@@ -901,6 +928,7 @@ function Logging(options) { // eslint-disable-line
      *     // TODO: Change placeholders below to appropriate parameter values for the 'write' method:
      *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -943,16 +971,17 @@ function Logging(options) { // eslint-disable-line
      * @desc Lists log entries. Use this method to retrieve log entries from Cloud Logging. For ways to export log entries, see [Exporting Logs](/logging/docs/export).
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Logging API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var logging = google.logging('v2beta1');
      *
@@ -970,6 +999,7 @@ function Logging(options) { // eslint-disable-line
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1023,16 +1053,17 @@ function Logging(options) { // eslint-disable-line
      * @desc Lists monitored resource descriptors that are used by Cloud Logging.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Logging API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var logging = google.logging('v2beta1');
      *

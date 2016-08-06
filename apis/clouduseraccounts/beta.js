@@ -47,16 +47,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Deletes the specified operation resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -73,10 +74,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the Operations resource to delete.
+     *
+     *     // * Name of the Operations resource to delete.
      *     operation: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -120,16 +123,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Retrieves the specified operation resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -146,10 +150,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the Operations resource to return.
+     *
+     *     // * Name of the Operations resource to return.
      *     operation: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -193,16 +199,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Retrieves the list of operation resources contained within the specified project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -219,8 +226,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -278,16 +286,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Adds users to the specified group.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -304,11 +313,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'addMember' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the group for this request.
+     *
+     *     // * Name of the group for this request.
      *     groupName: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -353,16 +365,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Deletes the specified Group resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -379,10 +392,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the Group resource to delete.
+     *
+     *     // * Name of the Group resource to delete.
      *     groupName: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -426,16 +441,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Returns the specified Group resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -452,10 +468,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the Group resource to return.
+     *
+     *     // * Name of the Group resource to return.
      *     groupName: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -499,16 +517,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Creates a Group resource in the specified project using the data included in the request.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -525,9 +544,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -571,16 +592,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Retrieves the list of groups contained within the specified project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -597,8 +619,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -652,16 +675,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Removes users from the specified group.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -678,11 +702,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'removeMember' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the group for this request.
+     *
+     *     // * Name of the group for this request.
      *     groupName: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -731,16 +758,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Returns a list of authorized public keys for a specific user account.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -757,14 +785,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'getAuthorizedKeysView' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the zone for this request.
+     *
+     *     // * Name of the zone for this request.
      *     zone: "",
-     *     // The user account for which you want to get a list of authorized public keys.
+     *
+     *     // * The user account for which you want to get a list of authorized public keys.
      *     user: "",
-     *     // The fully-qualified URL of the virtual machine requesting the view.
+     *
+     *     // * The fully-qualified URL of the virtual machine requesting the view.
      *     instance: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -811,16 +843,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Retrieves a list of user accounts for an instance within a specific project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -837,12 +870,15 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'getLinuxAccountViews' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the zone for this request.
+     *
+     *     // * Name of the zone for this request.
      *     zone: "",
-     *     // The fully-qualified URL of the virtual machine requesting the views.
+     *
+     *     // * The fully-qualified URL of the virtual machine requesting the views.
      *     instance: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -895,16 +931,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Adds a public key to the specified User resource with the data included in the request.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -921,11 +958,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'addPublicKey' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the user for this request.
+     *
+     *     // * Name of the user for this request.
      *     user: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -970,16 +1010,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Deletes the specified User resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -996,10 +1037,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the user resource to delete.
+     *
+     *     // * Name of the user resource to delete.
      *     user: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1043,16 +1086,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Returns the specified User resource.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -1069,10 +1113,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the user resource to return.
+     *
+     *     // * Name of the user resource to return.
      *     user: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1116,16 +1162,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Creates a User resource in the specified project using the data included in the request.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -1142,9 +1189,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
+     *
      *     resource: {},
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1188,16 +1237,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Retrieves a list of users contained within the specified project.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -1214,8 +1264,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
@@ -1269,16 +1320,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @desc Removes the specified public key from the user.
      *
      * @example
-     * // PRE-REQUISITES:
+     * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for Auth.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run 'gcloud auth application-default login'
-     * // 3. To install the client library and Application Default Credentials library, run:
-     * //    'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
      * var clouduseraccounts = google.clouduseraccounts('beta');
      *
@@ -1295,13 +1347,16 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *   var request = {
      *     // TODO: Change placeholders below to appropriate parameter values for the 'removePublicKey' method:
      *
-     *     // Project ID for this request.
+     *     // * Project ID for this request.
      *     project: "",
-     *     // Name of the user for this request.
+     *
+     *     // * Name of the user for this request.
      *     user: "",
-     *     // The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which
-     *     // is defined by RFC4716 to be the MD5 digest of the public key.
+     *
+     *     // * The fingerprint of the public key to delete. Public keys are identified by their fingerprint,
+     *     //   which is defined by RFC4716 to be the MD5 digest of the public key.
      *     fingerprint: "",
+     *
      *     // Auth client
      *     auth: authClient
      *   };
