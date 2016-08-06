@@ -63,7 +63,7 @@
     "async": "~1.5.2",
     "gapitoken": "~0.1.5",
     "google-auth-library": "~0.9.7",
-    "request": "~2.72.0",
+    "request": "^2.74.0",
     "string-template": "~1.0.0",
     "url": "^0.11.0"
   },
