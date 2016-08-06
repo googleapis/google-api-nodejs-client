@@ -53,7 +53,7 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.projectName The project name of the resource view.
      * @param {string} params.region The region name of the resource view.
      * @param {string} params.resourceViewName The name of the resource view.
-     * @param {object} params.resource Request body data
+     * @param {resourceviews(v1beta1).RegionViewsAddResourcesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -143,7 +143,7 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectName The project name of the resource view.
      * @param {string} params.region The region name of the resource view.
-     * @param {object} params.resource Request body data
+     * @param {resourceviews(v1beta1).ResourceView} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -237,7 +237,7 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.projectName The project name of the resource view.
      * @param {string} params.region The region name of the resource view.
      * @param {string} params.resourceViewName The name of the resource view.
-     * @param {object} params.resource Request body data
+     * @param {resourceviews(v1beta1).RegionViewsRemoveResourcesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -272,7 +272,7 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.projectName The project name of the resource view.
      * @param {string} params.resourceViewName The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
-     * @param {object} params.resource Request body data
+     * @param {resourceviews(v1beta1).ZoneViewsAddResourcesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -362,7 +362,7 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectName The project name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
-     * @param {object} params.resource Request body data
+     * @param {resourceviews(v1beta1).ResourceView} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -456,7 +456,7 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.projectName The project name of the resource view.
      * @param {string} params.resourceViewName The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
-     * @param {object} params.resource Request body data
+     * @param {resourceviews(v1beta1).ZoneViewsRemoveResourcesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -478,4 +478,90 @@ function Resourceviews(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Label
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string} key Key of the label.
+ * @property {string} value Value of the label.
+ */
+/**
+ * @typedef RegionViewsAddResourcesRequest
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string[]} resources The list of resources to be added.
+ */
+/**
+ * @typedef RegionViewsInsertResponse
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {resourceviews(v1beta1).ResourceView} resource The resource view object inserted.
+ */
+/**
+ * @typedef RegionViewsListResourcesResponse
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string[]} members The resources in the view.
+ * @property {string} nextPageToken A token used for pagination.
+ */
+/**
+ * @typedef RegionViewsListResponse
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string} nextPageToken A token used for pagination.
+ * @property {resourceviews(v1beta1).ResourceView[]} resourceViews The list of resource views that meet the criteria.
+ */
+/**
+ * @typedef RegionViewsRemoveResourcesRequest
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string[]} resources The list of resources to be removed.
+ */
+/**
+ * @typedef ResourceView
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string} creationTime The creation time of the resource view.
+ * @property {string} description The detailed description of the resource view.
+ * @property {string} id [Output Only] The ID of the resource view.
+ * @property {string} kind Type of the resource.
+ * @property {resourceviews(v1beta1).Label[]} labels The labels for events.
+ * @property {string} lastModified The last modified time of the view. Not supported yet.
+ * @property {string[]} members A list of all resources in the resource view.
+ * @property {string} name The name of the resource view.
+ * @property {integer} numMembers The total number of resources in the resource view.
+ * @property {string} selfLink [Output Only] A self-link to the resource view.
+ */
+/**
+ * @typedef ZoneViewsAddResourcesRequest
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string[]} resources The list of resources to be added.
+ */
+/**
+ * @typedef ZoneViewsInsertResponse
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {resourceviews(v1beta1).ResourceView} resource The resource view object that has been inserted.
+ */
+/**
+ * @typedef ZoneViewsListResourcesResponse
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string[]} members The full URL of resources in the view.
+ * @property {string} nextPageToken A token used for pagination.
+ */
+/**
+ * @typedef ZoneViewsListResponse
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string} nextPageToken A token used for pagination.
+ * @property {resourceviews(v1beta1).ResourceView[]} resourceViews The result that contains all resource views that meet the criteria.
+ */
+/**
+ * @typedef ZoneViewsRemoveResourcesRequest
+ * @memberOf! resourceviews(v1beta1)
+ * @type object
+ * @property {string[]} resources The list of resources to be removed.
+ */
 module.exports = Resourceviews;

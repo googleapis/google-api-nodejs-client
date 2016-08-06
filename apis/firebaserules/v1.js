@@ -52,7 +52,7 @@ function Firebaserules(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the project.  Format: `projects/{project_id}`
-     * @param {object} params.resource Request body data
+     * @param {firebaserules(v1).TestRulesetRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -83,7 +83,7 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for Project which owns this `Ruleset`.  Format: `projects/{project_id}`
-       * @param {object} params.resource Request body data
+       * @param {firebaserules(v1).Ruleset} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -201,7 +201,7 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the `Release`.  `Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great deal of flexibility in mapping the name to the style that best fits their existing development practices. For example, a name could refer to an environment, an app, a version, or some combination of three.  In the table below, for the project name `projects/foo`, the following relative release paths show how flat and structured names might be chosen to match a desired development / deployment strategy.  Use Case     | Flat Name           | Structured Name -------------|---------------------|---------------- Environments | releases/qa         | releases/qa Apps         | releases/app1_qa    | releases/app1/qa Versions     | releases/app1_v2_qa | releases/app1/v2/qa  The delimiter between the release name path elements can be almost anything and it should work equally well with the release name list filter, but in many ways the structured paths provide a clearer picture of the relationship between `Release` instances.  Format: `projects/{project_id}/releases/{release_id}`
-       * @param {object} params.resource Request body data
+       * @param {firebaserules(v1).Release} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -230,7 +230,7 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
-       * @param {object} params.resource Request body data
+       * @param {firebaserules(v1).Release} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -339,4 +339,114 @@ function Firebaserules(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Release
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {string} updateTime Time the release was updated.
+@OutputOnly
+* @property {string} createTime Time the release was created.
+@OutputOnly
+* @property {string} name Resource name for the `Release`.
+
+`Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2`
+which affords developers a great deal of flexibility in mapping the name
+to the style that best fits their existing development practices. For
+example, a name could refer to an environment, an app, a version, or some
+combination of three.
+
+In the table below, for the project name `projects/foo`, the following
+relative release paths show how flat and structured names might be chosen
+to match a desired development / deployment strategy.
+
+Use Case     | Flat Name           | Structured Name
+-------------|---------------------|----------------
+Environments | releases/qa         | releases/qa
+Apps         | releases/app1_qa    | releases/app1/qa
+Versions     | releases/app1_v2_qa | releases/app1/v2/qa
+
+The delimiter between the release name path elements can be almost anything
+and it should work equally well with the release name list filter, but in
+many ways the structured paths provide a clearer picture of the
+relationship between `Release` instances.
+
+Format: `projects/{project_id}/releases/{release_id}`
+* @property {string} rulesetName Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must
+exist the `Release` to be created.
+*/
+/**
+ * @typedef Source
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).File[]} files `File` set constituting the `Source` bundle.
+ */
+/**
+ * @typedef SourcePosition
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {string} fileName Name of the `File`.
+ * @property {integer} column First column on the source line associated with the source fragment.
+ * @property {integer} line Line number of the source fragment. 1-based.
+ */
+/**
+ * @typedef TestRulesetResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {firebaserules(v1).Issue[]} issues Syntactic and semantic `Source` issues of varying severity. Issues of
+`ERROR` severity will prevent tests from executing.
+*/
+/**
+ * @typedef Ruleset
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {firebaserules(v1).Source} source `Source` for the `Ruleset`.
+* @property {string} createTime Time the `Ruleset` was created.
+@OutputOnly
+* @property {string} name Name of the `Ruleset`. The ruleset_id is auto generated by the service.
+Format: `projects/{project_id}/rulesets/{ruleset_id}`
+@OutputOnly
+*/
+/**
+ * @typedef ListReleasesResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
+empty, no further results remain.
+* @property {firebaserules(v1).Release[]} releases List of `Release` instances.
+*/
+/**
+ * @typedef ListRulesetsResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {firebaserules(v1).Ruleset[]} rulesets List of `Ruleset` instances.
+* @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
+empty, no further results remain.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! firebaserules(v1)
+ * @type object
+ */
+/**
+ * @typedef File
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {string} content Textual Content.
+ * @property {string} name File name.
+ * @property {string} fingerprint Fingerprint (e.g. github sha) associated with the `File`.
+ */
+/**
+ * @typedef TestRulesetRequest
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).Source} source `Source` to be checked for correctness.
+ */
+/**
+ * @typedef Issue
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {string} description Short error description.
+ * @property {string} severity The severity of the issue.
+ * @property {firebaserules(v1).SourcePosition} sourcePosition Position of the issue in the `Source`.
+ */
 module.exports = Firebaserules;

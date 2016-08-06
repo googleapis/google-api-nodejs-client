@@ -106,7 +106,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -135,7 +135,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -257,7 +257,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -287,7 +287,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -348,7 +348,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.3)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).Creative} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -566,7 +566,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to insert the pretargeting config for.
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -624,7 +624,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -654,7 +654,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -676,4 +676,184 @@ function Adexchangebuyer(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Account
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {object[]} bidderLocation Your bidder locations that have distinct URLs.
+ * @property {string} cookieMatchingNid The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this.
+ * @property {string} cookieMatchingUrl The base URL used in cookie match requests.
+ * @property {integer} id Account id.
+ * @property {string} kind Resource type.
+ * @property {integer} maximumActiveCreatives The maximum number of active creatives that an account can have, where a creative is active if it was inserted or bid with in the last 30 days. Please contact your technical account manager if you need to change this.
+ * @property {integer} maximumTotalQps The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
+ * @property {integer} numberActiveCreatives The number of creatives that this account inserted or bid with in the last 30 days.
+ */
+/**
+ * @typedef AccountsList
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {adexchangebuyer(v1.3).Account[]} items A list of accounts.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef BillingInfo
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {integer} accountId Account id.
+ * @property {string} accountName Account name.
+ * @property {string[]} billingId A list of adgroup IDs associated with this particular account. These IDs may show up as part of a realtime bidding BidRequest, which indicates a bid request for this account.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef BillingInfoList
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {adexchangebuyer(v1.3).BillingInfo[]} items A list of billing info relevant for your account.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef Budget
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {string} accountId The id of the account. This is required for get and update requests.
+ * @property {string} billingId The billing id to determine which adgroup to provide budget information for. This is required for get and update requests.
+ * @property {string} budgetAmount The daily budget amount in unit amount of the account currency to apply for the billingId provided. This is required for update requests.
+ * @property {string} currencyCode The currency code for the buyer. This cannot be altered here.
+ * @property {string} id The unique id that describes this item.
+ * @property {string} kind The kind of the resource, i.e. &quot;adexchangebuyer#budget&quot;.
+ */
+/**
+ * @typedef Creative
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {string} HTMLSnippet The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
+ * @property {integer} accountId Account id.
+ * @property {string[]} advertiserId Detected advertiser id, if any. Read-only. This field should not be set in requests.
+ * @property {string} advertiserName The name of the company being advertised in the creative.
+ * @property {string} agencyId The agency id for this creative.
+ * @property {string} apiUploadTimestamp The last upload timestamp of this creative if it was uploaded via API. Read-only. The value of this field is generated, and will be ignored for uploads. (formatted RFC 3339 timestamp).
+ * @property {integer[]} attribute All attributes for the ads that may be shown from this snippet.
+ * @property {string} buyerCreativeId A buyer-specific id identifying the creative in this ad.
+ * @property {string[]} clickThroughUrl The set of destination urls for the snippet.
+ * @property {object[]} corrections Shows any corrections that were applied to this creative. Read-only. This field should not be set in requests.
+ * @property {object[]} disapprovalReasons The reasons for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.
+ * @property {object} filteringReasons The filtering reasons for the creative. Read-only. This field should not be set in requests.
+ * @property {integer} height Ad height.
+ * @property {string[]} impressionTrackingUrl The set of urls to be called to record an impression.
+ * @property {string} kind Resource type.
+ * @property {object} nativeAd If nativeAd is set, HTMLSnippet and videoURL should not be set.
+ * @property {integer[]} productCategories Detected product categories, if any. Read-only. This field should not be set in requests.
+ * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet.
+ * @property {integer[]} sensitiveCategories Detected sensitive categories, if any. Read-only. This field should not be set in requests.
+ * @property {string} status Creative serving status. Read-only. This field should not be set in requests.
+ * @property {integer[]} vendorType All vendor types for the ads that may be shown from this snippet.
+ * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
+ * @property {string} videoURL The url to fetch a video ad. If set, HTMLSnippet should not be set.
+ * @property {integer} width Ad width.
+ */
+/**
+ * @typedef CreativesList
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {adexchangebuyer(v1.3).Creative[]} items A list of creatives.
+ * @property {string} kind Resource type.
+ * @property {string} nextPageToken Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef DirectDeal
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {integer} accountId The account id of the buyer this deal is for.
+ * @property {string} advertiser The name of the advertiser this deal is for.
+ * @property {boolean} allowsAlcohol Whether the publisher for this deal is eligible for alcohol ads.
+ * @property {string} buyerAccountId The account id that this deal was negotiated for. It is either the buyer or the client that this deal was negotiated on behalf of.
+ * @property {string} currencyCode The currency code that applies to the fixed_cpm value. If not set then assumed to be USD.
+ * @property {string} dealTier The deal type such as programmatic reservation or fixed price and so on.
+ * @property {string} endTime End time for when this deal stops being active. If not set then this deal is valid until manually disabled by the publisher. In seconds since the epoch.
+ * @property {string} fixedCpm The fixed price for this direct deal. In cpm micros of currency according to currency_code. If set, then this deal is eligible for the fixed price tier of buying (highest priority, pay exactly the configured fixed price).
+ * @property {string} id Deal id.
+ * @property {string} kind Resource type.
+ * @property {string} name Deal name.
+ * @property {string} privateExchangeMinCpm The minimum price for this direct deal. In cpm micros of currency according to currency_code. If set, then this deal is eligible for the private exchange tier of buying (below fixed price priority, run as a second price auction).
+ * @property {boolean} publisherBlocksOverriden If true, the publisher has opted to have their blocks ignored when a creative is bid with for this deal.
+ * @property {string} sellerNetwork The name of the publisher offering this direct deal.
+ * @property {string} startTime Start time for when this deal becomes active. If not set then this deal is active immediately upon creation. In seconds since the epoch.
+ */
+/**
+ * @typedef DirectDealsList
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {adexchangebuyer(v1.3).DirectDeal[]} directDeals A list of direct deals relevant for your account.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef PerformanceReport
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {number} bidRate The number of bid responses with an ad.
+ * @property {number} bidRequestRate The number of bid requests sent to your bidder.
+ * @property {any[]} calloutStatusRate Rate of various prefiltering statuses per match. Please refer to the callout-status-codes.txt file for different statuses.
+ * @property {any[]} cookieMatcherStatusRate Average QPS for cookie matcher operations.
+ * @property {any[]} creativeStatusRate Rate of ads with a given status. Please refer to the creative-status-codes.txt file for different statuses.
+ * @property {number} filteredBidRate The number of bid responses that were filtered due to a policy violation or other errors.
+ * @property {any[]} hostedMatchStatusRate Average QPS for hosted match operations.
+ * @property {number} inventoryMatchRate The number of potential queries based on your pretargeting settings.
+ * @property {string} kind Resource type.
+ * @property {number} latency50thPercentile The 50th percentile round trip latency(ms) as perceived from Google servers for the duration period covered by the report.
+ * @property {number} latency85thPercentile The 85th percentile round trip latency(ms) as perceived from Google servers for the duration period covered by the report.
+ * @property {number} latency95thPercentile The 95th percentile round trip latency(ms) as perceived from Google servers for the duration period covered by the report.
+ * @property {number} noQuotaInRegion Rate of various quota account statuses per quota check.
+ * @property {number} outOfQuota Rate of various quota account statuses per quota check.
+ * @property {number} pixelMatchRequests Average QPS for pixel match requests from clients.
+ * @property {number} pixelMatchResponses Average QPS for pixel match responses from clients.
+ * @property {number} quotaConfiguredLimit The configured quota limits for this account.
+ * @property {number} quotaThrottledLimit The throttled quota limits for this account.
+ * @property {string} region The trading location of this data.
+ * @property {number} successfulRequestRate The number of properly formed bid responses received by our servers within the deadline.
+ * @property {string} timestamp The unix timestamp of the starting time of this performance data.
+ * @property {number} unsuccessfulRequestRate The number of bid responses that were unsuccessful due to timeouts, incorrect formatting, etc.
+ */
+/**
+ * @typedef PerformanceReportList
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {string} kind Resource type.
+ * @property {adexchangebuyer(v1.3).PerformanceReport[]} performanceReport A list of performance reports relevant for the account.
+ */
+/**
+ * @typedef PretargetingConfig
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {string} billingId The id for billing purposes, provided for reference. Leave this field blank for insert requests; the id will be generated automatically.
+ * @property {string} configId The config id; generated automatically. Leave this field blank for insert requests.
+ * @property {string} configName The name of the config. Must be unique. Required for all requests.
+ * @property {string[]} creativeType List must contain exactly one of PRETARGETING_CREATIVE_TYPE_HTML or PRETARGETING_CREATIVE_TYPE_VIDEO.
+ * @property {object[]} dimensions Requests which allow one of these (width, height) pairs will match. All pairs must be supported ad dimensions.
+ * @property {string[]} excludedContentLabels Requests with any of these content labels will not match. Values are from content-labels.txt in the downloadable files section.
+ * @property {string[]} excludedGeoCriteriaIds Requests containing any of these geo criteria ids will not match.
+ * @property {object[]} excludedPlacements Requests containing any of these placements will not match.
+ * @property {string[]} excludedUserLists Requests containing any of these users list ids will not match.
+ * @property {string[]} excludedVerticals Requests containing any of these vertical ids will not match. Values are from the publisher-verticals.txt file in the downloadable files section.
+ * @property {string[]} geoCriteriaIds Requests containing any of these geo criteria ids will match.
+ * @property {boolean} isActive Whether this config is active. Required for all requests.
+ * @property {string} kind The kind of the resource, i.e. &quot;adexchangebuyer#pretargetingConfig&quot;.
+ * @property {string[]} languages Request containing any of these language codes will match.
+ * @property {string[]} mobileCarriers Requests containing any of these mobile carrier ids will match. Values are from mobile-carriers.csv in the downloadable files section.
+ * @property {string[]} mobileDevices Requests containing any of these mobile device ids will match. Values are from mobile-devices.csv in the downloadable files section.
+ * @property {string[]} mobileOperatingSystemVersions Requests containing any of these mobile operating system version ids will match. Values are from mobile-os.csv in the downloadable files section.
+ * @property {object[]} placements Requests containing any of these placements will match.
+ * @property {string[]} platforms Requests matching any of these platforms will match. Possible values are PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and PRETARGETING_PLATFORM_TABLET.
+ * @property {string[]} supportedCreativeAttributes Creative attributes should be declared here if all creatives corresponding to this pretargeting configuration have that creative attribute. Values are from pretargetable-creative-attributes.txt in the downloadable files section.
+ * @property {string[]} userLists Requests containing any of these user list ids will match.
+ * @property {string[]} vendorTypes Requests that allow any of these vendor ids will match. Values are from vendors.txt in the downloadable files section.
+ * @property {string[]} verticals Requests containing any of these vertical ids will match.
+ */
+/**
+ * @typedef PretargetingConfigList
+ * @memberOf! adexchangebuyer(v1.3)
+ * @type object
+ * @property {adexchangebuyer(v1.3).PretargetingConfig[]} items A list of pretargeting configs
+ * @property {string} kind Resource type.
+ */
 module.exports = Adexchangebuyer;

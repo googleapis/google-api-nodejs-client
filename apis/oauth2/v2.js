@@ -160,4 +160,40 @@ function Oauth2(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Jwk
+ * @memberOf! oauth2(v2)
+ * @type object
+ * @property {object[]} keys 
+ */
+/**
+ * @typedef Tokeninfo
+ * @memberOf! oauth2(v2)
+ * @type object
+ * @property {string} access_type The access type granted with this token. It can be offline or online.
+ * @property {string} audience Who is the intended audience for this token. In general the same as issued_to.
+ * @property {string} email The email address of the user. Present only if the email scope is present in the request.
+ * @property {integer} expires_in The expiry time of the token, as number of seconds left until expiry.
+ * @property {string} issued_to To whom was the token issued to. In general the same as audience.
+ * @property {string} scope The space separated list of scopes granted to this token.
+ * @property {string} token_handle The token handle associated with this token.
+ * @property {string} user_id The obfuscated user id.
+ * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request.
+ */
+/**
+ * @typedef Userinfoplus
+ * @memberOf! oauth2(v2)
+ * @type object
+ * @property {string} email The user&#39;s email address.
+ * @property {string} family_name The user&#39;s last name.
+ * @property {string} gender The user&#39;s gender.
+ * @property {string} given_name The user&#39;s first name.
+ * @property {string} hd The hosted domain e.g. example.com if the user is Google apps user.
+ * @property {string} id The obfuscated ID of the user.
+ * @property {string} link URL of the profile page.
+ * @property {string} locale The user&#39;s preferred locale.
+ * @property {string} name The user&#39;s full name.
+ * @property {string} picture URL of the user&#39;s picture image.
+ * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
+ */
 module.exports = Oauth2;

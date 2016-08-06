@@ -49,7 +49,7 @@ function Prediction(options) { // eslint-disable-line
    *
    * @param {object} params Parameters for request
    * @param {string} params.data mybucket%2Fmydata resource in Google Storage
-   * @param {object} params.resource Request body data
+   * @param {prediction(v1.2).Input} params.resource Request body data
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
@@ -80,7 +80,7 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.hostedModelName The name of a hosted model
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.2).Input} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -169,7 +169,7 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.data mybucket/mydata resource in Google Storage
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.2).Training} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -198,7 +198,7 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.data mybucket/mydata resource in Google Storage
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.2).Update} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -220,4 +220,38 @@ function Prediction(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Input
+ * @memberOf! prediction(v1.2)
+ * @type object
+ * @property {object} input 
+ */
+/**
+ * @typedef Output
+ * @memberOf! prediction(v1.2)
+ * @type object
+ * @property {string} id 
+ * @property {string} kind 
+ * @property {string} outputLabel 
+ * @property {object[]} outputMulti 
+ * @property {number} outputValue 
+ * @property {string} selfLink 
+ */
+/**
+ * @typedef Training
+ * @memberOf! prediction(v1.2)
+ * @type object
+ * @property {string} id 
+ * @property {string} kind 
+ * @property {object} modelInfo 
+ * @property {string} selfLink 
+ * @property {string} trainingStatus 
+ */
+/**
+ * @typedef Update
+ * @memberOf! prediction(v1.2)
+ * @type object
+ * @property {string} classLabel The true class label of this instance
+ * @property {any[]} csvInstance The input features for this instance
+ */
 module.exports = Prediction;

@@ -51,7 +51,7 @@ function Webmasters(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} params.resource Request body data
+     * @param {webmasters(v3).SearchAnalyticsQueryRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -439,4 +439,138 @@ function Webmasters(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ApiDataRow
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {number} clicks 
+ * @property {number} ctr 
+ * @property {number} impressions 
+ * @property {string[]} keys 
+ * @property {number} position 
+ */
+/**
+ * @typedef ApiDimensionFilter
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} dimension 
+ * @property {string} expression 
+ * @property {string} operator 
+ */
+/**
+ * @typedef ApiDimensionFilterGroup
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {webmasters(v3).ApiDimensionFilter[]} filters 
+ * @property {string} groupType 
+ */
+/**
+ * @typedef SearchAnalyticsQueryRequest
+ * @memberOf! webmasters(v3)
+ * @type object
+* @property {string} aggregationType [Optional; Default is &quot;auto&quot;] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.
+
+Note: If you group or filter by page, you cannot aggregate by property.
+
+If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
+* @property {webmasters(v3).ApiDimensionFilterGroup[]} dimensionFilterGroups [Optional] Zero or more filters to apply to the dimension grouping values; for example, &#39;query contains &quot;buy&quot;&#39; to see only data where the query string contains the substring &quot;buy&quot; (not case-sensitive). You can filter by a dimension without grouping by it.
+* @property {string[]} dimensions [Optional] Zero or more dimensions to group results by. Dimensions are the group-by values in the Search Analytics page. Dimensions are combined to create a unique row key for each row. Results are grouped in the order that you supply these dimensions.
+* @property {string} endDate [Required] End date of the requested date range, in YYYY-MM-DD format, in PST (UTC - 8:00). Must be greater than or equal to the start date. This value is included in the range.
+* @property {integer} rowLimit [Optional; Default is 1000] The maximum number of rows to return. Must be a number from 1 to 5,000 (inclusive).
+* @property {string} searchType [Optional; Default is &quot;web&quot;] The search type to filter for.
+* @property {string} startDate [Required] Start date of the requested date range, in YYYY-MM-DD format, in PST time (UTC - 8:00). Must be less than or equal to the end date. This value is included in the range.
+* @property {integer} startRow [Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number.
+*/
+/**
+ * @typedef SearchAnalyticsQueryResponse
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} responseAggregationType How the results were aggregated.
+ * @property {webmasters(v3).ApiDataRow[]} rows A list of rows grouped by the key values in the order given in the query.
+ */
+/**
+ * @typedef SitemapsListResponse
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {webmasters(v3).WmxSitemap[]} sitemap Contains detailed information about a specific URL submitted as a sitemap.
+ */
+/**
+ * @typedef SitesListResponse
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {webmasters(v3).WmxSite[]} siteEntry Contains permission level information about a Search Console site. For more information, see Permissions in Search Console.
+ */
+/**
+ * @typedef UrlCrawlErrorCount
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} count The error count at the given timestamp.
+ * @property {string} timestamp The date and time when the crawl attempt took place, in RFC 3339 format.
+ */
+/**
+ * @typedef UrlCrawlErrorCountsPerType
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} category The crawl error type.
+ * @property {webmasters(v3).UrlCrawlErrorCount[]} entries The error count entries time series.
+ * @property {string} platform The general type of Googlebot that made the request (see list of Googlebot user-agents for the user-agents used).
+ */
+/**
+ * @typedef UrlCrawlErrorsCountsQueryResponse
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {webmasters(v3).UrlCrawlErrorCountsPerType[]} countPerTypes The time series of the number of URL crawl errors per error category and platform.
+ */
+/**
+ * @typedef UrlCrawlErrorsSample
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} first_detected The time the error was first detected, in RFC 3339 format.
+ * @property {string} last_crawled The time when the URL was last crawled, in RFC 3339 format.
+ * @property {string} pageUrl The URL of an error, relative to the site.
+ * @property {integer} responseCode The HTTP response code, if any.
+ * @property {webmasters(v3).UrlSampleDetails} urlDetails Additional details about the URL, set only when calling get().
+ */
+/**
+ * @typedef UrlCrawlErrorsSamplesListResponse
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {webmasters(v3).UrlCrawlErrorsSample[]} urlCrawlErrorSample Information about the sample URL and its crawl error.
+ */
+/**
+ * @typedef UrlSampleDetails
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string[]} containingSitemaps List of sitemaps pointing at this URL.
+ * @property {string[]} linkedFromUrls A sample set of URLs linking to this URL.
+ */
+/**
+ * @typedef WmxSite
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} permissionLevel The user&#39;s permission level for the site.
+ * @property {string} siteUrl The URL of the site.
+ */
+/**
+ * @typedef WmxSitemap
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {webmasters(v3).WmxSitemapContent[]} contents The various content types in the sitemap.
+ * @property {string} errors Number of errors in the sitemap. These are issues with the sitemap itself that need to be fixed before it can be processed correctly.
+ * @property {boolean} isPending If true, the sitemap has not been processed.
+ * @property {boolean} isSitemapsIndex If true, the sitemap is a collection of sitemaps.
+ * @property {string} lastDownloaded Date &amp; time in which this sitemap was last downloaded. Date format is in RFC 3339 format (yyyy-mm-dd).
+ * @property {string} lastSubmitted Date &amp; time in which this sitemap was submitted. Date format is in RFC 3339 format (yyyy-mm-dd).
+ * @property {string} path The url of the sitemap.
+ * @property {string} type The type of the sitemap. For example: rssFeed.
+ * @property {string} warnings Number of warnings for the sitemap. These are generally non-critical issues with URLs in the sitemaps.
+ */
+/**
+ * @typedef WmxSitemapContent
+ * @memberOf! webmasters(v3)
+ * @type object
+ * @property {string} indexed The number of URLs from the sitemap that were indexed (of the content type).
+ * @property {string} submitted The number of URLs in the sitemap (of the content type).
+ * @property {string} type The specific type of content in this sitemap. For example: web.
+ */
 module.exports = Webmasters;

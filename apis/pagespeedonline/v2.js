@@ -77,4 +77,37 @@ function Pagespeedonline(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef PagespeedApiFormatStringV2
+ * @memberOf! pagespeedonline(v2)
+ * @type object
+ * @property {object[]} args List of arguments for the format string.
+ * @property {string} format A localized format string with {{FOO}} placeholders, where &#39;FOO&#39; is the key of the argument whose value should be substituted. For HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}} and {{END_FOO}} for the argument with key &#39;FOO&#39;.
+ */
+/**
+ * @typedef PagespeedApiImageV2
+ * @memberOf! pagespeedonline(v2)
+ * @type object
+ * @property {string} data Image data base64 encoded.
+ * @property {integer} height Height of screenshot in pixels.
+ * @property {string} key Unique string key, if any, identifying this image.
+ * @property {string} mime_type Mime type of image data (e.g. &quot;image/jpeg&quot;).
+ * @property {object} page_rect The region of the page that is captured by this image, with dimensions measured in CSS pixels.
+ * @property {integer} width Width of screenshot in pixels.
+ */
+/**
+ * @typedef Result
+ * @memberOf! pagespeedonline(v2)
+ * @type object
+ * @property {object} formattedResults Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
+ * @property {string} id Canonicalized and final URL for the document, after following page redirects (if any).
+ * @property {string[]} invalidRules List of rules that were specified in the request, but which the server did not know how to instantiate.
+ * @property {string} kind Kind of result.
+ * @property {object} pageStats Summary statistics for the page, such as number of JavaScript bytes, number of HTML bytes, etc.
+ * @property {integer} responseCode Response code for the document. 200 indicates a normal page load. 4xx/5xx indicates an error.
+ * @property {object} ruleGroups A map with one entry for each rule group in these results.
+ * @property {pagespeedonline(v2).PagespeedApiImageV2} screenshot Base64-encoded screenshot of the page that was analyzed.
+ * @property {string} title Title of the page, as displayed in the browser&#39;s title bar.
+ * @property {object} version The version of PageSpeed used to generate these results.
+ */
 module.exports = Pagespeedonline;

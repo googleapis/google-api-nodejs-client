@@ -104,4 +104,13 @@ function Androidpublisher(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef SubscriptionPurchase
+ * @memberOf! androidpublisher(v1)
+ * @type object
+ * @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
+ * @property {string} initiationTimestampMsec Time at which the subscription was granted, in milliseconds since the Epoch.
+ * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
+ * @property {string} validUntilTimestampMsec Time at which the subscription will expire, in milliseconds since the Epoch.
+ */
 module.exports = Androidpublisher;

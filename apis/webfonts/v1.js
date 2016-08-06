@@ -72,4 +72,24 @@ function Webfonts(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Webfont
+ * @memberOf! webfonts(v1)
+ * @type object
+ * @property {string} category The category of the font.
+ * @property {string} family The name of the font.
+ * @property {object} files The font files (with all supported scripts) for each one of the available variants, as a key : value map.
+ * @property {string} kind This kind represents a webfont object in the webfonts service.
+ * @property {string} lastModified The date (format &quot;yyyy-MM-dd&quot;) the font was modified for the last time.
+ * @property {string[]} subsets The scripts supported by the font.
+ * @property {string[]} variants The available variants for the font.
+ * @property {string} version The font version.
+ */
+/**
+ * @typedef WebfontList
+ * @memberOf! webfonts(v1)
+ * @type object
+ * @property {webfonts(v1).Webfont[]} items The list of fonts currently served by the Google Fonts API.
+ * @property {string} kind This kind represents a list of webfont objects in the webfonts service.
+ */
 module.exports = Webfonts;

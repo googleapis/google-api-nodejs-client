@@ -78,4 +78,12 @@ function Kgsearch(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef SearchResponse
+ * @memberOf! kgsearch(v1)
+ * @type object
+ * @property {any} context The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions.
+ * @property {any} type The schema type of top-level JSON-LD object, e.g. ItemList.
+ * @property {any[]} itemListElement The item list of search results.
+ */
 module.exports = Kgsearch;

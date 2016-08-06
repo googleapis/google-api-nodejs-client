@@ -61,4 +61,29 @@ function {{ Name }} (options) { // eslint-disable-line
 {%- endif -%}
 }
 
+{% set lb = "{" %}
+{% set rb = "}" %}
+
+{% for schemaName, schema in schemas %}
+/**
+ * @typedef {{ schema.id }}
+ * @memberOf! {{ name }}({{ version }})
+ * @type {{ schema.type }}
+{% if schema.properties -%}
+{%- for pname, p in schema.properties -%}
+{%- if p.$ref -%}
+ * @property {{ lb }}{{ name }}({{ version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description }}
+{%- elif p.items and p.items.type -%}
+ * @property {{ lb }}{{ p.items.type }}[]{{ rb }} {{ pname }} {{ p.description }}
+{%- elif p.items and p.items.$ref -%}
+ * @property {{ lb }}{{ name }}({{ version }}).{{ p.items.$ref }}[]{{ rb }} {{ pname }} {{ p.description }}
+{%- else -%}
+ * @property {{ lb }}{{ p.type }}{{ rb }} {{ pname }} {{ p.description }}
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+ */
+
+{%- endfor -%}
+
 module.exports = {{ Name }};

@@ -107,7 +107,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {object} params.resource Request body data
+     * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -166,7 +166,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} params.resource Request body data
+     * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -195,7 +195,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} params.resource Request body data
+     * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -321,7 +321,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {object} params.resource Request body data
+     * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -380,7 +380,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} params.resource Request body data
+     * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -409,7 +409,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} params.resource Request body data
+     * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -431,4 +431,125 @@ function Gamesconfiguration(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AchievementConfiguration
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+* @property {string} achievementType The type of the achievement.
+Possible values are:  
+- &quot;STANDARD&quot; - Achievement is either locked or unlocked. 
+- &quot;INCREMENTAL&quot; - Achievement is incremental.
+* @property {gamesConfiguration(v1configuration).AchievementConfigurationDetail} draft The draft data of the achievement.
+* @property {string} id The ID of the achievement.
+* @property {string} initialState The initial state of the achievement.
+Possible values are:  
+- &quot;HIDDEN&quot; - Achievement is hidden. 
+- &quot;REVEALED&quot; - Achievement is revealed. 
+- &quot;UNLOCKED&quot; - Achievement is unlocked.
+* @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.
+* @property {gamesConfiguration(v1configuration).AchievementConfigurationDetail} published The read-only published data of the achievement.
+* @property {integer} stepsToUnlock Steps to unlock. Only applicable to incremental achievements.
+* @property {string} token The token for this resource.
+*/
+/**
+ * @typedef AchievementConfigurationDetail
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} description Localized strings for the achievement description.
+ * @property {string} iconUrl The icon url of this achievement. Writes to this field are ignored.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} name Localized strings for the achievement name.
+ * @property {integer} pointValue Point value for the achievement.
+ * @property {integer} sortRank The sort rank of this achievement. Writes to this field are ignored.
+ */
+/**
+ * @typedef AchievementConfigurationListResponse
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {gamesConfiguration(v1configuration).AchievementConfiguration[]} items The achievement configurations.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementConfigurationListResponse.
+ * @property {string} nextPageToken The pagination token for the next page of results.
+ */
+/**
+ * @typedef GamesNumberAffixConfiguration
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} few When the language requires special treatment of &quot;small&quot; numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish).
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} many When the language requires special treatment of &quot;large&quot; numbers (as with numbers ending 11-99 in Maltese).
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} one When the language requires special treatment of numbers like one (as with the number 1 in English and most other languages; in Russian, any number ending in 1 but not ending in 11 is in this class).
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} other When the language does not require special treatment of the given quantity (as with all numbers in Chinese, or 42 in English).
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} two When the language requires special treatment of numbers like two (as with 2 in Welsh, or 102 in Slovenian).
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} zero When the language requires special treatment of the number 0 (as in Arabic).
+ */
+/**
+ * @typedef GamesNumberFormatConfiguration
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+* @property {string} currencyCode The curreny code string. Only used for CURRENCY format type.
+* @property {integer} numDecimalPlaces The number of decimal places for number. Only used for NUMERIC format type.
+* @property {string} numberFormatType The formatting for the number.
+Possible values are:  
+- &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.
+- &quot;TIME_DURATION&quot; - Numbers are formatted to hours, minutes and seconds.
+- &quot;CURRENCY&quot; - Numbers are formatted to currency according to locale.
+* @property {gamesConfiguration(v1configuration).GamesNumberAffixConfiguration} suffix An optional suffix for the NUMERIC format type. These strings follow the same  plural rules as all Android string resources.
+*/
+/**
+ * @typedef ImageConfiguration
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {string} imageType The image type for the image.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#imageConfiguration.
+ * @property {string} resourceId The resource ID of resource which the image belongs to.
+ * @property {string} url The url for this image.
+ */
+/**
+ * @typedef LeaderboardConfiguration
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+* @property {gamesConfiguration(v1configuration).LeaderboardConfigurationDetail} draft The draft data of the leaderboard.
+* @property {string} id The ID of the leaderboard.
+* @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.
+* @property {gamesConfiguration(v1configuration).LeaderboardConfigurationDetail} published The read-only published data of the leaderboard.
+* @property {string} scoreMax Maximum score that can be posted to this leaderboard.
+* @property {string} scoreMin Minimum score that can be posted to this leaderboard.
+* @property {string} scoreOrder The type of the leaderboard.
+Possible values are:  
+- &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher. 
+- &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
+* @property {string} token The token for this resource.
+*/
+/**
+ * @typedef LeaderboardConfigurationDetail
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {string} iconUrl The icon url of this leaderboard. Writes to this field are ignored.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.
+ * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} name Localized strings for the leaderboard name.
+ * @property {gamesConfiguration(v1configuration).GamesNumberFormatConfiguration} scoreFormat The score formatting for the leaderboard.
+ * @property {integer} sortRank The sort rank of this leaderboard. Writes to this field are ignored.
+ */
+/**
+ * @typedef LeaderboardConfigurationListResponse
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {gamesConfiguration(v1configuration).LeaderboardConfiguration[]} items The leaderboard configurations.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardConfigurationListResponse.
+ * @property {string} nextPageToken The pagination token for the next page of results.
+ */
+/**
+ * @typedef LocalizedString
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.
+ * @property {string} locale The locale string.
+ * @property {string} value The string value.
+ */
+/**
+ * @typedef LocalizedStringBundle
+ * @memberOf! gamesConfiguration(v1configuration)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.
+ * @property {gamesConfiguration(v1configuration).LocalizedString[]} translations The locale strings.
+ */
 module.exports = Gamesconfiguration;

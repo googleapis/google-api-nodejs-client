@@ -140,4 +140,41 @@ function Translate(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef DetectionsListResponse
+ * @memberOf! translate(v2)
+ * @type object
+ * @property {translate(v2).DetectionsResource[]} detections A detections contains detection results of several text
+ */
+/**
+ * @typedef DetectionsResource
+ * @memberOf! translate(v2)
+ * @type array
+ */
+/**
+ * @typedef LanguagesListResponse
+ * @memberOf! translate(v2)
+ * @type object
+ * @property {translate(v2).LanguagesResource[]} languages List of source/target languages supported by the translation API. If target parameter is unspecified, the list is sorted by the ASCII code point order of the language code. If target parameter is specified, the list is sorted by the collation order of the language name in the target language.
+ */
+/**
+ * @typedef LanguagesResource
+ * @memberOf! translate(v2)
+ * @type object
+ * @property {string} language The language code.
+ * @property {string} name The localized name of the language if target parameter is given.
+ */
+/**
+ * @typedef TranslationsListResponse
+ * @memberOf! translate(v2)
+ * @type object
+ * @property {translate(v2).TranslationsResource[]} translations Translations contains list of translation results of given text
+ */
+/**
+ * @typedef TranslationsResource
+ * @memberOf! translate(v2)
+ * @type object
+ * @property {string} detectedSourceLanguage Detected source language if source parameter is unspecified.
+ * @property {string} translatedText The translation.
+ */
 module.exports = Translate;

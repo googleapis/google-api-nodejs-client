@@ -106,7 +106,7 @@ function Siteverification(options) { // eslint-disable-line
      * @memberOf! siteVerification(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {siteVerification(v1).SiteVerificationWebResourceGettokenRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -135,7 +135,7 @@ function Siteverification(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.verificationMethod The method to use for verifying a site or domain.
-     * @param {object} params.resource Request body data
+     * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -191,7 +191,7 @@ function Siteverification(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The id of a verified site or domain.
-     * @param {object} params.resource Request body data
+     * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -220,7 +220,7 @@ function Siteverification(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The id of a verified site or domain.
-     * @param {object} params.resource Request body data
+     * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -242,4 +242,32 @@ function Siteverification(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef SiteVerificationWebResourceGettokenRequest
+ * @memberOf! siteVerification(v1)
+ * @type object
+ * @property {object} site The site for which a verification token will be generated.
+ * @property {string} verificationMethod The verification method that will be used to verify this site. For sites, &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only &#39;DNS&#39; may be used.
+ */
+/**
+ * @typedef SiteVerificationWebResourceGettokenResponse
+ * @memberOf! siteVerification(v1)
+ * @type object
+ * @property {string} method The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain.
+ * @property {string} token The verification token. The token must be placed appropriately in order for verification to succeed.
+ */
+/**
+ * @typedef SiteVerificationWebResourceListResponse
+ * @memberOf! siteVerification(v1)
+ * @type object
+ * @property {siteVerification(v1).SiteVerificationWebResourceResource[]} items The list of sites that are owned by the authenticated user.
+ */
+/**
+ * @typedef SiteVerificationWebResourceResource
+ * @memberOf! siteVerification(v1)
+ * @type object
+ * @property {string} id The string used to identify this site. This value should be used in the &quot;id&quot; portion of the REST URL for the Get, Update, and Delete operations.
+ * @property {string[]} owners The email addresses of all verified owners.
+ * @property {object} site The address and type of a site that is verified or will be verified.
+ */
 module.exports = Siteverification;

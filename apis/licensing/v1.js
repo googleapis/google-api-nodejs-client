@@ -112,7 +112,7 @@ function Licensing(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku
-     * @param {object} params.resource Request body data
+     * @param {licensing(v1).LicenseAssignmentInsert} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -206,7 +206,7 @@ function Licensing(options) { // eslint-disable-line
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku for which license would be revoked
      * @param {string} params.userId email id or unique Id of the user
-     * @param {object} params.resource Request body data
+     * @param {licensing(v1).LicenseAssignment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -237,7 +237,7 @@ function Licensing(options) { // eslint-disable-line
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku for which license would be revoked
      * @param {string} params.userId email id or unique Id of the user
-     * @param {object} params.resource Request body data
+     * @param {licensing(v1).LicenseAssignment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -259,4 +259,30 @@ function Licensing(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef LicenseAssignment
+ * @memberOf! licensing(v1)
+ * @type object
+ * @property {string} etags ETag of the resource.
+ * @property {string} kind Identifies the resource as a LicenseAssignment.
+ * @property {string} productId Name of the product.
+ * @property {string} selfLink Link to this page.
+ * @property {string} skuId Name of the sku of the product.
+ * @property {string} userId Email id of the user.
+ */
+/**
+ * @typedef LicenseAssignmentInsert
+ * @memberOf! licensing(v1)
+ * @type object
+ * @property {string} userId Email id of the user
+ */
+/**
+ * @typedef LicenseAssignmentList
+ * @memberOf! licensing(v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {licensing(v1).LicenseAssignment[]} items The LicenseAssignments in this page of results.
+ * @property {string} kind Identifies the resource as a collection of LicenseAssignments.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ */
 module.exports = Licensing;

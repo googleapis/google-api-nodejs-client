@@ -589,4 +589,176 @@ function Adexchangeseller(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Account
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} id Unique identifier of this account.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#account.
+ * @property {string} name Name of this account.
+ */
+/**
+ * @typedef AdClient
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {boolean} arcOptIn Whether this ad client is opted in to ARC.
+ * @property {string} id Unique identifier of this ad client.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#adClient.
+ * @property {string} productCode This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
+ * @property {boolean} supportsReporting Whether this ad client supports being reported on.
+ */
+/**
+ * @typedef AdClients
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adexchangeseller(v1.1).AdClient[]} items The ad clients returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#adClients.
+ * @property {string} nextPageToken Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef AdUnit
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+* @property {string} code Identity code of this ad unit, not necessarily unique across ad clients.
+* @property {string} id Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+* @property {string} kind Kind of resource this is, in this case adexchangeseller#adUnit.
+* @property {string} name Name of this ad unit.
+* @property {string} status Status of this ad unit. Possible values are:
+NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.
+
+ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.
+
+INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
+*/
+/**
+ * @typedef AdUnits
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adexchangeseller(v1.1).AdUnit[]} items The ad units returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#adUnits.
+ * @property {string} nextPageToken Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef Alert
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} id Unique identifier of this alert. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#alert.
+ * @property {string} message The localized alert message.
+ * @property {string} severity Severity of this alert. Possible values: INFO, WARNING, SEVERE.
+ * @property {string} type Type of this alert. Possible values: SELF_HOLD, MIGRATED_TO_BILLING3, ADDRESS_PIN_VERIFICATION, PHONE_PIN_VERIFICATION, CORPORATE_ENTITY, GRAYLISTED_PUBLISHER, API_HOLD.
+ */
+/**
+ * @typedef Alerts
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {adexchangeseller(v1.1).Alert[]} items The alerts returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#alerts.
+ */
+/**
+ * @typedef CustomChannel
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} code Code of this custom channel, not necessarily unique across ad clients.
+ * @property {string} id Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#customChannel.
+ * @property {string} name Name of this custom channel.
+ * @property {object} targetingInfo The targeting information of this custom channel, if activated.
+ */
+/**
+ * @typedef CustomChannels
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adexchangeseller(v1.1).CustomChannel[]} items The custom channels returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#customChannels.
+ * @property {string} nextPageToken Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef Metadata
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {adexchangeseller(v1.1).ReportingMetadataEntry[]} items 
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#metadata.
+ */
+/**
+ * @typedef PreferredDeal
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} advertiserName The name of the advertiser this deal is for.
+ * @property {string} buyerNetworkName The name of the buyer network this deal is for.
+ * @property {string} currencyCode The currency code that applies to the fixed_cpm value. If not set then assumed to be USD.
+ * @property {string} endTime Time when this deal stops being active in seconds since the epoch (GMT). If not set then this deal is valid until manually disabled by the publisher.
+ * @property {string} fixedCpm The fixed price for this preferred deal. In cpm micros of currency according to currencyCode. If set, then this preferred deal is eligible for the fixed price tier of buying (highest priority, pay exactly the configured fixed price).
+ * @property {string} id Unique identifier of this preferred deal.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#preferredDeal.
+ * @property {string} startTime Time when this deal becomes active in seconds since the epoch (GMT). If not set then this deal is active immediately upon creation.
+ */
+/**
+ * @typedef PreferredDeals
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {adexchangeseller(v1.1).PreferredDeal[]} items The preferred deals returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#preferredDeals.
+ */
+/**
+ * @typedef Report
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string[]} averages The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
+ * @property {object[]} headers The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
+ * @property {string} kind Kind this is, in this case adexchangeseller#report.
+ * @property {array[]} rows The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request. The dimension cells contain strings, and the metric cells contain numbers.
+ * @property {string} totalMatchedRows The total number of rows matched by the report request. Fewer rows may be returned in the response due to being limited by the row count requested or the report row limit.
+ * @property {string[]} totals The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
+ * @property {string[]} warnings Any warnings associated with generation of the report.
+ */
+/**
+ * @typedef ReportingMetadataEntry
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string[]} compatibleDimensions For metrics this is a list of dimension IDs which the metric is compatible with, for dimensions it is a list of compatibility groups the dimension belongs to.
+ * @property {string[]} compatibleMetrics The names of the metrics the dimension or metric this reporting metadata entry describes is compatible with.
+ * @property {string} id Unique identifier of this reporting metadata entry, corresponding to the name of the appropriate dimension or metric.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#reportingMetadataEntry.
+ * @property {string[]} requiredDimensions The names of the dimensions which the dimension or metric this reporting metadata entry describes requires to also be present in order for the report to be valid. Omitting these will not cause an error or warning, but may result in data which cannot be correctly interpreted.
+ * @property {string[]} requiredMetrics The names of the metrics which the dimension or metric this reporting metadata entry describes requires to also be present in order for the report to be valid. Omitting these will not cause an error or warning, but may result in data which cannot be correctly interpreted.
+ * @property {string[]} supportedProducts The codes of the projects supported by the dimension or metric this reporting metadata entry describes.
+ */
+/**
+ * @typedef SavedReport
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} id Unique identifier of this saved report.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#savedReport.
+ * @property {string} name This saved report&#39;s name.
+ */
+/**
+ * @typedef SavedReports
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adexchangeseller(v1.1).SavedReport[]} items The saved reports returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#savedReports.
+ * @property {string} nextPageToken Continuation token used to page through saved reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef UrlChannel
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} id Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+ * @property {string} kind Kind of resource this is, in this case adexchangeseller#urlChannel.
+ * @property {string} urlPattern URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
+ */
+/**
+ * @typedef UrlChannels
+ * @memberOf! adexchangeseller(v1.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adexchangeseller(v1.1).UrlChannel[]} items The URL channels returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adexchangeseller#urlChannels.
+ * @property {string} nextPageToken Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
 module.exports = Adexchangeseller;

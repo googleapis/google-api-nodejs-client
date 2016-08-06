@@ -236,7 +236,7 @@ function Analytics(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create the user link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityUserLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -296,7 +296,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to update the account-user link for.
        * @param {string} params.linkId Link ID to update the account-user link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityUserLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -425,7 +425,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID for the custom dimension to create.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).CustomDimension} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -488,7 +488,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).CustomDimension} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -520,7 +520,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).CustomDimension} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -583,7 +583,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID for the custom metric to create.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).CustomMetric} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -646,7 +646,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).CustomMetric} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -678,7 +678,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).CustomMetric} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -774,7 +774,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the experiment for.
        * @param {string} params.profileId View (Profile) ID to create the experiment for.
        * @param {string} params.webPropertyId Web property ID to create the experiment for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Experiment} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -838,7 +838,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.experimentId Experiment ID of the experiment to update.
        * @param {string} params.profileId View (Profile) ID of the experiment to update.
        * @param {string} params.webPropertyId Web property ID of the experiment to update.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Experiment} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -870,7 +870,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.experimentId Experiment ID of the experiment to update.
        * @param {string} params.profileId View (Profile) ID of the experiment to update.
        * @param {string} params.webPropertyId Web property ID of the experiment to update.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Experiment} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -960,7 +960,7 @@ function Analytics(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create filter for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Filter} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1020,7 +1020,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to which the filter belongs.
        * @param {string} params.filterId ID of the filter to be updated.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Filter} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1050,7 +1050,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to which the filter belongs.
        * @param {string} params.filterId ID of the filter to be updated.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Filter} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1115,7 +1115,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the goal for.
        * @param {string} params.profileId View (Profile) ID to create the goal for.
        * @param {string} params.webPropertyId Web property ID to create the goal for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Goal} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1179,7 +1179,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.goalId Index of the goal to be updated.
        * @param {string} params.profileId View (Profile) ID to update the goal.
        * @param {string} params.webPropertyId Web property ID to update the goal.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Goal} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1211,7 +1211,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.goalId Index of the goal to be updated.
        * @param {string} params.profileId View (Profile) ID to update the goal.
        * @param {string} params.webPropertyId Web property ID to update the goal.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Goal} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1307,7 +1307,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create profile filter link for.
        * @param {string} params.profileId Profile ID to create filter link for.
        * @param {string} params.webPropertyId Web property Id to create profile filter link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1371,7 +1371,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId ID of the profile filter link to be updated.
        * @param {string} params.profileId Profile ID to which filter link belongs
        * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1403,7 +1403,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId ID of the profile filter link to be updated.
        * @param {string} params.profileId Profile ID to which filter link belongs
        * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1468,7 +1468,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the user link for.
        * @param {string} params.profileId View (Profile) ID to create the user link for.
        * @param {string} params.webPropertyId Web Property ID to create the user link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityUserLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1532,7 +1532,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId Link ID to update the user link for.
        * @param {string} params.profileId View (Profile ID) to update the user link for.
        * @param {string} params.webPropertyId Web Property ID to update the user link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityUserLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1625,7 +1625,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create the view (profile) for.
        * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Profile} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1687,7 +1687,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to which the view (profile) belongs
        * @param {string} params.profileId ID of the view (profile) to be updated.
        * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Profile} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1718,7 +1718,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to which the view (profile) belongs
        * @param {string} params.profileId ID of the view (profile) to be updated.
        * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Profile} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1846,7 +1846,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the unsampled report for.
        * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
        * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).UnsampledReport} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1912,7 +1912,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account Id for the uploads to be deleted.
        * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
        * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).AnalyticsDataimportDeleteUploadDataRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2102,7 +2102,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId ID of the Google Analytics account to create the link for.
        * @param {string} params.webPropertyId Web property ID to create the link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2164,7 +2164,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId ID of the account which the given web property belongs to.
        * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
        * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2195,7 +2195,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId ID of the account which the given web property belongs to.
        * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
        * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2256,7 +2256,7 @@ function Analytics(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create the web property for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Webproperty} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2316,7 +2316,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to which the web property belongs
        * @param {string} params.webPropertyId Web property ID
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Webproperty} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2346,7 +2346,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to which the web property belongs
        * @param {string} params.webPropertyId Web property ID
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).Webproperty} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2409,7 +2409,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create the user link for.
        * @param {string} params.webPropertyId Web Property ID to create the user link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityUserLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2471,7 +2471,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to update the account-user link for.
        * @param {string} params.linkId Link ID to update the account-user link for.
        * @param {string} params.webPropertyId Web property ID to update the account-user link for.
-       * @param {object} params.resource Request body data
+       * @param {analytics(v3).EntityUserLink} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2537,7 +2537,7 @@ function Analytics(options) { // eslint-disable-line
      * @memberOf! analytics(v3)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {analytics(v3).AccountTicket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2559,4 +2559,776 @@ function Analytics(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Account
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {object} childLink Child link for an account entry. Points to the list of web properties for this account.
+ * @property {string} created Time the account was created.
+ * @property {string} id Account ID.
+ * @property {string} kind Resource type for Analytics account.
+ * @property {string} name Account name.
+ * @property {object} permissions Permissions the user has for this account.
+ * @property {string} selfLink Link for this account.
+ * @property {boolean} starred Indicates whether this account is starred or not.
+ * @property {string} updated Time the account was last modified.
+ */
+/**
+ * @typedef AccountRef
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} href Link for this account.
+ * @property {string} id Account ID.
+ * @property {string} kind Analytics account reference.
+ * @property {string} name Account name.
+ */
+/**
+ * @typedef AccountSummaries
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).AccountSummary[]} items A list of AccountSummaries.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this AccountSummary collection.
+ * @property {string} previousLink Link to previous page for this AccountSummary collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef AccountSummary
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} id Account ID.
+ * @property {string} kind Resource type for Analytics AccountSummary.
+ * @property {string} name Account name.
+ * @property {boolean} starred Indicates whether this account is starred or not.
+ * @property {analytics(v3).WebPropertySummary[]} webProperties List of web properties under this account.
+ */
+/**
+ * @typedef AccountTicket
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Account} account Account for this ticket.
+ * @property {string} id Account ticket ID used to access the account ticket.
+ * @property {string} kind Resource type for account ticket.
+ * @property {analytics(v3).Profile} profile View (Profile) for the account.
+ * @property {string} redirectUri Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in APIs console as a callback URL.
+ * @property {analytics(v3).Webproperty} webproperty Web property for the account.
+ */
+/**
+ * @typedef Accounts
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Account[]} items A list of accounts.
+ * @property {integer} itemsPerPage The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Next link for this account collection.
+ * @property {string} previousLink Previous link for this account collection.
+ * @property {integer} startIndex The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef AdWordsAccount
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {boolean} autoTaggingEnabled True if auto-tagging is enabled on the AdWords account. Read-only after the insert operation.
+ * @property {string} customerId Customer ID. This field is required when creating an AdWords link.
+ * @property {string} kind Resource type for AdWords account.
+ */
+/**
+ * @typedef AnalyticsDataimportDeleteUploadDataRequest
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string[]} customDataImportUids A list of upload UIDs.
+ */
+/**
+ * @typedef Column
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {object} attributes Map of attribute name and value for this column.
+ * @property {string} id Column id.
+ * @property {string} kind Resource type for Analytics column.
+ */
+/**
+ * @typedef Columns
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string[]} attributeNames List of attributes names returned by columns.
+ * @property {string} etag Etag of collection. This etag can be compared with the last response etag to check if response has changed.
+ * @property {analytics(v3).Column[]} items List of columns for a report type.
+ * @property {string} kind Collection type.
+ * @property {integer} totalResults Total number of columns returned in the response.
+ */
+/**
+ * @typedef CustomDataSource
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this custom data source belongs.
+ * @property {object} childLink 
+ * @property {string} created Time this custom data source was created.
+ * @property {string} description Description of custom data source.
+ * @property {string} id Custom data source ID.
+ * @property {string} importBehavior 
+ * @property {string} kind Resource type for Analytics custom data source.
+ * @property {string} name Name of this custom data source.
+ * @property {object} parentLink Parent link for this custom data source. Points to the web property to which this custom data source belongs.
+ * @property {string[]} profilesLinked IDs of views (profiles) linked to the custom data source.
+ * @property {string} selfLink Link for this Analytics custom data source.
+ * @property {string} type Type of the custom data source.
+ * @property {string} updated Time this custom data source was last modified.
+ * @property {string} uploadType 
+ * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.
+ */
+/**
+ * @typedef CustomDataSources
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).CustomDataSource[]} items Collection of custom data sources.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this custom data source collection.
+ * @property {string} previousLink Link to previous page for this custom data source collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef CustomDimension
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID.
+ * @property {boolean} active Boolean indicating whether the custom dimension is active.
+ * @property {string} created Time the custom dimension was created.
+ * @property {string} id Custom dimension ID.
+ * @property {integer} index Index of the custom dimension.
+ * @property {string} kind Kind value for a custom dimension. Set to &quot;analytics#customDimension&quot;. It is a read-only field.
+ * @property {string} name Name of the custom dimension.
+ * @property {object} parentLink Parent link for the custom dimension. Points to the property to which the custom dimension belongs.
+ * @property {string} scope Scope of the custom dimension: HIT, SESSION, USER or PRODUCT.
+ * @property {string} selfLink Link for the custom dimension
+ * @property {string} updated Time the custom dimension was last modified.
+ * @property {string} webPropertyId Property ID.
+ */
+/**
+ * @typedef CustomDimensions
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).CustomDimension[]} items Collection of custom dimensions.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this custom dimension collection.
+ * @property {string} previousLink Link to previous page for this custom dimension collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef CustomMetric
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID.
+ * @property {boolean} active Boolean indicating whether the custom metric is active.
+ * @property {string} created Time the custom metric was created.
+ * @property {string} id Custom metric ID.
+ * @property {integer} index Index of the custom metric.
+ * @property {string} kind Kind value for a custom metric. Set to &quot;analytics#customMetric&quot;. It is a read-only field.
+ * @property {string} max_value Max value of custom metric.
+ * @property {string} min_value Min value of custom metric.
+ * @property {string} name Name of the custom metric.
+ * @property {object} parentLink Parent link for the custom metric. Points to the property to which the custom metric belongs.
+ * @property {string} scope Scope of the custom metric: HIT or PRODUCT.
+ * @property {string} selfLink Link for the custom metric
+ * @property {string} type Data type of custom metric.
+ * @property {string} updated Time the custom metric was last modified.
+ * @property {string} webPropertyId Property ID.
+ */
+/**
+ * @typedef CustomMetrics
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).CustomMetric[]} items Collection of custom metrics.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this custom metric collection.
+ * @property {string} previousLink Link to previous page for this custom metric collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef EntityAdWordsLink
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).AdWordsAccount[]} adWordsAccounts A list of AdWords client accounts. These cannot be MCC accounts. This field is required when creating an AdWords link. It cannot be empty.
+ * @property {object} entity Web property being linked.
+ * @property {string} id Entity AdWords link ID
+ * @property {string} kind Resource type for entity AdWords link.
+ * @property {string} name Name of the link. This field is required when creating an AdWords link.
+ * @property {string[]} profileIds IDs of linked Views (Profiles) represented as strings.
+ * @property {string} selfLink URL link for this Google Analytics - Google AdWords link.
+ */
+/**
+ * @typedef EntityAdWordsLinks
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).EntityAdWordsLink[]} items A list of entity AdWords links.
+ * @property {integer} itemsPerPage The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Next link for this AdWords link collection.
+ * @property {string} previousLink Previous link for this AdWords link collection.
+ * @property {integer} startIndex The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ */
+/**
+ * @typedef EntityUserLink
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {object} entity Entity for this link. It can be an account, a web property, or a view (profile).
+ * @property {string} id Entity user link ID
+ * @property {string} kind Resource type for entity user link.
+ * @property {object} permissions Permissions the user has for this entity.
+ * @property {string} selfLink Self link for this resource.
+ * @property {analytics(v3).UserRef} userRef User reference.
+ */
+/**
+ * @typedef EntityUserLinks
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).EntityUserLink[]} items A list of entity user links.
+ * @property {integer} itemsPerPage The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Next link for this account collection.
+ * @property {string} previousLink Previous link for this account collection.
+ * @property {integer} startIndex The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ */
+/**
+ * @typedef Experiment
+ * @memberOf! analytics(v3)
+ * @type object
+* @property {string} accountId Account ID to which this experiment belongs. This field is read-only.
+* @property {string} created Time the experiment was created. This field is read-only.
+* @property {string} description Notes about this experiment.
+* @property {boolean} editableInGaUi If true, the end user will be able to edit the experiment via the Google Analytics user interface.
+* @property {string} endTime The ending time of the experiment (the time the status changed from RUNNING to ENDED). This field is present only if the experiment has ended. This field is read-only.
+* @property {boolean} equalWeighting Boolean specifying whether to distribute traffic evenly across all variations. If the value is False, content experiments follows the default behavior of adjusting traffic dynamically based on variation performance. Optional -- defaults to False. This field may not be changed for an experiment whose status is ENDED.
+* @property {string} id Experiment ID. Required for patch and update. Disallowed for create.
+* @property {string} internalWebPropertyId Internal ID for the web property to which this experiment belongs. This field is read-only.
+* @property {string} kind Resource type for an Analytics experiment. This field is read-only.
+* @property {integer} minimumExperimentLengthInDays An integer number in [3, 90]. Specifies the minimum length of the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+* @property {string} name Experiment name. This field may not be changed for an experiment whose status is ENDED. This field is required when creating an experiment.
+* @property {string} objectiveMetric The metric that the experiment is optimizing. Valid values: &quot;ga:goal(n)Completions&quot;, &quot;ga:adsenseAdsClicks&quot;, &quot;ga:adsenseAdsViewed&quot;, &quot;ga:adsenseRevenue&quot;, &quot;ga:bounces&quot;, &quot;ga:pageviews&quot;, &quot;ga:sessionDuration&quot;, &quot;ga:transactions&quot;, &quot;ga:transactionRevenue&quot;. This field is required if status is &quot;RUNNING&quot; and servingFramework is one of &quot;REDIRECT&quot; or &quot;API&quot;.
+* @property {string} optimizationType Whether the objectiveMetric should be minimized or maximized. Possible values: &quot;MAXIMUM&quot;, &quot;MINIMUM&quot;. Optional--defaults to &quot;MAXIMUM&quot;. Cannot be specified without objectiveMetric. Cannot be modified when status is &quot;RUNNING&quot; or &quot;ENDED&quot;.
+* @property {object} parentLink Parent link for an experiment. Points to the view (profile) to which this experiment belongs.
+* @property {string} profileId View (Profile) ID to which this experiment belongs. This field is read-only.
+* @property {string} reasonExperimentEnded Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;, &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;, &quot;ENDED_WITH_NO_WINNER&quot;, &quot;GOAL_OBJECTIVE_CHANGED&quot;. &quot;ENDED_WITH_NO_WINNER&quot; means that the experiment didn&#39;t expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER. This field is read-only.
+* @property {boolean} rewriteVariationUrlsAsOriginal Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
+* @property {string} selfLink Link for this experiment. This field is read-only.
+* @property {string} servingFramework The framework used to serve the experiment variations and evaluate the results. One of:  
+- REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results.
+- API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation.
+- EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
+* @property {string} snippet The snippet of code to include on the control page(s). This field is read-only.
+* @property {string} startTime The starting time of the experiment (the time the status changed from READY_TO_RUN to RUNNING). This field is present only if the experiment has started. This field is read-only.
+* @property {string} status Experiment status. Possible values: &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;. Experiments can be created in the &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is required when creating an experiment.
+* @property {number} trafficCoverage A floating-point number in (0, 1]. Specifies the fraction of the traffic that participates in the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+* @property {string} updated Time the experiment was last modified. This field is read-only.
+* @property {object[]} variations Array of variations. The first variation in the array is the original. The number of variations may not change once an experiment is in the RUNNING state. At least two variations are required before status can be set to RUNNING.
+* @property {string} webPropertyId Web property ID to which this experiment belongs. The web property ID is of the form UA-XXXXX-YY. This field is read-only.
+* @property {number} winnerConfidenceLevel A floating-point number in (0, 1). Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
+* @property {boolean} winnerFound Boolean specifying whether a winner has been found for this experiment. This field is read-only.
+*/
+/**
+ * @typedef Experiments
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Experiment[]} items A list of experiments.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this experiment collection.
+ * @property {string} previousLink Link to previous page for this experiment collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef Filter
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this filter belongs.
+ * @property {object} advancedDetails Details for the filter of the type ADVANCED.
+ * @property {string} created Time this filter was created.
+ * @property {analytics(v3).FilterExpression} excludeDetails Details for the filter of the type EXCLUDE.
+ * @property {string} id Filter ID.
+ * @property {analytics(v3).FilterExpression} includeDetails Details for the filter of the type INCLUDE.
+ * @property {string} kind Resource type for Analytics filter.
+ * @property {object} lowercaseDetails Details for the filter of the type LOWER.
+ * @property {string} name Name of this filter.
+ * @property {object} parentLink Parent link for this filter. Points to the account to which this filter belongs.
+ * @property {object} searchAndReplaceDetails Details for the filter of the type SEARCH_AND_REPLACE.
+ * @property {string} selfLink Link for this filter.
+ * @property {string} type Type of this filter. Possible values are INCLUDE, EXCLUDE, LOWERCASE, UPPERCASE, SEARCH_AND_REPLACE and ADVANCED.
+ * @property {string} updated Time this filter was last modified.
+ * @property {object} uppercaseDetails Details for the filter of the type UPPER.
+ */
+/**
+ * @typedef FilterExpression
+ * @memberOf! analytics(v3)
+ * @type object
+* @property {boolean} caseSensitive Determines if the filter is case sensitive.
+* @property {string} expressionValue Filter expression value
+* @property {string} field Field to filter. Possible values:  
+- Content and Traffic  
+- PAGE_REQUEST_URI, 
+- PAGE_HOSTNAME, 
+- PAGE_TITLE, 
+- REFERRAL, 
+- COST_DATA_URI (Campaign target URL), 
+- HIT_TYPE, 
+- INTERNAL_SEARCH_TERM, 
+- INTERNAL_SEARCH_TYPE, 
+- SOURCE_PROPERTY_TRACKING_ID,   
+- Campaign or AdGroup  
+- CAMPAIGN_SOURCE, 
+- CAMPAIGN_MEDIUM, 
+- CAMPAIGN_NAME, 
+- CAMPAIGN_AD_GROUP, 
+- CAMPAIGN_TERM, 
+- CAMPAIGN_CONTENT, 
+- CAMPAIGN_CODE, 
+- CAMPAIGN_REFERRAL_PATH,   
+- E-Commerce  
+- TRANSACTION_COUNTRY, 
+- TRANSACTION_REGION, 
+- TRANSACTION_CITY, 
+- TRANSACTION_AFFILIATION (Store or order location), 
+- ITEM_NAME, 
+- ITEM_CODE, 
+- ITEM_VARIATION, 
+- TRANSACTION_ID, 
+- TRANSACTION_CURRENCY_CODE, 
+- PRODUCT_ACTION_TYPE,   
+- Audience/Users  
+- BROWSER, 
+- BROWSER_VERSION, 
+- BROWSER_SIZE, 
+- PLATFORM, 
+- PLATFORM_VERSION, 
+- LANGUAGE, 
+- SCREEN_RESOLUTION, 
+- SCREEN_COLORS, 
+- JAVA_ENABLED (Boolean Field), 
+- FLASH_VERSION, 
+- GEO_SPEED (Connection speed), 
+- VISITOR_TYPE, 
+- GEO_ORGANIZATION (ISP organization), 
+- GEO_DOMAIN, 
+- GEO_IP_ADDRESS, 
+- GEO_IP_VERSION,   
+- Location  
+- GEO_COUNTRY, 
+- GEO_REGION, 
+- GEO_CITY,   
+- Event  
+- EVENT_CATEGORY, 
+- EVENT_ACTION, 
+- EVENT_LABEL,   
+- Other  
+- CUSTOM_FIELD_1, 
+- CUSTOM_FIELD_2, 
+- USER_DEFINED_VALUE,   
+- Application  
+- APP_ID, 
+- APP_INSTALLER_ID, 
+- APP_NAME, 
+- APP_VERSION, 
+- SCREEN, 
+- IS_APP (Boolean Field), 
+- IS_FATAL_EXCEPTION (Boolean Field), 
+- EXCEPTION_DESCRIPTION,   
+- Mobile device  
+- IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile), 
+- IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet), 
+- DEVICE_CATEGORY, 
+- MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field), 
+- MOBILE_HAS_NFC_SUPPORT (Boolean Field), 
+- MOBILE_HAS_CELLULAR_RADIO (Boolean Field), 
+- MOBILE_HAS_WIFI_SUPPORT (Boolean Field), 
+- MOBILE_BRAND_NAME, 
+- MOBILE_MODEL_NAME, 
+- MOBILE_MARKETING_NAME, 
+- MOBILE_POINTING_METHOD,   
+- Social  
+- SOCIAL_NETWORK, 
+- SOCIAL_ACTION, 
+- SOCIAL_ACTION_TARGET,   
+- Custom dimension  
+- CUSTOM_DIMENSION (See accompanying field index),
+* @property {integer} fieldIndex The Index of the custom dimension. Set only if the field is a is CUSTOM_DIMENSION.
+* @property {string} kind Kind value for filter expression
+* @property {string} matchType Match type for this filter. Possible values are BEGINS_WITH, EQUAL, ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS, PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all other filters must use MATCHES.
+*/
+/**
+ * @typedef FilterRef
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this filter belongs.
+ * @property {string} href Link for this filter.
+ * @property {string} id Filter ID.
+ * @property {string} kind Kind value for filter reference.
+ * @property {string} name Name of this filter.
+ */
+/**
+ * @typedef Filters
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Filter[]} items A list of filters.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this filter collection.
+ * @property {string} previousLink Link to previous page for this filter collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef GaData
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {object[]} columnHeaders Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
+ * @property {boolean} containsSampledData Determines if Analytics data contains samples.
+ * @property {object} dataTable 
+ * @property {string} id Unique ID for this data response.
+ * @property {integer} itemsPerPage The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Resource type.
+ * @property {string} nextLink Link to next page for this Analytics data query.
+ * @property {string} previousLink Link to previous page for this Analytics data query.
+ * @property {object} profileInfo Information for the view (profile), for which the Analytics data was requested.
+ * @property {object} query Analytics data request query parameters.
+ * @property {array[]} rows Analytics data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
+ * @property {string} sampleSize The number of samples used to calculate the result.
+ * @property {string} sampleSpace Total size of the sample space from which the samples were selected.
+ * @property {string} selfLink Link to this page.
+ * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
+ * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
+ */
+/**
+ * @typedef Goal
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this goal belongs.
+ * @property {boolean} active Determines whether this goal is active.
+ * @property {string} created Time this goal was created.
+ * @property {object} eventDetails Details for the goal of the type EVENT.
+ * @property {string} id Goal ID.
+ * @property {string} internalWebPropertyId Internal ID for the web property to which this goal belongs.
+ * @property {string} kind Resource type for an Analytics goal.
+ * @property {string} name Goal name.
+ * @property {object} parentLink Parent link for a goal. Points to the view (profile) to which this goal belongs.
+ * @property {string} profileId View (Profile) ID to which this goal belongs.
+ * @property {string} selfLink Link for this goal.
+ * @property {string} type Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE, VISIT_NUM_PAGES, AND EVENT.
+ * @property {string} updated Time this goal was last modified.
+ * @property {object} urlDestinationDetails Details for the goal of the type URL_DESTINATION.
+ * @property {number} value Goal value.
+ * @property {object} visitNumPagesDetails Details for the goal of the type VISIT_NUM_PAGES.
+ * @property {object} visitTimeOnSiteDetails Details for the goal of the type VISIT_TIME_ON_SITE.
+ * @property {string} webPropertyId Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.
+ */
+/**
+ * @typedef Goals
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Goal[]} items A list of goals.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this goal collection.
+ * @property {string} previousLink Link to previous page for this goal collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef McfData
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {object[]} columnHeaders Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
+ * @property {boolean} containsSampledData Determines if the Analytics data contains sampled data.
+ * @property {string} id Unique ID for this data response.
+ * @property {integer} itemsPerPage The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Resource type.
+ * @property {string} nextLink Link to next page for this Analytics data query.
+ * @property {string} previousLink Link to previous page for this Analytics data query.
+ * @property {object} profileInfo Information for the view (profile), for which the Analytics data was requested.
+ * @property {object} query Analytics data request query parameters.
+ * @property {array[]} rows Analytics data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
+ * @property {string} sampleSize The number of samples used to calculate the result.
+ * @property {string} sampleSpace Total size of the sample space from which the samples were selected.
+ * @property {string} selfLink Link to this page.
+ * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
+ * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
+ */
+/**
+ * @typedef Profile
+ * @memberOf! analytics(v3)
+ * @type object
+* @property {string} accountId Account ID to which this view (profile) belongs.
+* @property {boolean} botFilteringEnabled Indicates whether bot filtering is enabled for this view (profile).
+* @property {object} childLink Child link for this view (profile). Points to the list of goals for this view (profile).
+* @property {string} created Time this view (profile) was created.
+* @property {string} currency The currency type associated with this view (profile), defaults to USD. The supported values are:
+ARS, AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HUF, IDR, INR, JPY, KRW, LTL, MXN, NOK, NZD, PHP, PLN, RUB, SEK, THB, TRY, TWD, USD, VND, ZAR
+* @property {string} defaultPage Default page for this view (profile).
+* @property {boolean} eCommerceTracking Indicates whether ecommerce tracking is enabled for this view (profile).
+* @property {boolean} enhancedECommerceTracking Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.
+* @property {string} excludeQueryParameters The query parameters that are excluded from this view (profile).
+* @property {string} id View (Profile) ID.
+* @property {string} internalWebPropertyId Internal ID for the web property to which this view (profile) belongs.
+* @property {string} kind Resource type for Analytics view (profile).
+* @property {string} name Name of this view (profile).
+* @property {object} parentLink Parent link for this view (profile). Points to the web property to which this view (profile) belongs.
+* @property {object} permissions Permissions the user has for this view (profile).
+* @property {string} selfLink Link for this view (profile).
+* @property {string} siteSearchCategoryParameters Site search category parameters for this view (profile).
+* @property {string} siteSearchQueryParameters The site search query parameters for this view (profile).
+* @property {boolean} starred Indicates whether this view (profile) is starred or not.
+* @property {boolean} stripSiteSearchCategoryParameters Whether or not Analytics will strip search category parameters from the URLs in your reports.
+* @property {boolean} stripSiteSearchQueryParameters Whether or not Analytics will strip search query parameters from the URLs in your reports.
+* @property {string} timezone Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.
+* @property {string} type View (Profile) type. Supported types: WEB or APP.
+* @property {string} updated Time this view (profile) was last modified.
+* @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
+* @property {string} websiteUrl Website URL for this view (profile).
+*/
+/**
+ * @typedef ProfileFilterLink
+ * @memberOf! analytics(v3)
+ * @type object
+* @property {analytics(v3).FilterRef} filterRef Filter for this link.
+* @property {string} id Profile filter link ID.
+* @property {string} kind Resource type for Analytics filter.
+* @property {analytics(v3).ProfileRef} profileRef View (Profile) for this link.
+* @property {integer} rank The rank of this profile filter link relative to the other filters linked to the same profile.
+For readonly (i.e., list and get) operations, the rank always starts at 1.
+For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don&#39;t specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
+* @property {string} selfLink Link for this profile filter link.
+*/
+/**
+ * @typedef ProfileFilterLinks
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).ProfileFilterLink[]} items A list of profile filter links.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this profile filter link collection.
+ * @property {string} previousLink Link to previous page for this profile filter link collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef ProfileRef
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this view (profile) belongs.
+ * @property {string} href Link for this view (profile).
+ * @property {string} id View (Profile) ID.
+ * @property {string} internalWebPropertyId Internal ID for the web property to which this view (profile) belongs.
+ * @property {string} kind Analytics view (profile) reference.
+ * @property {string} name Name of this view (profile).
+ * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
+ */
+/**
+ * @typedef ProfileSummary
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} id View (profile) ID.
+ * @property {string} kind Resource type for Analytics ProfileSummary.
+ * @property {string} name View (profile) name.
+ * @property {boolean} starred Indicates whether this view (profile) is starred or not.
+ * @property {string} type View (Profile) type. Supported types: WEB or APP.
+ */
+/**
+ * @typedef Profiles
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Profile[]} items A list of views (profiles).
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this view (profile) collection.
+ * @property {string} previousLink Link to previous page for this view (profile) collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef RealtimeData
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {object[]} columnHeaders Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
+ * @property {string} id Unique ID for this data response.
+ * @property {string} kind Resource type.
+ * @property {object} profileInfo Information for the view (profile), for which the real time data was requested.
+ * @property {object} query Real time data request query parameters.
+ * @property {array[]} rows Real time data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
+ * @property {string} selfLink Link to this page.
+ * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
+ * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
+ */
+/**
+ * @typedef Segment
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} created Time the segment was created.
+ * @property {string} definition Segment definition.
+ * @property {string} id Segment ID.
+ * @property {string} kind Resource type for Analytics segment.
+ * @property {string} name Segment name.
+ * @property {string} segmentId Segment ID. Can be used with the &#39;segment&#39; parameter in Core Reporting API.
+ * @property {string} selfLink Link for this segment.
+ * @property {string} type Type for a segment. Possible values are &quot;BUILT_IN&quot; or &quot;CUSTOM&quot;.
+ * @property {string} updated Time the segment was last modified.
+ */
+/**
+ * @typedef Segments
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Segment[]} items A list of segments.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type for segments.
+ * @property {string} nextLink Link to next page for this segment collection.
+ * @property {string} previousLink Link to previous page for this segment collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef UnsampledReport
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this unsampled report belongs.
+ * @property {object} cloudStorageDownloadDetails Download details for a file stored in Google Cloud Storage.
+ * @property {string} created Time this unsampled report was created.
+ * @property {string} dimensions The dimensions for the unsampled report.
+ * @property {string} downloadType The type of download you need to use for the report data file. Possible values include `GOOGLE_DRIVE` and `GOOGLE_CLOUD_STORAGE`. If the value is `GOOGLE_DRIVE`, see the `driveDownloadDetails` field. If the value is `GOOGLE_CLOUD_STORAGE`, see the `cloudStorageDownloadDetails` field.
+ * @property {object} driveDownloadDetails Download details for a file stored in Google Drive.
+ * @property {string} end-date The end date for the unsampled report.
+ * @property {string} filters The filters for the unsampled report.
+ * @property {string} id Unsampled report ID.
+ * @property {string} kind Resource type for an Analytics unsampled report.
+ * @property {string} metrics The metrics for the unsampled report.
+ * @property {string} profileId View (Profile) ID to which this unsampled report belongs.
+ * @property {string} segment The segment for the unsampled report.
+ * @property {string} selfLink Link for this unsampled report.
+ * @property {string} start-date The start date for the unsampled report.
+ * @property {string} status Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.
+ * @property {string} title Title of the unsampled report.
+ * @property {string} updated Time this unsampled report was last modified.
+ * @property {string} webPropertyId Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.
+ */
+/**
+ * @typedef UnsampledReports
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).UnsampledReport[]} items A list of unsampled reports.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this unsampled report collection.
+ * @property {string} previousLink Link to previous page for this unsampled report collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef Upload
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account Id to which this upload belongs.
+ * @property {string} customDataSourceId Custom data source Id to which this data import belongs.
+ * @property {string[]} errors Data import errors collection.
+ * @property {string} id A unique ID for this upload.
+ * @property {string} kind Resource type for Analytics upload.
+ * @property {string} status Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.
+ */
+/**
+ * @typedef Uploads
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Upload[]} items A list of uploads.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this upload collection.
+ * @property {string} previousLink Link to previous page for this upload collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
+ */
+/**
+ * @typedef UserRef
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} email Email ID of this user.
+ * @property {string} id User ID.
+ * @property {string} kind 
+ */
+/**
+ * @typedef WebPropertyRef
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this web property belongs.
+ * @property {string} href Link for this web property.
+ * @property {string} id Web property ID of the form UA-XXXXX-YY.
+ * @property {string} internalWebPropertyId Internal ID for this web property.
+ * @property {string} kind Analytics web property reference.
+ * @property {string} name Name of this web property.
+ */
+/**
+ * @typedef WebPropertySummary
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} id Web property ID of the form UA-XXXXX-YY.
+ * @property {string} internalWebPropertyId Internal ID for this web property.
+ * @property {string} kind Resource type for Analytics WebPropertySummary.
+ * @property {string} level Level for this web property. Possible values are STANDARD or PREMIUM.
+ * @property {string} name Web property name.
+ * @property {analytics(v3).ProfileSummary[]} profiles List of profiles under this web property.
+ * @property {boolean} starred Indicates whether this web property is starred or not.
+ * @property {string} websiteUrl Website url for this web property.
+ */
+/**
+ * @typedef Webproperties
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Webproperty[]} items A list of web properties.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this web property collection.
+ * @property {string} previousLink Link to previous page for this web property collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
+ */
+/**
+ * @typedef Webproperty
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this web property belongs.
+ * @property {object} childLink Child link for this web property. Points to the list of views (profiles) for this web property.
+ * @property {string} created Time this web property was created.
+ * @property {string} defaultProfileId Default view (profile) ID.
+ * @property {string} id Web property ID of the form UA-XXXXX-YY.
+ * @property {string} industryVertical The industry vertical/category selected for this web property.
+ * @property {string} internalWebPropertyId Internal ID for this web property.
+ * @property {string} kind Resource type for Analytics WebProperty.
+ * @property {string} level Level for this web property. Possible values are STANDARD or PREMIUM.
+ * @property {string} name Name of this web property.
+ * @property {object} parentLink Parent link for this web property. Points to the account to which this web property belongs.
+ * @property {object} permissions Permissions the user has for this web property.
+ * @property {integer} profileCount View (Profile) count for this web property.
+ * @property {string} selfLink Link for this web property.
+ * @property {boolean} starred Indicates whether this web property is starred or not.
+ * @property {string} updated Time this web property was last modified.
+ * @property {string} websiteUrl Website url for this web property.
+ */
 module.exports = Analytics;

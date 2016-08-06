@@ -79,7 +79,7 @@ function Groupssettings(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupUniqueId The resource ID
-     * @param {object} params.resource Request body data
+     * @param {groupssettings(v1).Groups} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -108,7 +108,7 @@ function Groupssettings(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupUniqueId The resource ID
-     * @param {object} params.resource Request body data
+     * @param {groupssettings(v1).Groups} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -130,4 +130,40 @@ function Groupssettings(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Groups
+ * @memberOf! groupssettings(v1)
+ * @type object
+ * @property {string} allowExternalMembers Are external members allowed to join the group.
+ * @property {string} allowGoogleCommunication Is google allowed to contact admins.
+ * @property {string} allowWebPosting If posting from web is allowed.
+ * @property {string} archiveOnly If the group is archive only
+ * @property {string} customFooterText Custom footer text.
+ * @property {string} customReplyTo Default email to which reply to any message should go.
+ * @property {string} defaultMessageDenyNotificationText Default message deny notification message
+ * @property {string} description Description of the group
+ * @property {string} email Email id of the group
+ * @property {string} includeCustomFooter Whether to include custom footer.
+ * @property {string} includeInGlobalAddressList If this groups should be included in global address list or not.
+ * @property {string} isArchived If the contents of the group are archived.
+ * @property {string} kind The type of the resource.
+ * @property {integer} maxMessageBytes Maximum message size allowed.
+ * @property {string} membersCanPostAsTheGroup Can members post using the group email address.
+ * @property {string} messageDisplayFont Default message display font. Possible values are: DEFAULT_FONT FIXED_WIDTH_FONT
+ * @property {string} messageModerationLevel Moderation level for messages. Possible values are: MODERATE_ALL_MESSAGES MODERATE_NON_MEMBERS MODERATE_NEW_MEMBERS MODERATE_NONE
+ * @property {string} name Name of the Group
+ * @property {string} primaryLanguage Primary language for the group.
+ * @property {string} replyTo Whome should the default reply to a message go to. Possible values are: REPLY_TO_CUSTOM REPLY_TO_SENDER REPLY_TO_LIST REPLY_TO_OWNER REPLY_TO_IGNORE REPLY_TO_MANAGERS
+ * @property {string} sendMessageDenyNotification Should the member be notified if his message is denied by owner.
+ * @property {string} showInGroupDirectory Is the group listed in groups directory
+ * @property {string} spamModerationLevel Moderation level for messages detected as spam. Possible values are: ALLOW MODERATE SILENTLY_MODERATE REJECT
+ * @property {string} whoCanAdd Permissions to add members. Possible values are: ALL_MANAGERS_CAN_ADD ALL_MEMBERS_CAN_ADD NONE_CAN_ADD
+ * @property {string} whoCanContactOwner Permission to contact owner of the group via web UI. Possible values are: ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT ALL_MANAGERS_CAN_CONTACT
+ * @property {string} whoCanInvite Permissions to invite members. Possible values are: ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE NONE_CAN_INVITE
+ * @property {string} whoCanJoin Permissions to join the group. Possible values are: ANYONE_CAN_JOIN ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
+ * @property {string} whoCanLeaveGroup Permission to leave the group. Possible values are: ALL_MANAGERS_CAN_LEAVE ALL_MEMBERS_CAN_LEAVE NONE_CAN_LEAVE
+ * @property {string} whoCanPostMessage Permissions to post messages to the group. Possible values are: NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
+ * @property {string} whoCanViewGroup Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
+ * @property {string} whoCanViewMembership Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
+ */
 module.exports = Groupssettings;

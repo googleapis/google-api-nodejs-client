@@ -53,7 +53,7 @@ function Fitness(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param {object} params.resource Request body data
+       * @param {fitness(v1).DataSource} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -170,7 +170,7 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.dataSourceId The data stream ID of the data source to update.
        * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param {object} params.resource Request body data
+       * @param {fitness(v1).DataSource} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -200,7 +200,7 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.dataSourceId The data stream ID of the data source to update.
        * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param {object} params.resource Request body data
+       * @param {fitness(v1).DataSource} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -298,7 +298,7 @@ function Fitness(options) { // eslint-disable-line
          * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
          * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
          * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {object} params.resource Request body data
+         * @param {fitness(v1).Dataset} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -331,7 +331,7 @@ function Fitness(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param {object} params.resource Request body data
+       * @param {fitness(v1).AggregateRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -427,7 +427,7 @@ function Fitness(options) { // eslint-disable-line
        * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
        * @param {string} params.sessionId The ID of the session to be created.
        * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-       * @param {object} params.resource Request body data
+       * @param {fitness(v1).Session} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -449,4 +449,205 @@ function Fitness(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AggregateBucket
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {integer} activity Available for Bucket.Type.ACTIVITY_TYPE, Bucket.Type.ACTIVITY_SEGMENT
+ * @property {fitness(v1).Dataset[]} dataset There will be one dataset per AggregateBy in the request.
+ * @property {string} endTimeMillis The end time for the aggregated data, in milliseconds since epoch, inclusive.
+ * @property {fitness(v1).Session} session Available for Bucket.Type.SESSION
+ * @property {string} startTimeMillis The start time for the aggregated data, in milliseconds since epoch, inclusive.
+ * @property {string} type The type of a bucket signifies how the data aggregation is performed in the bucket.
+ */
+/**
+ * @typedef AggregateBy
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} dataSourceId A data source ID to aggregate. Mutually exclusive of dataTypeName. Only data from the specified data source ID will be included in the aggregation. The dataset in the response will have the same data source ID.
+ * @property {string} dataTypeName The data type to aggregate. All data sources providing this data type will contribute data to the aggregation. The response will contain a single dataset for this data type name. The dataset will have a data source ID of derived:com.google.:com.google.android.gms:aggregated
+ */
+/**
+ * @typedef AggregateRequest
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {fitness(v1).AggregateBy[]} aggregateBy The specification of data to be aggregated. At least one aggregateBy spec must be provided. All data that is specified will be aggregated using the same bucketing criteria. There will be one dataset in the response for every aggregateBy spec.
+ * @property {fitness(v1).BucketByActivity} bucketByActivitySegment Specifies that data be aggregated each activity segment recored for a user. Similar to bucketByActivitySegment, but bucketing is done for each activity segment rather than all segments of the same type. Mutually exclusive of other bucketing specifications.
+ * @property {fitness(v1).BucketByActivity} bucketByActivityType Specifies that data be aggregated by the type of activity being performed when the data was recorded. All data that was recorded during a certain activity type (for the given time range) will be aggregated into the same bucket. Data that was recorded while the user was not active will not be included in the response. Mutually exclusive of other bucketing specifications.
+ * @property {fitness(v1).BucketBySession} bucketBySession Specifies that data be aggregated by user sessions. Data that does not fall within the time range of a session will not be included in the response. Mutually exclusive of other bucketing specifications.
+ * @property {fitness(v1).BucketByTime} bucketByTime Specifies that data be aggregated by a single time interval. Mutually exclusive of other bucketing specifications.
+ * @property {string} endTimeMillis The end of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive.
+ * @property {string[]} filteredDataQualityStandard A list of acceptable data quality standards. Only data points which conform to at least one of the specified data quality standards will be returned. If the list is empty, all data points are returned.
+ * @property {string} startTimeMillis The start of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive.
+ */
+/**
+ * @typedef AggregateResponse
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {fitness(v1).AggregateBucket[]} bucket A list of buckets containing the aggregated data.
+ */
+/**
+ * @typedef Application
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} detailsUrl An optional URI that can be used to link back to the application.
+ * @property {string} name The name of this application. This is required for REST clients, but we do not enforce uniqueness of this name. It is provided as a matter of convenience for other developers who would like to identify which REST created an Application or Data Source.
+ * @property {string} packageName Package name for this application. This is used as a unique identifier when created by Android applications, but cannot be specified by REST clients. REST clients will have their developer project number reflected into the Data Source data stream IDs, instead of the packageName.
+ * @property {string} version Version of the application. You should update this field whenever the application changes in a way that affects the computation of the data.
+ */
+/**
+ * @typedef BucketByActivity
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} activityDataSourceId The default activity stream will be used if a specific activityDataSourceId is not specified.
+ * @property {string} minDurationMillis Specifies that only activity segments of duration longer than minDurationMillis are considered and used as a container for aggregated data.
+ */
+/**
+ * @typedef BucketBySession
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} minDurationMillis Specifies that only sessions of duration longer than minDurationMillis are considered and used as a container for aggregated data.
+ */
+/**
+ * @typedef BucketByTime
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} durationMillis Specifies that result buckets aggregate data by exactly durationMillis time frames. Time frames that contain no data will be included in the response with an empty dataset.
+ * @property {fitness(v1).BucketByTimePeriod} period 
+ */
+/**
+ * @typedef BucketByTimePeriod
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} timeZoneId org.joda.timezone.DateTimeZone
+ * @property {string} type 
+ * @property {integer} value 
+ */
+/**
+ * @typedef DataPoint
+ * @memberOf! fitness(v1)
+ * @type object
+* @property {string} computationTimeMillis Used for version checking during transformation; that is, a datapoint can only replace another datapoint that has an older computation time stamp.
+* @property {string} dataTypeName The data type defining the format of the values in this data point.
+* @property {string} endTimeNanos The end time of the interval represented by this data point, in nanoseconds since epoch.
+* @property {string} modifiedTimeMillis Indicates the last time this data point was modified. Useful only in contexts where we are listing the data changes, rather than representing the current state of the data.
+* @property {string} originDataSourceId If the data point is contained in a dataset for a derived data source, this field will be populated with the data source stream ID that created the data point originally.
+* @property {string} rawTimestampNanos The raw timestamp from the original SensorEvent.
+* @property {string} startTimeNanos The start time of the interval represented by this data point, in nanoseconds since epoch.
+* @property {fitness(v1).Value[]} value Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source.
+
+Only one of integer and floating point fields will be populated, depending on the format enum value within data source&#39;s type field.
+*/
+/**
+ * @typedef DataSource
+ * @memberOf! fitness(v1)
+ * @type object
+* @property {fitness(v1).Application} application Information about an application which feeds sensor data into the platform.
+* @property {string[]} dataQualityStandard 
+* @property {string} dataStreamId A unique identifier for the data stream produced by this data source. The identifier includes:
+
+ 
+- The physical device&#39;s manufacturer, model, and serial number (UID). 
+- The application&#39;s package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client. 
+- The data source&#39;s type. 
+- The data source&#39;s stream name.  Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn&#39;t used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they&#39;re not equal.
+
+The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName 
+
+The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName 
+
+When any of the optional fields that comprise of the data stream ID are blank, they will be omitted from the data stream ID. The minnimum viable data stream ID would be: type:dataType.name:developer project number
+
+Finally, the developer project number is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form.
+* @property {string} dataStreamName The stream name uniquely identifies this particular data source among other data sources of the same type from the same underlying producer. Setting the stream name is optional, but should be done whenever an application exposes two streams for the same data type, or when a device has two equivalent sensors.
+* @property {fitness(v1).DataType} dataType The data type defines the schema for a stream of data being collected by, inserted into, or queried from the Fitness API.
+* @property {fitness(v1).Device} device Representation of an integrated device (such as a phone or a wearable) that can hold sensors.
+* @property {string} name An end-user visible name for this data source.
+* @property {string} type A constant describing the type of this data source. Indicates whether this data source produces raw or derived data.
+*/
+/**
+ * @typedef DataType
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {fitness(v1).DataTypeField[]} field A field represents one dimension of a data type.
+ * @property {string} name Each data type has a unique, namespaced, name. All data types in the com.google namespace are shared as part of the platform.
+ */
+/**
+ * @typedef DataTypeField
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} format The different supported formats for each field in a data type.
+ * @property {string} name Defines the name and format of data. Unlike data type names, field names are not namespaced, and only need to be unique within the data type.
+ * @property {boolean} optional 
+ */
+/**
+ * @typedef Dataset
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} dataSourceId The data stream ID of the data source that created the points in this dataset.
+ * @property {string} maxEndTimeNs The largest end time of all data points in this possibly partial representation of the dataset. Time is in nanoseconds from epoch. This should also match the first part of the dataset identifier.
+ * @property {string} minStartTimeNs The smallest start time of all data points in this possibly partial representation of the dataset. Time is in nanoseconds from epoch. This should also match the first part of the dataset identifier.
+ * @property {string} nextPageToken This token will be set when a dataset is received in response to a GET request and the dataset is too large to be included in a single response. Provide this value in a subsequent GET request to return the next page of data points within this dataset.
+ * @property {fitness(v1).DataPoint[]} point A partial list of data points contained in the dataset, ordered by largest endTimeNanos first. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.
+ */
+/**
+ * @typedef Device
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} manufacturer Manufacturer of the product/hardware.
+ * @property {string} model End-user visible model name for the device.
+ * @property {string} type A constant representing the type of the device.
+ * @property {string} uid The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form.
+ * @property {string} version Version string for the device hardware/software.
+ */
+/**
+ * @typedef ListDataSourcesResponse
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {fitness(v1).DataSource[]} dataSource A previously created data source.
+ */
+/**
+ * @typedef ListSessionsResponse
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {fitness(v1).Session[]} deletedSession If includeDeleted is set to true in the request, this list will contain sessions deleted with original end times that are within the startTime and endTime frame.
+ * @property {string} nextPageToken The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ * @property {fitness(v1).Session[]} session Sessions with an end time that is between startTime and endTime of the request.
+ */
+/**
+ * @typedef MapValue
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {number} fpVal Floating point value.
+ */
+/**
+ * @typedef Session
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} activeTimeMillis Session active time. While start_time_millis and end_time_millis define the full session time, the active time can be shorter and specified by active_time_millis. If the inactive time during the session is known, it should also be inserted via a com.google.activity.segment data point with a STILL activity value
+ * @property {integer} activityType The type of activity this session represents.
+ * @property {fitness(v1).Application} application The application that created the session.
+ * @property {string} description A description for this session.
+ * @property {string} endTimeMillis An end time, in milliseconds since epoch, inclusive.
+ * @property {string} id A client-generated identifier that is unique across all sessions owned by this particular user.
+ * @property {string} modifiedTimeMillis A timestamp that indicates when the session was last modified.
+ * @property {string} name A human readable name of the session.
+ * @property {string} startTimeMillis A start time, in milliseconds since epoch, inclusive.
+ */
+/**
+ * @typedef Value
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {number} fpVal Floating point value. When this is set, other values must not be set.
+ * @property {integer} intVal Integer value. When this is set, other values must not be set.
+ * @property {fitness(v1).ValueMapValEntry[]} mapVal Map value. The valid key space and units for the corresponding value of each entry should be documented as part of the data type definition. Keys should be kept small whenever possible. Data streams with large keys and high data frequency may be down sampled.
+ * @property {string} stringVal String value. When this is set, other values must not be set. Strings should be kept small whenever possible. Data streams with large string values and high data frequency may be down sampled.
+ */
+/**
+ * @typedef ValueMapValEntry
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} key 
+ * @property {fitness(v1).MapValue} value 
+ */
 module.exports = Fitness;

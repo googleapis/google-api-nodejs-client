@@ -123,4 +123,23 @@ function Freebase(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ReconcileCandidate
+ * @memberOf! freebase(v1)
+ * @type object
+ * @property {number} confidence Percentage likelihood that this candidate is the unique matching entity. Value will be between 0.0 and 1.0
+ * @property {string} lang Language code that candidate and notable names are displayed in.
+ * @property {string} mid Freebase MID of candidate entity.
+ * @property {string} name Freebase name of matching entity in specified language.
+ * @property {object} notable Type or profession the candidate is notable for.
+ */
+/**
+ * @typedef ReconcileGet
+ * @memberOf! freebase(v1)
+ * @type object
+ * @property {freebase(v1).ReconcileCandidate[]} candidate If filled, then the listed candidates are potential matches, and such should be evaluated by a more discerning algorithm or human. The matches are ordered by confidence.
+ * @property {object} costs Server costs for reconciling.
+ * @property {freebase(v1).ReconcileCandidate} match If filled, this entity is guaranteed to match at requested confidence probability (default 99%).
+ * @property {object[]} warning If filled, then there were recoverable problems that affected the request. For example, some of the properties were ignored because they either are not valid Freebase predicates or are not indexed for reconciliation. The candidates returned should be considered valid results, with the caveat that sections of the request were ignored as specified by the warning text.
+ */
 module.exports = Freebase;

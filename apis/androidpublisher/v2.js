@@ -138,7 +138,7 @@ function Androidpublisher(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} params.resource Request body data
+     * @param {androidpublisher(v2).AppEdit} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -323,7 +323,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).ApkListing} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -355,7 +355,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).ApkListing} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -388,7 +388,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).ApksAddExternallyHostedRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -512,7 +512,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).AppDetails} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -542,7 +542,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).AppDetails} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -608,7 +608,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.expansionFileType 
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -640,7 +640,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.expansionFileType 
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -959,7 +959,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).Listing} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -990,7 +990,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).Listing} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1054,7 +1054,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track 
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).Testers} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1085,7 +1085,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track 
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).Testers} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1178,7 +1178,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track The track type to read or modify.
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).Track} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1209,7 +1209,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track The track type to read or modify.
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).Track} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1277,7 +1277,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @memberOf! androidpublisher(v2)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {androidpublisher(v2).InappproductsBatchRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1365,7 +1365,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
-     * @param {object} params.resource Request body data
+     * @param {androidpublisher(v2).InAppProduct} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1427,7 +1427,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {object} params.resource Request body data
+     * @param {androidpublisher(v2).InAppProduct} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1458,7 +1458,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {object} params.resource Request body data
+     * @param {androidpublisher(v2).InAppProduct} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1558,7 +1558,7 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-       * @param {object} params.resource Request body data
+       * @param {androidpublisher(v2).SubscriptionPurchasesDeferRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1742,7 +1742,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      * @param {string} params.reviewId 
-     * @param {object} params.resource Request body data
+     * @param {androidpublisher(v2).ReviewsReplyRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1764,4 +1764,441 @@ function Androidpublisher(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Apk
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).ApkBinary} binary Information about the binary payload of this APK.
+ * @property {integer} versionCode The version code of the APK, as specified in the APK&#39;s manifest file.
+ */
+/**
+ * @typedef ApkBinary
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} sha1 A sha1 hash of the APK payload, encoded as a hex string and matching the output of the sha1sum command.
+ */
+/**
+ * @typedef ApkListing
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} language The language code, in BCP 47 format (eg &quot;en-US&quot;).
+ * @property {string} recentChanges Describe what&#39;s new in your APK.
+ */
+/**
+ * @typedef ApkListingsListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apkListingsListResponse&quot;.
+ * @property {androidpublisher(v2).ApkListing[]} listings 
+ */
+/**
+ * @typedef ApksAddExternallyHostedRequest
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).ExternallyHostedApk} externallyHostedApk The definition of the externally-hosted APK and where it is located.
+ */
+/**
+ * @typedef ApksAddExternallyHostedResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).ExternallyHostedApk} externallyHostedApk The definition of the externally-hosted APK and where it is located.
+ */
+/**
+ * @typedef ApksListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Apk[]} apks 
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apksListResponse&quot;.
+ */
+/**
+ * @typedef AppDetails
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} contactEmail The user-visible support email for this app.
+ * @property {string} contactPhone The user-visible support telephone number for this app.
+ * @property {string} contactWebsite The user-visible website for this app.
+ * @property {string} defaultLanguage Default language code, in BCP 47 format (eg &quot;en-US&quot;).
+ */
+/**
+ * @typedef AppEdit
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} expiryTimeSeconds The time at which the edit will expire and will be no longer valid for use in any subsequent API calls (encoded as seconds since the Epoch).
+ * @property {string} id The ID of the edit that can be used in subsequent API calls.
+ */
+/**
+ * @typedef Comment
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).DeveloperComment} developerComment A comment from a developer.
+ * @property {androidpublisher(v2).UserComment} userComment A comment from a user.
+ */
+/**
+ * @typedef DeveloperComment
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Timestamp} lastModified The last time at which this comment was updated.
+ * @property {string} text The content of the comment, i.e. reply body.
+ */
+/**
+ * @typedef Entitlement
+ * @memberOf! androidpublisher(v2)
+ * @type object
+* @property {string} kind This kind represents an entitlement object in the androidpublisher service.
+* @property {string} productId The SKU of the product.
+* @property {string} productType The type of the inapp product. Possible values are:  
+- In-app item: &quot;inapp&quot; 
+- Subscription: &quot;subs&quot;
+* @property {string} token The token which can be verified using the subscriptions or products API.
+*/
+/**
+ * @typedef EntitlementsListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).PageInfo} pageInfo 
+ * @property {androidpublisher(v2).Entitlement[]} resources 
+ * @property {androidpublisher(v2).TokenPagination} tokenPagination 
+ */
+/**
+ * @typedef ExpansionFile
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} fileSize If set this field indicates that this APK has an Expansion File uploaded to it: this APK does not reference another APK&#39;s Expansion File. The field&#39;s value is the size of the uploaded Expansion File in bytes.
+ * @property {integer} referencesVersion If set this APK&#39;s Expansion File references another APK&#39;s Expansion File. The file_size field will not be set.
+ */
+/**
+ * @typedef ExpansionFilesUploadResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).ExpansionFile} expansionFile 
+ */
+/**
+ * @typedef ExternallyHostedApk
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} applicationLabel The application label.
+ * @property {string[]} certificateBase64s A certificate (or array of certificates if a certificate-chain is used) used to signed this APK, represented as a base64 encoded byte array.
+ * @property {string} externallyHostedUrl The URL at which the APK is hosted. This must be an https URL.
+ * @property {string} fileSha1Base64 The SHA1 checksum of this APK, represented as a base64 encoded byte array.
+ * @property {string} fileSha256Base64 The SHA256 checksum of this APK, represented as a base64 encoded byte array.
+ * @property {string} fileSize The file size in bytes of this APK.
+ * @property {string} iconBase64 The icon image from the APK, as a base64 encoded byte array.
+ * @property {integer} maximumSdk The maximum SDK supported by this APK (optional).
+ * @property {integer} minimumSdk The minimum SDK targeted by this APK.
+ * @property {string[]} nativeCodes The native code environments supported by this APK (optional).
+ * @property {string} packageName The package name.
+ * @property {string[]} usesFeatures The features required by this APK (optional).
+ * @property {androidpublisher(v2).ExternallyHostedApkUsesPermission[]} usesPermissions The permissions requested by this APK.
+ * @property {integer} versionCode The version code of this APK.
+ * @property {string} versionName The version name of this APK.
+ */
+/**
+ * @typedef ExternallyHostedApkUsesPermission
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} maxSdkVersion Optionally, the maximum SDK version for which the permission is required.
+ * @property {string} name The name of the permission requested.
+ */
+/**
+ * @typedef Image
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} id A unique id representing this image.
+ * @property {string} sha1 A sha1 hash of the image that was uploaded.
+ * @property {string} url A URL that will serve a preview of the image.
+ */
+/**
+ * @typedef ImagesDeleteAllResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Image[]} deleted 
+ */
+/**
+ * @typedef ImagesListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Image[]} images 
+ */
+/**
+ * @typedef ImagesUploadResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Image} image 
+ */
+/**
+ * @typedef InAppProduct
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} defaultLanguage The default language of the localized data, as defined by BCP 47. e.g. &quot;en-US&quot;, &quot;en-GB&quot;.
+ * @property {androidpublisher(v2).Price} defaultPrice Default price cannot be zero. In-app products can never be free. Default price is always in the developer&#39;s Checkout merchant currency.
+ * @property {object} listings List of localized title and description data.
+ * @property {string} packageName The package name of the parent app.
+ * @property {object} prices Prices per buyer region. None of these prices should be zero. In-app products can never be free.
+ * @property {string} purchaseType Purchase type enum value. Unmodifiable after creation.
+ * @property {androidpublisher(v2).Season} season Definition of a season for a seasonal subscription. Can be defined only for yearly subscriptions.
+ * @property {string} sku The stock-keeping-unit (SKU) of the product, unique within an app.
+ * @property {string} status 
+ * @property {string} subscriptionPeriod Subscription period, specified in ISO 8601 format. Acceptable values are &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot; (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one year).
+ * @property {string} trialPeriod Trial period, specified in ISO 8601 format. Acceptable values are anything between &quot;P7D&quot; (seven days) and &quot;P999D&quot; (999 days). Seasonal subscriptions cannot have a trial period.
+ */
+/**
+ * @typedef InAppProductListing
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} description 
+ * @property {string} title 
+ */
+/**
+ * @typedef InappproductsBatchRequest
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InappproductsBatchRequestEntry[]} entrys 
+ */
+/**
+ * @typedef InappproductsBatchRequestEntry
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} batchId 
+ * @property {androidpublisher(v2).InappproductsInsertRequest} inappproductsinsertrequest 
+ * @property {androidpublisher(v2).InappproductsUpdateRequest} inappproductsupdaterequest 
+ * @property {string} methodName 
+ */
+/**
+ * @typedef InappproductsBatchResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InappproductsBatchResponseEntry[]} entrys 
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsBatchResponse&quot;.
+ */
+/**
+ * @typedef InappproductsBatchResponseEntry
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} batchId 
+ * @property {androidpublisher(v2).InappproductsInsertResponse} inappproductsinsertresponse 
+ * @property {androidpublisher(v2).InappproductsUpdateResponse} inappproductsupdateresponse 
+ */
+/**
+ * @typedef InappproductsInsertRequest
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InAppProduct} inappproduct 
+ */
+/**
+ * @typedef InappproductsInsertResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InAppProduct} inappproduct 
+ */
+/**
+ * @typedef InappproductsListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InAppProduct[]} inappproduct 
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsListResponse&quot;.
+ * @property {androidpublisher(v2).PageInfo} pageInfo 
+ * @property {androidpublisher(v2).TokenPagination} tokenPagination 
+ */
+/**
+ * @typedef InappproductsUpdateRequest
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InAppProduct} inappproduct 
+ */
+/**
+ * @typedef InappproductsUpdateResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).InAppProduct} inappproduct 
+ */
+/**
+ * @typedef Listing
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} fullDescription Full description of the app; this may be up to 4000 characters in length.
+ * @property {string} language Language localization code (for example, &quot;de-AT&quot; for Austrian German).
+ * @property {string} shortDescription Short description of the app (previously known as promo text); this may be up to 80 characters in length.
+ * @property {string} title App&#39;s localized title.
+ * @property {string} video URL of a promotional YouTube video for the app.
+ */
+/**
+ * @typedef ListingsListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#listingsListResponse&quot;.
+ * @property {androidpublisher(v2).Listing[]} listings 
+ */
+/**
+ * @typedef MonthDay
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} day Day of a month, value in [1, 31] range. Valid range depends on the specified month.
+ * @property {integer} month Month of a year. e.g. 1 = JAN, 2 = FEB etc.
+ */
+/**
+ * @typedef PageInfo
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} resultPerPage 
+ * @property {integer} startIndex 
+ * @property {integer} totalResults 
+ */
+/**
+ * @typedef Price
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} currency 3 letter Currency code, as defined by ISO 4217.
+ * @property {string} priceMicros The price in millionths of the currency base unit represented as a string.
+ */
+/**
+ * @typedef ProductPurchase
+ * @memberOf! androidpublisher(v2)
+ * @type object
+* @property {integer} consumptionState The consumption state of the inapp product. Possible values are:  
+- Yet to be consumed 
+- Consumed
+* @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
+* @property {string} kind This kind represents an inappPurchase object in the androidpublisher service.
+* @property {integer} purchaseState The purchase state of the order. Possible values are:  
+- Purchased 
+- Cancelled
+* @property {string} purchaseTimeMillis The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
+*/
+/**
+ * @typedef Prorate
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Price} defaultPrice Default price cannot be zero and must be less than the full subscription price. Default price is always in the developer&#39;s Checkout merchant currency. Targeted countries have their prices set automatically based on the default_price.
+ * @property {androidpublisher(v2).MonthDay} start Defines the first day on which the price takes effect.
+ */
+/**
+ * @typedef Review
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} authorName The name of the user who wrote the review.
+ * @property {androidpublisher(v2).Comment[]} comments A repeated field containing comments for the review.
+ * @property {string} reviewId Unique identifier for this review.
+ */
+/**
+ * @typedef ReviewReplyResult
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).Timestamp} lastEdited The time at which the reply took effect.
+ * @property {string} replyText The reply text that was applied.
+ */
+/**
+ * @typedef ReviewsListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).PageInfo} pageInfo 
+ * @property {androidpublisher(v2).Review[]} reviews 
+ * @property {androidpublisher(v2).TokenPagination} tokenPagination 
+ */
+/**
+ * @typedef ReviewsReplyRequest
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} replyText The text to set as the reply. Replies of more than approximately 350 characters will be rejected. HTML tags will be stripped.
+ */
+/**
+ * @typedef ReviewsReplyResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).ReviewReplyResult} result 
+ */
+/**
+ * @typedef Season
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).MonthDay} end Inclusive end date of the recurrence period.
+ * @property {androidpublisher(v2).Prorate[]} prorations Optionally present list of prorations for the season. Each proration is a one-off discounted entry into a subscription. Each proration contains the first date on which the discount is available and the new pricing information.
+ * @property {androidpublisher(v2).MonthDay} start Inclusive start date of the recurrence period.
+ */
+/**
+ * @typedef SubscriptionDeferralInfo
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} desiredExpiryTimeMillis The desired next expiry time to assign to the subscription, in milliseconds since the Epoch. The given time must be later/greater than the current expiry time for the subscription.
+ * @property {string} expectedExpiryTimeMillis The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
+ */
+/**
+ * @typedef SubscriptionPurchase
+ * @memberOf! androidpublisher(v2)
+ * @type object
+* @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
+* @property {integer} cancelReason The reason why a subscription was cancelled or is not auto-renewing. Possible values are:  
+- User cancelled the subscription 
+- Subscription was cancelled by the system, for example because of a billing problem
+* @property {string} countryCode ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
+* @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
+* @property {string} expiryTimeMillis Time at which the subscription will expire, in milliseconds since the Epoch.
+* @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
+* @property {integer} paymentState The payment state of the subscription. Possible values are:  
+- Payment pending 
+- Payment received
+* @property {string} priceAmountMicros Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
+* @property {string} priceCurrencyCode ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
+* @property {string} startTimeMillis Time at which the subscription was granted, in milliseconds since the Epoch.
+*/
+/**
+ * @typedef SubscriptionPurchasesDeferRequest
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).SubscriptionDeferralInfo} deferralInfo The information about the new desired expiry time for the subscription.
+ */
+/**
+ * @typedef SubscriptionPurchasesDeferResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} newExpiryTimeMillis The new expiry time for the subscription in milliseconds since the Epoch.
+ */
+/**
+ * @typedef Testers
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string[]} googleGroups 
+ * @property {string[]} googlePlusCommunities 
+ */
+/**
+ * @typedef Timestamp
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} nanos 
+ * @property {string} seconds 
+ */
+/**
+ * @typedef TokenPagination
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} nextPageToken 
+ * @property {string} previousPageToken 
+ */
+/**
+ * @typedef Track
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} track 
+ * @property {number} userFraction 
+ * @property {integer[]} versionCodes 
+ */
+/**
+ * @typedef TracksListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#tracksListResponse&quot;.
+ * @property {androidpublisher(v2).Track[]} tracks 
+ */
+/**
+ * @typedef UserComment
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {integer} androidOsVersion Integer Android SDK version of the user&#39;s device at the time the review was written, e.g. 23 is Marshmallow. May be absent.
+ * @property {integer} appVersionCode Integer version code of the app as installed at the time the review was written. May be absent.
+ * @property {string} appVersionName String version name of the app as installed at the time the review was written. May be absent.
+ * @property {string} device Codename for the reviewer&#39;s device, e.g. klte, flounder. May be absent.
+ * @property {androidpublisher(v2).Timestamp} lastModified The last time at which this comment was updated.
+ * @property {string} reviewerLanguage Language code for the reviewer. This is taken from the device settings so is not guaranteed to match the language the review is written in. May be absent.
+ * @property {integer} starRating The star rating associated with the review, from 1 to 5.
+ * @property {string} text The content of the comment, i.e. review body. In some cases users have been able to write a review with separate title and body; in those cases the title and body are concatenated and separated by a tab character.
+ */
 module.exports = Androidpublisher;

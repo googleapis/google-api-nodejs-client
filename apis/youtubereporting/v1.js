@@ -118,7 +118,7 @@ function Youtubereporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {object} params.resource Request body data
+     * @param {youtubereporting(v1).Job} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -295,4 +295,68 @@ function Youtubereporting(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Media
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {string} resourceName Name of the media resource.
+ */
+/**
+ * @typedef ListReportTypesResponse
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {youtubereporting(v1).ReportType[]} reportTypes The list of report types.
+ * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListReportTypesRequest.page_token field in the subsequent call to `ListReportTypes` method to retrieve the next page of results.
+ */
+/**
+ * @typedef ReportType
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {string} id The ID of the report type (max. 100 characters).
+ * @property {string} name The name of the report type (max. 100 characters).
+ * @property {string} deprecateTime The date/time when this report type was/will be deprecated.
+ * @property {boolean} systemManaged True if this a system-managed report type; otherwise false. Reporting jobs for system-managed report types are created automatically and can thus not be used in the `CreateJob` method.
+ */
+/**
+ * @typedef Job
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {string} id The server-generated ID of the job (max. 40 characters).
+ * @property {string} reportTypeId The type of reports this job creates. Corresponds to the ID of a ReportType.
+ * @property {string} name The name of the job (max. 100 characters).
+ * @property {string} createTime The creation date/time of the job.
+ * @property {string} expireTime The date/time when this job will expire/expired. After a job expired, no new reports are generated.
+ * @property {boolean} systemManaged True if this a system-managed job that cannot be modified by the user; otherwise false.
+ */
+/**
+ * @typedef ListJobsResponse
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {youtubereporting(v1).Job[]} jobs The list of jobs.
+ * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListJobsRequest.page_token field in the subsequent call to `ListJobs` method to retrieve the next page of results.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ */
+/**
+ * @typedef ListReportsResponse
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {youtubereporting(v1).Report[]} reports The list of report types.
+ * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListReportsRequest.page_token field in the subsequent call to `ListReports` method to retrieve the next page of results.
+ */
+/**
+ * @typedef Report
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {string} id The server-generated ID of the report.
+ * @property {string} jobId The ID of the job that created this report.
+ * @property {string} jobExpireTime The date/time when the job this report belongs to will expire/expired.
+ * @property {string} startTime The start of the time period that the report instance covers. The value is inclusive.
+ * @property {string} endTime The end of the time period that the report instance covers. The value is exclusive.
+ * @property {string} createTime The date/time when this report was created.
+ * @property {string} downloadUrl The URL from which the report can be downloaded (max. 1000 characters).
+ */
 module.exports = Youtubereporting;

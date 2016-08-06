@@ -146,7 +146,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupName Name of the group for this request.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).GroupsAddMemberRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -262,7 +262,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).Group} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -324,7 +324,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupName Name of the group for this request.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).GroupsRemoveMemberRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -354,7 +354,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).Policy} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -384,7 +384,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).TestPermissionsRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -488,7 +488,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.user Name of the user for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).PublicKey} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -604,7 +604,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).User} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -696,7 +696,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).Policy} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -726,7 +726,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} params.resource Request body data
+     * @param {clouduseraccounts(vm_alpha).TestPermissionsRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -748,4 +748,245 @@ function Clouduseraccounts(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AuditConfig
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
+ * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef AuthorizedKeysView
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string[]} keys [Output Only] The list of authorized public keys in SSH format.
+ * @property {boolean} sudoer [Output Only] Whether the user has the ability to elevate on the instance that requested the authorized keys.
+ */
+/**
+ * @typedef Binding
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
+
+* `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+
+* `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+
+* `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.
+
+* `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
+
+* `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.
+
+* `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
+* @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+*/
+/**
+ * @typedef Condition
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} iam Trusted attributes supplied by the IAM system.
+ * @property {string} op An operator to apply the subject with.
+ * @property {string} svc Trusted attributes discharged by the service.
+ * @property {string} sys Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
+ * @property {string} value The object of the condition. Exactly one of these must be set.
+ * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
+ */
+/**
+ * @typedef Group
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional textual description of the resource; provided by the client when the resource is created.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#group for groups.
+ * @property {string[]} members [Output Only] A list of URLs to User resources who belong to the group. Users may only be members of groups in the same project.
+ * @property {string} name Name of the resource; provided by the client when the resource is created.
+ * @property {string} selfLink [Output Only] Server defined URL for the resource.
+ */
+/**
+ * @typedef GroupList
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {clouduseraccounts(vm_alpha).Group[]} items [Output Only] A list of Group resources.
+ * @property {string} kind [Output Only] Type of resource. Always clouduseraccounts#groupList for lists of groups.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server defined URL for this resource.
+ */
+/**
+ * @typedef GroupsAddMemberRequest
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string[]} users Fully-qualified URLs of the User resources to add.
+ */
+/**
+ * @typedef GroupsRemoveMemberRequest
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string[]} users Fully-qualified URLs of the User resources to remove.
+ */
+/**
+ * @typedef LinuxAccountViews
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {clouduseraccounts(vm_alpha).LinuxGroupView[]} groupViews [Output Only] A list of all groups within a project.
+ * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#linuxAccountViews for Linux resources.
+ * @property {clouduseraccounts(vm_alpha).LinuxUserView[]} userViews [Output Only] A list of all users within a project.
+ */
+/**
+ * @typedef LinuxGetAuthorizedKeysViewResponse
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {clouduseraccounts(vm_alpha).AuthorizedKeysView} resource [Output Only] A list of authorized public keys for a user.
+ */
+/**
+ * @typedef LinuxGetLinuxAccountViewsResponse
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {clouduseraccounts(vm_alpha).LinuxAccountViews} resource [Output Only] A list of authorized user accounts and groups.
+ */
+/**
+ * @typedef LinuxGroupView
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {integer} gid [Output Only] The Group ID.
+ * @property {string} groupName [Output Only] Group name.
+ * @property {string[]} members [Output Only] List of user accounts that belong to the group.
+ */
+/**
+ * @typedef LinuxUserView
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} gecos [Output Only] The GECOS (user information) entry for this account.
+ * @property {integer} gid [Output Only] User&#39;s default group ID.
+ * @property {string} homeDirectory [Output Only] The path to the home directory for this account.
+ * @property {string} shell [Output Only] The path to the login shell for this account.
+ * @property {integer} uid [Output Only] User ID.
+ * @property {string} username [Output Only] The username of the account.
+ */
+/**
+ * @typedef LogConfig
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {clouduseraccounts(vm_alpha).LogConfigCounterOptions} counter Counter options.
+ */
+/**
+ * @typedef LogConfigCounterOptions
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} field The field value to attribute.
+ * @property {string} metric The metric to update.
+ */
+/**
+ * @typedef Operation
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} clientOperationId [Output Only] Reserved for future use.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] A textual description of the operation, which is set when the operation is created.
+ * @property {string} endTime [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
+ * @property {object} error [Output Only] If errors are generated during processing of the operation, this field will be populated.
+ * @property {string} httpErrorMessage [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as NOT FOUND.
+ * @property {integer} httpErrorStatusCode [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a 404 means the resource was not found.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} insertTime [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#operation for Operation resources.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} operationType [Output Only] The type of operation, such as insert, update, or delete, and so on.
+ * @property {integer} progress [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
+ * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} startTime [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
+ * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
+ * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
+ * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies.
+ * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
+ * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
+ * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
+ */
+/**
+ * @typedef OperationList
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {clouduseraccounts(vm_alpha).Operation[]} items [Output Only] A list of Operation resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#operations for Operations resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef Policy
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+* @property {clouduseraccounts(vm_alpha).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
+
+Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which always enables audit logging.
+* @property {clouduseraccounts(vm_alpha).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+* @property {boolean} iamOwned 
+* @property {clouduseraccounts(vm_alpha).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+*/
+/**
+ * @typedef PublicKey
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional textual description of the resource; provided by the client when the resource is created.
+ * @property {string} expirationTimestamp Optional expiration timestamp. If provided, the timestamp must be in RFC3339 text format. If not provided, the public key never expires.
+ * @property {string} fingerprint [Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key.
+ * @property {string} key Public key text in SSH format, defined by RFC4253 section 6.6.
+ */
+/**
+ * @typedef Rule
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} action Required
+ * @property {clouduseraccounts(vm_alpha).Condition[]} conditions Additional restrictions that must be met
+ * @property {string} description Human-readable description of the rule.
+ * @property {string[]} ins The rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in this set of entries.
+ * @property {clouduseraccounts(vm_alpha).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+ * @property {string[]} notIns The rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is not in this set of entries.
+ * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+ */
+/**
+ * @typedef TestPermissionsRequest
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string[]} permissions The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
+ */
+/**
+ * @typedef TestPermissionsResponse
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+ */
+/**
+ * @typedef User
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional textual description of the resource; provided by the client when the resource is created.
+ * @property {string[]} groups [Output Only] A list of URLs to Group resources who contain the user. Users are only members of groups in the same project.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#user for users.
+ * @property {string} name Name of the resource; provided by the client when the resource is created.
+ * @property {string} owner Email address of account&#39;s owner. This account will be validated to make sure it exists. The email can belong to any domain, but it must be tied to a Google account.
+ * @property {clouduseraccounts(vm_alpha).PublicKey[]} publicKeys [Output Only] Public keys that this user may use to login.
+ * @property {string} selfLink [Output Only] Server defined URL for the resource.
+ */
+/**
+ * @typedef UserList
+ * @memberOf! clouduseraccounts(vm_alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {clouduseraccounts(vm_alpha).User[]} items [Output Only] A list of User resources.
+ * @property {string} kind [Output Only] Type of resource. Always clouduseraccounts#userList for lists of users.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server defined URL for this resource.
+ */
 module.exports = Clouduseraccounts;

@@ -51,7 +51,7 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.hostedModelName The name of a hosted model.
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.5).Input} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -167,7 +167,7 @@ function Prediction(options) { // eslint-disable-line
      * @memberOf! prediction(v1.5)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.5).Training} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -225,7 +225,7 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.5).Input} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -254,7 +254,7 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
-     * @param {object} params.resource Request body data
+     * @param {prediction(v1.5).Update} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -276,4 +276,67 @@ function Prediction(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Analyze
+ * @memberOf! prediction(v1.5)
+ * @type object
+ * @property {object} dataDescription Description of the data the model was trained on.
+ * @property {object[]} errors List of errors with the data.
+ * @property {string} id The unique name for the predictive model.
+ * @property {string} kind What kind of resource this is.
+ * @property {object} modelDescription Description of the model.
+ * @property {string} selfLink A URL to re-request this resource.
+ */
+/**
+ * @typedef Input
+ * @memberOf! prediction(v1.5)
+ * @type object
+ * @property {object} input Input to the model for a prediction
+ */
+/**
+ * @typedef List
+ * @memberOf! prediction(v1.5)
+ * @type object
+ * @property {prediction(v1.5).Training[]} items List of models.
+ * @property {string} kind What kind of resource this is.
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ * @property {string} selfLink A URL to re-request this resource.
+ */
+/**
+ * @typedef Output
+ * @memberOf! prediction(v1.5)
+ * @type object
+ * @property {string} id The unique name for the predictive model.
+ * @property {string} kind What kind of resource this is.
+ * @property {string} outputLabel The most likely class label [Categorical models only].
+ * @property {object[]} outputMulti A list of class labels with their estimated probabilities [Categorical models only].
+ * @property {number} outputValue The estimated regression value [Regression models only].
+ * @property {string} selfLink A URL to re-request this resource.
+ */
+/**
+ * @typedef Training
+ * @memberOf! prediction(v1.5)
+ * @type object
+ * @property {string} created Insert time of the model (as a RFC 3339 timestamp).
+ * @property {string} id The unique name for the predictive model.
+ * @property {string} kind What kind of resource this is.
+ * @property {object} modelInfo Model metadata.
+ * @property {string} modelType Type of predictive model (classification or regression)
+ * @property {string} selfLink A URL to re-request this resource.
+ * @property {string} storageDataLocation Google storage location of the training data file.
+ * @property {string} storagePMMLLocation Google storage location of the preprocessing pmml file.
+ * @property {string} storagePMMLModelLocation Google storage location of the pmml model file.
+ * @property {string} trainingComplete Training completion time (as a RFC 3339 timestamp).
+ * @property {object[]} trainingInstances Instances to train model on.
+ * @property {string} trainingStatus The current status of the training job. This can be one of following: RUNNING; DONE; ERROR; ERROR: TRAINING JOB NOT FOUND
+ * @property {object[]} utility A class weighting function, which allows the importance weights for class labels to be specified [Categorical models only].
+ */
+/**
+ * @typedef Update
+ * @memberOf! prediction(v1.5)
+ * @type object
+ * @property {any[]} csvInstance The input features for this instance
+ * @property {string} label The class label of this instance
+ * @property {string} output The generic output value - could be regression value or class label
+ */
 module.exports = Prediction;

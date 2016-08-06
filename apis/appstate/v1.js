@@ -165,7 +165,7 @@ function Appstate(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.currentStateVersion The version of the app state your application is attempting to update. If this does not match the current version, this method will return a conflict error. If there is no data stored on the server for this key, the update will succeed irrespective of the value of this parameter.
      * @param {integer} params.stateKey The key for the data to be retrieved.
-     * @param {object} params.resource Request body data
+     * @param {appstate(v1).UpdateRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -187,4 +187,36 @@ function Appstate(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef GetResponse
+ * @memberOf! appstate(v1)
+ * @type object
+ * @property {string} currentStateVersion The current app state version.
+ * @property {string} data The requested data.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#getResponse.
+ * @property {integer} stateKey The key for the data.
+ */
+/**
+ * @typedef ListResponse
+ * @memberOf! appstate(v1)
+ * @type object
+ * @property {appstate(v1).GetResponse[]} items The app state data.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#listResponse.
+ * @property {integer} maximumKeyCount The maximum number of keys allowed for this user.
+ */
+/**
+ * @typedef UpdateRequest
+ * @memberOf! appstate(v1)
+ * @type object
+ * @property {string} data The new app state data that your application is trying to update with.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#updateRequest.
+ */
+/**
+ * @typedef WriteResult
+ * @memberOf! appstate(v1)
+ * @type object
+ * @property {string} currentStateVersion The version of the data for this key on the server.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#writeResult.
+ * @property {integer} stateKey The written key.
+ */
 module.exports = Appstate;

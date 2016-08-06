@@ -26,7 +26,11 @@
  * @param {string} params.media.mimeType Media mime-type
  * @param {string|object} params.media.body Media body contents
 {% elif m.request -%}
+{% if m.request.$ref -%}
+ * @param {{ lb }}{{ name }}({{ version }}).{{ m.request.$ref }}{{ rb }} params.resource Request body data
+{% else -%}
  * @param {object} params.resource Request body data
+{% endif -%}
 {% endif -%}
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object

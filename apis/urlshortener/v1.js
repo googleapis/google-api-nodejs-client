@@ -79,7 +79,7 @@ function Urlshortener(options) { // eslint-disable-line
      * @memberOf! urlshortener(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {urlshortener(v1).Url} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -130,4 +130,53 @@ function Urlshortener(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AnalyticsSnapshot
+ * @memberOf! urlshortener(v1)
+ * @type object
+ * @property {urlshortener(v1).StringCount[]} browsers Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click counts. Only present if this data is available.
+ * @property {urlshortener(v1).StringCount[]} countries Top countries (expressed as country codes), e.g. &quot;US&quot; or &quot;DE&quot;; sorted by (descending) click counts. Only present if this data is available.
+ * @property {string} longUrlClicks Number of clicks on all goo.gl short URLs pointing to this long URL.
+ * @property {urlshortener(v1).StringCount[]} platforms Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending) click counts. Only present if this data is available.
+ * @property {urlshortener(v1).StringCount[]} referrers Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by (descending) click counts. Only present if this data is available.
+ * @property {string} shortUrlClicks Number of clicks on this short URL.
+ */
+/**
+ * @typedef AnalyticsSummary
+ * @memberOf! urlshortener(v1)
+ * @type object
+ * @property {urlshortener(v1).AnalyticsSnapshot} allTime Click analytics over all time.
+ * @property {urlshortener(v1).AnalyticsSnapshot} day Click analytics over the last day.
+ * @property {urlshortener(v1).AnalyticsSnapshot} month Click analytics over the last month.
+ * @property {urlshortener(v1).AnalyticsSnapshot} twoHours Click analytics over the last two hours.
+ * @property {urlshortener(v1).AnalyticsSnapshot} week Click analytics over the last week.
+ */
+/**
+ * @typedef StringCount
+ * @memberOf! urlshortener(v1)
+ * @type object
+ * @property {string} count Number of clicks for this top entry, e.g. for this particular country or browser.
+ * @property {string} id Label assigned to this top entry, e.g. &quot;US&quot; or &quot;Chrome&quot;.
+ */
+/**
+ * @typedef Url
+ * @memberOf! urlshortener(v1)
+ * @type object
+ * @property {urlshortener(v1).AnalyticsSummary} analytics A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
+ * @property {string} created Time the short URL was created; ISO 8601 representation using the yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g. &quot;2010-10-14T19:01:24.944+00:00&quot;.
+ * @property {string} id Short URL, e.g. &quot;http://goo.gl/l6MS&quot;.
+ * @property {string} kind The fixed string &quot;urlshortener#url&quot;.
+ * @property {string} longUrl Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present if the status is &quot;REMOVED&quot;.
+ * @property {string} status Status of the target URL. Possible values: &quot;OK&quot;, &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL might be marked &quot;REMOVED&quot; if it was flagged as spam, for example.
+ */
+/**
+ * @typedef UrlHistory
+ * @memberOf! urlshortener(v1)
+ * @type object
+ * @property {urlshortener(v1).Url[]} items A list of URL resources.
+ * @property {integer} itemsPerPage Number of items returned with each full &quot;page&quot; of results. Note that the last page could have fewer items than the &quot;itemsPerPage&quot; value.
+ * @property {string} kind The fixed string &quot;urlshortener#urlHistory&quot;.
+ * @property {string} nextPageToken A token to provide to get the next page of results.
+ * @property {integer} totalItems Total number of short URLs associated with this user (may be approximate).
+ */
 module.exports = Urlshortener;

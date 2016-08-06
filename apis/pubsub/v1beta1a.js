@@ -50,7 +50,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).Topic} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -78,7 +78,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).PublishRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -106,7 +106,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).PublishBatchRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -224,7 +224,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).Subscription} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -338,7 +338,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).ModifyPushConfigRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -366,7 +366,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).PullRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -394,7 +394,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).PullBatchRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -422,7 +422,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).ModifyAckDeadlineRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -450,7 +450,7 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {pubsub(v1beta1a).AcknowledgeRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -472,4 +472,141 @@ function Pubsub(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Topic
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} name Name of the topic.
+ */
+/**
+ * @typedef PublishRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} topic The message in the request will be published on this topic.
+ * @property {pubsub(v1beta1a).PubsubMessage} message The message to publish.
+ */
+/**
+ * @typedef PubsubMessage
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} data The message payload.
+ * @property {pubsub(v1beta1a).Label[]} label Optional list of labels for this message. Keys in this collection must be unique.
+ * @property {string} messageId ID of this message assigned by the server at publication time. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a PubsubMessage via a Pull call or a push delivery. It must not be populated by a publisher in a Publish call.
+ * @property {string} publishTime The time at which the message was published. The time is milliseconds since the UNIX epoch.
+ */
+/**
+ * @typedef Label
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} key The key of a label is a syntactically valid URL (as per RFC 1738) with the &quot;scheme&quot; and initial slashes omitted and with the additional restrictions noted below. Each key should be globally unique. The &quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily resolvable to a network endpoint. Instead, the namespace indicates what system or entity defines the semantics of the label. Namespaces do not restrict the set of objects to which a label may be associated. Keys are defined by the following grammar: key = hostname &quot;/&quot; kpath kpath = ksegment *[ &quot;/&quot; ksegment ] ksegment = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ] where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738. Example key: spanner.google.com/universe
+ * @property {string} strValue A string value.
+ * @property {string} numValue An integer value.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ */
+/**
+ * @typedef PublishBatchRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} topic The messages in the request will be published on this topic.
+ * @property {pubsub(v1beta1a).PubsubMessage[]} messages The messages to publish.
+ */
+/**
+ * @typedef PublishBatchResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string[]} messageIds The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
+ */
+/**
+ * @typedef ListTopicsResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {pubsub(v1beta1a).Topic[]} topic The resulting topics.
+ * @property {string} nextPageToken If not empty, indicates that there are more topics that match the request, and this value should be passed to the next ListTopicsRequest to continue.
+ */
+/**
+ * @typedef Subscription
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} name Name of the subscription.
+ * @property {string} topic The name of the topic from which this subscription is receiving messages.
+ * @property {pubsub(v1beta1a).PushConfig} pushConfig If push delivery is used with this subscription, this field is used to configure it.
+ * @property {integer} ackDeadlineSeconds For either push or pull delivery, the value is the maximum time after a subscriber receives a message before the subscriber should acknowledge or Nack the message. If the Ack deadline for a message passes without an Ack or a Nack, the Pub/Sub system will eventually redeliver the message. If a subscriber acknowledges after the deadline, the Pub/Sub system may accept the Ack, but it is possible that the message has been already delivered again. Multiple Acks to the message are allowed and will succeed. For push delivery, this value is used to set the request timeout for the call to the push endpoint. For pull delivery, this value is used as the initial value for the Ack deadline. It may be overridden for each message using its corresponding ack_id with ModifyAckDeadline. While a message is outstanding (i.e. it has been delivered to a pull subscriber and the subscriber has not yet Acked or Nacked), the Pub/Sub system will not deliver that message to another pull subscriber (on a best-effort basis).
+ */
+/**
+ * @typedef PushConfig
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
+ */
+/**
+ * @typedef ListSubscriptionsResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {pubsub(v1beta1a).Subscription[]} subscription The subscriptions that match the request.
+ * @property {string} nextPageToken If not empty, indicates that there are more subscriptions that match the request and this value should be passed to the next ListSubscriptionsRequest to continue.
+ */
+/**
+ * @typedef ModifyPushConfigRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} subscription The name of the subscription.
+ * @property {pubsub(v1beta1a).PushConfig} pushConfig An empty push_config indicates that the Pub/Sub system should pause pushing messages from the given subscription.
+ */
+/**
+ * @typedef PullRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} subscription The subscription from which a message should be pulled.
+ * @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if it is not able to return a message in the Pull response. Otherwise the system is allowed to wait until at least one message is available rather than returning FAILED_PRECONDITION. The client may cancel the request if it does not wish to wait any longer for the response.
+ */
+/**
+ * @typedef PullResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} ackId This ID must be used to acknowledge the received event or message.
+ * @property {pubsub(v1beta1a).PubsubEvent} pubsubEvent A pubsub message or truncation event.
+ */
+/**
+ * @typedef PubsubEvent
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} subscription The subscription that received the event.
+ * @property {pubsub(v1beta1a).PubsubMessage} message A received message.
+ * @property {boolean} truncated Indicates that this subscription has been truncated.
+ * @property {boolean} deleted Indicates that this subscription has been deleted. (Note that pull subscribers will always receive NOT_FOUND in response in their pull request on the subscription, rather than seeing this boolean.)
+ */
+/**
+ * @typedef PullBatchRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} subscription The subscription from which messages should be pulled.
+ * @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if it is not able to return a message in the Pull response. Otherwise the system is allowed to wait until at least one message is available rather than returning no messages. The client may cancel the request if it does not wish to wait any longer for the response.
+ * @property {integer} maxEvents The maximum number of PubsubEvents returned for this request. The Pub/Sub system may return fewer than the number of events specified.
+ */
+/**
+ * @typedef PullBatchResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {pubsub(v1beta1a).PullResponse[]} pullResponses Received Pub/Sub messages or status events. The Pub/Sub system will return zero messages if there are no more messages available in the backlog. The Pub/Sub system may return fewer than the max_events requested even if there are more messages available in the backlog.
+ */
+/**
+ * @typedef ModifyAckDeadlineRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} subscription Next Index: 5 The name of the subscription from which messages are being pulled.
+ * @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated, not both.
+ * @property {string[]} ackIds List of acknowledgment IDs. Either this field or ack_id should be populated, not both.
+ * @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline will expire 10 seconds after the ModifyAckDeadline call was made. Specifying zero may immediately make the message available for another pull request.
+ */
+/**
+ * @typedef AcknowledgeRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} subscription The subscription whose message is being acknowledged.
+ * @property {string[]} ackId The acknowledgment ID for the message being acknowledged. This was returned by the Pub/Sub system in the Pull response.
+ */
 module.exports = Pubsub;
